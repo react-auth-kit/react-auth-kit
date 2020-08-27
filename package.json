@@ -4,7 +4,7 @@
   "description": "Authentication Library for React App",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "files": ["dist"],
+  "files": ["dist", "types"],
   "types": "types/index.d.ts",
   "engines": {
     "node": ">=10"
