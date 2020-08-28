@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - development
+      - 'dependabot/*'
+
+  pull_request:
+    branches:
+      - master
+      - development
+
+name: Test Suites
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '10', '12' ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: Test
+        run: npm test
