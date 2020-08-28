@@ -14,6 +14,9 @@
                   <Item>
                     <option name="path" value=".github/workflow/release.yml" />
                   </Item>
+                  <Item>
+                    <option name="path" value=".github/workflow/test.yml" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
