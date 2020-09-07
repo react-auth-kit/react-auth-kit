@@ -8,6 +8,10 @@ The use of react-auth-jwt library is very easy and straight forward.
 to the components, so you need to make sure that `AuthProvider` is a parent of the `Routing components`.
 You can learn more about this in the API section.
 
+```jsx
+import { AuthProvider } from 'react-auth-kit'
+```
+
 ### Demo
 
 Integrate `AuthProvider` before Routes. Typically, the best place is `app.js`.
@@ -15,7 +19,7 @@ Integrate `AuthProvider` before Routes. Typically, the best place is `app.js`.
 app.js
 ```js
 import React from 'react';
-import { AuthProvider } from 'react-auth-jwt'
+import { AuthProvider } from 'react-auth-kit'
 import RouteComponent from './routes';
 
 const App = () => (
