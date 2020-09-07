@@ -1,5 +1,5 @@
 site_name: React Auth Kit
-site_description: Authenticate users in React app with JWT based authentication
+site_description: Authentication Library for React
 
 theme:
   name: 'material'
