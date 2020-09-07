@@ -1,0 +1,20 @@
+site_name: React Auth Kit
+site_description: Authenticate users in React app with JWT based authentication
+
+theme:
+  name: 'material'
+  icon:
+    repo: fontawesome/brands/github
+  logo: img/logo.svg
+  favicon: img/favicon.png
+
+repo_url: https://github.com/react-auth-kit/react-auth-kit
+repo_name: react-auth-kit/react-auth-kit
+
+nav:
+  - Introduction: 'index.md'
+  - Installation: 'installation.md'
+  - Usage: 'usage.md'
+  - Sign In: 'signin.md'
+  - Private Route: 'privateroute.md'
+  - Sign Out: 'signout.md'
