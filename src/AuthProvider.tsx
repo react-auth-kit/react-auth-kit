@@ -68,4 +68,13 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         )
     }
 
+    AuthProvider.defaultProps = {
+        authStorageType: "cookie",
+        authStorageName: "_auth_token",
+        authTimeStorageName: "_auth_time",
+        stateStorageName: "_auth_state",
+        cookieSecure: true
+    }
+
+
 export default AuthProvider

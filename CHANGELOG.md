@@ -1,7 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.1.0] - 
+## [1.1.1] - 2020-09-08
+### Added 
+- Documentation [https://authkit.arkadip.co](https://authkit.arkadip.co)
+- Default props for `AuthProvider`
+
+## [1.1.0] - 2020-09-08
 ### Added
 - Local Storage Added (Cookie and LocalStorage can be chosen by AuthProvider Prop `authStorageType`)
 - Documentation [https://authkit.arkadip.co](https://authkit.arkadip.co)
