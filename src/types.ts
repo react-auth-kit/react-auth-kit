@@ -11,3 +11,12 @@ export declare interface signInFunctionParams {
     expiresIn: number,
     authState: object
 }
+
+export declare interface TokenObjectParamsInterface {
+    authStorageType: 'cookie' | 'localstorage'
+    authStorageName: string,
+    authTimeStorageName: string,
+    stateStorageName: string,
+    cookieDomain?: string
+    cookieSecure?: boolean
+}

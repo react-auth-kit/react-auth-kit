@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { AuthContextProvider } from './AuthContext'
+import React, {useEffect, useState} from 'react'
+import {AuthContextProvider} from './AuthContext'
 import TokenObject from './TokenObject'
-import {TokenInterface} from "./types";
+import {TokenInterface, TokenObjectParamsInterface,} from "./types";
 
-interface AuthProviderProps {
-  authCookieName: string
-  authTimeCookieName: string
-  stateCookieName: string
-  cookieDomain: string
-  cookieSecure: boolean
-  children: React.ReactChildren
+interface AuthProviderProps extends TokenObjectParamsInterface {
+    children: React.ReactChildren
 }
 
 /**
@@ -17,40 +12,60 @@ interface AuthProviderProps {
  *
  * @param children - Children Component
  * @param authCookieName - Cookie Name for Auth Storing
- * @param authTimeCookieName - Cookie name for Auth Time Storing
- * @param stateCookieName - Cookie name for Auth User Data Storing
  * @param cookieDomain - Domain Name for the Cookies
  * @param cookieSecure - HTTP / HTTPS
  * @constructor
  */
-const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({
-  children,
-  authCookieName,
-  authTimeCookieName,
-  stateCookieName,
-  cookieDomain,
-  cookieSecure
-}) => {
-  const tokenObject = new TokenObject(
-    authCookieName,
-    authTimeCookieName,
-    stateCookieName,
-    cookieDomain,
-    cookieSecure
-  )
-  const [authState, setAuthState] = useState<TokenInterface>(
-      tokenObject.initialToken()
-  )
 
-  useEffect(() => {
-      tokenObject.syncTokens(authState)
-  }, [authState])
+/**
+ * AuthProvider - The Authentication Context Provider
+ *
+ * @param children
+ * @param authStorageName
+ * @param authStorageType
+ * @param authTimeStorageName
+ * @param cookieDomain
+ * @param cookieSecure
+ * @param stateStorageName
+ * @constructor
+ */
+const AuthProvider: React.FunctionComponent<AuthProviderProps> =
+    ({
+         children,
+         authStorageType,
+         authStorageName,
+         authTimeStorageName,
+         stateStorageName,
+         cookieDomain,
+         cookieSecure,
+     }) => {
+        if (authStorageType === "cookie" ) {
+            if(!(!!cookieSecure && !!cookieDomain)){
+                throw new Error("authStorageType 'cookie' requires 'cookieDomain' and 'cookieSecure' in AuthProvider")
+            }
+        }
 
-  return (
-    <AuthContextProvider value={{ authState, setAuthState }}>
-      {children}
-    </AuthContextProvider>
-  )
-}
+        const tokenObject = new TokenObject({
+            authTimeStorageName,
+            authStorageType,
+            authStorageName,
+            cookieDomain,
+            cookieSecure,
+            stateStorageName
+        })
+        const [authState, setAuthState] = useState<TokenInterface>(
+            tokenObject.initialToken()
+        )
+
+        useEffect(() => {
+            tokenObject.syncTokens(authState)
+        }, [authState])
+
+        return (
+            <AuthContextProvider value={{authState, setAuthState}}>
+                {children}
+            </AuthContextProvider>
+        )
+    }
 
 export default AuthProvider
