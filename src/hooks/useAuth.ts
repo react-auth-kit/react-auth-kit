@@ -11,7 +11,7 @@ const useAuth: () => () => TokenInterface = () => {
   const c = useContext(AuthContext)
 
   return (): TokenInterface => {
-    return <TokenInterface>c?.authState
+    return <TokenInterface>c?.authState.authState
   }
 }
 

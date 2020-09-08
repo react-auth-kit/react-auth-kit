@@ -11,7 +11,7 @@ const withAuth = <P extends object>(Component: React.ComponentType<P>) => {
       return (
         <AuthContextConsumer>
           {(value) => (
-            <Component {...(this.props as P)} authState={value?.authState} />
+            <Component {...(this.props as P)} authState={value?.authState.authState} />
           )}
         </AuthContextConsumer>
       )
