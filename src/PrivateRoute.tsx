@@ -25,6 +25,7 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
             } else {
                 context.setAuthState({
                     authToken: null,
+                    authTokenType: null,
                     expireAt: null,
                     authState: null
                 })
