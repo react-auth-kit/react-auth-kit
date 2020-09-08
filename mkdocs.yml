@@ -18,3 +18,5 @@ nav:
   - Sign In: 'signin.md'
   - Private Route: 'privateroute.md'
   - Sign Out: 'signout.md'
+  - Auth User Data: 'authdata.md'
+  - Auth Header: 'authheader.md'
