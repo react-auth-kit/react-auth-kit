@@ -1,7 +1,6 @@
-export declare type authTokenType = string | null
-
 export declare interface TokenInterface {
-    authToken: authTokenType
+    authToken: string | null
+    authTokenType: string | null
     expireAt: Date | null
     authState: object | null
 }
