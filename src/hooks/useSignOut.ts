@@ -9,6 +9,7 @@ const useSignOut: () => () => boolean = () => {
         c.setAuthState((prevState) => ({
           ...prevState,
           authToken: null,
+          authTokenType: null,
           expireAt: null,
           authState: null
         }))

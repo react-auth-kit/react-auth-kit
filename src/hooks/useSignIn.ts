@@ -1,29 +1,26 @@
 import { useContext } from 'react'
 import { AuthContext } from '../AuthContext'
+import {signInFunctionParams} from "../types";
 
 /**
  * Authentication SignIn Hook
  *
  * @returns {function(): boolean} - Sign In function
  */
-const useSignIn: () => (
-  token: string,
-  expiresIn: number,
-  authState: object
-) => boolean = () => {
+const useSignIn: () => ({token, authState, expiresIn, tokenType}: signInFunctionParams) => boolean = () => {
   const c = useContext(AuthContext)
 
-  return (token: string, expiresIn: number, authState: object): boolean => {
+  return ({token, authState, expiresIn, tokenType}: signInFunctionParams): boolean => {
     const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000)
     try {
       if (c) {
         c.setAuthState((prevState) => ({
           ...prevState,
           authToken: token,
+          authTokenType: tokenType,
           expireAt: expTime,
           authState: authState
         }))
-        console.log('RAJ :: Signing In')
         return true
       } else {
         return false

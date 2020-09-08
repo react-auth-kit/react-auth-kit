@@ -5,7 +5,7 @@ const useAuthHeader: () => () => string = () => {
   const c = useContext(AuthContext)
   return () => {
     if (c?.authState) {
-      return `Bearer ${c.authState.authToken}`
+      return `${c.authState.authTokenType} ${c.authState.authToken}`
     } else {
       return `Bearer `
     }

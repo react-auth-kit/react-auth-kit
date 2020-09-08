@@ -18,6 +18,7 @@ const withSignOut = <P extends object>(Component: React.ComponentType<P>) => {
                   c.setAuthState((prevState) => ({
                     ...prevState,
                     authToken: null,
+                    authTokenType: null,
                     expireAt: null,
                     authState: null
                   }))

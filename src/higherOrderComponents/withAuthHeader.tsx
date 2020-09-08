@@ -18,7 +18,7 @@ const withAuthHeader = <P extends object>(
               return (
                 <Component
                   {...(props as P)}
-                  authHeader={`Bearer ${c.authState.authToken}`}
+                  authHeader={`${c.authState.authTokenType} ${c.authState.authToken}`}
                 />
               )
             } else {
