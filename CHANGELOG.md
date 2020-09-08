@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.3] - 
+## [1.1.0] - 
 ### Added
 - Local Storage Added (Cookie and LocalStorage can be chosen by AuthProvider Prop `authStorageType`)
 - Documentation [https://authkit.arkadip.co](https://authkit.arkadip.co)
