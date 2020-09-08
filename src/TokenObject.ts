@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import {TokenInterface} from "./types";
 
 class TokenObject {
   private readonly authCookieName: string
