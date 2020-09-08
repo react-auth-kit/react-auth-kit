@@ -1,11 +1,34 @@
-import React from 'react'
+/*
+ * Copyright 2020 Arkadip Bhattacharya
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-declare interface ContextProps {
-  authState: TokenInterface
-  setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
+import React from 'react'
+import {TokenInterface} from "./types";
+
+/**
+ * AuthContextInterface
+ *
+ * authState - Stores the value of authentication State
+ * setAuthState - Sets the authState Value
+ */
+declare interface AuthContextInterface {
+    authState: TokenInterface
+    setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
 }
 
-const Auth = React.createContext<ContextProps | null>(null)
+const Auth = React.createContext<AuthContextInterface | null>(null)
 
 export const AuthContextProvider = Auth.Provider
 export const AuthContextConsumer = Auth.Consumer
