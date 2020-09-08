@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { AuthContextProvider } from './AuthContext'
 import TokenObject from './TokenObject'
+import {TokenInterface} from "./types";
 
-type authTokenType = string | null
-
-declare interface TokenInterface {
-  authToken: authTokenType
-  expireAt: Date | null
-  authState: object | null
-}
-
-interface AuthProps {
+interface AuthProviderProps {
   authCookieName: string
   authTimeCookieName: string
   stateCookieName: string
@@ -30,7 +23,7 @@ interface AuthProps {
  * @param cookieSecure - HTTP / HTTPS
  * @constructor
  */
-const AuthProvider: React.FunctionComponent<AuthProps> = ({
+const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({
   children,
   authCookieName,
   authTimeCookieName,
@@ -38,7 +31,7 @@ const AuthProvider: React.FunctionComponent<AuthProps> = ({
   cookieDomain,
   cookieSecure
 }) => {
-  const JwtTokenObject = new TokenObject(
+  const tokenObject = new TokenObject(
     authCookieName,
     authTimeCookieName,
     stateCookieName,
@@ -46,11 +39,11 @@ const AuthProvider: React.FunctionComponent<AuthProps> = ({
     cookieSecure
   )
   const [authState, setAuthState] = useState<TokenInterface>(
-    JwtTokenObject.initialToken()
+      tokenObject.initialToken()
   )
 
   useEffect(() => {
-    JwtTokenObject.syncTokens(authState)
+      tokenObject.syncTokens(authState)
   }, [authState])
 
   return (
