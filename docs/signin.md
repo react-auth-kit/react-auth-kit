@@ -24,7 +24,10 @@ const SignInComponent = () => {
     ...
     const onSubmit = (e) => {
         ...
-        if(signIn(token, expiresOn, authUserState)){
+        if(signIn({token: res.data.token, 
+                   expiresIn:res.data.expiresIn,
+                   tokenType: "Bearer",
+                   authState: res.data.authUserState})){
             // Redirect or do-something
         }else {
             //Throw error
@@ -56,7 +59,10 @@ const SignInComponent = () => {
         axios.post('/api/login', formData)
             .then((res)=>{
                 if(res.status === 200){
-                    if(signIn(res.data.token, res.data.expiresOn, res.data.authUserState)){
+                    if(signIn({token: res.data.token, 
+                               expiresIn:res.data.expiresIn,
+                               tokenType: "Bearer",
+                               authState: res.data.authUserState})){
                         // Redirect or do-something
                     }else {
                         //Throw error
@@ -93,7 +99,10 @@ class signInComponent extends React.Component {
 
     const onSubmit = (e) => {
         ...
-        if(this.props.signIn(token, expiresOn, authUserState)){
+        if(this.props.signIn({token: res.data.token, 
+                              expiresIn:res.data.expiresIn,
+                              tokenType: "Bearer",
+                              authState: res.data.authUserState})){
             // Redirect or do-something
         }else {
             //Throw error
@@ -125,7 +134,10 @@ class signInComponent extends React.Component {
         axios.post('/api/login', this.state)
             .then((res)=>{
                 if(res.status === 200){
-                    if(this.props.signIn(res.data.token, res.data.expiresOn, res.data.authUserState)){
+                    if(this.props.signIn({token: res.data.token, 
+                                          expiresIn:res.data.expiresIn,
+                                          tokenType: "Bearer",
+                                          authState: res.data.authUserState})){
                         // Redirect or do-something
                     }else {
                         //Throw error
@@ -151,6 +163,28 @@ export default withSignIn(signInComponent)
 ```
 
 </details>
-## API
-- [`useSignIn()`](/api)
-- [`withSignIn()`](/api)
+
+## Sign In Function Parameters
+
+The Sign in function takes only 1 parameter, which is an `JavaScript object`.
+
+Using the Object, you provide all necessary arguments and signIn.
+
+### Interface of the Sign In Object
+
+```typescript
+declare interface signInFunctionParams {
+    token: string,
+    tokenType: string | 'Bearer',
+    expiresIn: number,
+    authState: object
+}
+```
+### Explanation of the Sign In Object
+
+| Name      | Type                | Description                                                          |
+|-----------|---------------------|----------------------------------------------------------------------|
+| token     | string              | The Authentication token to be stored from server                    |
+| tokenType | string  \| 'Bearer' | The type of authentication token.                                    |
+| expiresIn | number              | The time for which the token will last, `in minutes`                 |
+| authState | object              | State of the authorized user. Eg: {name: Jhon, email: jhon@auth.com} |
