@@ -1,6 +1,6 @@
 # Usage
 
-The use of react-auth-jwt library is very easy and straight forward.
+The use of react-auth-kit library is very easy and straight forward.
 
 ## Auth Provider
 
@@ -48,4 +48,4 @@ export default App;
 | cookieSecure        | boolean                    | false         | The cookie secure flag. ⚠ If `authStorageType` = `cookie`, then you must put a value Refer [this](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) for more info          |
 
 <p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth JWT is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

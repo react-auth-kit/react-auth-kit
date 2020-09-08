@@ -2,7 +2,7 @@
 
 > Implement Sign In on your React App
 
-React Auth JWT has easy to implement Sign In procedures.
+React Auth Kit has easy to implement Sign In procedures.
 
 It supports both [`Hooks`](https://reactjs.org/docs/hooks-intro.html) and
 [`Higher Order Component`](https://reactjs.org/docs/higher-order-components.html)
@@ -13,11 +13,11 @@ for both Functional Components and Class-based Components
 Sign In using Hooks need `useSignIn` hook
 
 ```js
-import { useSignIn } from 'react-auth-jwt'
+import { useSignIn } from 'react-auth-kit'
 ```
 ### Demo
 ```jsx
-import { useSignIn } from 'react-auth-jwt'
+import { useSignIn } from 'react-auth-kit'
 
 const SignInComponent = () => {
     const signIn = useSignIn()
@@ -48,7 +48,7 @@ const SignInComponent = () => {
 ```jsx
 import React from "react"
 import axios from 'axios'
-import { useSignIn } from 'react-auth-jwt'
+import { useSignIn } from 'react-auth-kit'
 
 const SignInComponent = () => {
     const signIn = useSignIn()
@@ -88,12 +88,12 @@ const SignInComponent = () => {
 Sign In using Higher Order Component using `withSignIn`
 
 ```js
-import { withSignIn } from 'react-auth-jwt'
+import { withSignIn } from 'react-auth-kit'
 ```
 
 ### Demo
 ```jsx
-import { withSignIn } from 'react-auth-jwt'
+import { withSignIn } from 'react-auth-kit'
 
 class signInComponent extends React.Component {
 
@@ -124,7 +124,7 @@ export default withSignIn(signInComponent)
 ```jsx
 import React from 'react'
 import axios from 'axios'
-import { withSignIn } from 'react-auth-jwt'
+import { withSignIn } from 'react-auth-kit'
 
 class signInComponent extends React.Component {
     state={email: '', password: ''}
@@ -188,3 +188,6 @@ declare interface signInFunctionParams {
 | tokenType | string  \| 'Bearer' | The type of authentication token.                                    |
 | expiresIn | number              | The time for which the token will last, `in minutes`                 |
 | authState | object              | State of the authorized user. Eg: {name: Jhon, email: jhon@auth.com} |
+
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
