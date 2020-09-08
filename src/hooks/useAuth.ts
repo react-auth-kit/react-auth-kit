@@ -1,12 +1,6 @@
 import { useContext } from 'react'
 import { AuthContext } from '../AuthContext'
-import {authTokenType} from "../types";
-
-declare interface TokenInterface {
-  authToken: authTokenType
-  expireAt: Date | null
-  authState: object | null
-}
+import {TokenInterface} from "../types";
 
 /**
  * Auth State Hook
