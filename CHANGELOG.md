@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 
+### Added
+- Documentation [https://authkit.arkadip.co](https://authkit.arkadip.co)
+
 ## [1.0.2] - 2020-08-29
 ### Added
 - UMD module

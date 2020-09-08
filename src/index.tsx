@@ -1,13 +1,13 @@
 import AuthProvider from './AuthProvider'
 import PrivateRoute from './PrivateRoute'
-import useSignIn from './useSignIn'
-import useSignOut from './useSignOut'
-import useAuth from './useAuth'
-import useAuthHeader from './useAuthHeader'
-import withAuth from './withAuth'
-import withAuthHeader from './withAuthHeader'
-import withSignIn from './withSignIn'
-import withSignOut from './withSignOut'
+import useSignIn from './hooks/useSignIn'
+import useSignOut from './hooks/useSignOut'
+import useAuth from './hooks/useAuth'
+import useAuthHeader from './hooks/useAuthHeader'
+import withAuth from './higherOrderComponents/withAuth'
+import withAuthHeader from './higherOrderComponents/withAuthHeader'
+import withSignIn from './higherOrderComponents/withSignIn'
+import withSignOut from './higherOrderComponents/withSignOut'
 
 export {
   AuthProvider,

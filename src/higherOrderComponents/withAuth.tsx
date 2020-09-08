@@ -1,5 +1,5 @@
 import React from 'react'
-import { AuthContextConsumer } from './AuthContext'
+import { AuthContextConsumer } from '../AuthContext'
 
 interface withAuthProps {
   authState: object | null

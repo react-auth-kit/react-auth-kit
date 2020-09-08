@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { AuthContext } from './AuthContext'
+import { AuthContext } from '../AuthContext'
+import {authTokenType} from "../AuthProvider.types";
 
 declare interface TokenInterface {
   authToken: authTokenType

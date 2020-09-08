@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AuthContext } from './AuthContext'
+import { AuthContext } from '../AuthContext'
 
 const useAuthHeader: () => () => string = () => {
   const c = useContext(AuthContext)
