@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/img/banner.svg"/>
+    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg"/>
 </p>
 
 <p align="center">
@@ -44,6 +44,9 @@ It is production-ready, and gives you the following:
 * React Js 16.8+
 * React-Router-Dom
 
+## Documentation
+
+Visit [https://authkit.arkadip.co](https://authkit.arkadip.co) for the complete documentation
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth JWT is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
