@@ -1,14 +1,14 @@
-import { useContext } from 'react'
+import * as React from 'react'
 import { AuthContext } from '../AuthProvider'
 import {signInFunctionParams} from "../types";
 
 /**
  * Authentication SignIn Hook
  *
- * @returns {function(): boolean} - Sign In function
+ * @returns - Sign In function
  */
-const useSignIn: () => ({token, authState, expiresIn, tokenType}: signInFunctionParams) => boolean = () => {
-  const c = useContext(AuthContext)
+function useSignIn ():({token, authState, expiresIn, tokenType}: signInFunctionParams) => boolean {
+  const c = React.useContext(AuthContext)
 
   return ({token, authState, expiresIn, tokenType}: signInFunctionParams): boolean => {
     const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000)

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {AuthContextConsumer} from '../AuthProvider'
 import {signInFunctionParams} from "../types";
 
@@ -6,7 +6,7 @@ interface withSignInProps {
     signIn(params: signInFunctionParams): boolean
 }
 
-const withSignIn = <P extends object>(Component: React.ComponentType<P>) => {
+function withSignIn<P extends object>(Component: React.ComponentType<P>) {
     return class withSignIn extends React.Component<P & withSignInProps> {
         render() {
             const {...props} = this.props

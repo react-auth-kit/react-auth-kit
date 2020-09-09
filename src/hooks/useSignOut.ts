@@ -1,8 +1,8 @@
-import { useContext } from 'react'
+import * as React from 'react'
 import { AuthContext } from '../AuthProvider'
 
-const useSignOut: () => () => boolean = () => {
-  const c = useContext(AuthContext)
+function useSignOut(): () => (boolean) {
+  const c = React.useContext(AuthContext)
   return () => {
     try {
       if (c?.authState.authToken) {

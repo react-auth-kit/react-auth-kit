@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import * as React from 'react'
 import {Route, Redirect, RouteProps} from 'react-router-dom'
 import {AuthContext} from './AuthProvider'
 
@@ -16,7 +16,7 @@ interface PrivateRouteProps extends RouteProps {
  * @param props
  */
 const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
-    const context = useContext(AuthContext)
+    const context = React.useContext(AuthContext)
 
     const isAuth = () => {
         if (context?.authState.authToken && context?.authState.expireAt) {

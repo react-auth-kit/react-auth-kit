@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import * as React from 'react'
 import { AuthContext } from '../AuthProvider'
 import {TokenInterface} from "../types";
 
@@ -7,8 +7,8 @@ import {TokenInterface} from "../types";
  *
  * @returns - Auth State Function
  */
-const useAuth: () => () => TokenInterface = () => {
-  const c = useContext(AuthContext)
+function useAuth(): () => TokenInterface{
+  const c = React.useContext(AuthContext)
 
   return (): TokenInterface => {
     return <TokenInterface>c?.authState.authState

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import * as React from 'react'
 import TokenObject from './TokenObject'
 import {TokenInterface, TokenObjectParamsInterface,} from "./types";
 
@@ -12,7 +12,7 @@ interface AuthProviderProps extends TokenObjectParamsInterface {
  * authState - Stores the value of authentication State
  * setAuthState - Sets the authState Value
  */
-declare interface AuthContextInterface {
+interface AuthContextInterface {
     authState: TokenInterface
     setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
 }
@@ -29,7 +29,6 @@ const AuthContext = React.createContext<AuthContextInterface | null>(null)
  * @param cookieDomain
  * @param cookieSecure
  * @param stateStorageName
- * @constructor
  */
 const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     ({
@@ -55,11 +54,11 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
             cookieSecure,
             stateStorageName
         })
-        const [authState, setAuthState] = useState<TokenInterface>(
+        const [authState, setAuthState] = React.useState<TokenInterface>(
             tokenObject.initialToken()
         )
 
-        useEffect(() => {
+        React.useEffect(() => {
             tokenObject.syncTokens(authState)
         }, [authState])
 
