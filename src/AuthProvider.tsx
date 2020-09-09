@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import {AuthContextProvider} from './AuthContext'
 import TokenObject from './TokenObject'
 import {TokenInterface, TokenObjectParamsInterface,} from "./types";
 
@@ -8,14 +7,17 @@ interface AuthProviderProps extends TokenObjectParamsInterface {
 }
 
 /**
- * AuthProvider Functional Component
+ * AuthContextInterface
  *
- * @param children - Children Component
- * @param authCookieName - Cookie Name for Auth Storing
- * @param cookieDomain - Domain Name for the Cookies
- * @param cookieSecure - HTTP / HTTPS
- * @constructor
+ * authState - Stores the value of authentication State
+ * setAuthState - Sets the authState Value
  */
+declare interface AuthContextInterface {
+    authState: TokenInterface
+    setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
+}
+
+const AuthContext = React.createContext<AuthContextInterface | null>(null)
 
 /**
  * AuthProvider - The Authentication Context Provider
@@ -39,8 +41,8 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
          cookieDomain,
          cookieSecure,
      }) => {
-        if (authStorageType === "cookie" ) {
-            if(!(!!cookieSecure && !!cookieDomain)){
+        if (authStorageType === "cookie") {
+            if (!(!!cookieSecure && !!cookieDomain)) {
                 throw new Error("authStorageType 'cookie' requires 'cookieDomain' and 'cookieSecure' in AuthProvider")
             }
         }
@@ -62,19 +64,21 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         }, [authState])
 
         return (
-            <AuthContextProvider value={{authState, setAuthState}}>
+            <AuthContext.Provider value={{authState, setAuthState}}>
                 {children}
-            </AuthContextProvider>
+            </AuthContext.Provider>
         )
     }
 
-    AuthProvider.defaultProps = {
-        authStorageType: "cookie",
-        authStorageName: "_auth_token",
-        authTimeStorageName: "_auth_time",
-        stateStorageName: "_auth_state",
-        cookieSecure: true
-    }
+AuthProvider.defaultProps = {
+    authStorageType: "cookie",
+    authStorageName: "_auth_token",
+    authTimeStorageName: "_auth_time",
+    stateStorageName: "_auth_state",
+    cookieSecure: true
+}
 
 
 export default AuthProvider
+const AuthContextConsumer = AuthContext.Consumer
+export {AuthContext, AuthContextConsumer}
