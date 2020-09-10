@@ -6,40 +6,37 @@ interface withSignInProps {
     signIn(params: signInFunctionParams): boolean
 }
 
-function withSignIn<P extends object>(Component: React.ComponentType<P>) {
-    return class withSignIn extends React.Component<P & withSignInProps> {
-        render() {
-            const {...props} = this.props
-            return (
-                <AuthContextConsumer>
-                    {(c) => {
-                        const signIn = ({token, tokenType, expiresIn, authState}: signInFunctionParams): boolean => {
-                            const expTime = new Date(
-                                new Date().getTime() + expiresIn * 60 * 1000
-                            )
-                            try {
-                                if (c) {
-                                    c.setAuthState((prevState) => ({
-                                        ...prevState,
-                                        authToken: token,
-                                        authTokenType: tokenType,
-                                        expireAt: expTime,
-                                        authState: authState
-                                    }))
-                                    return true
-                                } else {
-                                    return false
-                                }
-                            } catch (e) {
-                                console.error(e)
+function withSignIn<P extends withSignInProps>(Component: React.ComponentType<P>):React.FC<P> {
+    return (props) => {
+        return (
+            <AuthContextConsumer>
+                {(c) => {
+                    const signIn = ({token, tokenType, expiresIn, authState}: signInFunctionParams): boolean => {
+                        const expTime = new Date(
+                            new Date().getTime() + expiresIn * 60 * 1000
+                        )
+                        try {
+                            if (c) {
+                                c.setAuthState((prevState) => ({
+                                    ...prevState,
+                                    authToken: token,
+                                    authTokenType: tokenType,
+                                    expireAt: expTime,
+                                    authState: authState
+                                }))
+                                return true
+                            } else {
                                 return false
                             }
+                        } catch (e) {
+                            console.error(e)
+                            return false
                         }
-                        return <Component {...(props as P)} signIn={signIn}/>
-                    }}
-                </AuthContextConsumer>
-            )
-        }
+                    }
+                    return <Component {...props} signIn={signIn}/>
+                }}
+            </AuthContextConsumer>
+        )
     }
 }
 
