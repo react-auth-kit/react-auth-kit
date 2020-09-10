@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2020-09-10
+### Fixed
+- Type Definition
+
+### Changed
+- Size decreased from 2.12 KB to 1.81 KB 
+
 ## [1.1.1] - 2020-09-08
 ### Added 
 - Documentation [https://authkit.arkadip.co](https://authkit.arkadip.co)
