@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.6] - 2020-09-12
+### Fixed
+- Linting the Codes
+
+### Changed
+- Docs Override dir to `docs` dir
+
+## [1.1.5] - 2020-09-12
+### Fixed
+- Docs Meta Tags Fixed
+- Docs Site Map Fixed
+
 ## [1.1.4] - 2020-09-12
 ### Added
 - SEO added in docs
