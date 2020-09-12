@@ -2,3 +2,6 @@ types
 dist
 node_modules
 .idea
+env
+docs
+docs_overrides
