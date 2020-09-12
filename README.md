@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <em>🔑 Authenticate users in React app with JWT based authentication 🔑</em>
+    <em>🔑 Authenticate users in React app 🔑</em>
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 
 # Introduction
 
-**React Auth JWT** is a lightweight Javascript library for React JS, which makes the implementation of `Token based`
+**React Auth Kit** is a lightweight Javascript library for React JS, which makes the implementation of `Token based`
 authentication very easy
 
 It is production-ready, and gives you the following:
@@ -48,5 +48,7 @@ It is production-ready, and gives you the following:
 
 Visit [https://authkit.arkadip.co](https://authkit.arkadip.co) for the complete documentation
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P61YJOH)
+
 <p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth JWT is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

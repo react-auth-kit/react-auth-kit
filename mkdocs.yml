@@ -1,15 +1,21 @@
 site_name: React Auth Kit
 site_description: Authentication Library for React
+site_author: Arkadip Bhattacharya
+
+google_analytics: ['UA-147992308-2', 'authkit.arkadip,co']
+
+repo_url: https://github.com/react-auth-kit/react-auth-kit
+repo_name: react-auth-kit/react-auth-kit
 
 theme:
   name: 'material'
+  custom_dir: docs_overrides/
   icon:
     repo: fontawesome/brands/github
   logo: img/logo.svg
   favicon: img/favicon.png
-
-repo_url: https://github.com/react-auth-kit/react-auth-kit
-repo_name: react-auth-kit/react-auth-kit
+  extra:
+    version: 1.1.3
 
 nav:
   - Introduction: 'index.md'
@@ -20,3 +26,5 @@ nav:
   - Sign Out: 'signout.md'
   - Auth User Data: 'authdata.md'
   - Auth Header: 'authheader.md'
+
+
