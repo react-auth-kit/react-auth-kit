@@ -1,6 +1,7 @@
 site_name: React Auth Kit
 site_description: Authentication Library for React
 site_author: Arkadip Bhattacharya
+site_url: https://authkit.arkadip.co
 
 google_analytics: ['UA-147992308-2', 'authkit.arkadip,co']
 
