@@ -10,7 +10,7 @@ repo_name: react-auth-kit/react-auth-kit
 
 theme:
   name: 'material'
-  custom_dir: docs_overrides/
+  custom_dir: docs/docs_overrides/
   icon:
     repo: fontawesome/brands/github
   logo: img/logo.svg
