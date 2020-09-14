@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.7] - 2020-09-14
+### Added
+- `useIsAuthenticated` and `withIsAuthenticated` added. Now check if your user is logged in or not.
+
+### Changed
+- ⚠ `useAuth` is changed to `useAuthUser`
+- ⚠ `withAuth` is changed to `withAuthUser`
+
 ## [1.1.6] - 2020-09-12
 ### Fixed
 - Linting the Codes
