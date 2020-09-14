@@ -30,7 +30,7 @@ const SomeComponent = () => {
 ## Using Higher Order Component
 
 ```jsx
-import {withAuth} from 'react-auth-kit'
+import {withAuthHeader} from 'react-auth-kit'
 ```
 
 ### Demo

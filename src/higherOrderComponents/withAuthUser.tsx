@@ -5,9 +5,7 @@ interface withAuthProps {
     authState: object | null
 }
 
-
-
-function withAuth<P extends withAuthProps>(Component: React.ComponentType<P>): React.FC<P> {
+function withAuthUser<P extends withAuthProps>(Component: React.ComponentType<P>): React.FC<P> {
     return (props: P)=>{
         return (
             <AuthContextConsumer>
@@ -19,4 +17,4 @@ function withAuth<P extends withAuthProps>(Component: React.ComponentType<P>): R
     }
 }
 
-export default withAuth
+export default withAuthUser
