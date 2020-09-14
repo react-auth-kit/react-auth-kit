@@ -27,5 +27,7 @@ nav:
   - Sign Out: 'signout.md'
   - Auth User Data: 'authdata.md'
   - Auth Header: 'authheader.md'
+  - Check Authentication: 'check_auth.md'
 
-
+markdown_extensions:
+  - pymdownx.inlinehilite
