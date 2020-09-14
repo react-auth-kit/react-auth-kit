@@ -1,23 +1,16 @@
 import * as React from 'react'
 import TokenObject from './TokenObject'
-import {TokenInterface, TokenObjectParamsInterface,} from "./types";
+import {AuthContextInterface, AuthProviderProps, TokenInterface} from "./types";
 
-interface AuthProviderProps extends TokenObjectParamsInterface {
-    children: React.ReactChildren
-}
-
-/**
- * AuthContextInterface
- *
- * authState - Stores the value of authentication State
- * setAuthState - Sets the authState Value
- */
-interface AuthContextInterface {
-    authState: TokenInterface
-    setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
-}
-
-const AuthContext = React.createContext<AuthContextInterface | null>(null)
+const AuthContext = React.createContext<AuthContextInterface>({
+    authState: {
+        authTokenType: null,
+        authState: null,
+        authToken: null,
+        expireAt: null
+    },
+    setAuthState: () => {}
+})
 
 /**
  * AuthProvider - The Authentication Context Provider

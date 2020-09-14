@@ -1,3 +1,5 @@
+import * as React from "react";
+
 export interface TokenInterface {
     authToken: string | null
     authTokenType: string | null
@@ -19,4 +21,13 @@ export interface TokenObjectParamsInterface {
     stateStorageName: string,
     cookieDomain?: string
     cookieSecure?: boolean
+}
+
+export interface AuthContextInterface {
+    authState: TokenInterface
+    setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
+}
+
+export interface AuthProviderProps extends TokenObjectParamsInterface {
+    children: React.ReactChildren
 }
