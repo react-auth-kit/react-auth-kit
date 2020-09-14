@@ -16,28 +16,28 @@
 
 import AuthProvider from './AuthProvider'
 import PrivateRoute from './PrivateRoute'
-import useIsAuth from './hooks/useIsAuth'
 import useSignIn from './hooks/useSignIn'
 import useSignOut from './hooks/useSignOut'
 import useAuthUser from './hooks/useAuthUser'
 import useAuthHeader from './hooks/useAuthHeader'
+import useIsAuthenticated from './hooks/useIsAuthenticated'
 import withSignIn from './higherOrderComponents/withSignIn'
-import withIsAuth from './higherOrderComponents/withIsAuth'
 import withSignOut from './higherOrderComponents/withSignOut'
 import withAuthUser from './higherOrderComponents/withAuthUser'
 import withAuthHeader from './higherOrderComponents/withAuthHeader'
+import withIsAuthenticated from './higherOrderComponents/withIsAuthenticated'
 
 export {
   AuthProvider,
   PrivateRoute,
-  useIsAuth,
   useSignIn,
   useSignOut,
   useAuthUser,
   useAuthHeader,
-  withIsAuth,
+  useIsAuthenticated,
   withSignIn,
   withSignOut,
   withAuthUser,
-  withAuthHeader
+  withAuthHeader,
+  withIsAuthenticated
 }

@@ -17,7 +17,7 @@
 import * as React from "react";
 import {AuthContext} from "../AuthProvider";
 
-const useIsAuth = (): ()=>boolean => {
+const useIsAuthenticated = (): ()=>boolean => {
     const context = React.useContext(AuthContext)
 
     return () => {
@@ -39,4 +39,4 @@ const useIsAuth = (): ()=>boolean => {
     }
 }
 
-export default useIsAuth
+export default useIsAuthenticated

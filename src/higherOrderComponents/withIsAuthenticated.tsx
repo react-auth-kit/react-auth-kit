@@ -21,7 +21,7 @@ interface withAuthHeaderProps {
     isAuth: string
 }
 
-function withIsAuth<P extends withAuthHeaderProps>(Component: React.ComponentType<P>): React.FC<P> {
+function withIsAuthenticated<P extends withAuthHeaderProps>(Component: React.ComponentType<P>): React.FC<P> {
     return (props) => {
         return (
             <AuthContextConsumer>
@@ -47,4 +47,4 @@ function withIsAuth<P extends withAuthHeaderProps>(Component: React.ComponentTyp
     }
 }
 
-export default withIsAuth
+export default withIsAuthenticated
