@@ -3,21 +3,21 @@
 Get the Authorized user's state from any Component simply by using `HOC` or `Hooks`
 
 - To get the Authorized user's state from _Higher Order Components_, use `withAuth`
-- To get the Authorized user's state using _React Hooks_, use `useAuth`
+- To get the Authorized user's state using _React Hooks_, use `useAuthUser`
 
 ## Using Hooks
 
 ```js
-import {useAuth} from 'react-auth-kit'
+import {useAuthUser} from 'react-auth-kit'
 ```
 
 ### Demo
 ```jsx
 import React from 'react'
-import {useAuth} from 'react-auth-kit'
+import {useAuthUser} from 'react-auth-kit'
 
 const SomeComponent = () => {
-    const auth = useAuth()
+    const auth = useAuthUser()
     
     return(
         <div>

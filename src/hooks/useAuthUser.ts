@@ -7,7 +7,7 @@ import {TokenInterface} from "../types";
  *
  * @returns - Auth State Function
  */
-function useAuth(): () => TokenInterface{
+function useAuthUser(): () => TokenInterface{
   const c = React.useContext(AuthContext)
 
   return (): TokenInterface => {
@@ -15,4 +15,4 @@ function useAuth(): () => TokenInterface{
   }
 }
 
-export default useAuth
+export default useAuthUser
