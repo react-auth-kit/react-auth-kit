@@ -3,8 +3,6 @@ site_description: Authentication Library for React
 site_author: Arkadip Bhattacharya
 site_url: https://authkit.arkadip.co
 
-google_analytics: ['UA-147992308-2', 'authkit.arkadip,co']
-
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
 
