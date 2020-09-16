@@ -1,23 +1,34 @@
 # Usage
 
-The use of react-auth-kit library is very easy and straight forward.
+> Integrate the power of _**React Auth Kit**_ in your **React App**
 
-## Auth Provider
+## Introduction
 
-`AuthProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the `Auth` down
-to the components, so you need to make sure that `AuthProvider` is a parent of the `Routing components`.
-You can learn more about this in the API section.
+The use of `react-auth-kit` library is very easy and straight forward. 
+It uses a `AuthProvider` context to bind all its functionalities. 
+So you have to implement that on the top-level of your app (Preferred in `App.js`).
 
+**Note that**: `AuthProvider` must wrap your routing components, so that you can use the `PrivateRoute` functionality
+
+---
+## AuthProvider
+
+`AuthProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the Auth information down
+to the components.
+
+### Import
 ```jsx
 import { AuthProvider } from 'react-auth-kit'
 ```
 
 ### Demo
 
-Integrate `AuthProvider` before Routes. Typically, the best place is `app.js`.
+Integrate `AuthProvider` before Routes. The best place is `app.js`.
 
-app.js
-```js
+
+```jsx
+//app.js
+
 import React from 'react';
 import { AuthProvider } from 'react-auth-kit'
 import RouteComponent from './routes';
