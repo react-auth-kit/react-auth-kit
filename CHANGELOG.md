@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2020-09-15
+### Added
+- `useAuth` function added. Now use all hooks in 1 function.
+
+### Fixed
+- Docs: Deprecated AuthProvider params names
+- `AuthProvider` pushing error for cookieSecure set as false
+- `useSignIn` function parameter
+- `withSignIn` function param
+
 ## [1.1.7] - 2020-09-14
 ### Added
 - `useIsAuthenticated` and `withIsAuthenticated` added. Now check if your user is logged in or not.
