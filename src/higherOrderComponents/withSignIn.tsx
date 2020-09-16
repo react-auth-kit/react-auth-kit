@@ -11,10 +11,9 @@ function withSignIn<P extends withSignInProps>(Component: React.ComponentType<P>
         return (
             <AuthContextConsumer>
                 {(c) => {
-                    const signIn = ({token, tokenType, expiresIn, authState}: signInFunctionParams): boolean => {
-                        const expTime = new Date(
-                            new Date().getTime() + expiresIn * 60 * 1000
-                        )
+                    const signIn = (signInConfig: signInFunctionParams): boolean => {
+                        const {token, tokenType, authState, expiresIn} = signInConfig
+                        const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000)
                         try {
                             if (c) {
                                 c.setAuthState((prevState) => ({
