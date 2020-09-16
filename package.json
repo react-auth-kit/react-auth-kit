@@ -1,6 +1,6 @@
 {
   "name": "react-auth-kit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Authentication Library for React",
   "source": "src/index.tsx",
   "main": "dist/index.js",
