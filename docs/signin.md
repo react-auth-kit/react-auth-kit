@@ -2,20 +2,29 @@
 
 > Implement Sign In on your React App
 
+
 React Auth Kit has easy to implement Sign In procedures.
 
-It supports both [`Hooks`](https://reactjs.org/docs/hooks-intro.html) and
-[`Higher Order Component`](https://reactjs.org/docs/higher-order-components.html)
-for both Functional Components and Class-based Components
+---
 
-## Sign In using Hooks
+`signIn` functionality available in both `hook` and `Higher Order Component`
 
-Sign In using Hooks need `useSignIn` hook
+- For Functional Components, you can use `useSignIn` function inside any components
+- For class based components, you can wrap the component inside `withSignIn` function
+
+---
+
+## Usage
+### Functional Component
+
+`signIn` in React Functional Components(FC) by adding the `useSignIn` hook inside it.
+
+#### Import
 
 ```js
 import { useSignIn } from 'react-auth-kit'
 ```
-### Demo
+#### Demo
 ```jsx
 import { useSignIn } from 'react-auth-kit'
 
@@ -41,7 +50,7 @@ const SignInComponent = () => {
 ```
 
 <details>
-    <summary>Full Code</summary>
+    <summary>Full Example Code</summary>
     <br>
 
 
@@ -83,15 +92,25 @@ const SignInComponent = () => {
 ```
 </details>
 
-## Sign In using Higher Order Component
+#### API
+
+`#!ts useSignIn(): (signInConfig) => boolean`
+
+For details about `signInConfig`, please go to the [signInConfig](#signinconfig) section
+
+---
+
+### Class Based Component
 
 Sign In using Higher Order Component using `withSignIn`
+
+#### Import
 
 ```js
 import { withSignIn } from 'react-auth-kit'
 ```
 
-### Demo
+#### Demo
 ```jsx
 import { withSignIn } from 'react-auth-kit'
 
@@ -118,7 +137,7 @@ export default withSignIn(signInComponent)
 ```
 
 <details>
-    <summary>Full Code</summary>
+    <summary>Full Example Code</summary>
     <br>
 
 ```jsx
@@ -161,33 +180,36 @@ class signInComponent extends React.Component {
 export default withSignIn(signInComponent)
 
 ```
-
 </details>
 
-## Sign In Function Parameters
+#### API
 
-The Sign in function takes only 1 parameter, which is an `JavaScript object`.
+`#!ts withSignIn(Component: React.ComponentType): React.FC`
 
-Using the Object, you provide all necessary arguments and signIn.
+_**Returns**_  `#!ts React.FC<P>` (Functional Component with `signIn(signInConfig)` prop)
 
-### Interface of the Sign In Object
+For details about `signInConfig`, please go to the [signInConfig](#signinconfig) section
 
-```typescript
-declare interface signInFunctionParams {
+---
+
+### SignInConfig
+
+```js
+{
     token: string,
     tokenType: string | 'Bearer',
     expiresIn: number,
     authState: object
 }
 ```
-### Explanation of the Sign In Object
+#### Explanation of SignInConfig
 
-| Name      | Type                | Description                                                          |
-|-----------|---------------------|----------------------------------------------------------------------|
-| token     | string              | The Authentication token to be stored from server                    |
-| tokenType | string  \| 'Bearer' | The type of authentication token.                                    |
-| expiresIn | number              | The time for which the token will last, `in minutes`                 |
-| authState | object              | State of the authorized user. Eg: {name: Jhon, email: jhon@auth.com} |
+| Name      | Type                | Description                                                                 |
+|-----------|---------------------|-----------------------------------------------------------------------------|
+| token     | string              | The Authentication token (JWT) to be stored from server                     |
+| tokenType | string  \| 'Bearer' | The type of authentication token.                                           |
+| expiresIn | number              | The time for which the token will last, `in minutes`                        |
+| authState | object              | State of the authorized user. Eg: `#!js {name: Jhon, email: jhon@auth.com}` |
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
