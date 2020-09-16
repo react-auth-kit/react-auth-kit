@@ -38,11 +38,13 @@ It is production-ready, and gives you the following:
 * 100% type annotated codebase.
 * Zero hard dependencies.
 
+---
+
 ## Requirements
 
 * Node Js 8.0+
 * React Js 16.8+
-* React-Router-Dom
+* React-Router-Dom 3.0+
 
 ## Documentation
 
