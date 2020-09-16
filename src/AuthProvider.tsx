@@ -34,7 +34,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
          cookieSecure,
      }) => {
         if (authStorageType === "cookie") {
-            if (!(!!cookieSecure && !!cookieDomain)) {
+            if (!cookieDomain) {
                 throw new Error("authStorageType 'cookie' requires 'cookieDomain' and 'cookieSecure' in AuthProvider")
             }
         }
