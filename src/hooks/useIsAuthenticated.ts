@@ -17,7 +17,7 @@
 import * as React from "react";
 import {AuthContext} from "../AuthProvider";
 
-const useIsAuthenticated = (): ()=>boolean => {
+function useIsAuthenticated(): ()=>boolean {
     const context = React.useContext(AuthContext)
 
     return () => {
