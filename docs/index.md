@@ -27,7 +27,7 @@ authentication very easy
 
 It is production-ready, and gives you the following:
 
-* 1.81 KB Gzipped
+* 1.98 KB Gzipped
 * Build for React
 * Easy to Implementation
 * Supports Json Web Token (JWT)
