@@ -16,8 +16,14 @@
     "start": "rollup -cw",
     "build": "rollup -c",
     "prepare": "run-s build",
-    "test": "jest",
-    "test:lint": "eslint ."
+    "preversion": "run-s test",
+    "version": "git add CHANGELOG.md package.json",
+    "postversion": "git push && git push --tags",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:unit": "jest",
+    "test:lint": "eslint .",
+    "fix": "eslint --fix"
   },
   "keywords": [
     "react",
