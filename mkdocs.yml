@@ -1,5 +1,5 @@
 site_name: React Auth Kit
-site_description: Authentication Library for React
+site_description: Authentication Library for React with Json Web Token(JWT)
 site_author: Arkadip Bhattacharya
 site_url: https://authkit.arkadip.co
 
@@ -13,8 +13,6 @@ theme:
     repo: fontawesome/brands/github
   logo: img/logo.svg
   favicon: img/favicon.png
-  extra:
-    version: 1.1.3
 
 nav:
   - Introduction: 'index.md'
@@ -25,7 +23,7 @@ nav:
   - Sign Out: 'signout.md'
   - Auth User Data: 'authdata.md'
   - Auth Header: 'authheader.md'
-  - Check Authentication: 'check_auth.md'
+  - Check Authentication: 'checkauth.md'
 
 markdown_extensions:
   - pymdownx.inlinehilite
