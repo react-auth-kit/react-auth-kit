@@ -211,5 +211,5 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
 | expiresIn | number              | The time for which the token will last, `in minutes`                        |
 | authState | object              | State of the authorized user. Eg: `#!js {name: Jhon, email: jhon@auth.com}` |
 
-<p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p style="text-align: center">&mdash; 🔑  &mdash;</p>
+<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

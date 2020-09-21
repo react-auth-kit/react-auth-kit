@@ -1,16 +1,16 @@
-<p align="center">
+<p style="text-align: center">
     <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
 </p>
 
-<p align="center">
-    <em>🔑 Authenticate users in React app with Json Web Token(JWT)🔑</em>
+<p style="text-align: center">
+    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
 </p>
 
-<p align="center">
-<a href="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy">
+<p style="text-align: center">
+<a href="https://github.com/react-auth-kit/react-auth-kit/actions">
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy/badge.svg" alt="NPM Deploy">
 </a>
-<a href="https://github.com/react-auth-kit/react-auth-kit/workflows/Test%20Suites">
+<a href="https://github.com/react-auth-kit/react-auth-kit/actions">
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/Test%20Suites/badge.svg" alt="Test Suites">
 </a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
@@ -31,14 +31,13 @@ authentication very easy
 It is production-ready, and gives you the following:
 
 * 1.98 KB Gzipped
-* Build for React
+* Build for React Js
 * Easy to Implementation
 * Supports Json Web Token (JWT)
 * Secure Client Side Authentication
 * Highly typed and written in TypeScript
 * Can be implemented using both [Higher Order Components](https://reactjs.org/docs/higher-order-components.html)
  and [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-* 100% test coverage.
 * 100% type annotated codebase.
 * Zero hard dependencies.
 
@@ -51,5 +50,5 @@ It is production-ready, and gives you the following:
 * React-Router-Dom 3.0+
 
 
-<p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p style="text-align: center">&mdash; 🔑  &mdash;</p>
+<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

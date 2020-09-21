@@ -51,5 +51,5 @@ class SomeComponent extends React.Component {
 export default withAuthHeader(SomeComponent)
 ```
 
-<p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p style="text-align: center">&mdash; 🔑  &mdash;</p>
+<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
