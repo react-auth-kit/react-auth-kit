@@ -1,12 +1,12 @@
-<p align="center">
+<p style="text-align: center">
     <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
 </p>
 
-<p align="center">
-    <em>🔑 Authenticate users in React app with Json Web Token(JWT)🔑</em>
+<p style="text-align: center">
+    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
 </p>
 
-<p align="center">
+<p style="text-align: center">
 <a href="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy">
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy/badge.svg" alt="NPM Deploy">
 </a>
@@ -55,5 +55,5 @@ Visit [https://authkit.arkadip.co](https://authkit.arkadip.co) for the complete 
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P61YJOH)
 
-<p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p style="text-align: center">&mdash; 🔑  &mdash;</p>
+<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
