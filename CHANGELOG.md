@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2020-09-21
+### Fixed
+- DOCS SEO
+
+## [1.2.1] - 2020-09-16
+### Fixed
+- `TS Function declararation`
+
 ## [1.2.0] - 2020-09-15
 ### Added
 - `useAuth` function added. Now use all hooks in 1 function.
