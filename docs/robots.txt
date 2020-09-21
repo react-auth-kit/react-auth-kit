@@ -1,0 +1,3 @@
+Sitemap: https://site_url/sitemap.xml.gz
+User-agent: *
+Disallow:
