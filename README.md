@@ -1,9 +1,9 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg"/>
+    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
 </p>
 
 <p align="center">
-    <em>🔑 Authenticate users in React app 🔑</em>
+    <em>🔑 Authenticate users in React app with Json Web Token(JWT)🔑</em>
 </p>
 
 <p align="center">
@@ -15,6 +15,9 @@
 </a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
     <img src="https://img.shields.io/npm/v/react-auth-kit.svg" alt="Test Suites">
+</a>
+<a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
+    <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
 </a>
 </p>
 
