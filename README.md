@@ -50,6 +50,7 @@ It is production-ready, and gives you the following:
 
 Visit [https://authkit.arkadip.co](https://authkit.arkadip.co) for the complete documentation
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0f7188bf177e4e5681a306bcadfbc961)](https://app.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&utm_medium=referral&utm_content=react-auth-kit/react-auth-kit&utm_campaign=Badge_Grade_Settings)
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P61YJOH)
 
 <p align="center">&mdash; 🔑  &mdash;</p>
