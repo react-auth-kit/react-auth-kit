@@ -1,6 +1,6 @@
-import * as React from 'react'
-import {Route, Redirect, RouteProps} from 'react-router-dom'
-import {AuthContext} from './AuthProvider'
+import * as React from 'react';
+import {Route, Redirect, RouteProps} from 'react-router-dom';
+import {AuthContext} from './AuthProvider';
 
 interface PrivateRouteProps extends RouteProps {
     loginPath: string
@@ -16,46 +16,46 @@ interface PrivateRouteProps extends RouteProps {
  * @param props
  */
 const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
-    const context = React.useContext(AuthContext)
+  const context = React.useContext(AuthContext);
 
-    const isAuth = () => {
-        if (context?.authState.authToken && context?.authState.expireAt) {
-            if (new Date(context.authState.expireAt) > new Date()) {
-                return true
-            } else {
-                context.setAuthState({
-                    authToken: null,
-                    authTokenType: null,
-                    expireAt: null,
-                    authState: null
-                })
-                return false
-            }
-        } else {
-            return false
-        }
+  const isAuth = () => {
+    if (context?.authState.authToken && context?.authState.expireAt) {
+      if (new Date(context.authState.expireAt) > new Date()) {
+        return true;
+      } else {
+        context.setAuthState({
+          authToken: null,
+          authTokenType: null,
+          expireAt: null,
+          authState: null,
+        });
+        return false;
+      }
+    } else {
+      return false;
     }
+  };
 
-    const {component, loginPath, strict, sensitive, exact, path, location, render} = props
+  const {component, loginPath, strict, sensitive, exact, path, location, render} = props;
 
-    return (
-        <Route
-            location={location}
-            path={path}
-            exact={exact}
-            sensitive={sensitive}
-            strict={strict}
-            render={(renderProps) =>
+  return (
+    <Route
+      location={location}
+      path={path}
+      exact={exact}
+      sensitive={sensitive}
+      strict={strict}
+      render={(renderProps) =>
                 isAuth() ?
-                    component
-                        ? React.createElement(component, renderProps)
-                        : render
-                        ? render(renderProps)
-                        : null
-                    : <Redirect to={loginPath}/>
-            }
-        />
-    )
-}
+                    component ?
+                        React.createElement(component, renderProps) :
+                        render ?
+                        render(renderProps) :
+                        null :
+                    <Redirect to={loginPath}/>
+      }
+    />
+  );
+};
 
-export default PrivateRoute
+export default PrivateRoute;

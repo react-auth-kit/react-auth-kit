@@ -1,7 +1,7 @@
-import PrivateRoute from './PrivateRoute'
+import PrivateRoute from './PrivateRoute';
 
 describe('PrivateRoute', () => {
   it('is truthy', () => {
-    expect(PrivateRoute).toBeTruthy()
-  })
-})
+    expect(PrivateRoute).toBeTruthy();
+  });
+});

@@ -22,8 +22,8 @@
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:unit": "jest",
-    "test:lint": "eslint .",
-    "fix": "eslint --fix"
+    "test:lint": "eslint src/*",
+    "fix": "eslint src/* --fix"
   },
   "keywords": [
     "react",
@@ -51,9 +51,9 @@
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
-    "eslint": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jest": "^24.0.0",
     "eslint-plugin-react": "^7.20.6",
