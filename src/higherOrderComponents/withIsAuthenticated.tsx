@@ -14,37 +14,37 @@
  * limitations under the License.
  */
 
-import * as React from 'react'
-import {AuthContextConsumer} from '../AuthProvider'
+import * as React from 'react';
+import {AuthContextConsumer} from '../AuthProvider';
 
 interface withAuthHeaderProps {
     isAuth: string
 }
 
 function withIsAuthenticated<P extends withAuthHeaderProps>(Component: React.ComponentType<P>): React.FC<P> {
-    return (props) => {
-        return (
-            <AuthContextConsumer>
-                {(c) => {
-                    if (c?.authState.authToken && c?.authState.expireAt) {
-                        if (new Date(c.authState.expireAt) > new Date()) {
-                            return <Component {...props} isAuth={true}/>
-                        } else {
-                            c.setAuthState({
-                                authToken: null,
-                                authTokenType: null,
-                                expireAt: null,
-                                authState: null
-                            })
-                            return <Component {...props} isAuth={false}/>
-                        }
-                    } else {
-                        return <Component {...props} isAuth={false}/>
-                    }
-                }}
-            </AuthContextConsumer>
-        )
-    }
+  return (props) => {
+    return (
+      <AuthContextConsumer>
+        {(c) => {
+          if (c?.authState.authToken && c?.authState.expireAt) {
+            if (new Date(c.authState.expireAt) > new Date()) {
+              return <Component {...props} isAuth={true}/>;
+            } else {
+              c.setAuthState({
+                authToken: null,
+                authTokenType: null,
+                expireAt: null,
+                authState: null,
+              });
+              return <Component {...props} isAuth={false}/>;
+            }
+          } else {
+            return <Component {...props} isAuth={false}/>;
+          }
+        }}
+      </AuthContextConsumer>
+    );
+  };
 }
 
-export default withIsAuthenticated
+export default withIsAuthenticated;

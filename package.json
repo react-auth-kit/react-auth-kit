@@ -22,8 +22,8 @@
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:unit": "jest",
-    "test:lint": "eslint src/*",
-    "fix": "eslint src/* --fix"
+    "test:lint": "eslint src/**/*.ts[x]",
+    "fix": "eslint src/**/*.ts[x] --fix"
   },
   "keywords": [
     "react",
