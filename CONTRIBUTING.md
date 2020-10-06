@@ -24,9 +24,9 @@ You need to clone (download) it to local machine using
 git clone https://github.com/Your_Username/react-auth-kit.git
 ```
 
-> This makes a local copy of repository in your machine.
+> This makes a local copy of the repository in your machine.
 
-Once you have cloned the ` React-Auth-Kit ` repository in GitHub, move to that folder first using change directory command.
+Once you have cloned the ` React-Auth-Kit ` repository from GitHub, move to that folder first using change directory command.
 
 ```sh
 # This will change directory to a folder Plant_Disease_Detection
@@ -41,16 +41,16 @@ Once you have completed these steps, you are ready to start contributing by chec
 
 ### 4. Create a new branch :bangbang:
 
-Whenever you are going to make contribution. Please create separate branch using command and keep your `master` branch clean (i.e. synced with remote branch).
+Whenever you are going to make a contribution. Please create a separate branch using command and keep your `master` branch clean (i.e. synced with remote branch).
 
 ```sh
-# It will create a new branch with name Branch_Name and will switch to that branch.
+# It will create a new branch with the name Branch_Name and will switch to that branch.
 git checkout -b Branch_Name
 ```
 
-### 5. Install all depandencies :turtle:
+### 5. Install all dependencies :turtle:
 
-Install project depandencies
+Install project dependencies
 
 ```sh
 # It will install all necessary dependencies
@@ -59,7 +59,7 @@ npm install
 
 :tada: **_Now comes coding time_** :tada:
 
-To add the changes to the branch. Use
+To add the changes to the branch. Use,
 
 ```sh
 # To add all files to branch Branch_Name
@@ -80,10 +80,10 @@ Now, Push your awesome work to your remote repository using
 git push -u origin Branch_Name
 ```
 
-Finally, go to your repository in browser and click on `compare and pull requests`.
+Finally, go to your forked repository in your browser and click on `Compare & pull request`.
 Use our [pull request template format](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/pull_request_template.md).
-Then add a title and description to your pull request that explains your precious effort. 
+Then add a title and description to your pull request that explains your precious effort.
 
-Sit and relax till we review your PR, you've made your contribution to our project.
+Now, sit back and relax till we review your PR, you've made your contribution to our project.
 
 :tada: :confetti_ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:
