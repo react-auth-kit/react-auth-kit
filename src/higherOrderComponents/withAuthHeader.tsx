@@ -5,7 +5,13 @@ interface withAuthHeaderProps {
     authHeader: string
 }
 
-function withAuthHeader<P extends withAuthHeaderProps>(Component: React.ComponentType<P>):React.FC<P> {
+/**
+ * Inject Authentication Header inside the Component's Prop
+ * @param Component - React Component
+ */
+function withAuthHeader<P extends withAuthHeaderProps>(
+    Component: React.ComponentType<P>,
+):React.FC<P> {
   return (props) => {
     return (
       <AuthContextConsumer>
@@ -14,7 +20,9 @@ function withAuthHeader<P extends withAuthHeaderProps>(Component: React.Componen
             return (
               <Component
                 {...props}
-                authHeader={`${c.authState.authTokenType} ${c.authState.authToken}`}
+                authHeader={
+                  `${c.authState.authTokenType} ${c.authState.authToken}`
+                }
               />
             );
           } else {

@@ -21,7 +21,13 @@ interface withAuthHeaderProps {
     isAuth: string
 }
 
-function withIsAuthenticated<P extends withAuthHeaderProps>(Component: React.ComponentType<P>): React.FC<P> {
+/**
+ * Inject Authentication status inside the Component's Prop
+ * @param Component
+ */
+function withIsAuthenticated<P extends withAuthHeaderProps>(
+    Component: React.ComponentType<P>,
+): React.FC<P> {
   return (props) => {
     return (
       <AuthContextConsumer>
