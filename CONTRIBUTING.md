@@ -10,6 +10,9 @@ We love your input! We want to make contributing to this project as easy and tra
 
 ## Steps to follow :scroll:
 
+We use [Github Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). We actively welcome your pull requests. So here are the steps to get started.
+
+
 ### 1. Fork it :fork_and_knife:
 
 You can get your own fork/copy of [React Auth Kit](https://github.com/react-auth-kit/react-auth-kit) by using the <kbd><b>Fork</b></kbd></a> button.
