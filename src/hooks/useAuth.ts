@@ -1,8 +1,8 @@
 /**
-  * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  * @fileoverview Authentication 
-  * @copyright Arkadip Bhattacharya 2020
-  * @license Apache-2.0
+  *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+  *@fileoverview Authentication 
+  *@copyright Arkadip Bhattacharya 2020
+  *@license Apache-2.0
   */
 
 
@@ -11,9 +11,9 @@ import {AuthContext} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
 
 /**
-  * @public 
-  * @function
-  * @name useAuth
+  *@public 
+  *@function
+  *@name useAuth
   */
 function useAuth():
   {
@@ -23,8 +23,8 @@ function useAuth():
     authUser: () => (object | null)
     } {
   /**
-    * A constant c.
-    * @kind constant
+    *A constant c.
+    *@kind constant
     */    
   const c = React.useContext(AuthContext);
 
@@ -41,20 +41,20 @@ function useAuth():
     }
   };
 
-   /** @function 
-     * @name authUser
-     * @description Get Auth user State
-     * @returns authuser state
+   /**@function 
+     *@name authUser
+     *@description Get Auth user State
+     *@returns authuser state
      */
   const authUser = (): (object | null) => {
     return c.authState.authState;
   };
 
    /**
-     * @function
-     * @name isAuthenticated
-     * @description Get If the user is Authenticated
-     * @returns true | false
+     *@function
+     *@name isAuthenticated
+     *@description Get If the user is Authenticated
+     *@returns true | false
      */
   const isAuthenticated = () => {
     if (c?.authState.authToken && c?.authState.expireAt) {
@@ -75,10 +75,10 @@ function useAuth():
   };
 
    /**
-     * @function
-     * @name signIn
-     * @param signInConfig
-     * @returns true if sign-in else false
+     *@function
+     *@name signIn
+     *@param signInConfig
+     *@returns true if sign-in else false
      */
   const signIn = (signInConfig: signInFunctionParams): boolean => {
     const {token, tokenType, authState, expiresIn} = signInConfig;
@@ -103,9 +103,9 @@ function useAuth():
   };
 
    /**
-     * @function
-     * @name signOut
-     * @returns true | false
+     *@function
+     *@name signOut
+     *@returns true | false
      */
   const signOut = () => {
     try {
@@ -131,6 +131,6 @@ function useAuth():
 }
 
 /**
-  * @exports useAuth
+  *@exports useAuth
   */
 export default useAuth;

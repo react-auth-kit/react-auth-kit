@@ -1,8 +1,8 @@
 /**
-  * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  * @fileoverview Sign In functionality 
-  * @copyright Arkadip Bhattacharya 2020
-  * @license Apache-2.0
+  *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+  *@fileoverview Sign In functionality 
+  *@copyright Arkadip Bhattacharya 2020
+  *@license Apache-2.0
   */
 
 import * as React from 'react';
@@ -10,10 +10,10 @@ import {AuthContext} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
 
 /**
-  * @function
-  * @name useSignIn
-  * @description Authentication SignIn Hook
-  * @returns - Sign In function
+  *@function
+  *@name useSignIn
+  *@description Authentication SignIn Hook
+  *@returns - Sign In function
   */
 function useSignIn():(signInConfig: signInFunctionParams) => boolean {
   const context = React.useContext(AuthContext);
@@ -41,6 +41,6 @@ function useSignIn():(signInConfig: signInFunctionParams) => boolean {
   };
 }
 /**
-  * @exports useSignIn
+  *@exports useSignIn
   */
 export default useSignIn;
