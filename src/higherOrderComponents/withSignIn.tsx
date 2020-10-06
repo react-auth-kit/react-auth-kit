@@ -6,14 +6,22 @@ interface withSignInProps {
     signIn(params: signInFunctionParams): boolean
 }
 
-function withSignIn<P extends withSignInProps>(Component: React.ComponentType<P>):React.FC<P> {
+/**
+ * Inject sign in functionality inside the Component's Prop
+ * @param Component
+ */
+function withSignIn<P extends withSignInProps>(
+    Component: React.ComponentType<P>,
+):React.FC<P> {
   return (props) => {
     return (
       <AuthContextConsumer>
         {(c) => {
-          const signIn = (signInConfig: signInFunctionParams): boolean => {
+          const signIn = (signInConfig: signInFunctionParams)
+            : boolean => {
             const {token, tokenType, authState, expiresIn} = signInConfig;
-            const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000);
+            const expTime = new
+            Date(new Date().getTime() + expiresIn * 60 * 1000);
             try {
               if (c) {
                 c.setAuthState((prevState) => ({

@@ -36,7 +36,16 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
     }
   };
 
-  const {component, loginPath, strict, sensitive, exact, path, location, render} = props;
+  const {
+    component,
+    loginPath,
+    strict,
+    sensitive,
+    exact,
+    path,
+    location,
+    render,
+  } = props;
 
   return (
     <Route

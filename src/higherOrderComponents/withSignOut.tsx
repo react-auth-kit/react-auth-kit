@@ -5,7 +5,13 @@ interface withSignOutProps {
     signOut(): boolean
 }
 
-function withSignOut<P extends withSignOutProps>(Component: React.ComponentType<P>): React.FC<P> {
+/**
+ * Inject sign Out functionality inside the Component's Prop
+ * @param Component
+ */
+function withSignOut<P extends withSignOutProps>(
+    Component: React.ComponentType<P>,
+): React.FC<P> {
   return (props) => {
     return (
       <AuthContextConsumer>

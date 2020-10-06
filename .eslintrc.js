@@ -22,9 +22,11 @@ module.exports = {
   'settings': {
     'react': {
       'version': 'detect',
-    },
+    }
   },
   'rules': {
     'react/prop-types': 0,
+    'react/display-name': 0,
+    'valid-jsdoc': 0
   },
 };

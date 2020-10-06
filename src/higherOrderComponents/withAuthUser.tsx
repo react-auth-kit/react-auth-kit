@@ -5,7 +5,13 @@ interface withAuthProps {
     authState: object | null
 }
 
-function withAuthUser<P extends withAuthProps>(Component: React.ComponentType<P>): React.FC<P> {
+/**
+ * Inject Authenticated User's state inside the Component's Prop
+ * @param Component
+ */
+function withAuthUser<P extends withAuthProps>(
+    Component: React.ComponentType<P>,
+): React.FC<P> {
   return (props: P)=>{
     return (
       <AuthContextConsumer>
