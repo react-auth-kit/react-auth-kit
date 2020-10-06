@@ -122,4 +122,8 @@ In general, there are two main types of contribution,
 
 6. Split the document up into as many sub-sections as makes sense. This is especially helpful for the readers who want to skip ahead for reference, as we can also use subheads as navigational anchors.
 
+## License
+
+By contributing, you agree that your contributions will be licensed under [Apache License 2.0](LICENSE).
+
 :tada: :confetti_ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:
