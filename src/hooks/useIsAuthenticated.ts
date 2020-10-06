@@ -14,29 +14,32 @@
  * limitations under the License.
  */
 
-import * as React from "react";
-import {AuthContext} from "../AuthProvider";
+import * as React from 'react';
+import {AuthContext} from '../AuthProvider';
 
+/**
+ *
+ */
 function useIsAuthenticated(): ()=>boolean {
-    const context = React.useContext(AuthContext)
+  const context = React.useContext(AuthContext);
 
-    return () => {
-        if (context?.authState.authToken && context?.authState.expireAt) {
-            if (new Date(context.authState.expireAt) > new Date()) {
-                return true
-            } else {
-                context.setAuthState({
-                    authToken: null,
-                    authTokenType: null,
-                    expireAt: null,
-                    authState: null
-                })
-                return false
-            }
-        } else {
-            return false
-        }
+  return () => {
+    if (context?.authState.authToken && context?.authState.expireAt) {
+      if (new Date(context.authState.expireAt) > new Date()) {
+        return true;
+      } else {
+        context.setAuthState({
+          authToken: null,
+          authTokenType: null,
+          expireAt: null,
+          authState: null,
+        });
+        return false;
+      }
+    } else {
+      return false;
     }
+  };
 }
 
-export default useIsAuthenticated
+export default useIsAuthenticated;

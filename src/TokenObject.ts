@@ -1,6 +1,11 @@
 import Cookies from 'js-cookie';
 import {TokenInterface, TokenObjectParamsInterface} from './types';
 
+/**
+ * @class TokenObject
+ *
+ * Stores and retrieve Token
+ */
 class TokenObject {
     private readonly authStorageName: string
     private readonly stateStorageName: string
@@ -21,7 +26,15 @@ class TokenObject {
      * @param cookieSecure
      * @constructor
      */
-    constructor({authStorageName, authStorageType, authTimeStorageName, stateStorageName, cookieDomain, cookieSecure}: TokenObjectParamsInterface) {
+    constructor(
+        {
+          authStorageName,
+          authStorageType,
+          authTimeStorageName,
+          stateStorageName,
+          cookieDomain,
+          cookieSecure,
+        }: TokenObjectParamsInterface) {
       this.authStorageType = authStorageType;
       this.authStorageName = authStorageName;
       this.authTimeStorageName = authTimeStorageName;
@@ -46,7 +59,7 @@ class TokenObject {
 
     /**
      * Get the Initial Token from Cookie
-     * If the React App uses Cookie for storing Auth info, this Function is called
+     * If the React App uses Cookie for storing Auth info
      *
      * Called from this.initialToken
      *
@@ -58,12 +71,18 @@ class TokenObject {
       const authTokenTime = Cookies.get(this.authTimeStorageName);
       const stateCookie = Cookies.get(this.stateStorageName);
 
-      return this.checkTokenExist(authToken, authTokenType, authTokenTime, stateCookie);
+      return this.checkTokenExist(
+          authToken,
+          authTokenType,
+          authTokenTime,
+          stateCookie,
+      );
     }
 
     /**
      * Get the Initial Token from LocalStorage
-     * If the React App uses LocalStorage for storing Auth info, this Function is called
+     * If the React App uses LocalStorage for storing Auth info,
+     * this Function is called
      *
      * Called from this.initialToken
      *
@@ -75,13 +94,18 @@ class TokenObject {
       const authTokenTime = localStorage.getItem(this.authTimeStorageName);
       const stateCookie = localStorage.getItem(this.stateStorageName);
 
-      return this.checkTokenExist(authToken, authTokenType, authTokenTime, stateCookie);
+      return this.checkTokenExist(
+          authToken,
+          authTokenType,
+          authTokenTime,
+          stateCookie);
     }
 
     /**
      * Check if the Initial token is valid or not,
      *
-     * If the tokens are valid, then it response TokenObject with auth Information
+     * If the tokens are valid,
+     * then it response TokenObject with auth Information
      * Else it response TokenObject with null
      *
      * @param authToken
@@ -100,12 +124,26 @@ class TokenObject {
         const expiresAt = new Date(authTokenTime);
         try {
           const authState = JSON.parse(stateCookie);
-          return {authToken: authToken, authTokenType: authTokenType, expireAt: expiresAt, authState: authState};
+          return {
+            authToken: authToken,
+            authTokenType: authTokenType,
+            expireAt: expiresAt,
+            authState: authState};
         } catch (e) {
-          return {authToken: null, authTokenType: null, expireAt: null, authState: null};
+          return {
+            authToken: null,
+            authTokenType: null,
+            expireAt: null,
+            authState: null,
+          };
         }
       } else {
-        return {authToken: null, authTokenType: null, expireAt: null, authState: null};
+        return {
+          authToken: null,
+          authTokenType: null,
+          expireAt: null,
+          authState: null,
+        };
       }
     }
 
@@ -144,11 +182,22 @@ class TokenObject {
      * @param expiresAt
      * @param authState
      */
-    setToken(authToken: string, authTokenType: string, expiresAt: Date, authState: object) {
+    setToken(authToken: string,
+        authTokenType: string,
+        expiresAt: Date,
+        authState: object) {
       if (this.authStorageType === 'cookie') {
-        this.setCookieToken(authToken, authTokenType, expiresAt, authState);
+        this.setCookieToken(
+            authToken,
+            authTokenType,
+            expiresAt,
+            authState);
       } else {
-        this.setLSToken(authToken, authTokenType, expiresAt, authState);
+        this.setLSToken(
+            authToken,
+            authTokenType,
+            expiresAt,
+            authState);
       }
     }
 
@@ -161,7 +210,10 @@ class TokenObject {
      * @param expiresAt
      * @param authState
      */
-    setCookieToken(authToken: string, authTokenType: string, expiresAt: Date, authState: object) {
+    setCookieToken(authToken: string,
+        authTokenType: string,
+        expiresAt: Date,
+        authState: object) {
       Cookies.set(this.authStorageName, authToken, {
         expires: expiresAt,
         domain: this.cookieDomain,
@@ -192,7 +244,10 @@ class TokenObject {
      * @param expiresAt
      * @param authState
      */
-    setLSToken(authToken: string, authTokenType: string, expiresAt: Date, authState: object) {
+    setLSToken(authToken: string,
+        authTokenType: string,
+        expiresAt: Date,
+        authState: object) {
       localStorage.setItem(this.authStorageName, authToken);
       localStorage.setItem(this.authStorageTypeName, authTokenType);
       localStorage.setItem(this.authTimeStorageName, expiresAt.toString());
