@@ -1,27 +1,20 @@
-/*
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/**
+  * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+  * @fileoverview Authentication 
+  * @copyright Arkadip Bhattacharya 2020
+  * @license Apache-2.0
+  */
+
 
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
 
 /**
- * Use Auth Hook.
- * Implement all features
- */
+  * @public 
+  * @function
+  * @name useAuth
+  */
 function useAuth():
   {
     authHeader: () => (string | null),
@@ -29,11 +22,15 @@ function useAuth():
     signOut: () => (boolean); isAuthenticated: () => (boolean),
     authUser: () => (object | null)
     } {
+  /**
+    * A constant c.
+    * @kind constant
+    */    
   const c = React.useContext(AuthContext);
 
-  /**
-     * Get Auth header
-     *
+   /** @function 
+     * @name authHeader
+     * @description Get Auth header
      * @returns authheader AuthHeader | null
      */
   const authHeader = (): (string | null) => {
@@ -44,18 +41,19 @@ function useAuth():
     }
   };
 
-  /**
-     * Get Auth user State
-     *
+   /** @function 
+     * @name authUser
+     * @description Get Auth user State
      * @returns authuser state
      */
   const authUser = (): (object | null) => {
     return c.authState.authState;
   };
 
-  /**
-     * Get If the user is Authenticated
-     *
+   /**
+     * @function
+     * @name isAuthenticated
+     * @description Get If the user is Authenticated
      * @returns true | false
      */
   const isAuthenticated = () => {
@@ -76,11 +74,10 @@ function useAuth():
     }
   };
 
-  /**
-     * Sign In Function
-     *
+   /**
+     * @function
+     * @name signIn
      * @param signInConfig
-     *
      * @returns true if sign-in else false
      */
   const signIn = (signInConfig: signInFunctionParams): boolean => {
@@ -105,9 +102,9 @@ function useAuth():
     }
   };
 
-  /**
-     * Sign Out Function
-     *
+   /**
+     * @function
+     * @name signOut
      * @returns true | false
      */
   const signOut = () => {
@@ -133,4 +130,7 @@ function useAuth():
   return {authHeader, isAuthenticated, authUser, signOut, signIn};
 }
 
+/**
+  * @exports useAuth
+  */
 export default useAuth;
