@@ -9,8 +9,8 @@ import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 
 /**
-  *@function 
-  *@name useAuthUser 
+  *@function
+  *@name useAuthUser
   *@description Auth State Hook
   *@returns - Auth State Function
   */

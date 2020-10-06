@@ -1,6 +1,6 @@
 /**
   *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  *@fileoverview Authentication Header 
+  *@fileoverview Authentication Header
   *@copyright Arkadip Bhattacharya 2020
   *@license Apache-2.0
   */
@@ -9,7 +9,7 @@ import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 
 /**
-  *@function 
+  *@function
   *@name useAuthHeader
   */
 function useAuthHeader(): () => (string) {

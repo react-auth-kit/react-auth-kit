@@ -1,6 +1,6 @@
 /**
   *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  *@fileoverview Authentication 
+  *@fileoverview Authentication
   *@copyright Arkadip Bhattacharya 2020
   *@license Apache-2.0
   */
@@ -11,7 +11,7 @@ import {AuthContext} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
 
 /**
-  *@public 
+  *@public
   *@function
   *@name useAuth
   */
@@ -25,10 +25,10 @@ function useAuth():
   /**
     *A constant c.
     *@kind constant
-    */    
+    */
   const c = React.useContext(AuthContext);
 
-   /** @function 
+  /** @function
      * @name authHeader
      * @description Get Auth header
      * @returns authheader AuthHeader | null
@@ -41,7 +41,7 @@ function useAuth():
     }
   };
 
-   /**@function 
+  /** @function
      *@name authUser
      *@description Get Auth user State
      *@returns authuser state
@@ -50,7 +50,7 @@ function useAuth():
     return c.authState.authState;
   };
 
-   /**
+  /**
      *@function
      *@name isAuthenticated
      *@description Get If the user is Authenticated
@@ -74,7 +74,7 @@ function useAuth():
     }
   };
 
-   /**
+  /**
      *@function
      *@name signIn
      *@param signInConfig
@@ -102,7 +102,7 @@ function useAuth():
     }
   };
 
-   /**
+  /**
      *@function
      *@name signOut
      *@returns true | false

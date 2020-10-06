@@ -1,6 +1,6 @@
 /**
   *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  *@fileoverview Sign Out functionality 
+  *@fileoverview Sign Out functionality
   *@copyright Arkadip Bhattacharya 2020
   *@license Apache-2.0
   */
@@ -9,8 +9,8 @@ import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 
 /**
-  *@public 
-  *@function 
+  *@public
+  *@function
   *@name useSignOut
   *@description Signout Hook
   */

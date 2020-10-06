@@ -1,6 +1,6 @@
 /**
   *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  *@fileoverview Sign In functionality 
+  *@fileoverview Sign In functionality
   *@copyright Arkadip Bhattacharya 2020
   *@license Apache-2.0
   */

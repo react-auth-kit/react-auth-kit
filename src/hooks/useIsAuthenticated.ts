@@ -1,6 +1,6 @@
 /**
   *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
-  *@fileoverview Check User is authenticated or not 
+  *@fileoverview Check User is authenticated or not
   *@copyright Arkadip Bhattacharya 2020
   *@license Apache-2.0
   */
@@ -9,7 +9,7 @@ import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 
 /**
-  *@function 
+  *@function
   *@name useIsAuthenticated
   *@description check weather user is authenticated or not
   */
