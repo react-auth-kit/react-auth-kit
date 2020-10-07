@@ -12,15 +12,14 @@ import {AuthContext} from '../AuthProvider';
   *@function
   *@name useAuthHeader
   */
-function useAuthHeader(): () => (string) {
+function useAuthHeader(): string {
   const c = React.useContext(AuthContext);
-  return () => {
-    if (c?.authState) {
-      return `${c.authState.authTokenType} ${c.authState.authToken}`;
-    } else {
-      return `Bearer `;
-    }
-  };
+
+  if (c?.authState) {
+    return `${c.authState.authTokenType} ${c.authState.authToken}`;
+  } else {
+    return `Bearer `;
+  }
 }
 /**
   *@exports useAuthHeader

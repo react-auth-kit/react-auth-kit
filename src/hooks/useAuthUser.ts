@@ -14,12 +14,10 @@ import {AuthContext} from '../AuthProvider';
   *@description Auth State Hook
   *@returns - Auth State Function
   */
-function useAuthUser(): () => object | null{
+function useAuthUser(): object | null{
   const c = React.useContext(AuthContext);
 
-  return () => {
-    return c.authState.authState;
-  };
+  return c.authState.authState;
 }
 
 /**

@@ -29,15 +29,15 @@ function useAuth():
   const c = React.useContext(AuthContext);
 
   /** @function
-     * @name authHeader
-     * @description Get Auth header
-     * @returns authheader AuthHeader | null
-     */
-  const authHeader = (): (string | null) => {
+    * @name authHeader
+    * @description Get Auth header
+    * @returns authheader AuthHeader
+    */
+  const authHeader = (): string => {
     if (c?.authState) {
       return `${c.authState.authTokenType} ${c.authState.authToken}`;
     } else {
-      return null;
+      return `Bearer `;
     }
   };
 
