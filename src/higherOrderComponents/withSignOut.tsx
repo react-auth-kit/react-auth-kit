@@ -1,12 +1,24 @@
+/**
+  *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+  *@fileoverview SignOut component
+  *@copyright Arkadip Bhattacharya 2020
+  *@license Apache-2.0
+  */
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
 
+/**
+ * @interface withSignOutProps
+ */
 interface withSignOutProps {
     signOut(): boolean
 }
 
 /**
- * Inject sign Out functionality inside the Component's Prop
+ * @public
+ * @function
+ * @name withSignOut
+ * @description Inject sign Out functionality inside the Component's Prop
  * @param Component
  */
 function withSignOut<P extends withSignOutProps>(
@@ -40,5 +52,7 @@ function withSignOut<P extends withSignOutProps>(
     );
   };
 }
-
+/**
+ * @exports withSignOut
+ */
 export default withSignOut;
