@@ -1,13 +1,25 @@
+/**
+  *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+  *@fileoverview SignIn component
+  *@copyright Arkadip Bhattacharya 2020
+  *@license Apache-2.0
+  */
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
 
+/**
+ * @interface withSignInProps
+ */
 interface withSignInProps {
     signIn(params: signInFunctionParams): boolean
 }
 
 /**
- * Inject sign in functionality inside the Component's Prop
+ * @public
+ * @function
+ * @name withSignIn
+ * @description Inject sign in functionality inside the Component's Prop
  * @param Component
  */
 function withSignIn<P extends withSignInProps>(
@@ -47,4 +59,7 @@ function withSignIn<P extends withSignInProps>(
   };
 }
 
+/**
+ * @exports withSignIn
+ */
 export default withSignIn;
