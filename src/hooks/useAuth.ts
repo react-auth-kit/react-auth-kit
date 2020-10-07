@@ -34,13 +34,13 @@ function useAuth():
   /**
      * Get Auth header
      *
-     * @returns authheader AuthHeader | null
+     * @returns authheader AuthHeader
      */
-  const authHeader = (): (string | null) => {
+  const authHeader = (): string => {
     if (c?.authState) {
       return `${c.authState.authTokenType} ${c.authState.authToken}`;
     } else {
-      return null;
+      return `Bearer `;
     }
   };
 
