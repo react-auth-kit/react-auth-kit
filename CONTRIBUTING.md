@@ -3,10 +3,12 @@
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-- Discussing the current state of the code
+- [Discussing the current state of the code](https://github.com/react-auth-kit/react-auth-kit/issues)
 - [Reporting a bug](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/bug_report.md)
 - [Submitting a fix](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/pull_request_template.md)
 - [Proposing new features](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/feature_request.md)
+- [Contributing to documentation](https://authkit.arkadip.co/contributing/)
+
 
 ## Steps to follow :scroll:
 
@@ -89,44 +91,10 @@ Then add a title and description to your pull request that explains your preciou
 
 Now, sit back and relax till we review your PR, you've made your contribution to our project.
 
-## Contribution guidelines for documentation
-
-See something that needs fixing? Or something that could be improved? Awesome! here are some guidelines below that'll help you to do just that.
-
-In general, there are two main types of contribution,
-
-- **General improvements:**
-    - Typo corrections.
-    - Fixing broken refs and links.
-    - Correcting inaccurate or out of date info.
-    - Offering better explanations through clearer writings and examples.
-
-- **New Pages or features**
-    - Adding a page of documentation that we haven't covered yet.
-    - Documenting a new feature that has been added to this project since its last release.
-
-### Before Contributing
-
-1. Familiarize yourself with [Mkdocs](https://www.mkdocs.org/) with which we created the documentation.
-
-2. Read through some of our existing documents and get a feel about the overall structure and style.
-
-### Best Practices
-
-1. All pages must include a proper title and an introduction.
-
-2. If the document contains a technical term, it must be highlighted using \*term\* markdown syntax.
-
-3. If the document contains an acronym or initialism, it should be first introduced highlighted in its expanded form followed by the commonly-accepted abbreviation in brackets (like Free and open-source software (FOSS)).
-
-4. Use paragraphs to introduce a single concept and move on to a new paragraph before introducing another or expanding upon the first concept. Keep the size of those paragraphs to no more than four to five lines.
-
-5. If you find you're putting commas in a sentence consider splitting it into two or more sentences for improved clarity.
-
-6. Split the document up into as many sub-sections as makes sense. This is especially helpful for the readers who want to skip ahead for reference, as we can also use subheads as navigational anchors.
 
 ## License
 
 By contributing, you agree that your contributions will be licensed under [Apache License 2.0](LICENSE).
+
 
 :tada: :confetti_ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:

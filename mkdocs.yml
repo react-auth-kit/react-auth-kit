@@ -24,6 +24,9 @@ nav:
   - Auth User Data: 'authdata.md'
   - Auth Header: 'authheader.md'
   - Check Authentication: 'checkauth.md'
+  - Contributing: 'contributing.md'
 
 markdown_extensions:
   - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.superfences
