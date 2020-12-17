@@ -29,7 +29,7 @@ export default [
     plugins: [
       peerDepsExternal(),
       resolve(),
-      typescript({useTsconfigDeclarationDir: true}),
+      typescript(),
     ],
   },
   {
