@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.3.0] - 2020-12-17
+### Added:
+- Code base documentation. ([Hardik0307](https://github.com/Hardik0307))
+- Guideline for Contribution added on project website ([dotslash21](https://github.com/dotslash21))
+
+### Fixed:
+- Eslint Linting issue
+- Contributing.md typo fix. ([dotslash21](https://github.com/dotslash21))
+
 ## [1.2.2] - 2020-09-21
 ### Fixed
 - DOCS SEO
@@ -48,14 +60,14 @@ All notable changes to this project will be documented in this file.
 - Type Definition
 
 ### Changed
-- Size decreased from 2.12 KB to 1.81 KB 
+- Size decreased from 2.12 KB to 1.81 KB
 
 ## [1.1.2] - 2020-09-10
 ### Changed
 - AuthContext is merged with AuthProvider
 
 ## [1.1.1] - 2020-09-08
-### Added 
+### Added
 - Documentation [https://authkit.arkadip.co](https://authkit.arkadip.co)
 - Default props for `AuthProvider`
 
