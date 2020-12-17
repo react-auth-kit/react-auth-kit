@@ -29,5 +29,5 @@ export interface AuthContextInterface {
 }
 
 export interface AuthProviderProps extends TokenObjectParamsInterface {
-    children: React.ReactChildren
+    children: React.ReactNode
 }
