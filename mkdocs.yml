@@ -24,6 +24,7 @@ nav:
   - Auth User Data: 'authdata.md'
   - Auth Header: 'authheader.md'
   - Check Authentication: 'checkauth.md'
+  - Refresh Token: 'refreshtoken.md'
   - Contributing: 'contributing.md'
 
 markdown_extensions:
