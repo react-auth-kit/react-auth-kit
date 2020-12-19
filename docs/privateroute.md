@@ -45,12 +45,12 @@ const Routes = () => {
 
 ## Props
 
-As PrivateRoute is a derived version of [Route](https://reactrouter.com/web/api/Route) from `React-Router`, 
+As PrivateRoute is a derived version of [Route](https://reactrouter.com/web/api/Route) from `React-Router`,
 that's why the props are same as Route props. Check [this link](https://reactrouter.com/web/api/Route).
 
 ***Added Prop***: `loginPath` (_Require_): The fallback path, if the user is unauthorized.
 
 ⚠ The only big difference is `PrivateRoute` doesn't support `children` prop. So please don't use that.
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

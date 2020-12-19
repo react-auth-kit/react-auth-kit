@@ -4,7 +4,7 @@
 
 ## Introduction
 
-There is many time, when you have to understand if any user is authenticated 
+There is many time, when you have to understand if any user is authenticated
 (especially in `login` pages, where you have to redirect your user to its dashboard or allow to login)
 
 For this reason, `React Auth Kit` comes with `isAuth` functions
@@ -68,7 +68,7 @@ import React from "react";
 import {withIsAuthenticated} from 'react-auth-kit';
 
 class SomeComponent extends React.Component {
-    
+
     render(){
         if(this.props.isAuthenticated()){
                 // Redirect to Dashboard
@@ -93,5 +93,5 @@ _**Returns**_  `#!ts React.FC<P>` (Functional Component with `isAuthenticated()`
 
 ---
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

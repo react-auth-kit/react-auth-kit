@@ -18,7 +18,7 @@ import {useAuthUser} from 'react-auth-kit'
 
 const SomeComponent = () => {
     const auth = useAuthUser()
-    
+
     return(
         <div>
             Hello {auth.user}
@@ -51,5 +51,5 @@ class SomeComponent extends React.Component {
 export default withAuthUser(SomeComponent)
 ```
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

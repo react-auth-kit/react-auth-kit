@@ -4,8 +4,8 @@
 
 ## Introduction
 
-The use of `react-auth-kit` library is very easy and straight forward. 
-It uses a `AuthProvider` context to bind all its functionalities. 
+The use of `react-auth-kit` library is very easy and straight forward.
+It uses a `AuthProvider` context to bind all its functionalities.
 So you have to implement that on the top-level of your app (Preferred in `App.js`).
 
 **Note that**: `AuthProvider` must wrap your routing components, so that you can use the `PrivateRoute` functionality
@@ -59,5 +59,5 @@ export default App;
 | cookieDomain        | string                     |               | The Domain name for all cookies. ⚠ If `authStorageType` = `cookie`, then you must put a value Refer [this](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) for more info |
 | cookieSecure        | boolean                    | false         | The cookie secure flag. ⚠ If `authStorageType` = `cookie`, then you must put a value Refer [this](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) for more info          |
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
