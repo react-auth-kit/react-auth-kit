@@ -13,7 +13,7 @@ import RefreshToken from "../RefreshToken";
  * @interface withRefreshTokenProps
  */
 interface withRefreshTokenProps {
-  refreshToken: string
+  refreshToken: RefreshToken
 }
 
 /**
