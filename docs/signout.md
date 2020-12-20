@@ -34,7 +34,7 @@ const SignInComponent = () => {
 
 ## Sign Out using Higher Order Component
 
-Sign In using Higher Order Component using `withSignOut`. 
+Sign In using Higher Order Component using `withSignOut`.
 
 Add the `withSignOut` HOC and call the `this.props.signOut` function inside the component
 
@@ -59,5 +59,5 @@ class signOutComponent extends React.Component {
 export default withSignIn(signInComponent)
 ```
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

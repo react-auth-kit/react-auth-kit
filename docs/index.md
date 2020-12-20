@@ -50,5 +50,5 @@ It is production-ready, and gives you the following:
 * React-Router-Dom 3.0+
 
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

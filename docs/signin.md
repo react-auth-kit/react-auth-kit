@@ -33,7 +33,7 @@ const SignInComponent = () => {
     ...
     const onSubmit = (e) => {
         ...
-        if(signIn({token: res.data.token, 
+        if(signIn({token: res.data.token,
                    expiresIn:res.data.expiresIn,
                    tokenType: "Bearer",
                    authState: res.data.authUserState})){
@@ -68,7 +68,7 @@ const SignInComponent = () => {
         axios.post('/api/login', formData)
             .then((res)=>{
                 if(res.status === 200){
-                    if(signIn({token: res.data.token, 
+                    if(signIn({token: res.data.token,
                                expiresIn:res.data.expiresIn,
                                tokenType: "Bearer",
                                authState: res.data.authUserState})){
@@ -118,7 +118,7 @@ class signInComponent extends React.Component {
 
     const onSubmit = (e) => {
         ...
-        if(this.props.signIn({token: res.data.token, 
+        if(this.props.signIn({token: res.data.token,
                               expiresIn:res.data.expiresIn,
                               tokenType: "Bearer",
                               authState: res.data.authUserState})){
@@ -153,7 +153,7 @@ class signInComponent extends React.Component {
         axios.post('/api/login', this.state)
             .then((res)=>{
                 if(res.status === 200){
-                    if(this.props.signIn({token: res.data.token, 
+                    if(this.props.signIn({token: res.data.token,
                                           expiresIn:res.data.expiresIn,
                                           tokenType: "Bearer",
                                           authState: res.data.authUserState})){
@@ -211,5 +211,5 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
 | expiresIn | number              | The time for which the token will last, `in minutes`                        |
 | authState | object              | State of the authorized user. Eg: `#!js {name: Jhon, email: jhon@auth.com}` |
 
-<p style="text-align: center">&mdash; 🔑  &mdash;</p>
-<p style="text-align: center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
