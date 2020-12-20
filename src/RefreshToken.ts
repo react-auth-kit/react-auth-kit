@@ -14,33 +14,48 @@
  * limitations under the License.
  */
 
-import {AuthContextInterface} from "./types";
+import {AuthContextInterface} from './types';
 
-class RefreshToken{
+/**
+ * @class RefreshToken
+ *
+ * Refreshes Token
+ */
+class RefreshToken {
   private context: AuthContextInterface;
 
+  /**
+   * @param context
+   * @constructor
+   */
   constructor(context:AuthContextInterface) {
-    this.context = context
+    this.context = context;
   }
 
   /**
    * Get the Current Auth State
-   * @returns a object with {authstate: The Auth Token, authTokenType: type of auth token, expireAt: expire time}
+   * @returns a object with
+   * authState: The Auth Token,
+   * authTokenType: type of auth token,
+   * expireAt: expire time
    */
-  getCurrentAuthState(): {authToken: string|null, authTokenType: string|null, expireAt:Date|null}{
+  getCurrentAuthState(): {
+    authToken: string|null,
+    authTokenType: string|null,
+    expireAt:Date|null} {
     return {
       authToken: this.context.authState.authTokenType,
       authTokenType: this.context.authState.authToken,
-      expireAt: this.context.authState.expireAt
-    }
+      expireAt: this.context.authState.expireAt,
+    };
   }
 
   /**
    * Get the Current User State
    * @returns User State {object}
    */
-  getCurrentUserState(): object|null{
-    return this.context.authState.authState
+  getCurrentUserState(): object|null {
+    return this.context.authState.authState;
   }
 
   /**
@@ -49,31 +64,34 @@ class RefreshToken{
    * @param authTokenType - The updated authType (optional)
    * @param expiresIn - The updated expiresIn in minutes. (optional)
    *
-   * If the new authToken has different expire time, then you must have to update the expiresIn param
+   * If the new authToken has different expire time,
+   * then you must have to update the expiresIn param
    */
-  updateAuthState(authToken: string, authTokenType?: string, expiresIn?: number){
-    const o = {authToken: authToken}
+  updateAuthState(authToken: string,
+      authTokenType?: string,
+      expiresIn?: number) {
+    const o = {authToken: authToken};
 
-    if(authTokenType !== undefined){
-      Object.assign(o, {authTokenType: authTokenType})
+    if (authTokenType !== undefined) {
+      Object.assign(o, {authTokenType: authTokenType});
     }
 
-    if (expiresIn !== undefined){
-      const expireAt = new Date(new Date().getTime() + expiresIn * 60 * 1000)
-      Object.assign(o, {expireAt: expireAt})
+    if (expiresIn !== undefined) {
+      const expireAt = new Date(new Date().getTime() + expiresIn * 60 * 1000);
+      Object.assign(o, {expireAt: expireAt});
     }
 
-    this.context.setAuthState((prevState)=> ({...prevState, ...o}))
+    this.context.setAuthState((prevState)=> ({...prevState, ...o}));
   }
 
   /**
    * Updates the Auth User's state
    * @param userState
    */
-  updateUserState(userState: object){
+  updateUserState(userState: object) {
     this.context.setAuthState((prevState)=>
-      ({...prevState, authState: userState}))
+      ({...prevState, authState: userState}));
   }
 }
 
-export default RefreshToken
+export default RefreshToken;

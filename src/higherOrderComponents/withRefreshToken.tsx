@@ -7,7 +7,7 @@
 
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
-import RefreshToken from "../RefreshToken";
+import RefreshToken from '../RefreshToken';
 
 /**
  * @interface withRefreshTokenProps
@@ -24,7 +24,7 @@ interface withRefreshTokenProps {
  * @param Component - React Component
  */
 function withRefreshToken<P extends withRefreshTokenProps>(
-  Component: React.ComponentType<P>,
+    Component: React.ComponentType<P>,
 ): React.FC<P> {
   return (props) => {
     return (
@@ -42,7 +42,7 @@ function withRefreshToken<P extends withRefreshTokenProps>(
       </AuthContextConsumer>
     );
   }
-;
+  ;
 }
 /**
 *@exports withRefreshToken

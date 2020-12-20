@@ -13,13 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import * as React from 'react'
-import {AuthContext} from "../AuthProvider";
-import RefreshToken from "../RefreshToken";
+import * as React from 'react';
+import {AuthContext} from '../AuthProvider';
+import RefreshToken from '../RefreshToken';
 
+/**
+ *@function
+ *@name useRefreshToken
+ *@description Refresh Token Hook
+ *@returns - RefreshToken object
+ */
 function useRefreshToken():RefreshToken {
-  const _context = React.useContext(AuthContext)
-  return new RefreshToken(_context)
+  const _context = React.useContext(AuthContext);
+  return new RefreshToken(_context);
 }
 
 export default useRefreshToken;
