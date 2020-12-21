@@ -31,7 +31,7 @@ function withSignIn<P extends withSignInProps>(
         {(c) => {
           const signIn = (signInConfig: signInFunctionParams)
             : boolean => {
-            const {token, tokenType, authState, expiresIn} = signInConfig;
+            const {token, tokenType, authState, expiresIn, refreshToken} = signInConfig;
             const expTime = new
             Date(new Date().getTime() + expiresIn * 60 * 1000);
             try {
@@ -42,6 +42,7 @@ function withSignIn<P extends withSignInProps>(
                   authTokenType: tokenType,
                   expireAt: expTime,
                   authState: authState,
+                  refreshToken: !!refreshToken ? refreshToken : null
                 }));
                 return true;
               } else {

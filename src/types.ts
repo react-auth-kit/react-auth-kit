@@ -13,6 +13,7 @@ export interface signInFunctionParams {
   tokenType: string | 'Bearer'
   expiresIn: number
   authState: object
+  refreshToken?: string
 }
 
 export interface TokenObjectParamsInterface {
