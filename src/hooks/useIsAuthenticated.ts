@@ -26,6 +26,7 @@ function useIsAuthenticated(): ()=>boolean {
           authTokenType: null,
           expireAt: null,
           authState: null,
+          refreshToken: null
         });
         return false;
       }
