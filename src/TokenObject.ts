@@ -19,13 +19,14 @@ class TokenObject {
   /**
    * TokenObject - Stores, retrieve and process tokens
    *
-   * @param authStorageName
-   * @param authStorageType
-   * @param authTimeStorageName
-   * @param stateStorageName
-   * @param refreshTokenName
-   * @param cookieDomain
-   * @param cookieSecure
+   * @param authStorageName - Name of the Token, which will store the Authorization Token
+   * @param authStorageType - Type of the auth Storage, `cookie` or `localstorage`
+   * @param authTimeStorageName - Name of the Token,
+   * which will store the Expiring time of the Authorization Token
+   * @param stateStorageName - Name of the Token, which will store the User's state
+   * @param refreshTokenName - Name of the refresh Token, if `undefined`, then no refreshToken feature is using
+   * @param cookieDomain - domain name for the Cookies, only applicable when `authStorageType` is `cookie`
+   * @param cookieSecure - cookies are secure or not, only applicable when `authStorageType` is `cookie`
    * @constructor
    */
   constructor(
@@ -49,27 +50,37 @@ class TokenObject {
   }
 
   /**
-   * Get the Initial Token
+   * Get the Initial Tokens and states
+   * Called externally in `AuthProvider`
+   * when the Application is bootstrapping or refreshed
+   *
+   * If the `authStorageType` is `cookie`,
+   * get information from `initialCookieToken()` function
+   *
+   * If the `authTokenType` is `localStorage`
+   * get information from `initialLSToken()` function
    *
    * @returns TokenInterface
    */
   initialToken(): TokenInterface {
     if (this.authStorageType === 'cookie') {
-      return this.initialCookieToken();
+      return this.initialCookieToken_();
     } else {
-      return this.initialLSToken();
+      return this.initialLSToken_();
     }
   }
 
   /**
-   * Get the Initial Token from Cookie
-   * If the React App uses Cookie for storing Auth info
+   * Get the Initial Token from Cookies
+   * Called internally by `initialToken` method
    *
-   * Called from this.initialToken
+   * If the `authStorageType` is `cookie`
+   * then this function is called
+   * And returns the Tokens and states Stored in all 4 cookies
    *
    * @returns TokenInterface
    */
-  initialCookieToken(): TokenInterface {
+  initialCookieToken_(): TokenInterface {
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const authTokenTime = Cookies.get(this.authTimeStorageName);
@@ -85,14 +96,15 @@ class TokenObject {
 
   /**
    * Get the Initial Token from LocalStorage
-   * If the React App uses LocalStorage for storing Auth info,
-   * this Function is called
+   * Called internally by `initialToken` method
    *
-   * Called from this.initialToken
+   * If the `authStorageType` is `localstorage`
+   * then this function is called
+   * And returns the Tokens and states Stored in all 4 cookies
    *
    * @returns TokenInterface
    */
-  initialLSToken(): TokenInterface {
+  initialLSToken_(): TokenInterface {
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const authTokenTime = localStorage.getItem(this.authTimeStorageName);
@@ -107,10 +119,11 @@ class TokenObject {
 
   /**
    * Check if the Initial token is valid or not,
+   * Called Internally by `initialCookieToken_()` and `initialLSToken_()`
    *
    * If the tokens are valid,
    * then it response TokenObject with auth Information
-   * Else it response TokenObject with null
+   * Else it response TokenObject with all null
    *
    * @param authToken
    * @param authTokenType
@@ -130,12 +143,15 @@ class TokenObject {
       const expiresAt = new Date(authTokenTime);
       try {
         const authState = JSON.parse(stateCookie);
+
         return {
           authToken: authToken,
           authTokenType: authTokenType,
           expireAt: expiresAt,
-          authState: authState};
+          authState: authState
+        };
       }catch (e) {
+
         return {
           authToken: null,
           authTokenType: null,
@@ -144,6 +160,7 @@ class TokenObject {
         };
       }
     } else {
+
       return {
         authToken: null,
         authTokenType: null,
