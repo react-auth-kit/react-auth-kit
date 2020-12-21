@@ -81,17 +81,20 @@ class TokenObject {
    * @returns TokenInterface
    */
   initialCookieToken_(): TokenInterface {
-    //TODO
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const authTokenTime = Cookies.get(this.authTimeStorageName);
     const stateCookie = Cookies.get(this.stateStorageName);
+    const refreshToken = this.refreshTokenName != null ?
+      Cookies.get(this.refreshTokenName) :
+      null
 
     return this.checkTokenExist(
       authToken,
       authTokenType,
       authTokenTime,
       stateCookie,
+      refreshToken
     );
   }
 
@@ -106,17 +109,20 @@ class TokenObject {
    * @returns TokenInterface
    */
   initialLSToken_(): TokenInterface {
-    //TODO
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const authTokenTime = localStorage.getItem(this.authTimeStorageName);
     const stateCookie = localStorage.getItem(this.stateStorageName);
+    const refreshToken = this.refreshTokenName != null ?
+      localStorage.getItem(this.refreshTokenName) :
+      null
 
     return this.checkTokenExist(
       authToken,
       authTokenType,
       authTokenTime,
-      stateCookie);
+      stateCookie,
+      refreshToken);
   }
 
   /**
@@ -131,6 +137,7 @@ class TokenObject {
    * @param authTokenType
    * @param authTokenTime
    * @param stateCookie
+   * @param refreshToken
    *
    * @returns TokenInterface
    *
@@ -139,7 +146,8 @@ class TokenObject {
     authToken: string | null | undefined,
     authTokenType: string | null | undefined,
     authTokenTime: string| null | undefined,
-    stateCookie: string | null | undefined):
+    stateCookie: string | null | undefined,
+    refreshToken: string | null | undefined):
     TokenInterface {
     if (!!authToken && !!authTokenType && !!authTokenTime && !!stateCookie) {
       const expiresAt = new Date(authTokenTime);
@@ -149,8 +157,8 @@ class TokenObject {
         return {
           authToken: authToken,
           authTokenType: authTokenType,
-          // TODO
-          refreshToken: "To-DO",
+          refreshToken: this.refreshTokenName !== undefined && !!refreshToken
+            ? refreshToken : null,
           expireAt: expiresAt,
           authState: authState
         };
@@ -185,7 +193,6 @@ class TokenObject {
    * @param authState
    */
   syncTokens(authState: TokenInterface) {
-    //TODO
     if (
       authState.authToken === undefined ||
       authState.authTokenType === null ||
@@ -198,6 +205,7 @@ class TokenObject {
       this.setToken(
         authState.authToken,
         authState.authTokenType,
+        authState.refreshToken,
         authState.expireAt,
         authState.authState,
       );
@@ -209,24 +217,28 @@ class TokenObject {
    *
    * @param authToken
    * @param authTokenType
+   * @param refreshToken
    * @param expiresAt
    * @param authState
    */
   setToken(
     authToken: string,
     authTokenType: string,
+    refreshToken: string|null,
     expiresAt: Date,
     authState: object) {
     if (this.authStorageType === 'cookie') {
-      this.setCookieToken(
+      this.setCookieToken_(
         authToken,
         authTokenType,
+        refreshToken,
         expiresAt,
         authState);
     } else {
-      this.setLSToken(
+      this.setLSToken_(
         authToken,
         authTokenType,
+        refreshToken,
         expiresAt,
         authState);
     }
@@ -238,12 +250,14 @@ class TokenObject {
    *
    * @param authToken
    * @param authTokenType
+   * @param refreshToken
    * @param expiresAt
    * @param authState
    */
-  setCookieToken(
+  setCookieToken_(
     authToken: string,
     authTokenType: string,
+    refreshToken: string | null,
     expiresAt: Date,
     authState: object) {
     Cookies.set(this.authStorageName, authToken, {
@@ -266,6 +280,14 @@ class TokenObject {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
+
+    if(!!this.refreshTokenName && !!refreshToken){
+      Cookies.set(this.refreshTokenName, refreshToken, {
+        expires: expiresAt,
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+    }
   }
 
   /**
@@ -273,18 +295,23 @@ class TokenObject {
    *
    * @param authToken
    * @param authTokenType
+   * @param refreshToken
    * @param expiresAt
    * @param authState
    */
-  setLSToken(
+  setLSToken_(
     authToken: string,
     authTokenType: string,
+    refreshToken: string | null,
     expiresAt: Date,
     authState: object) {
     localStorage.setItem(this.authStorageName, authToken);
     localStorage.setItem(this.authStorageTypeName, authTokenType);
     localStorage.setItem(this.authTimeStorageName, expiresAt.toString());
     localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+    if(!!this.refreshTokenName && !!refreshToken){
+      localStorage.setItem(this.refreshTokenName, refreshToken);
+    }
   }
 
   /**
@@ -292,40 +319,34 @@ class TokenObject {
    */
   removeToken() {
     if (this.authStorageType === 'cookie') {
-      this.removeCookieToken();
+      this.removeCookieToken_();
     } else {
-      this.removeLSToken();
+      this.removeLSToken_();
     }
   }
 
   /**
    * Remove Token from Cookies
    */
-  removeCookieToken() {
+  removeCookieToken_() {
     Cookies.remove(this.authStorageName);
     Cookies.remove(this.authTimeStorageName);
     Cookies.remove(this.stateStorageName);
+    if(!!this.refreshTokenName){
+      Cookies.remove(this.refreshTokenName)
+    }
   }
 
   /**
    * Remove Token from LocalStorage
    */
-  removeLSToken() {
+  removeLSToken_() {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authTimeStorageName);
     localStorage.removeItem(this.stateStorageName);
-  }
-
-  /**
-   * Checks if the current application is using the refresh token
-   * By looking at the name of the `refreshTokenName` param
-   *
-   * If the `refreshTokenName` is not undefined, then the app is using refresh token
-   *
-   * @returns - True | False - If the refresh token if using by the app
-   */
-  isRefreshToken(){
-    return this.refreshTokenName !== undefined
+    if(!!this.refreshTokenName){
+      Cookies.remove(this.refreshTokenName)
+    }
   }
 }
 
