@@ -5,6 +5,7 @@ export interface TokenInterface {
   authTokenType: string | null
   expireAt: Date | null
   refreshToken: string | null
+  refreshTokenExpireAt: Date | null
   authState: object | null
 }
 
@@ -14,6 +15,7 @@ export interface signInFunctionParams {
   expiresIn: number
   authState: object
   refreshToken?: string
+  refreshTokenExpireIn?: number
 }
 
 export interface TokenObjectParamsInterface {
