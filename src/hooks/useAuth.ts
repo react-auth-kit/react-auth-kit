@@ -66,7 +66,8 @@ function useAuth():
           authTokenType: null,
           expireAt: null,
           authState: null,
-          refreshToken: null
+          refreshToken: null,
+          refreshTokenExpireAt: null
         });
         return false;
       }
