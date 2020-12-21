@@ -8,6 +8,7 @@ const AuthContext = React.createContext<AuthContextInterface>({
     authState: null,
     authToken: null,
     refreshToken: null,
+    refreshTokenExpireAt: null,
     expireAt: null,
   },
   setAuthState: () => {},
