@@ -81,6 +81,7 @@ class TokenObject {
    * @returns TokenInterface
    */
   initialCookieToken_(): TokenInterface {
+    //TODO
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const authTokenTime = Cookies.get(this.authTimeStorageName);
@@ -105,6 +106,7 @@ class TokenObject {
    * @returns TokenInterface
    */
   initialLSToken_(): TokenInterface {
+    //TODO
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const authTokenTime = localStorage.getItem(this.authTimeStorageName);
@@ -147,6 +149,8 @@ class TokenObject {
         return {
           authToken: authToken,
           authTokenType: authTokenType,
+          // TODO
+          refreshToken: "To-DO",
           expireAt: expiresAt,
           authState: authState
         };
@@ -155,6 +159,7 @@ class TokenObject {
         return {
           authToken: null,
           authTokenType: null,
+          refreshToken: null,
           expireAt: null,
           authState: null,
         };
@@ -164,6 +169,7 @@ class TokenObject {
       return {
         authToken: null,
         authTokenType: null,
+        refreshToken: null,
         expireAt: null,
         authState: null,
       };
@@ -179,6 +185,7 @@ class TokenObject {
    * @param authState
    */
   syncTokens(authState: TokenInterface) {
+    //TODO
     if (
       authState.authToken === undefined ||
       authState.authTokenType === null ||
