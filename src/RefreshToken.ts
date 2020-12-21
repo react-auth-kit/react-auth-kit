@@ -33,6 +33,17 @@ class RefreshToken {
   }
 
   /**
+   * Get the current Refresh Token
+   * @returns refresh token
+   */
+  getCurrentRefreshToken(): {refreshToken: string|null, refreshTokenExpireAt: Date|null}{
+    return {
+      refreshToken: this.context.authState.refreshToken,
+      refreshTokenExpireAt: this.context.authState.refreshTokenExpireAt
+    }
+  }
+
+  /**
    * Get the Current Auth State
    * @returns a object with
    * authState: The Auth Token,
@@ -58,6 +69,17 @@ class RefreshToken {
     return this.context.authState.authState;
   }
 
+  /**
+   * Updates the Current Refresh Token
+   *
+   * @param refreshToken - new refresh Token
+   * @param expiresIn
+   */
+  updateRefreshToken(refreshToken:string, expiresIn: number){
+    const expireAt = new Date(new Date().getTime() + expiresIn * 60 * 1000);
+    this.context.setAuthState(prevState =>
+      ({...prevState, refreshToken:refreshToken, refreshTokenExpireAt:expireAt}))
+  }
   /**
    * updates the AuthState
    * @param authToken - The Updated authToken
