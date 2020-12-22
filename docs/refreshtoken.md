@@ -63,7 +63,7 @@ export default withRefreshToken(AnyPrivateComponent)
 
 RefreshToken has all the methods you need to refresh the auth states programmatically.
 
-### Methods:
+### Methods
 There are 4 methods, you can use to refresh the Auth Token and User's details
 
 1. ***getCurrentAuthState()***: Get the current auth token, auth token type, expiring time
@@ -73,7 +73,7 @@ There are 4 methods, you can use to refresh the Auth Token and User's details
 
 See the example below for the usage, and see the API for detailed description.
 
-## Full Demo (using hook and FC):
+## Full Demo (using hook and FC)
 ```jsx
 import React from 'react'
 import axios from 'axios'
@@ -110,7 +110,7 @@ const RefreshComponent = () => {
 }
 ```
 
-## RefreshToken API:
+## RefreshToken API
 
 RefreshToken has the following 4 methods.
 
@@ -130,7 +130,16 @@ Get the Current User State
 
 **Returns** _object_ | _null_ - Current User state
 
-3. `updateAuthState()`:
+3. `getCurrentRefreshToken()`:
+
+Get the current Refresh Token
+
+**Returns** { **refreshToken**: _string_ | _null_; **refreshTokenExpireAt**: _Date_ | _null_ }
+
+- **refreshToken**: _string_ | _null_ - Current Refresh Token
+- **refreshTokenExpireAt**: _Date_ | _null_ - Expiry time of current refresh Token
+
+4. `updateAuthState()`:
 
 updates the AuthState
 
@@ -152,7 +161,23 @@ If the new `authToken` has different expire time, then you must have to update t
 
 **Returns** void
 
-4. `updateUserState()`:
+5. `updateRefreshToken()`:
+
+Updates the Current Refresh Token
+
+**Parameters**
+
+- **refreshToken**: _string_
+
+    New Refresh Token
+
+- **expiresIn**: _number_
+
+    New Expiry Time for the new Refresh Token `in Minutes`
+
+**Returns** _void_
+
+6. `updateUserState()`:
 
 Updates the Auth User's state
 
