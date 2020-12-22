@@ -36,7 +36,9 @@ const SignInComponent = () => {
         if(signIn({token: res.data.token,
                    expiresIn:res.data.expiresIn,
                    tokenType: "Bearer",
-                   authState: res.data.authUserState})){
+                   authState: res.data.authUserState,
+                   refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
+                   refreshTokenExpireIn: res.data.refreshTokenExpireIn})){ // Only if you are using refreshToken feature
             // Redirect or do-something
         }else {
             //Throw error
@@ -71,7 +73,9 @@ const SignInComponent = () => {
                     if(signIn({token: res.data.token,
                                expiresIn:res.data.expiresIn,
                                tokenType: "Bearer",
-                               authState: res.data.authUserState})){
+                               authState: res.data.authUserState,
+                               refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
+                               refreshTokenExpireIn: res.data.refreshTokenExpireIn})){ // Only if you are using refreshToken feature
                         // Redirect or do-something
                     }else {
                         //Throw error
@@ -196,20 +200,24 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
 
 ```js
 {
-    token: string,
-    tokenType: string | 'Bearer',
-    expiresIn: number,
-    authState: object
+  token: string
+  tokenType: string | 'Bearer'
+  expiresIn: number
+  authState: object
+  refreshToken?: string
+  refreshTokenExpireIn?: number
 }
 ```
 #### Explanation of SignInConfig
 
-| Name      | Type                | Description                                                                 |
-|-----------|---------------------|-----------------------------------------------------------------------------|
-| token     | string              | The Authentication token (JWT) to be stored from server                     |
-| tokenType | string  \| 'Bearer' | The type of authentication token.                                           |
-| expiresIn | number              | The time for which the token will last, `in minutes`                        |
-| authState | object              | State of the authorized user. Eg: `#!js {name: Jhon, email: jhon@auth.com}` |
+| Name                 | Type                | Description                                                                                                                                                                  |
+|----------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| token                | string              | The Authentication token (JWT) to be stored from server                                                                                                                      |
+| tokenType            | string  \| 'Bearer' | The type of authentication token.                                                                                                                                            |
+| expiresIn            | number              | The time for which the auth token will last, `in minutes`                                                                                                                    |
+| authState            | object (`optional`) | State of the authorized user. Eg: `#!js {name: Jhon, email: jhon@auth.com}`                                                                                                  |
+| refreshToken         | string (`optional`) | Refresh Token sent by the server. Use only, if you are using refresh token feature. For more info Go to the [Refresh Token](./refreshtoken) page                             |
+| refreshTokenExpireIn | number (`optional`) | The time for which the refresh token will last, `in minutes`, Use only, if you are using refresh token feature. For more info Go to the [Refresh Token](./refreshtoken) page |
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
