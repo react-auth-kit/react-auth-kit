@@ -29,7 +29,7 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
           expireAt: null,
           authState: null,
           refreshToken: null,
-          refreshTokenExpireAt: null
+          refreshTokenExpireAt: null,
         });
         return false;
       }

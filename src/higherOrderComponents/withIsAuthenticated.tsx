@@ -39,7 +39,7 @@ function withIsAuthenticated<P extends withAuthHeaderProps>(
                 expireAt: null,
                 authState: null,
                 refreshToken: null,
-                refreshTokenExpireAt: null
+                refreshTokenExpireAt: null,
               });
               return <Component {...props} isAuth={false}/>;
             }

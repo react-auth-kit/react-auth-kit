@@ -19,10 +19,17 @@ function useSignIn():(signInConfig: signInFunctionParams) => boolean {
   const context = React.useContext(AuthContext);
 
   return (signInConfig: signInFunctionParams): boolean => {
-    const {token, tokenType, authState, expiresIn, refreshToken, refreshTokenExpireIn} = signInConfig;
+    const {
+      token,
+      tokenType,
+      authState,
+      expiresIn,
+      refreshToken,
+      refreshTokenExpireIn,
+    } = signInConfig;
     const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000);
     const refreshTokenExpireAt = !!refreshTokenExpireIn ?
-      new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000) : null
+      new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000) : null;
 
     try {
       if (context) {
@@ -33,7 +40,7 @@ function useSignIn():(signInConfig: signInFunctionParams) => boolean {
           expireAt: expTime,
           authState: authState,
           refreshToken: !!refreshToken ? refreshToken : null,
-          refreshTokenExpireAt: refreshTokenExpireAt
+          refreshTokenExpireAt: refreshTokenExpireAt,
         }));
         return true;
       } else {

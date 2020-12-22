@@ -67,7 +67,7 @@ function useAuth():
           expireAt: null,
           authState: null,
           refreshToken: null,
-          refreshTokenExpireAt: null
+          refreshTokenExpireAt: null,
         });
         return false;
       }
