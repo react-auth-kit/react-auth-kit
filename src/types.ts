@@ -4,6 +4,7 @@ export interface TokenInterface {
   authToken: string | null
   authTokenType: string | null
   expireAt: Date | null
+  isUsingRefreshToken: boolean
   refreshToken: string | null
   refreshTokenExpireAt: Date | null
   authState: object | null
