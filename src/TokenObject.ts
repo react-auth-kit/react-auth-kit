@@ -16,6 +16,7 @@ class TokenObject {
   private readonly authStorageType: 'cookie' | 'localstorage';
   private readonly refreshTokenName: string | undefined;
   private readonly refreshTokenTimeName: string | null;
+  private readonly isUsingRefreshToken: boolean;
 
   /**
    * TokenObject - Stores, retrieve and process tokens
@@ -59,6 +60,7 @@ class TokenObject {
     this.refreshTokenName = refreshTokenName;
     this.cookieDomain = cookieDomain;
     this.cookieSecure = cookieSecure;
+    this.isUsingRefreshToken = !!this.authStorageName
     this.authStorageTypeName = `${this.authStorageName}_type`;
     this.refreshTokenTimeName = this.refreshTokenName ?
       `${this.refreshTokenName}_time` : null;
@@ -100,12 +102,13 @@ class TokenObject {
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const authTokenTime = Cookies.get(this.authTimeStorageName);
     const stateCookie = Cookies.get(this.stateStorageName);
-    const refreshToken = this.refreshTokenName != null ?
-      Cookies.get(this.refreshTokenName) :
-      null;
-    const refreshTokenTime = this.refreshTokenTimeName != null ?
-      Cookies.get(this.refreshTokenTimeName) :
-      null;
+
+    const refreshToken = this.isUsingRefreshToken &&
+    this.refreshTokenName != null ? Cookies.get(this.refreshTokenName) : null;
+
+    const refreshTokenTime = this.isUsingRefreshToken &&
+    this.refreshTokenTimeName != null ?
+      Cookies.get(this.refreshTokenTimeName) : null;
 
     return this.checkTokenExist(
         authToken,
@@ -131,12 +134,14 @@ class TokenObject {
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const authTokenTime = localStorage.getItem(this.authTimeStorageName);
     const stateCookie = localStorage.getItem(this.stateStorageName);
-    const refreshToken = this.refreshTokenName != null ?
-      localStorage.getItem(this.refreshTokenName) :
-      null;
-    const refreshTokenTime = this.refreshTokenTimeName != null ?
-      localStorage.getItem(this.refreshTokenTimeName) :
-      null;
+
+    const refreshToken = this.isUsingRefreshToken &&
+    this.refreshTokenName != null ?
+      localStorage.getItem(this.refreshTokenName) : null;
+
+    const refreshTokenTime = this.isUsingRefreshToken &&
+    this.refreshTokenTimeName != null ?
+      localStorage.getItem(this.refreshTokenTimeName) : null;
 
     return this.checkTokenExist(
         authToken,
@@ -181,9 +186,10 @@ class TokenObject {
         return {
           authToken: authToken,
           authTokenType: authTokenType,
-          refreshToken: !!this.refreshTokenName && !!refreshToken ?
+          isUsingRefreshToken: this.isUsingRefreshToken,
+          refreshToken: this.isUsingRefreshToken && !!refreshToken ?
             refreshToken : null,
-          refreshTokenExpireAt: !!this.refreshTokenTimeName &&
+          refreshTokenExpireAt: this.isUsingRefreshToken &&
           !!refreshTokenTime ? new Date(refreshTokenTime):null,
           expireAt: expiresAt,
           authState: authState,
@@ -192,6 +198,7 @@ class TokenObject {
         return {
           authToken: null,
           authTokenType: null,
+          isUsingRefreshToken: this.isUsingRefreshToken,
           refreshToken: null,
           expireAt: null,
           authState: null,
@@ -202,6 +209,7 @@ class TokenObject {
       return {
         authToken: null,
         authTokenType: null,
+        isUsingRefreshToken: this.isUsingRefreshToken,
         refreshToken: null,
         expireAt: null,
         authState: null,
@@ -303,7 +311,7 @@ class TokenObject {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
-    Cookies.set(this.authTimeStorageName, expiresAt, {
+    Cookies.set(this.authTimeStorageName, expiresAt.toISOString(), {
       expires: expiresAt,
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -314,7 +322,8 @@ class TokenObject {
       secure: this.cookieSecure,
     });
 
-    if (!!this.refreshTokenName && !!refreshToken) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenName &&
+      !!refreshToken) {
       Cookies.set(this.refreshTokenName, refreshToken, {
         expires: expiresAt,
         domain: this.cookieDomain,
@@ -322,7 +331,8 @@ class TokenObject {
       });
     }
 
-    if (!!this.refreshTokenTimeName && !!refreshTokenExpiresAt) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenTimeName &&
+      !!refreshTokenExpiresAt) {
       Cookies.set(this.refreshTokenTimeName,
           refreshTokenExpiresAt.toISOString(), {
             expires: expiresAt,
@@ -353,10 +363,12 @@ class TokenObject {
     localStorage.setItem(this.authStorageTypeName, authTokenType);
     localStorage.setItem(this.authTimeStorageName, expiresAt.toISOString());
     localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
-    if (!!this.refreshTokenName && !!refreshToken) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenName &&
+      !!refreshToken) {
       localStorage.setItem(this.refreshTokenName, refreshToken);
     }
-    if (!!this.refreshTokenTimeName && !!refreshTokenExpiresAt) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenTimeName &&
+      !!refreshTokenExpiresAt) {
       localStorage.setItem(this.refreshTokenTimeName,
           refreshTokenExpiresAt.toISOString());
     }
@@ -380,10 +392,10 @@ class TokenObject {
     Cookies.remove(this.authStorageName);
     Cookies.remove(this.authTimeStorageName);
     Cookies.remove(this.stateStorageName);
-    if (!!this.refreshTokenName) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenName) {
       Cookies.remove(this.refreshTokenName);
     }
-    if (!!this.refreshTokenTimeName) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenTimeName) {
       Cookies.remove(this.refreshTokenTimeName);
     }
   }
@@ -395,10 +407,10 @@ class TokenObject {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authTimeStorageName);
     localStorage.removeItem(this.stateStorageName);
-    if (!!this.refreshTokenName) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenName) {
       localStorage.removeItem(this.refreshTokenName);
     }
-    if (!!this.refreshTokenTimeName) {
+    if (this.isUsingRefreshToken && !!this.refreshTokenTimeName) {
       localStorage.removeItem(this.refreshTokenTimeName);
     }
   }
