@@ -27,6 +27,12 @@ function useSignIn():(signInConfig: signInFunctionParams) => boolean {
       refreshToken,
       refreshTokenExpireIn,
     } = signInConfig;
+    if((refreshToken || refreshTokenExpireIn) && !context.authState.isUsingRefreshToken){
+      throw new Error('The app doesn\'t implement \'refreshToken\' feature.\n' +
+        'So you have to implement refresh token feature from ' +
+        '\'AuthProvider\' before using it.');
+    }
+
     const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000);
     const refreshTokenExpireAt = !!refreshTokenExpireIn ?
       new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000) : null;

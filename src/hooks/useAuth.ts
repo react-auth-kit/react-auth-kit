@@ -61,14 +61,15 @@ function useAuth():
       if (new Date(c.authState.expireAt) > new Date()) {
         return true;
       } else {
-        c.setAuthState({
+        c.setAuthState(prevState => ({
+          ...prevState,
           authToken: null,
           authTokenType: null,
           expireAt: null,
           authState: null,
           refreshToken: null,
           refreshTokenExpireAt: null,
-        });
+        }));
         return false;
       }
     } else {
@@ -83,8 +84,23 @@ function useAuth():
      *@returns true if sign-in else false
      */
   const signIn = (signInConfig: signInFunctionParams): boolean => {
-    const {token, tokenType, authState, expiresIn} = signInConfig;
+    const {
+      token,
+      tokenType,
+      authState,
+      expiresIn,
+      refreshToken,
+      refreshTokenExpireIn
+    } = signInConfig;
+
+    if((refreshToken || refreshTokenExpireIn) && !c.authState.isUsingRefreshToken){
+      throw new Error('The app doesn\'t implement \'refreshToken\' feature.\n' +
+        'So you have to implement refresh token feature from ' +
+        '\'AuthProvider\' before using it.');
+    }
     const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000);
+    const refreshTokenExpireAt = !!refreshTokenExpireIn ?
+      new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000) : null;
     try {
       if (c) {
         c.setAuthState((prevState) => ({
@@ -93,6 +109,8 @@ function useAuth():
           authTokenType: tokenType,
           expireAt: expTime,
           authState: authState,
+          refreshToken: !!refreshToken ? refreshToken : null,
+          refreshTokenExpireAt: refreshTokenExpireAt,
         }));
         return true;
       } else {
@@ -116,6 +134,8 @@ function useAuth():
           ...prevState,
           authToken: null,
           authTokenType: null,
+          refreshToken: null,
+          refreshTokenExpireAt: null,
           expireAt: null,
           authState: null,
         }));
