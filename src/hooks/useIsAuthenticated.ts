@@ -21,7 +21,7 @@ function useIsAuthenticated(): ()=>boolean {
       if (new Date(context.authState.expireAt) > new Date()) {
         return true;
       } else {
-        context.setAuthState(prevState => ({
+        context.setAuthState((prevState) => ({
           ...prevState,
           authToken: null,
           authTokenType: null,

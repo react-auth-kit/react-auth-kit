@@ -27,7 +27,8 @@ function useSignIn():(signInConfig: signInFunctionParams) => boolean {
       refreshToken,
       refreshTokenExpireIn,
     } = signInConfig;
-    if((refreshToken || refreshTokenExpireIn) && !context.authState.isUsingRefreshToken){
+    if ((refreshToken || refreshTokenExpireIn) &&
+      !context.authState.isUsingRefreshToken) {
       throw new Error('The app doesn\'t implement \'refreshToken\' feature.\n' +
         'So you have to implement refresh token feature from ' +
         '\'AuthProvider\' before using it.');

@@ -61,7 +61,7 @@ function useAuth():
       if (new Date(c.authState.expireAt) > new Date()) {
         return true;
       } else {
-        c.setAuthState(prevState => ({
+        c.setAuthState((prevState) => ({
           ...prevState,
           authToken: null,
           authTokenType: null,
@@ -90,10 +90,11 @@ function useAuth():
       authState,
       expiresIn,
       refreshToken,
-      refreshTokenExpireIn
+      refreshTokenExpireIn,
     } = signInConfig;
 
-    if((refreshToken || refreshTokenExpireIn) && !c.authState.isUsingRefreshToken){
+    if ((refreshToken || refreshTokenExpireIn) &&
+      !c.authState.isUsingRefreshToken) {
       throw new Error('The app doesn\'t implement \'refreshToken\' feature.\n' +
         'So you have to implement refresh token feature from ' +
         '\'AuthProvider\' before using it.');
