@@ -30,6 +30,12 @@ class RefreshToken {
    */
   constructor(context:AuthContextInterface) {
     this.context = context;
+
+    if (!this.context.authState.isUsingRefreshToken) {
+      throw new Error('The app doesn\'t implement \'refreshToken\' feature.\n' +
+        'So you have to implement refresh token feature from ' +
+        '\'AuthProvider\' before using it.');
+    }
   }
 
   /**
@@ -110,7 +116,7 @@ class RefreshToken {
       Object.assign(o, {expireAt: expireAt});
     }
 
-    this.context.setAuthState((prevState)=> ({...prevState, ...o}));
+    this.context.setAuthState((prevState) => ({...prevState, ...o}));
   }
 
   /**
@@ -118,7 +124,7 @@ class RefreshToken {
    * @param userState
    */
   updateUserState(userState: object) {
-    this.context.setAuthState((prevState)=>
+    this.context.setAuthState((prevState) =>
       ({...prevState, authState: userState}));
   }
 }

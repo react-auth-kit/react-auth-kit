@@ -60,7 +60,7 @@ class TokenObject {
     this.refreshTokenName = refreshTokenName;
     this.cookieDomain = cookieDomain;
     this.cookieSecure = cookieSecure;
-    this.isUsingRefreshToken = !!this.authStorageName
+    this.isUsingRefreshToken = !!this.authStorageName;
     this.authStorageTypeName = `${this.authStorageName}_type`;
     this.refreshTokenTimeName = this.refreshTokenName ?
       `${this.refreshTokenName}_time` : null;
