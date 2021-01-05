@@ -29,6 +29,8 @@ function useSignOut(): () => (boolean) {
           authTokenType: null,
           expireAt: null,
           authState: null,
+          refreshToken: null,
+          refreshTokenExpireAt: null,
         }));
         console.log('RAJ :: Signing Out');
         return true;

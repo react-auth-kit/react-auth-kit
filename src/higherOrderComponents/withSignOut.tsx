@@ -37,6 +37,8 @@ function withSignOut<P extends withSignOutProps>(
                   authTokenType: null,
                   expireAt: null,
                   authState: null,
+                  refreshToken: null,
+                  refreshTokenExpireAt: null,
                 }));
                 return true;
               } else {

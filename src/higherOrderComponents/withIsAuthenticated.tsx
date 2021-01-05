@@ -33,12 +33,15 @@ function withIsAuthenticated<P extends withAuthHeaderProps>(
             if (new Date(c.authState.expireAt) > new Date()) {
               return <Component {...props} isAuth={true}/>;
             } else {
-              c.setAuthState({
+              c.setAuthState((prevState) => ({
+                ...prevState,
                 authToken: null,
                 authTokenType: null,
                 expireAt: null,
                 authState: null,
-              });
+                refreshToken: null,
+                refreshTokenExpireAt: null,
+              }));
               return <Component {...props} isAuth={false}/>;
             }
           } else {

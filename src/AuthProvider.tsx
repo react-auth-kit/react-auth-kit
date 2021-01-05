@@ -7,6 +7,9 @@ const AuthContext = React.createContext<AuthContextInterface>({
     authTokenType: null,
     authState: null,
     authToken: null,
+    isUsingRefreshToken: false,
+    refreshToken: null,
+    refreshTokenExpireAt: null,
     expireAt: null,
   },
   setAuthState: () => {},
@@ -20,6 +23,7 @@ const AuthContext = React.createContext<AuthContextInterface>({
  * @param authStorageType
  * @param authTimeStorageName
  * @param cookieDomain
+ * @param refreshTokenName
  * @param cookieSecure
  * @param stateStorageName
  *
@@ -32,6 +36,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       authStorageName,
       authTimeStorageName,
       stateStorageName,
+      refreshTokenName,
       cookieDomain,
       cookieSecure,
     }) => {
@@ -47,6 +52,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         authTimeStorageName,
         authStorageType,
         authStorageName,
+        refreshTokenName,
         cookieDomain,
         cookieSecure,
         stateStorageName,
