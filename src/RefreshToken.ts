@@ -64,8 +64,8 @@ class RefreshToken {
     authTokenType: string|null,
     expireAt:Date|null} {
     return {
-      authToken: this.context.authState.authTokenType,
-      authTokenType: this.context.authState.authToken,
+      authToken: this.context.authState.authToken,
+      authTokenType: this.context.authState.authTokenType,
       expireAt: this.context.authState.expireAt,
     };
   }
