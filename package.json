@@ -1,7 +1,7 @@
 {
   "name": "react-auth-kit",
   "version": "1.4.4",
-  "description": "Authentication Library for React",
+  "description": "Authentication Library for React, which makes Token based auth very easy",
   "source": "src/index.tsx",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -10,7 +10,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=8"
   },
   "scripts": {
     "start": "rollup -cw",
@@ -28,7 +28,8 @@
     "auth",
     "authentication",
     "jwt",
-    "jsonwebtoken"
+    "jsonwebtoken",
+    "token"
   ],
   "author": {
     "name": "Arkadip Bhattacharya",
