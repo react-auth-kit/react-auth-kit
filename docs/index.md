@@ -45,9 +45,8 @@ It is production-ready, and gives you the following:
 
 ## Requirements
 
-* Node Js 8.0+
-* React Js 16.8+
-* React-Router-Dom 3.0+
+* Node Js 8+
+* React Js 16+
 
 
 <p align="center">&mdash; 🔑  &mdash;</p>
