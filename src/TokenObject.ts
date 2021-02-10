@@ -389,14 +389,29 @@ class TokenObject {
    * Remove Token from Cookies
    */
   removeCookieToken_() {
-    Cookies.remove(this.authStorageName);
-    Cookies.remove(this.authTimeStorageName);
-    Cookies.remove(this.stateStorageName);
+    Cookies.remove(this.authStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+    Cookies.remove(this.authTimeStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+    Cookies.remove(this.stateStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
     if (this.isUsingRefreshToken && !!this.refreshTokenName) {
-      Cookies.remove(this.refreshTokenName);
+      Cookies.remove(this.refreshTokenName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
     }
     if (this.isUsingRefreshToken && !!this.refreshTokenTimeName) {
-      Cookies.remove(this.refreshTokenTimeName);
+      Cookies.remove(this.refreshTokenTimeName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
     }
   }
 
