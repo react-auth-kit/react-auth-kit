@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.5] - 2021-02-10
+### Fixed:
+- Potential risk of duplicate tokens
+
 ## [1.4.4] - 2021-01-15
 ### Fixed:
 - `authToken` and `authTokenType` key value pair swapped at `getCurrentAuthState()` in `RefreshToken` ([#197](https://github.com/react-auth-kit/react-auth-kit/issues/197)) ([8fc03f5](https://github.com/react-auth-kit/react-auth-kit/commit/8fc03f5cf90fb9372137fa85def7e3194196a1d7))
