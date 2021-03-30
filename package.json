@@ -42,7 +42,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "@types/jest": "^26.0.10",
     "@types/js-cookie": "^2.2.6",
