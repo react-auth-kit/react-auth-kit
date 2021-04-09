@@ -7,7 +7,6 @@ jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
-    needs: [test]
 
     steps:
       - uses: actions/checkout@v2
