@@ -11,5 +11,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="adsbygoogle" level="application" />
+    <orderEntry type="library" name="react" level="application" />
+    <orderEntry type="library" name="react-dom" level="application" />
+    <orderEntry type="library" name="react-auth-kit" level="application" />
+    <orderEntry type="library" name="babel-standalone" level="application" />
   </component>
 </module>
