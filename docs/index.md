@@ -14,7 +14,7 @@
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/Test%20Suites/badge.svg" alt="Test Suites">
 </a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
-    <img src="https://img.shields.io/npm/v/react-auth-kit.svg" alt="Test Suites">
+    <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
 </a>
 <a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
     <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
@@ -23,31 +23,17 @@
 
 ---
 
-# Introduction
+**React Auth Kit** is a lightweight `auth management` library for React JS.
 
-**React Auth Kit** is a lightweight Javascript library for React JS, which makes the implementation of `Token based`
-authentication very easy
 
 It is production-ready, and gives you the following:
 
-* 1.95 KB Gzipped
-* Build for React Js
-* Easy to Implementation
-* Supports Json Web Token (JWT)
-* Secure Client Side Authentication
-* Highly typed and written in TypeScript
-* Can be implemented using both [Higher Order Components](https://reactjs.org/docs/higher-order-components.html)
- and [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-* 100% type annotated codebase.
-* Zero hard dependencies.
-
----
-
-## Requirements
-
-* Node Js 8+
-* React Js 16+
-
+* 📦 3.33 KB Gzipped
+* ⚛️Build for React Js
+* 🚀 Fast and easy to Implement
+* 🛡️ Supports Json Web Token (JWT)
+* 🔒 Secure Client Side Authentication
+* ⌨️Highly typed and written in TypeScript
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

@@ -14,7 +14,7 @@
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/Test%20Suites/badge.svg" alt="Test Suites">
 </a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
-    <img src="https://img.shields.io/npm/v/react-auth-kit.svg" alt="Test Suites">
+    <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
 </a>
 <a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
     <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
@@ -30,24 +30,12 @@ authentication very easy
 
 It is production-ready, and gives you the following:
 
-* 1.95 KB Gzipped
-* Build for React
-* Easy to Implementation
-* Secure Client Side Authentication
-* Highly typed and written in TypeScript
-* Can be implemented using both [Higher Order Components](https://reactjs.org/docs/higher-order-components.html)
- and [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-* 100% test coverage.
-* 100% type annotated codebase.
-* Zero hard dependencies.
-
----
-
-## Requirements
-
-* Node Js 8.0+
-* React Js 16.8+
-* React-Router-Dom 3.0+
+* 📦 3.33 KB Gzipped
+* ⚛️Build for React Js
+* 🚀 Fast and easy to Implement
+* 🛡️ Supports Json Web Token (JWT)
+* 🔒 Secure Client Side Authentication
+* ⌨️Highly typed and written in TypeScript
 
 ## Documentation
 
