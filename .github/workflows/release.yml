@@ -1,11 +1,13 @@
 on:
-  release
+  release:
+    types:
+      - published
 
 name: NPM Deploy
 
 jobs:
   build:
-    name: Release
+    name: Release Docs
     runs-on: ubuntu-latest
 
     steps:
@@ -18,14 +20,3 @@ jobs:
       - run: pip install mkdocs-material
 
       - run: mkdocs gh-deploy --force
-
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-          registry-url: 'https://registry.npmjs.org'
-
-      - run: npm install
-
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
