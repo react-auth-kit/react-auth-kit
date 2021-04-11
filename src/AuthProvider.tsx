@@ -70,8 +70,9 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
 
 AuthProvider.defaultProps = {
   authType: 'cookie',
-  authName: '_auth_token',
-  cookieSecure: true,
+  authName: '_auth',
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === "https:"
 };
 
 
