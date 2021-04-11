@@ -42,7 +42,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         }
       }
 
-      const refreshTokenName = refreshToken ? `${authName}_refresh` : undefined
+      const refreshTokenName = refreshToken ? `${authName}_refresh` : undefined;
 
       const tokenObject = new TokenObject({
         authTimeStorageName: `${authName}_time`,
@@ -72,7 +72,7 @@ AuthProvider.defaultProps = {
   authType: 'cookie',
   authName: '_auth',
   cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === "https:"
+  cookieSecure: window.location.protocol === 'https:',
 };
 
 
