@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed:
   - Added GA in the docs
 
+## [1.4.6] - 2021-04-09
+###Changed:
+- `AuthProvider` props. AuthProvider is now only using 4 props.
+- Docs `/usage` is now `/integration`
+- Docs updated Intro and installation page
+- Better documentations added.
+
+⚠️This release will break your code, as the AuthProvider props are changed. [Please refer to the docs](https://authkit.arkadip.me/integration)
+
+
+## [1.4.6] - 2021-04-09
+###Changed:
+- Docs updated
+
 ## [1.4.5] - 2021-02-10
 ### Fixed:
 - Potential risk of duplicate tokens
