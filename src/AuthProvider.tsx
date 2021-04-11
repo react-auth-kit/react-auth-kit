@@ -20,27 +20,21 @@ const AuthContext = React.createContext<AuthContextInterface>({
  *
  * @param children
  * @param authStorageName
- * @param authStorageType
- * @param authTimeStorageName
  * @param cookieDomain
- * @param refreshTokenName
  * @param cookieSecure
- * @param stateStorageName
  *
  * @return Functional Component
  */
 const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     ({
       children,
-      authStorageType,
-      authStorageName,
-      authTimeStorageName,
-      stateStorageName,
-      refreshTokenName,
+      authType,
+      authName,
+      refreshToken,
       cookieDomain,
       cookieSecure,
     }) => {
-      if (authStorageType === 'cookie') {
+      if (authType === 'cookie') {
         if (!cookieDomain) {
           throw new
           Error('authStorageType \'cookie\' ' +
@@ -48,14 +42,16 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         }
       }
 
+      const refreshTokenName = refreshToken ? `${authName}_refresh` : undefined
+
       const tokenObject = new TokenObject({
-        authTimeStorageName,
-        authStorageType,
-        authStorageName,
+        authTimeStorageName: `${authName}_time`,
+        authStorageType: authType,
+        authStorageName: authName,
         refreshTokenName,
         cookieDomain,
         cookieSecure,
-        stateStorageName,
+        stateStorageName: `${authName}_state`,
       });
       const [authState, setAuthState] = React.useState<TokenInterface>(
           tokenObject.initialToken(),
@@ -73,10 +69,8 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     };
 
 AuthProvider.defaultProps = {
-  authStorageType: 'cookie',
-  authStorageName: '_auth_token',
-  authTimeStorageName: '_auth_time',
-  stateStorageName: '_auth_state',
+  authType: 'cookie',
+  authName: '_auth_token',
   cookieSecure: true,
 };
 

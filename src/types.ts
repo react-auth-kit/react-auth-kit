@@ -34,6 +34,11 @@ export interface AuthContextInterface {
   setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
 }
 
-export interface AuthProviderProps extends TokenObjectParamsInterface {
+export interface AuthProviderProps {
+  authType: 'cookie' | 'localstorage'
+  authName: string,
+  refreshToken?: boolean
+  cookieDomain?: string
+  cookieSecure?: boolean
   children: React.ReactNode
 }
