@@ -17,7 +17,7 @@ theme:
 nav:
   - Introduction: 'index.md'
   - Installation: 'installation.md'
-  - Usage: 'usage.md'
+  - Integrate in your project: 'integration.md'
   - Sign In: 'signin.md'
   - Private Route: 'privateroute.md'
   - Sign Out: 'signout.md'
