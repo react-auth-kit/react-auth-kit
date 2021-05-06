@@ -7,14 +7,14 @@ export interface TokenInterface {
   isUsingRefreshToken: boolean
   refreshToken: string | null
   refreshTokenExpireAt: Date | null
-  authState: object | null
+  authState: AuthStateUserObject | null
 }
 
 export interface signInFunctionParams {
   token: string
   tokenType: string | 'Bearer'
   expiresIn: number
-  authState: object
+  authState: AuthStateUserObject
   refreshToken?: string
   refreshTokenExpireIn?: number
 }
@@ -41,4 +41,8 @@ export interface AuthProviderProps {
   cookieDomain?: string
   cookieSecure?: boolean
   children: React.ReactNode
+}
+
+export type AuthStateUserObject = {
+  [x: string]: any;
 }
