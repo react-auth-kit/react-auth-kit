@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
+import {AuthStateUserObject} from '../types';
 
 /**
  * Auth State Hook
  *
  * @returns - Auth State Function
  */
-function useAuthUser(): () => object | null {
+function useAuthUser(): () => AuthStateUserObject | null {
   const c = React.useContext(AuthContext);
 
   return () => {

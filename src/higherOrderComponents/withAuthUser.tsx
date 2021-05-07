@@ -6,12 +6,13 @@
   */
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
+import {AuthStateUserObject} from '../types';
 
 /**
  * @interface withAuthProps
  */
 interface withAuthProps {
-    authState: object | null
+    authState: AuthStateUserObject| null
 }
 
 /**
