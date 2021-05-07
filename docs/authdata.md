@@ -21,7 +21,7 @@ const SomeComponent = () => {
 
     return(
         <div>
-            Hello {auth.user}
+            Hello {auth().user}
         </div>
     )
 }
