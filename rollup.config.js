@@ -22,7 +22,6 @@ import filesize from 'rollup-plugin-filesize';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import commonjs from "@rollup/plugin-commonjs";
 
 import pkg from './package.json';
 
@@ -40,16 +39,17 @@ export default [
       {
         file: pkg.main,
         format: 'cjs',
+        sourcemap: false
       },
       {
         file: pkg.module,
         format: 'esm',
+        sourcemap: false
       },
     ],
     plugins: [
       peerDepsExternal(),
       resolve(),
-      commonjs(),
       typescript(),
       terser(),
       filesize(),
@@ -62,12 +62,17 @@ export default [
         file: pkg.main.replace('.js', '.umd.js'),
         format: 'umd',
         name: 'ReactAuthKit',
+        globals: {
+          "react": "React",
+          "js-cookie": "Cookies",
+          "react-router-dom":"ReactRouterDOM"
+        },
+        sourcemap: false
       },
     ],
     plugins: [
       peerDepsExternal(),
       resolve(),
-      commonjs(),
       typescript(),
       terser(),
       licenseBanner,
