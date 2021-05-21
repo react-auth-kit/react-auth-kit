@@ -4,13 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.9] - 2021-05-21
+### Changed:
+- Migrated to @rollup/plugin-typescript
+- Terser added for Minified codebase
+
 ## [1.4.8] - 2021-05-07
-###Fixed:
+### Fixed:
 - `authdata.md` wrong doc of useAuthUser (70e8d8839bb50e0f524815c16827efe9dd8da615)
 - Property 'user' does not exist on type 'object' (#343)
 
 ## [1.4.7] - 2021-04-11
-###Changed:
+### Changed:
 - `AuthProvider` props. AuthProvider is now only using 4 props.
 - Docs `/usage` is now `/integration`
 - Docs updated Intro and installation page
@@ -20,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [1.4.6] - 2021-04-09
-###Changed:
+### Changed:
 - Docs updated
 
 ## [1.4.5] - 2021-02-10
