@@ -22,6 +22,7 @@ import filesize from 'rollup-plugin-filesize';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 import pkg from './package.json';
 
@@ -34,15 +35,19 @@ const licenseBanner = license({
 
 export default [
   {
-    input: 'src/index.tsx',
+    input: {
+      index: 'src/index.tsx',
+      hooks: 'src/hooks/index.ts',
+      hoc: 'src/higherOrderComponents/index.ts'
+    },
     output: [
       {
-        file: pkg.main,
+        dir: "dist",
         format: 'cjs',
         sourcemap: false
       },
       {
-        file: pkg.module,
+        dir: "dist",
         format: 'esm',
         sourcemap: false
       },
@@ -51,8 +56,9 @@ export default [
       peerDepsExternal(),
       resolve(),
       typescript(),
-      terser(),
+      //terser(),
       filesize(),
+      visualizer()
     ],
   },
   {
@@ -74,7 +80,7 @@ export default [
       peerDepsExternal(),
       resolve(),
       typescript(),
-      terser(),
+      //terser(),
       licenseBanner,
       filesize(),
     ],
