@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Route, Redirect, RouteProps} from 'react-router-dom';
-import {AuthContext} from './AuthProvider';
+import {AuthContext} from './AuthContext';
 
 interface PrivateRouteProps extends RouteProps {
     loginPath: string

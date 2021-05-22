@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import * as React from 'react';
-import {AuthContext} from '../AuthProvider';
+import {AuthContext} from '../AuthContext';
 import RefreshToken from '../RefreshToken';
 
 /**

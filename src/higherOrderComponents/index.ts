@@ -27,5 +27,5 @@ export {
   withIsAuthenticated,
   withSignIn,
   withSignOut,
-  withRefreshToken
-}
+  withRefreshToken,
+};

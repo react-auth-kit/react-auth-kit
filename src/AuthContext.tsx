@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import * as React from "react";
-import {AuthContextInterface} from "./types";
+import * as React from 'react';
+import {AuthContextInterface} from './types';
 
 const AuthContext = React.createContext<AuthContextInterface>({
   authState: {

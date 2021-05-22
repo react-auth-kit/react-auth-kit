@@ -6,7 +6,7 @@
  */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthProvider';
+import {AuthContextConsumer} from '../AuthContext';
 import RefreshToken from '../RefreshToken';
 
 /**

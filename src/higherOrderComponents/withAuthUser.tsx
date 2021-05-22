@@ -5,7 +5,7 @@
   *@license Apache-2.0
   */
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthProvider';
+import {AuthContextConsumer} from '../AuthContext';
 import {AuthStateUserObject} from '../types';
 
 /**
