@@ -7,10 +7,10 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "react": "latest",
-    "react-auth-kit": "next",
+    "react-auth-kit": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,8 +32,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/react-auth-kit": "^1.2.0"
   }
 }
