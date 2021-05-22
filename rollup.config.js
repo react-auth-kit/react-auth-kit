@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-
-
+import { terser } from "rollup-plugin-terser";
 import license from 'rollup-plugin-license';
-import {terser} from 'rollup-plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
-import { visualizer } from 'rollup-plugin-visualizer';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
@@ -37,50 +34,62 @@ export default [
   {
     input: {
       index: 'src/index.tsx',
-      hooks: 'src/hooks/index.ts',
-      hoc: 'src/higherOrderComponents/index.ts'
+      AuthProvider: 'src/AuthProvider.tsx',
+      PrivateRoute: 'src/PrivateRoute.tsx',
+      useAuth: 'src/hooks/useAuth.ts',
+      useAuthHeader: 'src/hooks/useAuthHeader.ts',
+      useAuthUser: 'src/hooks/useAuthUser.ts',
+      useRefreshToken: 'src/hooks/useRefreshToken.ts',
+      useIsAuthenticated: 'src/hooks/useIsAuthenticated.ts',
+      useSignIn: 'src/hooks/useSignIn.ts',
+      withAuthHeader: 'src/higherOrderComponents/withAuthHeader.tsx',
+      withAuthUser: 'src/higherOrderComponents/withAuthUser.tsx',
+      withIsAuthenticated: 'src/higherOrderComponents/withIsAuthenticated.tsx',
+      withRefreshToken: 'src/higherOrderComponents/withRefreshToken.tsx',
+      withSignIn: 'src/higherOrderComponents/withSignIn.tsx',
+      withSignOut: 'src/higherOrderComponents/withSignOut.tsx',
     },
     output: [
       {
-        dir: "dist",
+        dir: "dist/cjs",
         format: 'cjs',
-        sourcemap: false
+        sourcemap: true,
+        exports: "auto"
       },
       {
-        dir: "dist",
+        dir: "dist/esm",
         format: 'esm',
-        sourcemap: false
+        sourcemap: true
       },
     ],
     plugins: [
       peerDepsExternal(),
       resolve(),
-      typescript(),
-      //terser(),
+      typescript({useTsconfigDeclarationDir: true}),
+      terser(),
       filesize(),
-      visualizer()
     ],
   },
   {
     input: 'src/index.tsx',
     output: [
       {
-        file: pkg.main.replace('.js', '.umd.js'),
+        file: pkg.unpkg,
         format: 'umd',
         name: 'ReactAuthKit',
         globals: {
           "react": "React",
           "js-cookie": "Cookies",
-          "react-router-dom":"ReactRouterDOM"
+          "react-router-dom": "ReactRouterDOM"
         },
-        sourcemap: false
+        sourcemap: true
       },
     ],
     plugins: [
       peerDepsExternal(),
       resolve(),
-      typescript(),
-      //terser(),
+      typescript({useTsconfigDeclarationDir: true}),
+      terser({output: {comments: false}}),
       licenseBanner,
       filesize(),
     ],
