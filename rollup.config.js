@@ -21,7 +21,7 @@ import {terser} from 'rollup-plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
@@ -39,12 +39,12 @@ export default [
       {
         file: pkg.main,
         format: 'cjs',
-        sourcemap: false
+        sourcemap: true
       },
       {
         file: pkg.module,
         format: 'esm',
-        sourcemap: false
+        sourcemap: true
       },
     ],
     plugins: [
@@ -67,7 +67,7 @@ export default [
           "js-cookie": "Cookies",
           "react-router-dom":"ReactRouterDOM"
         },
-        sourcemap: false
+        sourcemap: true
       },
     ],
     plugins: [
