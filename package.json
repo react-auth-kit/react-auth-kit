@@ -22,6 +22,8 @@
     "test:build": "run-s build",
     "test:unit": "jest",
     "test:lint": "eslint src/**/*.ts src/**/*.tsx",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors",
     "fix": "eslint src/**/*.ts src/**/*.tsx --fix"
   },
   "keywords": [
