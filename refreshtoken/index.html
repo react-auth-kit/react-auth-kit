@@ -1,0 +1,897 @@
+<!--
+  ~ Copyright 2020 Arkadip Bhattacharya
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)">
+      
+      
+      
+        <meta name="author" content="Arkadip Bhattacharya">
+      
+      
+        <link rel="canonical" href="https://authkit.arkadip.me/refreshtoken/">
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Refresh Token - React Auth Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1WZBFV5R2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G1WZBFV5R2');
+</script>
+
+
+    
+
+
+    
+
+<meta property="keywords"
+      content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-jwt, jwt with react"/>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="React Auth Kit - Refresh Token" />
+<meta property="og:description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)" />
+<meta property="og:url" content="https://authkit.arkadip.me/refreshtoken/" />
+<meta property="og:image" content="https://authkit.arkadip.co/img/banner.png" />
+<meta property="og:image:type" content="image/svg+xml" />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="640" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="https://authkit.arkadip.me/refreshtoken/">
+<meta name="twitter:title" content="React Auth Kit - Refresh Token" />
+<meta name="twitter:description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)" />
+<meta name="twitter:image" content="https://authkit.arkadip.co/img/banner.svg" />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#refresh-tokens" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="React Auth Kit" class="md-header__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
+      
+  <img src="../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            React Auth Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Refresh Token
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/react-auth-kit/react-auth-kit/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    react-auth-kit/react-auth-kit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="React Auth Kit" class="md-nav__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
+      
+  <img src="../img/logo.svg" alt="logo">
+
+    </a>
+    React Auth Kit
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/react-auth-kit/react-auth-kit/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    react-auth-kit/react-auth-kit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/" class="md-nav__link">
+        Integrate in your project
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signin/" class="md-nav__link">
+        Sign In
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privateroute/" class="md-nav__link">
+        Private Route
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signout/" class="md-nav__link">
+        Sign Out
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authdata/" class="md-nav__link">
+        Auth User Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authheader/" class="md-nav__link">
+        Auth Header
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkauth/" class="md-nav__link">
+        Check Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Refresh Token
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Refresh Token
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-add-refresh-token-object-in-component" class="md-nav__link">
+    1. Add Refresh Token Object in Component
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Add Refresh Token Object in Component">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#refresh-token-using-hooks-in-functional-components" class="md-nav__link">
+    Refresh Token using Hooks in Functional Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Refresh Token using Hooks in Functional Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refresh-token-using-higher-order-component-in-class-based-components" class="md-nav__link">
+    Refresh Token using Higher Order Component in Class-based Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Refresh Token using Higher Order Component in Class-based Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo_1" class="md-nav__link">
+    Demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-implement-refreshtoken-object-methods" class="md-nav__link">
+    2. Implement refreshToken object methods
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Implement refreshToken object methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-demo-using-hook-and-fc" class="md-nav__link">
+    Full Demo (using hook and FC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refreshtoken-api" class="md-nav__link">
+    RefreshToken API
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-add-refresh-token-object-in-component" class="md-nav__link">
+    1. Add Refresh Token Object in Component
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Add Refresh Token Object in Component">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#refresh-token-using-hooks-in-functional-components" class="md-nav__link">
+    Refresh Token using Hooks in Functional Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Refresh Token using Hooks in Functional Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refresh-token-using-higher-order-component-in-class-based-components" class="md-nav__link">
+    Refresh Token using Higher Order Component in Class-based Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Refresh Token using Higher Order Component in Class-based Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo_1" class="md-nav__link">
+    Demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-implement-refreshtoken-object-methods" class="md-nav__link">
+    2. Implement refreshToken object methods
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Implement refreshToken object methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-demo-using-hook-and-fc" class="md-nav__link">
+    Full Demo (using hook and FC)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refreshtoken-api" class="md-nav__link">
+    RefreshToken API
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/react-auth-kit/react-auth-kit/edit/master/docs/refreshtoken.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="refresh-tokens">Refresh Tokens</h1>
+<blockquote>
+<p>Refresh your auth Tokens in an interval</p>
+</blockquote>
+<p>Sometimes, you need to refresh authentication token details, or the authenticated user's state (information).</p>
+<p>To do this dynamically in your component,
+You have to include the <code>RefreshToken</code> object in your component.</p>
+<p>You can use in both <a href="https://reactjs.org/docs/hooks-intro.html"><code>React Hooks</code></a> or
+<a href="https://reactjs.org/docs/higher-order-components.html"><code>React Higher Order Component</code></a>
+for both Functional Components and Class-based Components</p>
+<h2 id="1-add-refresh-token-object-in-component">1. Add Refresh Token Object in Component</h2>
+<h3 id="refresh-token-using-hooks-in-functional-components">Refresh Token using Hooks in Functional Components</h3>
+<p>RefreshToken object can be included in functional component using <code>useRefreshToken</code> hook</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useRefreshToken</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;react-auth-kit&#39;</span>
+</code></pre></div>
+<h4 id="demo">Demo</h4>
+<div class="highlight"><pre><span></span><code>import React from &quot;react&quot;
+import { useRefreshToken } from &#39;react-auth-kit&#39;
+
+const AnyPrivateComponent = () =&gt; {
+    const refreshToken = useRefreshToken()
+
+    ...
+}
+</code></pre></div>
+<h3 id="refresh-token-using-higher-order-component-in-class-based-components">Refresh Token using Higher Order Component in Class-based Components</h3>
+<p>Sign In using Higher Order Component using <code>withSignOut</code>.</p>
+<p>Add the <code>withSignOut</code> HOC and call the <code>this.props.signOut</code> function inside the component</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">withSignOut</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;react-auth-kit&#39;</span>
+</code></pre></div>
+<h4 id="demo_1">Demo</h4>
+<div class="highlight"><pre><span></span><code>import React from &quot;react&quot;
+import { withRefreshToken } from &#39;react-auth-kit&#39;
+
+class AnyPrivateComponent extends React.Component {
+  render(){
+    const {refreshToken} = this.props
+    return (
+      ...
+    )
+  }
+}
+
+export default withRefreshToken(AnyPrivateComponent)
+</code></pre></div>
+<h2 id="2-implement-refreshtoken-object-methods">2. Implement refreshToken object methods</h2>
+<p>RefreshToken has all the methods you need to refresh the auth states programmatically.</p>
+<h3 id="methods">Methods</h3>
+<p>There are 4 methods, you can use to refresh the Auth Token and User's details</p>
+<ol>
+<li><strong><em>getCurrentAuthState()</em></strong>: Get the current auth token, auth token type, expiring time</li>
+<li><em><strong>getCurrentUserState()</strong></em>: Get the current user state</li>
+<li><em><strong>updateAuthState()</strong></em>: Update the auth state including auth token, auth token type and expiring time</li>
+<li><strong><em>updateUserState()</em></strong>: Update the user's auth state</li>
+</ol>
+<p>See the example below for the usage, and see the API for detailed description.</p>
+<h2 id="full-demo-using-hook-and-fc">Full Demo (using hook and FC)</h2>
+<div class="highlight"><pre><span></span><code>import React from &#39;react&#39;
+import axios from &#39;axios&#39;
+import {useRefreshToken} from &#39;react-auth-kit&#39;
+
+const RefreshComponent = () =&gt; {
+  const refreshToken = useRefreshToken() // Create the refresh token object
+
+  React.useEffect(()=&gt;{
+    const {authToken, authTokenType, expireAt} = refreshToken.getCurrentAuthState() //Get the current state
+    const userState = refreshToken.getCurrentUserState()  //Get the current user&#39;s state
+
+    //Send the current auth token ad user state to backend
+    axios.post(&#39;/some/refresh/api/to/backend&#39;, data={
+      authToken: authToken,
+      authTokenType: authTokenType,
+      expireAt: expireAt,
+      userState: userState
+    }).then((res)=&gt;{
+      if(res.status === 200) {
+        // Setting the auth state
+        refreshToken.updateAuthState(res.data.authToken, res.data.authTokenType, res.data.expireIn)
+
+        // Setting the userstate
+        refreshToken.updateUserState(res.data.userState)
+      }
+      else {
+        // Throw error
+      }
+    })
+  },[])
+
+  return &lt;React.Fragment/&gt;
+}
+</code></pre></div>
+<h2 id="refreshtoken-api">RefreshToken API</h2>
+<p>RefreshToken has the following 4 methods.</p>
+<ol>
+<li><code>getCurrentAuthState()</code>:</li>
+</ol>
+<p>Get the current auth state as an object</p>
+<p><strong>Returns</strong> { <strong>authToken</strong>: <em>string</em> | <em>null</em>; <strong>authTokenType</strong>: <em>string</em> | <em>null</em>; <strong>expireAt</strong>: <em>Date</em> | <em>null</em> }</p>
+<ul>
+<li><strong>authToken</strong>: current auth token</li>
+<li><strong>authTokenType</strong>: current auth Token type (eg. Bearer)</li>
+<li>
+<p><strong>expireAt</strong>: current expire time</p>
+</li>
+<li>
+<p><code>getCurrentUserState()</code>:</p>
+</li>
+</ul>
+<p>Get the Current User State</p>
+<p><strong>Returns</strong> <em>object</em> | <em>null</em> - Current User state</p>
+<ol>
+<li><code>getCurrentRefreshToken()</code>:</li>
+</ol>
+<p>Get the current Refresh Token</p>
+<p><strong>Returns</strong> { <strong>refreshToken</strong>: <em>string</em> | <em>null</em>; <strong>refreshTokenExpireAt</strong>: <em>Date</em> | <em>null</em> }</p>
+<ul>
+<li><strong>refreshToken</strong>: <em>string</em> | <em>null</em> - Current Refresh Token</li>
+<li>
+<p><strong>refreshTokenExpireAt</strong>: <em>Date</em> | <em>null</em> - Expiry time of current refresh Token</p>
+</li>
+<li>
+<p><code>updateAuthState()</code>:</p>
+</li>
+</ul>
+<p>updates the AuthState</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p><strong>authToken</strong>: <em>string</em></p>
+<p>The Updated authToken</p>
+</li>
+<li>
+<p><code>optional</code> <strong>authTokenType</strong>: <em>undefined</em> | <em>string</em></p>
+<p>The updated authType (optional)</p>
+</li>
+<li>
+<p><code>optional</code> <strong>expiresIn</strong>: <em>undefined</em> | <em>number</em></p>
+<p>The updated expiresIn in minutes. (optional)</p>
+</li>
+</ul>
+<p>If the new <code>authToken</code> has different expire time, then you must have to update the <code>expiresIn</code> param</p>
+<p><strong>Returns</strong> void</p>
+<ol>
+<li><code>updateRefreshToken()</code>:</li>
+</ol>
+<p>Updates the Current Refresh Token</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p><strong>refreshToken</strong>: <em>string</em></p>
+<p>New Refresh Token</p>
+</li>
+<li>
+<p><strong>expiresIn</strong>: <em>number</em></p>
+<p>New Expiry Time for the new Refresh Token <code>in Minutes</code></p>
+</li>
+</ul>
+<p><strong>Returns</strong> <em>void</em></p>
+<ol>
+<li><code>updateUserState()</code>:</li>
+</ol>
+<p>Updates the Auth User's state</p>
+<p><strong>Parameters</strong></p>
+<p><strong>userState</strong>: <em>object</em></p>
+<p>Updated User State</p>
+<p><strong>Returns</strong> void</p>
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../checkauth/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Check Authentication" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Check Authentication
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../contributing/" class="md-footer__link md-footer__link--next" aria-label="Next: Contributing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Contributing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
+      
+    
+  </body>
+</html>
