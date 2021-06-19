@@ -6,9 +6,8 @@
   */
 
 import * as React from 'react';
-import {AuthContext} from '../AuthProvider';
+import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
-import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
   *@function
@@ -18,7 +17,11 @@ import checkAuthProvider from '../utils/checkAuthProvider';
   */
 function useSignIn():(signInConfig: signInFunctionParams) => boolean {
   const context = React.useContext(AuthContext);
-  checkAuthProvider(context);
+  if (context === null) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
   return (signInConfig: signInFunctionParams): boolean => {
     const {
       token,

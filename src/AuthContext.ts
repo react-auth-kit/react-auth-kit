@@ -13,24 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import * as React from 'react';
-import AuthContext from '../AuthContext';
-import RefreshToken from '../RefreshToken';
+import {AuthContextInterface} from './types';
 
-/**
- *@function
- *@name useRefreshToken
- *@description Refresh Token Hook
- *@returns - RefreshToken object
- */
-function useRefreshToken():RefreshToken {
-  const _context = React.useContext(AuthContext);
-  if (_context === null) {
-    throw new
-    Error('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
-  }
-  return new RefreshToken(_context);
-}
+const AuthContext = React.createContext<AuthContextInterface | null>(null);
 
-export default useRefreshToken;
+const AuthContextConsumer = AuthContext.Consumer;
+export {AuthContextConsumer};
+export default AuthContext;

@@ -6,8 +6,7 @@
   */
 
 import * as React from 'react';
-import {AuthContext} from '../AuthProvider';
-import checkAuthProvider from '../utils/checkAuthProvider';
+import AuthContext from '../AuthContext';
 
 /**
   *@public
@@ -21,7 +20,11 @@ function useSignOut(): () => (boolean) {
    *@kind constant
    */
   const context = React.useContext(AuthContext);
-  checkAuthProvider(context);
+  if (context === null) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
 
   return () => {
     try {

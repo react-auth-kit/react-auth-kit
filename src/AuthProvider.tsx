@@ -1,19 +1,8 @@
 import * as React from 'react';
+import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
-import {AuthContextInterface, AuthProviderProps, TokenInterface} from './types';
+import {AuthProviderProps, TokenInterface} from './types';
 
-const AuthContext = React.createContext<AuthContextInterface>({
-  authState: {
-    authTokenType: null,
-    authState: null,
-    authToken: null,
-    isUsingRefreshToken: false,
-    refreshToken: null,
-    refreshTokenExpireAt: null,
-    expireAt: null,
-  },
-  setAuthState: () => {},
-});
 
 /**
  * AuthProvider - The Authentication Context Provider
@@ -77,5 +66,3 @@ AuthProvider.defaultProps = {
 
 
 export default AuthProvider;
-const AuthContextConsumer = AuthContext.Consumer;
-export {AuthContext, AuthContextConsumer};
