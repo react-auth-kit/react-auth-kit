@@ -24,7 +24,7 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
   }
 
   const isAuth = () => {
-    if (context?.authState.authToken && context?.authState.expireAt) {
+    if (context.authState.authToken && context.authState.expireAt) {
       if (new Date(context.authState.expireAt) > new Date()) {
         return true;
       } else {
