@@ -26,8 +26,9 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       if (authType === 'cookie') {
         if (!cookieDomain) {
           throw new
-          Error('authStorageType \'cookie\' ' +
-            'requires \'cookieDomain\' and \'cookieSecure\' in AuthProvider');
+          Error('authType \'cookie\' ' +
+            'requires \'cookieDomain\' and \'cookieSecure\' ' +
+            'props in AuthProvider');
         }
       }
 
@@ -56,13 +57,5 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         </AuthContext.Provider>
       );
     };
-
-AuthProvider.defaultProps = {
-  authType: 'cookie',
-  authName: '_auth',
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:',
-};
-
 
 export default AuthProvider;
