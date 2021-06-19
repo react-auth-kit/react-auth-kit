@@ -14,13 +14,20 @@
  * limitations under the License.
  */
 
-import {AuthContextInterface} from "../types";
+import {AuthContextInterface} from '../types';
 
-function checkAuthProvider(authContext: AuthContextInterface):void{
-  if(authContext === null || authContext === undefined){
-      throw new
-      Error('Auth Provider is missing. Please add the AuthProvider before Router');
+/**
+ * Utility Function
+ * @description Used to check if the auth provider is missing or not
+ * @throws Error if the auth provider is missing
+ * @param authContext
+ */
+function checkAuthProvider(authContext: AuthContextInterface):void {
+  if (authContext === null || authContext === undefined) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
   }
 }
 
-export default checkAuthProvider
+export default checkAuthProvider;

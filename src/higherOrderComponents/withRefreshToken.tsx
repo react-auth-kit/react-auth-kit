@@ -8,6 +8,7 @@
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
 import RefreshToken from '../RefreshToken';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withRefreshTokenProps
@@ -30,6 +31,7 @@ function withRefreshToken<P extends withRefreshTokenProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
+          checkAuthProvider(c);
           return (
             <Component
               {...props}

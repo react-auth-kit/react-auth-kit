@@ -7,6 +7,7 @@
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
 import {AuthStateUserObject} from '../types';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withAuthProps
@@ -27,9 +28,12 @@ function withAuthUser<P extends withAuthProps>(
   return (props: P)=>{
     return (
       <AuthContextConsumer>
-        {(value) => (
-          <Component {...props} authState={value?.authState.authState}/>
-        )}
+        {(context) => {
+          checkAuthProvider(context);
+          return (
+            <Component {...props} authState={context?.authState.authState}/>
+          );
+        }}
       </AuthContextConsumer>
     );
   };

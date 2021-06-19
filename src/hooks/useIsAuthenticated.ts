@@ -7,6 +7,7 @@
 
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
   *@function
@@ -15,7 +16,7 @@ import {AuthContext} from '../AuthProvider';
   */
 function useIsAuthenticated(): ()=>boolean {
   const context = React.useContext(AuthContext);
-
+  checkAuthProvider(context);
   return () => {
     if (context?.authState.authToken && context?.authState.expireAt) {
       if (new Date(context.authState.expireAt) > new Date()) {

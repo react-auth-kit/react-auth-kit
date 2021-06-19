@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 import {AuthStateUserObject} from '../types';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * Auth State Hook
@@ -8,10 +9,10 @@ import {AuthStateUserObject} from '../types';
  * @returns - Auth State Function
  */
 function useAuthUser(): () => AuthStateUserObject | null {
-  const c = React.useContext(AuthContext);
-
+  const context = React.useContext(AuthContext);
+  checkAuthProvider(context);
   return () => {
-    return c.authState.authState;
+    return context.authState.authState;
   };
 }
 

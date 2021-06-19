@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Route, Redirect, RouteProps} from 'react-router-dom';
 import {AuthContext} from './AuthProvider';
+import checkAuthProvider from './utils/checkAuthProvider';
 
 interface PrivateRouteProps extends RouteProps {
     loginPath: string
@@ -17,6 +18,7 @@ interface PrivateRouteProps extends RouteProps {
  */
 const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
   const context = React.useContext(AuthContext);
+  checkAuthProvider(context);
 
   const isAuth = () => {
     if (context?.authState.authToken && context?.authState.expireAt) {

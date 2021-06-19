@@ -7,6 +7,7 @@
 
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
   *@public
@@ -19,11 +20,13 @@ function useSignOut(): () => (boolean) {
    *A constant c.
    *@kind constant
    */
-  const c = React.useContext(AuthContext);
+  const context = React.useContext(AuthContext);
+  checkAuthProvider(context);
+
   return () => {
     try {
-      if (c?.authState.authToken) {
-        c.setAuthState((prevState) => ({
+      if (context?.authState.authToken) {
+        context.setAuthState((prevState) => ({
           ...prevState,
           authToken: null,
           authTokenType: null,

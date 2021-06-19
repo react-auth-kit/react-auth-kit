@@ -8,6 +8,7 @@
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
   *@function
@@ -17,7 +18,7 @@ import {signInFunctionParams} from '../types';
   */
 function useSignIn():(signInConfig: signInFunctionParams) => boolean {
   const context = React.useContext(AuthContext);
-
+  checkAuthProvider(context);
   return (signInConfig: signInFunctionParams): boolean => {
     const {
       token,

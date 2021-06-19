@@ -7,6 +7,7 @@
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
 import {signInFunctionParams} from '../types';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withSignInProps
@@ -29,6 +30,7 @@ function withSignIn<P extends withSignInProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
+          checkAuthProvider(c);
           const signIn = (signInConfig: signInFunctionParams)
             : boolean => {
             const {

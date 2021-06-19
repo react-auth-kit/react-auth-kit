@@ -16,6 +16,7 @@
 import * as React from 'react';
 import {AuthContext} from '../AuthProvider';
 import RefreshToken from '../RefreshToken';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  *@function
@@ -25,6 +26,7 @@ import RefreshToken from '../RefreshToken';
  */
 function useRefreshToken():RefreshToken {
   const _context = React.useContext(AuthContext);
+  checkAuthProvider(_context);
   return new RefreshToken(_context);
 }
 

@@ -6,6 +6,7 @@
   */
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withSignOutProps
@@ -28,6 +29,7 @@ function withSignOut<P extends withSignOutProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
+          checkAuthProvider(c);
           const signOut = () => {
             try {
               if (c?.authState.authToken) {

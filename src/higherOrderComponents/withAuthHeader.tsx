@@ -7,6 +7,7 @@
 
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthProvider';
+import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withAuthHeaderProps
@@ -29,6 +30,7 @@ function withAuthHeader<P extends withAuthHeaderProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
+          checkAuthProvider(c);
           if (c?.authState) {
             return (
               <Component
