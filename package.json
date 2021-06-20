@@ -46,6 +46,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.0",
+    "@testing-library/react": "^11.2.7",
     "@types/jest": "^26.0.23",
     "@types/js-cookie": "^2.2.6",
     "@types/node": "^15.12.4",
@@ -54,6 +55,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
+    "codecov": "^3.8.2",
     "eslint": "^7.28.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jest": "^24.0.0",

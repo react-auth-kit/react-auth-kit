@@ -5,9 +5,8 @@
   *@license Apache-2.0
   */
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthProvider';
+import {AuthContextConsumer} from '../AuthContext';
 import {AuthStateUserObject} from '../types';
-import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withAuthProps
@@ -29,7 +28,11 @@ function withAuthUser<P extends withAuthProps>(
     return (
       <AuthContextConsumer>
         {(context) => {
-          checkAuthProvider(context);
+          if (context === null) {
+            throw new
+            Error('Auth Provider is missing. ' +
+              'Please add the AuthProvider before Router');
+          }
           return (
             <Component {...props} authState={context?.authState.authState}/>
           );

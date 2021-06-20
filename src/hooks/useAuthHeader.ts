@@ -1,13 +1,16 @@
 import * as React from 'react';
-import {AuthContext} from '../AuthProvider';
-import checkAuthProvider from '../utils/checkAuthProvider';
+import AuthContext from '../AuthContext';
 
 /**
  *
  */
 function useAuthHeader(): () => (string) {
   const c = React.useContext(AuthContext);
-  checkAuthProvider(c);
+  if (c === null) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
 
   return () => {
     if (c?.authState) {

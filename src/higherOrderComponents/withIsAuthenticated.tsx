@@ -6,8 +6,7 @@
   */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthProvider';
-import checkAuthProvider from '../utils/checkAuthProvider';
+import {AuthContextConsumer} from '../AuthContext';
 
 /**
  * @interface withAuthHeaderProps
@@ -30,7 +29,11 @@ function withIsAuthenticated<P extends withAuthHeaderProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
-          checkAuthProvider(c);
+          if (c === null) {
+            throw new
+            Error('Auth Provider is missing. ' +
+              'Please add the AuthProvider before Router');
+          }
           if (c?.authState.authToken && c?.authState.expireAt) {
             if (new Date(c.authState.expireAt) > new Date()) {
               return <Component {...props} isAuth={true}/>;

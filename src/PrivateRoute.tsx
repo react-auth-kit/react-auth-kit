@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Route, Redirect, RouteProps} from 'react-router-dom';
-import {AuthContext} from './AuthProvider';
-import checkAuthProvider from './utils/checkAuthProvider';
+import AuthContext from './AuthContext';
 
 interface PrivateRouteProps extends RouteProps {
     loginPath: string
@@ -18,10 +17,14 @@ interface PrivateRouteProps extends RouteProps {
  */
 const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
   const context = React.useContext(AuthContext);
-  checkAuthProvider(context);
+  if (context === null) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
 
   const isAuth = () => {
-    if (context?.authState.authToken && context?.authState.expireAt) {
+    if (context.authState.authToken && context.authState.expireAt) {
       if (new Date(context.authState.expireAt) > new Date()) {
         return true;
       } else {

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {AuthContext} from '../AuthProvider';
+import AuthContext from '../AuthContext';
 import {AuthStateUserObject} from '../types';
-import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * Auth State Hook
@@ -10,7 +9,11 @@ import checkAuthProvider from '../utils/checkAuthProvider';
  */
 function useAuthUser(): () => AuthStateUserObject | null {
   const context = React.useContext(AuthContext);
-  checkAuthProvider(context);
+  if (context === null) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
   return () => {
     return context.authState.authState;
   };

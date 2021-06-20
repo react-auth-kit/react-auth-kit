@@ -6,8 +6,7 @@
   */
 
 import * as React from 'react';
-import {AuthContext} from '../AuthProvider';
-import checkAuthProvider from '../utils/checkAuthProvider';
+import AuthContext from '../AuthContext';
 
 /**
   *@function
@@ -16,7 +15,11 @@ import checkAuthProvider from '../utils/checkAuthProvider';
   */
 function useIsAuthenticated(): ()=>boolean {
   const context = React.useContext(AuthContext);
-  checkAuthProvider(context);
+  if (context === null) {
+    throw new
+    Error('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
   return () => {
     if (context?.authState.authToken && context?.authState.expireAt) {
       if (new Date(context.authState.expireAt) > new Date()) {

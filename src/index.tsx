@@ -30,6 +30,12 @@ import withAuthHeader from './higherOrderComponents/withAuthHeader';
 import withRefreshToken from './higherOrderComponents/withRefreshToken';
 import withIsAuthenticated from './higherOrderComponents/withIsAuthenticated';
 
+// Default prop for AuthProvider
+AuthProvider.defaultProps = {
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === 'https:',
+};
+
 export {
   AuthProvider,
   PrivateRoute,

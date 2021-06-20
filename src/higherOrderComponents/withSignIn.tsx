@@ -5,9 +5,8 @@
   *@license Apache-2.0
   */
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthProvider';
+import {AuthContextConsumer} from '../AuthContext';
 import {signInFunctionParams} from '../types';
-import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withSignInProps
@@ -30,7 +29,11 @@ function withSignIn<P extends withSignInProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
-          checkAuthProvider(c);
+          if (c === null) {
+            throw new
+            Error('Auth Provider is missing. ' +
+              'Please add the AuthProvider before Router');
+          }
           const signIn = (signInConfig: signInFunctionParams)
             : boolean => {
             const {

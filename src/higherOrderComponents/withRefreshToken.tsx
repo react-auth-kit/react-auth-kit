@@ -6,9 +6,8 @@
  */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthProvider';
+import {AuthContextConsumer} from '../AuthContext';
 import RefreshToken from '../RefreshToken';
-import checkAuthProvider from '../utils/checkAuthProvider';
 
 /**
  * @interface withRefreshTokenProps
@@ -31,7 +30,11 @@ function withRefreshToken<P extends withRefreshTokenProps>(
     return (
       <AuthContextConsumer>
         {(c) => {
-          checkAuthProvider(c);
+          if (c === null) {
+            throw new
+            Error('Auth Provider is missing. ' +
+              'Please add the AuthProvider before Router');
+          }
           return (
             <Component
               {...props}

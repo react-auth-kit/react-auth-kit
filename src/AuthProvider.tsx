@@ -1,19 +1,8 @@
 import * as React from 'react';
+import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
-import {AuthContextInterface, AuthProviderProps, TokenInterface} from './types';
+import {AuthProviderProps, TokenInterface} from './types';
 
-const AuthContext = React.createContext<AuthContextInterface>({
-  authState: {
-    authTokenType: null,
-    authState: null,
-    authToken: null,
-    isUsingRefreshToken: false,
-    refreshToken: null,
-    refreshTokenExpireAt: null,
-    expireAt: null,
-  },
-  setAuthState: () => {},
-});
 
 /**
  * AuthProvider - The Authentication Context Provider
@@ -37,8 +26,9 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       if (authType === 'cookie') {
         if (!cookieDomain) {
           throw new
-          Error('authStorageType \'cookie\' ' +
-            'requires \'cookieDomain\' and \'cookieSecure\' in AuthProvider');
+          Error('authType \'cookie\' ' +
+            'requires \'cookieDomain\' and \'cookieSecure\' ' +
+            'props in AuthProvider');
         }
       }
 
@@ -68,14 +58,4 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       );
     };
 
-AuthProvider.defaultProps = {
-  authType: 'cookie',
-  authName: '_auth',
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:',
-};
-
-
 export default AuthProvider;
-const AuthContextConsumer = AuthContext.Consumer;
-export {AuthContext, AuthContextConsumer};
