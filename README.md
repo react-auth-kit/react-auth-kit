@@ -7,6 +7,11 @@
 </p>
 
 <p align="center">
+  
+<a href="https://codecov.io/gh/react-auth-kit/react-auth-kit">
+  <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL"/>
+</a>
+    
 <a href="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy">
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy/badge.svg" alt="NPM Deploy">
 </a>
@@ -18,9 +23,6 @@
 </a>
 <a href="https://bundlephobia.com/result?p=react-auth-kit">
     <img src="https://img.shields.io/bundlephobia/minzip/react-auth-kit?style=flat-square" alt="Test Suites">
-</a>
-<a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
-    <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
 </a>
 </p>
 
