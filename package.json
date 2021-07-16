@@ -45,7 +45,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.2",
     "@testing-library/react": "^12.0.0",
     "@types/jest": "^26.0.24",
     "@types/js-cookie": "^2.2.7",
