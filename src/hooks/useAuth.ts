@@ -9,6 +9,7 @@
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
+import {doSignIn, doSignOut} from "../utils/reducers";
 
 /**
   *@public
@@ -66,15 +67,7 @@ function useAuth():
       if (new Date(c.authState.expireAt) > new Date()) {
         return true;
       } else {
-        c.setAuthState((prevState) => ({
-          ...prevState,
-          authToken: null,
-          authTokenType: null,
-          expireAt: null,
-          authState: null,
-          refreshToken: null,
-          refreshTokenExpireAt: null,
-        }));
+        c.dispatch(doSignOut())
         return false;
       }
     } else {
@@ -109,15 +102,14 @@ function useAuth():
       new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000) : null;
     try {
       if (c) {
-        c.setAuthState((prevState) => ({
-          ...prevState,
+        c.dispatch(doSignIn({
           authToken: token,
           authTokenType: tokenType,
           expireAt: expTime,
           authState: authState,
           refreshToken: !!refreshToken ? refreshToken : null,
           refreshTokenExpireAt: refreshTokenExpireAt,
-        }));
+        }))
         return true;
       } else {
         return false;
@@ -136,15 +128,7 @@ function useAuth():
   const signOut = () => {
     try {
       if (c?.authState.authToken) {
-        c.setAuthState((prevState) => ({
-          ...prevState,
-          authToken: null,
-          authTokenType: null,
-          refreshToken: null,
-          refreshTokenExpireAt: null,
-          expireAt: null,
-          authState: null,
-        }));
+        c.dispatch(doSignOut())
         console.log('RAJ :: Signing Out');
         return true;
       } else {
