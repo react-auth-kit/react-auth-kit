@@ -3,7 +3,7 @@ import {Redirect, Route} from 'react-router-dom';
 import AuthContext from './AuthContext';
 import * as H from 'history';
 import {RouteChildrenProps, RouteComponentProps} from 'react-router';
-import {doSignOut} from "./utils/reducers";
+import {doSignOut} from './utils/reducers';
 
 interface PrivateRouteProps {
   loginPath: string
@@ -41,7 +41,7 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
       if (new Date(context.authState.expireAt) > new Date()) {
         return true;
       } else {
-        context.dispatch(doSignOut())
+        context.dispatch(doSignOut());
         return false;
       }
     } else {

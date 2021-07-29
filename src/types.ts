@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AuthActions} from "./utils/actions";
+import {AuthActions} from './utils/actions';
 
 export interface TokenInterface {
   authToken: string | null

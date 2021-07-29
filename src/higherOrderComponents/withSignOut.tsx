@@ -6,7 +6,7 @@
   */
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
-import {doSignOut} from "../utils/reducers";
+import {doSignOut} from '../utils/reducers';
 
 /**
  * @interface withSignOutProps
@@ -37,7 +37,7 @@ function withSignOut<P extends withSignOutProps>(
           const signOut = () => {
             try {
               if (c) {
-                c.dispatch(doSignOut())
+                c.dispatch(doSignOut());
                 return true;
               } else {
                 return false;

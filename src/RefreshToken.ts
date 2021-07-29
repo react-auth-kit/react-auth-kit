@@ -112,7 +112,8 @@ class RefreshToken {
   //   }
   //
   //   if (expiresIn !== undefined) {
-  //     const expireAt = new Date(new Date().getTime() + expiresIn * 60 * 1000);
+  //     const expireAt = new Date(new Date().getTime() +
+  //     expiresIn * 60 * 1000);
   //     Object.assign(o, {expireAt: expireAt});
   //   }
   //

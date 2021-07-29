@@ -2,7 +2,7 @@ import * as React from 'react';
 import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
 import {AuthProviderProps} from './types';
-import {authReducer} from "./utils/reducers";
+import {authReducer} from './utils/reducers';
 
 
 /**
@@ -47,7 +47,8 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       // const [authState, setAuthState] = React.useState<TokenInterface>(
       //     tokenObject.initialToken(),
       // );
-      const [authState, dispatch] = React.useReducer(authReducer, tokenObject.initialToken())
+      const [authState, dispatch] =
+        React.useReducer(authReducer, tokenObject.initialToken());
 
       React.useEffect(() => {
         tokenObject.syncTokens(authState);

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AuthStateUserObject} from "../types";
+import {AuthStateUserObject} from '../types';
 
 export enum ActionType {
   SignIn,

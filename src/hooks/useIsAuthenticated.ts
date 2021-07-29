@@ -7,7 +7,7 @@
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
-import {doSignOut} from "../utils/reducers";
+import {doSignOut} from '../utils/reducers';
 
 /**
   *@function
@@ -26,7 +26,7 @@ function useIsAuthenticated(): ()=>boolean {
       if (new Date(context.authState.expireAt) > new Date()) {
         return true;
       } else {
-        context.dispatch(doSignOut())
+        context.dispatch(doSignOut());
         return false;
       }
     } else {

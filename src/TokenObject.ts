@@ -1,5 +1,9 @@
 import Cookies from 'js-cookie';
-import {TokenInterface, TokenObjectParamsInterface} from './types';
+import {
+  AuthStateUserObject,
+  TokenInterface,
+  TokenObjectParamsInterface,
+} from './types';
 
 /**
  * @class TokenObject
@@ -226,7 +230,7 @@ class TokenObject {
    *
    * @param authState
    */
-  syncTokens(authState: TokenInterface) {
+  syncTokens(authState: TokenInterface):void {
     if (
       authState.authToken === undefined ||
       authState.authTokenType === null ||
@@ -263,7 +267,7 @@ class TokenObject {
       refreshToken: string|null,
       refreshTokenExpiresAt: Date| null,
       expiresAt: Date,
-      authState: object) {
+      authState: AuthStateUserObject):void {
     if (this.authStorageType === 'cookie') {
       this.setCookieToken_(
           authToken,
@@ -300,7 +304,7 @@ class TokenObject {
       refreshToken: string | null,
       expiresAt: Date,
       refreshTokenExpiresAt: Date|null,
-      authState: object) {
+      authState: AuthStateUserObject):void {
     Cookies.set(this.authStorageName, authToken, {
       expires: expiresAt,
       domain: this.cookieDomain,
@@ -358,7 +362,7 @@ class TokenObject {
       refreshToken: string | null,
       expiresAt: Date,
       refreshTokenExpiresAt: Date|null,
-      authState: object) {
+      authState: AuthStateUserObject):void {
     localStorage.setItem(this.authStorageName, authToken);
     localStorage.setItem(this.authStorageTypeName, authTokenType);
     localStorage.setItem(this.authTimeStorageName, expiresAt.toISOString());
@@ -377,7 +381,7 @@ class TokenObject {
   /**
    * Remove Tokens on time of Logout
    */
-  removeToken() {
+  removeToken():void {
     if (this.authStorageType === 'cookie') {
       this.removeCookieToken_();
     } else {
@@ -388,7 +392,7 @@ class TokenObject {
   /**
    * Remove Token from Cookies
    */
-  removeCookieToken_() {
+  removeCookieToken_():void {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -418,7 +422,7 @@ class TokenObject {
   /**
    * Remove Token from LocalStorage
    */
-  removeLSToken_() {
+  removeLSToken_():void {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authTimeStorageName);
     localStorage.removeItem(this.stateStorageName);

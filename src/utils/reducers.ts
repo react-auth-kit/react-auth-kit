@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-import {TokenInterface} from "../types";
-import {ActionType, AuthActions, SignInAction, SignInActionPayload, SignOutAction} from "./actions";
+import {TokenInterface} from '../types';
+import {
+  ActionType,
+  AuthActions,
+  SignInAction,
+  SignInActionPayload,
+  SignOutAction,
+} from './actions';
 
 /**
  * Auth Reducer
@@ -23,19 +29,21 @@ import {ActionType, AuthActions, SignInAction, SignInActionPayload, SignOutActio
  * @param state
  * @param action
  */
-export function authReducer(state: TokenInterface, action: AuthActions): TokenInterface {
+export function authReducer(state: TokenInterface,
+    action: AuthActions)
+  : TokenInterface {
   switch (action.type) {
     case ActionType.SignIn:
-      const {payload} = action
       return {
         ...state,
-        authToken: payload.authToken,
-        authTokenType: payload.authTokenType,
-        expireAt: payload.expireAt,
-        authState: payload.authState,
-        refreshToken: !!payload.refreshToken ? payload.refreshToken : null,
-        refreshTokenExpireAt: payload.refreshTokenExpireAt,
-      }
+        authToken: action.payload.authToken,
+        authTokenType: action.payload.authTokenType,
+        expireAt: action.payload.expireAt,
+        authState: action.payload.authState,
+        refreshToken:
+          action.payload.refreshToken ? action.payload.refreshToken : null,
+        refreshTokenExpireAt: action.payload.refreshTokenExpireAt,
+      };
     case ActionType.SignOut:
       return {
         ...state,
@@ -45,9 +53,9 @@ export function authReducer(state: TokenInterface, action: AuthActions): TokenIn
         authState: null,
         refreshToken: null,
         refreshTokenExpireAt: null,
-      }
+      };
     default:
-        return state
+      return state;
   }
 }
 
@@ -56,18 +64,18 @@ export function authReducer(state: TokenInterface, action: AuthActions): TokenIn
  * used to make sign in
  * @param signInParams
  */
-export function doSignIn(signInParams: SignInActionPayload):SignInAction{
+export function doSignIn(signInParams: SignInActionPayload): SignInAction {
   return ({
     type: ActionType.SignIn,
-    payload: signInParams
-  })
+    payload: signInParams,
+  });
 }
 
 /**
  * Used to make sign out
  */
-export function doSignOut():SignOutAction{
+export function doSignOut(): SignOutAction {
   return ({
-    type: ActionType.SignOut
-  })
+    type: ActionType.SignOut,
+  });
 }

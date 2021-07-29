@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
-import {doSignOut} from "../utils/reducers";
+import {doSignOut} from '../utils/reducers';
 
 /**
   *@public
@@ -29,7 +29,7 @@ function useSignOut(): () => (boolean) {
   return () => {
     try {
       if (context) {
-        context.dispatch(doSignOut())
+        context.dispatch(doSignOut());
         return true;
       } else {
         return false;
