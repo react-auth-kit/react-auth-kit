@@ -1,7 +1,8 @@
 import * as React from 'react';
 import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
-import {AuthProviderProps, TokenInterface} from './types';
+import {AuthProviderProps} from './types';
+import {authReducer} from "./utils/reducers";
 
 
 /**
@@ -43,16 +44,17 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         cookieSecure,
         stateStorageName: `${authName}_state`,
       });
-      const [authState, setAuthState] = React.useState<TokenInterface>(
-          tokenObject.initialToken(),
-      );
+      // const [authState, setAuthState] = React.useState<TokenInterface>(
+      //     tokenObject.initialToken(),
+      // );
+      const [authState, dispatch] = React.useReducer(authReducer, tokenObject.initialToken())
 
       React.useEffect(() => {
         tokenObject.syncTokens(authState);
       }, [authState]);
 
       return (
-        <AuthContext.Provider value={{authState, setAuthState}}>
+        <AuthContext.Provider value={{authState, dispatch}}>
           {children}
         </AuthContext.Provider>
       );

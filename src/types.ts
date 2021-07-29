@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {AuthActions} from "./utils/actions";
 
 export interface TokenInterface {
   authToken: string | null
@@ -31,7 +32,7 @@ export interface TokenObjectParamsInterface {
 
 export interface AuthContextInterface {
   authState: TokenInterface
-  dispatch: React.Dispatch<TokenInterface>
+  dispatch: React.Dispatch<AuthActions>
 }
 
 export interface AuthProviderProps {
