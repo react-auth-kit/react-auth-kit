@@ -3,6 +3,7 @@ import {Redirect, Route} from 'react-router-dom';
 import AuthContext from './AuthContext';
 import * as H from 'history';
 import {RouteChildrenProps, RouteComponentProps} from 'react-router';
+import {doSignOut} from "./utils/reducers";
 
 interface PrivateRouteProps {
   loginPath: string
@@ -40,15 +41,7 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
       if (new Date(context.authState.expireAt) > new Date()) {
         return true;
       } else {
-        context.setAuthState((prevState) => ({
-          ...prevState,
-          authToken: null,
-          authTokenType: null,
-          expireAt: null,
-          authState: null,
-          refreshToken: null,
-          refreshTokenExpireAt: null,
-        }));
+        context.dispatch(doSignOut())
         return false;
       }
     } else {
