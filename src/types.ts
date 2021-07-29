@@ -31,7 +31,7 @@ export interface TokenObjectParamsInterface {
 
 export interface AuthContextInterface {
   authState: TokenInterface
-  setAuthState: React.Dispatch<React.SetStateAction<TokenInterface>>
+  dispatch: React.Dispatch<TokenInterface>
 }
 
 export interface AuthProviderProps {
