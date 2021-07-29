@@ -2,17 +2,17 @@
   *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
   *@fileoverview Sign Out functionality
   *@copyright Arkadip Bhattacharya 2020
-  *@license Apache-2.0
   */
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
+import {doSignOut} from "../utils/reducers";
 
 /**
   *@public
   *@function
   *@name useSignOut
-  *@description Signout Hook
+  *@description Sign out Hook
   */
 function useSignOut(): () => (boolean) {
   /**
@@ -28,17 +28,8 @@ function useSignOut(): () => (boolean) {
 
   return () => {
     try {
-      if (context?.authState.authToken) {
-        context.setAuthState((prevState) => ({
-          ...prevState,
-          authToken: null,
-          authTokenType: null,
-          expireAt: null,
-          authState: null,
-          refreshToken: null,
-          refreshTokenExpireAt: null,
-        }));
-        console.log('RAJ :: Signing Out');
+      if (context) {
+        context.dispatch(doSignOut())
         return true;
       } else {
         return false;
