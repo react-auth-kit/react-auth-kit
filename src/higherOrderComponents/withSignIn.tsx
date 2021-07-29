@@ -7,6 +7,7 @@
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
 import {signInFunctionParams} from '../types';
+import {doSignIn} from "../utils/reducers";
 
 /**
  * @interface withSignInProps
@@ -59,15 +60,14 @@ function withSignIn<P extends withSignInProps>(
               null;
             try {
               if (c) {
-                c.setAuthState((prevState) => ({
-                  ...prevState,
+                c.dispatch(doSignIn({
                   authToken: token,
                   authTokenType: tokenType,
                   expireAt: expTime,
                   authState: authState,
                   refreshToken: !!refreshToken ? refreshToken : null,
                   refreshTokenExpireAt: refreshTokenExpireAt,
-                }));
+                }))
                 return true;
               } else {
                 return false;
