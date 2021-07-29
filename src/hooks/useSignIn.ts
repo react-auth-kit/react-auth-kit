@@ -8,6 +8,7 @@
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
+import {doSignIn} from "../utils/reducers";
 
 /**
   *@function
@@ -44,15 +45,14 @@ function useSignIn():(signInConfig: signInFunctionParams) => boolean {
 
     try {
       if (context) {
-        context.setAuthState((prevState) => ({
-          ...prevState,
+        context.dispatch(doSignIn({
           authToken: token,
           authTokenType: tokenType,
           expireAt: expTime,
           authState: authState,
           refreshToken: !!refreshToken ? refreshToken : null,
           refreshTokenExpireAt: refreshTokenExpireAt,
-        }));
+        }))
         return true;
       } else {
         return false;

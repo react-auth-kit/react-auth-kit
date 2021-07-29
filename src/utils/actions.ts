@@ -25,7 +25,6 @@ export interface SignInActionPayload {
   authToken: string
   authTokenType: string
   expireAt: Date
-  isUsingRefreshToken: boolean
   refreshToken: string | null
   refreshTokenExpireAt: Date | null
   authState: AuthStateUserObject | null
