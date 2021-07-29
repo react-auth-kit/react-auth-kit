@@ -15,7 +15,7 @@
  */
 
 import {TokenInterface} from "../types";
-import {ActionType, AuthActions} from "./actions";
+import {ActionType, AuthActions, SignInAction, SignInActionPayload, SignOutAction} from "./actions";
 
 /**
  * Auth Reducer
@@ -51,4 +51,23 @@ export function authReducer(state: TokenInterface, action: AuthActions): TokenIn
   }
 }
 
-export default authReducer
+// Helper functions
+/**
+ * used to make sign in
+ * @param signInParams
+ */
+export function doSignIn(signInParams: SignInActionPayload):SignInAction{
+  return ({
+    type: ActionType.SignIn,
+    payload: signInParams
+  })
+}
+
+/**
+ * Used to make sign out
+ */
+export function doSignOut():SignOutAction{
+  return ({
+    type: ActionType.SignOut
+  })
+}

@@ -21,7 +21,7 @@ export enum ActionType {
   SignOut
 }
 
-interface SignInActionPayload {
+export interface SignInActionPayload {
   authToken: string
   authTokenType: string
   expireAt: Date
