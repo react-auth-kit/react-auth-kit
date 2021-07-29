@@ -14,16 +14,26 @@
  * limitations under the License.
  */
 
-import {signInFunctionParams} from "../types";
+import {AuthStateUserObject} from "../types";
 
 export enum ActionType {
   SignIn,
   SignOut
 }
 
+interface SignInActionPayload {
+  authToken: string
+  authTokenType: string
+  expireAt: Date
+  isUsingRefreshToken: boolean
+  refreshToken: string | null
+  refreshTokenExpireAt: Date | null
+  authState: AuthStateUserObject | null
+}
+
 export interface SignInAction {
   type: ActionType.SignIn,
-  payload: signInFunctionParams
+  payload: SignInActionPayload
 }
 
 export interface SignOutAction {
