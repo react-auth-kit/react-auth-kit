@@ -6,6 +6,7 @@
   */
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
+import {doSignOut} from '../utils/reducers';
 
 /**
  * @interface withSignOutProps
@@ -35,16 +36,8 @@ function withSignOut<P extends withSignOutProps>(
           }
           const signOut = () => {
             try {
-              if (c?.authState.authToken) {
-                c.setAuthState((prevState) => ({
-                  ...prevState,
-                  authToken: null,
-                  authTokenType: null,
-                  expireAt: null,
-                  authState: null,
-                  refreshToken: null,
-                  refreshTokenExpireAt: null,
-                }));
+              if (c) {
+                c.dispatch(doSignOut());
                 return true;
               } else {
                 return false;

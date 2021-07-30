@@ -14,10 +14,29 @@
  * limitations under the License.
  */
 
-describe('PrivateRoute', () => {
-  it('is truthy', () => {
-    expect(1).toBeTruthy();
-  });
-});
+import {AuthStateUserObject} from '../types';
 
-export {};
+export enum ActionType {
+  SignIn,
+  SignOut
+}
+
+export interface SignInActionPayload {
+  authToken: string
+  authTokenType: string
+  expireAt: Date
+  refreshToken: string | null
+  refreshTokenExpireAt: Date | null
+  authState: AuthStateUserObject | null
+}
+
+export interface SignInAction {
+  type: ActionType.SignIn,
+  payload: SignInActionPayload
+}
+
+export interface SignOutAction {
+  type: ActionType.SignOut;
+}
+
+export type AuthActions = SignInAction | SignOutAction

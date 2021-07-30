@@ -7,6 +7,7 @@
 
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
+import {doSignOut} from '../utils/reducers';
 
 /**
  * @interface withAuthHeaderProps
@@ -38,15 +39,7 @@ function withIsAuthenticated<P extends withAuthHeaderProps>(
             if (new Date(c.authState.expireAt) > new Date()) {
               return <Component {...props} isAuth={true}/>;
             } else {
-              c.setAuthState((prevState) => ({
-                ...prevState,
-                authToken: null,
-                authTokenType: null,
-                expireAt: null,
-                authState: null,
-                refreshToken: null,
-                refreshTokenExpireAt: null,
-              }));
+              c.dispatch(doSignOut());
               return <Component {...props} isAuth={false}/>;
             }
           } else {
