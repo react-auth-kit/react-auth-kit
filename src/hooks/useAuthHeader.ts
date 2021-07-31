@@ -15,11 +15,8 @@ function useAuthHeader(): () => (string) {
 
   return () => {
     if (c?.authState) {
-      const h = `${c.authState.authTokenType} ${c.authState.authToken}`;
-      React.useDebugValue(`Header: ${h}`);
-      return h;
+      return `${c.authState.authTokenType} ${c.authState.authToken}`;
     } else {
-      React.useDebugValue(`Not authenticated`);
       return ``;
     }
   };
