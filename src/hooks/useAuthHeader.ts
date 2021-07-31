@@ -12,11 +12,15 @@ function useAuthHeader(): () => (string) {
       'Please add the AuthProvider before Router');
   }
 
+
   return () => {
     if (c?.authState) {
-      return `${c.authState.authTokenType} ${c.authState.authToken}`;
+      const h = `${c.authState.authTokenType} ${c.authState.authToken}`
+      React.useDebugValue(`Header: ${h}`);
+      return h;
     } else {
-      return `Bearer `;
+      React.useDebugValue(`Not authenticated`);
+      return ``;
     }
   };
 }

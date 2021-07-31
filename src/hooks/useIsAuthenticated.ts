@@ -24,8 +24,10 @@ function useIsAuthenticated(): ()=>boolean {
   return () => {
     if (context?.authState.authToken && context?.authState.expireAt) {
       if (new Date(context.authState.expireAt) > new Date()) {
+        React.useDebugValue(`true`);
         return true;
       } else {
+        React.useDebugValue(`false`);
         context.dispatch(doSignOut());
         return false;
       }
