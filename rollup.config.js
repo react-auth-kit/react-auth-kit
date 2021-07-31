@@ -51,7 +51,6 @@ export default [
       peerDepsExternal(),
       resolve(),
       typescript(),
-      terser(),
       filesize(),
     ],
   },
