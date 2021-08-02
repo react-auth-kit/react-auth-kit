@@ -338,7 +338,7 @@ class TokenObject {
   }
 
   /**
-   * Set LocalStorage on time of Login
+   * Set LocalStorage at the time of Login
    *
    * @param authToken
    * @param authTokenType
@@ -392,6 +392,10 @@ class TokenObject {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
+    Cookies.remove(this.authStorageTypeName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
     Cookies.remove(this.stateStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -416,6 +420,7 @@ class TokenObject {
   removeLSToken_(): void {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authTimeStorageName);
+    localStorage.removeItem(this.authStorageTypeName)
     localStorage.removeItem(this.stateStorageName);
     if (this.isUsingRefreshToken && !!this.refreshTokenName) {
       localStorage.removeItem(this.refreshTokenName);
