@@ -1,9 +1,5 @@
 import Cookies from 'js-cookie';
-import {
-  AuthStateUserObject,
-  AuthKitStateInterface,
-  TokenObjectParamsInterface,
-} from './types';
+import {AuthKitStateInterface, AuthStateUserObject} from './types';
 
 /**
  * @class TokenObject
@@ -18,7 +14,7 @@ class TokenObject {
   private readonly cookieSecure?: boolean
   private readonly authStorageTypeName: string;
   private readonly authStorageType: 'cookie' | 'localstorage';
-  private readonly refreshTokenName: string | undefined;
+  private readonly refreshTokenName: string | null;
   private readonly refreshTokenTimeName: string | null;
   private readonly isUsingRefreshToken: boolean;
 
@@ -30,11 +26,6 @@ class TokenObject {
    *
    * @param authStorageType - Type of the auth Storage, `
    * cookie` or `localstorage`
-   *
-   * @param authTimeStorageName - Name of the Token,
-   * which will store the Expiring time of the Authorization Token
-   * @param stateStorageName - Name of the Token,
-   * which will store the User's state
    *
    * @param refreshTokenName - Name of the refresh Token,
    * if `undefined`, then no refreshToken feature is using
@@ -48,19 +39,16 @@ class TokenObject {
    * @constructor
    */
   constructor(
-      {
-        authStorageName,
-        authStorageType,
-        authTimeStorageName,
-        stateStorageName,
-        refreshTokenName,
-        cookieDomain,
-        cookieSecure,
-      }: TokenObjectParamsInterface) {
+      authStorageName:string,
+      authStorageType:'cookie' | 'localstorage',
+      refreshTokenName:string | null,
+      cookieDomain?:string,
+      cookieSecure?:boolean,
+  ) {
     this.authStorageType = authStorageType;
     this.authStorageName = authStorageName;
-    this.authTimeStorageName = authTimeStorageName;
-    this.stateStorageName = stateStorageName;
+    this.authTimeStorageName = `${authStorageName}_storage`;
+    this.stateStorageName = `${authStorageName}_state`;
     this.refreshTokenName = refreshTokenName;
     this.cookieDomain = cookieDomain;
     this.cookieSecure = cookieSecure;
@@ -177,7 +165,7 @@ class TokenObject {
   checkTokenExist(
       authToken: string | null | undefined,
       authTokenType: string | null | undefined,
-      authTokenTime: string| null | undefined,
+      authTokenTime: string | null | undefined,
       stateCookie: string | null | undefined,
       refreshToken: string | null | undefined,
       refreshTokenTime: string | null | undefined):
@@ -194,7 +182,7 @@ class TokenObject {
           refreshToken: this.isUsingRefreshToken && !!refreshToken ?
             refreshToken : null,
           refreshTokenExpireAt: this.isUsingRefreshToken &&
-          !!refreshTokenTime ? new Date(refreshTokenTime):null,
+          !!refreshTokenTime ? new Date(refreshTokenTime) : null,
           expireAt: expiresAt,
           authState: authState,
           isSignIn: true,
@@ -233,7 +221,7 @@ class TokenObject {
    *
    * @param authState
    */
-  syncTokens(authState: AuthKitStateInterface):void {
+  syncTokens(authState: AuthKitStateInterface): void {
     if (
       authState.authToken === undefined ||
       authState.authTokenType === null ||
@@ -267,10 +255,10 @@ class TokenObject {
   setToken(
       authToken: string,
       authTokenType: string,
-      refreshToken: string|null,
-      refreshTokenExpiresAt: Date| null,
+      refreshToken: string | null,
+      refreshTokenExpiresAt: Date | null,
       expiresAt: Date,
-      authState: AuthStateUserObject):void {
+      authState: AuthStateUserObject): void {
     if (this.authStorageType === 'cookie') {
       this.setCookieToken_(
           authToken,
@@ -306,8 +294,8 @@ class TokenObject {
       authTokenType: string,
       refreshToken: string | null,
       expiresAt: Date,
-      refreshTokenExpiresAt: Date|null,
-      authState: AuthStateUserObject):void {
+      refreshTokenExpiresAt: Date | null,
+      authState: AuthStateUserObject): void {
     Cookies.set(this.authStorageName, authToken, {
       expires: expiresAt,
       domain: this.cookieDomain,
@@ -364,8 +352,8 @@ class TokenObject {
       authTokenType: string,
       refreshToken: string | null,
       expiresAt: Date,
-      refreshTokenExpiresAt: Date|null,
-      authState: AuthStateUserObject):void {
+      refreshTokenExpiresAt: Date | null,
+      authState: AuthStateUserObject): void {
     localStorage.setItem(this.authStorageName, authToken);
     localStorage.setItem(this.authStorageTypeName, authTokenType);
     localStorage.setItem(this.authTimeStorageName, expiresAt.toISOString());
@@ -384,7 +372,7 @@ class TokenObject {
   /**
    * Remove Tokens on time of Logout
    */
-  removeToken():void {
+  removeToken(): void {
     if (this.authStorageType === 'cookie') {
       this.removeCookieToken_();
     } else {
@@ -395,7 +383,7 @@ class TokenObject {
   /**
    * Remove Token from Cookies
    */
-  removeCookieToken_():void {
+  removeCookieToken_(): void {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -425,7 +413,7 @@ class TokenObject {
   /**
    * Remove Token from LocalStorage
    */
-  removeLSToken_():void {
+  removeLSToken_(): void {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authTimeStorageName);
     localStorage.removeItem(this.stateStorageName);
