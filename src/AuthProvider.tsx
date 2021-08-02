@@ -44,9 +44,6 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
         cookieSecure,
         stateStorageName: `${authName}_state`,
       });
-      // const [authState, setAuthState] = React.useState<TokenInterface>(
-      //     tokenObject.initialToken(),
-      // );
       const [authState, dispatch] =
         React.useReducer(authReducer, tokenObject.initialToken());
 

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import {
   AuthStateUserObject,
-  TokenInterface,
+  AuthKitStateInterface,
   TokenObjectParamsInterface,
 } from './types';
 
@@ -81,9 +81,9 @@ class TokenObject {
    * If the `authTokenType` is `localStorage`
    * get information from `initialLSToken()` function
    *
-   * @returns TokenInterface
+   * @returns AuthKitStateInterface
    */
-  initialToken(): TokenInterface {
+  initialToken(): AuthKitStateInterface {
     if (this.authStorageType === 'cookie') {
       return this.initialCookieToken_();
     } else {
@@ -99,9 +99,9 @@ class TokenObject {
    * then this function is called
    * And returns the Tokens and states Stored in all 4 cookies
    *
-   * @returns TokenInterface
+   * @returns AuthKitStateInterface
    */
-  initialCookieToken_(): TokenInterface {
+  initialCookieToken_(): AuthKitStateInterface {
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const authTokenTime = Cookies.get(this.authTimeStorageName);
@@ -131,9 +131,9 @@ class TokenObject {
    * then this function is called
    * And returns the Tokens and states Stored in all 4 cookies
    *
-   * @returns TokenInterface
+   * @returns AuthKitStateInterface
    */
-  initialLSToken_(): TokenInterface {
+  initialLSToken_(): AuthKitStateInterface {
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const authTokenTime = localStorage.getItem(this.authTimeStorageName);
@@ -171,7 +171,7 @@ class TokenObject {
    * @param refreshToken
    * @param refreshTokenTime
    *
-   * @returns TokenInterface
+   * @returns AuthKitStateInterface
    *
    */
   checkTokenExist(
@@ -181,7 +181,7 @@ class TokenObject {
       stateCookie: string | null | undefined,
       refreshToken: string | null | undefined,
       refreshTokenTime: string | null | undefined):
-    TokenInterface {
+    AuthKitStateInterface {
     if (!!authToken && !!authTokenType && !!authTokenTime && !!stateCookie) {
       const expiresAt = new Date(authTokenTime);
       try {
@@ -197,6 +197,7 @@ class TokenObject {
           !!refreshTokenTime ? new Date(refreshTokenTime):null,
           expireAt: expiresAt,
           authState: authState,
+          isSignIn: true,
         };
       } catch (e) {
         return {
@@ -207,6 +208,7 @@ class TokenObject {
           expireAt: null,
           authState: null,
           refreshTokenExpireAt: null,
+          isSignIn: false,
         };
       }
     } else {
@@ -218,6 +220,7 @@ class TokenObject {
         expireAt: null,
         authState: null,
         refreshTokenExpireAt: null,
+        isSignIn: false,
       };
     }
   }
@@ -230,7 +233,7 @@ class TokenObject {
    *
    * @param authState
    */
-  syncTokens(authState: TokenInterface):void {
+  syncTokens(authState: AuthKitStateInterface):void {
     if (
       authState.authToken === undefined ||
       authState.authTokenType === null ||

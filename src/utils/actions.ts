@@ -1,4 +1,8 @@
-/*
+/**
+ * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+ * @fileoverview Actions for useReducer
+ * @copyright Arkadip Bhattacharya 2020
+ *
  * Copyright 2020 Arkadip Bhattacharya
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

@@ -1,4 +1,8 @@
-/*
+/**
+ * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+ * @fileoverview Reducers for useReducer
+ * @copyright Arkadip Bhattacharya 2020
+ *
  * Copyright 2020 Arkadip Bhattacharya
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import {TokenInterface} from '../types';
+import {AuthKitStateInterface} from '../types';
 import {
   ActionType,
   AuthActions,
@@ -29,9 +32,9 @@ import {
  * @param state
  * @param action
  */
-export function authReducer(state: TokenInterface,
+export function authReducer(state: AuthKitStateInterface,
     action: AuthActions)
-  : TokenInterface {
+  : AuthKitStateInterface {
   switch (action.type) {
     case ActionType.SignIn:
       return {
@@ -43,6 +46,7 @@ export function authReducer(state: TokenInterface,
         refreshToken:
           action.payload.refreshToken ? action.payload.refreshToken : null,
         refreshTokenExpireAt: action.payload.refreshTokenExpireAt,
+        isSignIn: true,
       };
     case ActionType.SignOut:
       return {
@@ -53,6 +57,7 @@ export function authReducer(state: TokenInterface,
         authState: null,
         refreshToken: null,
         refreshTokenExpireAt: null,
+        isSignIn: false,
       };
     default:
       return state;
