@@ -1,6 +1,6 @@
 {
   "name": "react-auth-kit",
-  "version": "1.4.14",
+  "version": "1.4.16-0",
   "description": "Authentication Library for React, which makes Token based auth very easy",
   "source": "src/index.tsx",
   "main": "dist/index.js",
@@ -39,7 +39,7 @@
   "author": {
     "name": "Arkadip Bhattacharya",
     "email": "in2arkadipb13@gmail.com",
-    "url": "https://www.arkadip.co"
+    "url": "https://www.arkadip.me"
   },
   "repository": {
     "type": "git",
@@ -87,6 +87,7 @@
   "peerDependencies": {
     "js-cookie": "^3.0.0",
     "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
     "react-router-dom": "^5.2.0"
   }
 }

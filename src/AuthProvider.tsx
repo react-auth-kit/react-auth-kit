@@ -16,46 +16,40 @@ import {authReducer} from './utils/reducers';
  * @return Functional Component
  */
 const AuthProvider: React.FunctionComponent<AuthProviderProps> =
-    ({
-      children,
-      authType,
-      authName,
-      refreshToken,
-      cookieDomain,
-      cookieSecure,
-    }) => {
-      if (authType === 'cookie') {
-        if (!cookieDomain) {
-          throw new
-          Error('authType \'cookie\' ' +
-            'requires \'cookieDomain\' and \'cookieSecure\' ' +
-            'props in AuthProvider');
-        }
+  ({
+    children,
+    authType,
+    authName,
+    refreshToken,
+    cookieDomain,
+    cookieSecure,
+  }) => {
+    if (authType === 'cookie') {
+      if (!cookieDomain) {
+        throw new
+        Error('authType \'cookie\' ' +
+          'requires \'cookieDomain\' and \'cookieSecure\' ' +
+          'props in AuthProvider');
       }
+    }
 
-      const refreshTokenName = refreshToken ? `${authName}_refresh` : undefined;
+    const refreshTokenName = refreshToken ? `${authName}_refresh` : null;
 
-      const tokenObject = new TokenObject({
-        authTimeStorageName: `${authName}_time`,
-        authStorageType: authType,
-        authStorageName: authName,
-        refreshTokenName,
-        cookieDomain,
-        cookieSecure,
-        stateStorageName: `${authName}_state`,
-      });
-      const [authState, dispatch] =
-        React.useReducer(authReducer, tokenObject.initialToken());
+    const tokenObject = new TokenObject(authName, authType,
+        refreshTokenName, cookieDomain, cookieSecure);
 
-      React.useEffect(() => {
-        tokenObject.syncTokens(authState);
-      }, [authState]);
+    const [authState, dispatch] =
+      React.useReducer(authReducer, tokenObject.initialToken());
 
-      return (
-        <AuthContext.Provider value={{authState, dispatch}}>
-          {children}
-        </AuthContext.Provider>
-      );
-    };
+    React.useEffect(() => {
+      tokenObject.syncTokens(authState);
+    }, [authState]);
+
+    return (
+      <AuthContext.Provider value={{authState, dispatch}}>
+        {children}
+      </AuthContext.Provider>
+    );
+  };
 
 export default AuthProvider;

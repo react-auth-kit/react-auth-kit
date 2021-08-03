@@ -32,6 +32,22 @@ export interface AuthKitStateInterface {
   isSignIn: boolean
 }
 
+// interface xx {
+//   auth: {
+//     token: string,
+//     type: string,
+//     expiresAt: Date
+//   } | null,
+//   refresh: {
+//     token: string,
+//     expiresAt: Date
+//   } | null,
+//   userState: AuthStateUserObject | null,
+//   isSignIn: boolean
+//   isUsingRefreshToken: boolean,
+//   typeOfStorage: "cookie" | "localstorage"
+// }
+
 export interface signInFunctionParams {
   token: string
   tokenType: string | 'Bearer'
@@ -39,16 +55,6 @@ export interface signInFunctionParams {
   authState: AuthStateUserObject
   refreshToken?: string
   refreshTokenExpireIn?: number
-}
-
-export interface TokenObjectParamsInterface {
-  authStorageType: 'cookie' | 'localstorage'
-  authStorageName: string,
-  authTimeStorageName: string
-  stateStorageName: string
-  refreshTokenName?: string
-  cookieDomain?: string
-  cookieSecure?: boolean
 }
 
 export interface AuthContextInterface {

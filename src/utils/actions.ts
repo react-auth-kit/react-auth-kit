@@ -26,12 +26,16 @@ export enum ActionType {
 }
 
 export interface SignInActionPayload {
-  authToken: string
-  authTokenType: string
-  expireAt: Date
-  refreshToken: string | null
-  refreshTokenExpireAt: Date | null
-  authState: AuthStateUserObject | null
+  auth: {
+    token: string,
+    type: string,
+    expiresAt: Date
+  },
+  refresh: {
+    token: string,
+    expiresAt: Date
+  } | null,
+  userState: AuthStateUserObject | null,
 }
 
 export interface SignInAction {

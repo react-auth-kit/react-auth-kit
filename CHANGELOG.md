@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fix:
+- On page refresh, the cookies are removed automatically ([#473](#473))([676f68b](676f68bc68de07e078b4e1ea6a28040abc2989dc))
+- Auth Type cookie and Localstorage are failed to get removed ([cbfdc4e](cbfdc4eeac997e018b3faa8f8390a3f7c5d0b449))
+
+### Changed:
+- Minimum React Version from `16.0` to `16.8.0`, so that the hooks gets properly supported ([bad136e](bad136ea89c22b9600c72310d0d734a0b836d2c8))
+- Sign In Hook and HOC is now better to accommodate the dynamic refresh token to give better error and type support ([17b2eb8](17b2eb813de0cb46a68ce43050b8f31ee5fbf458))
+- Updated the `SignInActionPayload` in action and sign in reducer to accommodate the dynamic refresh token feature ([41be555](41be55524b76f9452ca61a603c744c6b27fc9e6a)) ([57c819f](57c819f56f85df9cef5d826d0064c3769cbfc110))
+
+### Removed:
+- [`useDebugValue`](https://reactjs.org/docs/hooks-reference.html#usedebugvalue) from
+  `useAuthenticated` and `useAuthHeader` ([3d2966d](3d2966d5aafea95c930d957ff04bf1a15c5e01d0))
+
 ## [1.4.14] - 2021-07-31
 ### Added:
 - [`useDebugValue`](https://reactjs.org/docs/hooks-reference.html#usedebugvalue) added in

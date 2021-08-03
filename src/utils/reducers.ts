@@ -37,17 +37,31 @@ export function authReducer(state: AuthKitStateInterface,
   : AuthKitStateInterface {
   switch (action.type) {
     case ActionType.SignIn:
-      return {
-        ...state,
-        authToken: action.payload.authToken,
-        authTokenType: action.payload.authTokenType,
-        expireAt: action.payload.expireAt,
-        authState: action.payload.authState,
-        refreshToken:
-          action.payload.refreshToken ? action.payload.refreshToken : null,
-        refreshTokenExpireAt: action.payload.refreshTokenExpireAt,
-        isSignIn: true,
-      };
+      if (action.payload.refresh) {
+        // return with refresh token
+        return {
+          ...state,
+          authToken: action.payload.auth.token,
+          authTokenType: action.payload.auth.type,
+          expireAt: action.payload.auth.expiresAt,
+          authState: action.payload.userState,
+          refreshToken: action.payload.refresh.token,
+          refreshTokenExpireAt: action.payload.refresh.expiresAt,
+          isSignIn: true,
+        };
+      } else {
+        // return without refresh token
+        return {
+          ...state,
+          authToken: action.payload.auth.token,
+          authTokenType: action.payload.auth.type,
+          expireAt: action.payload.auth.expiresAt,
+          authState: action.payload.userState,
+          refreshToken: null,
+          refreshTokenExpireAt: null,
+          isSignIn: true,
+        };
+      }
     case ActionType.SignOut:
       return {
         ...state,
