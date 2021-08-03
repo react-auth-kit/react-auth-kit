@@ -311,7 +311,7 @@ class TokenObject {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
-    Cookies.set(this.stateStorageName, authState, {
+    Cookies.set(this.stateStorageName, JSON.stringify(authState), {
       expires: expiresAt,
       domain: this.cookieDomain,
       secure: this.cookieSecure,
