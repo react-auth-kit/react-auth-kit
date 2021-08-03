@@ -58,36 +58,55 @@ function withSignIn<P extends withSignInProps>(
               refreshToken,
               refreshTokenExpireIn,
             } = signInConfig;
-            if ((refreshToken || refreshTokenExpireIn) &&
-              !c.authState.isUsingRefreshToken) {
-              throw new Error('The app doesn\'t implement ' +
-                '\'refreshToken\' feature.\n' +
-                'So you have to implement refresh token feature from ' +
-                '\'AuthProvider\' before using it.');
-            }
-            const expTime = new
-            Date(new Date().getTime() + expiresIn * 60 * 1000);
-            const refreshTokenExpireAt = refreshTokenExpireIn ?
-              new
-              Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000) :
-              null;
-            try {
-              if (c) {
+            const expTime =
+              new Date(new Date().getTime() + expiresIn * 60 * 1000);
+            if (c.authState.isUsingRefreshToken) {
+              // Using the power of refresh token
+              if (!!refreshToken && !!refreshTokenExpireIn) {
+                // refresh token params are provided
+                // sign in with refresh token
+                const refreshTokenExpireAt = new Date(new Date().getTime() +
+                  refreshTokenExpireIn * 60 * 1000);
                 c.dispatch(doSignIn({
-                  authToken: token,
-                  authTokenType: tokenType,
-                  expireAt: expTime,
-                  authState: authState,
-                  refreshToken: refreshToken ? refreshToken : null,
-                  refreshTokenExpireAt: refreshTokenExpireAt,
+                  auth: {
+                    token: token,
+                    type: tokenType,
+                    expiresAt: expTime,
+                  },
+                  userState: authState,
+                  refresh: {
+                    token: refreshToken,
+                    expiresAt: refreshTokenExpireAt,
+                  },
                 }));
                 return true;
               } else {
-                return false;
+                // refresh token params are not provided
+                // throw an error
+                throw new Error('Make sure you given "refreshToken" and  ' +
+                  '"refreshTokenExpireIn" parameter');
               }
-            } catch (e) {
-              console.error(e);
-              return false;
+            } else {
+              // Not using refresh token
+              if (!!refreshToken && !!refreshTokenExpireIn) {
+                // params are not expected but provided
+                // throw an error
+                throw new Error('The app doesn\'t implement \'refreshToken\'' +
+                  ' feature.\n So you have to implement refresh token feature' +
+                  ' from \'AuthProvider\' before using it.');
+              } else {
+                // sign in without the refresh token
+                c.dispatch(doSignIn({
+                  auth: {
+                    token: token,
+                    type: tokenType,
+                    expiresAt: expTime,
+                  },
+                  userState: authState,
+                  refresh: null,
+                }));
+                return true;
+              }
             }
           };
           return <Component {...props} signIn={signIn}/>;
