@@ -420,7 +420,7 @@ class TokenObject {
   removeLSToken_(): void {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authTimeStorageName);
-    localStorage.removeItem(this.authStorageTypeName)
+    localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
     if (this.isUsingRefreshToken && !!this.refreshTokenName) {
       localStorage.removeItem(this.refreshTokenName);
