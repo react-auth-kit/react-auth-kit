@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.16] - 2021-08-03
 ### Fix:
 - On page refresh, the cookies are removed automatically ([#473](#473))([676f68b](676f68bc68de07e078b4e1ea6a28040abc2989dc))
 - Auth Type cookie and Localstorage are failed to get removed ([cbfdc4e](cbfdc4eeac997e018b3faa8f8390a3f7c5d0b449))
