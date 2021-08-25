@@ -28,7 +28,7 @@ jobs:
       
       - name: Check Commit Messages
         run: |
-          echo "${{ github.event.commits }}"
+          echo "${{ github.event }}"
 
       - name: Test
         run: npm test
