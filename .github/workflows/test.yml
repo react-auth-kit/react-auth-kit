@@ -25,6 +25,9 @@ jobs:
 
       - name: NPM Install
         run: npm ci
+      
+      - name: Check Commit Messages
+        run: echo ${{ github.event.commits }} 
 
       - name: Test
         run: npm test
