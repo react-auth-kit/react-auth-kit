@@ -19,7 +19,7 @@
     "build:clean": "rimraf ./dist",
     "build:dir": "mkdirp ./dist",
     "build:build": "rollup -c",
-    "prepare": "run-s build",
+    "prepare": "run-s build && husky install",
     "preversion": "run-s test",
     "test": "run-s test:*",
     "test:build": "run-s build",
@@ -77,7 +77,8 @@
     "tslib": "^2.3.1",
     "typedoc": "^0.21.6",
     "typescript": "^4.3.5",
-    "utility-types": "^3.10.0"
+    "utility-types": "^3.10.0",
+    "husky": "^7.0.0"
   },
   "dependencies": {
     "js-cookie": "^3.0.0",
