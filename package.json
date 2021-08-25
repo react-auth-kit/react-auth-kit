@@ -26,7 +26,8 @@
     "test:unit": "jest",
     "test:lint": "eslint src/**/*.ts src/**/*.tsx",
     "test:unit:watch": "jest --watch",
-    "fix": "eslint src/**/*.ts src/**/*.tsx --fix"
+    "fix": "eslint src/**/*.ts src/**/*.tsx --fix",
+    "release": "release-it"
   },
   "keywords": [
     "react",
