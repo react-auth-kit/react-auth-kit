@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
 ## [1.4.16] - 2021-08-03
 ### Fix:
 - On page refresh, the cookies are removed automatically ([#473](#473))([676f68b](676f68bc68de07e078b4e1ea6a28040abc2989dc))
