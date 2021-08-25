@@ -22,16 +22,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      
+      - name: Check Commit Messages
+        uses: wagoid/commitlint-github-action@v4
 
       - name: NPM Install
         run: npm ci
-      
-      - name: Check Commit Messages
-        run: |
-          echo "${{ github.event }}"
 
-      - name: Test
+      - name: NPM Test
         run: npm test
 
-      - name: Codecov
+      - name: Generate Codecov Report
         run: ./node_modules/.bin/codecov
