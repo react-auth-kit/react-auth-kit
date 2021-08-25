@@ -18,16 +18,22 @@ jobs:
         node: [ '10', '12' ]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      
+      - name: Check Commit Messages
+        uses: wagoid/commitlint-github-action@v4
 
       - name: NPM Install
         run: npm ci
 
-      - name: Test
+      - name: NPM Test
         run: npm test
 
-      - name: Codecov
+      - name: Generate Codecov Report
         run: ./node_modules/.bin/codecov
