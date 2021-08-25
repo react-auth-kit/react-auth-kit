@@ -8,10 +8,5 @@
   },
   "hooks": {
     "after:bump": "npx auto-changelog -p"
-  },
-  "plugins": {
-    "@release-it/keep-a-changelog": {
-      "filename": "CHANGELOG.md"
-    }
   }
 }
