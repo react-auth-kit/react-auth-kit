@@ -18,6 +18,9 @@ jobs:
         node: [ '10', '12' ]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
