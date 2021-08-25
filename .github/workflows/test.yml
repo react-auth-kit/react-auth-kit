@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       
+      - name: Random
+        run: echo "Random"
+      
       - name: Check Commit Messages
         uses: wagoid/commitlint-github-action@v4
 
