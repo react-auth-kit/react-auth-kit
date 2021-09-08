@@ -36,7 +36,7 @@ interface withAuthProps {
  */
 function withAuthUser<P extends withAuthProps>(
     Component: React.ComponentType<P>,
-): React.FC<P> {
+): React.FunctionComponent<P> {
   return (props: P)=>{
     return (
       <AuthContextConsumer>

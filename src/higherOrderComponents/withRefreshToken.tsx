@@ -38,7 +38,7 @@ interface withRefreshTokenProps {
  */
 function withRefreshToken<P extends withRefreshTokenProps>(
     Component: React.ComponentType<P>,
-): React.FC<P> {
+): React.FunctionComponent<P> {
   return (props) => {
     return (
       <AuthContextConsumer>

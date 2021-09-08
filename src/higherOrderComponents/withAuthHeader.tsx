@@ -37,7 +37,7 @@ interface withAuthHeaderProps {
  */
 function withAuthHeader<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
-):React.FC<P> {
+):React.FunctionComponent<P> {
   return (props) => {
     return (
       <AuthContextConsumer>

@@ -38,7 +38,7 @@ interface withSignInProps {
  */
 function withSignIn<P extends withSignInProps>(
     Component: React.ComponentType<P>,
-):React.FC<P> {
+):React.FunctionComponent<P> {
   return (props) => {
     return (
       <AuthContextConsumer>

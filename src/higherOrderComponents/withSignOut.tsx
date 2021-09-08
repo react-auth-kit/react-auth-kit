@@ -37,7 +37,7 @@ interface withSignOutProps {
  */
 function withSignOut<P extends withSignOutProps>(
     Component: React.ComponentType<P>,
-): React.FC<P> {
+): React.FunctionComponent<P> {
   return (props) => {
     return (
       <AuthContextConsumer>
