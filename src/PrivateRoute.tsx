@@ -64,7 +64,6 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
         return false;
       }
     } else {
-      context.dispatch(doSignOut());
       return false;
     }
   };
