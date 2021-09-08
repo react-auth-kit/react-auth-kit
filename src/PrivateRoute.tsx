@@ -56,14 +56,15 @@ const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props) => {
   }
 
   const isAuth = () => {
-    if (context.authState.authToken && context.authState.expireAt) {
-      if (new Date(context.authState.expireAt) > new Date()) {
+    if (context.authState.auth) {
+      if (new Date(context.authState.auth.expiresAt) > new Date()) {
         return true;
       } else {
         context.dispatch(doSignOut());
         return false;
       }
     } else {
+      context.dispatch(doSignOut());
       return false;
     }
   };
