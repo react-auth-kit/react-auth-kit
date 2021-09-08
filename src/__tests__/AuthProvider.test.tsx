@@ -29,24 +29,7 @@ describe('AuthProvider renders successfully', ()=>{
         </AuthProvider>,
     );
   });
-  describe('2. With Cookie', ()=>{
-    it('a. with cookie but not added proper args', ()=>{
-      try {
-        render(
-            <AuthProvider authType={'cookie'} authName={'_auth'}>
-              <BrowserRouter>
-                <Route/>
-              </BrowserRouter>
-            </AuthProvider>,
-        );
-      } catch (e) {
-        expect(e.message).toMatch('authType \'cookie\' ' +
-          'requires \'cookieDomain\' and \'cookieSecure\' props in ' +
-          'AuthProvider');
-      }
-    });
-  });
-  it('3. with cookie and refreshToken', ()=>{
+  it('2. with cookie and refreshToken', ()=>{
     render(
         <AuthProvider authType={'localstorage'} authName={'_auth'} refreshToken>
           <BrowserRouter>
