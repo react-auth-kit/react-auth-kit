@@ -40,18 +40,11 @@ describe('Token with Cookie', ()=>{
   });
   it('Initially blank and signed out state', ()=>{
     const {
-      isSignIn, authToken, authTokenType, refreshToken,
-      refreshTokenExpireAt, expireAt,
-      authState,
-    } = tokenObject.initialToken();
+      isSignIn, auth, refresh} = tokenObject.initialToken();
 
     expect(isSignIn).toBe(false);
-    expect(authState).toBe(null);
-    expect(authToken).toBe(null);
-    expect(authTokenType).toBe(null);
-    expect(refreshToken).toBe(null);
-    expect(refreshTokenExpireAt).toBe(null);
-    expect(expireAt).toBe(null);
+    expect(auth).toBe(null);
+    expect(refresh).toBe(null);
   });
 });
 
