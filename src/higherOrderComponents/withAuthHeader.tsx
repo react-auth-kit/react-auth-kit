@@ -47,17 +47,17 @@ function withAuthHeader<P extends withAuthHeaderProps>(
             Error('Auth Provider is missing. ' +
               'Please add the AuthProvider before Router');
           }
-          if (c?.authState) {
+          if (c.authState.auth) {
             return (
               <Component
                 {...props}
                 authHeader={
-                  `${c.authState.authTokenType} ${c.authState.authToken}`
+                  `${c.authState.auth.type} ${c.authState.auth.token}`
                 }
               />
             );
           } else {
-            return <Component {...props} authHeader={null}/>;
+            return <Component {...props} authHeader={``}/>;
           }
         }}
       </AuthContextConsumer>
