@@ -21,32 +21,32 @@
 import * as React from 'react';
 import {AuthActions} from './utils/actions';
 
-export interface AuthKitStateInterface {
-  authToken: string | null
-  authTokenType: string | null
-  expireAt: Date | null
-  isUsingRefreshToken: boolean
-  refreshToken: string | null
-  refreshTokenExpireAt: Date | null
-  authState: AuthStateUserObject | null
-  isSignIn: boolean
-}
-
-// interface xx {
-//   auth: {
-//     token: string,
-//     type: string,
-//     expiresAt: Date
-//   } | null,
-//   refresh: {
-//     token: string,
-//     expiresAt: Date
-//   } | null,
-//   userState: AuthStateUserObject | null,
+// export interface AuthKitStateInterface {
+//   authToken: string | null
+//   authTokenType: string | null
+//   expireAt: Date | null
+//   isUsingRefreshToken: boolean
+//   refreshToken: string | null
+//   refreshTokenExpireAt: Date | null
+//   authState: AuthStateUserObject | null
 //   isSignIn: boolean
-//   isUsingRefreshToken: boolean,
-//   typeOfStorage: "cookie" | "localstorage"
 // }
+
+export interface AuthKitStateInterface {
+  auth: {
+    token: string,
+    type: string,
+    expiresAt: Date
+  } | null,
+  refresh: {
+    token: string,
+    expiresAt: Date
+  } | null,
+  userState: AuthStateUserObject | null,
+  isSignIn: boolean
+  isUsingRefreshToken: boolean,
+  // typeOfStorage: "cookie" | "localstorage"
+}
 
 export interface signInFunctionParams {
   token: string
