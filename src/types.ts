@@ -21,16 +21,12 @@
 import * as React from 'react';
 import {AuthActions} from './utils/actions';
 
-// export interface AuthKitStateInterface {
-//   authToken: string | null
-//   authTokenType: string | null
-//   expireAt: Date | null
-//   isUsingRefreshToken: boolean
-//   refreshToken: string | null
-//   refreshTokenExpireAt: Date | null
-//   authState: AuthStateUserObject | null
-//   isSignIn: boolean
-// }
+/**
+ * Universal types
+ */
+export type AuthStateUserObject = {
+  [x: string]: any;
+}
 
 export interface AuthKitStateInterface {
   auth: {
@@ -48,6 +44,10 @@ export interface AuthKitStateInterface {
   // typeOfStorage: "cookie" | "localstorage"
 }
 
+/**
+ * SignIn function param
+ * Used by: useSignIn and withSignIn
+ */
 export interface signInFunctionParams {
   token: string
   tokenType: string | 'Bearer'
@@ -57,11 +57,17 @@ export interface signInFunctionParams {
   refreshTokenExpireIn?: number
 }
 
+/**
+ * Context values type
+ */
 export interface AuthContextInterface {
   authState: AuthKitStateInterface
   dispatch: React.Dispatch<AuthActions>
 }
 
+/**
+ * Auth Provider Props
+ */
 export interface AuthProviderProps {
   authType: 'cookie' | 'localstorage'
   authName: string,
@@ -71,6 +77,8 @@ export interface AuthProviderProps {
   children: React.ReactNode
 }
 
-export type AuthStateUserObject = {
-  [x: string]: any;
-}
+/**
+ * Refresh Token types
+ */
+// Callback function
+export type refreshTokenCallback = (x: number) => number
