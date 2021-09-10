@@ -82,3 +82,12 @@ export interface AuthProviderProps {
  */
 // Callback function
 export type refreshTokenCallback = (x: number) => number
+
+// createRefresh function parameter
+export interface createRefreshParamInterface {
+  interval: number,
+  callback: refreshTokenCallback
+}
+
+export type refreshFunctionType = (param: createRefreshParamInterface)
+  => createRefreshParamInterface
