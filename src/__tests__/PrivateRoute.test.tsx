@@ -19,19 +19,6 @@ import PrivateRoute from '../PrivateRoute';
 import {BrowserRouter} from 'react-router-dom';
 import AuthProvider from '../AuthProvider';
 
-test('Private Route without AuthProvider throws an errors', ()=>{
-  try {
-    render(
-        <BrowserRouter>
-          <PrivateRoute loginPath={'/login'} />
-        </BrowserRouter>,
-    );
-  } catch (e) {
-    expect(e.message).toBe('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
-  }
-});
-
 test('PrivateRoute renders successfully with AuthProvider', ()=>{
   const {container} = render(
       <AuthProvider authType={'cookie'} authName={'_Hi'}

@@ -35,7 +35,8 @@ function useAuthUser(): () => AuthStateUserObject | null {
       'Please add the AuthProvider before Router');
   }
   return () => {
-    return context.authState.authState;
+    return context.authState.auth ?
+      context.authState.userState : null;
   };
 }
 

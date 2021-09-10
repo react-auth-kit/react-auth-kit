@@ -46,9 +46,15 @@ function withAuthUser<P extends withAuthProps>(
             Error('Auth Provider is missing. ' +
               'Please add the AuthProvider before Router');
           }
-          return (
-            <Component {...props} authState={context?.authState.authState}/>
-          );
+          if (context.authState.auth) {
+            return (
+              <Component {...props} authState={context.authState.userState}/>
+            );
+          } else {
+            return (
+              <Component {...props} authState={null}/>
+            );
+          }
         }}
       </AuthContextConsumer>
     );

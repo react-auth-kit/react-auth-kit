@@ -48,8 +48,8 @@ function withIsAuthenticated<P extends withAuthHeaderProps>(
             Error('Auth Provider is missing. ' +
               'Please add the AuthProvider before Router');
           }
-          if (c?.authState.authToken && c?.authState.expireAt) {
-            if (new Date(c.authState.expireAt) > new Date()) {
+          if (c.authState.auth) {
+            if (new Date(c.authState.auth.expiresAt) > new Date()) {
               return <Component {...props} isAuth={true}/>;
             } else {
               c.dispatch(doSignOut());

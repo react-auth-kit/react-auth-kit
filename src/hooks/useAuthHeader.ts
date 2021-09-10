@@ -34,8 +34,8 @@ function useAuthHeader(): () => (string) {
 
 
   return () => {
-    if (c?.authState) {
-      return `${c.authState.authTokenType} ${c.authState.authToken}`;
+    if (c.authState.auth) {
+      return `${c.authState.auth.type} ${c.authState.auth.token}`;
     } else {
       return ``;
     }

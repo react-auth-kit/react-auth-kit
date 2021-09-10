@@ -174,40 +174,47 @@ class TokenObject {
       const expiresAt = new Date(authTokenTime);
       try {
         const authState = JSON.parse(stateCookie);
-
-        return {
-          authToken: authToken,
-          authTokenType: authTokenType,
-          isUsingRefreshToken: this.isUsingRefreshToken,
-          refreshToken: this.isUsingRefreshToken && !!refreshToken ?
-            refreshToken : null,
-          refreshTokenExpireAt: this.isUsingRefreshToken &&
-          !!refreshTokenTime ? new Date(refreshTokenTime) : null,
-          expireAt: expiresAt,
-          authState: authState,
+        const obj = {
+          auth: {
+            token: authToken,
+            type: authTokenType,
+            expiresAt: expiresAt,
+          },
+          userState: authState,
           isSignIn: true,
+          isUsingRefreshToken: this.isUsingRefreshToken,
+          refresh: undefined,
         };
+        if (this.isUsingRefreshToken && !!refreshToken && !! refreshTokenTime) {
+          const refreshTokenExpiresAt = new Date(refreshTokenTime);
+          return {
+            ...obj,
+            refresh: {
+              token: refreshToken,
+              expiresAt: refreshTokenExpiresAt,
+            },
+          };
+        } else {
+          return {
+            ...obj,
+            refresh: null,
+          };
+        }
       } catch (e) {
         return {
-          authToken: null,
-          authTokenType: null,
+          auth: null,
+          refresh: null,
+          userState: null,
           isUsingRefreshToken: this.isUsingRefreshToken,
-          refreshToken: null,
-          expireAt: null,
-          authState: null,
-          refreshTokenExpireAt: null,
           isSignIn: false,
         };
       }
     } else {
       return {
-        authToken: null,
-        authTokenType: null,
+        auth: null,
+        refresh: null,
+        userState: null,
         isUsingRefreshToken: this.isUsingRefreshToken,
-        refreshToken: null,
-        expireAt: null,
-        authState: null,
-        refreshTokenExpireAt: null,
         isSignIn: false,
       };
     }
@@ -222,23 +229,28 @@ class TokenObject {
    * @param authState
    */
   syncTokens(authState: AuthKitStateInterface): void {
-    if (
-      authState.authToken === undefined ||
-      authState.authTokenType === null ||
-      authState.authToken === null ||
-      authState.expireAt === null ||
-      authState.authState === null
-    ) {
-      this.removeToken();
+    if (authState.auth) {
+      if (this.isUsingRefreshToken && authState.refresh) {
+        this.setToken(
+            authState.auth.token,
+            authState.auth.type,
+            authState.refresh.token,
+            authState.refresh.expiresAt,
+            authState.auth.expiresAt,
+            authState.userState,
+        );
+      } else {
+        this.setToken(
+            authState.auth.token,
+            authState.auth.type,
+            null,
+            null,
+            authState.auth.expiresAt,
+            authState.userState,
+        );
+      }
     } else {
-      this.setToken(
-          authState.authToken,
-          authState.authTokenType,
-          authState.refreshToken,
-          authState.refreshTokenExpireAt,
-          authState.expireAt,
-          authState.authState,
-      );
+      this.removeToken();
     }
   }
 
@@ -258,7 +270,7 @@ class TokenObject {
       refreshToken: string | null,
       refreshTokenExpiresAt: Date | null,
       expiresAt: Date,
-      authState: AuthStateUserObject): void {
+      authState: AuthStateUserObject|null): void {
     if (this.authStorageType === 'cookie') {
       this.setCookieToken_(
           authToken,
@@ -295,7 +307,7 @@ class TokenObject {
       refreshToken: string | null,
       expiresAt: Date,
       refreshTokenExpiresAt: Date | null,
-      authState: AuthStateUserObject): void {
+      authState: AuthStateUserObject|null): void {
     Cookies.set(this.authStorageName, authToken, {
       expires: expiresAt,
       domain: this.cookieDomain,
@@ -311,11 +323,13 @@ class TokenObject {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
-    Cookies.set(this.stateStorageName, JSON.stringify(authState), {
-      expires: expiresAt,
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
+    if (authState) {
+      Cookies.set(this.stateStorageName, JSON.stringify(authState), {
+        expires: expiresAt,
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+    }
 
     if (this.isUsingRefreshToken && !!this.refreshTokenName &&
       !!refreshToken) {
@@ -353,11 +367,13 @@ class TokenObject {
       refreshToken: string | null,
       expiresAt: Date,
       refreshTokenExpiresAt: Date | null,
-      authState: AuthStateUserObject): void {
+      authState: AuthStateUserObject|null): void {
     localStorage.setItem(this.authStorageName, authToken);
     localStorage.setItem(this.authStorageTypeName, authTokenType);
     localStorage.setItem(this.authTimeStorageName, expiresAt.toISOString());
-    localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+    if (authState) {
+      localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+    }
     if (this.isUsingRefreshToken && !!this.refreshTokenName &&
       !!refreshToken) {
       localStorage.setItem(this.refreshTokenName, refreshToken);
