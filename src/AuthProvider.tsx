@@ -20,9 +20,9 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     children,
     authType,
     authName,
-    refreshToken,
     cookieDomain,
     cookieSecure,
+    refresh,
   }) => {
     if (authType === 'cookie') {
       if (!cookieDomain) {
@@ -33,7 +33,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       }
     }
 
-    const refreshTokenName = refreshToken ? `${authName}_refresh` : null;
+    const refreshTokenName = refresh ? `${authName}_refresh` : null;
 
     const tokenObject = new TokenObject(authName, authType,
         refreshTokenName, cookieDomain, cookieSecure);

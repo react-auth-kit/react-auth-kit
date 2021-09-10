@@ -71,7 +71,7 @@ export interface AuthContextInterface {
 export interface AuthProviderProps {
   authType: 'cookie' | 'localstorage'
   authName: string,
-  refreshToken?: boolean
+  refresh?: refreshFunctionType
   cookieDomain?: string
   cookieSecure?: boolean
   children: React.ReactNode
