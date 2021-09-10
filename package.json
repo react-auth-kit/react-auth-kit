@@ -84,12 +84,12 @@
     "utility-types": "^3.10.0"
   },
   "dependencies": {
-    "js-cookie": "^3.0.0",
+    "js-cookie": "^3.0.1",
     "react": ">=16.8.0",
     "react-router-dom": "^5.2.0"
   },
   "peerDependencies": {
-    "js-cookie": "^3.0.0",
+    "js-cookie": "^3.0.1",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "react-router-dom": "^5.2.0"
