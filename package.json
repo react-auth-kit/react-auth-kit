@@ -50,7 +50,7 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
-    "@testing-library/react": "^12.1.0",
+    "@testing-library/react": "^12.1.1",
     "@types/jest": "^27.0.2",
     "@types/js-cookie": "^2.2.7",
     "@types/node": "^16.10.1",
