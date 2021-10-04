@@ -30,21 +30,32 @@
 
 # Introduction
 
-**React Auth Kit** is a lightweight Javascript library for React JS, which makes the implementation of `Token based`
+**React Auth Kit** is a lightweight JavaScript library for React JS, which makes the implementation of `Token based`
 authentication very easy
 
 It is production-ready, and gives you the following:
 
 * 📦 Very lightweight
-* ⚛️Build for React Js
+* ⚛️ Build for React Js
 * 🚀 Fast and easy to Implement
 * 🛡️ Supports Json Web Token (JWT)
 * 🔒 Secure Client Side Authentication
-* ⌨️Highly typed and written in TypeScript
+* ⌨️ Highly typed and written in TypeScript
 
 ## Documentation
 
-Visit [https://authkit.arkadip.me](https://authkit.arkadip.me) for the complete documentation
+Visit [Auth Kit](https://authkit.arkadip.me) for the offical documentation.
+
+
+
+
+## HALL OF FAME ✨
+We love our contributors! If you'd like to contribute anything from a bug-fix to a feature update, you can read our [CONTRIBUTING GUIDE](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md)
+
+
+
+[![Contributors](https://contrib.rocks/image?repo=react-auth-kit/react-auth-kit)](https://github.com/react-auth-kit/react-auth-kit/graphs/contributors)
+
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
