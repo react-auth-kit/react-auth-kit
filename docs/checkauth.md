@@ -4,7 +4,7 @@
 
 ## Introduction
 
-There is many time, when you have to understand if any user is authenticated
+There are many times, when you have to understand if any user is authenticated
 (especially in `login` pages, where you have to redirect your user to its dashboard or allow to login)
 
 For this reason, `React Auth Kit` comes with `isAuth` functions
