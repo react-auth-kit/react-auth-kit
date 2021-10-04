@@ -52,8 +52,6 @@ export function authReducer(state: AuthKitStateInterface,
         userState: null,
         isSignIn: false,
       };
-    default:
-      return state;
   }
 }
 
