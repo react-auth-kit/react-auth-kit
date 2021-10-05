@@ -130,4 +130,4 @@ Now, sit back and relax till we review your PR, you've made your contribution to
 
 By contributing, you agree that your contributions will be licensed under [Apache License 2.0](LICENSE).
 
-:tada: :confetti*ball: :smiley: ***Happy Contributing**\_ :smiley: :confetti_ball: :tada:
+:tada: :confetti ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:
