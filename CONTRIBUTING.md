@@ -18,7 +18,7 @@ We use [Github Flow](https://guides.github.com/introduction/flow/index.html), al
 
 You can get your own fork/copy of [React Auth Kit](https://github.com/react-auth-kit/react-auth-kit) by using the <kbd><b>Fork</b></kbd></a> button.
 
-[![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)](https://github.com/react-auth-kit/react-auth-kit)
+ [![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)](https://github.com/react-auth-kit/react-auth-kit)
 
 ### 2. Clone it :busts_in_silhouette:
 
@@ -30,7 +30,7 @@ git clone https://github.com/Your_Username/react-auth-kit.git
 
 > This makes a local copy of the repository in your machine.
 
-Once you have cloned the `React-Auth-Kit` repository from GitHub, move to that folder first using change directory command.
+Once you have cloned the ` React-Auth-Kit ` repository from GitHub, move to that folder first using change directory command.
 
 ```sh
 # This will change directory to a folder Plant_Disease_Detection
@@ -130,4 +130,4 @@ Now, sit back and relax till we review your PR, you've made your contribution to
 
 By contributing, you agree that your contributions will be licensed under [Apache License 2.0](LICENSE).
 
-:tada: :confetti ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:
+:tada: :confetti_ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:
