@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import Cookies from 'js-cookie';
 import TokenObject from '../TokenObject';
 import {AuthKitStateInterface, AuthStateUserObject} from '../types';
@@ -64,17 +63,300 @@ describe('Token with Cookie', () => {
   });
 });
 
-// syncTokens
-// - withAuth
-//   - usingRefreshToken
-//     - cookie
-//     - localstorage
-//   - notUsingRefreshToken
-//     - cookie
-//     - localstorage
-// - withoutAuth
-//   - cookie
-//   - localstorage
+/**
+ * initialToken
+ * - cookie
+ *   - usingRefreshToken
+ *   - notUsingRefreshToken
+ *   - no-token when exception
+ *   - no-token
+ * - localstorage
+ *   - usingRefreshToken
+ *   - notUsingRefreshToken
+ *   - no-token when exception
+ *   - no-token
+ */
+describe('initialToken', () => {
+  let tokenObject: TokenObject;
+  const authStorageName = '__';
+  const refreshTokenName = '__refreshTokenName';
+  const cookieDomain = window.location.hostname;
+  const cookieSecure = window.location.protocol === 'https:';
+
+  const authToken = '__authToken';
+  const authType = '__authType';
+  const authTime = new Date(2021, 10, 5);
+  const refreshToken = '__refreshToken';
+  const refreshTime = new Date(2021, 10, 6);
+  const userState = {key: 'val'} as AuthStateUserObject;
+
+  const authTimeStorageName = `${authStorageName}_storage`;
+  const authStorageTypeName = `${authStorageName}_type`;
+  const stateStorageName = `${authStorageName}_state`;
+  const refreshTokenTimeName = `${refreshTokenName}_time`;
+
+  describe('cookie', () => {
+    it('token with refreshToken', () => {
+      // Arrange
+      tokenObject = new TokenObject(
+          authStorageName,
+          'cookie',
+          refreshTokenName,
+          cookieDomain,
+          cookieSecure,
+      );
+      Cookies.get = jest
+          .fn()
+          .mockImplementationOnce(() => authToken)
+          .mockImplementationOnce(() => authType)
+          .mockImplementationOnce(() => authTime)
+          .mockImplementationOnce(() => JSON.stringify(userState))
+          .mockImplementationOnce(() => refreshToken)
+          .mockImplementationOnce(() => refreshTime);
+
+      // Act
+      const actual = tokenObject.initialToken();
+
+      // Assert
+      expect(actual).toEqual({
+        auth: {
+          token: authToken,
+          type: authType,
+          expiresAt: authTime,
+        },
+        userState: userState,
+        isSignIn: true,
+        isUsingRefreshToken: true,
+        refresh: {
+          token: refreshToken,
+          expiresAt: refreshTime,
+        },
+      });
+    });
+
+    it('token without refreshToken', () => {
+      // Arrange
+      tokenObject = new TokenObject(
+          authStorageName,
+          'cookie',
+          null,
+          cookieDomain,
+          cookieSecure,
+      );
+      Cookies.get = jest
+          .fn()
+          .mockImplementationOnce(() => authToken)
+          .mockImplementationOnce(() => authType)
+          .mockImplementationOnce(() => authTime)
+          .mockImplementationOnce(() => JSON.stringify(userState));
+
+      // Act
+      const actual = tokenObject.initialToken();
+
+      // Assert
+      expect(actual).toEqual({
+        auth: {
+          token: authToken,
+          type: authType,
+          expiresAt: authTime,
+        },
+        userState: userState,
+        isSignIn: true,
+        isUsingRefreshToken: false,
+        refresh: null,
+      });
+    });
+
+    it('no token when found error', () => {
+      // Arrange
+      tokenObject = new TokenObject(
+          authStorageName,
+          'cookie',
+          null,
+          cookieDomain,
+          cookieSecure,
+      );
+      Cookies.get = jest
+          .fn()
+          .mockImplementationOnce(() => authToken)
+          .mockImplementationOnce(() => authType)
+          .mockImplementationOnce(() => authTime)
+          .mockImplementationOnce(() => 'NO_JSON');
+
+      // Act
+      const actual = tokenObject.initialToken();
+
+      // Assert
+      expect(actual).toEqual({
+        auth: null,
+        refresh: null,
+        userState: null,
+        isUsingRefreshToken: false,
+        isSignIn: false,
+      });
+    });
+
+    it('no token when not found authToken', () => {
+      // Arrange
+      tokenObject = new TokenObject(
+          authStorageName,
+          'cookie',
+          null,
+          cookieDomain,
+          cookieSecure,
+      );
+      Cookies.get = jest.fn().mockImplementation(() => null);
+
+      // Act
+      const actual = tokenObject.initialToken();
+
+      // Assert
+      expect(actual).toEqual({
+        auth: null,
+        refresh: null,
+        userState: null,
+        isUsingRefreshToken: false,
+        isSignIn: false,
+      });
+    });
+  });
+
+  describe('localstorage', () => {
+    it('token with refreshToken', () => {
+      // Arrange
+      tokenObject = new TokenObject(
+          authStorageName,
+          'localstorage',
+          refreshTokenName,
+          cookieDomain,
+          cookieSecure,
+      );
+
+      localStorage.setItem(authStorageName, authToken);
+      localStorage.setItem(authStorageTypeName, authType);
+      localStorage.setItem(authTimeStorageName, authTime.toISOString());
+      localStorage.setItem(stateStorageName, JSON.stringify(userState));
+      localStorage.setItem(refreshTokenName, refreshToken);
+      localStorage.setItem(refreshTokenTimeName, refreshTime.toISOString());
+
+      // Act
+      const actual = tokenObject.initialToken();
+
+      // Assert
+      expect(actual).toEqual({
+        auth: {
+          token: authToken,
+          type: authType,
+          expiresAt: authTime,
+        },
+        userState: userState,
+        isSignIn: true,
+        isUsingRefreshToken: true,
+        refresh: {
+          token: refreshToken,
+          expiresAt: refreshTime,
+        },
+      });
+    });
+  });
+
+  it('token without refreshToken', () => {
+    // Arrange
+    tokenObject = new TokenObject(
+        authStorageName,
+        'localstorage',
+        null,
+        cookieDomain,
+        cookieSecure,
+    );
+
+    localStorage.setItem(authStorageName, authToken);
+    localStorage.setItem(authStorageTypeName, authType);
+    localStorage.setItem(authTimeStorageName, authTime.toISOString());
+    localStorage.setItem(stateStorageName, JSON.stringify(userState));
+
+    // Act
+    const actual = tokenObject.initialToken();
+
+    // Assert
+    expect(actual).toEqual({
+      auth: {
+        token: authToken,
+        type: authType,
+        expiresAt: authTime,
+      },
+      userState: userState,
+      isSignIn: true,
+      isUsingRefreshToken: false,
+      refresh: null,
+    });
+  });
+
+  it('no token when found error', () => {
+    // Arrange
+    tokenObject = new TokenObject(
+        authStorageName,
+        'localstorage',
+        null,
+        cookieDomain,
+        cookieSecure,
+    );
+
+    localStorage.setItem(authStorageName, authToken);
+    localStorage.setItem(authStorageTypeName, authType);
+    localStorage.setItem(authTimeStorageName, authTime.toISOString());
+    localStorage.setItem(stateStorageName, 'NO_JSON');
+
+    // Act
+    const actual = tokenObject.initialToken();
+
+    // Assert
+    expect(actual).toEqual({
+      auth: null,
+      refresh: null,
+      userState: null,
+      isUsingRefreshToken: false,
+      isSignIn: false,
+    });
+  });
+
+  it('no token when not found authToken', () => {
+    // Arrange
+    tokenObject = new TokenObject(
+        authStorageName,
+        'localstorage',
+        null,
+        cookieDomain,
+        cookieSecure,
+    );
+
+    // Act
+    const actual = tokenObject.initialToken();
+
+    // Assert
+    expect(actual).toEqual({
+      auth: null,
+      refresh: null,
+      userState: null,
+      isUsingRefreshToken: false,
+      isSignIn: false,
+    });
+  });
+});
+
+/**
+ * syncTokens
+ * - withAuth
+ *   - usingRefreshToken
+ *     - cookie
+ *     - localstorage
+ *   - notUsingRefreshToken
+ *     - cookie
+ *     - localstorage
+ * - withoutAuth
+ *   - cookie
+ *   - localstorage
+ */
 
 describe('syncTokens', () => {
   let tokenObject: TokenObject;
@@ -110,15 +392,15 @@ describe('syncTokens', () => {
   describe('With Auth', () => {
     const authToken = '__authToken';
     const authType = '__authType';
-    const authExpiresAt = new Date(2021, 10, 5);
+    const authTime = new Date(2021, 10, 5);
     const refreshToken = '__refreshToken';
-    const refreshExpiresAt = new Date(2021, 10, 6);
+    const refreshTime = new Date(2021, 10, 6);
     const userState = {key: 'val'} as AuthStateUserObject;
 
     describe('Using Refresh Token', () => {
       const authState = {
-        auth: {token: authToken, type: authType, expiresAt: authExpiresAt},
-        refresh: {token: refreshToken, expiresAt: refreshExpiresAt},
+        auth: {token: authToken, type: authType, expiresAt: authTime},
+        refresh: {token: refreshToken, expiresAt: refreshTime},
         userState,
       } as AuthKitStateInterface;
 
@@ -237,12 +519,12 @@ describe('syncTokens', () => {
     });
     describe('Not Using Refresh Token', () => {
       const noRefreshTokenAuthState = {
-        auth: {token: authToken, type: authType, expiresAt: authExpiresAt},
+        auth: {token: authToken, type: authType, expiresAt: authTime},
         refresh: null,
         userState,
       } as AuthKitStateInterface;
 
-      beforeEach(()=> {
+      beforeEach(() => {
         refreshTokenKeys.forEach((key) => {
           localStorage.removeItem(key);
         });
@@ -398,7 +680,7 @@ describe('syncTokens', () => {
     });
 
     describe('Not Using Refresh Token', () => {
-      beforeEach(()=> {
+      beforeEach(() => {
         refreshTokenKeys.forEach((key) => {
           localStorage.removeItem(key);
         });
