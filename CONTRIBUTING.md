@@ -1,4 +1,5 @@
 # Contributing to _React Auth Kit_
+
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
@@ -9,11 +10,9 @@ We love your input! We want to make contributing to this project as easy and tra
 - [Proposing new features](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/feature_request.md)
 - [Contributing to documentation](https://authkit.arkadip.co/contributing/)
 
-
 ## Steps to follow :scroll:
 
 We use [Github Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). We actively welcome your pull requests. So here are the steps to get started.
-
 
 ### 1. Fork it :fork_and_knife:
 
@@ -73,9 +72,45 @@ git add .
 
 Type in a message relevant for the code reviewer using
 
+### Conventional Commit
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Types:
+
+- **fix**: a commit of the type fix patches a bug in your codebase (this correlates with PATCH in Semantic Versioning).
+
+- **feat**: a commit of the type feat introduces a new feature to the codebase (this correlates with MINOR in Semantic Versioning).
+
+- **refactor**: a commit of the type refactor is a change that neither fixes a bug nor adds a feature.
+
+- **build**: a commit of the type build are changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm).
+
+- **chore**: a commit of the type chore are other changes that don't modify src or test files.
+
+- **ci**: a commit of the type ci are changes to our CI configuration files and scripts.
+
+- **style**: a commit of the type style are changes that do not affect the meaning of the code (white-space, formatting, missing semi-colon, etc).
+
+- **docs**: a commit of the type docs are documentation changes only.
+
+- **perf**: a commit of the type perf is a code change that improves performance.
+
+- **test**: a commit of the type test introduces missing tests or correcting existing tests
+
+- **BREAKING CHANGE**: a commit that has a footer BREAKING CHANGE:, or appends a ! after the type/scope, introduces a breaking API change (correlating with MAJOR in Semantic Versioning). A BREAKING CHANGE can be part of commits of any type.
+
+Ex.
+
 ```sh
 # This message gets associated with all files you have changed
-git commit -m 'relevant message'
+git commit -m 'docs: edited the CONTRIBUTING.md'
 ```
 
 Now, Push your awesome work to your remote repository using
@@ -91,10 +126,8 @@ Then add a title and description to your pull request that explains your preciou
 
 Now, sit back and relax till we review your PR, you've made your contribution to our project.
 
-
 ## License
 
 By contributing, you agree that your contributions will be licensed under [Apache License 2.0](LICENSE).
-
 
 :tada: :confetti_ball: :smiley: _**Happy Contributing**_ :smiley: :confetti_ball: :tada:
