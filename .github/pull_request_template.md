@@ -1,3 +1,9 @@
+## Related Issues
+<!-- 
+Please use this format link issue numbers: Fixes #123
+https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword 
+-->
+
 ## Types of changes
 <!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
 - [ ] Bug fix (non-breaking change which fixes an issue)
@@ -14,24 +20,17 @@
 
 <!-- Please do not leave this blank -->
 
-## Related Issues
-<!-- 
-Please use this format link issue numbers: Fixes #123
-https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword 
--->
-
 ## Screenshots/Recordings
 
 <!--  screenshots  -->
 
 ## Added tests?
 
-- [ ] yes
-- [ ] no, because they aren't needed
+- [ ] Yes
+- [ ] No, because they aren't needed
 
 ## Added to documentation?
 
-- [ ] readme
-- [ ] contributing.md
-- [ ] docs
-- [ ] no documentation needed
+- [ ] README
+- [ ] Documentation
+- [ ] No Documentation Needed
