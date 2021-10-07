@@ -81,8 +81,6 @@ export function authReducer(state: AuthKitStateInterface,
       } else {
         return state;
       }
-    default:
-      return state;
   }
 }
 
