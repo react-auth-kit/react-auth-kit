@@ -15,7 +15,6 @@
  */
 
 import * as React from 'react';
-import {refreshTokenCallback} from '../types';
 
 /**
  * React useInterval Hook
@@ -26,27 +25,24 @@ import {refreshTokenCallback} from '../types';
  *
  * @returns the ref of setInterval
  */
-function useInterval(callback:refreshTokenCallback, delay:number|null)
-  :React.MutableRefObject<number | null> {
-  const timeoutRef = React.useRef<number | null>(null);
-  const savedCallback = React.useRef<refreshTokenCallback>(callback);
+function useInterval(callback: ()=>void, delay:number|null) {
+  const savedCallback = React.useRef(callback);
 
+  // Remember the latest callback if it changes.
   React.useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
+  // Set up the interval.
   React.useEffect(() => {
-    if (typeof delay === 'number') {
-      timeoutRef.current = window.setInterval(savedCallback.current, delay);
+    // Don't schedule if no delay is specified.
+    if (delay === null) {
+      return;
     }
-    return () => {
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [delay]);
+    const id = window.setInterval(() => savedCallback.current, delay);
 
-  return timeoutRef;
+    return () => window.clearInterval(id);
+  }, [delay]);
 }
 
 export {useInterval};
