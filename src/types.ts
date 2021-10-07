@@ -84,11 +84,11 @@ export interface AuthProviderProps {
 
 export type refreshTokenCallback =
   (param: {
-    authToken: string,
-    authTokenExpireAt: Date,
-    refreshToken: string,
-    refreshTokenExpiresAt: Date,
-    authUserState: AuthStateUserObject
+    authToken?: string,
+    authTokenExpireAt?: Date,
+    refreshToken?: string,
+    refreshTokenExpiresAt?: Date,
+    authUserState: AuthStateUserObject | null
   }) =>
     {
       isSuccess: boolean,
