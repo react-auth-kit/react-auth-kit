@@ -29,9 +29,9 @@ describe('AuthProvider renders successfully', ()=>{
         </AuthProvider>,
     );
   });
-  it('2. with cookie and refreshToken', ()=>{
+  it('2. with cookie', ()=>{
     render(
-        <AuthProvider authType={'localstorage'} authName={'_auth'} refreshToken>
+        <AuthProvider authType={'localstorage'} authName={'_auth'} >
           <BrowserRouter>
             <Route/>
           </BrowserRouter>
