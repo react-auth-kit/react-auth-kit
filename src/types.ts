@@ -71,7 +71,7 @@ export interface AuthContextInterface {
 export interface AuthProviderProps {
   authType: 'cookie' | 'localstorage'
   authName: string,
-  refresh?: refreshFunctionType
+  refresh?: createRefreshParamInterface
   cookieDomain?: string
   cookieSecure?: boolean
   children: React.ReactNode
@@ -81,12 +81,28 @@ export interface AuthProviderProps {
  * Refresh Token types
  */
 // Callback function
-export type refreshTokenCallback = (x: number) => number
+
+export type refreshTokenCallback =
+  (param: {
+    authToken: string,
+    authTokenExpireAt: Date,
+    refreshToken: string,
+    refreshTokenExpiresAt: Date,
+    authUserState: AuthStateUserObject
+  }) =>
+    {
+      isSuccess: boolean,
+      newAuthToken: string,
+      newAuthTokenExpireAt: Date,
+      newRefreshToken: string | null,
+      newRefreshTokenExpiresAt: Date | null,
+      newAuthUserState: AuthStateUserObject | null
+    }
 
 // createRefresh function parameter
 export interface createRefreshParamInterface {
   interval: number,
-  callback: refreshTokenCallback
+  refreshApiCallback: refreshTokenCallback
 }
 
 export type refreshFunctionType = (param: createRefreshParamInterface)
