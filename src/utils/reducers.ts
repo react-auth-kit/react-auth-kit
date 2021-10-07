@@ -24,6 +24,8 @@ import {
   SignInAction,
   SignInActionPayload,
   SignOutAction,
+  RefreshTokenAction,
+  RefreshTokenActionPayload,
 } from './actions';
 
 /**
@@ -52,6 +54,33 @@ export function authReducer(state: AuthKitStateInterface,
         userState: null,
         isSignIn: false,
       };
+    case ActionType.RefreshToken:
+      if (state.isSignIn && state.auth && state.refresh) {
+        return {
+          ...state,
+          auth: {
+            token: action.payload.newAuthToken ?
+              action.payload.newAuthToken : state.auth.token,
+            type: state.auth.type,
+            expiresAt: action.payload.newAuthTokenExpireIn ?
+              new Date(new Date().getTime() +
+                action.payload.newAuthTokenExpireIn * 60 * 1000):
+              state.auth.expiresAt,
+          },
+          refresh: {
+            token: action.payload.newRefreshToken ?
+              action.payload.newRefreshToken : state.refresh.token,
+            expiresAt: action.payload.newRefreshTokenExpiresIn ?
+              new Date(new Date().getTime() +
+                action.payload.newRefreshTokenExpiresIn * 60 * 1000):
+              state.refresh.expiresAt,
+          },
+          userState: action.payload.newAuthUserState ?
+            action.payload.newAuthUserState : state.userState,
+        };
+      } else {
+        return state;
+      }
     default:
       return state;
   }
@@ -66,6 +95,18 @@ export function doSignIn(signInParams: SignInActionPayload): SignInAction {
   return ({
     type: ActionType.SignIn,
     payload: signInParams,
+  });
+}
+
+/**
+ * used to refresh the Token
+ * @param refreshTokenParam
+ */
+export function doRefresh(refreshTokenParam: RefreshTokenActionPayload):
+  RefreshTokenAction {
+  return ({
+    type: ActionType.RefreshToken,
+    payload: refreshTokenParam,
   });
 }
 
