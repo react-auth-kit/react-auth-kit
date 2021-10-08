@@ -18,9 +18,10 @@ import {render} from '@testing-library/react';
 import AuthProvider from '../AuthProvider';
 import {BrowserRouter, Route} from 'react-router-dom';
 import React from 'react';
+import createRefresh from '../createRefresh';
 
 describe('AuthProvider renders successfully', ()=>{
-  it('1. with localStorage', ()=>{
+  it('With localStorage', ()=>{
     render(
         <AuthProvider authType={'localstorage'} authName={'_auth'}>
           <BrowserRouter>
@@ -29,14 +30,65 @@ describe('AuthProvider renders successfully', ()=>{
         </AuthProvider>,
     );
   });
-  it('2. with cookie', ()=>{
-    render(
-        <AuthProvider authType={'localstorage'} authName={'_auth'} >
+  describe('With cookie', ()=>{
+    it('renders with all props given', ()=>{
+      render(
+          <AuthProvider
+            authType={'cookie'}
+            authName={'_auth'}
+            cookieDomain={window.location.hostname}
+            cookieSecure
+          >
+            <BrowserRouter>
+              <Route/>
+            </BrowserRouter>
+          </AuthProvider>,
+      );
+    });
+
+    it('Throws an error, then props are missing', ()=>{
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
+
+      expect(() => render(
+          <AuthProvider
+            authType={'cookie'}
+            authName={'_auth'}
+          >
+            <BrowserRouter>
+              <Route/>
+            </BrowserRouter>
+          </AuthProvider>,
+      )).toThrow();
+    });
+  });
+});
+describe('Authprovider with refresh Token', ()=> {
+  const refreshApi = createRefresh({
+    interval: 1,
+    refreshApiCallback: (param) => {
+      console.log(param);
+      return {
+        isSuccess: true,
+        newAuthToken: 'fsdgedgd',
+        newAuthTokenExpireIn: 10,
+        newRefreshTokenExpiresIn: 60,
+      };
+    },
+  });
+
+  it('renders successfully', ()=>{
+    const {container} = render(
+        <AuthProvider
+          authType={'localstorage'}
+          authName={'_hi'}
+          refresh={refreshApi}
+        >
           <BrowserRouter>
             <Route/>
           </BrowserRouter>
         </AuthProvider>,
     );
+    expect(container.nodeName).toMatch('DIV');
   });
 });
 
