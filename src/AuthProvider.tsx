@@ -59,7 +59,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
               dispatch(doRefresh(r));
             }
           },
-        authState.isSignIn ? refresh.interval:null,
+        authState.isSignIn ? refresh.interval : null,
       );
     }
 
