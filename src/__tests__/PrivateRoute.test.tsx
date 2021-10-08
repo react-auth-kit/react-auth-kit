@@ -13,22 +13,125 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import React from 'react';
 import PrivateRoute from '../PrivateRoute';
 import {BrowserRouter} from 'react-router-dom';
 import AuthProvider from '../AuthProvider';
+import AuthContext from '../AuthContext';
+import {AuthKitStateInterface} from '../types';
+import {doSignOut} from '../utils/reducers';
 
-test('PrivateRoute renders successfully with AuthProvider', ()=>{
-  const {container} = render(
-      <AuthProvider authType={'cookie'} authName={'_Hi'}
-        cookieDomain={window.location.hostname}>
+// Helpers
+const getPastDate = () => new Date(new Date().getTime() - 1000);
+const getFutureDate = () => new Date(new Date().getTime() + 1000);
+const getFakeContextValue = (expiresAt: Date, dispatch = jest.fn()) => {
+  const authState: AuthKitStateInterface = {
+    auth: {
+      token: 'fake-token',
+      type: 'cookie',
+      expiresAt,
+    },
+    refresh: null,
+    userState: null,
+    isSignIn: false,
+    isUsingRefreshToken: false,
+  };
+
+  return {
+    authState,
+    dispatch,
+  };
+};
+
+describe('PrivateRoute component', () => {
+  it('renders successfully with AuthProvider', () => {
+    const {container} = render(
+        <AuthProvider authType={'cookie'} authName={'_Hi'}
+          cookieDomain={window.location.hostname}>
+          <BrowserRouter>
+            <PrivateRoute loginPath={'/login'}/>
+          </BrowserRouter>
+        </AuthProvider>,
+    );
+    expect(container.nodeName).toMatch('DIV');
+  });
+
+  it('throws, when used outside AuthProvider', () => {
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+
+    expect(() => render(
         <BrowserRouter>
           <PrivateRoute loginPath={'/login'}/>
-        </BrowserRouter>
-      </AuthProvider>,
-  );
-  expect(container.nodeName).toMatch('DIV');
+        </BrowserRouter>,
+    )).toThrow();
+  });
+
+  it('renders component, when the token has not yet expired', () => {
+    const TestComponent = () => <p>Test Component</p>;
+    const fakeContextValue = getFakeContextValue(getFutureDate());
+
+    render(
+        <AuthContext.Provider value={fakeContextValue}>
+          <BrowserRouter>
+            <PrivateRoute loginPath={'/login'} component={TestComponent}/>
+          </BrowserRouter>
+        </AuthContext.Provider>,
+    );
+
+    expect(screen.getByText(/test component/i)).toBeTruthy();
+  });
+
+  it('dispatches "doSignOut" action, when the token has expired', () => {
+    const TestComponent = () => <p>Test Component</p>;
+    const fakeDispatch = jest.fn();
+    const fakeContextValue = getFakeContextValue(getPastDate(), fakeDispatch);
+
+    render(
+        <AuthContext.Provider value={fakeContextValue}>
+          <BrowserRouter>
+            <PrivateRoute loginPath={'/login'} component={TestComponent}/>
+          </BrowserRouter>
+        </AuthContext.Provider>,
+    );
+
+    expect(fakeDispatch).toHaveBeenCalled();
+    expect(fakeDispatch).toHaveBeenCalledWith(doSignOut());
+  });
+
+  it('renders component using render prop', () => {
+    const TestComponent = () => <p>Test Component</p>;
+    const fakeContextValue = getFakeContextValue(getFutureDate());
+
+    render(
+        <AuthContext.Provider value={fakeContextValue}>
+          <BrowserRouter>
+            <PrivateRoute loginPath={'/login'} render={() => <TestComponent/>}/>
+          </BrowserRouter>
+        </AuthContext.Provider>,
+    );
+
+    expect(screen.getByText(/test component/i)).toBeTruthy();
+  });
+
+  it('renders nothing, missing both "component" and "render" props', () => {
+    const fakeDispatch = jest.fn();
+    const fakeContextValue = getFakeContextValue(getFutureDate(), fakeDispatch);
+
+    render(
+        <AuthContext.Provider value={fakeContextValue}>
+
+          <BrowserRouter>
+            <div data-testid={'parent'}>
+              <PrivateRoute loginPath={'/login'}/>
+            </div>
+          </BrowserRouter>
+        </AuthContext.Provider>,
+    );
+
+    expect(fakeDispatch).not.toHaveBeenCalled();
+    expect(screen.getByTestId('parent').hasChildNodes()).toBe(false);
+  });
 });
 
 export {};
