@@ -64,7 +64,7 @@ export function authReducer(state: AuthKitStateInterface,
             type: state.auth.type,
             expiresAt: action.payload.newAuthTokenExpireIn ?
               new Date(new Date().getTime() +
-                action.payload.newAuthTokenExpireIn * 60 * 1000):
+                action.payload.newAuthTokenExpireIn * 60 * 1000) :
               state.auth.expiresAt,
           },
           refresh: {
@@ -72,7 +72,7 @@ export function authReducer(state: AuthKitStateInterface,
               action.payload.newRefreshToken : state.refresh.token,
             expiresAt: action.payload.newRefreshTokenExpiresIn ?
               new Date(new Date().getTime() +
-                action.payload.newRefreshTokenExpiresIn * 60 * 1000):
+                action.payload.newRefreshTokenExpiresIn * 60 * 1000) :
               state.refresh.expiresAt,
           },
           userState: action.payload.newAuthUserState ?
