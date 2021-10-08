@@ -19,6 +19,8 @@ import AuthProvider from '../AuthProvider';
 import {BrowserRouter, Route} from 'react-router-dom';
 import React from 'react';
 import createRefresh from '../createRefresh';
+import {AuthStateUserObject} from '../types';
+import Cookies from 'js-cookie';
 
 describe('AuthProvider renders successfully', ()=>{
   it('With localStorage', ()=>{
@@ -63,8 +65,11 @@ describe('AuthProvider renders successfully', ()=>{
   });
 });
 describe('Authprovider with refresh Token', ()=> {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
   const refreshApi = createRefresh({
-    interval: 1,
+    interval: 1/60,
     refreshApiCallback: (param) => {
       console.log(param);
       return {
@@ -89,6 +94,45 @@ describe('Authprovider with refresh Token', ()=> {
         </AuthProvider>,
     );
     expect(container.nodeName).toMatch('DIV');
+  });
+
+  it('Initially signed in', ()=>{
+    jest.useFakeTimers();
+
+    const authToken = '__authToken';
+    const authType = '__authType';
+    const authTime = new Date(2021, 10, 5);
+    const refreshToken = '__refreshToken';
+    const refreshTime = new Date(2021, 10, 6);
+    const userState = {key: 'val'} as AuthStateUserObject;
+
+    Cookies.get = jest
+        .fn()
+        .mockImplementationOnce(() => authToken)
+        .mockImplementationOnce(() => authType)
+        .mockImplementationOnce(() => authTime)
+        .mockImplementationOnce(() => JSON.stringify(userState))
+        .mockImplementationOnce(() => refreshToken)
+        .mockImplementationOnce(() => refreshTime);
+
+    render(
+        <AuthProvider
+          authType={'cookie'}
+          authName={'_hi'}
+          cookieDomain={window.location.hostname}
+          cookieSecure={window.location.protocol === 'https:'}
+          refresh={refreshApi}
+        >
+          <BrowserRouter>
+            <Route/>
+          </BrowserRouter>
+        </AuthProvider>,
+    );
+    jest.advanceTimersByTime(1000);
+
+    // TODO: assertion statements needed
+
+    jest.useRealTimers();
   });
 });
 
