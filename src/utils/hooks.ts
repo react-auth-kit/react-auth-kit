@@ -25,8 +25,10 @@ import * as React from 'react';
  *
  * @returns the ref of setInterval
  */
-function useInterval(callback: ()=>void, delay:number|null) {
+function useInterval(callback: ()=>void, delay:number|null)
+  : React.MutableRefObject<number | null> {
   const savedCallback = React.useRef(callback);
+  const intervalRef = React.useRef<number | null>(null);
 
   // Remember the latest callback if it changes.
   React.useEffect(() => {
@@ -35,17 +37,20 @@ function useInterval(callback: ()=>void, delay:number|null) {
 
   // Set up the interval.
   React.useEffect(() => {
-    // Don't schedule if no delay is specified.
-    if (delay === null) {
-      return;
-    }
-    const id = window.setInterval(
-        () => savedCallback.current,
-        delay * 60 * 1000,
-    );
+    const tick = () => savedCallback.current();
 
-    return () => window.clearInterval(id);
+    if (typeof delay === 'number') {
+      intervalRef.current = window.setInterval(tick, delay);
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        window.clearTimeout(intervalRef.current);
+      }
+    };
   }, [delay]);
+
+  return intervalRef;
 }
 
 export {useInterval};
