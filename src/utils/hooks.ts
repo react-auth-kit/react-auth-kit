@@ -40,7 +40,7 @@ function useInterval(callback: ()=>void, delay:number|null)
     const tick = () => savedCallback.current();
 
     if (typeof delay === 'number') {
-      intervalRef.current = window.setInterval(tick, delay);
+      intervalRef.current = window.setInterval(tick, delay * 60 * 1000);
     }
 
     return () => {
