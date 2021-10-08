@@ -16,18 +16,17 @@
  */
 
 import AuthProvider from './AuthProvider';
+import createRefresh from './createRefresh';
 import PrivateRoute from './PrivateRoute';
 import useSignIn from './hooks/useSignIn';
 import useSignOut from './hooks/useSignOut';
 import useAuthUser from './hooks/useAuthUser';
 import useAuthHeader from './hooks/useAuthHeader';
-import useRefreshToken from './hooks/useRefreshToken';
 import useIsAuthenticated from './hooks/useIsAuthenticated';
 import withSignIn from './higherOrderComponents/withSignIn';
 import withSignOut from './higherOrderComponents/withSignOut';
 import withAuthUser from './higherOrderComponents/withAuthUser';
 import withAuthHeader from './higherOrderComponents/withAuthHeader';
-import withRefreshToken from './higherOrderComponents/withRefreshToken';
 import withIsAuthenticated from './higherOrderComponents/withIsAuthenticated';
 
 // Default prop for AuthProvider
@@ -39,16 +38,15 @@ AuthProvider.defaultProps = {
 export {
   AuthProvider,
   PrivateRoute,
+  createRefresh,
   useSignIn,
   useSignOut,
   useAuthUser,
   useAuthHeader,
-  useRefreshToken,
   useIsAuthenticated,
   withSignIn,
   withSignOut,
   withAuthUser,
   withAuthHeader,
-  withRefreshToken,
   withIsAuthenticated,
 };
