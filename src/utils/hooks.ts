@@ -21,7 +21,7 @@ import * as React from 'react';
  * Used to integrate the power of setInterval seamlessly
  *
  * @param callback - The callback function
- * @param delay - The amount of delay.
+ * @param delay - The amount of delay in minutes.
  *
  * @returns the ref of setInterval
  */
@@ -39,7 +39,10 @@ function useInterval(callback: ()=>void, delay:number|null) {
     if (delay === null) {
       return;
     }
-    const id = window.setInterval(() => savedCallback.current, delay);
+    const id = window.setInterval(
+        () => savedCallback.current,
+        delay * 60 * 1000,
+    );
 
     return () => window.clearInterval(id);
   }, [delay]);
