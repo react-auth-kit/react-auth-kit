@@ -41,10 +41,10 @@ export interface SignInActionPayload {
 
 export interface RefreshTokenActionPayload {
   newAuthToken: string | null,
-  newAuthTokenExpireIn: number | null,
-  newRefreshToken: string | null,
-  newRefreshTokenExpiresIn: number | null,
-  newAuthUserState: AuthStateUserObject | null
+  newAuthTokenExpireIn?: number | null,
+  newRefreshToken?: string | null,
+  newRefreshTokenExpiresIn?: number | null,
+  newAuthUserState?: AuthStateUserObject | null
 }
 
 export interface SignInAction {

@@ -93,10 +93,10 @@ export type refreshTokenCallback =
     {
       isSuccess: boolean,
       newAuthToken: string,
-      newAuthTokenExpireIn: number | null,
-      newRefreshToken: string | null,
-      newRefreshTokenExpiresIn: number | null,
-      newAuthUserState: AuthStateUserObject | null
+      newAuthTokenExpireIn?: number | null,
+      newRefreshToken?: string | null,
+      newRefreshTokenExpiresIn?: number | null,
+      newAuthUserState?: AuthStateUserObject | null
     }
 
 // createRefresh function parameter
