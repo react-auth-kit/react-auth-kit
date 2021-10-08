@@ -18,9 +18,12 @@ import {render} from '@testing-library/react';
 import AuthProvider from '../AuthProvider';
 import {BrowserRouter, Route} from 'react-router-dom';
 import React from 'react';
+import createRefresh from '../createRefresh';
+import {AuthStateUserObject} from '../types';
+import Cookies from 'js-cookie';
 
 describe('AuthProvider renders successfully', ()=>{
-  it('1. with localStorage', ()=>{
+  it('With localStorage', ()=>{
     render(
         <AuthProvider authType={'localstorage'} authName={'_auth'}>
           <BrowserRouter>
@@ -29,14 +32,107 @@ describe('AuthProvider renders successfully', ()=>{
         </AuthProvider>,
     );
   });
-  it('2. with cookie and refreshToken', ()=>{
-    render(
-        <AuthProvider authType={'localstorage'} authName={'_auth'} refreshToken>
+  describe('With cookie', ()=>{
+    it('renders with all props given', ()=>{
+      render(
+          <AuthProvider
+            authType={'cookie'}
+            authName={'_auth'}
+            cookieDomain={window.location.hostname}
+            cookieSecure
+          >
+            <BrowserRouter>
+              <Route/>
+            </BrowserRouter>
+          </AuthProvider>,
+      );
+    });
+
+    it('Throws an error, then props are missing', ()=>{
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
+
+      expect(() => render(
+          <AuthProvider
+            authType={'cookie'}
+            authName={'_auth'}
+          >
+            <BrowserRouter>
+              <Route/>
+            </BrowserRouter>
+          </AuthProvider>,
+      )).toThrow();
+    });
+  });
+});
+describe('Authprovider with refresh Token', ()=> {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+  const refreshApi = createRefresh({
+    interval: 1/60,
+    refreshApiCallback: (param) => {
+      console.log(param);
+      return {
+        isSuccess: true,
+        newAuthToken: 'fsdgedgd',
+        newAuthTokenExpireIn: 10,
+        newRefreshTokenExpiresIn: 60,
+      };
+    },
+  });
+
+  it('renders successfully', ()=>{
+    const {container} = render(
+        <AuthProvider
+          authType={'localstorage'}
+          authName={'_hi'}
+          refresh={refreshApi}
+        >
           <BrowserRouter>
             <Route/>
           </BrowserRouter>
         </AuthProvider>,
     );
+    expect(container.nodeName).toMatch('DIV');
+  });
+
+  it('Initially signed in', ()=>{
+    jest.useFakeTimers();
+
+    const authToken = '__authToken';
+    const authType = '__authType';
+    const authTime = new Date(2021, 10, 5);
+    const refreshToken = '__refreshToken';
+    const refreshTime = new Date(2021, 10, 6);
+    const userState = {key: 'val'} as AuthStateUserObject;
+
+    Cookies.get = jest
+        .fn()
+        .mockImplementationOnce(() => authToken)
+        .mockImplementationOnce(() => authType)
+        .mockImplementationOnce(() => authTime)
+        .mockImplementationOnce(() => JSON.stringify(userState))
+        .mockImplementationOnce(() => refreshToken)
+        .mockImplementationOnce(() => refreshTime);
+
+    render(
+        <AuthProvider
+          authType={'cookie'}
+          authName={'_hi'}
+          cookieDomain={window.location.hostname}
+          cookieSecure={window.location.protocol === 'https:'}
+          refresh={refreshApi}
+        >
+          <BrowserRouter>
+            <Route/>
+          </BrowserRouter>
+        </AuthProvider>,
+    );
+    jest.advanceTimersByTime(1000);
+
+    // TODO: assertion statements needed
+
+    jest.useRealTimers();
   });
 });
 

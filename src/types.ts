@@ -21,16 +21,12 @@
 import * as React from 'react';
 import {AuthActions} from './utils/actions';
 
-// export interface AuthKitStateInterface {
-//   authToken: string | null
-//   authTokenType: string | null
-//   expireAt: Date | null
-//   isUsingRefreshToken: boolean
-//   refreshToken: string | null
-//   refreshTokenExpireAt: Date | null
-//   authState: AuthStateUserObject | null
-//   isSignIn: boolean
-// }
+/**
+ * Universal types
+ */
+export type AuthStateUserObject = {
+  [x: string]: any;
+}
 
 export interface AuthKitStateInterface {
   auth: {
@@ -48,6 +44,10 @@ export interface AuthKitStateInterface {
   // typeOfStorage: "cookie" | "localstorage"
 }
 
+/**
+ * SignIn function param
+ * Used by: useSignIn and withSignIn
+ */
 export interface signInFunctionParams {
   token: string
   tokenType: string | 'Bearer'
@@ -57,20 +57,53 @@ export interface signInFunctionParams {
   refreshTokenExpireIn?: number
 }
 
+/**
+ * Context values type
+ */
 export interface AuthContextInterface {
   authState: AuthKitStateInterface
   dispatch: React.Dispatch<AuthActions>
 }
 
+/**
+ * Auth Provider Props
+ */
 export interface AuthProviderProps {
   authType: 'cookie' | 'localstorage'
   authName: string,
-  refreshToken?: boolean
+  refresh?: createRefreshParamInterface
   cookieDomain?: string
   cookieSecure?: boolean
   children: React.ReactNode
 }
 
-export type AuthStateUserObject = {
-  [x: string]: any;
+/**
+ * Refresh Token types
+ */
+// Callback function
+
+export type refreshTokenCallback =
+  (param: {
+    authToken?: string,
+    authTokenExpireAt?: Date,
+    refreshToken?: string,
+    refreshTokenExpiresAt?: Date,
+    authUserState: AuthStateUserObject | null
+  }) =>
+    {
+      isSuccess: boolean,
+      newAuthToken: string,
+      newAuthTokenExpireIn?: number | null,
+      newRefreshToken?: string | null,
+      newRefreshTokenExpiresIn?: number | null,
+      newAuthUserState?: AuthStateUserObject | null
+    }
+
+// createRefresh function parameter
+export interface createRefreshParamInterface {
+  interval: number,
+  refreshApiCallback: refreshTokenCallback
 }
+
+export type refreshFunctionType = (param: createRefreshParamInterface)
+  => createRefreshParamInterface

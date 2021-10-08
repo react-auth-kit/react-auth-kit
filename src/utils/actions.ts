@@ -22,7 +22,8 @@ import {AuthStateUserObject} from '../types';
 
 export enum ActionType {
   SignIn,
-  SignOut
+  SignOut,
+  RefreshToken
 }
 
 export interface SignInActionPayload {
@@ -38,13 +39,26 @@ export interface SignInActionPayload {
   userState: AuthStateUserObject | null,
 }
 
+export interface RefreshTokenActionPayload {
+  newAuthToken: string | null,
+  newAuthTokenExpireIn?: number | null,
+  newRefreshToken?: string | null,
+  newRefreshTokenExpiresIn?: number | null,
+  newAuthUserState?: AuthStateUserObject | null
+}
+
 export interface SignInAction {
   type: ActionType.SignIn,
   payload: SignInActionPayload
+}
+
+export interface RefreshTokenAction {
+  type: ActionType.RefreshToken,
+  payload: RefreshTokenActionPayload
 }
 
 export interface SignOutAction {
   type: ActionType.SignOut;
 }
 
-export type AuthActions = SignInAction | SignOutAction
+export type AuthActions = SignInAction | SignOutAction | RefreshTokenAction

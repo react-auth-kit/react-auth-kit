@@ -2,7 +2,8 @@ import * as React from 'react';
 import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
 import {AuthProviderProps} from './types';
-import {authReducer} from './utils/reducers';
+import {authReducer, doRefresh} from './utils/reducers';
+import {useInterval} from './utils/hooks';
 
 
 /**
@@ -20,9 +21,9 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     children,
     authType,
     authName,
-    refreshToken,
     cookieDomain,
     cookieSecure,
+    refresh,
   }) => {
     if (authType === 'cookie') {
       if (!cookieDomain) {
@@ -33,13 +34,34 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
       }
     }
 
-    const refreshTokenName = refreshToken ? `${authName}_refresh` : null;
+    const refreshTokenName = refresh ? `${authName}_refresh` : null;
 
     const tokenObject = new TokenObject(authName, authType,
         refreshTokenName, cookieDomain, cookieSecure);
 
     const [authState, dispatch] =
       React.useReducer(authReducer, tokenObject.initialToken());
+
+    if (refresh) {
+      useInterval(
+          ()=>{
+            const r = refresh.refreshApiCallback(
+                {
+                  authToken: authState.auth?.token,
+                  authTokenExpireAt: authState.auth?.expiresAt,
+                  authUserState: authState.userState,
+                  refreshToken: authState.refresh?.token,
+                  refreshTokenExpiresAt: authState.refresh?.expiresAt,
+                });
+            // store the new value using the state update
+            if (r.isSuccess) {
+            // IF the API call is successful then refresh the AUTH state
+              dispatch(doRefresh(r));
+            }
+          },
+        authState.isSignIn ? refresh.interval : null,
+      );
+    }
 
     React.useEffect(() => {
       tokenObject.syncTokens(authState);
