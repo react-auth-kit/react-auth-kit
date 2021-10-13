@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
+import {AuthContextConsumer} from '../AuthContext';
 import AuthProvider from '../AuthProvider';
 import {BrowserRouter, Route} from 'react-router-dom';
 import React from 'react';
@@ -98,6 +99,7 @@ describe('Authprovider with refresh Token', ()=> {
 
   it('Initially signed in', ()=>{
     jest.useFakeTimers();
+    const spyRefreshApi = jest.spyOn(refreshApi, 'refreshApiCallback');
 
     const authToken = '__authToken';
     const authType = '__authType';
@@ -115,6 +117,14 @@ describe('Authprovider with refresh Token', ()=> {
         .mockImplementationOnce(() => refreshToken)
         .mockImplementationOnce(() => refreshTime);
 
+    const TestConsumer = () => <AuthContextConsumer>{
+      (value) => (
+        <span>
+          isSignIn: {value?.authState.isSignIn ? 'true' : 'false'}
+        </span>
+      )
+    }</AuthContextConsumer>;
+
     render(
         <AuthProvider
           authType={'cookie'}
@@ -124,13 +134,25 @@ describe('Authprovider with refresh Token', ()=> {
           refresh={refreshApi}
         >
           <BrowserRouter>
+            <TestConsumer />
             <Route/>
           </BrowserRouter>
         </AuthProvider>,
     );
+
+    // Check if refreshApiCallback is called
+    expect(spyRefreshApi).not.toBeCalled();
     jest.advanceTimersByTime(1000);
 
     // TODO: assertion statements needed
+    expect(screen.getByText(/^isSignIn:/).textContent).toBe('isSignIn: true');
+
+    // Check if refreshApiCallback is called
+    expect(spyRefreshApi).toHaveBeenCalled();
+
+    // Check again if refreshApiCallback is called
+    jest.advanceTimersByTime(1000);
+    expect(spyRefreshApi).toHaveBeenCalledTimes(2);
 
     jest.useRealTimers();
   });
