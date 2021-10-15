@@ -16,6 +16,8 @@ For this reason, `React Auth Kit` comes with `isAuth` functions
 - For Functional Components, you can use `useIsAuthenticated` function inside any components
 - For class based components, you can wrap the component inside `withIsAuthenticated` function
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+
 ---
 
 ## Usage

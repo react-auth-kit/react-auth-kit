@@ -2,6 +2,8 @@
 
 React-Auth-Kit is available as a [npm package](https://www.npmjs.com/package/react-auth-kit)
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+
 ## npm
 To install and save in your `package.json` dependencies, run:
 ```bash
