@@ -4,6 +4,9 @@
 
 The use of `react-auth-kit` library is very easy and straight forward.
 
+
+<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
+
 ---
 ## AuthProvider
 

@@ -89,5 +89,8 @@ In general, there are two main types of contribution,
 
 6. Split the document up into as many sub-sections as makes sense. This is especially helpful for the readers who want to skip ahead for reference, as we can also use subheads as navigational anchors.
 
+
+<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
+
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

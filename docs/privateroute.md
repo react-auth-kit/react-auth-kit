@@ -1,4 +1,4 @@
-# Private Route
+  # Private Route
 
 > Implement Private Route on your React App
 
@@ -50,7 +50,7 @@ that's why the props are same as Route props. Check [this link](https://reactrou
 
 ***Added Prop***: `loginPath` (_Require_): The fallback path, if the user is unauthorized.
 
-⚠ The only big difference is `PrivateRoute` doesn't support `children` prop. So please don't use that.
+<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

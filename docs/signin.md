@@ -12,6 +12,10 @@ React Auth Kit has easy to implement Sign In procedures.
 - For Functional Components, you can use `useSignIn` function inside any components
 - For class based components, you can wrap the component inside `withSignIn` function
 
+
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+
+
 ---
 
 ## Usage
