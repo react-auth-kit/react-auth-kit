@@ -6,6 +6,8 @@ site_url: https://authkit.arkadip.me
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
 
+copyright:  Copyright &copy; 2020 - 2021 React Auth Kit
+
 theme:
   name: 'material'
   custom_dir: docs/docs_overrides/
@@ -28,6 +30,14 @@ nav:
   - Contributing: 'contributing.md'
 
 markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.details
   - pymdownx.inlinehilite
   - pymdownx.tabbed
   - pymdownx.superfences
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg

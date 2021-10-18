@@ -4,7 +4,7 @@ React-Auth-Kit is available as a [npm package](https://www.npmjs.com/package/rea
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
 
-## npm
+## npm :fontawesome-brands-npm:
 To install and save in your `package.json` dependencies, run:
 ```bash
 //with npm
@@ -24,17 +24,23 @@ You can start using React-Auth-Kit with minimal infrastructure, which is great f
 Two Universal Module Definition (**UMD**) files are provided:
 
 - **unpkg**: [https://unpkg.com/react-auth-kit/dist/index.umd.js](https://unpkg.com/react-auth-kit/dist/index.umd.js)
-- **jsdelivr**: [https://cdn.jsdelivr.net/npm/react-auth-kit/dist/index.umd.js](https://cdn.jsdelivr.net/npm/react-auth-kit/dist/index.umd.js)
+  - **jsdelivr**: [https://cdn.jsdelivr.net/npm/react-auth-kit/dist/index.umd.js](https://cdn.jsdelivr.net/npm/react-auth-kit/dist/index.umd.js)
+
+    [![](https://data.jsdelivr.com/v1/package/npm/react-auth-kit/badge)](https://www.jsdelivr.com/package/npm/react-auth-kit)
 
 You can follow [this CDN example](https://github.com/react-auth-kit/react-auth-kit/tree/master/examples/cdn)
 to quickly get started.
 
-⚠️ Using this approach in `production` is `discouraged` though - the client has to download the entire library,
-regardless of which components are actually used, affecting performance and bandwidth utilization.
+!!! warning ""
 
-⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is `unstable`,
-it shifts as we release new versions. You should consider pointing to a specific version,
-such as [v1.4.6](https://unpkg.com/react-auth-kit@1.4.6/dist/index.umd.js).
+    Using this approach in `production` is `discouraged` though - the client has to download the entire library,
+    regardless of which components are actually used, affecting performance and bandwidth utilization.
+
+!!! danger ""
+
+    The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is `unstable`,
+    it shifts as we release new versions. You should consider pointing to a specific version,
+    such as [v1.4.6](https://unpkg.com/react-auth-kit@1.4.6/dist/index.umd.js).
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">

@@ -1,193 +1,182 @@
 # Refresh Tokens
 
-> Refresh your auth Tokens in an interval
+Often JWT comes with a new challenge.
+You have to `refresh` the JWT token periodically using a token, named Refresh token.
 
-Sometimes, you need to refresh authentication token details, or the authenticated user's state (information).
+> A refresh token is a special kind of token used to obtain a renewed access token.
+You can request new access tokens until the refresh token is on the DenyList.
+Applications must store refresh tokens securely because they essentially allow a user to remain authenticated forever.
 
-To do this dynamically in your component,
-You have to include the `RefreshToken` object in your component.
+React Auth Kit implements an easy approach to integrate the refresh token.
 
-You can use in both [`React Hooks`](https://reactjs.org/docs/hooks-intro.html) or
-[`React Higher Order Component`](https://reactjs.org/docs/higher-order-components.html)
-for both Functional Components and Class-based Components
+You can either use the refresh token in your application or you can leave it.
 
-## 1. Add Refresh Token Object in Component
-### Refresh Token using Hooks in Functional Components
+---
 
-RefreshToken object can be included in functional component using `useRefreshToken` hook
+## API Builder
+To build the refresh token API, you have to use `createRefresh` function.
+It is an identity function. It is mainly used for typechecking and mobility.
 
-```js
-import { useRefreshToken } from 'react-auth-kit'
-```
-#### Demo
-```jsx
-import React from "react"
-import { useRefreshToken } from 'react-auth-kit'
+### createRefresh
 
-const AnyPrivateComponent = () => {
-    const refreshToken = useRefreshToken()
+`#!js createRefresh(options) => refreshApi`
 
-    ...
-}
-```
+Generate a refreshApi based on the options received
 
+#### Arguments
 
-### Refresh Token using Higher Order Component in Class-based Components
+`options` (object): Takes a refresh object. It has 2 parameters
 
-Sign In using Higher Order Component using `withSignOut`.
+1. `refreshApiCallback` (function): This is an API function. Inside this function, you have to add a network request API. See the [details](#refreshapicallback)
+2. `interval` (number): The time interval in minutes, by which the `refreshApiCallback` is called and the state is updated
 
-Add the `withSignOut` HOC and call the `this.props.signOut` function inside the component
+#### Returns
+A complete object of refresh token API. Add this object in the `AuthProvider` as a prop to implement the feature.
 
 ```js
-import { withSignOut } from 'react-auth-kit'
-```
+import {createRefresh} from 'react-auth-kit'
 
-#### Demo
-```jsx
-import React from "react"
-import { withRefreshToken } from 'react-auth-kit'
-
-class AnyPrivateComponent extends React.Component {
-  render(){
-    const {refreshToken} = this.props
-    return (
-      ...
-    )
+const refreshApi = createRefresh({
+  interval: 10, // Refreshs the token in every 10 minutes
+  refreshApiCallback: param => {  // API container function
+    return {
+      isSuccess: true,
+    }
   }
-}
+})
 
-export default withRefreshToken(AnyPrivateComponent)
+export default refreshApi
 ```
 
-## 2. Implement refreshToken object methods
+---
+### refreshApiCallback
+The container for refresh API
 
-RefreshToken has all the methods you need to refresh the auth states programmatically.
+#### Arguments
+The function has only one argument, which is the `object` of the latest state.
 
-### Methods
-There are 4 methods, you can use to refresh the Auth Token and User's details
+The object contains:
 
-1. ***getCurrentAuthState()***: Get the current auth token, auth token type, expiring time
-2. _**getCurrentUserState()**_: Get the current user state
-3. _**updateAuthState()**_: Update the auth state including auth token, auth token type and expiring time
-4. **_updateUserState()_**: Update the user's auth state
+1. `authToken` (string): The Auth token
+2. `authTokenExpireAt` (Date) : Expiring time of the Auth token
+3. `refreshToken` (string): The Refresh token
+4. `refreshTokenExpiresAt` (Date): Expiring time of the refresh token
+5. `authUserState` (object): The current User state
 
-See the example below for the usage, and see the API for detailed description.
+#### Returns
+In side the function you have to return an `object` of new auth state fetched by the API.
 
-## Full Demo (using hook and FC)
-```jsx
-import React from 'react'
-import axios from 'axios'
-import {useRefreshToken} from 'react-auth-kit'
+The return object must contain:
 
-const RefreshComponent = () => {
-  const refreshToken = useRefreshToken() // Create the refresh token object
+1. `isSuccess` (boolean): If the network request is successful, then make it `true`, otherwise make it false.
+   If the value of this variable is false then the state will not changed, and it'll wait for the next time
+2. `newAuthToken` (string): The value of this variable will be the new auth token. So pass the new auth token here.
+3. `newAuthTokenExpireIn` (number)(optional): New time limit in minutes, after which the auth token will expire.
+   If you leave it, the old time limit will not be changed. So if you want to add more 10 minutes, then pass 10 here.
+4. `newRefreshToken` (string)(optional): Pass the new refresh token here, if you want to refresh the refresh token itself.
+5. `newRefreshTokenExpiresIn` (number)(optional): New time limit in minutes, after which the refresh token will expire. Works same as `newAuthTokenExpireIn`
+6. `newAuthUserState` (object)(optional): Pass the new user state. If your API updates the user state, then use this, else leave it.
 
-  React.useEffect(()=>{
-    const {authToken, authTokenType, expireAt} = refreshToken.getCurrentAuthState() //Get the current state
-    const userState = refreshToken.getCurrentUserState()  //Get the current user's state
-
-    //Send the current auth token ad user state to backend
-    axios.post('/some/refresh/api/to/backend', data={
-      authToken: authToken,
-      authTokenType: authTokenType,
-      expireAt: expireAt,
-      userState: userState
-    }).then((res)=>{
-      if(res.status === 200) {
-        // Setting the auth state
-        refreshToken.updateAuthState(res.data.authToken, res.data.authTokenType, res.data.expireIn)
-
-        // Setting the userstate
-        refreshToken.updateUserState(res.data.userState)
+#### refreshApiCallback Example
+```js
+{refreshApiCallback: (
+    {   // arguments
+      authToken,
+      authTokenExpireAt,
+      refreshToken,
+      refreshTokenExpiresAt,
+      authUserState
+    }) => {
+    axios.post('/api/refresh',
+      {
+        refreshToken: refreshToken,
+        oldAuthToken: authToken
       }
-      else {
-        // Throw error
+    ).then(({data})=>{
+      return {
+        // As the request is successful, we are passing new tokens.
+        isSuccess: true,  // For successful network request isSuccess is true
+        newAuthToken: data.newAuthToken,
+        newAuthTokenExpireIn: data.newAuthTokenExpireIn
+        // You can also add new refresh token ad new user state
+      }
+    }).catch((e)=>{
+      console.error(e)
+      return{
+        // As the request is unsuccessful, we are just passing the isSuccess.
+        isSuccess:false // For unsuccessful network request isSuccess is false
       }
     })
-  },[])
-
-  return <React.Fragment/>
+  }
 }
 ```
 
-## RefreshToken API
+---
 
-RefreshToken has the following 4 methods.
+### API Builder Example
+This is the overall example of how to use `createRefresh`. The example uses axios to make network request.
+```js
+import axios from 'axios'
+import {useAuthHeader, createRefresh} from 'react-auth-kit'
 
-1. `getCurrentAuthState()`:
+const refreshApi = createRefresh({
+  interval: 10,   // Refreshs the token in every 10 minutes
+  refreshApiCallback: (
+    {
+      authToken,
+      authTokenExpireAt,
+      refreshToken,
+      refreshTokenExpiresAt,
+      authUserState
+    }) => {
+    axios.post('/api/refresh',
+      {
+        refreshToken: refreshToken,
+        oldAuthToken: authToken
+      }
+    ).then(({data})=>{
+      return {
+        isSuccess: true,  // For successful network request isSuccess is true
+        newAuthToken: data.newAuthToken,
+        newAuthTokenExpireIn: data.newAuthTokenExpireIn
+        // You can also add new refresh token ad new user state
+      }
+    }).catch((e)=>{
+      console.error(e)
+      return{
+        isSuccess:false // For unsuccessful network request isSuccess is false
+      }
+    })
+  }
+})
 
-Get the current auth state as an object
+export default refreshApi
+```
 
-**Returns** { **authToken**: _string_ | _null_; **authTokenType**: _string_ | _null_; **expireAt**: _Date_ | _null_ }
+## Integration in Auth Provider.
+To add the refresh token feature, simply add the return value of `createRefresh` function in the `AuthProvider` as a prop.
 
-- **authToken**: current auth token
-- **authTokenType**: current auth Token type (eg. Bearer)
-- **expireAt**: current expire time
+```js
+import {AuthProvider} from 'react-auth-kit'
+import refreshApi from "./refreshApi";
 
-2. `getCurrentUserState()`:
+function App() {
+  return (
+    <AuthProvider
+      authName={"_auth"}
+      authType={"cookie"}
+      refresh={refreshApi}
+    >
+      <Routes/>
+    </AuthProvider>
+  );
+}
+```
 
-Get the Current User State
+!!! warning "Only use the return from createRefresh as the prop value"
 
-**Returns** _object_ | _null_ - Current User state
-
-3. `getCurrentRefreshToken()`:
-
-Get the current Refresh Token
-
-**Returns** { **refreshToken**: _string_ | _null_; **refreshTokenExpireAt**: _Date_ | _null_ }
-
-- **refreshToken**: _string_ | _null_ - Current Refresh Token
-- **refreshTokenExpireAt**: _Date_ | _null_ - Expiry time of current refresh Token
-
-4. `updateAuthState()`:
-
-updates the AuthState
-
-**Parameters**
-
-- **authToken**: _string_
-
-    The Updated authToken
-
-- `optional` **authTokenType**: _undefined_ | _string_
-
-    The updated authType (optional)
-
-- `optional` **expiresIn**: _undefined_ | _number_
-
-    The updated expiresIn in minutes. (optional)
-
-If the new `authToken` has different expire time, then you must have to update the `expiresIn` param
-
-**Returns** void
-
-5. `updateRefreshToken()`:
-
-Updates the Current Refresh Token
-
-**Parameters**
-
-- **refreshToken**: _string_
-
-    New Refresh Token
-
-- **expiresIn**: _number_
-
-    New Expiry Time for the new Refresh Token `in Minutes`
-
-**Returns** _void_
-
-6. `updateUserState()`:
-
-Updates the Auth User's state
-
-**Parameters**
-
-**userState**: _object_
-
-  Updated User State
-
-**Returns** void
+    Using values other than the returb of `createRefresh` will cause the application to break.
+    So only use the return of `createRefresh` as the prop value.
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
