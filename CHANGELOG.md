@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2021-10-18
+## Added:
+- Refresh Token feature (#603)
+- Added Documentation for Refresh Token (#629)
+- Unit test for actions/reducers.ts (#587)
+- Unit test for TokenObject.ts (#592)
+- Unit test for PrivateRoute.tsx (#606)
+- Unit test for utils/hooks.ts (#618)
+- Unit test for AuthProvider.tsx(#617)
+
+## Thanks to
+
+- [@atrievel](https://github.com/atrievel)
+- [@tumit](https://github.com/tumit)
+- [@sitek94](https://github.com/sitek94)
+- [@DarrylBrooks97](https://github.com/DarrylBrooks97)
+- [@jason1985](https://github.com/jason1985)
+- [@katieraby](https://github.com/katieraby)
+- [@ok524](https://github.com/ok524)
+
+
 ## [1.4.18] - 2021-09-10
 ## Changed:
 - Updated the internal state for better performance, and reliability
