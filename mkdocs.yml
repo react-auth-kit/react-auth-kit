@@ -29,6 +29,14 @@ nav:
   - Refresh Token: 'refreshtoken.md'
   - Contributing: 'contributing.md'
 
+extra:
+  analytics:
+    provider: google
+    property: G-G1WZBFV5R2
+
+extra_javascript:
+  - https://media.ethicalads.io/media/client/ethicalads.min.js
+
 markdown_extensions:
   - admonition
   - tables
