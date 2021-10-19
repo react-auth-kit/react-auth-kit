@@ -36,6 +36,8 @@ extra:
   analytics:
     provider: google
     property: G-G1WZBFV5R2
+  version:
+    provider: mike
 
 extra_javascript:
   - https://media.ethicalads.io/media/client/ethicalads.min.js
