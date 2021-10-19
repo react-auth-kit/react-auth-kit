@@ -23,7 +23,9 @@ jobs:
         run: echo ${{ github.event.release.tag_name }}
 
       - name: Install dependency
-        run: pip install mkdocs-material
+        run: |
+          pip install mkdocs-material
+          pip install mike
 
       - name: Deploying docs
         run: mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest
