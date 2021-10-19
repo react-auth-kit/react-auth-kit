@@ -3,20 +3,27 @@ on:
     types:
       - published
 
-name: NPM Deploy
+name: Release
 
 jobs:
-  build:
+  release-docs:
     name: Release Docs
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: 3.x
 
-      - run: pip install mkdocs-material
+      - name: Tag viewing
+        run: echo ${{ github.event.release.tag_name }}
 
-      - run: mkdocs gh-deploy --force
+      - name: Install dependency
+        run: pip install mkdocs-material
+
+      - name: Deploying docs
+        run: mkdocs gh-deploy --force
