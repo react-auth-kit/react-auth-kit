@@ -20,6 +20,12 @@
                   <Item>
                     <option name="path" value=".github/workflows/release.yml" />
                   </Item>
+                  <Item>
+                    <option name="path" value=".github/workflows/test.yml" />
+                  </Item>
+                  <Item>
+                    <option name="path" value=".github/workflows/codeql-analysis.yml" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
