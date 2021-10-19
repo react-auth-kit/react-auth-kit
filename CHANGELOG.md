@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.1] - 2021-10-19
 ## Updated
+- Docs are now using versioning (#636)
+
+## [1.5.1] - 2021-10-19
+## Updated
 - Docs are made smooth (#635)
 
 ## [1.5.0] - 2021-10-18
