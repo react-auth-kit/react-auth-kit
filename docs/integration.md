@@ -3,7 +3,9 @@ React Auth Kit uses a Context Provider to maintain it's internal state in the ap
 So to use auth kit, you must have to add the `AuthProvider` on the very top level of your application.
 Without the provider the application will fail to work and will throw errors.
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
+<div data-ea-publisher="authkitarkadipme"
+data-ea-type="image" class="horizontal bordered"
+data-ea-keywords="javascript|react"></div>
 
 ---
 ## AuthProvider
@@ -40,12 +42,12 @@ const App = () => (
 export default App;
 ```
 
-!!! warning ""
+!!! warning
 
     `AuthProvider` should wrap the **BrowserRouter or HashRouter**,
     otherwise `PrivateRoute` will not work and throw an error.
 
-!!! warning ""
+!!! warning
 
     If you are using the Refresh Token feature, then you must have to add the `refresh` prop with proper value,
     otherwise refresh token will throw a not implemented error. If you are not using the Refresh Token feature,
