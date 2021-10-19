@@ -15,6 +15,9 @@ theme:
     repo: fontawesome/brands/github
   logo: img/logo.svg
   favicon: img/favicon.png
+  palette:
+    scheme: default
+    primary: blue
 
 nav:
   - Introduction: 'index.md'
@@ -28,6 +31,16 @@ nav:
   - Check Authentication: 'checkauth.md'
   - Refresh Token: 'refreshtoken.md'
   - Contributing: 'contributing.md'
+
+extra:
+  analytics:
+    provider: google
+    property: G-G1WZBFV5R2
+  version:
+    provider: mike
+
+extra_javascript:
+  - https://media.ethicalads.io/media/client/ethicalads.min.js
 
 markdown_extensions:
   - admonition
