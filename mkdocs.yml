@@ -15,6 +15,9 @@ theme:
     repo: fontawesome/brands/github
   logo: img/logo.svg
   favicon: img/favicon.png
+  palette:
+    scheme: default
+    primary: blue
 
 nav:
   - Introduction: 'index.md'
