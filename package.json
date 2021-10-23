@@ -24,9 +24,8 @@
     "test": "run-s test:*",
     "test:build": "run-s build",
     "test:unit": "jest",
-    "test:lint": "eslint src/**/*.ts src/**/*.tsx",
-    "test:unit:watch": "jest --watch",
-    "fix": "eslint src/**/*.ts src/**/*.tsx --fix"
+    "test:lint": "eslint src/**/*.ts src/**/*.tsx --fix",
+    "test:unit:watch": "jest --watch"
   },
   "keywords": [
     "react",
