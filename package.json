@@ -24,9 +24,8 @@
     "test": "run-s test:*",
     "test:build": "run-s build",
     "test:unit": "jest",
-    "test:lint": "eslint src/**/*.ts src/**/*.tsx",
-    "test:unit:watch": "jest --watch",
-    "fix": "eslint src/**/*.ts src/**/*.tsx --fix"
+    "test:lint": "eslint src/**/*.ts src/**/*.tsx --fix",
+    "test:unit:watch": "jest --watch"
   },
   "keywords": [
     "react",
@@ -50,6 +49,8 @@
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
     "@types/js-cookie": "^3.0.0",
@@ -97,5 +98,15 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "eslint --cache --fix"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
   }
 }
