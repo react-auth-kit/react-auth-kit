@@ -57,7 +57,7 @@
     "@types/node": "^16.11.3",
     "@types/react": "^17.0.31",
     "@types/react-dom": "^17.0.10",
-    "@types/react-router-dom": "^5.3.1",
+    "@types/react-router-dom": "^5.3.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "codecov": "^3.8.3",
