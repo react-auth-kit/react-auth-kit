@@ -175,7 +175,7 @@ function App() {
 
 !!! warning "Only use the return from createRefresh as the prop value"
 
-    Using values other than the returb of `createRefresh` will cause the application to break.
+    Using values other than the return of `createRefresh` will cause the application to break.
     So only use the return of `createRefresh` as the prop value.
 
 <p align="center">&mdash; 🔑  &mdash;</p>
