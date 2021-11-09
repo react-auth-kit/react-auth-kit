@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.0...v1.6.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **lockfile:** updated the lockfile version to 2 ([e2f51ff](https://github.com/react-auth-kit/react-auth-kit/commit/e2f51fff847fb0cdc7bb5bf26b1b2a7b184a6729))
+
 # [1.6.0](https://github.com/react-auth-kit/react-auth-kit/compare/v1.5.5...v1.6.0) (2021-10-23)
 
 
