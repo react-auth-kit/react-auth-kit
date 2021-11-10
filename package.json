@@ -88,13 +88,13 @@
     "@testing-library/react-hooks": "^7.0.2",
     "js-cookie": "^3.0.1",
     "react": ">=16.8.0",
-    "react-router-dom": "^5.3.0"
+    "react-router-dom": "^6.0.2"
   },
   "peerDependencies": {
     "js-cookie": "^3.0.1",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-router-dom": "^5.3.0"
+    "react-router-dom": "^6.0.2"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "eslint --cache --fix"
