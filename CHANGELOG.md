@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.1...v1.6.2) (2021-11-13)
+
+
+### Bug Fixes
+
+* **package.json:** updated linting package ([fad4305](https://github.com/react-auth-kit/react-auth-kit/commit/fad4305a275b3a1b7da450442b0e9d82ca31164d))
+
 ## [1.6.1](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.0...v1.6.1) (2021-11-09)
 
 
