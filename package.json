@@ -52,16 +52,17 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^27.0.2",
     "@types/js-cookie": "^3.0.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.2",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "codecov": "^3.8.3",
-    "eslint": "^7.32.0",
+    "eslint": "^8.2.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jest": "^25.2.4",
     "eslint-plugin-react": "^7.27.0",
@@ -85,7 +86,6 @@
     "utility-types": "^3.10.0"
   },
   "dependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
     "js-cookie": "^3.0.1",
     "react": ">=16.8.0",
     "react-router-dom": "^5.3.0"
