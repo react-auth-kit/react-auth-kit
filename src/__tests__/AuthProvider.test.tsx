@@ -71,14 +71,17 @@ describe('Authprovider with refresh Token', ()=> {
   });
   const refreshApi = createRefresh({
     interval: 1/60,
-    refreshApiCallback: (param) => {
+    refreshApiCallback: (param): any => {
       console.log(param);
-      return {
-        isSuccess: true,
-        newAuthToken: 'fsdgedgd',
-        newAuthTokenExpireIn: 10,
-        newRefreshTokenExpiresIn: 60,
-      };
+      const result = new Promise((resolve) => {
+        return resolve({
+          isSuccess: true,
+          newAuthToken: "fsdgedgd",
+          newAuthTokenExpireIn: 10,
+          newRefreshTokenExpiresIn: 60,
+        });
+      });
+      return result;
     },
   });
 

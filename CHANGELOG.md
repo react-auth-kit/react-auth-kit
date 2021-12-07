@@ -1,3 +1,10 @@
+## [1.6.3-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.2...v1.6.3-beta.1) (2021-12-06)
+
+
+### Bug Fixes
+
+* **logic:** fixed refresh callback execution waiting ([fbfe38b](https://github.com/react-auth-kit/react-auth-kit/commit/fbfe38b28532589dfdcb090fe2149e3fbefb4ddd))
+
 ## [1.6.2](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.1...v1.6.2) (2021-11-13)
 
 

@@ -78,26 +78,29 @@ export interface AuthProviderProps {
 }
 
 /**
+ * Refresh Token Callback Response
+ */
+ export type RefreshTokenCallbackResponse = {
+  isSuccess: boolean,
+  newAuthToken: string,
+  newAuthTokenExpireIn?: number | null,
+  newRefreshToken?: string | null,
+  newRefreshTokenExpiresIn?: number | null,
+  newAuthUserState?: AuthStateUserObject | null,
+};
+
+/**
  * Refresh Token types
  */
 // Callback function
 
-export type refreshTokenCallback =
-  (param: {
-    authToken?: string,
-    authTokenExpireAt?: Date,
-    refreshToken?: string,
-    refreshTokenExpiresAt?: Date,
-    authUserState: AuthStateUserObject | null
-  }) =>
-    {
-      isSuccess: boolean,
-      newAuthToken: string,
-      newAuthTokenExpireIn?: number | null,
-      newRefreshToken?: string | null,
-      newRefreshTokenExpiresIn?: number | null,
-      newAuthUserState?: AuthStateUserObject | null
-    }
+export type refreshTokenCallback = (param: {
+  authToken?: string,
+  authTokenExpireAt?: Date,
+  refreshToken?: string,
+  refreshTokenExpiresAt?: Date,
+  authUserState: AuthStateUserObject | null,
+}) => Promise<RefreshTokenCallbackResponse>
 
 // createRefresh function parameter
 export interface createRefreshParamInterface {
