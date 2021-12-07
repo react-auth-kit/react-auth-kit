@@ -1,3 +1,10 @@
+## [1.6.4](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.3...v1.6.4) (2021-12-07)
+
+
+### Bug Fixes
+
+* signing param authState is now optional ([4c0dc4e](https://github.com/react-auth-kit/react-auth-kit/commit/4c0dc4e5eeabbbf011194ed0d3a6c34695169046))
+
 ## [1.6.3](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.2...v1.6.3) (2021-12-07)
 
 
