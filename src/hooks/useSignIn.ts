@@ -60,7 +60,7 @@ function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
             type: tokenType,
             expiresAt: expTime,
           },
-          userState: authState,
+          userState: authState ? authState : null,
           refresh: {
             token: refreshToken,
             expiresAt: refreshTokenExpireAt,
@@ -89,7 +89,7 @@ function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
             type: tokenType,
             expiresAt: expTime,
           },
-          userState: authState,
+          userState: authState ? authState : null,
           refresh: null,
         }));
         return true;

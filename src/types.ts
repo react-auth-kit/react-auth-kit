@@ -52,7 +52,7 @@ export interface signInFunctionParams {
   token: string
   tokenType: string | 'Bearer'
   expiresIn: number
-  authState: AuthStateUserObject
+  authState?: AuthStateUserObject
   refreshToken?: string
   refreshTokenExpireIn?: number
 }
@@ -80,7 +80,7 @@ export interface AuthProviderProps {
 /**
  * Refresh Token Callback Response
  */
- export type RefreshTokenCallbackResponse = {
+export type RefreshTokenCallbackResponse = {
   isSuccess: boolean,
   newAuthToken: string,
   newAuthTokenExpireIn?: number | null,

@@ -73,7 +73,7 @@ function withSignIn<P extends withSignInProps>(
                     type: tokenType,
                     expiresAt: expTime,
                   },
-                  userState: authState,
+                  userState: authState ? authState : null,
                   refresh: {
                     token: refreshToken,
                     expiresAt: refreshTokenExpireAt,
@@ -102,7 +102,7 @@ function withSignIn<P extends withSignInProps>(
                     type: tokenType,
                     expiresAt: expTime,
                   },
-                  userState: authState,
+                  userState: authState ? authState : null,
                   refresh: null,
                 }));
                 return true;
