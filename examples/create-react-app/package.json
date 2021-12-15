@@ -10,7 +10,7 @@
     "react-auth-kit": "^1.4.18-0",
     "react-dom": "latest",
     "react-router-dom": "latest",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
