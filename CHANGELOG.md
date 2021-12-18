@@ -1,3 +1,10 @@
+## [1.6.6](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.5...v1.6.6) (2021-12-18)
+
+
+### Bug Fixes
+
+* examples/create-react-app-refresh-token/package.json & examples/create-react-app-refresh-token/package-lock.json to reduce vulnerabilities ([57c87ad](https://github.com/react-auth-kit/react-auth-kit/commit/57c87addd5ece8c6acd5faa77c930922e13bd7e0))
+
 ## [1.6.5](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.4...v1.6.5) (2021-12-15)
 
 
