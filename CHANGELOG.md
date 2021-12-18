@@ -1,3 +1,10 @@
+## [1.6.7](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.6...v1.6.7) (2021-12-18)
+
+
+### Bug Fixes
+
+* examples/create-react-app/package.json & examples/create-react-app/package-lock.json to reduce vulnerabilities ([e0081ea](https://github.com/react-auth-kit/react-auth-kit/commit/e0081eae63af6724f563e441b3b32ebfd200f4f4))
+
 ## [1.6.6](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.5...v1.6.6) (2021-12-18)
 
 
