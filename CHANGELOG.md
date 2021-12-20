@@ -1,3 +1,10 @@
+## [1.6.8](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.7...v1.6.8) (2021-12-20)
+
+
+### Bug Fixes
+
+* upgrade @testing-library/react from 10.0.0 to 10.4.9 ([2a8641d](https://github.com/react-auth-kit/react-auth-kit/commit/2a8641df605883af403db6021bf58d2d20fd099c))
+
 ## [1.6.7](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.6...v1.6.7) (2021-12-18)
 
 
