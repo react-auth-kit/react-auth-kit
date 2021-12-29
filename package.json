@@ -46,7 +46,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
+    "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
     "@rollup/plugin-node-resolve": "^13.1.1",
     "@semantic-release/changelog": "^6.0.1",
