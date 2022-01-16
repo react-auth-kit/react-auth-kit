@@ -1,3 +1,10 @@
+## [1.6.12](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.11...v1.6.12) (2022-01-16)
+
+
+### Bug Fixes
+
+* upgrade react-auth-kit from 1.6.2 to 1.6.4 ([5483e33](https://github.com/react-auth-kit/react-auth-kit/commit/5483e33ec42cb97bcb230546824d1fa6104564b7))
+
 ## [1.6.11](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.10...v1.6.11) (2022-01-16)
 
 
