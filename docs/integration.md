@@ -3,9 +3,7 @@ React Auth Kit uses a Context Provider to maintain it's internal state in the ap
 So to use auth kit, you must have to add the `AuthProvider` on the very top level of your application.
 Without the provider the application will fail to work and will throw errors.
 
-<div data-ea-publisher="authkitarkadipme"
-data-ea-type="image" class="horizontal bordered"
-data-ea-keywords="javascript|react"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="integration"></div>
 
 ---
 ## AuthProvider

@@ -5,6 +5,8 @@ Get the Auth Header for future request from any Component simply by using `HOC` 
 - To get the Auth Header from _Higher Order Components_, use `withAuthHeader`
 - To get the Auth Header using _React Hooks_, use `useAuthHeader`
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="authheader"></div>
+
 ## Using Hooks
 
 ```js
@@ -50,9 +52,6 @@ class SomeComponent extends React.Component {
 
 export default withAuthHeader(SomeComponent)
 ```
-
-
-<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
 
 
 <p align="center">&mdash; 🔑  &mdash;</p>

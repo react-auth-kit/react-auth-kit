@@ -2,7 +2,7 @@
 
 React-Auth-Kit is available as a [npm package](https://www.npmjs.com/package/react-auth-kit)
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="installation"></div>
 
 ## npm :fontawesome-brands-npm:
 To install and save in your `package.json` dependencies, run:

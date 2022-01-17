@@ -4,6 +4,8 @@
 
 React Auth Kit has a `PrivateRoute` functionality Based on [React Router](https://reactrouter.com/)
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="privateroute"></div>
+
 ## Import
 
 ```js
@@ -49,8 +51,6 @@ As PrivateRoute is a derived version of [Route](https://reactrouter.com/web/api/
 that's why the props are same as Route props. Check [this link](https://reactrouter.com/web/api/Route).
 
 ***Added Prop***: `loginPath` (_Require_): The fallback path, if the user is unauthorized.
-
-<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

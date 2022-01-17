@@ -3,6 +3,8 @@
 Often JWT comes with a new challenge.
 You have to `refresh` the JWT token periodically using a token, named Refresh token.
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="refresh"></div>
+
 > A refresh token is a special kind of token used to obtain a renewed access token.
 You can request new access tokens until the refresh token is on the DenyList.
 Applications must store refresh tokens securely because they essentially allow a user to remain authenticated forever.

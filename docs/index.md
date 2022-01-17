@@ -38,7 +38,7 @@ It is production-ready, and gives you the following:
 * 🔒 Secure Client Side Authentication
 * ⌨️Highly typed and written in TypeScript
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

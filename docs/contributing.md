@@ -1,5 +1,7 @@
 # Contributing
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="contributing"></div>
+
 Notice something that needs fixing? Or something that could be improved? Awesome! Here are some guidelines below that'll help you to do just that.
 
 In general, there are two main types of contribution,
@@ -88,9 +90,6 @@ In general, there are two main types of contribution,
 5. If you find you're putting commas in a sentence consider splitting it into two or more sentences for improved clarity.
 
 6. Split the document up into as many sub-sections as makes sense. This is especially helpful for the readers who want to skip ahead for reference, as we can also use subheads as navigational anchors.
-
-
-<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

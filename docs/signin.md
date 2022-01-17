@@ -13,7 +13,7 @@ React Auth Kit has easy to implement Sign In procedures.
 - For class based components, you can wrap the component inside `withSignIn` function
 
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signin"></div>
 
 
 ---

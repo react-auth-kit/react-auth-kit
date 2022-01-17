@@ -8,7 +8,7 @@ It supports both [`Hooks`](https://reactjs.org/docs/hooks-intro.html) and
 [`Higher Order Component`](https://reactjs.org/docs/higher-order-components.html)
 for both Functional Components and Class-based Components
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signout"></div>
 
 ## Sign Out using Hooks
 

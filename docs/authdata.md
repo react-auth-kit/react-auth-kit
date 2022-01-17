@@ -5,6 +5,8 @@ Get the Authorized user's state from any Component simply by using `HOC` or `Hoo
 - To get the Authorized user's state from _Higher Order Components_, use `withAuthUser`
 - To get the Authorized user's state using _React Hooks_, use `useAuthUser`
 
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="authdata"></div>
+
 ## Using Hooks
 
 ```js
@@ -50,8 +52,6 @@ class SomeComponent extends React.Component {
 
 export default withAuthUser(SomeComponent)
 ```
-
-<div data-ea-publisher="authkitarkadipme" data-ea-type="image"></div>
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
