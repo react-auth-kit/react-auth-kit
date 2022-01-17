@@ -1,3 +1,11 @@
+## [1.6.13](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.12...v1.6.13) (2022-01-17)
+
+
+### Bug Fixes
+
+* docs ads ([f494902](https://github.com/react-auth-kit/react-auth-kit/commit/f494902149d4726e8df35f4721ce0166a79f4137))
+* project housekeeping ([4b14569](https://github.com/react-auth-kit/react-auth-kit/commit/4b145693ad436914b50bc350952e24ee67b62cc9))
+
 ## [1.6.12](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.11...v1.6.12) (2022-01-16)
 
 
