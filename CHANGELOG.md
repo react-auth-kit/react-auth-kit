@@ -1,3 +1,53 @@
+## [1.6.12](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.11...v1.6.12) (2022-01-16)
+
+
+### Bug Fixes
+
+* upgrade react-auth-kit from 1.6.2 to 1.6.4 ([5483e33](https://github.com/react-auth-kit/react-auth-kit/commit/5483e33ec42cb97bcb230546824d1fa6104564b7))
+
+## [1.6.11](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.10...v1.6.11) (2022-01-16)
+
+
+### Bug Fixes
+
+* upgrade @testing-library/jest-dom from 5.16.0 to 5.16.1 ([e050781](https://github.com/react-auth-kit/react-auth-kit/commit/e050781f309c93e5f076ec939150e579667c1077))
+
+## [1.6.10](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.9...v1.6.10) (2022-01-15)
+
+
+### Bug Fixes
+
+* upgrade @testing-library/jest-dom from 5.16.0 to 5.16.1 ([82d11d6](https://github.com/react-auth-kit/react-auth-kit/commit/82d11d6a0893be68782dc33d57cdbfcc691090b9))
+
+## [1.6.9](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.8...v1.6.9) (2021-12-28)
+
+
+### Bug Fixes
+
+* upgrade @testing-library/jest-dom from 5.1.0 to 5.16.0 ([8d0756a](https://github.com/react-auth-kit/react-auth-kit/commit/8d0756a847840703bf4f91e7e7eb4007105df452))
+* upgrade @testing-library/jest-dom from 5.15.1 to 5.16.0 ([e9953bd](https://github.com/react-auth-kit/react-auth-kit/commit/e9953bd6cbbf4dca3d9cccd519824b455f56b8a3))
+
+## [1.6.8](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.7...v1.6.8) (2021-12-20)
+
+
+### Bug Fixes
+
+* upgrade @testing-library/react from 10.0.0 to 10.4.9 ([2a8641d](https://github.com/react-auth-kit/react-auth-kit/commit/2a8641df605883af403db6021bf58d2d20fd099c))
+
+## [1.6.7](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.6...v1.6.7) (2021-12-18)
+
+
+### Bug Fixes
+
+* examples/create-react-app/package.json & examples/create-react-app/package-lock.json to reduce vulnerabilities ([e0081ea](https://github.com/react-auth-kit/react-auth-kit/commit/e0081eae63af6724f563e441b3b32ebfd200f4f4))
+
+## [1.6.6](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.5...v1.6.6) (2021-12-18)
+
+
+### Bug Fixes
+
+* examples/create-react-app-refresh-token/package.json & examples/create-react-app-refresh-token/package-lock.json to reduce vulnerabilities ([57c87ad](https://github.com/react-auth-kit/react-auth-kit/commit/57c87addd5ece8c6acd5faa77c930922e13bd7e0))
+
 ## [1.6.5](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.4...v1.6.5) (2021-12-15)
 
 
