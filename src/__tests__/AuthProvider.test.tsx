@@ -17,7 +17,7 @@
 import {render, screen} from '@testing-library/react';
 import {AuthContextConsumer} from '../AuthContext';
 import AuthProvider from '../AuthProvider';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import React from 'react';
 import createRefresh from '../createRefresh';
 import {AuthStateUserObject} from '../types';
@@ -28,7 +28,14 @@ describe('AuthProvider renders successfully', ()=>{
     render(
         <AuthProvider authType={'localstorage'} authName={'_auth'}>
           <BrowserRouter>
-            <Route/>
+            <Routes>
+              <Route path={'/'} element={
+                <div>
+                  Empty
+                </div>
+              }/>
+              <Route/>
+            </Routes>
           </BrowserRouter>
         </AuthProvider>,
     );
@@ -43,7 +50,14 @@ describe('AuthProvider renders successfully', ()=>{
             cookieSecure
           >
             <BrowserRouter>
-              <Route/>
+              <Routes>
+                <Route path={'/'} element={
+                  <div>
+                    Empty
+                  </div>
+                }/>
+                <Route/>
+              </Routes>
             </BrowserRouter>
           </AuthProvider>,
       );
@@ -58,7 +72,14 @@ describe('AuthProvider renders successfully', ()=>{
             authName={'_auth'}
           >
             <BrowserRouter>
-              <Route/>
+              <Routes>
+                <Route path={'/'} element={
+                  <div>
+                    Empty
+                  </div>
+                }/>
+                <Route/>
+              </Routes>
             </BrowserRouter>
           </AuthProvider>,
       )).toThrow();
@@ -76,7 +97,7 @@ describe('Authprovider with refresh Token', ()=> {
       const result = new Promise((resolve) => {
         return resolve({
           isSuccess: true,
-          newAuthToken: "fsdgedgd",
+          newAuthToken: 'fsdgedgd',
           newAuthTokenExpireIn: 10,
           newRefreshTokenExpiresIn: 60,
         });
@@ -93,7 +114,14 @@ describe('Authprovider with refresh Token', ()=> {
           refresh={refreshApi}
         >
           <BrowserRouter>
-            <Route/>
+            <Routes>
+              <Route path={'/'} element={
+                <div>
+                  Empty
+                </div>
+              }/>
+              <Route/>
+            </Routes>
           </BrowserRouter>
         </AuthProvider>,
     );
@@ -138,7 +166,14 @@ describe('Authprovider with refresh Token', ()=> {
         >
           <BrowserRouter>
             <TestConsumer />
-            <Route/>
+            <Routes>
+              <Route path={'/'} element={
+                <div>
+                  Empty
+                </div>
+              }/>
+              <Route/>
+            </Routes>
           </BrowserRouter>
         </AuthProvider>,
     );

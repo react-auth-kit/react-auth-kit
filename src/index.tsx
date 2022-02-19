@@ -17,7 +17,7 @@
 
 import AuthProvider from './AuthProvider';
 import createRefresh from './createRefresh';
-import PrivateRoute from './PrivateRoute';
+import RequireAuth from './PrivateRoute';
 import useSignIn from './hooks/useSignIn';
 import useSignOut from './hooks/useSignOut';
 import useAuthUser from './hooks/useAuthUser';
@@ -37,7 +37,7 @@ AuthProvider.defaultProps = {
 
 export {
   AuthProvider,
-  PrivateRoute,
+  RequireAuth,
   createRefresh,
   useSignIn,
   useSignOut,
