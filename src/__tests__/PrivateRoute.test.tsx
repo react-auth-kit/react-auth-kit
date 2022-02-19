@@ -15,12 +15,12 @@
  */
 import {render, screen} from '@testing-library/react';
 import React from 'react';
-import PrivateRoute from '../PrivateRoute';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import AuthProvider from '../AuthProvider';
 import AuthContext from '../AuthContext';
 import {AuthKitStateInterface} from '../types';
 import {doSignOut} from '../utils/reducers';
+import RequireAuth from '../PrivateRoute';
 
 // Helpers
 const getPastDate = () => new Date(new Date().getTime() - 1000);
@@ -50,7 +50,17 @@ describe('PrivateRoute component', () => {
         <AuthProvider authType={'cookie'} authName={'_Hi'}
           cookieDomain={window.location.hostname}>
           <BrowserRouter>
-            <PrivateRoute loginPath={'/login'}/>
+            <Routes>
+              <Route path={'/login'}/>
+              <Route path={'/'}/>
+              <Route element={
+                <RequireAuth loginPath={'/login'}>
+                  <div>
+                    Protected
+                  </div>
+                </RequireAuth>
+              }/>
+            </Routes>
           </BrowserRouter>
         </AuthProvider>,
     );
@@ -62,7 +72,16 @@ describe('PrivateRoute component', () => {
 
     expect(() => render(
         <BrowserRouter>
-          <PrivateRoute loginPath={'/login'}/>
+          <Routes>
+            <Route path={'/login'}/>
+            <Route path={'/'} element={
+              <RequireAuth loginPath={'/login'}>
+                <div>
+                Protected
+                </div>
+              </RequireAuth>
+            }/>
+          </Routes>
         </BrowserRouter>,
     )).toThrow();
   });
@@ -74,7 +93,16 @@ describe('PrivateRoute component', () => {
     render(
         <AuthContext.Provider value={fakeContextValue}>
           <BrowserRouter>
-            <PrivateRoute loginPath={'/login'} component={TestComponent}/>
+            <Routes>
+              <Route path={'/login'}/>
+              <Route path={'/'} element={
+                <RequireAuth loginPath={'/login'}>
+                  <div>
+                    <TestComponent/>
+                  </div>
+                </RequireAuth>
+              }/>
+            </Routes>
           </BrowserRouter>
         </AuthContext.Provider>,
     );
@@ -90,7 +118,20 @@ describe('PrivateRoute component', () => {
     render(
         <AuthContext.Provider value={fakeContextValue}>
           <BrowserRouter>
-            <PrivateRoute loginPath={'/login'} component={TestComponent}/>
+            <Routes>
+              <Route path={'/login'} element={
+                <div>
+                  Login
+                </div>
+              }/>
+              <Route path={'/'} element={
+                <RequireAuth loginPath={'/login'}>
+                  <div>
+                    <TestComponent/>
+                  </div>
+                </RequireAuth>
+              }/>
+            </Routes>
           </BrowserRouter>
         </AuthContext.Provider>,
     );
@@ -99,31 +140,24 @@ describe('PrivateRoute component', () => {
     expect(fakeDispatch).toHaveBeenCalledWith(doSignOut());
   });
 
-  it('renders component using render prop', () => {
-    const TestComponent = () => <p>Test Component</p>;
-    const fakeContextValue = getFakeContextValue(getFutureDate());
-
-    render(
-        <AuthContext.Provider value={fakeContextValue}>
-          <BrowserRouter>
-            <PrivateRoute loginPath={'/login'} render={() => <TestComponent/>}/>
-          </BrowserRouter>
-        </AuthContext.Provider>,
-    );
-
-    expect(screen.getByText(/test component/i)).toBeTruthy();
-  });
-
   it('renders nothing, missing both "component" and "render" props', () => {
     const fakeDispatch = jest.fn();
     const fakeContextValue = getFakeContextValue(getFutureDate(), fakeDispatch);
 
     render(
         <AuthContext.Provider value={fakeContextValue}>
-
           <BrowserRouter>
             <div data-testid={'parent'}>
-              <PrivateRoute loginPath={'/login'}/>
+              <Routes>
+                <Route path={'/login'}/>
+                <Route path={'/'} element={
+                  <RequireAuth loginPath={'/login'}>
+                    <div>
+                        Protected
+                    </div>
+                  </RequireAuth>
+                }/>
+              </Routes>
             </div>
           </BrowserRouter>
         </AuthContext.Provider>,
