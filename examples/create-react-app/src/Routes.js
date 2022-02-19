@@ -1,20 +1,24 @@
 import React from 'react'
-import { PrivateRoute } from 'react-auth-kit'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { RequireAuth } from 'react-auth-kit'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import Login from './components/Login'
 import SecureComponent from './components/SecureComponent'
 
-const Routes = () => {
+const RoutesComponent = () => {
     return (
         <BrowserRouter>
-            <Switch>
-                <Route path={'/'} component={Home} exact/>
-                <Route path={'/login' } component={Login} exact/>
-                <PrivateRoute path={'/secure'} component={SecureComponent} loginPath={'/login'} exact/>
-            </Switch>
+            <Routes>
+                <Route path={'/'} element={<Home/>}/>
+                <Route path={'/login' } element={<Login/>}/>
+                <Route path={'/secure'} element={
+                  <RequireAuth loginPath={'/login'}>
+                    <SecureComponent/>
+                  </RequireAuth>
+                }/>
+            </Routes>
         </BrowserRouter>
     )
 }
 
-export default Routes
+export default RoutesComponent

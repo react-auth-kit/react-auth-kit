@@ -16,7 +16,7 @@
 
 import React from 'react';
 import {AuthProvider} from 'react-auth-kit'
-import Routes from './Routes';
+import RoutesComponent from './Routes';
 import refreshApi from "./refreshApi";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
       authName={"_auth"} authType={"cookie"}
       refresh={refreshApi}
     >
-      <Routes/>
+      <RoutesComponent/>
     </AuthProvider>
   );
 }
