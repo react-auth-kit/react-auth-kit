@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.13...v2.0.0) (2022-02-19)
+
+
+### Performance Improvements
+
+* **privateRoute:** updated to react router v6 ([92fcde6](https://github.com/react-auth-kit/react-auth-kit/commit/92fcde67bcb91ff478387146d7c3ae217c90dced))
+
+
+### BREAKING CHANGES
+
+* **privateRoute:** The PrivateRoute.tsx Option will not available for now.
+
+Signed-off-by: Arkadip <in2arkadipb13@gmail.com>
+
 ## [1.6.13](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.12...v1.6.13) (2022-01-17)
 
 
