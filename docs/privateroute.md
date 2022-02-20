@@ -1,15 +1,21 @@
-  # Private Route
+# Private Route
 
 > Implement Private Route on your React App
 
-React Auth Kit has a `PrivateRoute` functionality Based on [React Router](https://reactrouter.com/)
+React Auth Kit has a `RequireAuth` functionality Based on [React Router](https://reactrouter.com/)
+
+!!! danger ""
+
+    RequireAuth is only available in react-auth-kit v2.x. It can be used with React Router v6. If you are using React Router v5,
+    please use React-kuth-kit v1.x with PrivateRoute.
+    Visit [this page](https://authkit.arkadip.me/v1.6.13/privateroute/) to know more.
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="privateroute"></div>
 
 ## Import
 
 ```js
-import {PrivateRoute} from 'react-auth-kit'
+import { RequireAuth } from 'react-auth-kit'
 ```
 
 ## Implementation
@@ -20,7 +26,15 @@ Add `PrivateRoute` in your Routes Files inside `BrowserRouter` or `HashRouter`
 
 ```jsx
 <BrowserRouter>
-    <PrivateRoute component={privateComponent} path={'/privateRoute'} loginPath={'/loginPath'} exact/>
+    <Routes>
+      <Route path={'/secure'} element={
+        <RequireAuth loginPath={'/login'}>
+          <div>
+            Secure
+          </div>
+        </RequireAuth>
+      }/>
+    </Routes>
 </BrowserRouter>
 ```
 
@@ -28,27 +42,35 @@ Add `PrivateRoute` in your Routes Files inside `BrowserRouter` or `HashRouter`
     <summary>Full Code</summary>
     <br>
 
-
 ```jsx
 import React from "react"
 import {BrowserRouter, Route} from "react-router-dom"
-import { PrivateRoute } from 'react-auth-kit'
+import {PrivateRoute} from 'react-auth-kit'
+import SecureComponent from "./SecureComponent";
 
 const Routes = () => {
-    return (
-        <BrowserRouter>
-            <Route component={LoginComponent} path={'/login'} exact/>
-            <PrivateRoute component={privateComponent} path={'/privateRoute'} loginPath={'/loginPath'} exact/>
-        </BrowserRouter>
-    )
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/login'} element={<Login/>}/>
+        <Route path={'/secure'} element={
+          <RequireAuth loginPath={'/login'}>
+            <SecureComponent/>
+          </RequireAuth>
+        }/>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 ```
 </details>
 
 ## Props
 
-As PrivateRoute is a derived version of [Route](https://reactrouter.com/web/api/Route) from `React-Router`,
-that's why the props are same as Route props. Check [this link](https://reactrouter.com/web/api/Route).
+| Name      | Type       | Required           | Description                                                                    |
+|-----------|------------|--------------------|--------------------------------------------------------------------------------|
+| loginPath | string     | :heavy_check_mark: | The fallback path, which will be used in case of the user is not authenticated |
+| children  | React.Node | :heavy_check_mark: | The Component, which requires authentication                                   |
 
 ***Added Prop***: `loginPath` (_Require_): The fallback path, if the user is unauthorized.
 
