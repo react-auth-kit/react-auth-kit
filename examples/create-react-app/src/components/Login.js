@@ -1,11 +1,11 @@
 import React from 'react'
 import {useIsAuthenticated, useSignIn} from 'react-auth-kit'
-import {Redirect, useHistory} from 'react-router-dom'
+import {useNavigate, Navigate} from 'react-router-dom'
 
 const Login = () => {
   const isAuthenticated = useIsAuthenticated()
   const signIn = useSignIn()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   /**
    * Login Handle, the callback function onClick from the "Login" button
@@ -22,7 +22,7 @@ const Login = () => {
       expiresIn: 120  // Token Expriration time, in minutes
     })) {
       // If Login Successfull, then Redirect the user to secure route
-      history.push('/secure')
+      navigate('/secure')
     } else {
       // Else, there must be some error. So, throw an error
       alert("Error Occoured. Try Again")
@@ -33,7 +33,7 @@ const Login = () => {
     // If authenticated user, then redirect to secure dashboard
 
     return (
-      <Redirect to={'/secure'}/>
+      <Navigate to={'/secure'} replace/>
     )
   } else {
     // If not authenticated, use the login flow

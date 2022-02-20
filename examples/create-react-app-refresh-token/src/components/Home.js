@@ -15,15 +15,15 @@
  */
 
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
 
     return (
         <div>
-            <button onClick={()=> history.push('/login')}>Go to Login</button>
-            <button onClick={()=> history.push('/secure')}>GO to Secure Dashboard</button>
+            <button onClick={()=> navigate('/login')}>Go to Login</button>
+            <button onClick={()=> navigate('/secure')}>GO to Secure Dashboard</button>
         </div>
     )
 }
