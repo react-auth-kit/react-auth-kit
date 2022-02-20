@@ -18,6 +18,8 @@ theme:
   palette:
     scheme: default
     primary: blue
+  features:
+    - content.code.annotate
 
 nav:
   - Introduction: 'index.md'
@@ -30,6 +32,7 @@ nav:
   - Auth Header: 'authheader.md'
   - Check Authentication: 'checkauth.md'
   - Refresh Token: 'refreshtoken.md'
+  - Update Auth Kit from v1 to v2: 'update.md'
   - Contributing: 'contributing.md'
 
 extra:
@@ -49,6 +52,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tabbed
   - pymdownx.superfences
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - pymdownx.emoji:
