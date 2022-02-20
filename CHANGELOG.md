@@ -1,3 +1,11 @@
+## [2.0.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.1...v2.0.2) (2022-02-20)
+
+
+### Bug Fixes
+
+* **docs:** added the private route docs ([60ad979](https://github.com/react-auth-kit/react-auth-kit/commit/60ad979967549db78f38ff8808a7c81840b15057))
+* **docs:** added the update route ([3b10226](https://github.com/react-auth-kit/react-auth-kit/commit/3b1022679c709e560f01f1d99f1277a8cb126209))
+
 ## [2.0.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.0...v2.0.1) (2022-02-20)
 
 
