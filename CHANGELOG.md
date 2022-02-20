@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.0...v2.0.1) (2022-02-20)
+
+
+### Bug Fixes
+
+* **examples:** updated examples as per needed ([75f2412](https://github.com/react-auth-kit/react-auth-kit/commit/75f24122219f5de15c3447f1354b5f87440b8369))
+
 # [2.0.0](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.13...v2.0.0) (2022-02-19)
 
 
