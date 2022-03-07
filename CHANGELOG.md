@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.3...v2.0.4) (2022-03-07)
+
+
+### Bug Fixes
+
+* upgrade @testing-library/jest-dom from 5.16.1 to 5.16.2 ([1abed3c](https://github.com/react-auth-kit/react-auth-kit/commit/1abed3cef036ec381255c01fdcdabfb06473531e))
+
 ## [2.0.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.2...v2.0.3) (2022-02-25)
 
 
