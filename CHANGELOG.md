@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.4...v2.0.5) (2022-03-27)
+
+
+### Bug Fixes
+
+* upgrade react-router-dom from 6.2.1 to 6.2.2 ([eae910f](https://github.com/react-auth-kit/react-auth-kit/commit/eae910f81732b8d68d55f409cdbd529d5ad1e7a0))
+
 ## [2.0.4](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.3...v2.0.4) (2022-03-07)
 
 
