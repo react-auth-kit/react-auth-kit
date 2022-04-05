@@ -52,7 +52,7 @@ jobs:
         run: npm test
 
       - name: Generate Codecov Report
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
 
   test-os:
     name: Test on ${{ matrix.os }} using Node.js LTS
@@ -79,7 +79,7 @@ jobs:
         run: npm test
 
       - name: Generate Codecov Report
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
 
   release:
     name: Release
