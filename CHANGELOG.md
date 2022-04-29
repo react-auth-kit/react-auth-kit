@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.5...v2.1.0) (2022-04-29)
+
+
+### Features
+
+* **package:** added react 18 in peer dep ([2f0610f](https://github.com/react-auth-kit/react-auth-kit/commit/2f0610f23d29952cba8739ec0fb99d1df92107b8))
+
 ## [2.0.5](https://github.com/react-auth-kit/react-auth-kit/compare/v2.0.4...v2.0.5) (2022-03-27)
 
 
