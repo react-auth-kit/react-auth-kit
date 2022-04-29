@@ -80,7 +80,7 @@
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript2": "0.31.2",
     "ts-jest": "27.1.4",
-    "tslib": "2.3.1",
+    "tslib": "2.4.0",
     "typedoc": "0.22.15",
     "typescript": "4.6.3",
     "utility-types": "3.10.0"
