@@ -9,7 +9,7 @@
     "react": "latest",
     "react-auth-kit": "^2.0.0",
     "react-dom": "latest",
-    "react-router-dom": "latest",
+    "react-router-dom": "6.3.0",
     "react-scripts": "^5.0.0"
   },
   "scripts": {
