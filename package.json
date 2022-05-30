@@ -64,7 +64,7 @@
     "codecov": "3.8.3",
     "eslint": "8.16.0",
     "eslint-config-google": "0.14.0",
-    "eslint-plugin-jest": "26.3.0",
+    "eslint-plugin-jest": "26.4.6",
     "eslint-plugin-react": "7.30.0",
     "husky": "8.0.1",
     "jest": "27.5.1",
