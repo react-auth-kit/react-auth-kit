@@ -2,7 +2,7 @@
 
 > Implement Sign Out on your React App
 
-React Auth Kit has easy to implement Sign In procedures.
+React Auth Kit has easy to implement Sign Out procedures.
 
 It supports both [`Hooks`](https://reactjs.org/docs/hooks-intro.html) and
 [`Higher Order Component`](https://reactjs.org/docs/higher-order-components.html)
@@ -12,7 +12,7 @@ for both Functional Components and Class-based Components
 
 ## Sign Out using Hooks
 
-Sign In using Hooks need `useSignOut` hook
+Sign Out using Hooks need `useSignOut` hook
 
 Add the `useSignOut` hook in the component then call the `signOut` inside the component
 
@@ -36,7 +36,7 @@ const SignInComponent = () => {
 
 ## Sign Out using Higher Order Component
 
-Sign In using Higher Order Component using `withSignOut`.
+Sign Out using Higher Order Component using `withSignOut`.
 
 Add the `withSignOut` HOC and call the `this.props.signOut` function inside the component
 
