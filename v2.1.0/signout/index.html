@@ -30,7 +30,7 @@
         <link rel="canonical" href="https://authkit.arkadip.me/v2.1.0/signout/">
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.3">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
@@ -607,14 +607,14 @@ You're not viewing the latest version.
 <blockquote>
 <p>Implement Sign Out on your React App</p>
 </blockquote>
-<p>React Auth Kit has easy to implement Sign In procedures.</p>
+<p>React Auth Kit has easy to implement Sign Out procedures.</p>
 <p>It supports both <a href="https://reactjs.org/docs/hooks-intro.html"><code>Hooks</code></a> and
 <a href="https://reactjs.org/docs/higher-order-components.html"><code>Higher Order Component</code></a>
 for both Functional Components and Class-based Components</p>
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signout"></div>
 
 <h2 id="sign-out-using-hooks">Sign Out using Hooks<a class="headerlink" href="#sign-out-using-hooks" title="Permanent link">&para;</a></h2>
-<p>Sign In using Hooks need <code>useSignOut</code> hook</p>
+<p>Sign Out using Hooks need <code>useSignOut</code> hook</p>
 <p>Add the <code>useSignOut</code> hook in the component then call the <code>signOut</code> inside the component</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useSignOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
 </code></pre></div>
@@ -631,7 +631,7 @@ const SignInComponent = () =&gt; {
 }
 </code></pre></div>
 <h2 id="sign-out-using-higher-order-component">Sign Out using Higher Order Component<a class="headerlink" href="#sign-out-using-higher-order-component" title="Permanent link">&para;</a></h2>
-<p>Sign In using Higher Order Component using <code>withSignOut</code>.</p>
+<p>Sign Out using Higher Order Component using <code>withSignOut</code>.</p>
 <p>Add the <code>withSignOut</code> HOC and call the <code>this.props.signOut</code> function inside the component</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">withSignOut</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
 </code></pre></div>
@@ -723,10 +723,10 @@ export default withSignIn(signInComponent)
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate"], "search": "../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate"], "search": "../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.f758a944.min.js"></script>
+      <script src="../assets/javascripts/bundle.a877e258.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       
