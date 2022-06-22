@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check Commit Messages
-        uses: wagoid/commitlint-github-action@v4
+        uses: wagoid/commitlint-github-action@v5
 
   test-node:
     name: Test on Node.js v${{ matrix.node-version }}
