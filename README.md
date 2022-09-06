@@ -24,6 +24,9 @@
 <a href="https://bundlephobia.com/result?p=react-auth-kit">
     <img src="https://img.shields.io/bundlephobia/minzip/react-auth-kit?style=flat-square" alt="Test Suites">
 </a>
+<a href="https://snyk.io/advisor/npm-package/react-auth-kit">
+    <img src="https://img.shields.io/snyk/vulnerabilities/npm/react-auth-kit?logo=snyk&style=flat-square" alt="Snyk">
+</a>
 </p>
 
 ---

@@ -22,6 +22,9 @@
 <a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
     <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
 </a>
+<a href="https://snyk.io/advisor/npm-package/react-auth-kit">
+    <img src="https://img.shields.io/snyk/vulnerabilities/npm/react-auth-kit?logo=snyk&style=flat-square" alt="Snyk">
+</a>
 </p>
 
 ---
