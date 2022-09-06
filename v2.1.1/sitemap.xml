@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/authdata/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/authheader/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/checkauth/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/contributing/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/installation/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/integration/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/privateroute/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/refreshtoken/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/signin/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/signout/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.me/v2.1.1/update/</loc>
-         <lastmod>2022-09-05</lastmod>
+         <lastmod>2022-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
