@@ -65,7 +65,7 @@
     "eslint": "8.23.1",
     "eslint-config-google": "0.14.0",
     "eslint-plugin-jest": "27.0.4",
-    "eslint-plugin-react": "7.31.7",
+    "eslint-plugin-react": "7.31.8",
     "husky": "8.0.1",
     "jest": "27.5.1",
     "lint-staged": "13.0.3",
