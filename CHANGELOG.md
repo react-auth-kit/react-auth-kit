@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.1...v2.1.2) (2022-09-16)
+
+
+### Bug Fixes
+
+* updated the docs CNAME ([bf643f3](https://github.com/react-auth-kit/react-auth-kit/commit/bf643f3af9dc88e3072bb5bc3272d1d7a66c8a9c))
+
 ## [2.1.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.0...v2.1.1) (2022-09-05)
 
 
