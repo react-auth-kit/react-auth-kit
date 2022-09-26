@@ -1,3 +1,10 @@
+## [2.1.4](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.3...v2.1.4) (2022-09-26)
+
+
+### Bug Fixes
+
+* removed Node 12 from CI ([58cb504](https://github.com/react-auth-kit/react-auth-kit/commit/58cb504ff9061d29769e6a36cce5a9b6bb05d058))
+
 ## [2.1.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.2...v2.1.3) (2022-09-26)
 
 
