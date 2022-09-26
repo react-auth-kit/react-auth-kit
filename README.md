@@ -47,7 +47,7 @@ It is production-ready, and gives you the following:
 
 ## Documentation
 
-Visit [Auth Kit](https://authkit.arkadip.me) for the offical documentation.
+Visit [Auth Kit](https://authkit.arkadip.dev) for the offical documentation.
 
 
 

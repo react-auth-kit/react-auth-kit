@@ -1,3 +1,3 @@
-Sitemap: https://authkit.arkadip.me/sitemap.xml.gz
+Sitemap: https://authkit.arkadip.dev/sitemap.xml.gz
 User-agent: *
 Disallow:

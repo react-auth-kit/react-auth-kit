@@ -110,7 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Docs updated Intro and installation page
 - Better documentations added.
 
-⚠️This release will break your code, as the AuthProvider props are changed. [Please refer to the docs](https://authkit.arkadip.me/integration)
+⚠️This release will break your code, as the AuthProvider props are changed. [Please refer to the docs](https://authkit.arkadip.dev/integration)
 
 
 ## [1.4.6] - 2021-04-09

@@ -1,7 +1,7 @@
 site_name: React Auth Kit
 site_description: Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)
 site_author: Arkadip Bhattacharya
-site_url: https://authkit.arkadip.me
+site_url: https://authkit.arkadip.dev
 
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
