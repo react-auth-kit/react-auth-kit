@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.2...v2.1.3) (2022-09-26)
+
+
+### Bug Fixes
+
+* updated all occurance of .me domain ([8342121](https://github.com/react-auth-kit/react-auth-kit/commit/8342121ade72bb5f67eea66cff897fd0615bf29a))
+
 ## [2.1.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.1...v2.1.2) (2022-09-16)
 
 
