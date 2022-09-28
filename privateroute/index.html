@@ -27,7 +27,7 @@
         <meta name="author" content="Arkadip Bhattacharya">
       
       
-        <link rel="canonical" href="https://authkit.arkadip.me/privateroute/">
+        <link rel="canonical" href="https://authkit.arkadip.dev/privateroute/">
       
       <link rel="icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
@@ -84,13 +84,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="React Auth Kit - Private Route" />
 <meta property="og:description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)" />
-<meta property="og:url" content="https://authkit.arkadip.me/privateroute/" />
+<meta property="og:url" content="https://authkit.arkadip.dev/privateroute/" />
 <meta property="og:image" content="https://authkit.arkadip.co/img/banner.png" />
 <meta property="og:image:type" content="image/svg+xml" />
 <meta property="og:image:width" content="1280" />
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="https://authkit.arkadip.me/privateroute/">
+<meta name="twitter:site" content="https://authkit.arkadip.dev/privateroute/">
 <meta name="twitter:title" content="React Auth Kit - Private Route" />
 <meta name="twitter:description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)" />
 <meta name="twitter:image" content="https://authkit.arkadip.co/img/banner.svg" />
@@ -113,7 +113,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#import" class="md-skip">
+        <a href="#private-route" class="md-skip">
           Skip to content
         </a>
       
@@ -337,6 +337,8 @@ You're not viewing the latest version.
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Private Route
@@ -352,6 +354,8 @@ You're not viewing the latest version.
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -485,6 +489,21 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../update/" class="md-nav__link">
+        Update Auth Kit from v1 to v2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../contributing/" class="md-nav__link">
         Contributing
       </a>
@@ -508,6 +527,8 @@ You're not viewing the latest version.
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -568,48 +589,87 @@ You're not viewing the latest version.
 
 
 
-  <h1>Private Route</h1>
-
-<p># Private Route</p>
+<h1 id="private-route">Private Route<a class="headerlink" href="#private-route" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>Implement Private Route on your React App</p>
 </blockquote>
-<p>React Auth Kit has a <code>PrivateRoute</code> functionality Based on <a href="https://reactrouter.com/">React Router</a></p>
+<p>React Auth Kit has a <code>RequireAuth</code> functionality Based on <a href="https://reactrouter.com/">React Router</a></p>
+<div class="admonition danger">
+<p>RequireAuth is only available in react-auth-kit v2.x. It can be used with React Router v6. If you are using React Router v5,
+please use React-kuth-kit v1.x with PrivateRoute.
+Visit <a href="https://authkit.arkadip.dev/v1.6.13/privateroute/">this page</a> to know more.</p>
+</div>
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="privateroute"></div>
 
 <h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span><span class="nx">PrivateRoute</span><span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react-auth-kit&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RequireAuth</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react-auth-kit&#39;</span>
 </code></pre></div>
 <h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h2>
 <p>Add <code>PrivateRoute</code> in your Routes Files inside <code>BrowserRouter</code> or <code>HashRouter</code></p>
 <h3 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>&lt;BrowserRouter&gt;
-    &lt;PrivateRoute component={privateComponent} path={&#39;/privateRoute&#39;} loginPath={&#39;/loginPath&#39;} exact/&gt;
+    &lt;Routes&gt;
+      &lt;Route path={&#39;/secure&#39;} element={
+        &lt;RequireAuth loginPath={&#39;/login&#39;}&gt;
+          &lt;div&gt;
+            Secure
+          &lt;/div&gt;
+        &lt;/RequireAuth&gt;
+      }/&gt;
+    &lt;/Routes&gt;
 &lt;/BrowserRouter&gt;
 </code></pre></div>
 <details>
     <summary>Full Code</summary>
     <br>
 
-
 <div class="highlight"><pre><span></span><code>import React from &quot;react&quot;
 import {BrowserRouter, Route} from &quot;react-router-dom&quot;
-import { PrivateRoute } from &#39;react-auth-kit&#39;
+import {PrivateRoute} from &#39;react-auth-kit&#39;
+import SecureComponent from &quot;./SecureComponent&quot;;
 
 const Routes = () =&gt; {
-    return (
-        &lt;BrowserRouter&gt;
-            &lt;Route component={LoginComponent} path={&#39;/login&#39;} exact/&gt;
-            &lt;PrivateRoute component={privateComponent} path={&#39;/privateRoute&#39;} loginPath={&#39;/loginPath&#39;} exact/&gt;
-        &lt;/BrowserRouter&gt;
-    )
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;Routes&gt;
+        &lt;Route path={&#39;/login&#39;} element={&lt;Login/&gt;}/&gt;
+        &lt;Route path={&#39;/secure&#39;} element={
+          &lt;RequireAuth loginPath={&#39;/login&#39;}&gt;
+            &lt;SecureComponent/&gt;
+          &lt;/RequireAuth&gt;
+        }/&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  )
 }
 </code></pre></div>
 </details>
 
 <h2 id="props">Props<a class="headerlink" href="#props" title="Permanent link">&para;</a></h2>
-<p>As PrivateRoute is a derived version of <a href="https://reactrouter.com/web/api/Route">Route</a> from <code>React-Router</code>,
-that's why the props are same as Route props. Check <a href="https://reactrouter.com/web/api/Route">this link</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loginPath</td>
+<td>string</td>
+<td><img alt="✔" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td>The fallback path, which will be used in case of the user is not authenticated</td>
+</tr>
+<tr>
+<td>children</td>
+<td>React.Node</td>
+<td><img alt="✔" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2714.svg" title=":heavy_check_mark:" /></td>
+<td>The Component, which requires authentication</td>
+</tr>
+</tbody>
+</table>
 <p><strong><em>Added Prop</em></strong>: <code>loginPath</code> (<em>Require</em>): The fallback path, if the user is unauthorized.</p>
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
@@ -682,7 +742,7 @@ that's why the props are same as Route props. Check <a href="https://reactrouter
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.8aa65030.min.js"></script>
