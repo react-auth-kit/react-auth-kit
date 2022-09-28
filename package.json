@@ -44,6 +44,15 @@
     "type": "git",
     "url": "https://github.com/react-auth-kit/react-auth-kit"
   },
+  "bugs": {
+    "url": "https://github.com/react-auth-kit/react-auth-kit/issues",
+    "email": "hi@arkadip.dev"
+  },
+  "homepage": "https://authkit.arkadip.dev",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/react-auth-kit"
+  },
   "license": "Apache-2.0",
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
