@@ -1,3 +1,15 @@
+# [2.2.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.4...v2.2.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* docs sitemap fix ([d96bfe2](https://github.com/react-auth-kit/react-auth-kit/commit/d96bfe2b588a80fc394100e68e5242f924f62ffa))
+
+
+### Features
+
+* **package.json:** added some essential fields ([e64f135](https://github.com/react-auth-kit/react-auth-kit/commit/e64f135e6886469841a0dacdb93f9d6a0ae4658e))
+
 ## [2.1.4](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.3...v2.1.4) (2022-09-26)
 
 
