@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.2.0...v2.3.0) (2022-09-28)
+
+
+### Features
+
+* **package.json:** update [@types](https://github.com/types) package ([de97cd6](https://github.com/react-auth-kit/react-auth-kit/commit/de97cd6ff351e425490bab06d573473be230279e))
+
 # [2.2.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.1.4...v2.2.0) (2022-09-28)
 
 
