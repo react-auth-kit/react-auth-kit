@@ -139,13 +139,18 @@ jobs:
         run: |
           pip install mkdocs-material
           pip install mike
-
+          
       - name: Deploying docs in Master
         run: |
-          mike deploy --push --update-aliases ${{needs.release.outputs.tag}} latest
-          mike set-default --push latest
+          mkdocs gh-deploy --force
         if: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: Deploying docs in Beta or Next
-        run: mike deploy --push  ${{needs.release.outputs.tag}}
-        if: ${{ github.ref != 'refs/heads/master' }}
+#       - name: Deploying docs in Master
+#         run: |
+#           mike deploy --push --update-aliases ${{needs.release.outputs.tag}} latest
+#           mike set-default --push latest
+#         if: ${{ github.ref == 'refs/heads/master' }}
+
+#       - name: Deploying docs in Beta or Next
+#         run: mike deploy --push  ${{needs.release.outputs.tag}}
+#         if: ${{ github.ref != 'refs/heads/master' }}
