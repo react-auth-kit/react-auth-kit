@@ -8,7 +8,11 @@ We love your input! We want to make contributing to this project as easy and tra
 - [Reporting a bug](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/bug_report.md)
 - [Submitting a fix](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/pull_request_template.md)
 - [Proposing new features](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/feature_request.md)
-- [Contributing to documentation](https://authkit.arkadip.co/contributing/)
+- [Ask a question](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/ask_questions.md)
+- [Found a security vulnerability ?](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/security_vulnerability.md)
+- [Unexpected Behaviour in application](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/unexpected_behaviour.md)
+- [Requesting changes in docs](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/docs_request.md)
+
 
 ## Steps to follow :scroll:
 
