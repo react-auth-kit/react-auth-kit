@@ -24,10 +24,8 @@
     "test": "run-s test:*",
     "test:build": "run-s build",
     "test:unit": "jest",
-    "test:lint": "eslint src/**/*.ts src/**/*.tsx --fix",
-    "test:unit:watch": "jest --watch",
-    "lint:markdown": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json",
-    "fix:markdown": "markdownlint './docs/**/*.md' --fix --ignore node_modules -c .markdownlint.json"
+    "test:lint": "eslint src/**/*.ts src/**/*.tsx --fix && markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json",
+    "test:unit:watch": "jest --watch"
   },
   "keywords": [
     "react",
