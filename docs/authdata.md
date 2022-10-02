@@ -14,6 +14,7 @@ import {useAuthUser} from 'react-auth-kit'
 ```
 
 ### Demo
+
 ```jsx
 import React from 'react'
 import {useAuthUser} from 'react-auth-kit'
@@ -36,6 +37,7 @@ import {withAuthUser} from 'react-auth-kit'
 ```
 
 ### Demo
+
 ```jsx
 import React from 'react'
 import {withAuthUser} from 'react-auth-kit'

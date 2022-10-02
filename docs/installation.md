@@ -4,8 +4,10 @@ React-Auth-Kit is available as a [npm package](https://www.npmjs.com/package/rea
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="installation"></div>
 
-## npm :fontawesome-brands-npm:
+## npm :fontawesome-brands-npm
+
 To install and save in your `package.json` dependencies, run:
+
 ```bash
 //with npm
 npm install --save react-auth-kit
@@ -13,11 +15,12 @@ npm install --save react-auth-kit
 //with yarn
 yarn add react-auth-kit
 ```
+
 Please note that [react](https://www.npmjs.com/package/react) >= 16,
 [js-cookie](https://www.npmjs.com/package/js-cookie) = 2.2.1 and
 [react-router-dom](https://www.npmjs.com/package/react-router-dom) = 5.2.0 are peer dependencies.
 
-##CDN
+## CDN
 
 You can start using React-Auth-Kit with minimal infrastructure, which is great for prototyping.
 

@@ -7,15 +7,14 @@ Notice something that needs fixing? Or something that could be improved? Awesome
 In general, there are two main types of contribution,
 
 - **General improvements:**
-    - Typo corrections.
-    - Fixing broken refs and links.
-    - Correcting inaccurate or out of date info.
-    - Offering better explanations through clear writings and examples.
+  - Typo corrections.
+  - Fixing broken refs and links.
+  - Correcting inaccurate or out of date info.
+  - Offering better explanations through clear writings and examples.
 
 - **New Pages or features**
-    - Adding a page of documentation that we haven't covered yet.
-    - Documenting a new feature that had been added to this project since its last release.
-
+  - Adding a page of documentation that we haven't covered yet.
+  - Documenting a new feature that had been added to this project since its last release.
 
 ## Before contributing
 
@@ -26,7 +25,6 @@ In general, there are two main types of contribution,
 3. Read through some of our existing documents and get a feel about the overall structure and style.
 
 4. Read our ['Best practices'](#best-practices) section and please ensure your PR meets those.
-
 
 ## Steps for local setup
 
@@ -75,7 +73,6 @@ In general, there are two main types of contribution,
     ```
 
 5. You are now all set up and ready to contribute!
-
 
 ## Best practices
 

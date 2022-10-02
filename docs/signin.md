@@ -1,7 +1,6 @@
-#Sign In
+# Sign In
 
 > Implement Sign In on your React App
-
 
 React Auth Kit has easy to implement Sign In procedures.
 
@@ -12,13 +11,12 @@ React Auth Kit has easy to implement Sign In procedures.
 - For Functional Components, you can use `useSignIn` function inside any components
 - For class based components, you can wrap the component inside `withSignIn` function
 
-
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signin"></div>
-
 
 ---
 
 ## Usage
+
 ### Functional Component
 
 `signIn` in React Functional Components(FC) by adding the `useSignIn` hook inside it.
@@ -28,7 +26,9 @@ React Auth Kit has easy to implement Sign In procedures.
 ```js
 import { useSignIn } from 'react-auth-kit'
 ```
+
 #### Demo
+
 ```jsx
 import { useSignIn } from 'react-auth-kit'
 
@@ -58,7 +58,6 @@ const SignInComponent = () => {
 <details>
     <summary>Full Example Code</summary>
     <br>
-
 
 ```jsx
 import React from "react"
@@ -98,6 +97,7 @@ const SignInComponent = () => {
     )
 }
 ```
+
 </details>
 
 #### API
@@ -119,6 +119,7 @@ import { withSignIn } from 'react-auth-kit'
 ```
 
 #### Demo
+
 ```jsx
 import { withSignIn } from 'react-auth-kit'
 
@@ -188,6 +189,7 @@ class signInComponent extends React.Component {
 export default withSignIn(signInComponent)
 
 ```
+
 </details>
 
 #### API
@@ -212,6 +214,7 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
   refreshTokenExpireIn?: number
 }
 ```
+
 #### Explanation of SignInConfig
 
 | Name                 | Type                | Description                                                                                                                                                                  |
