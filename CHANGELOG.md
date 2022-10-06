@@ -1,3 +1,17 @@
+# [2.4.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.3.0...v2.4.0) (2022-10-06)
+
+
+### Bug Fixes
+
+* lint on docs folder ([22c96ee](https://github.com/react-auth-kit/react-auth-kit/commit/22c96eebb49deacc7f47160c2dca3373ae03ed41))
+
+
+### Features
+
+* add linting scripts to package.json ([333ed2d](https://github.com/react-auth-kit/react-auth-kit/commit/333ed2d46fdecfb5d392676fcb2e277e542f09d1))
+* add markdownlint config ([d5ad1b7](https://github.com/react-auth-kit/react-auth-kit/commit/d5ad1b77a25111fc19bf53437ae352f367eb1e09))
+* add markdownlint-cli ([1842346](https://github.com/react-auth-kit/react-auth-kit/commit/1842346bb313c4a29b3dcf69a004ec7cc7c44652))
+
 # [2.3.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.2.0...v2.3.0) (2022-09-28)
 
 
