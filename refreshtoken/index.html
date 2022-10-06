@@ -30,7 +30,7 @@
         <link rel="canonical" href="https://authkit.arkadip.dev/refreshtoken/">
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.5">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
     
     
       
@@ -38,7 +38,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.80dcb947.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
@@ -528,7 +528,7 @@ You're not viewing the latest version.
       
         <li class="md-nav__item">
   <a href="#integration-in-auth-provider" class="md-nav__link">
-    Integration in Auth Provider.
+    Integration in Auth Provider
   </a>
   
 </li>
@@ -680,7 +680,7 @@ You're not viewing the latest version.
       
         <li class="md-nav__item">
   <a href="#integration-in-auth-provider" class="md-nav__link">
-    Integration in Auth Provider.
+    Integration in Auth Provider
   </a>
   
 </li>
@@ -805,7 +805,7 @@ It is an identity function. It is mainly used for typechecking and mobility.</p>
 </code></pre></div>
 <hr />
 <h3 id="api-builder-example">API Builder Example<a class="headerlink" href="#api-builder-example" title="Permanent link">&para;</a></h3>
-<p>This is the overall example of how to use <code>createRefresh</code>. The example uses axios to make network request.
+<p>This is the overall example of how to use <code>createRefresh</code>. The example uses axios to make network request.</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">axios</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;axios&#39;</span><span class="w"></span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">useAuthHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
 
@@ -841,8 +841,8 @@ It is an identity function. It is mainly used for typechecking and mobility.</p>
 <span class="p">})</span><span class="w"></span>
 
 <span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"></span>
-</code></pre></div></p>
-<h2 id="integration-in-auth-provider">Integration in Auth Provider.<a class="headerlink" href="#integration-in-auth-provider" title="Permanent link">&para;</a></h2>
+</code></pre></div>
+<h2 id="integration-in-auth-provider">Integration in Auth Provider<a class="headerlink" href="#integration-in-auth-provider" title="Permanent link">&para;</a></h2>
 <p>To add the refresh token feature, simply add the return value of <code>createRefresh</code> function in the <code>AuthProvider</code> as a prop.</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">AuthProvider</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
 <span class="k">import</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./refreshApi&quot;</span><span class="p">;</span><span class="w"></span>
