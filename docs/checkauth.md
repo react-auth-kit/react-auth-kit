@@ -21,6 +21,7 @@ For this reason, `React Auth Kit` comes with `isAuth` functions
 ---
 
 ## Usage
+
 ### Functional Component
 
 Check the `authentication status` in React Functional Components(FC) by adding the `useIsAuthenticated` hook inside it.
@@ -65,6 +66,7 @@ import {withIsAuthenticated} from 'react-auth-kit';
 ```
 
 #### Demo
+
 ```javascript
 import React from "react";
 import {withIsAuthenticated} from 'react-auth-kit';
@@ -85,6 +87,7 @@ export default withIsAuthenticated(SomeComponent)
 ```
 
 #### API
+
 `#!ts withIsAuthenticated<P>(Component: React.ComponentType<P>): React.FC<P>`
 
 _**Parameters**_

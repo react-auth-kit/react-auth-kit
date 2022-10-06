@@ -31,7 +31,6 @@
 
 **React Auth Kit** is a lightweight `auth management` library for React JS.
 
-
 It is production-ready, and gives you the following:
 
 * 📦 Very lightweight

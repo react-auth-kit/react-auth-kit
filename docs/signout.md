@@ -19,7 +19,9 @@ Add the `useSignOut` hook in the component then call the `signOut` inside the co
 ```js
 import { useSignOut } from 'react-auth-kit'
 ```
+
 ### Demo
+
 ```jsx
 import React from "react"
 import { useSignOut } from 'react-auth-kit'
@@ -33,7 +35,6 @@ const SignInComponent = () => {
 }
 ```
 
-
 ## Sign Out using Higher Order Component
 
 Sign Out using Higher Order Component using `withSignOut`.
@@ -45,6 +46,7 @@ import { withSignOut } from 'react-auth-kit'
 ```
 
 ### Demo
+
 ```jsx
 import React from "react"
 import { withSignOut } from 'react-auth-kit'

@@ -1,0 +1,9 @@
+{
+  "default": true,
+  "no-inline-html": false,
+  "no-duplicate-header": false,
+  "first-line-h1": false,
+  "no-alt-text": false,
+  "code-block-style": false,
+  "MD013": false
+}
