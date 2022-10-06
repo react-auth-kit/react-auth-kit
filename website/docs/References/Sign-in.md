@@ -1,6 +1,11 @@
+---
+sidebar_position: 1
+---
+
 # Sign In
 
 > Implement Sign In on your React App
+
 
 React Auth Kit has easy to implement Sign In procedures.
 
@@ -11,24 +16,23 @@ React Auth Kit has easy to implement Sign In procedures.
 - For Functional Components, you can use `useSignIn` function inside any components
 - For class based components, you can wrap the component inside `withSignIn` function
 
+
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signin"></div>
+
 
 ---
 
-## Usage
-
+## __Usage__
 ### Functional Component
 
 `signIn` in React Functional Components(FC) by adding the `useSignIn` hook inside it.
 
-#### Import
+### _Import_
 
 ```js
 import { useSignIn } from 'react-auth-kit'
 ```
-
-#### Demo
-
+### _Demo_
 ```jsx
 import { useSignIn } from 'react-auth-kit'
 
@@ -57,7 +61,8 @@ const SignInComponent = () => {
 
 <details>
     <summary>Full Example Code</summary>
-    <br>
+   
+
 
 ```jsx
 import React from "react"
@@ -97,12 +102,11 @@ const SignInComponent = () => {
     )
 }
 ```
-
 </details>
 
-#### API
+### _API_
 
-`#!ts useSignIn(): (signInConfig) => boolean`
+`useSignIn(): (signInConfig) => boolean`
 
 For details about `signInConfig`, please go to the [signInConfig](#signinconfig) section
 
@@ -112,14 +116,13 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
 
 Sign In using Higher Order Component using `withSignIn`
 
-#### Import
+### _Import_
 
 ```js
 import { withSignIn } from 'react-auth-kit'
 ```
 
-#### Demo
-
+### _Demo_
 ```jsx
 import { withSignIn } from 'react-auth-kit'
 
@@ -147,7 +150,7 @@ export default withSignIn(signInComponent)
 
 <details>
     <summary>Full Example Code</summary>
-    <br>
+
 
 ```jsx
 import React from 'react'
@@ -189,12 +192,11 @@ class signInComponent extends React.Component {
 export default withSignIn(signInComponent)
 
 ```
-
 </details>
 
-#### API
+### _API_
 
-`#!ts withSignIn(Component: React.ComponentType): React.FC`
+`withSignIn(Component: React.ComponentType): React.FC`
 
 _**Returns**_  `#!ts React.FC<P>` (Functional Component with `signIn(signInConfig)` prop)
 
@@ -214,8 +216,7 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
   refreshTokenExpireIn?: number
 }
 ```
-
-#### Explanation of SignInConfig
+### _Explanation of SignInConfig_
 
 | Name                 | Type                | Description                                                                                                                                                                  |
 |----------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

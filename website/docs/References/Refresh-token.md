@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Refresh Tokens
 
 Often JWT comes with a new challenge.
@@ -16,25 +20,23 @@ You can either use the refresh token in your application or you can leave it.
 ---
 
 ## API Builder
-
 To build the refresh token API, you have to use `createRefresh` function.
 It is an identity function. It is mainly used for typechecking and mobility.
 
 ### createRefresh
 
-`#!js createRefresh(options) => refreshApi`
+`createRefresh(options) => refreshApi`
 
 Generate a refreshApi based on the options received
 
-#### Arguments
+### _Arguments_
 
 `options` (object): Takes a refresh object. It has 2 parameters
 
 1. `refreshApiCallback` (function): This is an API function. Inside this function, you have to add a network request API. See the [details](#refreshapicallback)
 2. `interval` (number): The time interval in minutes, by which the `refreshApiCallback` is called and the state is updated
 
-#### Returns
-
+### _Returns_
 A complete object of refresh token API. Add this object in the `AuthProvider` as a prop to implement the feature.
 
 ```js
@@ -53,13 +55,10 @@ export default refreshApi
 ```
 
 ---
-
 ### refreshApiCallback
-
 The container for refresh API
 
-#### Arguments
-
+### _Arguments_
 The function has only one argument, which is the `object` of the latest state.
 
 The object contains:
@@ -70,8 +69,7 @@ The object contains:
 4. `refreshTokenExpiresAt` (Date): Expiring time of the refresh token
 5. `authUserState` (object): The current User state
 
-#### Returns
-
+### _Returns_
 In side the function you have to return an `object` of new auth state fetched by the API.
 
 The return object must contain:
@@ -85,8 +83,7 @@ The return object must contain:
 5. `newRefreshTokenExpiresIn` (number)(optional): New time limit in minutes, after which the refresh token will expire. Works same as `newAuthTokenExpireIn`
 6. `newAuthUserState` (object)(optional): Pass the new user state. If your API updates the user state, then use this, else leave it.
 
-#### refreshApiCallback Example
-
+### _refreshApiCallback Example_
 ```js
 {refreshApiCallback: (
     {   // arguments
@@ -123,9 +120,7 @@ The return object must contain:
 ---
 
 ### API Builder Example
-
 This is the overall example of how to use `createRefresh`. The example uses axios to make network request.
-
 ```js
 import axios from 'axios'
 import {useAuthHeader, createRefresh} from 'react-auth-kit'
@@ -164,8 +159,7 @@ const refreshApi = createRefresh({
 export default refreshApi
 ```
 
-## Integration in Auth Provider
-
+## Integration in Auth Provider.
 To add the refresh token feature, simply add the return value of `createRefresh` function in the `AuthProvider` as a prop.
 
 ```js
@@ -185,10 +179,12 @@ function App() {
 }
 ```
 
-!!! warning "Only use the return from createRefresh as the prop value"
+:::caution Only use the return from createRefresh as the prop value
 
-    Using values other than the return of `createRefresh` will cause the application to break.
-    So only use the return of `createRefresh` as the prop value.
+Using values other than the return of `createRefresh` will cause the application to break.
+So only use the return of `createRefresh` as the prop value.
+:::
+
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

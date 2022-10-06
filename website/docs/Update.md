@@ -1,4 +1,8 @@
-# Update Auth Kit from v1 to v2
+---
+sidebar_position: 4
+---
+
+# Update Auth Kit to v2
 
 ## What's changed
 
@@ -10,7 +14,6 @@
 ## Update to v2
 
 ### Component structure in v1
-
 ```jsx title="RouteComponent"
 <BrowserRouter>
   <Switch>
@@ -23,9 +26,7 @@
   </Switch>
 </BrowserRouter>
 ```
-
 ### Component structure in v2
-
 ```jsx title="RouteComponent"
 <BrowserRouter>
   <Routes>
@@ -42,3 +43,5 @@
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+
+

@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Auth Header
 
 Get the Auth Header for future request from any Component simply by using `HOC` or `Hooks`
@@ -14,7 +18,6 @@ import {useAuthHeader} from 'react-auth-kit'
 ```
 
 ### Demo
-
 ```jsx
 import React from 'react'
 import {useAuthHeader} from 'react-auth-kit'
@@ -37,7 +40,6 @@ import {withAuthHeader} from 'react-auth-kit'
 ```
 
 ### Demo
-
 ```jsx
 import React from 'react'
 import {withAuthHeader} from 'react-auth-kit'
@@ -54,6 +56,7 @@ class SomeComponent extends React.Component {
 
 export default withAuthHeader(SomeComponent)
 ```
+
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

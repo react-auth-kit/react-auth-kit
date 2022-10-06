@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Auth User Data
 
 Get the Authorized user's state from any Component simply by using `HOC` or `Hooks`
@@ -14,7 +18,6 @@ import {useAuthUser} from 'react-auth-kit'
 ```
 
 ### Demo
-
 ```jsx
 import React from 'react'
 import {useAuthUser} from 'react-auth-kit'
@@ -37,7 +40,6 @@ import {withAuthUser} from 'react-auth-kit'
 ```
 
 ### Demo
-
 ```jsx
 import React from 'react'
 import {withAuthUser} from 'react-auth-kit'

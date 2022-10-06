@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Check Authentication
 
 > Check if any user is authenticated or not
@@ -21,18 +25,17 @@ For this reason, `React Auth Kit` comes with `isAuth` functions
 ---
 
 ## Usage
-
 ### Functional Component
 
 Check the `authentication status` in React Functional Components(FC) by adding the `useIsAuthenticated` hook inside it.
 
-#### Import
+### _Import_
 
 ```jsx
 import {useIsAuthenticated} from 'react-auth-kit';
 ```
 
-#### Demo
+### _Demo_
 
 ```jsx
 import {useIsAuthenticated} from 'react-auth-kit';
@@ -49,7 +52,7 @@ const AnyComponent = () => {
 }
 ```
 
-#### API
+### _API_
 
 `useIsAuthenticated()`
 
@@ -59,14 +62,13 @@ _**Returns**_  `() => boolean`
 
 ### Class Based Component
 
-#### Import
+### _Import_
 
 ```javascript
 import {withIsAuthenticated} from 'react-auth-kit';
 ```
 
-#### Demo
-
+### _Demo_
 ```javascript
 import React from "react";
 import {withIsAuthenticated} from 'react-auth-kit';
@@ -86,8 +88,7 @@ class SomeComponent extends React.Component {
 export default withIsAuthenticated(SomeComponent)
 ```
 
-#### API
-
+### _API_
 `#!ts withIsAuthenticated<P>(Component: React.ComponentType<P>): React.FC<P>`
 
 _**Parameters**_

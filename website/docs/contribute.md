@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Contributing
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="contributing"></div>
@@ -7,14 +11,15 @@ Notice something that needs fixing? Or something that could be improved? Awesome
 In general, there are two main types of contribution,
 
 - **General improvements:**
-  - Typo corrections.
-  - Fixing broken refs and links.
-  - Correcting inaccurate or out of date info.
-  - Offering better explanations through clear writings and examples.
+    - Typo corrections.
+    - Fixing broken refs and links.
+    - Correcting inaccurate or out of date info.
+    - Offering better explanations through clear writings and examples.
 
 - **New Pages or features**
-  - Adding a page of documentation that we haven't covered yet.
-  - Documenting a new feature that had been added to this project since its last release.
+    - Adding a page of documentation that we haven't covered yet.
+    - Documenting a new feature that had been added to this project since its last release.
+
 
 ## Before contributing
 
@@ -26,43 +31,44 @@ In general, there are two main types of contribution,
 
 4. Read our ['Best practices'](#best-practices) section and please ensure your PR meets those.
 
+
 ## Steps for local setup
 
 1. We use [Github Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). Follow the steps specified at [CONTRIBUTING.md](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md) to set up a local repo of the project.
 
 2. Install Material for MkDocs.
 
-    === "Pip"
+    Pip
 
-        ``` sh
-        pip install mkdocs-material
-        ```
+     ``` sh
+     pip install mkdocs-material
+   ```
 
-        This will automatically install compatible versions of all dependencies: [MkDocs](https://www.mkdocs.org/), [Markdown](https://python-markdown.github.io/), [Pygments](https://pygments.org/) and [Python Markdown Extensions](https://facelessuser.github.io/pymdown-extensions/).
+    This will automatically install compatible versions of all dependencies: [MkDocs](https://www.mkdocs.org/), [Markdown](https://python-markdown.github.io/), [Pygments](https://pygments.org/) and [Python Markdown Extensions](https://facelessuser.github.io/pymdown-extensions/).
 
-    === "Docker"
+    Docker
 
-        The official [Docker image](https://hub.docker.com/r/squidfunk/mkdocs-material/) is a great way to get up and running in a few minutes, as it comes with all dependencies pre-installed. Pull the image for the `latest` version with:
+    The official [Docker image](https://hub.docker.com/r/squidfunk/mkdocs-material/) is a great way to get up and running in a few minutes, as it comes with all dependencies pre-installed. Pull the image for the `latest` version with:
 
-        ``` sh
-        docker pull squidfunk/mkdocs-materiall
-        ```
+    ```sh
+    docker pull squidfunk/mkdocs-materiall
+  ```
 
-        The mkdocs executable is provided as an entry point and serve is the default command.
+    The mkdocs executable is provided as an entry point and serve is the default command.
 
-    === "Git"
+    Git
 
-        Material for MkDocs can be directly used from [GitHub](https://www.github.com/) by cloning the repository into a subfolder of your project root which might be useful if you want to use the very latest version:
+    Material for MkDocs can be directly used from [GitHub](https://www.github.com/) by cloning the repository into a subfolder of your project root which might be useful if you want to use the very latest version:
 
-        ``` sh
-        git clone https://github.com/squidfunk/mkdocs-material.git
-        ```
+    ``` sh
+    git clone https://github.com/squidfunk/mkdocs-material.git
+    ```
 
-        The theme will reside in the folder mkdocs-material/material. When cloning from git, you must install all required dependencies yourself:
+    The theme will reside in the folder mkdocs-material/material. When cloning from git, you must install all required dependencies yourself:
 
-        ``` sh
-        pip install -r mkdocs-material/requirements.txt
-        ```
+    ``` sh
+    pip install -r mkdocs-material/requirements.txt
+    ```
 
 3. All the contents are in the `docs` folder and the mkdocs config in `mkdocs.yml` relative to the project root directory.
 
@@ -73,6 +79,7 @@ In general, there are two main types of contribution,
     ```
 
 5. You are now all set up and ready to contribute!
+
 
 ## Best practices
 
