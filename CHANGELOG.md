@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.4.0...v2.5.0) (2022-10-18)
+
+
+### Features
+
+* added dar theme in the theme ([9937e41](https://github.com/react-auth-kit/react-auth-kit/commit/9937e410681f6d2ef4e56a9c01deca108b54fa88))
+
 # [2.4.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.3.0...v2.4.0) (2022-10-06)
 
 
