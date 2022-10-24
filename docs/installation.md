@@ -1,3 +1,8 @@
+---
+title: Installation
+description: Installation of React Auth Kit in your Project
+---
+
 # Installation
 
 React-Auth-Kit is available as a [npm package](https://www.npmjs.com/package/react-auth-kit)
