@@ -1,6 +1,6 @@
 # Integration
 
-React Auth Kit uses a Context Provider to maintain it's internal state in the application.
+React Auth Kit uses React's Context Provider to maintain it's internal state in the application.
 So to use auth kit, you must have to add the `AuthProvider` on the very top level of your application.
 Without the provider the application will fail to work and will throw errors.
 
@@ -23,8 +23,7 @@ import { AuthProvider } from 'react-auth-kit'
 
 Integrate `AuthProvider` before Routes. The best place is `app.js`.
 
-```javascript
-//app.js
+```javascript title="app.js" hl_lines="6 7 8 9 10 11"
 
 import React from 'react';
 import { AuthProvider } from 'react-auth-kit'

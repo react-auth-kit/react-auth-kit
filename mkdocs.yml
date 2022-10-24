@@ -37,7 +37,7 @@ nav:
   - Home: 'index.md'
   - Documentation:
     - Installation: 'installation.md'
-    - Integrate in your project: 'integration.md'
+    - Integration: 'integration.md'
     - Sign In: 'signin.md'
     - Private Route: 'privateroute.md'
     - Sign Out: 'signout.md'
