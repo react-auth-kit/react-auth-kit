@@ -1,15 +1,13 @@
 # Sign In
 
-> Implement Sign In on your React App
+> :material-lock: Implement Sign In on your Single Page Web App
 
 React Auth Kit has easy to implement Sign In procedures.
 
----
+`signIn` functionality available in both `React Hook` and `Higher Order Component`
 
-`signIn` functionality available in both `hook` and `Higher Order Component`
-
-- For Functional Components, you can use `useSignIn` function inside any components
-- For class based components, you can wrap the component inside `withSignIn` function
+- For Functional Components, you can use `#!js useSignIn()` hook inside any components
+- For class based components, you can wrap the component inside `#!js withSignIn()` HOC function.
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signin"></div>
 
@@ -19,7 +17,7 @@ React Auth Kit has easy to implement Sign In procedures.
 
 ### Functional Component
 
-`signIn` in React Functional Components(FC) by adding the `useSignIn` hook inside it.
+`signIn` in React Functional Components(FC) by adding the `#!js useSignIn()` hook inside it.
 
 #### Import
 
@@ -29,7 +27,7 @@ import { useSignIn } from 'react-auth-kit'
 
 #### Demo
 
-```jsx
+```jsx title="SignIn.js" hl_lines="1 4 8 9 10 11 12 13 14 15"
 import { useSignIn } from 'react-auth-kit'
 
 const SignInComponent = () => {
@@ -37,12 +35,16 @@ const SignInComponent = () => {
     ...
     const onSubmit = (e) => {
         ...
-        if(signIn({token: res.data.token,
-                   expiresIn:res.data.expiresIn,
-                   tokenType: "Bearer",
-                   authState: res.data.authUserState,
-                   refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
-                   refreshTokenExpireIn: res.data.refreshTokenExpireIn})){ // Only if you are using refreshToken feature
+        if(signIn(
+            {
+                token: res.data.token,
+                expiresIn:res.data.expiresIn,
+                tokenType: "Bearer",
+                authState: res.data.authUserState,
+                refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
+                refreshTokenExpireIn: res.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
+            }
+        )){
             // Redirect or do-something
         }else {
             //Throw error
@@ -59,7 +61,7 @@ const SignInComponent = () => {
     <summary>Full Example Code</summary>
     <br>
 
-```jsx
+```jsx hl_lines="3 6 14 15 16 17 18 19 20 21 22"
 import React from "react"
 import axios from 'axios'
 import { useSignIn } from 'react-auth-kit'
@@ -73,12 +75,16 @@ const SignInComponent = () => {
         axios.post('/api/login', formData)
             .then((res)=>{
                 if(res.status === 200){
-                    if(signIn({token: res.data.token,
-                               expiresIn:res.data.expiresIn,
-                               tokenType: "Bearer",
-                               authState: res.data.authUserState,
-                               refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
-                               refreshTokenExpireIn: res.data.refreshTokenExpireIn})){ // Only if you are using refreshToken feature
+                    if(signIn(
+                        {
+                            token: res.data.token,
+                            expiresIn:res.data.expiresIn,
+                            tokenType: "Bearer",
+                            authState: res.data.authUserState,
+                            refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
+                            refreshTokenExpireIn: res.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
+                        }
+                    )){ // Only if you are using refreshToken feature
                         // Redirect or do-something
                     }else {
                         //Throw error
@@ -120,17 +126,23 @@ import { withSignIn } from 'react-auth-kit'
 
 #### Demo
 
-```jsx
+```jsx title="SignIn.js" hl_lines="1 7 8 9 10 11 12 13 14 15"
 import { withSignIn } from 'react-auth-kit'
 
 class signInComponent extends React.Component {
 
     const onSubmit = (e) => {
         ...
-        if(this.props.signIn({token: res.data.token,
-                              expiresIn:res.data.expiresIn,
-                              tokenType: "Bearer",
-                              authState: res.data.authUserState})){
+        if(this.props.signIn(
+            {
+                token: res.data.token,
+                expiresIn:res.data.expiresIn,
+                tokenType: "Bearer",
+                authState: res.data.authUserState,
+                refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
+                refreshTokenExpireIn: res.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
+            }
+        )){
             // Redirect or do-something
         }else {
             //Throw error
@@ -162,10 +174,16 @@ class signInComponent extends React.Component {
         axios.post('/api/login', this.state)
             .then((res)=>{
                 if(res.status === 200){
-                    if(this.props.signIn({token: res.data.token,
-                                          expiresIn:res.data.expiresIn,
-                                          tokenType: "Bearer",
-                                          authState: res.data.authUserState})){
+                    if(this.props.signIn(
+                        {
+                            token: res.data.token,
+                            expiresIn:res.data.expiresIn,
+                            tokenType: "Bearer",
+                            authState: res.data.authUserState,
+                            refreshToken: res.data.refreshToken,                    // Only if you are using refreshToken feature
+                            refreshTokenExpireIn: res.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
+                        }
+                    )){
                         // Redirect or do-something
                     }else {
                         //Throw error
