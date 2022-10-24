@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+  - title
+---
 <p style="text-align: center">
     <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
 </p>

@@ -28,28 +28,30 @@ theme:
         name: Switch to light mode
   features:
     - content.code.annotate
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tracking
     - toc.follow
 
 nav:
-  - Introduction: 'index.md'
-  - Installation: 'installation.md'
-  - Integrate in your project: 'integration.md'
-  - Sign In: 'signin.md'
-  - Private Route: 'privateroute.md'
-  - Sign Out: 'signout.md'
-  - Auth User Data: 'authdata.md'
-  - Auth Header: 'authheader.md'
-  - Check Authentication: 'checkauth.md'
-  - Refresh Token: 'refreshtoken.md'
-  - Update Auth Kit from v1 to v2: 'update.md'
+  - Home: 'index.md'
+  - Documentation:
+    - Installation: 'installation.md'
+    - Integrate in your project: 'integration.md'
+    - Sign In: 'signin.md'
+    - Private Route: 'privateroute.md'
+    - Sign Out: 'signout.md'
+    - Auth User Data: 'authdata.md'
+    - Auth Header: 'authheader.md'
+    - Check Authentication: 'checkauth.md'
+    - Refresh Token: 'refreshtoken.md'
+    - Update Auth Kit from v1 to v2: 'update.md'
   - Contributing: 'contributing.md'
 
 extra:
   analytics:
     provider: google
     property: G-G1WZBFV5R2
-  version:
-    provider: mike
 
 extra_javascript:
   - https://media.ethicalads.io/media/client/ethicalads.min.js
