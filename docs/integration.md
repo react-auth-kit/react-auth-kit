@@ -1,3 +1,8 @@
+---
+title: Integration
+description: Ingetrate React Auth Kit in the React Based Application
+---
+
 # Integration
 
 React Auth Kit uses React's Context Provider to maintain it's internal state in the application.
