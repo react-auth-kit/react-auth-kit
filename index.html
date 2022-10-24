@@ -21,7 +21,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)">
+        <meta name="description" content="Authentication state management Library for React JS-based projects uses the power of Token-Based Authentication using JSON Web Token (JWT).">
       
       
         <meta name="author" content="Arkadip Bhattacharya">
@@ -30,7 +30,7 @@
         <link rel="canonical" href="https://authkit.arkadip.dev/">
       
       <link rel="icon" href="img/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
@@ -80,20 +80,20 @@
 
 
 <meta property="keywords"
-      content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-jwt, jwt with react"/>
+      content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-kit, jwt with react, state, react-state, auth-state"/>
 <meta property="og:type" content="website" />
 <meta property="og:title" content="React Auth Kit" />
-<meta property="og:description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)" />
+<meta property="og:description" content="Authentication state management Library for React JS-based projects uses the power of Token-Based Authentication using JSON Web Token (JWT)." />
 <meta property="og:url" content="https://authkit.arkadip.dev/" />
-<meta property="og:image" content="https://authkit.arkadip.co/img/banner.png" />
+<meta property="og:image" content="https://authkit.arkadip.dev/img/banner.png" />
 <meta property="og:image:type" content="image/svg+xml" />
 <meta property="og:image:width" content="1280" />
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="https://authkit.arkadip.dev/">
 <meta name="twitter:title" content="React Auth Kit" />
-<meta name="twitter:description" content="Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)" />
-<meta name="twitter:image" content="https://authkit.arkadip.co/img/banner.svg" />
+<meta name="twitter:description" content="Authentication state management Library for React JS-based projects uses the power of Token-Based Authentication using JSON Web Token (JWT)." />
+<meta name="twitter:image" content="https://authkit.arkadip.dev/img/banner.svg" />
 
   </head>
   
@@ -121,23 +121,6 @@
       
     </div>
     
-      <div data-md-component="outdated" hidden>
-        
-          <aside class="md-banner md-banner--warning">
-            <div class="md-banner__inner md-grid md-typeset">
-              
-You're not viewing the latest version.
-<a href="../.">
-
-  <strong>Click here to go to latest.</strong>
-</a>
-
-            </div>
-            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
-          </aside>
-        
-      </div>
-    
     
       
 
@@ -161,7 +144,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Home
             
           </span>
         </div>
@@ -247,6 +230,57 @@ You're not viewing the latest version.
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="." class="md-tabs__link md-tabs__link--active">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="installation/" class="md-tabs__link">
+        Documentation
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="contributing/" class="md-tabs__link">
+      Contributing
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -254,13 +288,17 @@ You're not viewing the latest version.
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="React Auth Kit" class="md-nav__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
       
@@ -300,7 +338,7 @@ You're not viewing the latest version.
       
       
       <a href="." class="md-nav__link md-nav__link--active">
-        Introduction
+        Home
       </a>
       
     </li>
@@ -311,6 +349,32 @@ You're not viewing the latest version.
       
       
 
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
   
   
   
@@ -321,26 +385,24 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
     <li class="md-nav__item">
       <a href="integration/" class="md-nav__link">
-        Integrate in your project
+        Integration
       </a>
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -351,11 +413,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -366,11 +427,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -381,11 +441,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -396,11 +455,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -411,11 +469,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -426,11 +483,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -441,11 +497,10 @@ You're not viewing the latest version.
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -453,6 +508,13 @@ You're not viewing the latest version.
       <a href="update/" class="md-nav__link">
         Update Auth Kit from v1 to v2
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -480,7 +542,9 @@ You're not viewing the latest version.
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -508,7 +572,7 @@ You're not viewing the latest version.
   </a>
 
 
-  <h1>Introduction</h1>
+  <h1>Home</h1>
 
 <p style="text-align: center">
     <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
@@ -540,15 +604,17 @@ You're not viewing the latest version.
 </p>
 
 <hr />
-<p><strong>React Auth Kit</strong> is a lightweight <code>auth management</code> library for React JS.</p>
+<p><strong>React Auth Kit</strong> is a lightweight <code>auth state management</code> library for React JS based projects.</p>
 <p>It is production-ready, and gives you the following:</p>
 <ul>
 <li>📦 Very lightweight</li>
-<li>⚛️Build for React Js</li>
+<li>🔧 Easy to use</li>
+<li>⚛️ Build for React JS</li>
+<li>⚡ Works with Gastsby, Next JS</li>
 <li>🚀 Fast and easy to Implement</li>
 <li>🛡️ Supports Json Web Token (JWT)</li>
 <li>🔒 Secure Client Side Authentication</li>
-<li>⌨️Highly typed and written in TypeScript</li>
+<li>⌨️ Highly typed and written in <code>TypeScript</code></li>
 </ul>
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
 
@@ -558,6 +624,8 @@ You're not viewing the latest version.
 
   
 
+
+  
 
 
 
@@ -572,6 +640,8 @@ You're not viewing the latest version.
       
         <footer class="md-footer">
   
+    
+      
     
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
@@ -598,7 +668,7 @@ You're not viewing the latest version.
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2020 - 2021 React Auth Kit
+      Copyright &copy; 2020 - 2022 React Auth Kit
     </div>
   
   
@@ -618,10 +688,10 @@ You're not viewing the latest version.
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate"], "search": "assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "navigation.instant", "navigation.tabs", "navigation.tracking", "toc.follow"], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.078830c0.min.js"></script>
+      <script src="assets/javascripts/bundle.8492ddcf.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       
