@@ -6,7 +6,7 @@ site_url: https://authkit.arkadip.dev/
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
 
-copyright:  Copyright &copy; 2020 - 2021 React Auth Kit
+copyright:  Copyright &copy; 2020 - 2022 React Auth Kit
 
 theme:
   name: 'material'
@@ -28,21 +28,7 @@ theme:
         name: Switch to light mode
   features:
     - content.code.annotate
-
-# theme:
-#   palette: 
-
-#     # Palette toggle for light mode
-#     - scheme: default
-#       toggle:
-#         icon: material/brightness-7 
-#         name: Switch to dark mode
-
-#     # Palette toggle for dark mode
-#     - scheme: slate
-#       toggle:
-#         icon: material/brightness-4
-#         name: Switch to light mode
+    - toc.follow
 
 nav:
   - Introduction: 'index.md'
