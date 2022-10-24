@@ -1,3 +1,23 @@
+# [2.6.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.5.0...v2.6.0) (2022-10-24)
+
+
+### Bug Fixes
+
+* npm icon was missing ([1537610](https://github.com/react-auth-kit/react-auth-kit/commit/153761019e0e4ade7ef773bc24c3b48b570bd8c6))
+* updated OG urls ([8557240](https://github.com/react-auth-kit/react-auth-kit/commit/85572403641325fd1e095591fd0c67dc68eff7ee))
+
+
+### Features
+
+* added following table of contant ([3d9a2f3](https://github.com/react-auth-kit/react-auth-kit/commit/3d9a2f3d7f781316349c9a7fbe4575e5c96948e0))
+* added some more key feature of auth kit ([dc683fc](https://github.com/react-auth-kit/react-auth-kit/commit/dc683fc80e137b103d3896fb086a378bd7470ce9))
+* added suitable title and descriptions ([831da01](https://github.com/react-auth-kit/react-auth-kit/commit/831da01db0b0dda812f63739204b7a17716a25b8))
+* added tabs ([8d3863f](https://github.com/react-auth-kit/react-auth-kit/commit/8d3863fa407b22e7771a329eef99810e83d50eed))
+* added the description for installation ([40fbbce](https://github.com/react-auth-kit/react-auth-kit/commit/40fbbce838daf15f52420257fd6475aecc123dd7))
+* Installation MD is updated ([c6213e9](https://github.com/react-auth-kit/react-auth-kit/commit/c6213e9c538696081e5eaf97239f99a3dffa22e9))
+* updated site description ([64fcab2](https://github.com/react-auth-kit/react-auth-kit/commit/64fcab2a8612c7921696a4384dd4472494040a2c))
+* updated the sign in page ([7e8dc75](https://github.com/react-auth-kit/react-auth-kit/commit/7e8dc7537b004a3967fc0ca733e5751f37d8e0db))
+
 # [2.5.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.4.0...v2.5.0) (2022-10-18)
 
 
