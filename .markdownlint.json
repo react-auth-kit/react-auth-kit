@@ -5,5 +5,7 @@
   "first-line-h1": false,
   "no-alt-text": false,
   "code-block-style": false,
-  "MD013": false
+  "MD013": false,
+  "MD025": false,
+  "MD026": false
 }

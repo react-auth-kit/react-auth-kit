@@ -1,12 +1,12 @@
 site_name: React Auth Kit
-site_description: Authentication Library for React Js for Token Based Auth using Json Web Token(JWT)
+site_description: Authentication state management Library for React JS-based projects uses the power of Token-Based Authentication using JSON Web Token (JWT).
 site_author: Arkadip Bhattacharya
 site_url: https://authkit.arkadip.dev/
 
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
 
-copyright:  Copyright &copy; 2020 - 2021 React Auth Kit
+copyright:  Copyright &copy; 2020 - 2022 React Auth Kit
 
 theme:
   name: 'material'
@@ -28,42 +28,30 @@ theme:
         name: Switch to light mode
   features:
     - content.code.annotate
-
-# theme:
-#   palette: 
-
-#     # Palette toggle for light mode
-#     - scheme: default
-#       toggle:
-#         icon: material/brightness-7 
-#         name: Switch to dark mode
-
-#     # Palette toggle for dark mode
-#     - scheme: slate
-#       toggle:
-#         icon: material/brightness-4
-#         name: Switch to light mode
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tracking
+    - toc.follow
 
 nav:
-  - Introduction: 'index.md'
-  - Installation: 'installation.md'
-  - Integrate in your project: 'integration.md'
-  - Sign In: 'signin.md'
-  - Private Route: 'privateroute.md'
-  - Sign Out: 'signout.md'
-  - Auth User Data: 'authdata.md'
-  - Auth Header: 'authheader.md'
-  - Check Authentication: 'checkauth.md'
-  - Refresh Token: 'refreshtoken.md'
-  - Update Auth Kit from v1 to v2: 'update.md'
+  - Home: 'index.md'
+  - Documentation:
+    - Installation: 'installation.md'
+    - Integration: 'integration.md'
+    - Sign In: 'signin.md'
+    - Private Route: 'privateroute.md'
+    - Sign Out: 'signout.md'
+    - Auth User Data: 'authdata.md'
+    - Auth Header: 'authheader.md'
+    - Check Authentication: 'checkauth.md'
+    - Refresh Token: 'refreshtoken.md'
+    - Update Auth Kit from v1 to v2: 'update.md'
   - Contributing: 'contributing.md'
 
 extra:
   analytics:
     provider: google
     property: G-G1WZBFV5R2
-  version:
-    provider: mike
 
 extra_javascript:
   - https://media.ethicalads.io/media/client/ethicalads.min.js
