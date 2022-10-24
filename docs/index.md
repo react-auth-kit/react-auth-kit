@@ -35,16 +35,18 @@ hide:
 
 ---
 
-**React Auth Kit** is a lightweight `auth management` library for React JS.
+**React Auth Kit** is a lightweight `auth state management` library for React JS based projects.
 
 It is production-ready, and gives you the following:
 
 * 📦 Very lightweight
-* ⚛️Build for React Js
+* 🔧 Easy to use
+* ⚛️ Build for React JS
+* ⚡ Works with Gastsby, Next JS
 * 🚀 Fast and easy to Implement
 * 🛡️ Supports Json Web Token (JWT)
 * 🔒 Secure Client Side Authentication
-* ⌨️Highly typed and written in TypeScript
+* ⌨️ Highly typed and written in `TypeScript`
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
 
