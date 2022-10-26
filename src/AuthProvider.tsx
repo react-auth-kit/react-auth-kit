@@ -42,8 +42,8 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     const [authState, dispatch] =
       React.useReducer(authReducer, tokenObject.initialToken());
 
-      if (refresh) {
-        useInterval(
+    if (refresh) {
+      useInterval(
           () => {
             refresh
               .refreshApiCallback({
@@ -61,9 +61,9 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
                 }
               });
           },
-          authState.isSignIn ? refresh.interval : null
-        );
-      }
+        authState.isSignIn ? refresh.interval : null,
+      );
+    }
 
     React.useEffect(() => {
       tokenObject.syncTokens(authState);

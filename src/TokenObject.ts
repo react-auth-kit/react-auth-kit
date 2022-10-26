@@ -7,11 +7,11 @@ import {AuthKitStateInterface, AuthStateUserObject} from './types';
  * Stores and retrieve Token
  */
 class TokenObject {
-  private readonly authStorageName: string
-  private readonly stateStorageName: string
-  private readonly authTimeStorageName: string
-  private readonly cookieDomain?: string
-  private readonly cookieSecure?: boolean
+  private readonly authStorageName: string;
+  private readonly stateStorageName: string;
+  private readonly authTimeStorageName: string;
+  private readonly cookieDomain?: string;
+  private readonly cookieSecure?: boolean;
   private readonly authStorageTypeName: string;
   private readonly authStorageType: 'cookie' | 'localstorage';
   private readonly refreshTokenName: string | null;
