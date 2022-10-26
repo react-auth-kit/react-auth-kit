@@ -1,3 +1,15 @@
+## [2.6.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.6.0...v2.6.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* again ([349abe4](https://github.com/react-auth-kit/react-auth-kit/commit/349abe48d2bdfc09f2771794bfcbc75679f0769c))
+* **authProvider:** indentation ([48607fd](https://github.com/react-auth-kit/react-auth-kit/commit/48607fd70acfcc877e351da2f3c69c2083e579ea))
+* **authProvider:** indentation ([ad4bda7](https://github.com/react-auth-kit/react-auth-kit/commit/ad4bda70b2a4e0355f702ce61c2aaaaa7cc916a4))
+* **commitlintConfig:** code quality ([6ab1fdd](https://github.com/react-auth-kit/react-auth-kit/commit/6ab1fddd28acb0f38a345d5688b75fcc28d66cc8))
+* **commitlintConfig:** eslint rule ([b4f1051](https://github.com/react-auth-kit/react-auth-kit/commit/b4f105115cad2f73046e3282770f47d269025d4e))
+* **tokenObject:** added semicolons ([0e8b30b](https://github.com/react-auth-kit/react-auth-kit/commit/0e8b30b16a12497a8acf6dc0242158169f79cb21))
+
 # [2.6.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.5.0...v2.6.0) (2022-10-24)
 
 
