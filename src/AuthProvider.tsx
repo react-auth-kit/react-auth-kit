@@ -44,22 +44,22 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
 
     if (refresh) {
       useInterval(
-        () => {
-          refresh
-            .refreshApiCallback({
-              authToken: authState.auth?.token,
-              authTokenExpireAt: authState.auth?.expiresAt,
-              authUserState: authState.userState,
-              refreshToken: authState.refresh?.token,
-              refreshTokenExpiresAt: authState.refresh?.expiresAt,
-            })
-            .then((result) => {
-              // IF the API call is successful then refresh the AUTH state
-              if (result.isSuccess) {
-                // store the new value using the state update
-                dispatch(doRefresh(result));
-              }
-            });
+          () => {
+            refresh
+              .refreshApiCallback({
+                authToken: authState.auth?.token,
+                authTokenExpireAt: authState.auth?.expiresAt,
+                authUserState: authState.userState,
+                refreshToken: authState.refresh?.token,
+                refreshTokenExpiresAt: authState.refresh?.expiresAt,
+              })
+              .then((result) => {
+                // IF the API call is successful then refresh the AUTH state
+                if (result.isSuccess) {
+                  // store the new value using the state update
+                  dispatch(doRefresh(result));
+                }
+              });
         },
         authState.isSignIn ? refresh.interval : null,
       );
