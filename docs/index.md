@@ -16,9 +16,6 @@ hide:
 <a href="https://github.com/react-auth-kit/react-auth-kit/actions">
     <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy/badge.svg" alt="NPM Deploy">
 </a>
-<a href="https://github.com/react-auth-kit/react-auth-kit/actions">
-    <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/Test%20Suites/badge.svg" alt="Test Suites">
-</a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
     <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
 </a>
