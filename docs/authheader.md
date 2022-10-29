@@ -1,4 +1,10 @@
-# Auth Header
+---
+title: Authentication Header
+description: Get the formatted authentication token by just calling Auth Header hook or Higher order component and pass it to all the API calls.
+---
+
+
+# Authentication Header
 
 Get the Auth Header for future request from any Component simply by using `HOC` or `Hooks`
 
