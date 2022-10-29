@@ -1,4 +1,9 @@
-# Auth User Data
+---
+title: Authenticated User's Data
+description: Get the Authenticated user's data from any component using the Auth User Hook or Auth User Higher-order Component.
+---
+
+# Authenticated User's Data
 
 Get the Authorized user's state from any Component simply by using `HOC` or `Hooks`
 
