@@ -1,3 +1,20 @@
+# [2.7.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.6.2...v2.7.0) (2022-10-30)
+
+
+### Bug Fixes
+
+* **docs.authdata:** added description ([ad5da29](https://github.com/react-auth-kit/react-auth-kit/commit/ad5da2976c491cf5b612e239eabc7516eb923cb3))
+* **docs.authheader:** added description ([f9550fe](https://github.com/react-auth-kit/react-auth-kit/commit/f9550fe710e4b29aed42d8d78265e4223745524d))
+* **docs.checkauth:** added description ([857d313](https://github.com/react-auth-kit/react-auth-kit/commit/857d3139c573afaa078e9cc832472353bd8508c8))
+* **docs.integration:** added description ([825f4fb](https://github.com/react-auth-kit/react-auth-kit/commit/825f4fb0d5bae4d4f024027b7882ad3ef38e8f7c))
+* **docs.privateroute:** added description ([c0c7050](https://github.com/react-auth-kit/react-auth-kit/commit/c0c7050b312eb8275f7f45459e5ac1e1fab56794))
+* **docs.refreshtoken:** added description ([265b9b2](https://github.com/react-auth-kit/react-auth-kit/commit/265b9b29844f2fc9cbfebc846f8e67af0eb81a41))
+
+
+### Features
+
+* index description updated ([1989a31](https://github.com/react-auth-kit/react-auth-kit/commit/1989a31474345a7ea6c04723a3e4fbed89b9c726))
+
 ## [2.6.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.6.1...v2.6.2) (2022-10-26)
 
 
