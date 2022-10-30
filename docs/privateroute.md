@@ -1,3 +1,8 @@
+---
+title: Private Route
+description: The RequireAuth component renders child componentsif the user is logged in. If not logged in the user is redirected to the page specified in loginPath prop.
+---
+
 # Private Route
 
 > Implement Private Route on your React App

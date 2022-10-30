@@ -1,3 +1,8 @@
+---
+title: Sign Out
+description: The Sign out Hook or Sign out Higher-order Component handles all the necessary Sign out operations in one function.
+---
+
 # Sign Out
 
 > Implement Sign Out on your React App

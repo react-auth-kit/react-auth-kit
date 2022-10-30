@@ -1,6 +1,6 @@
 ---
 title: Integration
-description: Ingetrate React Auth Kit in the React Based Application
+description: Easily integrate the ease and power of React Auth Kit into your React Web Application with just two lines of code.
 ---
 
 # Integration

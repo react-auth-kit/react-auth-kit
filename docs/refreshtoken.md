@@ -1,4 +1,10 @@
-# Refresh Tokens
+---
+title: Refresh the Auth Token periodically
+description: Refresh the auth token in the background by using the Refresh token feature. Just use the createRefresh builder.
+---
+
+
+# Refresh the Auth Token periodically
 
 Often JWT comes with a new challenge.
 You have to `refresh` the JWT token periodically using a token, named Refresh token.

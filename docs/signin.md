@@ -1,6 +1,6 @@
 ---
-title: Sign In Operation
-description: Sign In Operation of React auth, using both React Hook and Higher Order Component.
+title: Sign In 
+description: Setup the powerful Sign In operation of React auth kit using both React Hook and Higher Order Component.
 ---
 
 # Sign In
