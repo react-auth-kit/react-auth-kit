@@ -25,7 +25,7 @@ import {doSignOut} from '../utils/reducers';
 /**
   *@function
   *@name useIsAuthenticated
-  *@description check wether user is authenticated or not
+  *@description check whether user is authenticated or not
   */
 function useIsAuthenticated(): ()=>boolean {
   const context = React.useContext(AuthContext);
