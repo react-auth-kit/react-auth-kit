@@ -98,7 +98,7 @@
   "dependencies": {
     "js-cookie": "^3.0.1",
     "react": ">=16.8.0 || ^17.x || ^18.x",
-    "react-router-dom": "^6.2.0"
+    "react-router-dom": "^6.4.3"
   },
   "peerDependencies": {
     "js-cookie": "^3.0.1",
