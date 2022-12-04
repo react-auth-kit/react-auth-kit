@@ -1,3 +1,11 @@
+## [2.7.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.7.0...v2.7.1) (2022-12-04)
+
+
+### Bug Fixes
+
+* update the rollup config to use new package ([be69f86](https://github.com/react-auth-kit/react-auth-kit/commit/be69f86c30498f846005a2c88cdab74bddf4aee1))
+* updated the package ([9fd1310](https://github.com/react-auth-kit/react-auth-kit/commit/9fd13105f486aadaf2e682af1c175584549575b6))
+
 # [2.7.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.6.2...v2.7.0) (2022-10-30)
 
 
