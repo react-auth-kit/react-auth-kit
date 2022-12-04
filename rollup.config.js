@@ -17,7 +17,7 @@
 
 
 import license from 'rollup-plugin-license';
-import {terser} from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
