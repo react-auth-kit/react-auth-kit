@@ -55,8 +55,8 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@commitlint/cli": "17.3.0",
-    "@commitlint/config-conventional": "17.3.0",
+    "@commitlint/cli": "17.4.0",
+    "@commitlint/config-conventional": "17.4.0",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-terser": "^0.2.0",
     "@semantic-release/changelog": "6.0.2",
