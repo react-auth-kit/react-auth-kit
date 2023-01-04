@@ -29,8 +29,14 @@
       
         <link rel="canonical" href="https://authkit.arkadip.dev/refreshtoken/">
       
+      
+        <link rel="prev" href="../checkauth/">
+      
+      
+        <link rel="next" href="../update/">
+      
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -38,11 +44,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -161,8 +166,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
@@ -170,8 +173,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
@@ -785,10 +786,9 @@
                 
                   
 
-  <a href="https://github.com/react-auth-kit/react-auth-kit/edit/master/docs/refreshtoken.md" title="Edit this page" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="refresh-the-auth-token-periodically">Refresh the Auth Token periodically<a class="headerlink" href="#refresh-the-auth-token-periodically" title="Permanent link">&para;</a></h1>
@@ -808,7 +808,7 @@ Applications must store refresh tokens securely because they essentially allow a
 <p>To build the refresh token API, you have to use <code>createRefresh</code> function.
 It is an identity function. It is mainly used for typechecking and mobility.</p>
 <h3 id="createrefresh">createRefresh<a class="headerlink" href="#createrefresh" title="Permanent link">&para;</a></h3>
-<p><code class="highlight"><span class="nx">createRefresh</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"></span></code></p>
+<p><code class="highlight"><span class="nx">createRefresh</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">refreshApi</span></code></p>
 <p>Generate a refreshApi based on the options received</p>
 <h4 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h4>
 <p><code>options</code> (object): Takes a refresh object. It has 2 parameters</p>
@@ -818,18 +818,18 @@ It is an identity function. It is mainly used for typechecking and mobility.</p>
 </ol>
 <h4 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h4>
 <p>A complete object of refresh token API. Add this object in the <code>AuthProvider</code> as a prop to implement the feature.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">createRefresh</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">createRefresh</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
 
-<span class="kd">const</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">({</span><span class="w"></span>
-<span class="w">  </span><span class="nx">interval</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="c1">// Refreshs the token in every 10 minutes</span><span class="w"></span>
-<span class="w">  </span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="nx">param</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// API container function</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">})</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">interval</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="c1">// Refreshs the token in every 10 minutes</span>
+<span class="w">  </span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="nx">param</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// API container function</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">})</span>
 
-<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"></span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">refreshApi</span>
 </code></pre></div>
 <hr />
 <h3 id="refreshapicallback">refreshApiCallback<a class="headerlink" href="#refreshapicallback" title="Permanent link">&para;</a></h3>
@@ -858,92 +858,92 @@ It is an identity function. It is mainly used for typechecking and mobility.</p>
 <li><code>newAuthUserState</code> (object)(optional): Pass the new user state. If your API updates the user state, then use this, else leave it.</li>
 </ol>
 <h4 id="refreshapicallback-example">refreshApiCallback Example<a class="headerlink" href="#refreshapicallback-example" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w">   </span><span class="c1">// arguments</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authTokenExpireAt</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">refreshToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">refreshTokenExpiresAt</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authUserState</span><span class="w"></span>
-<span class="w">    </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/refresh&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">refreshToken</span><span class="o">:</span><span class="w"> </span><span class="nx">refreshToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">oldAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">authToken</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">).</span><span class="nx">then</span><span class="p">(({</span><span class="nx">data</span><span class="p">})=&gt;{</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// As the request is successful, we are passing new tokens.</span><span class="w"></span>
-<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="c1">// For successful network request isSuccess is true</span><span class="w"></span>
-<span class="w">        </span><span class="nx">newAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">newAuthTokenExpireIn</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthTokenExpireIn</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// You can also add new refresh token ad new user state</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">e</span><span class="p">)=&gt;{</span><span class="w"></span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// As the request is unsuccessful, we are just passing the isSuccess.</span><span class="w"></span>
-<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="kc">false</span><span class="w"> </span><span class="c1">// For unsuccessful network request isSuccess is false</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">})</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span><span class="w">   </span><span class="c1">// arguments</span>
+<span class="w">      </span><span class="nx">authToken</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">authTokenExpireAt</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">refreshToken</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">refreshTokenExpiresAt</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">authUserState</span>
+<span class="w">    </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/refresh&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">refreshToken</span><span class="o">:</span><span class="w"> </span><span class="nx">refreshToken</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">oldAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">authToken</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">).</span><span class="nx">then</span><span class="p">(({</span><span class="nx">data</span><span class="p">})=&gt;{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// As the request is successful, we are passing new tokens.</span>
+<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="c1">// For successful network request isSuccess is true</span>
+<span class="w">        </span><span class="nx">newAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthToken</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">newAuthTokenExpireIn</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthTokenExpireIn</span>
+<span class="w">        </span><span class="c1">// You can also add new refresh token ad new user state</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">e</span><span class="p">)=&gt;{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+<span class="w">      </span><span class="k">return</span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// As the request is unsuccessful, we are just passing the isSuccess.</span>
+<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="kc">false</span><span class="w"> </span><span class="c1">// For unsuccessful network request isSuccess is false</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <hr />
 <h3 id="api-builder-example">API Builder Example<a class="headerlink" href="#api-builder-example" title="Permanent link">&para;</a></h3>
 <p>This is the overall example of how to use <code>createRefresh</code>. The example uses axios to make network request.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">axios</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;axios&#39;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">useAuthHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">axios</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;axios&#39;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">useAuthHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
 
-<span class="kd">const</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">({</span><span class="w"></span>
-<span class="w">  </span><span class="nx">interval</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">   </span><span class="c1">// Refreshs the token in every 10 minutes</span><span class="w"></span>
-<span class="w">  </span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authTokenExpireAt</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">refreshToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">refreshTokenExpiresAt</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authUserState</span><span class="w"></span>
-<span class="w">    </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/refresh&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">refreshToken</span><span class="o">:</span><span class="w"> </span><span class="nx">refreshToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">oldAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">authToken</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">).</span><span class="nx">then</span><span class="p">(({</span><span class="nx">data</span><span class="p">})=&gt;{</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="c1">// For successful network request isSuccess is true</span><span class="w"></span>
-<span class="w">        </span><span class="nx">newAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthToken</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">newAuthTokenExpireIn</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthTokenExpireIn</span><span class="w"></span>
-<span class="w">        </span><span class="c1">// You can also add new refresh token ad new user state</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">e</span><span class="p">)=&gt;{</span><span class="w"></span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="kc">false</span><span class="w"> </span><span class="c1">// For unsuccessful network request isSuccess is false</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">})</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">})</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">interval</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">   </span><span class="c1">// Refreshs the token in every 10 minutes</span>
+<span class="w">  </span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">authToken</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">authTokenExpireAt</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">refreshToken</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">refreshTokenExpiresAt</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">authUserState</span>
+<span class="w">    </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/refresh&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">refreshToken</span><span class="o">:</span><span class="w"> </span><span class="nx">refreshToken</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">oldAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">authToken</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">).</span><span class="nx">then</span><span class="p">(({</span><span class="nx">data</span><span class="p">})=&gt;{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">  </span><span class="c1">// For successful network request isSuccess is true</span>
+<span class="w">        </span><span class="nx">newAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthToken</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">newAuthTokenExpireIn</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">newAuthTokenExpireIn</span>
+<span class="w">        </span><span class="c1">// You can also add new refresh token ad new user state</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">e</span><span class="p">)=&gt;{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+<span class="w">      </span><span class="k">return</span><span class="p">{</span>
+<span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="kc">false</span><span class="w"> </span><span class="c1">// For unsuccessful network request isSuccess is false</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">})</span>
 
-<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"></span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">refreshApi</span>
 </code></pre></div>
 <h2 id="integration-in-auth-provider">Integration in Auth Provider<a class="headerlink" href="#integration-in-auth-provider" title="Permanent link">&para;</a></h2>
 <p>To add the refresh token feature, simply add the return value of <code>createRefresh</code> function in the <code>AuthProvider</code> as a prop.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">AuthProvider</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./refreshApi&quot;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">AuthProvider</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./refreshApi&quot;</span><span class="p">;</span>
 
-<span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="o">&lt;</span><span class="nx">AuthProvider</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authName</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;_auth&quot;</span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="nx">authType</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cookie&quot;</span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="nx">refresh</span><span class="o">=</span><span class="p">{</span><span class="nx">refreshApi</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">      </span><span class="o">&lt;</span><span class="nx">Routes</span><span class="o">/&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="o">&lt;</span><span class="err">/AuthProvider&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">AuthProvider</span>
+<span class="w">      </span><span class="nx">authName</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;_auth&quot;</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">authType</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cookie&quot;</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">refresh</span><span class="o">=</span><span class="p">{</span><span class="nx">refreshApi</span><span class="p">}</span>
+<span class="w">    </span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">Routes</span><span class="o">/&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/AuthProvider&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Only use the return from createRefresh as the prop value</p>
@@ -970,42 +970,6 @@ So only use the return of <code>createRefresh</code> as the prop value.</p>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../checkauth/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Check Authentication" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Check Authentication
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../update/" class="md-footer__link md-footer__link--next" aria-label="Next: Update Auth Kit from v1 to v2" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Update Auth Kit from v1 to v2
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1031,14 +995,13 @@ So only use the return of <code>createRefresh</code> as the prop value.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.instant", "navigation.tabs", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.instant", "navigation.tabs", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       
-    
     
   </body>
 </html>

@@ -29,8 +29,14 @@
       
         <link rel="canonical" href="https://authkit.arkadip.dev/signin/">
       
+      
+        <link rel="prev" href="../integration/">
+      
+      
+        <link rel="next" href="../privateroute/">
+      
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
@@ -38,11 +44,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -161,8 +166,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
-          
           <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
@@ -170,8 +173,6 @@
             </label>
           
         
-          
-          
           
           <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
@@ -811,10 +812,9 @@
                 
                   
 
-  <a href="https://github.com/react-auth-kit/react-auth-kit/edit/master/docs/signin.md" title="Edit this page" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+  
+  
+
 
 
 <h1 id="sign-in">Sign In<a class="headerlink" href="#sign-in" title="Permanent link">&para;</a></h1>
@@ -824,17 +824,17 @@
 <p>React Auth Kit has easy to implement Sign In procedures.</p>
 <p><code>signIn</code> functionality available in both <code>React Hook</code> and <code>Higher Order Component</code></p>
 <ul>
-<li>For Functional Components, you can use <code class="highlight"><span class="nx">useSignIn</span><span class="p">()</span><span class="w"></span></code> hook inside any components</li>
-<li>For class based components, you can wrap the component inside <code class="highlight"><span class="nx">withSignIn</span><span class="p">()</span><span class="w"></span></code> HOC function.</li>
+<li>For Functional Components, you can use <code class="highlight"><span class="nx">useSignIn</span><span class="p">()</span></code> hook inside any components</li>
+<li>For class based components, you can wrap the component inside <code class="highlight"><span class="nx">withSignIn</span><span class="p">()</span></code> HOC function.</li>
 </ul>
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signin"></div>
 
 <hr />
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <h3 id="functional-component">Functional Component<a class="headerlink" href="#functional-component" title="Permanent link">&para;</a></h3>
-<p><code>signIn</code> in React Functional Components(FC) by adding the <code class="highlight"><span class="nx">useSignIn</span><span class="p">()</span><span class="w"></span></code> hook inside it.</p>
+<p><code>signIn</code> in React Functional Components(FC) by adding the <code class="highlight"><span class="nx">useSignIn</span><span class="p">()</span></code> hook inside it.</p>
 <h4 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useSignIn</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useSignIn</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
 </code></pre></div>
 <h4 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h4>
 <div class="highlight"><span class="filename">SignIn.js</span><pre><span></span><code><span class="hll">import { useSignIn } from &#39;react-auth-kit&#39;
@@ -914,13 +914,13 @@ const SignInComponent = () =&gt; {
 </details>
 
 <h4 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
-<p><code class="highlight"><span class="nx">useSignIn</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">signInConfig</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kt">boolean</span><span class="w"></span></code></p>
+<p><code class="highlight"><span class="nx">useSignIn</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">signInConfig</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kt">boolean</span></code></p>
 <p>For details about <code>signInConfig</code>, please go to the <a href="#signinconfig">signInConfig</a> section</p>
 <hr />
 <h3 id="class-based-component">Class Based Component<a class="headerlink" href="#class-based-component" title="Permanent link">&para;</a></h3>
 <p>Sign In using Higher Order Component using <code>withSignIn</code></p>
 <h4 id="import_1">Import<a class="headerlink" href="#import_1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">withSignIn</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">withSignIn</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
 </code></pre></div>
 <h4 id="demo_1">Demo<a class="headerlink" href="#demo_1" title="Permanent link">&para;</a></h4>
 <div class="highlight"><span class="filename">SignIn.js</span><pre><span></span><code><span class="hll">import { withSignIn } from &#39;react-auth-kit&#39;
@@ -1004,19 +1004,19 @@ export default withSignIn(signInComponent)
 </details>
 
 <h4 id="api_1">API<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h4>
-<p><code class="highlight"><span class="nx">withSignIn</span><span class="p">(</span><span class="nx">Component</span><span class="o">:</span><span class="w"> </span><span class="kt">React.ComponentType</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">React</span><span class="p">.</span><span class="nx">FC</span><span class="w"></span></code></p>
-<p><em><strong>Returns</strong></em>  <code class="highlight"><span class="nx">React</span><span class="p">.</span><span class="nx">FC</span><span class="o">&lt;</span><span class="nx">P</span><span class="o">&gt;</span><span class="w"></span></code> (Functional Component with <code>signIn(signInConfig)</code> prop)</p>
+<p><code class="highlight"><span class="nx">withSignIn</span><span class="p">(</span><span class="nx">Component</span><span class="o">:</span><span class="w"> </span><span class="kt">React.ComponentType</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">React</span><span class="p">.</span><span class="nx">FC</span></code></p>
+<p><em><strong>Returns</strong></em>  <code class="highlight"><span class="nx">React</span><span class="p">.</span><span class="nx">FC</span><span class="o">&lt;</span><span class="nx">P</span><span class="o">&gt;</span></code> (Functional Component with <code>signIn(signInConfig)</code> prop)</p>
 <p>For details about <code>signInConfig</code>, please go to the <a href="#signinconfig">signInConfig</a> section</p>
 <hr />
 <h3 id="signinconfig">SignInConfig<a class="headerlink" href="#signinconfig" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="w"></span>
-<span class="w">  </span><span class="nx">tokenType</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;Bearer&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="nx">expiresIn</span><span class="o">:</span><span class="w"> </span><span class="nx">number</span><span class="w"></span>
-<span class="w">  </span><span class="nx">authState</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span><span class="w"></span>
-<span class="w">  </span><span class="nx">refreshToken</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span><span class="w"></span>
-<span class="w">  </span><span class="nx">refreshTokenExpireIn</span><span class="o">?:</span><span class="w"> </span><span class="nx">number</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span>
+<span class="w">  </span><span class="nx">tokenType</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;Bearer&#39;</span>
+<span class="w">  </span><span class="nx">expiresIn</span><span class="o">:</span><span class="w"> </span><span class="nx">number</span>
+<span class="w">  </span><span class="nx">authState</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span>
+<span class="w">  </span><span class="nx">refreshToken</span><span class="o">?:</span><span class="w"> </span><span class="nx">string</span>
+<span class="w">  </span><span class="nx">refreshTokenExpireIn</span><span class="o">?:</span><span class="w"> </span><span class="nx">number</span>
+<span class="p">}</span>
 </code></pre></div>
 <h4 id="explanation-of-signinconfig">Explanation of SignInConfig<a class="headerlink" href="#explanation-of-signinconfig" title="Permanent link">&para;</a></h4>
 <table>
@@ -1046,7 +1046,7 @@ export default withSignIn(signInComponent)
 <tr>
 <td>authState</td>
 <td>object (<code>optional</code>)</td>
-<td>State of the authorized user. Eg: <code class="highlight"><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">Jhon</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">jhon</span><span class="err">@</span><span class="nx">auth</span><span class="p">.</span><span class="nx">com</span><span class="p">}</span><span class="w"></span></code></td>
+<td>State of the authorized user. Eg: <code class="highlight"><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">Jhon</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">jhon</span><span class="err">@</span><span class="nx">auth</span><span class="p">.</span><span class="nx">com</span><span class="p">}</span></code></td>
 </tr>
 <tr>
 <td>refreshToken</td>
@@ -1080,42 +1080,6 @@ export default withSignIn(signInComponent)
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../integration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Integration" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Integration
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../privateroute/" class="md-footer__link md-footer__link--next" aria-label="Next: Private Route" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Private Route
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1141,14 +1105,13 @@ export default withSignIn(signInComponent)
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.instant", "navigation.tabs", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.instant", "navigation.tabs", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       
-    
     
   </body>
 </html>
