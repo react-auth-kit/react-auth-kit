@@ -246,8 +246,8 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
 | tokenType            | string  \| 'Bearer' | The type of authentication token.                                                                                                                                            |
 | expiresIn            | number              | The time for which the auth token will last, `in minutes`                                                                                                                    |
 | authState            | object (`optional`) | State of the authorized user. Eg: `#!js {name: Jhon, email: jhon@auth.com}`                                                                                                  |
-| refreshToken         | string (`optional`) | Refresh Token sent by the server. Use only, if you are using refresh token feature. For more info Go to the [Refresh Token](./refreshtoken) page                             |
-| refreshTokenExpireIn | number (`optional`) | The time for which the refresh token will last, `in minutes`, Use only, if you are using refresh token feature. For more info Go to the [Refresh Token](./refreshtoken) page |
+| refreshToken         | string (`optional`) | Refresh Token sent by the server. Use only, if you are using refresh token feature. For more info Go to the [Refresh Token](./refreshtoken.md) page                             |
+| refreshTokenExpireIn | number (`optional`) | The time for which the refresh token will last, `in minutes`, Use only, if you are using refresh token feature. For more info Go to the [Refresh Token](./refreshtoken.md) page |
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
