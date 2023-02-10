@@ -30,7 +30,7 @@ const SomeComponent = () => {
 
     return(
         <div>
-            {authHeader}
+            {authHeader()}
         </div>
     )
 }
@@ -52,7 +52,7 @@ class SomeComponent extends React.Component {
     render(){
         return (
             <div>
-                {this.props.authHeader}
+                {this.props.authHeader()}
             </div>
         )
     }
