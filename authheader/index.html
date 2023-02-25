@@ -715,7 +715,7 @@ const SomeComponent = () =&gt; {
 
     return(
         &lt;div&gt;
-            {authHeader}
+            {authHeader()}
         &lt;/div&gt;
     )
 }
@@ -731,7 +731,7 @@ class SomeComponent extends React.Component {
     render(){
         return (
             &lt;div&gt;
-                {this.props.authHeader}
+                {this.props.authHeader()}
             &lt;/div&gt;
         )
     }
