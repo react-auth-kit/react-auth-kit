@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
+import {renderHook} from '@testing-library/react';
 import useAuthHeader from '../../hooks/useAuthHeader';
 import AuthContext from '../../AuthContext';
 

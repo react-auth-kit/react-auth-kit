@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
+import {renderHook} from '@testing-library/react';
 import useSignOut from '../../hooks/useSignOut';
 import AuthContext from '../../AuthContext';
 import {ActionType} from '../../utils/actions';
