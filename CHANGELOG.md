@@ -1,3 +1,15 @@
+# [2.8.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.7.1...v2.8.0) (2023-02-25)
+
+
+### Bug Fixes
+
+* removed Node 14.x support ([daa3ffc](https://github.com/react-auth-kit/react-auth-kit/commit/daa3ffc306b25c6ec83562671883cc54bbe46e0e))
+
+
+### Features
+
+* updated react and react-dom version to 18 ([46ad886](https://github.com/react-auth-kit/react-auth-kit/commit/46ad886d05d94255d9f7893fbc80ba5743b2d83d))
+
 ## [2.7.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.7.0...v2.7.1) (2022-12-04)
 
 
