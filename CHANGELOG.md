@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.0...v2.8.1) (2023-02-25)
+
+
+### Bug Fixes
+
+* removed codecov ([40e6283](https://github.com/react-auth-kit/react-auth-kit/commit/40e62830c0c877bcafdd017351ddbf4d84038571))
+
 # [2.8.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.7.1...v2.8.0) (2023-02-25)
 
 
