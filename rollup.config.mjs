@@ -23,7 +23,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 
-import pkg from './package.json';
+import pkg from './package.json' assert { type: "json" };
 
 const licenseBanner = license({
   banner: {
