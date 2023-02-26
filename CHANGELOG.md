@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.1...v2.8.2) (2023-02-26)
+
+
+### Bug Fixes
+
+* updated jest version to 29 ([2a86a00](https://github.com/react-auth-kit/react-auth-kit/commit/2a86a0040f7a537c5e3c2cf08688db24afc679ac))
+
 ## [2.8.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.0...v2.8.1) (2023-02-25)
 
 
