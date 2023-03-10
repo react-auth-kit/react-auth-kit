@@ -2,7 +2,7 @@ import * as React from 'react';
 import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
 import {AuthProviderProps} from './types';
-import {authReducer, doRefresh} from './utils/reducers';
+import {authReducer, doRefresh, doSignOut} from './utils/reducers';
 import {useInterval} from './utils/hooks';
 
 
@@ -58,6 +58,8 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
                 if (result.isSuccess) {
                   // store the new value using the state update
                   dispatch(doRefresh(result));
+                } else {
+                  dispatch(doSignOut());
                 }
               });
           },
