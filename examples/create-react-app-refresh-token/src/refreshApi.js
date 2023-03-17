@@ -14,18 +14,36 @@
  * limitations under the License.
  */
 
+
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import {createRefresh} from 'react-auth-kit'
 
+const mock = new MockAdapter(axios);
+
+mock.onPost("/refresh").reply(200, {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.9QNoj7rwQgT4VEdmrV1r9dhMLESfv6nXAjU_2i3HG"
+});
+
 const refreshApi = createRefresh({
-  interval: 1,
+  interval: 0.1,
   refreshApiCallback: param => {
+    console.log("Refreshing")
     console.log(param)
-    return {
-      isSuccess: true,
-      newAuthToken: 'fsdgedgd',
-      newAuthTokenExpireIn: 10,
-      newRefreshTokenExpiresIn: 60
-    }
+    axios.post("/refresh", param).then(function (response) {
+      console.log("Done network req");
+      return {
+        isSuccess: true,
+        newAuthToken: response.data.token,
+        newAuthTokenExpireIn: 10,
+        newRefreshTokenExpiresIn: 60
+      }
+    }).catch(function(response){
+      return {
+        isSuccess: false
+      }
+    })
+    
   }
 })
 
