@@ -27,23 +27,24 @@ mock.onPost("/refresh").reply(200, {
 
 const refreshApi = createRefresh({
   interval: 0.1,
-  refreshApiCallback: param => {
-    console.log("Refreshing")
+  refreshApiCallback: async (param) => {
     console.log(param)
-    axios.post("/refresh", param).then(function (response) {
-      console.log("Done network req");
+    try {
+      const response = await axios.post("/refresh", param)
+      console.log("Refreshing")
       return {
         isSuccess: true,
         newAuthToken: response.data.token,
         newAuthTokenExpireIn: 10,
         newRefreshTokenExpiresIn: 60
       }
-    }).catch(function(response){
+    }
+    catch(error){
+      console.error(error)
       return {
         isSuccess: false
-      }
-    })
-    
+      } 
+    }    
   }
 })
 
