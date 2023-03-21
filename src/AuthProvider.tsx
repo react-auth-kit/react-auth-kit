@@ -62,9 +62,10 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
                 else {
                   // do something in future
                 }
-              }).catch(()=>{
-                // do something in future
               })
+              .catch(()=>{
+                // do something in future
+              });
           },
         authState.isSignIn ? refresh.interval : null,
       );
