@@ -30,7 +30,9 @@ const refreshApi = createRefresh({
   refreshApiCallback: async (param) => {
     console.log(param)
     try {
-      const response = await axios.post("/refresh", param)
+      const response = await axios.post("/refresh", param, {
+        headers: {'Authorization': `Bearer ${param.authToken}`}}
+      )
       console.log("Refreshing")
       return {
         isSuccess: true,
