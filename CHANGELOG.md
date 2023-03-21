@@ -1,3 +1,10 @@
+## [2.8.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.2...v2.8.3) (2023-03-21)
+
+
+### Bug Fixes
+
+* **tsconfig.json:** removed supress index ([a2a1d60](https://github.com/react-auth-kit/react-auth-kit/commit/a2a1d601721c212ddbcfed4cd2e260db43ca43e5))
+
 ## [2.8.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.1...v2.8.2) (2023-02-26)
 
 
