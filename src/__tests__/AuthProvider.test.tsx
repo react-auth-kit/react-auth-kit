@@ -106,6 +106,30 @@ describe('Authprovider with refresh Token', ()=> {
     },
   });
 
+  const refreshFalseApi = createRefresh({
+    interval: 1/60,
+    refreshApiCallback: (param): any => {
+      console.log(param);
+      const result = new Promise((resolve) => {
+        return resolve({
+          isSuccess: false,
+        });
+      });
+      return result;
+    },
+  });
+
+  const refreshApiWithError = createRefresh({
+    interval: 1/60,
+    refreshApiCallback: (param): any => {
+      console.log(param);
+      const result = new Promise((_resolve, reject) => {
+        reject(new Error('Some error occured'));
+      });
+      return result;
+    },
+  });
+
   it('renders successfully', ()=>{
     const {container} = render(
         <AuthProvider
@@ -127,6 +151,7 @@ describe('Authprovider with refresh Token', ()=> {
     );
     expect(container.nodeName).toMatch('DIV');
   });
+
 
   it('Initially signed in', ()=>{
     jest.useFakeTimers();
@@ -163,6 +188,140 @@ describe('Authprovider with refresh Token', ()=> {
           cookieDomain={window.location.hostname}
           cookieSecure={window.location.protocol === 'https:'}
           refresh={refreshApi}
+        >
+          <BrowserRouter>
+            <TestConsumer />
+            <Routes>
+              <Route path={'/'} element={
+                <div>
+                  Empty
+                </div>
+              }/>
+              <Route/>
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>,
+    );
+
+    // Check if refreshApiCallback is called
+    expect(spyRefreshApi).not.toBeCalled();
+    jest.advanceTimersByTime(1000);
+
+    // TODO: assertion statements needed
+    expect(screen.getByText(/^isSignIn:/).textContent).toBe('isSignIn: true');
+
+    // Check if refreshApiCallback is called
+    expect(spyRefreshApi).toHaveBeenCalled();
+
+    // Check again if refreshApiCallback is called
+    jest.advanceTimersByTime(1000);
+    expect(spyRefreshApi).toHaveBeenCalledTimes(2);
+
+    jest.useRealTimers();
+  });
+
+  it('Refresh API is giving False reponse', ()=>{
+    jest.useFakeTimers();
+    const spyRefreshApi = jest.spyOn(refreshFalseApi, 'refreshApiCallback');
+
+    const authToken = '__authToken';
+    const authType = '__authType';
+    const authTime = new Date(2021, 10, 5);
+    const refreshToken = '__refreshToken';
+    const refreshTime = new Date(2021, 10, 6);
+    const userState = {key: 'val'} as AuthStateUserObject;
+
+    Cookies.get = jest
+        .fn()
+        .mockImplementationOnce(() => authToken)
+        .mockImplementationOnce(() => authType)
+        .mockImplementationOnce(() => authTime)
+        .mockImplementationOnce(() => JSON.stringify(userState))
+        .mockImplementationOnce(() => refreshToken)
+        .mockImplementationOnce(() => refreshTime);
+
+    const TestConsumer = () => <AuthContextConsumer>{
+      (value) => (
+        <span>
+          isSignIn: {value?.authState.isSignIn ? 'true' : 'false'}
+        </span>
+      )
+    }</AuthContextConsumer>;
+
+    render(
+        <AuthProvider
+          authType={'cookie'}
+          authName={'_hi'}
+          cookieDomain={window.location.hostname}
+          cookieSecure={window.location.protocol === 'https:'}
+          refresh={refreshFalseApi}
+        >
+          <BrowserRouter>
+            <TestConsumer />
+            <Routes>
+              <Route path={'/'} element={
+                <div>
+                  Empty
+                </div>
+              }/>
+              <Route/>
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>,
+    );
+
+    // Check if refreshApiCallback is called
+    expect(spyRefreshApi).not.toBeCalled();
+    jest.advanceTimersByTime(1000);
+
+    // TODO: assertion statements needed
+    expect(screen.getByText(/^isSignIn:/).textContent).toBe('isSignIn: true');
+
+    // Check if refreshApiCallback is called
+    expect(spyRefreshApi).toHaveBeenCalled();
+
+    // Check again if refreshApiCallback is called
+    jest.advanceTimersByTime(1000);
+    expect(spyRefreshApi).toHaveBeenCalledTimes(2);
+
+    jest.useRealTimers();
+  });
+
+  it('Refresh API is giving Error reponse', ()=>{
+    jest.useFakeTimers();
+    const spyRefreshApi = jest.spyOn(refreshApiWithError, 'refreshApiCallback');
+
+    const authToken = '__authToken';
+    const authType = '__authType';
+    const authTime = new Date(2021, 10, 5);
+    const refreshToken = '__refreshToken';
+    const refreshTime = new Date(2021, 10, 6);
+    const userState = {key: 'val'} as AuthStateUserObject;
+
+    Cookies.get = jest
+        .fn()
+        .mockImplementationOnce(() => authToken)
+        .mockImplementationOnce(() => authType)
+        .mockImplementationOnce(() => authTime)
+        .mockImplementationOnce(() => JSON.stringify(userState))
+        .mockImplementationOnce(() => refreshToken)
+        .mockImplementationOnce(() => refreshTime);
+
+    const TestConsumer = () => <AuthContextConsumer>{
+      (value) => (
+        <span>
+          isSignIn: {value?.authState.isSignIn ? 'true' : 'false'}
+        </span>
+      )
+    }</AuthContextConsumer>;
+
+    render(
+        <AuthProvider
+          authType={'cookie'}
+          authName={'_hi'}
+          cookieDomain={window.location.hostname}
+          cookieSecure={window.location.protocol === 'https:'}
+          refresh={refreshApiWithError}
         >
           <BrowserRouter>
             <TestConsumer />
