@@ -46,9 +46,9 @@ A complete object of refresh token API. Add this object in the `AuthProvider` as
 ```js
 import {createRefresh} from 'react-auth-kit'
 
-const refreshApi = createRefresh({
+const refreshApi = asynccreateRefresh({
   interval: 10, // Refreshs the token in every 10 minutes
-  refreshApiCallback: param => {  // API container function
+  refreshApiCallback: async (param) => {  // API container function
     return {
       isSuccess: true,
     }
@@ -94,7 +94,7 @@ The return object must contain:
 #### refreshApiCallback Example
 
 ```js
-{refreshApiCallback: (
+{refreshApiCallback: async (
     {   // arguments
       authToken,
       authTokenExpireAt,
@@ -102,26 +102,23 @@ The return object must contain:
       refreshTokenExpiresAt,
       authUserState
     }) => {
-    axios.post('/api/refresh',
-      {
-        refreshToken: refreshToken,
-        oldAuthToken: authToken
-      }
-    ).then(({data})=>{
+    try {
+      const response = await axios.post("/refresh", {'refresh': refreshToken}, {
+        headers: {'Authorization': `Bearer ${authToken}`}}
+      )
       return {
-        // As the request is successful, we are passing new tokens.
-        isSuccess: true,  // For successful network request isSuccess is true
-        newAuthToken: data.newAuthToken,
-        newAuthTokenExpireIn: data.newAuthTokenExpireIn
-        // You can also add new refresh token ad new user state
+        isSuccess: true,
+        newAuthToken: response.data.token,
+        newAuthTokenExpireIn: 10,
+        newRefreshTokenExpiresIn: 60
       }
-    }).catch((e)=>{
-      console.error(e)
-      return{
-        // As the request is unsuccessful, we are just passing the isSuccess.
-        isSuccess:false // For unsuccessful network request isSuccess is false
-      }
-    })
+    }
+    catch(error){
+      console.error(error)
+      return {
+        isSuccess: false
+      } 
+    }    
   }
 }
 ```
@@ -138,32 +135,31 @@ import {useAuthHeader, createRefresh} from 'react-auth-kit'
 
 const refreshApi = createRefresh({
   interval: 10,   // Refreshs the token in every 10 minutes
-  refreshApiCallback: (
-    {
+  refreshApiCallback: async (
+    {   // arguments
       authToken,
       authTokenExpireAt,
       refreshToken,
       refreshTokenExpiresAt,
       authUserState
     }) => {
-    axios.post('/api/refresh',
-      {
-        refreshToken: refreshToken,
-        oldAuthToken: authToken
-      }
-    ).then(({data})=>{
+    try {
+      const response = await axios.post("/refresh", {'refresh': refreshToken}, {
+        headers: {'Authorization': `Bearer ${authToken}`}}
+      )
       return {
-        isSuccess: true,  // For successful network request isSuccess is true
-        newAuthToken: data.newAuthToken,
-        newAuthTokenExpireIn: data.newAuthTokenExpireIn
-        // You can also add new refresh token ad new user state
+        isSuccess: true,
+        newAuthToken: response.data.token,
+        newAuthTokenExpireIn: 10,
+        newRefreshTokenExpiresIn: 60
       }
-    }).catch((e)=>{
-      console.error(e)
-      return{
-        isSuccess:false // For unsuccessful network request isSuccess is false
-      }
-    })
+    }
+    catch(error){
+      console.error(error)
+      return {
+        isSuccess: false
+      } 
+    }    
   }
 })
 

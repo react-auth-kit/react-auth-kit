@@ -59,6 +59,12 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
                   // store the new value using the state update
                   dispatch(doRefresh(result));
                 }
+                else {
+                  // do something in future
+                }
+              })
+              .catch(()=>{
+                // do something in future
               });
           },
         authState.isSignIn ? refresh.interval : null,
