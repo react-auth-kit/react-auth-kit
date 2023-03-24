@@ -1,3 +1,12 @@
+# [2.9.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.3...v2.9.0) (2023-03-24)
+
+
+### Features
+
+* **example.refresh:** updated version ([b6a77f0](https://github.com/react-auth-kit/react-auth-kit/commit/b6a77f0ed3cd052c2562aba05fbcf926f29b881e))
+* **example:** added axios mock in refresh ([5d5cb9c](https://github.com/react-auth-kit/react-auth-kit/commit/5d5cb9cf8e206e213c2a694ebe241fa790ba25da))
+* **example:** added better refresh function ([32f762b](https://github.com/react-auth-kit/react-auth-kit/commit/32f762ba51c09e9c0092ac62673dd9c1d2c90889))
+
 ## [2.8.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.2...v2.8.3) (2023-03-21)
 
 
