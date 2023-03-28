@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.9.0...v2.10.0) (2023-03-28)
+
+
+### Features
+
+* **docs:** added _headers file ([cd94db7](https://github.com/react-auth-kit/react-auth-kit/commit/cd94db7a4ec054af465523229f719306c6dcac84))
+
 # [2.9.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.8.3...v2.9.0) (2023-03-24)
 
 
