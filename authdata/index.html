@@ -1,18 +1,3 @@
-<!--
-  ~ Copyright 2020 Arkadip Bhattacharya
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~         http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~  Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -757,28 +742,19 @@ export default withAuthUser(SomeComponent)
         
       </main>
       
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2020 - 2022 React Auth Kit
-    </div>
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
+<script>
+  if(document.readyState === "complete") {
+      console.log("DOM updated")
+      ethicalads.load();
+  }
+  else {
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("DOM loaded")
+      ethicalads.load();
+    });
+  }
+  </script>
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
