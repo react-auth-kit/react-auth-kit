@@ -1,3 +1,10 @@
+## [2.10.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.10.0...v2.10.1) (2023-04-05)
+
+
+### Bug Fixes
+
+* ads not visiable in pages ([9442afb](https://github.com/react-auth-kit/react-auth-kit/commit/9442afbb2ed047b86a2fe4db467afba821dd5ec7))
+
 # [2.10.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.9.0...v2.10.0) (2023-03-28)
 
 
