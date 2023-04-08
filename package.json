@@ -3,8 +3,8 @@
   "version": "2.11.0-beta.1",
   "description": "Authentication Library for React, which makes Token based auth very easy",
   "source": "src/index.tsx",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.modern.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "unpkg": "dist/index.umd.js",
   "types": "dist/index.d.ts",
   "files": [

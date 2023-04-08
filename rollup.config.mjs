@@ -37,15 +37,8 @@ export default [
     input: 'src/index.tsx',
     output: [
       {
-        // file: pkg.main,
-        dir: './dist/cjs',
-        format: 'cjs',
-        sourcemap: true,
-        preserveModules: true
-      },
-      {
         // file: pkg.module,
-        dir: './dist/esm',
+        dir: './dist',
         format: 'esm',
         sourcemap: true,
         preserveModules: true
