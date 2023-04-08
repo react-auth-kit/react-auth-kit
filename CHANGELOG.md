@@ -1,3 +1,10 @@
+# [2.11.0-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.10.1...v2.11.0-beta.1) (2023-04-08)
+
+
+### Features
+
+* adding tree stacking ([7b17802](https://github.com/react-auth-kit/react-auth-kit/commit/7b17802dbf132d8b2a92fad46fc2feedc8e7bcd5))
+
 ## [2.10.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.10.0...v2.10.1) (2023-04-05)
 
 

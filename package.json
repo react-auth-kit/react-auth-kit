@@ -1,6 +1,6 @@
 {
   "name": "react-auth-kit",
-  "version": "2.10.1",
+  "version": "2.11.0-beta.1",
   "description": "Authentication Library for React, which makes Token based auth very easy",
   "source": "src/index.tsx",
   "main": "dist/cjs/index.js",
