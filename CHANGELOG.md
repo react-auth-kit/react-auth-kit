@@ -1,3 +1,15 @@
+# [2.11.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.10.1...v2.11.0) (2023-04-09)
+
+
+### Bug Fixes
+
+* changed folder ([b97859f](https://github.com/react-auth-kit/react-auth-kit/commit/b97859f1852a755b78a4cc9e680eaeec77f5ee6d))
+
+
+### Features
+
+* adding tree stacking ([7b17802](https://github.com/react-auth-kit/react-auth-kit/commit/7b17802dbf132d8b2a92fad46fc2feedc8e7bcd5))
+
 # [2.11.0-beta.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.11.0-beta.1...v2.11.0-beta.2) (2023-04-08)
 
 
