@@ -20,7 +20,7 @@
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
-import { AuthKitError } from '../errors';
+import {AuthKitError} from '../errors';
 
 /**
  * @interface withSignOutProps

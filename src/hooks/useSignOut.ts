@@ -21,7 +21,7 @@
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
-import { AuthKitError } from '../errors';
+import {AuthKitError} from '../errors';
 
 /**
   *@public

@@ -21,7 +21,7 @@ import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
-import { AuthKitError } from '../errors';
+import {AuthKitError} from '../errors';
 
 /**
  * @interface withSignInProps
@@ -84,16 +84,17 @@ function withSignIn<P extends withSignInProps>(
               } else {
                 // refresh token params are not provided
                 // throw an error
-                throw new AuthKitError('Make sure you given "refreshToken" and  ' +
-                  '"refreshTokenExpireIn" parameter');
+                throw new AuthKitError('Make sure you given "refreshToken"'+
+                ' and "refreshTokenExpireIn" parameter');
               }
             } else {
               // Not using refresh token
               if (!!refreshToken && !!refreshTokenExpireIn) {
                 // params are not expected but provided
                 // throw an error
-                throw new AuthKitError('The app doesn\'t implement \'refreshToken\'' +
-                  ' feature.\n So you have to implement refresh token feature' +
+                throw new AuthKitError('The app doesn\'t implement ' +
+                  '\'refreshToken\' feature.\n So you have to'+
+                  ' implement refresh token feature' +
                   ' from \'AuthProvider\' before using it.');
               } else {
                 // sign in without the refresh token
