@@ -20,6 +20,7 @@
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
+import { AuthKitError } from '../errors';
 
 /**
  *
@@ -28,7 +29,7 @@ function useAuthHeader(): () => (string) {
   const c = React.useContext(AuthContext);
   if (c === null) {
     throw new
-    Error('Auth Provider is missing. ' +
+    AuthKitError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
 
