@@ -4,6 +4,7 @@ import TokenObject from './TokenObject';
 import {AuthProviderProps} from './types';
 import {authReducer, doRefresh} from './utils/reducers';
 import {useInterval} from './utils/hooks';
+import { AuthKitError } from './errors';
 
 
 /**
@@ -28,7 +29,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     if (authType === 'cookie') {
       if (!cookieDomain) {
         throw new
-        Error('authType \'cookie\' ' +
+        AuthKitError('authType \'cookie\' ' +
           'requires \'cookieDomain\' and \'cookieSecure\' ' +
           'props in AuthProvider');
       }
