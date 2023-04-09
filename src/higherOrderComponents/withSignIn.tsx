@@ -21,6 +21,7 @@ import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
+import { AuthKitError } from '../errors';
 
 /**
  * @interface withSignInProps
@@ -45,7 +46,7 @@ function withSignIn<P extends withSignInProps>(
         {(c) => {
           if (c === null) {
             throw new
-            Error('Auth Provider is missing. ' +
+            AuthKitError('Auth Provider is missing. ' +
               'Please add the AuthProvider before Router');
           }
           const signIn = (signInConfig: signInFunctionParams)
@@ -83,7 +84,7 @@ function withSignIn<P extends withSignInProps>(
               } else {
                 // refresh token params are not provided
                 // throw an error
-                throw new Error('Make sure you given "refreshToken" and  ' +
+                throw new AuthKitError('Make sure you given "refreshToken" and  ' +
                   '"refreshTokenExpireIn" parameter');
               }
             } else {
@@ -91,7 +92,7 @@ function withSignIn<P extends withSignInProps>(
               if (!!refreshToken && !!refreshTokenExpireIn) {
                 // params are not expected but provided
                 // throw an error
-                throw new Error('The app doesn\'t implement \'refreshToken\'' +
+                throw new AuthKitError('The app doesn\'t implement \'refreshToken\'' +
                   ' feature.\n So you have to implement refresh token feature' +
                   ' from \'AuthProvider\' before using it.');
               } else {
