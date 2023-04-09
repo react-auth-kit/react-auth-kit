@@ -4,7 +4,7 @@
     "declarationDir": "./types",
     "sourceMap": true,
     "module": "ESNext",
-    "outDir": "./dist",
+    "outDir": "./dist/esm",
     "target": "ES5",
     "lib": [
       "dom",
@@ -34,6 +34,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "types"
+    "types",
+    "__tests__"
   ]
 }
