@@ -20,7 +20,8 @@
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
-import { AuthKitError } from '../errors';
+import {AuthKitError} from '../errors';
+import {isAuthenticated} from '../utils/utils';
 
 /**
  *
@@ -35,7 +36,7 @@ function useAuthHeader(): () => (string) {
 
 
   return () => {
-    if (c.authState.auth) {
+    if (c.authState.auth && isAuthenticated(c.authState)) {
       return `${c.authState.auth.type} ${c.authState.auth.token}`;
     } else {
       return ``;
