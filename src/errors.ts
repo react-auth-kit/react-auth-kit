@@ -1,7 +1,7 @@
 /**
  * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Sign In functionality <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
+ * @fileoverview Error file
+ * @copyright Arkadip Bhattacharya 2023
  */
 
 /**
