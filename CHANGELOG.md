@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.0...v2.12.1) (2023-04-15)
+
+
+### Bug Fixes
+
+* **docs:** added google cloud docs uri ([7709cf4](https://github.com/react-auth-kit/react-auth-kit/commit/7709cf4dba3a636917b952468c40704ace8fbb20))
+
 # [2.12.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.11.0...v2.12.0) (2023-04-15)
 
 
