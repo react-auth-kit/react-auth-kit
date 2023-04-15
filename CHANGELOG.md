@@ -1,9 +1,13 @@
+
 # [2.11.0-beta.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.11.0-beta.2...v2.11.0-beta.3) (2023-04-10)
+
 
 
 ### Bug Fixes
 
+
 * linting ([de9e60c](https://github.com/react-auth-kit/react-auth-kit/commit/de9e60c031dbb652635ba1d4090b2909c0d032a8))
+
 
 
 ### Features
