@@ -20,6 +20,8 @@
 
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
+import {AuthKitError} from '../errors';
+import {isAuthenticated} from '../utils/utils';
 
 /**
  * @interface withAuthHeaderProps
@@ -44,10 +46,10 @@ function withAuthHeader<P extends withAuthHeaderProps>(
         {(c) => {
           if (c === null) {
             throw new
-            Error('Auth Provider is missing. ' +
+            AuthKitError('Auth Provider is missing. ' +
               'Please add the AuthProvider before Router');
           }
-          if (c.authState.auth) {
+          if (c.authState.auth && isAuthenticated(c.authState)) {
             return (
               <Component
                 {...props}

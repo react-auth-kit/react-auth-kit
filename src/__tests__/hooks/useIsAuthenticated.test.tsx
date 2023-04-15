@@ -44,7 +44,7 @@ describe('useIsAuthenticated', () => {
 
     const {result} = renderHook(() => useIsAuthenticated(), {wrapper});
     expect(result.current()).toBe(false);
-    expect(fakeAuthState.dispatch).not.toBeCalled();
+    expect(fakeAuthState.dispatch).toBeCalled();
   });
 
   it('should return false and signout if the auth is expired', () => {

@@ -1,14 +1,45 @@
-# [2.11.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.10.1...v2.11.0) (2023-04-09)
+# [2.12.0-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.11.0...v2.12.0-beta.1) (2023-04-15)
 
 
 ### Bug Fixes
 
-* changed folder ([b97859f](https://github.com/react-auth-kit/react-auth-kit/commit/b97859f1852a755b78a4cc9e680eaeec77f5ee6d))
+* linting ([de9e60c](https://github.com/react-auth-kit/react-auth-kit/commit/de9e60c031dbb652635ba1d4090b2909c0d032a8))
 
 
 ### Features
 
-* adding tree stacking ([7b17802](https://github.com/react-auth-kit/react-auth-kit/commit/7b17802dbf132d8b2a92fad46fc2feedc8e7bcd5))
+* **error:** created a new error ([de2a959](https://github.com/react-auth-kit/react-auth-kit/commit/de2a95908becbc1ed88ef74cbed45ffc51e867a5))
+* **hoc:** added isAuthenticated ([fd5f45a](https://github.com/react-auth-kit/react-auth-kit/commit/fd5f45a461edfdc1a83be89f688e9d6c6f8eff67))
+* **hoc:** updated error to new error ([6550f95](https://github.com/react-auth-kit/react-auth-kit/commit/6550f95be04b2740ad3ecbf65ef12bb21dcf241b))
+* **hooks:** added isAuthenticated ([02d0f39](https://github.com/react-auth-kit/react-auth-kit/commit/02d0f3991f301f44454ddcac9be3aadaf5f4b265))
+* **hooks:** updated error to new error ([afcf0f2](https://github.com/react-auth-kit/react-auth-kit/commit/afcf0f256da5bb42fe7c31f4a89b3f4c1aaae51b))
+* **husky:** updated hooks to executable ([524ae70](https://github.com/react-auth-kit/react-auth-kit/commit/524ae7088d6b3d36aec9409e63d7884a65ee6e03))
+* **package.json:** added new dependency ([9ffcb12](https://github.com/react-auth-kit/react-auth-kit/commit/9ffcb12faebaab45c9436fb76b321a72425e8322))
+* **privateroute:** updated RequireAuth ([ccc8a78](https://github.com/react-auth-kit/react-auth-kit/commit/ccc8a78a81c041397a5d23615ca2cff144f8e5bc))
+* **utils:** added isAuthenticated function ([ef8a357](https://github.com/react-auth-kit/react-auth-kit/commit/ef8a3575a3f5f1f639bd1f963b821d0a90bce3a2))
+
+# [2.11.0-beta.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.11.0-beta.2...v2.11.0-beta.3) (2023-04-10)
+
+
+
+### Bug Fixes
+
+
+* linting ([de9e60c](https://github.com/react-auth-kit/react-auth-kit/commit/de9e60c031dbb652635ba1d4090b2909c0d032a8))
+
+
+
+### Features
+
+* **error:** created a new error ([de2a959](https://github.com/react-auth-kit/react-auth-kit/commit/de2a95908becbc1ed88ef74cbed45ffc51e867a5))
+* **hoc:** added isAuthenticated ([fd5f45a](https://github.com/react-auth-kit/react-auth-kit/commit/fd5f45a461edfdc1a83be89f688e9d6c6f8eff67))
+* **hoc:** updated error to new error ([6550f95](https://github.com/react-auth-kit/react-auth-kit/commit/6550f95be04b2740ad3ecbf65ef12bb21dcf241b))
+* **hooks:** added isAuthenticated ([02d0f39](https://github.com/react-auth-kit/react-auth-kit/commit/02d0f3991f301f44454ddcac9be3aadaf5f4b265))
+* **hooks:** updated error to new error ([afcf0f2](https://github.com/react-auth-kit/react-auth-kit/commit/afcf0f256da5bb42fe7c31f4a89b3f4c1aaae51b))
+* **husky:** updated hooks to executable ([524ae70](https://github.com/react-auth-kit/react-auth-kit/commit/524ae7088d6b3d36aec9409e63d7884a65ee6e03))
+* **package.json:** added new dependency ([9ffcb12](https://github.com/react-auth-kit/react-auth-kit/commit/9ffcb12faebaab45c9436fb76b321a72425e8322))
+* **privateroute:** updated RequireAuth ([ccc8a78](https://github.com/react-auth-kit/react-auth-kit/commit/ccc8a78a81c041397a5d23615ca2cff144f8e5bc))
+* **utils:** added isAuthenticated function ([ef8a357](https://github.com/react-auth-kit/react-auth-kit/commit/ef8a3575a3f5f1f639bd1f963b821d0a90bce3a2))
 
 # [2.11.0-beta.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.11.0-beta.1...v2.11.0-beta.2) (2023-04-08)
 

@@ -53,7 +53,7 @@ describe('useAuthUser', () => {
         auth: {
           type: 'Bearer',
           token: 'xxxxxxxxx',
-          expiresAt: new Date(),
+          expiresAt: new Date(new Date().getTime() + 10*60000),
         },
         refresh: null,
         userState: {

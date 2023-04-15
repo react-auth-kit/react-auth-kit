@@ -21,6 +21,8 @@
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {AuthStateUserObject} from '../types';
+import {AuthKitError} from '../errors';
+import {isAuthenticated} from '../utils/utils';
 
 /**
  * Auth State Hook
@@ -31,12 +33,16 @@ function useAuthUser(): () => AuthStateUserObject | null {
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
-    Error('Auth Provider is missing. ' +
+    AuthKitError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
   return () => {
-    return context.authState.auth ?
-      context.authState.userState : null;
+    if (isAuthenticated(context.authState)) {
+      return context.authState.userState;
+    } else {
+      // TODO: Need to signout and redirect to login
+      return null;
+    }
   };
 }
 

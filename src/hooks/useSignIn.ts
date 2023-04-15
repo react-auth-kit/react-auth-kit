@@ -23,6 +23,7 @@ import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
+import {AuthKitError} from '../errors';
 
 /**
  *@function
@@ -34,7 +35,7 @@ function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
-    Error('Auth Provider is missing. ' +
+    AuthKitError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
   return (signInConfig: signInFunctionParams): boolean => {
@@ -70,7 +71,7 @@ function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
       } else {
         // refresh token params are not provided
         // throw an error
-        throw new Error('Make sure you given "refreshToken" and  ' +
+        throw new AuthKitError('Make sure you given "refreshToken" and  ' +
           '"refreshTokenExpireIn" parameter');
       }
     } else {

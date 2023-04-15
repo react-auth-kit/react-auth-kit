@@ -21,6 +21,8 @@
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
+import {AuthKitError} from '../errors';
+import {isAuthenticated} from '../utils/utils';
 
 /**
   *@function
@@ -31,19 +33,15 @@ function useIsAuthenticated(): ()=>boolean {
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
-    Error('Auth Provider is missing. ' +
+    AuthKitError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
   return () => {
-    if (context.authState.auth) {
-      if (new Date(context.authState.auth.expiresAt) > new Date()) {
-        return true;
-      } else {
-        context.dispatch(doSignOut());
-        return false;
-      }
-    } else {
+    if (!isAuthenticated(context.authState)) {
+      context.dispatch(doSignOut());
       return false;
+    } else {
+      return true;
     }
   };
 }
