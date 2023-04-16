@@ -1,3 +1,10 @@
+## [2.12.2-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.1...v2.12.2-beta.1) (2023-04-16)
+
+
+### Bug Fixes
+
+* **isauthenticated:** removed signout ([ea58d41](https://github.com/react-auth-kit/react-auth-kit/commit/ea58d4165f2bd01b5c6b282049728164656cf983))
+
 ## [2.12.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.0...v2.12.1) (2023-04-15)
 
 

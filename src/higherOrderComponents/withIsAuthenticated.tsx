@@ -20,7 +20,6 @@
 
 import * as React from 'react';
 import {AuthContextConsumer} from '../AuthContext';
-import {doSignOut} from '../utils/reducers';
 import {AuthKitError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
@@ -53,7 +52,6 @@ function withIsAuthenticated<P extends withAuthHeaderProps>(
           if (c.authState.auth && isAuthenticated(c.authState)) {
             return <Component {...props} isAuth={true}/>;
           } else {
-            c.dispatch(doSignOut());
             return <Component {...props} isAuth={false}/>;
           }
         }}
