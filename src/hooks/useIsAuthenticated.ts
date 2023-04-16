@@ -20,7 +20,6 @@
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
-import {doSignOut} from '../utils/reducers';
 import {AuthKitError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
@@ -38,7 +37,6 @@ function useIsAuthenticated(): ()=>boolean {
   }
   return () => {
     if (!isAuthenticated(context.authState)) {
-      context.dispatch(doSignOut());
       return false;
     } else {
       return true;
