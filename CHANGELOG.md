@@ -1,3 +1,10 @@
+## [2.12.3-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.2...v2.12.3-beta.1) (2023-04-16)
+
+
+### Bug Fixes
+
+* **privateroute:** removed replace and state ([d0e3acc](https://github.com/react-auth-kit/react-auth-kit/commit/d0e3accdca6b590eff6fa676c4619d6587a87438))
+
 ## [2.12.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.1...v2.12.2) (2023-04-16)
 
 
