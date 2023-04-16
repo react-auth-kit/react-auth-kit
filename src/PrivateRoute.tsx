@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 import * as React from 'react';
-import {useLocation, Navigate} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import AuthContext from './AuthContext';
 import {doSignOut} from './utils/reducers';
 import {AuthKitError} from './errors';
@@ -48,15 +48,13 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
       'Please add the AuthProvider before Router');
     }
 
-    const location = useLocation();
-
     if (!isAuthenticated(context.authState)) {
       // Redirect them to the /login page, but save the current location they
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
       context.dispatch(doSignOut());
-      return <Navigate to={loginPath} state={{from: location}} replace />;
+      return <Navigate to={loginPath} />;
     }
 
     return children;
