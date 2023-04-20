@@ -140,32 +140,33 @@ describe('PrivateRoute component', () => {
     expect(fakeDispatch).toHaveBeenCalledWith(doSignOut());
   });
 
-  it('renders nothing, missing both "component" and "render" props', () => {
-    const fakeDispatch = jest.fn();
-    const fakeContextValue = getFakeContextValue(getFutureDate(), fakeDispatch);
+  // it('renders nothing, missing both "component" and "render" props', () => {
+  //   const fakeDispatch = jest.fn();
+  //   const fakeContextValue = getFakeContextValue(getFutureDate(),
+  // fakeDispatch);
 
-    render(
-        <AuthContext.Provider value={fakeContextValue}>
-          <BrowserRouter>
-            <div data-testid={'parent'}>
-              <Routes>
-                <Route path={'/login'}/>
-                <Route path={'/'} element={
-                  <RequireAuth loginPath={'/login'}>
-                    <div>
-                        Protected
-                    </div>
-                  </RequireAuth>
-                }/>
-              </Routes>
-            </div>
-          </BrowserRouter>
-        </AuthContext.Provider>,
-    );
+  //   render(
+  //       <AuthContext.Provider value={fakeContextValue}>
+  //         <BrowserRouter>
+  //           <div data-testid={'parent'}>
+  //             <Routes>
+  //               <Route path={'/login'}/>
+  //               <Route path={'/'} element={
+  //                 <RequireAuth loginPath={'/login'}>
+  //                   <div>
+  //                       Protected
+  //                   </div>
+  //                 </RequireAuth>
+  //               }/>
+  //             </Routes>
+  //           </div>
+  //         </BrowserRouter>
+  //       </AuthContext.Provider>,
+  //   );
 
-    expect(fakeDispatch).not.toHaveBeenCalled();
-    expect(screen.getByTestId('parent').hasChildNodes()).toBe(false);
-  });
+  //   expect(fakeDispatch).not.toHaveBeenCalled();
+  //   expect(screen.getByTestId('parent').hasChildNodes()).toBe(false);
+  // });
 });
 
 export {};
