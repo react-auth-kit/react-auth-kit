@@ -1,3 +1,10 @@
+## [2.12.3-beta.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.1...v2.12.3-beta.2) (2023-04-20)
+
+
+### Bug Fixes
+
+* **provateroute:** multiple rendering issue in private route ([bc41752](https://github.com/react-auth-kit/react-auth-kit/commit/bc4175251514550de5220b26ffb26a8bcb6cf90b))
+
 ## [2.12.3-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.2...v2.12.3-beta.1) (2023-04-16)
 
 
