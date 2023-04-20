@@ -1,3 +1,10 @@
+## [2.12.3-beta.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.2...v2.12.3-beta.3) (2023-04-20)
+
+
+### Bug Fixes
+
+* **privateroute:** infinity render ([9b01802](https://github.com/react-auth-kit/react-auth-kit/commit/9b01802b67bb794f876d7d5a163ea290437b29b7))
+
 ## [2.12.3-beta.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.1...v2.12.3-beta.2) (2023-04-20)
 
 
