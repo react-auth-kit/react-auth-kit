@@ -57,10 +57,10 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
         // send them along to that page after they login, which is a nicer
         // user experience than dropping them off on the home page.
         context.dispatch(doSignOut());
-        <Navigate to={loginPath} state={{from: location}} replace />;
+        <Navigate to={loginPath} state={{from: location}} />;
         // Navigate({to: loginPath, state: { from: location }, replace: true });
       }
-    }, [context.authState, context.dispatch, location, loginPath]);
+    }, [context.authState, context.dispatch, location.pathname, loginPath]);
 
     return isAuthenticated(context.authState) ? children : null;
   };
