@@ -36,6 +36,7 @@ describe('useAuthUser', () => {
         isUsingRefreshToken: false,
       },
       dispatch: () => null,
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>
@@ -63,6 +64,7 @@ describe('useAuthUser', () => {
         isUsingRefreshToken: false,
       },
       dispatch: () => null,
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>

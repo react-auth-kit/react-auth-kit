@@ -40,6 +40,7 @@ describe('useSignIn', () => {
         isUsingRefreshToken: false,
       },
       dispatch: jest.fn(),
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>
@@ -69,6 +70,7 @@ describe('useSignIn', () => {
         isUsingRefreshToken: true,
       },
       dispatch: jest.fn(),
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>
@@ -98,6 +100,7 @@ describe('useSignIn', () => {
         isUsingRefreshToken: false,
       },
       dispatch: jest.fn(),
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>
@@ -138,6 +141,7 @@ describe('useSignIn', () => {
         isUsingRefreshToken: true,
       },
       dispatch: jest.fn(),
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>

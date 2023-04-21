@@ -19,13 +19,16 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import AuthProvider from '../AuthProvider';
 import AuthContext from '../AuthContext';
 import {AuthKitStateInterface} from '../types';
-import {doSignOut} from '../utils/reducers';
 import RequireAuth from '../PrivateRoute';
 
 // Helpers
 const getPastDate = () => new Date(new Date().getTime() - 1000);
 const getFutureDate = () => new Date(new Date().getTime() + 1000);
-const getFakeContextValue = (expiresAt: Date, dispatch = jest.fn()) => {
+const getFakeContextValue = (
+    expiresAt: Date,
+    dispatch = jest.fn(),
+    signOut = jest.fn(),
+) => {
   const authState: AuthKitStateInterface = {
     auth: {
       token: 'fake-token',
@@ -41,6 +44,7 @@ const getFakeContextValue = (expiresAt: Date, dispatch = jest.fn()) => {
   return {
     authState,
     dispatch,
+    signOut,
   };
 };
 
@@ -113,7 +117,12 @@ describe('PrivateRoute component', () => {
   it('dispatches "doSignOut" action, when the token has expired', () => {
     const TestComponent = () => <p>Test Component</p>;
     const fakeDispatch = jest.fn();
-    const fakeContextValue = getFakeContextValue(getPastDate(), fakeDispatch);
+    const signOut = jest.fn();
+    const fakeContextValue = getFakeContextValue(
+        getPastDate(),
+        fakeDispatch,
+        signOut,
+    );
 
     render(
         <AuthContext.Provider value={fakeContextValue}>
@@ -136,8 +145,8 @@ describe('PrivateRoute component', () => {
         </AuthContext.Provider>,
     );
 
-    expect(fakeDispatch).toHaveBeenCalled();
-    expect(fakeDispatch).toHaveBeenCalledWith(doSignOut());
+    expect(signOut).toHaveBeenCalled();
+    // expect(fakeDispatch).toHaveBeenCalledWith(doSignOut());
   });
 
   // it('renders nothing, missing both "component" and "render" props', () => {

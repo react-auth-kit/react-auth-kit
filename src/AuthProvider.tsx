@@ -2,9 +2,9 @@ import * as React from 'react';
 import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';
 import {AuthProviderProps} from './types';
-import {authReducer, doRefresh} from './utils/reducers';
+import {authReducer, doRefresh, doSignOut} from './utils/reducers';
 import {useInterval} from './utils/hooks';
-import { AuthKitError } from './errors';
+import {AuthKitError} from './errors';
 
 
 /**
@@ -43,30 +43,34 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     const [authState, dispatch] =
       React.useReducer(authReducer, tokenObject.initialToken());
 
+    const signOut = React.useCallback(() => {
+      dispatch(doSignOut());
+      // perform any other necessary state updates here
+    }, [dispatch]);
+
     if (refresh) {
       useInterval(
           () => {
             refresh
-              .refreshApiCallback({
-                authToken: authState.auth?.token,
-                authTokenExpireAt: authState.auth?.expiresAt,
-                authUserState: authState.userState,
-                refreshToken: authState.refresh?.token,
-                refreshTokenExpiresAt: authState.refresh?.expiresAt,
-              })
-              .then((result) => {
+                .refreshApiCallback({
+                  authToken: authState.auth?.token,
+                  authTokenExpireAt: authState.auth?.expiresAt,
+                  authUserState: authState.userState,
+                  refreshToken: authState.refresh?.token,
+                  refreshTokenExpiresAt: authState.refresh?.expiresAt,
+                })
+                .then((result) => {
                 // IF the API call is successful then refresh the AUTH state
-                if (result.isSuccess) {
+                  if (result.isSuccess) {
                   // store the new value using the state update
-                  dispatch(doRefresh(result));
-                }
-                else {
+                    dispatch(doRefresh(result));
+                  } else {
                   // do something in future
-                }
-              })
-              .catch(()=>{
+                  }
+                })
+                .catch(()=>{
                 // do something in future
-              });
+                });
           },
         authState.isSignIn ? refresh.interval : null,
       );
@@ -77,7 +81,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     }, [authState]);
 
     return (
-      <AuthContext.Provider value={{authState, dispatch}}>
+      <AuthContext.Provider value={{authState, dispatch, signOut}}>
         {children}
       </AuthContext.Provider>
     );

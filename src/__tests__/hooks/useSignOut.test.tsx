@@ -35,6 +35,7 @@ describe('useSignOut', () => {
         isUsingRefreshToken: false,
       },
       dispatch: jest.fn(),
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>
@@ -59,6 +60,7 @@ describe('useSignOut', () => {
       dispatch: jest.fn(() => {
         throw new Error('test');
       }),
+      signOut: jest.fn(),
     };
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={fakeAuthState}>

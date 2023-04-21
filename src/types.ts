@@ -63,6 +63,7 @@ export interface signInFunctionParams {
 export interface AuthContextInterface {
   authState: AuthKitStateInterface
   dispatch: React.Dispatch<AuthActions>
+  signOut: () => void
 }
 
 /**

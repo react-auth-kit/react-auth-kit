@@ -20,7 +20,6 @@
 import * as React from 'react';
 import {useLocation, Navigate} from 'react-router-dom';
 import AuthContext from './AuthContext';
-import {doSignOut} from './utils/reducers';
 import {AuthKitError} from './errors';
 import {isAuthenticated} from './utils/utils';
 
@@ -50,26 +49,10 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
 
     const location = useLocation();
 
-    const signOut = React.useCallback(() => {
-      // Redirect them to the /login page, but save the current location they
-      // were trying to go to when they were redirected. This allows us to
-      // send them along to that page after they login, which is a nicer
-      // user experience than dropping them off on the home page.
-      console.log('context.dispatch:', context.dispatch);
-      console.log('loginPath:', loginPath);
-      console.log('location:', location);
-
-      context.dispatch(doSignOut());
-      <Navigate to={loginPath} state={{from: location}} />;
-    }, [context.dispatch, loginPath, location]);
-
-    React.useEffect(() => {
-      console.log('context.authState:', context.authState);
-      console.log('signout:', signOut);
-      if (!isAuthenticated(context.authState)) {
-        signOut();
-      }
-    }, [context.authState, signOut]);
+    if (!isAuthenticated(context.authState)) {
+      context.signOut();
+      return <Navigate to={loginPath} state={{from: location}} replace />;
+    }
 
     return isAuthenticated(context.authState) ? children : null;
   };
