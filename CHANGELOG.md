@@ -1,3 +1,10 @@
+# [2.13.0-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.6...v2.13.0-beta.1) (2023-04-21)
+
+
+### Features
+
+* updated signout to AuthProvider ([7cb3e56](https://github.com/react-auth-kit/react-auth-kit/commit/7cb3e56f6dc7678910967a4f69c07a10f5eeeb11))
+
 ## [2.12.3-beta.6](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.5...v2.12.3-beta.6) (2023-04-21)
 
 
