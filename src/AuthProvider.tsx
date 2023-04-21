@@ -87,4 +87,4 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     );
   };
 
-export default AuthProvider;
+export default React.memo(AuthProvider);
