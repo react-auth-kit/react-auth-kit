@@ -1,3 +1,10 @@
+## [2.12.3-beta.4](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.3...v2.12.3-beta.4) (2023-04-21)
+
+
+### Bug Fixes
+
+* **privateroute:** rerender issue with useCallback ([e5130c9](https://github.com/react-auth-kit/react-auth-kit/commit/e5130c9e3393bf5fa6b3a8abab266b73b0f45083))
+
 ## [2.12.3-beta.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.2...v2.12.3-beta.3) (2023-04-20)
 
 
