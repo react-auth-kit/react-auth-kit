@@ -50,15 +50,18 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
 
     const location = useLocation();
 
+    const signOut = React.useCallback(() => {
+      // Redirect them to the /login page, but save the current location they
+      // were trying to go to when they were redirected. This allows us to
+      // send them along to that page after they login, which is a nicer
+      // user experience than dropping them off on the home page.
+      context.dispatch(doSignOut());
+      <Navigate to={loginPath} state={{from: location}} />;
+    }, [context.dispatch, loginPath, location]);
+
     React.useEffect(() => {
       if (!isAuthenticated(context.authState)) {
-        // Redirect them to the /login page, but save the current location they
-        // were trying to go to when they were redirected. This allows us to
-        // send them along to that page after they login, which is a nicer
-        // user experience than dropping them off on the home page.
-        context.dispatch(doSignOut());
-        <Navigate to={loginPath} state={{from: location}} />;
-        // Navigate({to: loginPath, state: { from: location }, replace: true });
+        signOut();
       }
     }, [context.authState, context.dispatch, location.pathname, loginPath]);
 
