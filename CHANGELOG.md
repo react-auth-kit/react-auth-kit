@@ -1,3 +1,11 @@
+## [2.12.3-beta.6](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.5...v2.12.3-beta.6) (2023-04-21)
+
+
+### Bug Fixes
+
+* example dep ([2403918](https://github.com/react-auth-kit/react-auth-kit/commit/2403918e630d7478ff67bc5be21d0e93f21e8b22))
+* **privateroute:** added multiple dependency logs ([8c0d247](https://github.com/react-auth-kit/react-auth-kit/commit/8c0d247bdb23dd43099b5c4ad6fcce8faf41d529))
+
 ## [2.12.3-beta.5](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.4...v2.12.3-beta.5) (2023-04-21)
 
 
