@@ -55,11 +55,17 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
+      console.log('context.dispatch:', context.dispatch);
+      console.log('loginPath:', loginPath);
+      console.log('location:', location);
+
       context.dispatch(doSignOut());
       <Navigate to={loginPath} state={{from: location}} />;
     }, [context.dispatch, loginPath, location]);
 
     React.useEffect(() => {
+      console.log('context.authState:', context.authState);
+      console.log('signout:', signOut);
       if (!isAuthenticated(context.authState)) {
         signOut();
       }
