@@ -63,7 +63,7 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
       if (!isAuthenticated(context.authState)) {
         signOut();
       }
-    }, [context.authState, context.dispatch, location.pathname, loginPath]);
+    }, [context.authState, signOut]);
 
     return isAuthenticated(context.authState) ? children : null;
   };
