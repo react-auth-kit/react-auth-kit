@@ -1,3 +1,11 @@
+# [2.13.0-beta.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.13.0-beta.1...v2.13.0-beta.2) (2023-04-21)
+
+
+### Bug Fixes
+
+* **AuthProvider:** now memorized ([de7f377](https://github.com/react-auth-kit/react-auth-kit/commit/de7f37735b272ee907ca60481b798705836d7ffd))
+* property 'defaultProps' does not exist ([0972ebc](https://github.com/react-auth-kit/react-auth-kit/commit/0972ebc0ef5b276c7ab6c3413470ff54604ec01d))
+
 # [2.13.0-beta.1](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.6...v2.13.0-beta.1) (2023-04-21)
 
 
