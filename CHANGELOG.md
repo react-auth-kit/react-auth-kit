@@ -1,3 +1,10 @@
+## [2.12.3-beta.5](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.4...v2.12.3-beta.5) (2023-04-21)
+
+
+### Bug Fixes
+
+* **privateroute:** useeffect inputs ([2b53e32](https://github.com/react-auth-kit/react-auth-kit/commit/2b53e326e1bb075c0eb406f29a0a77a9705f13cf))
+
 ## [2.12.3-beta.4](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.3-beta.3...v2.12.3-beta.4) (2023-04-21)
 
 
