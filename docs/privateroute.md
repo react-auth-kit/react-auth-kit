@@ -25,7 +25,7 @@ import { RequireAuth } from 'react-auth-kit'
 
 ## Implementation
 
-Add `PrivateRoute` in your Routes Files inside `BrowserRouter` or `HashRouter`
+Add `RequireAuth` in your Routes Files inside `BrowserRouter` or `HashRouter`
 
 ### Demo
 
@@ -50,7 +50,7 @@ Add `PrivateRoute` in your Routes Files inside `BrowserRouter` or `HashRouter`
 ```jsx
 import React from "react"
 import {BrowserRouter, Route} from "react-router-dom"
-import {PrivateRoute} from 'react-auth-kit'
+import {RequireAuth} from 'react-auth-kit'
 import SecureComponent from "./SecureComponent";
 
 const Routes = () => {
