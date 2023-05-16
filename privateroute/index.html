@@ -696,7 +696,7 @@ Visit <a href="https://authkit.arkadip.dev/v1.6.13/privateroute/">this page</a> 
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RequireAuth</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
 </code></pre></div>
 <h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h2>
-<p>Add <code>PrivateRoute</code> in your Routes Files inside <code>BrowserRouter</code> or <code>HashRouter</code></p>
+<p>Add <code>RequireAuth</code> in your Routes Files inside <code>BrowserRouter</code> or <code>HashRouter</code></p>
 <h3 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>&lt;BrowserRouter&gt;
     &lt;Routes&gt;
@@ -716,7 +716,7 @@ Visit <a href="https://authkit.arkadip.dev/v1.6.13/privateroute/">this page</a> 
 
 <div class="highlight"><pre><span></span><code>import React from &quot;react&quot;
 import {BrowserRouter, Route} from &quot;react-router-dom&quot;
-import {PrivateRoute} from &#39;react-auth-kit&#39;
+import {RequireAuth} from &#39;react-auth-kit&#39;
 import SecureComponent from &quot;./SecureComponent&quot;;
 
 const Routes = () =&gt; {
