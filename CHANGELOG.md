@@ -1,3 +1,11 @@
+## [2.12.3](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.2...v2.12.3) (2023-06-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency js-cookie to v3.0.5 ([c670aa5](https://github.com/react-auth-kit/react-auth-kit/commit/c670aa517a055c1cf94c90516009b45e39d473d2))
+* **deps:** update dependency react-router-dom to v6.13.0 ([23518bc](https://github.com/react-auth-kit/react-auth-kit/commit/23518bc821417c3c7f162a3ceeb476bc51fbf15f))
+
 ## [2.12.2](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.1...v2.12.2) (2023-04-16)
 
 
