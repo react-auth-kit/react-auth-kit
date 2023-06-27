@@ -232,7 +232,7 @@ For details about `signInConfig`, please go to the [signInConfig](#signinconfig)
   token: string
   tokenType: string | 'Bearer'
   expiresIn: number
-  authState: object
+  authState?: object
   refreshToken?: string
   refreshTokenExpireIn?: number
 }
