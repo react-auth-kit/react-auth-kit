@@ -1,3 +1,10 @@
+## [2.12.6](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.5...v2.12.6) (2023-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-router-dom to v6.15.0 ([1b9fdb8](https://github.com/react-auth-kit/react-auth-kit/commit/1b9fdb88c8d8f75f9dfa2e38bb9b42848ccc4584))
+
 ## [2.12.5](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.4...v2.12.5) (2023-08-02)
 
 
