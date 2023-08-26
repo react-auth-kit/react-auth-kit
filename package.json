@@ -91,7 +91,7 @@
     "ts-jest": "29.1.1",
     "tslib": "2.6.2",
     "typedoc": "0.25.0",
-    "typescript": "5.1.6",
+    "typescript": "5.2.2",
     "utility-types": "3.10.0"
   },
   "dependencies": {
