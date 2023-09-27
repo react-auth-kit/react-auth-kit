@@ -66,7 +66,7 @@
     "@types/js-cookie": "3.0.4",
     "@types/node": "18.18.0",
     "@types/react": "18.2.23",
-    "@types/react-dom": "18.2.7",
+    "@types/react-dom": "18.2.8",
     "@types/react-router-dom": "5.3.3",
     "@typescript-eslint/eslint-plugin": "6.7.3",
     "@typescript-eslint/parser": "6.7.3",
