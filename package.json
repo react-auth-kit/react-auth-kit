@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "npx lerna run test",
     "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json"
   },
   "keywords": [
