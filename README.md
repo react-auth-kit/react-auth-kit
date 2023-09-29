@@ -11,10 +11,6 @@
 <a href="https://codecov.io/gh/react-auth-kit/react-auth-kit">
   <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL"/>
 </a>
-    
-<a href="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy">
-    <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy/badge.svg" alt="NPM Deploy">
-</a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
     <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
 </a>
@@ -49,12 +45,10 @@ It is production-ready, and gives you the following:
 Visit [https://authkit.arkadip.dev](https://authkit.arkadip.dev) for the offical documentation.
 
 ## Hall of Fames ✨
+
 We love our contributors! If you'd like to contribute anything from a bug-fix to a feature update, you can read our [CONTRIBUTING GUIDE](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md)
 
-
-
 [![Contributors](https://contrib.rocks/image?repo=react-auth-kit/react-auth-kit)](https://github.com/react-auth-kit/react-auth-kit/graphs/contributors)
-
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
