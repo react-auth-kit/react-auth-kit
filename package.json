@@ -56,7 +56,7 @@
   "dependencies": {
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,json,js}": "eslint --cache --fix"
+    "src/**/*.{ts,tsx,json,js}": "npm test"
   },
   "release": {
     "plugins": [
