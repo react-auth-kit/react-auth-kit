@@ -4,7 +4,6 @@
     "declarationDir": "./types",
     "sourceMap": true,
     "module": "ESNext",
-    "outDir": "./dist/esm",
     "target": "ES5",
     "lib": [
       "dom",
@@ -27,10 +26,6 @@
     "isolatedModules": true,
     "noEmit": false
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
   "exclude": [
     "node_modules",
     "dist",
