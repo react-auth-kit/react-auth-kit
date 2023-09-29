@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "husky install",
     "test": "npx lerna run test",
     "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json"
   },
