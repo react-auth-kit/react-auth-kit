@@ -1,0 +1,32 @@
+{
+  "name": "@auth-kit/react-router",
+  "version": "2.12.7",
+  "description": "React Router Support for React-auth-kit",
+  "keywords": [
+    "react",
+    "router",
+    "privateroute",
+    "auth"
+  ],
+  "author": "Arkadip Bhattacharya <hi@arkadip.dev>",
+  "homepage": "https://authkit.arkadip.dev/",
+  "license": "Apache-2.0",
+  "main": "src/index.tsx",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/react-router.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
+  }
+}

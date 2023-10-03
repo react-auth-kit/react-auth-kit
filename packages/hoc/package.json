@@ -1,0 +1,32 @@
+{
+  "name": "@auth-kit/hoc",
+  "version": "2.12.7",
+  "description": "React Higher Order Component Support for React Auth Kit",
+  "keywords": [
+    "react",
+    "hoc",
+    "auth",
+    "kit"
+  ],
+  "author": "Arkadip Bhattacharya <hi@arkadip.dev>",
+  "homepage": "https://authkit.arkadip.dev",
+  "license": "Apache-2.0",
+  "main": "src/index.tsx",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/hoc.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
+  }
+}
