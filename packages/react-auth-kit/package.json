@@ -69,7 +69,7 @@
     "rollup-plugin-filesize": "10.0.0",
     "rollup-plugin-license": "3.1.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
-    "rollup-plugin-typescript2": "0.35.0",
+    "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.1.1"
   },
   "dependencies": {
