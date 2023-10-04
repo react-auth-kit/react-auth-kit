@@ -5,12 +5,13 @@
         "src/**/*.tsx"
     ],
     "compilerOptions": {
-        "outDir": "."
+        "outDir": ".",
+        "emitDeclarationOnly": true
     },
     "exclude": [
         "node_modules",
         "dist",
         "types",
-        "__tests__"
+        "*/__tests__/*"
     ]
 }
