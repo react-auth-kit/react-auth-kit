@@ -34,7 +34,7 @@
     "build:clean": "rimraf ./dist",
     "build:dir": "mkdirp ./dist",
     "build:build": "rollup -c",
-    "preversion": "run-s test",
+    "preversion": "npm run test",
     "test": "run-s test:*",
     "test:build": "run-s build",
     "test:unit": "jest",
