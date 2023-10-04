@@ -29,12 +29,6 @@ import withAuthUser from './higherOrderComponents/withAuthUser';
 import withAuthHeader from './higherOrderComponents/withAuthHeader';
 import withIsAuthenticated from './higherOrderComponents/withIsAuthenticated';
 
-// Default prop for AuthProvider
-AuthProvider.defaultProps = {
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:',
-};
-
 export {
   AuthProvider,
   RequireAuth,

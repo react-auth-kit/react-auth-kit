@@ -83,4 +83,10 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> =
     );
   };
 
+// Default prop for AuthProvider
+AuthProvider.defaultProps = {
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === 'https:',
+};
+
 export default AuthProvider;
