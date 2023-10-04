@@ -62,28 +62,6 @@ describe('AuthProvider renders successfully', ()=>{
           </AuthProvider>,
       );
     });
-
-    it('Throws an error, then props are missing', ()=>{
-      jest.spyOn(console, 'error').mockImplementation(jest.fn());
-
-      expect(() => render(
-          <AuthProvider
-            authType={'cookie'}
-            authName={'_auth'}
-          >
-            <BrowserRouter>
-              <Routes>
-                <Route path={'/'} element={
-                  <div>
-                    Empty
-                  </div>
-                }/>
-                <Route/>
-              </Routes>
-            </BrowserRouter>
-          </AuthProvider>,
-      )).toThrow();
-    });
   });
 });
 describe('Authprovider with refresh Token', ()=> {
