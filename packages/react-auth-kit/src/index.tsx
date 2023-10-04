@@ -15,32 +15,16 @@
  * last updated 25th August 2021
  */
 
-import AuthProvider from './AuthProvider';
-import createRefresh from './createRefresh';
-import RequireAuth from './PrivateRoute';
-import useSignIn from './hooks/useSignIn';
-import useSignOut from './hooks/useSignOut';
-import useAuthUser from './hooks/useAuthUser';
-import useAuthHeader from './hooks/useAuthHeader';
-import useIsAuthenticated from './hooks/useIsAuthenticated';
-import withSignIn from './higherOrderComponents/withSignIn';
-import withSignOut from './higherOrderComponents/withSignOut';
-import withAuthUser from './higherOrderComponents/withAuthUser';
-import withAuthHeader from './higherOrderComponents/withAuthHeader';
-import withIsAuthenticated from './higherOrderComponents/withIsAuthenticated';
-
-export {
-  AuthProvider,
-  RequireAuth,
-  createRefresh,
-  useSignIn,
-  useSignOut,
-  useAuthUser,
-  useAuthHeader,
-  useIsAuthenticated,
-  withSignIn,
-  withSignOut,
-  withAuthUser,
-  withAuthHeader,
-  withIsAuthenticated,
-};
+export * from './AuthProvider';
+export * from './createRefresh';
+export * from './PrivateRoute';
+export * from './hooks/useSignIn';
+export * from './hooks/useSignOut';
+export * from './hooks/useAuthUser';
+export * from './hooks/useAuthHeader';
+export * from './hooks/useIsAuthenticated';
+export * from './higherOrderComponents/withSignIn';
+export * from './higherOrderComponents/withSignOut';
+export * from './higherOrderComponents/withAuthUser';
+export * from './higherOrderComponents/withAuthHeader';
+export * from './higherOrderComponents/withIsAuthenticated';
