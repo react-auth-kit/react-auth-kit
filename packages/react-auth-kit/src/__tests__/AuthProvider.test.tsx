@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
+import React from 'react';
+import Cookies from 'js-cookie';
 import {render, screen} from '@testing-library/react';
 import {AuthContextConsumer} from '../AuthContext';
 import AuthProvider from '../AuthProvider';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import React from 'react';
 import createRefresh from '../createRefresh';
 import {AuthStateUserObject} from '../types';
-import Cookies from 'js-cookie';
 
 describe('AuthProvider renders successfully', ()=>{
   it('With localStorage', ()=>{

@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import {render, screen} from '@testing-library/react';
-import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import AuthProvider from '../AuthProvider';
 import AuthContext from '../AuthContext';
