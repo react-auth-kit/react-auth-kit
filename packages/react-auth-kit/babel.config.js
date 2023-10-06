@@ -50,12 +50,12 @@ module.exports = (api) => {
                 "./src/hooks/*",
                 "./src/higherOrderComponents/*"
             ],
-          presets: ["preact"],
+          presets: ["react"],
           plugins: [
             [
               "jsx-pragmatic",
               {
-                module: "preact",
+                module: "react",
                 export: "h",
                 import: "h",
               },
