@@ -21,7 +21,7 @@ module.exports = (api) => {
         "@babel/preset-typescript",
       ],
       plugins: [
-        "@babel/plugin-proposal-optional-catch-binding",
+        "@babel/plugin-transform-optional-catch-binding",
         "@babel/plugin-transform-runtime",
       ],
       ignore: [
@@ -31,6 +31,7 @@ module.exports = (api) => {
       overrides: [
         {
           test: [
+            "./src/index.tsx",
             "./src/AuthContext.ts",
             "./src/AuthProvider.tsx",
             "./src/PrivateRoute.tsx",
