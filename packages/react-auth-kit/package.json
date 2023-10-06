@@ -23,6 +23,9 @@
   },
   "files": [
     "src",
+    "higherOrderComponents",
+    "hooks",
+    "utils",
     "*.d.ts*",
     "*.js"
   ],
