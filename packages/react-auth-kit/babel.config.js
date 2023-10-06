@@ -33,7 +33,7 @@ module.exports = (api) => {
           test: [
             "./src/AuthContext.ts",
             "./src/AuthProvider.tsx",
-            "./src/PrivateRoute.ts",
+            "./src/PrivateRoute.tsx",
             "./src/hooks/*",
             "./src/higherOrderComponents/*"
           ],
