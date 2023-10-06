@@ -30,6 +30,7 @@ module.exports = {
   'rules': {
     'react/prop-types': 0,
     'react/display-name': 0,
+    "react/react-in-jsx-scope": "off",
     'valid-jsdoc': 0,
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],

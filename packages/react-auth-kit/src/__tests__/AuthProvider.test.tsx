@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import React from 'react';
 import Cookies from 'js-cookie';
 import {render, screen} from '@testing-library/react';
 import {AuthContextConsumer} from '../AuthContext';
