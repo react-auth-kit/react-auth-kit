@@ -42,26 +42,26 @@ module.exports = (api) => {
             ["@babel/preset-react", { runtime: "automatic" }],
           ],
         },
-        {
-            test: [
-                "./src/AuthContext.ts",
-                "./src/AuthProvider.tsx",
-                "./src/PrivateRoute.ts",
-                "./src/hooks/*",
-                "./src/higherOrderComponents/*"
-            ],
-          presets: ["react"],
-          plugins: [
-            [
-              "jsx-pragmatic",
-              {
-                module: "react",
-                export: "h",
-                import: "h",
-              },
-            ],
-          ],
-        },
+        // {
+        //     test: [
+        //         "./src/AuthContext.ts",
+        //         "./src/AuthProvider.tsx",
+        //         "./src/PrivateRoute.ts",
+        //         "./src/hooks/*",
+        //         "./src/higherOrderComponents/*"
+        //     ],
+        //   presets: ["react"],
+        //   plugins: [
+        //     [
+        //       "jsx-pragmatic",
+        //       {
+        //         module: "react",
+        //         export: "h",
+        //         import: "h",
+        //       },
+        //     ],
+        //   ],
+        // },
       ],
     }
   }
