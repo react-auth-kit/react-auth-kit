@@ -22,7 +22,9 @@
     "test": "__tests__"
   },
   "files": [
-    "src"
+    "src",
+    "*.d.ts*",
+    "*.js"
   ],
   "repository": {
     "type": "git",
