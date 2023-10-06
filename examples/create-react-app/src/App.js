@@ -1,5 +1,5 @@
 import React from 'react';
-import {AuthProvider} from 'react-auth-kit'
+import AuthProvider from 'react-auth-kit/AuthProvider'
 import RoutesComponent from './Routes';
 
 function App() {
