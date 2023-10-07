@@ -31,38 +31,18 @@ module.exports = (api) => {
       overrides: [
         {
           test: [
-            "./src/index.tsx",
-            "./src/AuthContext.ts",
-            "./src/AuthProvider.tsx",
-            "./src/PrivateRoute.tsx",
-            "./src/hooks/*",
-            "./src/higherOrderComponents/*"
+            "../src/index.tsx",
+            "../src/AuthContext.ts",
+            "../src/AuthProvider.tsx",
+            "../src/PrivateRoute.tsx",
+            "../src/hooks/*",
+            "../src/higherOrderComponents/*"
           ],
           presets: [
             ["@babel/preset-env", { targets: { ie: 11 } }],
             ["@babel/preset-react", { runtime: "automatic" }],
           ],
-        },
-        // {
-        //     test: [
-        //         "./src/AuthContext.ts",
-        //         "./src/AuthProvider.tsx",
-        //         "./src/PrivateRoute.ts",
-        //         "./src/hooks/*",
-        //         "./src/higherOrderComponents/*"
-        //     ],
-        //   presets: ["react"],
-        //   plugins: [
-        //     [
-        //       "jsx-pragmatic",
-        //       {
-        //         module: "react",
-        //         export: "h",
-        //         import: "h",
-        //       },
-        //     ],
-        //   ],
-        // },
-      ],
+        }
+      ]
     }
   }
