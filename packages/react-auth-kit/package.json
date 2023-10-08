@@ -31,6 +31,10 @@
   ],
   "exports": {
     ".": "./index.js",
+    "./AuthContext": "./AuthContext.js",
+    "./AuthProvider": "./AuthProvider.js",
+    "./PrivateRoute": "./PrivateRoute.js",
+    "./errors": "./errors.js",
     "./hooks/*": "./hooks/*.js",
     "./higherOrderComponents/*": "./higherOrderComponents/*.js",
     "./utils/*": "./utils/*.js"
