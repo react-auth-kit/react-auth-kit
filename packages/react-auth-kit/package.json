@@ -22,6 +22,9 @@
     "test": "__tests__"
   },
   "files": [
+    "higherOrderComponents",
+    "hooks",
+    "utils",
     "*.js",
     "*.d.js"
   ],
@@ -84,5 +87,5 @@
     "react-dom": ">=16.8.0 || ^17.x || ^18.x",
     "react-router-dom": ">=6.x"
   },
-  "gitHead": "d29d7d65ef13ce1daebe4785400c9bc5cab06e02"
+  "gitHead": "de04045f3b2815c57f63b36000ed0cb0062de10f"
 }
