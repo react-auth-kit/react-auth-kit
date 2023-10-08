@@ -1,5 +1,7 @@
 import React from 'react'
-import {useIsAuthenticated, useSignIn} from 'react-auth-kit'
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
+import useSignIn from 'react-auth-kit/hooks/useSignIn'
+
 import {useNavigate, Navigate} from 'react-router-dom'
 
 const Login = () => {

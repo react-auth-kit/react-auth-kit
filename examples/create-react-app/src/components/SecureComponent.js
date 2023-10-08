@@ -1,5 +1,7 @@
 import React from 'react'
-import { useAuthUser, useSignOut } from 'react-auth-kit'
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+import useSignOut from 'react-auth-kit/hooks/useSignOut'
+
 
 const SecureComponent = () => {
     const signOut = useSignOut()

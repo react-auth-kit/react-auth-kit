@@ -1,6 +1,8 @@
 import React from 'react'
-import { RequireAuth } from 'react-auth-kit'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import RequireAuth from 'react-auth-kit/PrivateRoute'
+
 import Home from './components/Home'
 import Login from './components/Login'
 import SecureComponent from './components/SecureComponent'
