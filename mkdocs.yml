@@ -6,7 +6,7 @@ site_url: https://authkit.arkadip.dev/
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
 
-copyright:  Copyright &copy; 2020 - 2022 React Auth Kit
+copyright:  Copyright &copy; 2020 - 2023 React Auth Kit
 
 theme:
   name: 'material'

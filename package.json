@@ -23,7 +23,7 @@
   ],
   "author": {
     "name": "Arkadip Bhattacharya",
-    "email": "in2arkadipb13@gmail.com",
+    "email": "hi@arkadip.dev",
     "url": "https://www.arkadip.dev"
   },
   "repository": {
@@ -39,7 +39,7 @@
     "type": "github",
     "url": "https://github.com/sponsors/react-auth-kit"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "17.7.2",
     "@commitlint/config-conventional": "17.7.0",

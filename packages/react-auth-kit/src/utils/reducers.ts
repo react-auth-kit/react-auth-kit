@@ -1,5 +1,5 @@
 /**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+ * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Reducers for useReducer
  * @copyright Arkadip Bhattacharya 2020
  *

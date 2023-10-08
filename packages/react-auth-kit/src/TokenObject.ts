@@ -1,3 +1,12 @@
+/**
+ * 
+ * @author Arkadip Bhattacharya <hi@arkadip.dev>
+ * @fileoverview Token Object Engine
+ * @copyright Arkadip Bhattacharya 2020
+ *
+ */
+
+
 import Cookies from 'js-cookie';
 import {AuthKitStateInterface, AuthStateUserObject} from './types';
 

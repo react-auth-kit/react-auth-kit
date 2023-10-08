@@ -1,3 +1,12 @@
+/**
+ * 
+ * @author Arkadip Bhattacharya <hi@arkadip.dev>
+ * @fileoverview Auth Context Provider
+ * @copyright Arkadip Bhattacharya 2020
+ *
+ */
+
+
 import * as React from 'react';
 import AuthContext from './AuthContext';
 import TokenObject from './TokenObject';

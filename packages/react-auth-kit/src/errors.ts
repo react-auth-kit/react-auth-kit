@@ -1,7 +1,9 @@
 /**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
+ * 
+ * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Error file
  * @copyright Arkadip Bhattacharya 2023
+ * 
  */
 
 /**

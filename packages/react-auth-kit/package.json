@@ -10,7 +10,7 @@
     "jsonwebtoken",
     "token"
   ],
-  "author": "Arkadip Bhattacharya <in2arkadipb13@gmail.com>",
+  "author": "Arkadip Bhattacharya <hi@arkadip.dev>",
   "homepage": "https://authkit.arkadip.dev",
   "license": "MIT",
   "source": "src/index.tsx",

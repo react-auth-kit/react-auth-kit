@@ -51,4 +51,4 @@ We love our contributors! If you'd like to contribute anything from a bug-fix to
 [![Contributors](https://contrib.rocks/image?repo=react-auth-kit/react-auth-kit)](https://github.com/react-auth-kit/react-auth-kit/graphs/contributors)
 
 <p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>

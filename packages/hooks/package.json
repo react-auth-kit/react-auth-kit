@@ -9,7 +9,7 @@
   ],
   "author": "Arkadip Bhattacharya <hi@arkadip.dev>",
   "homepage": "https://authkit.arkadip.dev/",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "main": "src/index.ts",
   "files": [
     "src"

@@ -375,7 +375,7 @@
 
 * **privateRoute:** The PrivateRoute.tsx Option will not available for now.
 
-Signed-off-by: Arkadip <in2arkadipb13@gmail.com>
+Signed-off-by: Arkadip <hi@arkadip.dev>
 
 ## [1.6.13](https://github.com/react-auth-kit/react-auth-kit/compare/v1.6.12...v1.6.13) (2022-01-17)
 
