@@ -15,6 +15,8 @@
  * last updated 25th August 2021
  */
 
+export * from './types';
+export * from './errors';
 export * from './AuthProvider';
 export * from './createRefresh';
 export * from './PrivateRoute';
@@ -28,3 +30,5 @@ export * from './higherOrderComponents/withSignOut';
 export * from './higherOrderComponents/withAuthUser';
 export * from './higherOrderComponents/withAuthHeader';
 export * from './higherOrderComponents/withIsAuthenticated';
+
+export { default } from './AuthProvider';
