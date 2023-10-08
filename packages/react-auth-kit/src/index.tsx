@@ -15,20 +15,9 @@
  * last updated 25th August 2021
  */
 
-export * from './types';
-export * from './errors';
-export * from './AuthProvider';
-export * from './createRefresh';
-export * from './PrivateRoute';
-export * from './hooks/useSignIn';
-export * from './hooks/useSignOut';
-export * from './hooks/useAuthUser';
-export * from './hooks/useAuthHeader';
-export * from './hooks/useIsAuthenticated';
-export * from './higherOrderComponents/withSignIn';
-export * from './higherOrderComponents/withSignOut';
-export * from './higherOrderComponents/withAuthUser';
-export * from './higherOrderComponents/withAuthHeader';
-export * from './higherOrderComponents/withIsAuthenticated';
+export type * from './types';
 
+export * from './errors';
+
+export * from './AuthProvider';
 export { default } from './AuthProvider';
