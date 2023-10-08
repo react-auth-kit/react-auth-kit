@@ -14,25 +14,26 @@
   "homepage": "https://authkit.arkadip.dev",
   "license": "MIT",
   "source": "src/index.tsx",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "directories": {
     "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "dist"
+    "*.js",
+    "*.d.js"
   ],
   "exports": {
-    ".": "./dist/index.js",
-    "./AuthContext": "./dist/AuthContext.js",
-    "./AuthProvider": "./dist/AuthProvider.js",
-    "./PrivateRoute": "./dist/PrivateRoute.js",
-    "./errors": "./dist/errors.js",
-    "./hooks/*": "./dist/hooks/*.js",
-    "./higherOrderComponents/*": "./dist/higherOrderComponents/*.js",
-    "./utils/*": "./dist/utils/*.js"
+    ".": "./index.js",
+    "./AuthContext": "./AuthContext.js",
+    "./AuthProvider": "./AuthProvider.js",
+    "./PrivateRoute": "./PrivateRoute.js",
+    "./errors": "./errors.js",
+    "./hooks/*": "./hooks/*.js",
+    "./higherOrderComponents/*": "./higherOrderComponents/*.js",
+    "./utils/*": "./utils/*.js"
   },
   "repository": {
     "type": "git",
@@ -40,9 +41,7 @@
   },
   "scripts": {
     "build": "run-s build:*",
-    "build:clean": "rimraf ./dist",
-    "build:dir": "mkdirp ./dist",
-    "build:build": "tsc --project tsconfig.json && babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".tsx,.ts,.js,.jsx\"",
+    "build:build": "tsc --project tsconfig.json && babel --config-file ./config/babel.config.js src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
     "preversion": "npm run test",
     "test": "run-s test:*",
     "test:unit": "jest --config ./config/jest.config.js",
