@@ -7,7 +7,7 @@
     "@testing-library/react": "^10.4.9",
     "@testing-library/user-event": "^7.1.2",
     "react": "18.2.0",
-    "react-auth-kit": "2.8.1",
+    "react-auth-kit": "2.12.7",
     "react-dom": "18.2.0",
     "react-router-dom": "6.8.1",
     "react-scripts": "5.0.1"
