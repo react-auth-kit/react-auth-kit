@@ -58,6 +58,10 @@ describe('Initial Value [Without Refresh Token]', () => {
       const token = 'tampered_'
       Cookies.set('__', token);
 
+      expect(Cookies.get('__')).toBe(token)
+      expect(Cookies.get('___type')).toBe('Bearer')
+      expect(Cookies.get('___state')).toBe('{}')
+
       const tokenObject = new TokenObject<object>(
         '__',
         'cookie',
@@ -75,6 +79,11 @@ describe('Initial Value [Without Refresh Token]', () => {
           "userState": null
         }
       )
+
+      expect(Cookies.get('__')).toBeUndefined()
+      expect(Cookies.get('___type')).toBeUndefined()
+      expect(Cookies.get('___state')).toBeUndefined()
+
     });
 
     it('Existing Auth Cookie was expired', () => {
@@ -160,6 +169,10 @@ describe('Initial Value [Without Refresh Token]', () => {
       const token = 'tampered_'
       localStorage.setItem('__', token);
 
+      expect(localStorage.getItem('__')).toBe(token)
+      expect(localStorage.getItem('___type')).toBe('Bearer')
+      expect(localStorage.getItem('___state')).toBe('{}')
+
       const tokenObject = new TokenObject<object>(
         '__',
         'localstorage',
@@ -177,6 +190,10 @@ describe('Initial Value [Without Refresh Token]', () => {
           "userState": null
         }
       )
+
+      expect(localStorage.getItem('__')).toBeNull()
+      expect(localStorage.getItem('___type')).toBeNull()
+      expect(localStorage.getItem('___state')).toBeNull()
     });
 
     it('Existing Auth Localstorage was expired', () => {
