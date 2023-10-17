@@ -330,40 +330,42 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(Cookies.get('__re')).toBe(refreshToken)
     });
 
-    // it('Existing Auth Cookie and Refresh Cookies are not a proper JWT', () => {
-    //   const token = 'tampered_'
-    //   Cookies.set('__', token);
+    it('Existing Auth Cookie and Refresh Cookies are not a proper JWT', () => {
+      const token = 'tampered_'
+      Cookies.set('__', token);
 
-    //   const refreshToken = 'tempered__'
-    //   Cookies.set('__re', refreshToken);
+      const refreshToken = 'tempered__'
+      Cookies.set('__re', refreshToken);
 
-    //   expect(Cookies.get('__')).toBe(token)
-    //   expect(Cookies.get('___type')).toBe('Bearer')
-    //   expect(Cookies.get('___state')).toBe('{}')
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+      expect(Cookies.get('__re')).toBe(refreshToken);
 
-    //   const tokenObject = new TokenObject<object>(
-    //     '__',
-    //     'cookie',
-    //     null,
-    //     window.location.hostname,
-    //     window.location.protocol === 'https:',
-    //   );
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        '__re',
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
       
-    //   expect(tokenObject.value).toMatchObject(
-    //     {
-    //       "auth": null, 
-    //       "isSignIn": false, 
-    //       "isUsingRefreshToken": false, 
-    //       "refresh": null, 
-    //       "userState": null
-    //     }
-    //   )
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": null, 
+          "userState": null
+        }
+      )
 
-    //   expect(Cookies.get('__')).toBeUndefined()
-    //   expect(Cookies.get('___type')).toBeUndefined()
-    //   expect(Cookies.get('___state')).toBeUndefined()
-    //   expect(Cookies.get('__re')).toBe(refreshToken)
-    // });
+      expect(Cookies.get('__')).toBeUndefined()
+      expect(Cookies.get('___type')).toBeUndefined()
+      expect(Cookies.get('___state')).toBeUndefined()
+      expect(Cookies.get('__re')).toBeUndefined()
+    });
 
     // it('Existing Auth Cookie was already expired but Refresh Cookie is not expired', () => {
     //   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
