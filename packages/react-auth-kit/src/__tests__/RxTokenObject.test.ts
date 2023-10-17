@@ -64,7 +64,6 @@ describe('Initial Value [Without Refresh Token]', () => {
       )
     });
 
-    // DONE
     it('Existing Auth Cookie is not a proper JWT', () => {
       const token = 'tampered_'
       Cookies.set('__', token);
@@ -97,7 +96,6 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     });
 
-    // DONE
     it('Existing Auth Cookie was expired', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
       Cookies.set('__', token);
@@ -122,101 +120,103 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
   });
 
-  // describe('Using Local Storage', () => {
+  describe('Using Local Storage', () => {
 
-  //   beforeEach(()=>{
-  //     localStorage.setItem('___type', 'Bearer');
-  //     localStorage.setItem('___state', '{}');
-  //   })
+    beforeEach(()=>{
+      localStorage.setItem('___type', 'Bearer');
+      localStorage.setItem('___state', '{}');
+    })
 
-  //   afterEach(()=>{
-  //     localStorage.removeItem('__');
-  //     localStorage.removeItem('___type');
-  //     localStorage.removeItem('___state');
-  //   });
+    afterEach(()=>{
+      localStorage.removeItem('__');
+      localStorage.removeItem('___type');
+      localStorage.removeItem('___state');
+    });
 
-  //   it('Existing Local Storage are there', () => {
-  //     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
+    it('Existing Local Storage are there', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
       
-  //     localStorage.setItem('__', token);
+      localStorage.setItem('__', token);
 
-  //     const tokenObject = new TokenObject<object>(
-  //       '__',
-  //       'localstorage',
-  //       null,
-  //       window.location.hostname,
-  //       window.location.protocol === 'https:',
-  //     );
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+      );
       
-  //     expect(tokenObject.value).toMatchObject(
-  //       {
-  //         "auth": {
-  //           'token': token,
-  //           'type': 'Bearer',
-  //           'expiresAt': new Date(8008605195*1000),
-  //         }, 
-  //         "isSignIn": true, 
-  //         "isUsingRefreshToken": false, 
-  //         "refresh": null, 
-  //         "userState": {}
-  //       }
-  //     )
-  //   });
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": {
+            'token': token,
+            'type': 'Bearer',
+            'expiresAt': new Date(8008605195*1000),
+          }, 
+          "isSignIn": true, 
+          "isUsingRefreshToken": false, 
+          "refresh": null, 
+          "userState": {}
+        }
+      )
+    });
 
-  //   it('Existing Auth Local Storage is not a proper JWT', () => {
-  //     const token = 'tampered_'
-  //     localStorage.setItem('__', token);
+    it('Existing Auth Local Storage is not a proper JWT', () => {
+      const token = 'tampered_'
+      localStorage.setItem('__', token);
 
-  //     expect(localStorage.getItem('__')).toBe(token)
-  //     expect(localStorage.getItem('___type')).toBe('Bearer')
-  //     expect(localStorage.getItem('___state')).toBe('{}')
+      expect(localStorage.getItem('__')).toBe(token)
+      expect(localStorage.getItem('___type')).toBe('Bearer')
+      expect(localStorage.getItem('___state')).toBe('{}')
 
-  //     const tokenObject = new TokenObject<object>(
-  //       '__',
-  //       'localstorage',
-  //       null,
-  //       window.location.hostname,
-  //       window.location.protocol === 'https:',
-  //     );
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
       
-  //     expect(tokenObject.value).toMatchObject(
-  //       {
-  //         "auth": null, 
-  //         "isSignIn": false, 
-  //         "isUsingRefreshToken": false, 
-  //         "refresh": null, 
-  //         "userState": null
-  //       }
-  //     )
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": false, 
+          "refresh": null, 
+          "userState": null
+        }
+      )
 
-  //     expect(localStorage.getItem('__')).toBeNull()
-  //     expect(localStorage.getItem('___type')).toBeNull()
-  //     expect(localStorage.getItem('___state')).toBeNull()
-  //   });
+      expect(localStorage.getItem('__')).toBeNull();
+      expect(localStorage.getItem('___type')).toBeNull();
+      expect(localStorage.getItem('___state')).toBeNull();
+    });
 
-  //   it('Existing Auth Localstorage was expired', () => {
-  //     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
-  //     localStorage.setItem('__', token);
+    it('Existing Auth Localstorage was expired', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
+      localStorage.setItem('__', token);
 
-  //     const tokenObject = new TokenObject<object>(
-  //       '__',
-  //       'localstorage',
-  //       null,
-  //       window.location.hostname,
-  //       window.location.protocol === 'https:',
-  //     );
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
       
-  //     expect(tokenObject.value).toMatchObject(
-  //       {
-  //         "auth": null, 
-  //         "isSignIn": false, 
-  //         "isUsingRefreshToken": false, 
-  //         "refresh": null, 
-  //         "userState": {}
-  //       }
-  //     )
-  //   });
-  // });
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": false, 
+          "refresh": null, 
+          "userState": null
+        }
+      );
+
+      expect(localStorage.getItem('__')).toBeNull();
+      expect(localStorage.getItem('___type')).toBeNull();
+      expect(localStorage.getItem('___state')).toBeNull();
+    });
+  });
 });
 
 // describe('Initial Value [With Refresh Token]', () => {
