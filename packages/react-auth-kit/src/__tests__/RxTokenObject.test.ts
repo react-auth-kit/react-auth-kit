@@ -3,6 +3,10 @@ import TokenObject from '../RxTokenObject';
 
 describe('Initial Value [Without Refresh Token]', () => {
   it('No Existing cookie is there', () => {
+    const subscriber = jest.fn()
+
+    expect(subscriber.mock.calls).toHaveLength(0);
+
     const tokenObject = new TokenObject<object>(
       '__',
       'cookie',
@@ -11,7 +15,13 @@ describe('Initial Value [Without Refresh Token]', () => {
       window.location.protocol === 'https:',
     );
 
+    tokenObject.subscribe(subscriber);
+
     expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null})
+    expect(subscriber).toBeCalled()
+    expect(subscriber.mock.calls).toHaveLength(1);
+    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null})
+
   });
 
   it('No Existing Local Storage is there', () => {
