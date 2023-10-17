@@ -21,10 +21,22 @@ interface AuthKitStateInterfaceTrue<T> {
     token: string,
     expiresAt: Date
   } | null,
-  userState: T,
+  userState: T | null,
   isSignIn: boolean,
   isUsingRefreshToken: boolean,
 }
+
+interface AuthKitStateInterfaceNoAuthOnlyRefresh {
+  auth: null,
+  refresh: {
+    token: string,
+    expiresAt: Date
+  },
+  userState: null,
+  isSignIn: boolean,
+  isUsingRefreshToken: boolean,
+}
+
 
 interface AuthKitStateInterfaceFalse {
   auth: null,
@@ -34,7 +46,7 @@ interface AuthKitStateInterfaceFalse {
   isUsingRefreshToken: boolean,
 }
 
-type AuthKitStateInterface<T> = AuthKitStateInterfaceTrue<T> | AuthKitStateInterfaceFalse
+type AuthKitStateInterface<T> = AuthKitStateInterfaceTrue<T> | AuthKitStateInterfaceFalse | AuthKitStateInterfaceNoAuthOnlyRefresh
 
 
 /**
@@ -211,51 +223,113 @@ class TokenObject<T> {
     refreshToken: string | null | undefined):
     AuthKitStateInterface<T> {
     try {
-      if (!!authToken && !!authTokenType && !!stateCookie) {
-        const expiresAt = this.getExpireDateTime_(authToken);
-        const authState: T = JSON.parse(stateCookie);
-        const obj = {
-          auth: {
-            token: authToken,
-            type: authTokenType,
-            expiresAt: expiresAt,
-          },
-          userState: authState,
-          isSignIn: true,
-          isUsingRefreshToken: this.isUsingRefreshToken,
-          refresh: undefined,
-        };
-        if (this.isUsingRefreshToken && !!refreshToken) {
-          // The Refresh token is there
-          const refreshTokenExpiresAt = this.getExpireDateTime_(refreshToken);
-          return {
-            ...obj,
-            refresh: {
-              token: refreshToken,
-              expiresAt: refreshTokenExpiresAt,
-            },
+      // Work on refresh first
+      let refresh;
+      if (this.isUsingRefreshToken && !!refreshToken) {
+        // If the refresh token is tampered, then it'll stop the execution and will go at catch.
+        const refreshTokenExpiresAt = this.getExpireDateTime_(refreshToken); 
+        if (refreshTokenExpiresAt < new Date()){
+          refresh = null;
+        }
+        else {
+          refresh = {
+            token: refreshToken,
+            expiresAt: refreshTokenExpiresAt
           };
         }
+      }
+      else {
+        refresh = null;
+      }
+      
+      // If we are using refrsh token, but refesh is null null,
+      // Then definitely we are not able to get the refersh token or the refresh token is expired. 
+      // So, we'll not authenticate the user.
+      // And will delete any token, if there's any
+      if(this.isUsingRefreshToken && !refresh){
+        this.removeAllToken();
         return {
-          ...obj,
+          auth: null,
           refresh: null,
+          userState: null,
+          isUsingRefreshToken: this.isUsingRefreshToken,
+          isSignIn: false,
         };
       }
 
-      // The user is not authenticated.
-      // Unable to get either auth token or authtokentype or state
-      this.removeToken()
-      return {
-        auth: null,
-        refresh: null,
-        userState: null,
-        isUsingRefreshToken: this.isUsingRefreshToken,
-        isSignIn: false,
-      };
+      // Work on the Auth token and auth starte
+      let auth;
+      let authState: T | null;
+      if (!!authToken && !!authTokenType && !!stateCookie) {
+        // Using a local Try catch, as we don't want the auth token to make the refrsh token to be null;
+        try{
+          const expiresAt = this.getExpireDateTime_(authToken);
+          if(expiresAt < new Date()){    // DONE
+            auth = null;
+            authState = null;
+          }
+          else {
+            authState = JSON.parse(stateCookie) as T;
+            auth = {
+              token: authToken,
+              type: authTokenType,
+              expiresAt: expiresAt,
+            };
+          }
+        }
+        catch (e) {
+          auth = null;
+          authState = null;
+        }
+      }
+      else {
+        auth = null;
+        authState = null;
+      }
+
+
+      if(!!refresh){
+        if(!!auth && !!authState){
+          return {
+            auth: auth,
+            refresh: refresh,
+            userState: authState,
+            isUsingRefreshToken: this.isUsingRefreshToken,
+            isSignIn: true,
+          };
+        }
+        this.removeAuth();
+        return {
+          auth: null,
+          refresh: refresh,
+          userState: null,
+          isUsingRefreshToken: this.isUsingRefreshToken,
+          isSignIn: false,
+        };
+      } else if(!this.isUsingRefreshToken && !!auth && !!authState){
+        return {
+          auth: auth,
+          refresh: null,
+          userState: authState,
+          isUsingRefreshToken: this.isUsingRefreshToken,
+          isSignIn: true,
+        };
+      } {
+        this.removeAllToken();
+        return {
+          auth: null,
+          refresh: null,
+          userState: null,
+          isUsingRefreshToken: this.isUsingRefreshToken,
+          isSignIn: false,
+        };
+      }
+
+
     }
     // Error occured. So declearing as signed out
     catch (e) {
-      this.removeToken()
+      this.removeAllToken()
       return {
         auth: null,
         refresh: null,
@@ -314,7 +388,7 @@ class TokenObject<T> {
         );
       }
     } else {
-      this.removeToken();
+      this.removeAllToken();
     }
   }
 
@@ -332,7 +406,7 @@ class TokenObject<T> {
     authToken: string,
     authTokenType: string,
     refreshToken: string | null,
-    authState: T
+    authState: T | null
   ): void {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime_(authToken);
@@ -376,7 +450,7 @@ class TokenObject<T> {
     expiresAt: Date,
     refreshToken: string | null,
     refreshTokenExpiresAt: Date | null,
-    authState: T): void {
+    authState: T | null): void {
     Cookies.set(this.authStorageName, authToken, {
       expires: expiresAt,
       domain: this.cookieDomain,
@@ -387,7 +461,7 @@ class TokenObject<T> {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
-    if (authState) {
+    if (!!authState) {
       Cookies.set(this.stateStorageName, JSON.stringify(authState), {
         expires: expiresAt,
         domain: this.cookieDomain,
@@ -419,11 +493,11 @@ class TokenObject<T> {
     authToken: string,
     authTokenType: string,
     refreshToken: string | null,
-    authState: T
+    authState: T | null
   ): void {
     localStorage.setItem(this.authStorageName, authToken);
     localStorage.setItem(this.authStorageTypeName, authTokenType);
-    if (authState) {
+    if (!!authState) {
       localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
     }
     if (this.isUsingRefreshToken && !!this.refreshTokenName &&
@@ -435,18 +509,18 @@ class TokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeToken(): void {
+  private removeAllToken(): void {
     if (this.authStorageType === 'cookie') {
-      this.removeCookieToken_();
+      this.removeAllCookieToken_();
     } else {
-      this.removeLSToken_();
+      this.removeAllLSToken_();
     }
   }
 
   /**
    * Remove Token from Cookies
    */
-  private removeCookieToken_(): void {
+  private removeAllCookieToken_(): void {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -470,7 +544,7 @@ class TokenObject<T> {
   /**
    * Remove Token from LocalStorage
    */
-  private removeLSToken_(): void {
+  private removeAllLSToken_(): void {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -478,6 +552,44 @@ class TokenObject<T> {
       localStorage.removeItem(this.refreshTokenName);
     }
   }
+
+    /**
+   * Remove Tokens on time of Logout
+   */
+    private removeAuth(): void {
+      if (this.authStorageType === 'cookie') {
+        this.removeAuthCookie();
+      } else {
+        this.removeAuthToken();
+      }
+    }
+  
+    /**
+     * Remove Token from Cookies
+     */
+    private removeAuthCookie(): void {
+      Cookies.remove(this.authStorageName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+      Cookies.remove(this.authStorageTypeName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+      Cookies.remove(this.stateStorageName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+    }
+  
+    /**
+     * Remove Token from LocalStorage
+     */
+    private removeAuthToken(): void {
+      localStorage.removeItem(this.authStorageName);
+      localStorage.removeItem(this.authStorageTypeName);
+      localStorage.removeItem(this.stateStorageName);
+    }
 }
 
 export default TokenObject;
