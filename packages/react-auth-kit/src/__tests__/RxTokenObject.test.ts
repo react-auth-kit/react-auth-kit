@@ -367,34 +367,46 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(Cookies.get('__re')).toBeUndefined()
     });
 
-    // it('Existing Auth Cookie was already expired but Refresh Cookie is not expired', () => {
-    //   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
-    //   Cookies.set('__', token);
+    it('Existing Auth Cookie was already expired but Refresh Cookie is not expired', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
+      Cookies.set('__', token);
 
-    //   const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
-    //   Cookies.set('__re', refreshToken);
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
+      Cookies.set('__re', refreshToken);
 
-    //   const tokenObject = new TokenObject<object>(
-    //     '__',
-    //     'cookie',
-    //     '__re',
-    //     window.location.hostname,
-    //     window.location.protocol === 'https:',
-    //   );
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+      expect(Cookies.get('__re')).toBe(refreshToken);
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        '__re',
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
       
-    //   expect(tokenObject.value).toMatchObject(
-    //     {
-    //       "auth": null, 
-    //       "isSignIn": false, 
-    //       "isUsingRefreshToken": false, 
-    //       "refresh": {
-    //         'token': refreshToken,
-    //         'expiresAt': new Date(8008620863 * 1000)
-    //       }, 
-    //       "userState": {}
-    //     }
-    //   )
-    // });
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": {
+            'token': refreshToken,
+            'expiresAt': new Date(8008620863 * 1000)
+          }, 
+          "userState": null
+        }
+      );
+
+      expect(Cookies.get('__')).toBeUndefined()
+      expect(Cookies.get('___type')).toBeUndefined()
+      expect(Cookies.get('___state')).toBeUndefined()
+      expect(Cookies.get('__re')).toBe(refreshToken)
+
+
+    });
 
     // it('Existing Auth Cookie and Refresh Cookie were already expired', () => {
     //   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
