@@ -106,6 +106,38 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     });
 
+    it('Existing Auth Cookie JWT has no iat param', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
+      Cookies.set('__', token);
+
+      expect(Cookies.get('__')).toBe(token)
+      expect(Cookies.get('___type')).toBe('Bearer')
+      expect(Cookies.get('___state')).toBe('{}')
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
+      
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": false, 
+          "refresh": null, 
+          "userState": null
+        }
+      )
+
+      expect(Cookies.get('__')).toBeUndefined()
+      expect(Cookies.get('___type')).toBeUndefined()
+      expect(Cookies.get('___state')).toBeUndefined()
+
+    });
+
     it('Existing Auth Cookie was expired', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
       Cookies.set('__', token);
@@ -171,6 +203,37 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     it('Existing Auth Local Storage is not a proper JWT', () => {
       const token = 'tampered_'
+      localStorage.setItem('__', token);
+
+      expect(localStorage.getItem('__')).toBe(token)
+      expect(localStorage.getItem('___type')).toBe('Bearer')
+      expect(localStorage.getItem('___state')).toBe('{}')
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
+      
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": false, 
+          "refresh": null, 
+          "userState": null
+        }
+      )
+
+      expect(localStorage.getItem('__')).toBeNull();
+      expect(localStorage.getItem('___type')).toBeNull();
+      expect(localStorage.getItem('___state')).toBeNull();
+    });
+
+    it('Existing Auth Local Storage JWT has no iat param', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       localStorage.setItem('__', token);
 
       expect(localStorage.getItem('__')).toBe(token)
@@ -309,8 +372,48 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(Cookies.get('__re')).toBe(refreshToken);
     });
 
-    it('Existing Auth Cookie is not a proper JWT but Refresh Token is not proper JWT', () => {
+    it('Existing Auth Cookie is not a proper JWT but Refresh Token is a proper JWT', () => {
       const token = 'tampered_'
+      Cookies.set('__', token);
+
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
+      Cookies.set('__re', refreshToken);
+
+      expect(Cookies.get('__')).toBe(token)
+      expect(Cookies.get('___type')).toBe('Bearer')
+      expect(Cookies.get('___state')).toBe('{}')
+      expect(Cookies.get('__re')).toBe(refreshToken)
+
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        '__re',
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
+      
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": {
+            'token': refreshToken,
+            'expiresAt': new Date(8008620863 * 1000)
+          }, 
+          "userState": null
+        }
+      )
+
+      expect(Cookies.get('__')).toBeUndefined()
+      expect(Cookies.get('___type')).toBeUndefined()
+      expect(Cookies.get('___state')).toBeUndefined()
+      expect(Cookies.get('__re')).toBe(refreshToken)
+    });
+
+    it('Existing Auth Cookie JWT has no iat param but Refresh Token is a proper JWT', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       Cookies.set('__', token);
 
       const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
@@ -354,6 +457,43 @@ describe('Initial Value [With Refresh Token]', () => {
       Cookies.set('__', token);
 
       const refreshToken = 'tempered__'
+      Cookies.set('__re', refreshToken);
+
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+      expect(Cookies.get('__re')).toBe(refreshToken);
+
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        '__re',
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
+      
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": null, 
+          "userState": null
+        }
+      )
+
+      expect(Cookies.get('__')).toBeUndefined()
+      expect(Cookies.get('___type')).toBeUndefined()
+      expect(Cookies.get('___state')).toBeUndefined()
+      expect(Cookies.get('__re')).toBeUndefined()
+    });
+
+    it('Existing Auth Cookie and Refresh Cookies JWT both are not have iat param', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
+      Cookies.set('__', token);
+
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       Cookies.set('__re', refreshToken);
 
       expect(Cookies.get('__')).toBe(token);
@@ -517,8 +657,46 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(localStorage.getItem('__re')).toBe(refreshToken);
     });
 
-    it('Existing Auth Token is not a proper JWT but Refresh Token is not proper JWT', () => {
+    it('Existing Auth Token is not a proper JWT but Refresh Token is a proper JWT', () => {
       const token = 'tampered_'
+      localStorage.setItem('__', token);
+
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
+      localStorage.setItem('__re', refreshToken);
+
+      expect(localStorage.getItem('__')).toBe(token)
+      expect(localStorage.getItem('___type')).toBe('Bearer')
+      expect(localStorage.getItem('___state')).toBe('{}')
+      expect(localStorage.getItem('__re')).toBe(refreshToken)
+
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        '__re'
+      );
+      
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": {
+            'token': refreshToken,
+            'expiresAt': new Date(8008620863 * 1000)
+          }, 
+          "userState": null
+        }
+      )
+
+      expect(localStorage.getItem('__')).toBeNull()
+      expect(localStorage.getItem('___type')).toBeNull()
+      expect(localStorage.getItem('___state')).toBeNull()
+      expect(localStorage.getItem('__re')).toBe(refreshToken)
+    });
+
+    it('Existing Auth Token JWT has no iat param but Refresh Token is a proper JWT', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       localStorage.setItem('__', token);
 
       const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
@@ -560,6 +738,41 @@ describe('Initial Value [With Refresh Token]', () => {
       localStorage.setItem('__', token);
 
       const refreshToken = 'tempered__'
+      localStorage.setItem('__re', refreshToken);
+
+      expect(localStorage.getItem('__')).toBe(token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+      expect(localStorage.getItem('__re')).toBe(refreshToken);
+
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        '__re'
+      );
+      
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": null, 
+          "userState": null
+        }
+      )
+
+      expect(localStorage.getItem('__')).toBeNull()
+      expect(localStorage.getItem('___type')).toBeNull()
+      expect(localStorage.getItem('___state')).toBeNull()
+      expect(localStorage.getItem('__re')).toBeNull()
+    });
+
+    it('Existing Auth Token and Refresh Token JWT are not have iat param', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
+      localStorage.setItem('__', token);
+
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       localStorage.setItem('__re', refreshToken);
 
       expect(localStorage.getItem('__')).toBe(token);
