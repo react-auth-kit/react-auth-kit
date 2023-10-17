@@ -263,6 +263,10 @@ describe('Initial Value [With Refresh Token]', () => {
       const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E'
       Cookies.set('__re', refreshToken);
 
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+      expect(Cookies.get('__re')).toBe(refreshToken);
 
       const tokenObject = new TokenObject<object>(
         '__',
@@ -287,7 +291,12 @@ describe('Initial Value [With Refresh Token]', () => {
           }, 
           "userState": {}
         }
-      )
+      );
+
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+      expect(Cookies.get('__re')).toBe(refreshToken);
     });
 
     it('Existing Auth Cookie is not a proper JWT but Refresh Token is not proper JWT', () => {
@@ -404,135 +413,42 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(Cookies.get('___type')).toBeUndefined()
       expect(Cookies.get('___state')).toBeUndefined()
       expect(Cookies.get('__re')).toBe(refreshToken)
-
-
     });
 
-    // it('Existing Auth Cookie and Refresh Cookie were already expired', () => {
-    //   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
-    //   Cookies.set('__', token);
+    it('Existing Auth Cookie and Refresh Cookie were already expired', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
+      Cookies.set('__', token);
 
-    //   const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
-    //   Cookies.set('__re', refreshToken);
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
+      Cookies.set('__re', refreshToken);
 
-    //   const tokenObject = new TokenObject<object>(
-    //     '__',
-    //     'cookie',
-    //     '__re',
-    //     window.location.hostname,
-    //     window.location.protocol === 'https:',
-    //   );
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+      expect(Cookies.get('__re')).toBe(refreshToken);
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        '__re',
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
       
-    //   expect(tokenObject.value).toMatchObject(
-    //     {
-    //       "auth": null, 
-    //       "isSignIn": false, 
-    //       "isUsingRefreshToken": false, 
-    //       "refresh": null,
-    //       "userState": {}
-    //     }
-    //   )
-    // });
+      expect(tokenObject.value).toMatchObject(
+        {
+          "auth": null, 
+          "isSignIn": false, 
+          "isUsingRefreshToken": true, 
+          "refresh": null,
+          "userState": null
+        }
+      );
+
+      expect(Cookies.get('__')).toBeUndefined();
+      expect(Cookies.get('___type')).toBeUndefined();
+      expect(Cookies.get('___state')).toBeUndefined();
+      expect(Cookies.get('__re')).toBeUndefined();
+    });
   });
-
-
-
-  // describe('Using Local Storage', () => {
-
-  //   beforeEach(()=>{
-  //     localStorage.setItem('___type', 'Bearer');
-  //     localStorage.setItem('___state', '{}');
-  //   })
-
-  //   afterEach(()=>{
-  //     localStorage.removeItem('__');
-  //     localStorage.removeItem('___type');
-  //     localStorage.removeItem('___state');
-  //   });
-
-  //   it('Existing Local Storage are there', () => {
-  //     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
-      
-  //     localStorage.setItem('__', token);
-
-  //     const tokenObject = new TokenObject<object>(
-  //       '__',
-  //       'localstorage',
-  //       null,
-  //       window.location.hostname,
-  //       window.location.protocol === 'https:',
-  //     );
-      
-  //     expect(tokenObject.value).toMatchObject(
-  //       {
-  //         "auth": {
-  //           'token': token,
-  //           'type': 'Bearer',
-  //           'expiresAt': new Date(8008605195*1000),
-  //         }, 
-  //         "isSignIn": true, 
-  //         "isUsingRefreshToken": false, 
-  //         "refresh": null, 
-  //         "userState": {}
-  //       }
-  //     )
-  //   });
-
-  //   it('Existing Auth Local Storage is not a proper JWT', () => {
-  //     const token = 'tampered_'
-  //     localStorage.setItem('__', token);
-
-  //     expect(localStorage.getItem('__')).toBe(token)
-  //     expect(localStorage.getItem('___type')).toBe('Bearer')
-  //     expect(localStorage.getItem('___state')).toBe('{}')
-
-  //     const tokenObject = new TokenObject<object>(
-  //       '__',
-  //       'localstorage',
-  //       null,
-  //       window.location.hostname,
-  //       window.location.protocol === 'https:',
-  //     );
-      
-  //     expect(tokenObject.value).toMatchObject(
-  //       {
-  //         "auth": null, 
-  //         "isSignIn": false, 
-  //         "isUsingRefreshToken": false, 
-  //         "refresh": null, 
-  //         "userState": null
-  //       }
-  //     )
-
-  //     expect(localStorage.getItem('__')).toBeNull()
-  //     expect(localStorage.getItem('___type')).toBeNull()
-  //     expect(localStorage.getItem('___state')).toBeNull()
-  //   });
-
-  //   it('Existing Auth Localstorage was expired', () => {
-  //     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
-  //     localStorage.setItem('__', token);
-
-  //     const tokenObject = new TokenObject<object>(
-  //       '__',
-  //       'localstorage',
-  //       null,
-  //       window.location.hostname,
-  //       window.location.protocol === 'https:',
-  //     );
-      
-  //     expect(tokenObject.value).toMatchObject(
-  //       {
-  //         "auth": {
-  //           'token': token,
-  //           'type': 'Bearer',
-  //           'expiresAt': new Date(971497995*1000),
-  //         }, 
-  //         "isSignIn": true, 
-  //         "isUsingRefreshToken": false, 
-  //         "refresh": null, 
-  //         "userState": {}
-  //       }
-  //     )
-  //   });
 });
