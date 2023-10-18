@@ -8,7 +8,7 @@
 
 
 import Cookies from 'js-cookie';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthKitError } from './errors';
 
 interface AuthKitSetState<T> {
@@ -115,13 +115,22 @@ class TokenObject<T> {
 
     this.authSubject = new BehaviorSubject(this.initialToken_());
 
-    this.subscribe(this.syncTokens);
+    this.subscribe(this.syncTokens, (err)=>{
+      console.log("Error Happened")
+      console.log(err);
+      
+    });
   }
 
-  subscribe(next: ((value: AuthKitStateInterface<T>) => void)) {
+  subscribe(next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) {
     this.authSubject.subscribe({
-      next: next
+      next: next,
+      error: error
     })
+  }
+
+  observe(): Observable<AuthKitStateInterface<T>>{
+    return this.authSubject.asObservable();
   }
 
   set(data: AuthKitSetState<T>) {
@@ -173,9 +182,6 @@ class TokenObject<T> {
         }
       }
     }
-
-    console.log(obj)
-
     this.authSubject.next(obj);
   }
 
