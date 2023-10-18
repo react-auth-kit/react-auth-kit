@@ -16,10 +16,10 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
+    expect(tokenObject.value).toMatchObject({ "auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null });
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
+    expect(subscriber).toHaveBeenCalledWith({ "auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null });
   });
 
   it('No Existing Local Storage is there', () => {
@@ -34,25 +34,25 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
+    expect(tokenObject.value).toMatchObject({ "auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null });
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
+    expect(subscriber).toHaveBeenCalledWith({ "auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null });
   });
 
   describe('Existing Cookies are there', () => {
 
-    beforeEach(()=>{
+    beforeEach(() => {
       Cookies.set('___type', 'Bearer');
       Cookies.set('___state', '{}');
     })
 
-    afterEach(()=>{
+    afterEach(() => {
       Cookies.remove('__');
       Cookies.remove('___type');
       Cookies.remove('___state');
     });
-    
+
     it('Existing Cookies are there', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
       Cookies.set('__', token);
@@ -74,14 +74,14 @@ describe('Initial Value [Without Refresh Token]', () => {
         "auth": {
           'token': token,
           'type': 'Bearer',
-          'expiresAt': new Date(8008605195*1000),
-        }, 
-        "isSignIn": true, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+          'expiresAt': new Date(8008605195 * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": {}
       }
-      
+
       expect(tokenObject.value).toMatchObject(resp);
       expect(subscriber).toBeCalled();
       expect(subscriber.mock.calls).toHaveLength(1);
@@ -94,7 +94,7 @@ describe('Initial Value [Without Refresh Token]', () => {
 
       const subscriber = jest.fn()
       expect(subscriber.mock.calls).toHaveLength(0);
-      
+
       expect(Cookies.get('__')).toBe(token)
       expect(Cookies.get('___type')).toBe('Bearer')
       expect(Cookies.get('___state')).toBe('{}')
@@ -108,12 +108,12 @@ describe('Initial Value [Without Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": null
       };
 
@@ -147,12 +147,12 @@ describe('Initial Value [Without Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": null
       };
 
@@ -182,17 +182,17 @@ describe('Initial Value [Without Refresh Token]', () => {
         window.location.hostname,
         window.location.protocol === 'https:',
       );
-      
+
       tokenObject.subscribe(subscriber);
 
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": null
       }
-        
+
       expect(tokenObject.value).toMatchObject(resp);
 
       expect(Cookies.get('__')).toBeUndefined();
@@ -207,12 +207,12 @@ describe('Initial Value [Without Refresh Token]', () => {
 
   describe('Using Local Storage', () => {
 
-    beforeEach(()=>{
+    beforeEach(() => {
       localStorage.setItem('___type', 'Bearer');
       localStorage.setItem('___state', '{}');
     })
 
-    afterEach(()=>{
+    afterEach(() => {
       localStorage.removeItem('__');
       localStorage.removeItem('___type');
       localStorage.removeItem('___state');
@@ -237,14 +237,14 @@ describe('Initial Value [Without Refresh Token]', () => {
         "auth": {
           'token': token,
           'type': 'Bearer',
-          'expiresAt': new Date(8008605195*1000),
+          'expiresAt': new Date(8008605195 * 1000),
         },
-        "isSignIn": true, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": {}
       };
-      
+
       expect(tokenObject.value).toMatchObject(resp);
 
       expect(localStorage.getItem('__')).toBe(token);
@@ -274,12 +274,12 @@ describe('Initial Value [Without Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": null
       };
 
@@ -311,12 +311,12 @@ describe('Initial Value [Without Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": null
       };
 
@@ -324,7 +324,7 @@ describe('Initial Value [Without Refresh Token]', () => {
       expect(localStorage.getItem('__')).toBeNull();
       expect(localStorage.getItem('___type')).toBeNull();
       expect(localStorage.getItem('___state')).toBeNull();
-      
+
       expect(subscriber).toBeCalled();
       expect(subscriber.mock.calls).toHaveLength(1);
       expect(subscriber).toHaveBeenCalledWith(resp);
@@ -344,12 +344,12 @@ describe('Initial Value [Without Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": false, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
         "userState": null
       }
 
@@ -382,10 +382,10 @@ describe('Initial Value [With Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null});
+    expect(tokenObject.value).toMatchObject({ "auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null });
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null});
+    expect(subscriber).toHaveBeenCalledWith({ "auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null });
   });
 
   it('No Existing Local Storage is there', () => {
@@ -400,20 +400,20 @@ describe('Initial Value [With Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null});
+    expect(tokenObject.value).toMatchObject({ "auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null });
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null});
+    expect(subscriber).toHaveBeenCalledWith({ "auth": null, "isSignIn": false, "isUsingRefreshToken": true, "refresh": null, "userState": null });
   });
 
   describe('Existing Cookies are there', () => {
 
-    beforeEach(()=>{
+    beforeEach(() => {
       Cookies.set('___type', 'Bearer');
       Cookies.set('___state', '{}');
     })
 
-    afterEach(()=>{
+    afterEach(() => {
       Cookies.remove('__');
       Cookies.remove('___type');
       Cookies.remove('___state');
@@ -449,17 +449,17 @@ describe('Initial Value [With Refresh Token]', () => {
         "auth": {
           'token': token,
           'type': 'Bearer',
-          'expiresAt': new Date(8008605195*1000),
-        }, 
-        "isSignIn": true, 
-        "isUsingRefreshToken": true, 
+          'expiresAt': new Date(8008605195 * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": {}
       }
-      
+
       expect(tokenObject.value).toMatchObject(resp);
 
       expect(Cookies.get('__')).toBe(token);
@@ -497,15 +497,15 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": null
       };
 
@@ -546,15 +546,15 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": null
       };
 
@@ -593,14 +593,14 @@ describe('Initial Value [With Refresh Token]', () => {
         window.location.hostname,
         window.location.protocol === 'https:',
       );
-      
+
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
+        "refresh": null,
         "userState": null
       };
 
@@ -641,12 +641,12 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
+        "refresh": null,
         "userState": null
       };
 
@@ -688,16 +688,16 @@ describe('Initial Value [With Refresh Token]', () => {
       tokenObject.subscribe(subscriber);
 
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": null
       };
-      
+
       expect(tokenObject.value).toMatchObject(resp);
 
       expect(Cookies.get('__')).toBeUndefined();
@@ -734,11 +734,11 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": null,
         "userState": null
       };
@@ -758,12 +758,12 @@ describe('Initial Value [With Refresh Token]', () => {
 
   describe('Existing Local Storage are there', () => {
 
-    beforeEach(()=>{
+    beforeEach(() => {
       localStorage.setItem('___type', 'Bearer');
       localStorage.setItem('___state', '{}');
     })
 
-    afterEach(()=>{
+    afterEach(() => {
       localStorage.removeItem('__');
       localStorage.removeItem('___type');
       localStorage.removeItem('___state');
@@ -792,19 +792,19 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
         "auth": {
           'token': token,
           'type': 'Bearer',
-          'expiresAt': new Date(8008605195*1000),
-        }, 
-        "isSignIn": true, 
-        "isUsingRefreshToken": true, 
+          'expiresAt': new Date(8008605195 * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": {}
       };
 
@@ -845,16 +845,16 @@ describe('Initial Value [With Refresh Token]', () => {
       tokenObject.subscribe(subscriber);
 
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": null
       };
-      
+
       expect(tokenObject.value).toMatchObject(resp);
 
       expect(localStorage.getItem('__')).toBeNull();
@@ -890,15 +890,15 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": null
       }
 
@@ -937,12 +937,12 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
+        "refresh": null,
         "userState": null
       }
 
@@ -981,12 +981,12 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
-        "refresh": null, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
+        "refresh": null,
         "userState": null
       }
 
@@ -1024,15 +1024,15 @@ describe('Initial Value [With Refresh Token]', () => {
       );
 
       tokenObject.subscribe(subscriber);
-      
+
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": {
           'token': refreshToken,
           'expiresAt': new Date(8008620863 * 1000)
-        }, 
+        },
         "userState": null
       }
 
@@ -1072,13 +1072,13 @@ describe('Initial Value [With Refresh Token]', () => {
       tokenObject.subscribe(subscriber);
 
       const resp = {
-        "auth": null, 
-        "isSignIn": false, 
-        "isUsingRefreshToken": true, 
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
         "refresh": null,
         "userState": null
       }
-      
+
       expect(tokenObject.value).toMatchObject(resp);
 
       expect(localStorage.getItem('__')).toBeNull();
@@ -1091,4 +1091,106 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
   });
+});
+
+describe('Set New Value [Without Refresh Token]', () => {
+  describe('No existing Value is present [Using Cookie]', () => {
+    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+    const old_exp = 8008605195;
+
+    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxMTE2NDY0ODI1NiwiZXhwIjoxMTE2NDY0ODI1Nn0.FZ5Fhw9izxIR2lQMI3LYOP_Bnfo16289V5ZW5_o2dcM';
+    const new_exp = 11164648256;
+
+    beforeEach(() => {
+      Cookies.set('__', old_token);
+      Cookies.set('___type', 'Bearer');
+      Cookies.set('___state', '{}');
+    })
+
+    afterEach(() => {
+      Cookies.remove('__');
+      Cookies.remove('___type');
+      Cookies.remove('___state');
+    });
+
+    it("Setting up new token", () => {
+      const subscriber = jest.fn()
+      expect(subscriber.mock.calls).toHaveLength(0);
+
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
+
+      tokenObject.subscribe(subscriber);
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+
+      expect(tokenObject.value).toMatchObject(resp);
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
+
+      tokenObject.set({
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+        }
+      });
+
+      const new_resp = {
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(new_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      setTimeout(() => {
+        // Check if both subscribers were called with the updated value
+
+        expect(subscriber).toBeCalled();
+        expect(subscriber.mock.calls).toHaveLength(2);
+        expect(subscriber.mock.calls[1][0]).toMatchObject(new_resp);
+        expect(tokenObject.value).toMatchObject(new_resp);
+
+        expect(Cookies.get('__')).toBe(new_token);
+        expect(Cookies.get('___type')).toBe('Bearer');
+        expect(Cookies.get('___state')).toBe('{}');
+        // done();
+      }, 0);
+    })
+
+  });
+
+
+  // describe('Existing Value is present', ()=>{
+
+  // });
 });

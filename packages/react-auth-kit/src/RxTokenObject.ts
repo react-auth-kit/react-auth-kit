@@ -11,6 +11,15 @@ import Cookies from 'js-cookie';
 import { BehaviorSubject } from 'rxjs';
 import { AuthKitError } from './errors';
 
+interface AuthKitSetState<T> {
+  auth?: {
+    token: string,
+    type: string
+  },
+  refresh?: string,
+  userState?: T
+}
+
 interface AuthKitStateInterfaceTrue<T> {
   auth: {
     token: string,
@@ -115,15 +124,63 @@ class TokenObject<T> {
     })
   }
 
-  set(value: AuthKitStateInterface<T>) {
+  set(data: AuthKitSetState<T>) {
     // Before setting need to check the tokens.
-    this.getExpireDateTime_(value.auth?.token!);
-    this.getExpireDateTime_(value.refresh?.token!);
-    this.authSubject.next(value);
+    let obj = this.value;
+
+    if(!!data.auth){
+      // logged in
+      let userState = obj.userState;
+      if(data.userState !== undefined){
+        userState = data.userState;
+      }
+
+      obj = {
+        ...obj,
+        auth: {
+          'token': data.auth.token,
+          'type': data.auth.type,
+          'expiresAt': this.getExpireDateTime_(data.auth.token)
+        },
+        isSignIn: true,
+        userState: userState
+      }
+    }
+    else if (data.auth === null){
+      // sign out
+      obj = {
+        ...obj,
+        auth: null,
+        isSignIn: false,
+        userState: null
+      }
+    }
+
+    if(this.isUsingRefreshToken){
+      if(!!data.refresh){
+        obj = {
+          ...obj,
+          refresh: {
+            'token': data.refresh,
+            'expiresAt': this.getExpireDateTime_(data.refresh)
+          }
+        }
+      }
+      else {
+        obj = {
+          ...obj,
+          refresh: null
+        }
+      }
+    }
+
+    console.log(obj)
+
+    this.authSubject.next(obj);
   }
 
   get value(): AuthKitStateInterface<T> {
-    return this.authSubject.value;
+    return this.authSubject.getValue();
   }
 
   /**
