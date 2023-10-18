@@ -16,21 +16,52 @@ export type AuthStateUserObject = {
   [x: string]: any;
 }
 
-export interface AuthKitStateInterface {
+export interface AuthKitSetState<T> {
+  auth?: {
+    token: string,
+    type: string
+  },
+  refresh?: string,
+  userState?: T
+}
+
+interface AuthKitStateInterfaceTrue<T> {
   auth: {
     token: string,
     type: string,
     expiresAt: Date
-  } | null,
+  },
   refresh: {
     token: string,
     expiresAt: Date
   } | null,
-  userState: AuthStateUserObject | null,
-  isSignIn: boolean
+  userState: T | null,
+  isSignIn: boolean,
   isUsingRefreshToken: boolean,
-  // typeOfStorage: "cookie" | "localstorage"
 }
+
+interface AuthKitStateInterfaceNoAuthOnlyRefresh {
+  auth: null,
+  refresh: {
+    token: string,
+    expiresAt: Date
+  },
+  userState: null,
+  isSignIn: boolean,
+  isUsingRefreshToken: boolean,
+}
+
+
+interface AuthKitStateInterfaceFalse {
+  auth: null,
+  refresh: null,
+  userState: null,
+  isSignIn: boolean,
+  isUsingRefreshToken: boolean,
+}
+
+export type AuthKitStateInterface<T> = AuthKitStateInterfaceTrue<T> | AuthKitStateInterfaceFalse | AuthKitStateInterfaceNoAuthOnlyRefresh
+
 
 /**
  * SignIn function param
@@ -48,8 +79,8 @@ export interface signInFunctionParams {
 /**
  * Context values type
  */
-export interface AuthContextInterface {
-  authState: AuthKitStateInterface
+export interface AuthContextInterface<T> {
+  authState: AuthKitStateInterface<T>
   dispatch: React.Dispatch<AuthActions>
 }
 

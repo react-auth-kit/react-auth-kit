@@ -10,53 +10,7 @@
 import Cookies from 'js-cookie';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthKitError } from './errors';
-
-interface AuthKitSetState<T> {
-  auth?: {
-    token: string,
-    type: string
-  },
-  refresh?: string,
-  userState?: T
-}
-
-interface AuthKitStateInterfaceTrue<T> {
-  auth: {
-    token: string,
-    type: string,
-    expiresAt: Date
-  },
-  refresh: {
-    token: string,
-    expiresAt: Date
-  } | null,
-  userState: T | null,
-  isSignIn: boolean,
-  isUsingRefreshToken: boolean,
-}
-
-interface AuthKitStateInterfaceNoAuthOnlyRefresh {
-  auth: null,
-  refresh: {
-    token: string,
-    expiresAt: Date
-  },
-  userState: null,
-  isSignIn: boolean,
-  isUsingRefreshToken: boolean,
-}
-
-
-interface AuthKitStateInterfaceFalse {
-  auth: null,
-  refresh: null,
-  userState: null,
-  isSignIn: boolean,
-  isUsingRefreshToken: boolean,
-}
-
-type AuthKitStateInterface<T> = AuthKitStateInterfaceTrue<T> | AuthKitStateInterfaceFalse | AuthKitStateInterfaceNoAuthOnlyRefresh
-
+import { AuthKitStateInterface, AuthKitSetState } from './types';
 
 /**
  * @class TokenObject
