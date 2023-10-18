@@ -106,7 +106,7 @@ class TokenObject<T> {
 
     this.authSubject = new BehaviorSubject(this.initialToken_());
 
-    this.subscribe(this.syncTokens_);
+    this.subscribe(this.syncTokens);
   }
 
   subscribe(next: ((value: AuthKitStateInterface<T>) => void)) {
@@ -116,6 +116,9 @@ class TokenObject<T> {
   }
 
   set(value: AuthKitStateInterface<T>) {
+    // Before setting need to check the tokens.
+    this.getExpireDateTime_(value.auth?.token!);
+    this.getExpireDateTime_(value.refresh?.token!);
     this.authSubject.next(value);
   }
 
@@ -370,139 +373,84 @@ class TokenObject<T> {
    *
    * @param authState
    */
-  private syncTokens_(authState: AuthKitStateInterface<T>): void {
-    if (authState.auth) {
-      if (this.isUsingRefreshToken && authState.refresh) {
-        this.setToken(
-          authState.auth.token,
-          authState.auth.type,
-          authState.refresh.token,
-          authState.userState,
-        );
-      } else {
-        this.setToken(
-          authState.auth.token,
-          authState.auth.type,
-          null,
-          authState.userState,
-        );
-      }
-    } else {
-      this.removeAllToken();
+  private syncTokens(authState: AuthKitStateInterface<T>): void {
+    if (!!authState.auth) {
+      // Sync the Auth token part
+      this.setAuthToken(
+        authState.auth.token,
+        authState.auth.type,
+        authState.userState
+      );
+    } 
+    else {
+      // Remove the auth token part
+      this.removeAuth();
+    }
+
+    if (!!authState.refresh && this.isUsingRefreshToken){
+      // Sync the refresh part
+      this.setRefreshToken(
+        authState.refresh.token
+      )
+    }
+    else {
+      // Remove the refresh part
+      this.removeRefresh();
     }
   }
 
-  /**
-   * Set Cookies or localstorage on login
-   *
-   * @param authToken
-   * @param authTokenType
-   * @param refreshToken
-   * @param refreshTokenExpiresAt
-   * @param expiresAt
-   * @param authState
-   */
-  private setToken(
+  private setAuthToken(
     authToken: string,
     authTokenType: string,
-    refreshToken: string | null,
     authState: T | null
-  ): void {
+  ):void {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime_(authToken);
-      let refreshTokenExpiresAt;
-      if(!!refreshToken){
-        refreshTokenExpiresAt = this.getExpireDateTime_(refreshToken);
-      }
-      else {
-        refreshTokenExpiresAt = null;
-      }
-      this.setCookieToken_(
-        authToken,
-        authTokenType,
-        expiresAt,
-        refreshToken,
-        refreshTokenExpiresAt,
-        authState);
-    } else {
-      this.setLSToken_(
-        authToken,
-        authTokenType,
-        refreshToken,
-        authState);
-    }
-  }
-
-  /**
-   *
-   * Set Cookie on time of Login
-   *
-   * @param authToken
-   * @param authTokenType
-   * @param refreshToken
-   * @param expiresAt
-   * @param refreshTokenExpiresAt
-   * @param authState
-   */
-  private setCookieToken_(
-    authToken: string,
-    authTokenType: string,
-    expiresAt: Date,
-    refreshToken: string | null,
-    refreshTokenExpiresAt: Date | null,
-    authState: T | null): void {
-    Cookies.set(this.authStorageName, authToken, {
-      expires: expiresAt,
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
-    Cookies.set(this.authStorageTypeName, authTokenType, {
-      expires: expiresAt,
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
-    if (!!authState) {
-      Cookies.set(this.stateStorageName, JSON.stringify(authState), {
+      Cookies.set(this.authStorageName, authToken, {
         expires: expiresAt,
         domain: this.cookieDomain,
         secure: this.cookieSecure,
       });
-    }
-
-    if (this.isUsingRefreshToken && !!this.refreshTokenName &&
-      !!refreshToken && !!refreshTokenExpiresAt) {
-      Cookies.set(this.refreshTokenName, refreshToken, {
-        expires: refreshTokenExpiresAt,
+      Cookies.set(this.authStorageTypeName, authTokenType, {
+        expires: expiresAt,
         domain: this.cookieDomain,
         secure: this.cookieSecure,
       });
+      if (!!authState) {
+        Cookies.set(this.stateStorageName, JSON.stringify(authState), {
+          expires: expiresAt,
+          domain: this.cookieDomain,
+          secure: this.cookieSecure,
+        });
+      }
+    }
+    else{
+      localStorage.setItem(this.authStorageName, authToken);
+      localStorage.setItem(this.authStorageTypeName, authTokenType);
+      if (!!authState) {
+        localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+      }
     }
   }
 
-  /**
-   * Set LocalStorage at the time of Login
-   *
-   * @param authToken
-   * @param authTokenType
-   * @param refreshToken
-   * @param expiresAt
-   * @param refreshTokenExpiresAt
-   * @param authState
-   */
-  private setLSToken_(
-    authToken: string,
-    authTokenType: string,
-    refreshToken: string | null,
-    authState: T | null
-  ): void {
-    localStorage.setItem(this.authStorageName, authToken);
-    localStorage.setItem(this.authStorageTypeName, authTokenType);
-    if (!!authState) {
-      localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+  private setRefreshToken(
+    refreshToken: string | null
+  ):void {
+    if (this.authStorageType === 'cookie') {
+      if (this.isUsingRefreshToken && !!this.refreshTokenName &&
+        !!refreshToken) {
+        const refreshTokenExpiresAt = this.getExpireDateTime_(refreshToken);
+        Cookies.set(this.refreshTokenName, refreshToken, {
+          expires: refreshTokenExpiresAt,
+          domain: this.cookieDomain,
+          secure: this.cookieSecure,
+        });
+      }
     }
-    if (this.isUsingRefreshToken && !!this.refreshTokenName &&
-      !!refreshToken) {
-      localStorage.setItem(this.refreshTokenName, refreshToken);
+    else{
+      if (this.isUsingRefreshToken && !!this.refreshTokenName && !!refreshToken) {
+        localStorage.setItem(this.refreshTokenName, refreshToken);
+      }
     }
   }
 
@@ -553,43 +501,81 @@ class TokenObject<T> {
     }
   }
 
-    /**
+  /**
    * Remove Tokens on time of Logout
    */
-    private removeAuth(): void {
-      if (this.authStorageType === 'cookie') {
-        this.removeAuthCookie();
-      } else {
-        this.removeAuthToken();
-      }
+  private removeAuth(): void {
+    if (this.authStorageType === 'cookie') {
+      this.removeAuthCookie();
+    } else {
+      this.removeAuthToken();
     }
-  
-    /**
-     * Remove Token from Cookies
-     */
-    private removeAuthCookie(): void {
-      Cookies.remove(this.authStorageName, {
-        domain: this.cookieDomain,
-        secure: this.cookieSecure,
-      });
-      Cookies.remove(this.authStorageTypeName, {
-        domain: this.cookieDomain,
-        secure: this.cookieSecure,
-      });
-      Cookies.remove(this.stateStorageName, {
-        domain: this.cookieDomain,
-        secure: this.cookieSecure,
-      });
+  }
+
+  /**
+   * Remove Token from Cookies
+   */
+  private removeAuthCookie(): void {
+    Cookies.remove(this.authStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+    Cookies.remove(this.authStorageTypeName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+    Cookies.remove(this.stateStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+  }
+
+  /**
+   * Remove Token from LocalStorage
+   */
+  private removeAuthToken(): void {
+    localStorage.removeItem(this.authStorageName);
+    localStorage.removeItem(this.authStorageTypeName);
+    localStorage.removeItem(this.stateStorageName);
+  }
+
+  /**
+   * Remove Tokens on time of Logout
+   */
+  private removeRefresh(): void {
+    if (this.authStorageType === 'cookie') {
+      this.removeRefreshCookie();
+    } else {
+      this.removeRefreshToken();
     }
-  
-    /**
-     * Remove Token from LocalStorage
-     */
-    private removeAuthToken(): void {
-      localStorage.removeItem(this.authStorageName);
-      localStorage.removeItem(this.authStorageTypeName);
-      localStorage.removeItem(this.stateStorageName);
-    }
+  }
+
+  /**
+   * Remove Token from Cookies
+   */
+  private removeRefreshCookie(): void {
+    Cookies.remove(this.authStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+    Cookies.remove(this.authStorageTypeName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+    Cookies.remove(this.stateStorageName, {
+      domain: this.cookieDomain,
+      secure: this.cookieSecure,
+    });
+  }
+
+  /**
+   * Remove Token from LocalStorage
+   */
+  private removeRefreshToken(): void {
+    localStorage.removeItem(this.authStorageName);
+    localStorage.removeItem(this.authStorageTypeName);
+    localStorage.removeItem(this.stateStorageName);
+  }
 }
 
 export default TokenObject;

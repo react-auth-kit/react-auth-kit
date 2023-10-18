@@ -4,7 +4,6 @@ import TokenObject from '../RxTokenObject';
 describe('Initial Value [Without Refresh Token]', () => {
   it('No Existing cookie is there', () => {
     const subscriber = jest.fn()
-
     expect(subscriber.mock.calls).toHaveLength(0);
 
     const tokenObject = new TokenObject<object>(
@@ -17,21 +16,28 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null})
-    expect(subscriber).toBeCalled()
+    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
+    expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null})
-
+    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
   });
 
   it('No Existing Local Storage is there', () => {
+    const subscriber = jest.fn()
+    expect(subscriber.mock.calls).toHaveLength(0);
+
     const tokenObject = new TokenObject<object>(
       '__',
       'localstorage',
       null
     );
 
-    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null})
+    tokenObject.subscribe(subscriber);
+
+    expect(tokenObject.value).toMatchObject({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
+    expect(subscriber).toBeCalled();
+    expect(subscriber.mock.calls).toHaveLength(1);
+    expect(subscriber).toHaveBeenCalledWith({"auth": null, "isSignIn": false, "isUsingRefreshToken": false, "refresh": null, "userState": null});
   });
 
   describe('Existing Cookies are there', () => {
@@ -51,6 +57,9 @@ describe('Initial Value [Without Refresh Token]', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
       Cookies.set('__', token);
 
+      const subscriber = jest.fn()
+      expect(subscriber.mock.calls).toHaveLength(0);
+
       const tokenObject = new TokenObject<object>(
         '__',
         'cookie',
@@ -58,26 +67,34 @@ describe('Initial Value [Without Refresh Token]', () => {
         window.location.hostname,
         window.location.protocol === 'https:',
       );
+
+      tokenObject.subscribe(subscriber);
+
+      const resp = {
+        "auth": {
+          'token': token,
+          'type': 'Bearer',
+          'expiresAt': new Date(8008605195*1000),
+        }, 
+        "isSignIn": true, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": {}
+      }
       
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": {
-            'token': token,
-            'type': 'Bearer',
-            'expiresAt': new Date(8008605195*1000),
-          }, 
-          "isSignIn": true, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": {}
-        }
-      )
+      expect(tokenObject.value).toMatchObject(resp);
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
     it('Existing Auth Cookie is not a proper JWT', () => {
       const token = 'tampered_'
       Cookies.set('__', token);
 
+      const subscriber = jest.fn()
+      expect(subscriber.mock.calls).toHaveLength(0);
+      
       expect(Cookies.get('__')).toBe(token)
       expect(Cookies.get('___type')).toBe('Bearer')
       expect(Cookies.get('___state')).toBe('{}')
@@ -89,30 +106,37 @@ describe('Initial Value [Without Refresh Token]', () => {
         window.location.hostname,
         window.location.protocol === 'https:',
       );
+
+      tokenObject.subscribe(subscriber);
       
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": null, 
-          "isSignIn": false, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": null
-        }
-      )
+      const resp = {
+        "auth": null, 
+        "isSignIn": false, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": null
+      };
 
-      expect(Cookies.get('__')).toBeUndefined()
-      expect(Cookies.get('___type')).toBeUndefined()
-      expect(Cookies.get('___state')).toBeUndefined()
+      expect(tokenObject.value).toMatchObject(resp);
+      expect(Cookies.get('__')).toBeUndefined();
+      expect(Cookies.get('___type')).toBeUndefined();
+      expect(Cookies.get('___state')).toBeUndefined();
 
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
     it('Existing Auth Cookie JWT has no iat param', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       Cookies.set('__', token);
 
-      expect(Cookies.get('__')).toBe(token)
-      expect(Cookies.get('___type')).toBe('Bearer')
-      expect(Cookies.get('___state')).toBe('{}')
+      expect(Cookies.get('__')).toBe(token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+
+      const subscriber = jest.fn();
+      expect(subscriber.mock.calls).toHaveLength(0);
 
       const tokenObject = new TokenObject<object>(
         '__',
@@ -121,20 +145,26 @@ describe('Initial Value [Without Refresh Token]', () => {
         window.location.hostname,
         window.location.protocol === 'https:',
       );
-      
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": null, 
-          "isSignIn": false, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": null
-        }
-      )
 
-      expect(Cookies.get('__')).toBeUndefined()
-      expect(Cookies.get('___type')).toBeUndefined()
-      expect(Cookies.get('___state')).toBeUndefined()
+      tokenObject.subscribe(subscriber);
+      
+      const resp = {
+        "auth": null, 
+        "isSignIn": false, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": null
+      };
+
+      expect(tokenObject.value).toMatchObject(resp);
+
+      expect(Cookies.get('__')).toBeUndefined();
+      expect(Cookies.get('___type')).toBeUndefined();
+      expect(Cookies.get('___state')).toBeUndefined();
+
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
 
     });
 
@@ -142,6 +172,9 @@ describe('Initial Value [Without Refresh Token]', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
       Cookies.set('__', token);
 
+      const subscriber = jest.fn();
+      expect(subscriber.mock.calls).toHaveLength(0);
+
       const tokenObject = new TokenObject<object>(
         '__',
         'cookie',
@@ -150,15 +183,25 @@ describe('Initial Value [Without Refresh Token]', () => {
         window.location.protocol === 'https:',
       );
       
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": null, 
-          "isSignIn": false, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": null
-        }
-      )
+      tokenObject.subscribe(subscriber);
+
+      const resp = {
+        "auth": null, 
+        "isSignIn": false, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": null
+      }
+        
+      expect(tokenObject.value).toMatchObject(resp);
+
+      expect(Cookies.get('__')).toBeUndefined();
+      expect(Cookies.get('___type')).toBeUndefined();
+      expect(Cookies.get('___state')).toBeUndefined();
+
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
   });
 
@@ -177,34 +220,49 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     it('Existing Local Storage are there', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
-      
       localStorage.setItem('__', token);
+
+      const subscriber = jest.fn();
+      expect(subscriber.mock.calls).toHaveLength(0);
 
       const tokenObject = new TokenObject<object>(
         '__',
         'localstorage',
         null,
       );
+
+      tokenObject.subscribe(subscriber);
+
+      const resp = {
+        "auth": {
+          'token': token,
+          'type': 'Bearer',
+          'expiresAt': new Date(8008605195*1000),
+        },
+        "isSignIn": true, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": {}
+      };
       
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": {
-            'token': token,
-            'type': 'Bearer',
-            'expiresAt': new Date(8008605195*1000),
-          }, 
-          "isSignIn": true, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": {}
-        }
-      )
+      expect(tokenObject.value).toMatchObject(resp);
+
+      expect(localStorage.getItem('__')).toBe(token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
     it('Existing Auth Local Storage is not a proper JWT', () => {
       const token = 'tampered_'
       localStorage.setItem('__', token);
 
+      const subscriber = jest.fn();
+      expect(subscriber.mock.calls).toHaveLength(0);
+
       expect(localStorage.getItem('__')).toBe(token)
       expect(localStorage.getItem('___type')).toBe('Bearer')
       expect(localStorage.getItem('___state')).toBe('{}')
@@ -212,30 +270,36 @@ describe('Initial Value [Without Refresh Token]', () => {
       const tokenObject = new TokenObject<object>(
         '__',
         'localstorage',
-        null,
-        window.location.hostname,
-        window.location.protocol === 'https:',
+        null
       );
-      
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": null, 
-          "isSignIn": false, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": null
-        }
-      )
 
+      tokenObject.subscribe(subscriber);
+      
+      const resp = {
+        "auth": null, 
+        "isSignIn": false, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": null
+      };
+
+      expect(tokenObject.value).toMatchObject(resp);
       expect(localStorage.getItem('__')).toBeNull();
       expect(localStorage.getItem('___type')).toBeNull();
       expect(localStorage.getItem('___state')).toBeNull();
+
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
     it('Existing Auth Local Storage JWT has no iat param', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A'
       localStorage.setItem('__', token);
 
+      const subscriber = jest.fn();
+      expect(subscriber.mock.calls).toHaveLength(0);
+
       expect(localStorage.getItem('__')).toBe(token)
       expect(localStorage.getItem('___type')).toBe('Bearer')
       expect(localStorage.getItem('___state')).toBe('{}')
@@ -243,51 +307,61 @@ describe('Initial Value [Without Refresh Token]', () => {
       const tokenObject = new TokenObject<object>(
         '__',
         'localstorage',
-        null,
-        window.location.hostname,
-        window.location.protocol === 'https:',
+        null
       );
-      
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": null, 
-          "isSignIn": false, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": null
-        }
-      )
 
+      tokenObject.subscribe(subscriber);
+      
+      const resp = {
+        "auth": null, 
+        "isSignIn": false, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": null
+      };
+
+      expect(tokenObject.value).toMatchObject(resp);
       expect(localStorage.getItem('__')).toBeNull();
       expect(localStorage.getItem('___type')).toBeNull();
       expect(localStorage.getItem('___state')).toBeNull();
+      
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
     it('Existing Auth Localstorage was expired', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA'
       localStorage.setItem('__', token);
 
+      const subscriber = jest.fn();
+      expect(subscriber.mock.calls).toHaveLength(0);
+
       const tokenObject = new TokenObject<object>(
         '__',
         'localstorage',
-        null,
-        window.location.hostname,
-        window.location.protocol === 'https:',
+        null
       );
+
+      tokenObject.subscribe(subscriber);
       
-      expect(tokenObject.value).toMatchObject(
-        {
-          "auth": null, 
-          "isSignIn": false, 
-          "isUsingRefreshToken": false, 
-          "refresh": null, 
-          "userState": null
-        }
-      );
+      const resp = {
+        "auth": null, 
+        "isSignIn": false, 
+        "isUsingRefreshToken": false, 
+        "refresh": null, 
+        "userState": null
+      }
+
+      expect(tokenObject.value).toMatchObject(resp);
 
       expect(localStorage.getItem('__')).toBeNull();
       expect(localStorage.getItem('___type')).toBeNull();
       expect(localStorage.getItem('___state')).toBeNull();
+
+      expect(subscriber).toBeCalled();
+      expect(subscriber.mock.calls).toHaveLength(1);
+      expect(subscriber).toHaveBeenCalledWith(resp);
     });
   });
 });
