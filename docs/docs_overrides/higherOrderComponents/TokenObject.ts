@@ -8,7 +8,7 @@
 
 
 import Cookies from 'js-cookie';
-import {AuthKitStateInterface, AuthStateUserObject} from './types';
+import {AuthKitStateInterface, AuthStateUserObject} from '../../../packages/react-auth-kit/src/types';
 
 /**
  * @class TokenObject
