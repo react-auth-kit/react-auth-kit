@@ -7,7 +7,7 @@
  */
 
 import * as React from 'react';
-import {AuthActions} from './utils/actions';
+import { AuthActions } from './utils/actions';
 
 /**
  * Universal types
@@ -20,7 +20,7 @@ export interface AuthKitSetState<T> {
   auth?: {
     token: string,
     type: string
-  },
+  } | null,
   refresh?: string,
   userState?: T
 }
