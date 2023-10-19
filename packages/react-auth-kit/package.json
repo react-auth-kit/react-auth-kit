@@ -26,7 +26,7 @@
     "hooks",
     "utils",
     "*.js",
-    "*.d.js"
+    "*.d.ts"
   ],
   "exports": {
     ".": "./index.js",
