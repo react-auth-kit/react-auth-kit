@@ -45,7 +45,6 @@
   "scripts": {
     "build": "run-s build:*",
     "build:build": "tsc --project tsconfig.json && babel --config-file ./config/babel.config.js src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
-    "preversion": "npm run test",
     "test": "run-s test:*",
     "test:unit": "jest --config ./config/jest.config.js",
     "test:lint": "eslint src/**/*.ts src/**/*.tsx --fix",
