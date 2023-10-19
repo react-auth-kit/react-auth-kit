@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/hoc",
-  "version": "3.0.0-alpha.16",
+  "version": "3.0.0-alpha.17",
   "description": "React Higher Order Component Support for React Auth Kit",
   "keywords": [
     "react",
