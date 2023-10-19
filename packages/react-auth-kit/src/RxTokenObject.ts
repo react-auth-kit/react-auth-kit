@@ -129,7 +129,7 @@ class TokenObject<T> {
           }
         }
       }
-      else {
+      else if (data.refresh === null) {
         obj = {
           ...obj,
           refresh: null

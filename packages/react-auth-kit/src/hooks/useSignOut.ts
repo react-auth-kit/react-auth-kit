@@ -32,7 +32,7 @@ function useSignOut(): () => (boolean) {
   return () => {
     try {
       if (context) {
-        context.dispatch(doSignOut());
+        context.set(doSignOut());
         return true;
       } else {
         return false;

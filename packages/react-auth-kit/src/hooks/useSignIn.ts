@@ -19,42 +19,20 @@ import {AuthKitError} from '../errors';
  *@description Authentication SignIn Hook
  *@returns - Sign In function
  */
-function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
+function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
     AuthKitError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
-  return (signInConfig: signInFunctionParams): boolean => {
-    const {
-      token,
-      tokenType,
-      authState,
-      expiresIn,
-      refreshToken,
-      refreshTokenExpireIn,
-    } = signInConfig;
-    const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000);
-    if (context.authState.isUsingRefreshToken) {
+  return (signInConfig: signInFunctionParams<T>): boolean => {
+    if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token
-      if (!!refreshToken && !!refreshTokenExpireIn) {
+      if (!!signInConfig.refresh) {
         // refresh token params are provided
         // sign in with refresh token
-        const refreshTokenExpireAt =
-          new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000);
-        context.dispatch(doSignIn({
-          auth: {
-            token: token,
-            type: tokenType,
-            expiresAt: expTime,
-          },
-          userState: authState ? authState : null,
-          refresh: {
-            token: refreshToken,
-            expiresAt: refreshTokenExpireAt,
-          },
-        }));
+        context.set(doSignIn(signInConfig));
         return true;
       } else {
         // refresh token params are not provided
@@ -64,7 +42,7 @@ function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
       }
     } else {
       // Not using refresh token
-      if (!!refreshToken && !!refreshTokenExpireIn) {
+      if (!!signInConfig.refresh) {
         // params are not expected but provided
         // throw an error
         throw new Error('The app doesn\'t implement \'refreshToken\' ' +
@@ -72,15 +50,7 @@ function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
           'from \'AuthProvider\' before using it.');
       } else {
         // sign in without the refresh token
-        context.dispatch(doSignIn({
-          auth: {
-            token: token,
-            type: tokenType,
-            expiresAt: expTime,
-          },
-          userState: authState ? authState : null,
-          refresh: null,
-        }));
+        context.set(doSignIn(signInConfig));
         return true;
       }
     }
