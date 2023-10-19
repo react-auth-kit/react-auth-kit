@@ -136,6 +136,8 @@ class TokenObject<T> {
         }
       }
     }
+    console.log("Calling Rx Engine");
+    console.log(obj);
     this.authSubject.next(obj);
   }
 
@@ -391,6 +393,9 @@ class TokenObject<T> {
    * @param authState
    */
   private syncTokens(authState: AuthKitStateInterface<T>): void {
+    console.log("Sync Token is Called");
+    console.log(authState);
+    
     if (!!authState.auth) {
       // Sync the Auth token part
       this.setAuthToken(
