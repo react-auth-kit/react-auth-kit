@@ -8,11 +8,9 @@
 
 
 import * as React from 'react';
-import AuthContext from './AuthContext';
-import TokenObject from './TokenObject';
-import {AuthProviderProps} from './types';
-import {authReducer, doRefresh} from './utils/reducers';
-import {useInterval} from './utils/hooks';
+import AuthKitContext from './AuthContext';
+import TokenObject from './RxTokenObject';
+import { AuthProviderProps } from './types';
 import { AuthKitError } from './errors';
 
 
@@ -26,71 +24,42 @@ import { AuthKitError } from './errors';
  *
  * @return Functional Component
  */
-const AuthProvider: React.FunctionComponent<AuthProviderProps> =
-  ({
+function AuthProvider<T extends object>(
+  {
     children,
     authType,
     authName,
     cookieDomain,
     cookieSecure,
-    refresh,
-  }) => {
-    if (authType === 'cookie') {
-      if (!cookieDomain) {
-        throw new
+    refresh
+  }: AuthProviderProps
+): ReturnType<React.FC> {
+  if (authType === 'cookie') {
+    if (!cookieDomain) {
+      throw new
         AuthKitError('authType \'cookie\' ' +
           'requires \'cookieDomain\' and \'cookieSecure\' ' +
           'props in AuthProvider');
-      }
     }
+  }
 
-    const refreshTokenName = refresh ? `${authName}_refresh` : null;
+  const refreshTokenName = refresh ? `${authName}_refresh` : null;
 
-    const tokenObject = new TokenObject(authName, authType,
-        refreshTokenName, cookieDomain, cookieSecure);
+  const tokenObject = new TokenObject<T>(
+    authName,
+    authType,
+    refreshTokenName,
+    cookieDomain,
+    cookieSecure
+  );
 
-    const [authState, dispatch] =
-      React.useReducer(authReducer, tokenObject.initialToken());
-
-    if (refresh) {
-      useInterval(
-          () => {
-            refresh
-              .refreshApiCallback({
-                authToken: authState.auth?.token,
-                authTokenExpireAt: authState.auth?.expiresAt,
-                authUserState: authState.userState,
-                refreshToken: authState.refresh?.token,
-                refreshTokenExpiresAt: authState.refresh?.expiresAt,
-              })
-              .then((result) => {
-                // IF the API call is successful then refresh the AUTH state
-                if (result.isSuccess) {
-                  // store the new value using the state update
-                  dispatch(doRefresh(result));
-                }
-                else {
-                  // do something in future
-                }
-              })
-              .catch(()=>{
-                // do something in future
-              });
-          },
-        authState.isSignIn ? refresh.interval : null,
-      );
-    }
-
-    React.useEffect(() => {
-      tokenObject.syncTokens(authState);
-    }, [authState]);
-
-    return (
-      <AuthContext.Provider value={{authState, dispatch}}>
-        {children}
-      </AuthContext.Provider>
-    );
-  };
+  return (
+    // @ts-ignore 'AnyAction' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype
+    <AuthKitContext.Provider value={tokenObject}>
+      {children}
+    </AuthKitContext.Provider>
+  );
+}
 
 // Default prop for AuthProvider
 AuthProvider.defaultProps = {
