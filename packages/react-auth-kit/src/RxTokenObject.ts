@@ -35,7 +35,9 @@ class TokenObject<T> {
       cookieSecure=cookieSecure
     )
 
-    this.authSubject = new BehaviorSubject(this.tokenObject.initialToken_()); 
+    this.authSubject = new BehaviorSubject(this.tokenObject.initialToken_());
+
+    this.authSubject.subscribe(this.tokenObject.syncTokens);
   }
 
   subscribe(next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) {
