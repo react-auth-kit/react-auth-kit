@@ -12,12 +12,109 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthKitError } from './errors';
 import { AuthKitStateInterface, AuthKitSetState } from './types';
 
+class TokenObject<T> {
+  private readonly isUsingRefreshToken: boolean;
+  private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
+  private tokenObject: InternalTokenObject<T>;
+
+
+  constructor(
+    authStorageName: string,
+    authStorageType: 'cookie' | 'localstorage',
+    refreshTokenName: string | null,
+    cookieDomain?: string,
+    cookieSecure?: boolean,
+  ) {
+    this.isUsingRefreshToken = !!refreshTokenName;
+    
+    this.tokenObject = new InternalTokenObject<T>(
+      authStorageName=authStorageName,
+      authStorageType=authStorageType,
+      refreshTokenName=refreshTokenName,
+      cookieDomain=cookieDomain,
+      cookieSecure=cookieSecure
+    )
+
+    this.authSubject = new BehaviorSubject(this.tokenObject.initialToken_()); 
+  }
+
+  subscribe(next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) {
+    this.authSubject.subscribe({
+      next: next,
+      error: error
+    })
+  }
+
+  observe(): Observable<AuthKitStateInterface<T>>{
+    return this.authSubject.asObservable();
+  }
+
+  set(data: AuthKitSetState<T>) {
+    // Before setting need to check the tokens.
+    let obj = this.value;
+
+    if(!!data.auth){
+      // logged in
+      let userState = obj.userState;
+      if(data.userState !== undefined){
+        userState = data.userState;
+      }
+
+      obj = {
+        ...obj,
+        auth: {
+          'token': data.auth.token,
+          'type': data.auth.type,
+          'expiresAt': this.tokenObject.getExpireDateTime_(data.auth.token)
+        },
+        isSignIn: true,
+        userState: userState
+      }
+    }
+    else if (data.auth === null){
+      // sign out
+      obj = {
+        ...obj,
+        auth: null,
+        isSignIn: false,
+        userState: null
+      }
+    }
+
+    if(this.isUsingRefreshToken){
+      if(!!data.refresh){
+        obj = {
+          ...obj,
+          refresh: {
+            'token': data.refresh,
+            'expiresAt': this.tokenObject.getExpireDateTime_(data.refresh)
+          }
+        }
+      }
+      else if (data.refresh === null) {
+        obj = {
+          ...obj,
+          refresh: null
+        }
+      }
+    }
+    console.log("Calling Rx Engine");
+    console.log(obj);
+    this.authSubject.next(obj);
+  }
+
+  get value(): AuthKitStateInterface<T> {
+    return this.authSubject.getValue();
+  }
+  
+}
+
 /**
  * @class TokenObject
  *
  * Stores and retrieve Token
  */
-class TokenObject<T> {
+class InternalTokenObject<T> {
   private readonly authStorageName: string;
   private readonly stateStorageName: string;
   private readonly cookieDomain?: string;
@@ -26,7 +123,6 @@ class TokenObject<T> {
   private readonly authStorageType: 'cookie' | 'localstorage';
   private readonly refreshTokenName: string | null;
   private readonly isUsingRefreshToken: boolean;
-  private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
 
 
   /**
@@ -66,84 +162,8 @@ class TokenObject<T> {
     this.authStorageTypeName = `${this.authStorageName}_type`;
 
     this.isUsingRefreshToken = !!this.refreshTokenName;
-
-    this.authSubject = new BehaviorSubject(this.initialToken_());
-
-    this.subscribe(this.syncTokens, (err)=>{
-      console.log("Error Happened")
-      console.log(err);
-      
-    });
   }
 
-  subscribe(next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) {
-    this.authSubject.subscribe({
-      next: next,
-      error: error
-    })
-  }
-
-  observe(): Observable<AuthKitStateInterface<T>>{
-    return this.authSubject.asObservable();
-  }
-
-  set(data: AuthKitSetState<T>) {
-    // Before setting need to check the tokens.
-    let obj = this.value;
-
-    if(!!data.auth){
-      // logged in
-      let userState = obj.userState;
-      if(data.userState !== undefined){
-        userState = data.userState;
-      }
-
-      obj = {
-        ...obj,
-        auth: {
-          'token': data.auth.token,
-          'type': data.auth.type,
-          'expiresAt': this.getExpireDateTime_(data.auth.token)
-        },
-        isSignIn: true,
-        userState: userState
-      }
-    }
-    else if (data.auth === null){
-      // sign out
-      obj = {
-        ...obj,
-        auth: null,
-        isSignIn: false,
-        userState: null
-      }
-    }
-
-    if(this.isUsingRefreshToken){
-      if(!!data.refresh){
-        obj = {
-          ...obj,
-          refresh: {
-            'token': data.refresh,
-            'expiresAt': this.getExpireDateTime_(data.refresh)
-          }
-        }
-      }
-      else if (data.refresh === null) {
-        obj = {
-          ...obj,
-          refresh: null
-        }
-      }
-    }
-    console.log("Calling Rx Engine");
-    console.log(obj);
-    this.authSubject.next(obj);
-  }
-
-  get value(): AuthKitStateInterface<T> {
-    return this.authSubject.getValue();
-  }
 
   /**
    * Get the Initial Tokens and states
@@ -158,7 +178,7 @@ class TokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  private initialToken_(): AuthKitStateInterface<T> {
+  public initialToken_(): AuthKitStateInterface<T> {
     if (this.authStorageType === 'cookie') {
       return this.initialCookieToken_();
     } else {
@@ -372,7 +392,7 @@ class TokenObject<T> {
     return JSON.parse(jsonPayload);
   }
 
-  private getExpireDateTime_(token: string): Date {
+  public getExpireDateTime_(token: string): Date {
     const jwtData = this.parseJwt_(token);
     if (jwtData.hasOwnProperty('iat')) {
       const d = new Date(0);
@@ -392,7 +412,7 @@ class TokenObject<T> {
    *
    * @param authState
    */
-  private syncTokens(authState: AuthKitStateInterface<T>): void {
+  public syncTokens(authState: AuthKitStateInterface<T>): void {
     console.log("Sync Token is Called");
     console.log(authState);
     console.log(this);
