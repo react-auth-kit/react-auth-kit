@@ -27,7 +27,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
       'Please add the AuthProvider before Router');
   }
   return (signInConfig: signInFunctionParams<T>): boolean => {
-    if (context.value.isUsingRefreshToken) {
+    if (context.value().isUsingRefreshToken) {
       // Using the power of refresh token
       if (!!signInConfig.refresh) {
         // refresh token params are provided

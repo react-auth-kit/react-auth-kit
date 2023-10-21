@@ -24,7 +24,7 @@ function useIsAuthenticated(): ()=>boolean {
       'Please add the AuthProvider before Router');
   }
   return () => {
-    if (!isAuthenticated(context.value)) {
+    if (!isAuthenticated(context.value())) {
       return false;
     } else {
       return true;
