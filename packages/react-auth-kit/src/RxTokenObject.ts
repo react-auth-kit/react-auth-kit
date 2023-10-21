@@ -12,111 +12,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthKitError } from './errors';
 import { AuthKitStateInterface, AuthKitSetState } from './types';
 
-class TokenObject<T> {
-  private readonly isUsingRefreshToken: boolean;
-  private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
-  private tokenObject: InternalTokenObject<T>;
-
-
-  constructor(
-    authStorageName: string,
-    authStorageType: 'cookie' | 'localstorage',
-    refreshTokenName: string | null,
-    cookieDomain?: string,
-    cookieSecure?: boolean,
-  ) {
-    this.isUsingRefreshToken = !!refreshTokenName;
-    
-    this.tokenObject = new InternalTokenObject<T>(
-      authStorageName=authStorageName,
-      authStorageType=authStorageType,
-      refreshTokenName=refreshTokenName,
-      cookieDomain=cookieDomain,
-      cookieSecure=cookieSecure
-    )
-
-    this.authSubject = new BehaviorSubject(this.tokenObject.initialToken_());
-
-    this.authSubject.subscribe(this.tokenObject.syncTokens);
-  }
-
-  subscribe(next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) {
-    this.authSubject.subscribe({
-      next: next,
-      error: error
-    })
-  }
-
-  observe(): Observable<AuthKitStateInterface<T>>{
-    return this.authSubject.asObservable();
-  }
-
-  set(data: AuthKitSetState<T>) {
-    // Before setting need to check the tokens.
-    let obj = this.value;
-
-    if(!!data.auth){
-      // logged in
-      let userState = obj.userState;
-      if(data.userState !== undefined){
-        userState = data.userState;
-      }
-
-      obj = {
-        ...obj,
-        auth: {
-          'token': data.auth.token,
-          'type': data.auth.type,
-          'expiresAt': this.tokenObject.getExpireDateTime_(data.auth.token)
-        },
-        isSignIn: true,
-        userState: userState
-      }
-    }
-    else if (data.auth === null){
-      // sign out
-      obj = {
-        ...obj,
-        auth: null,
-        isSignIn: false,
-        userState: null
-      }
-    }
-
-    if(this.isUsingRefreshToken){
-      if(!!data.refresh){
-        obj = {
-          ...obj,
-          refresh: {
-            'token': data.refresh,
-            'expiresAt': this.tokenObject.getExpireDateTime_(data.refresh)
-          }
-        }
-      }
-      else if (data.refresh === null) {
-        obj = {
-          ...obj,
-          refresh: null
-        }
-      }
-    }
-    console.log("Calling Rx Engine");
-    console.log(obj);
-    this.authSubject.next(obj);
-  }
-
-  get value(): AuthKitStateInterface<T> {
-    return this.authSubject.getValue();
-  }
-  
-}
-
 /**
  * @class TokenObject
  *
  * Stores and retrieve Token
  */
-class InternalTokenObject<T> {
+class TokenObject<T> {
   private readonly authStorageName: string;
   private readonly stateStorageName: string;
   private readonly cookieDomain?: string;
@@ -125,6 +26,7 @@ class InternalTokenObject<T> {
   private readonly authStorageType: 'cookie' | 'localstorage';
   private readonly refreshTokenName: string | null;
   private readonly isUsingRefreshToken: boolean;
+  private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
 
 
   /**
@@ -164,8 +66,84 @@ class InternalTokenObject<T> {
     this.authStorageTypeName = `${this.authStorageName}_type`;
 
     this.isUsingRefreshToken = !!this.refreshTokenName;
+
+    this.authSubject = new BehaviorSubject(this.initialToken_());
+
+    this.subscribe(this.syncTokens, (err)=>{
+      console.log("Error Happened")
+      console.log(err);
+      
+    });
   }
 
+  subscribe = (next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) => {
+    this.authSubject.subscribe({
+      next: next,
+      error: error
+    })
+  }
+
+  observe = (): Observable<AuthKitStateInterface<T>> =>{
+    return this.authSubject.asObservable();
+  }
+
+  set = (data: AuthKitSetState<T>) => {
+    // Before setting need to check the tokens.
+    let obj = this.value();
+
+    if(!!data.auth){
+      // logged in
+      let userState = obj.userState;
+      if(data.userState !== undefined){
+        userState = data.userState;
+      }
+
+      obj = {
+        ...obj,
+        auth: {
+          'token': data.auth.token,
+          'type': data.auth.type,
+          'expiresAt': this.getExpireDateTime_(data.auth.token)
+        },
+        isSignIn: true,
+        userState: userState
+      }
+    }
+    else if (data.auth === null){
+      // sign out
+      obj = {
+        ...obj,
+        auth: null,
+        isSignIn: false,
+        userState: null
+      }
+    }
+
+    if(this.isUsingRefreshToken){
+      if(!!data.refresh){
+        obj = {
+          ...obj,
+          refresh: {
+            'token': data.refresh,
+            'expiresAt': this.getExpireDateTime_(data.refresh)
+          }
+        }
+      }
+      else if (data.refresh === null) {
+        obj = {
+          ...obj,
+          refresh: null
+        }
+      }
+    }
+    console.log("Calling Rx Engine");
+    console.log(obj);
+    this.authSubject.next(obj);
+  }
+
+  value = (): AuthKitStateInterface<T>  =>{
+    return this.authSubject.getValue();
+  }
 
   /**
    * Get the Initial Tokens and states
@@ -180,7 +158,7 @@ class InternalTokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  public initialToken_(): AuthKitStateInterface<T> {
+  private initialToken_ = (): AuthKitStateInterface<T> => {
     if (this.authStorageType === 'cookie') {
       return this.initialCookieToken_();
     } else {
@@ -198,7 +176,7 @@ class InternalTokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  private initialCookieToken_(): AuthKitStateInterface<T> {
+  private initialCookieToken_ = (): AuthKitStateInterface<T> => {
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const stateCookie = Cookies.get(this.stateStorageName);
@@ -224,7 +202,7 @@ class InternalTokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  private initialLSToken_(): AuthKitStateInterface<T> {
+  private initialLSToken_ = (): AuthKitStateInterface<T> => {
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const stateCookie = localStorage.getItem(this.stateStorageName);
@@ -260,12 +238,12 @@ class InternalTokenObject<T> {
    * @returns AuthKitStateInterface
    *
    */
-  private checkTokenExist_(
+  private checkTokenExist_ = (
     authToken: string | null | undefined,
     authTokenType: string | null | undefined,
     stateCookie: string | null | undefined,
     refreshToken: string | null | undefined):
-    AuthKitStateInterface<T> {
+    AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
       let refresh;
@@ -384,7 +362,7 @@ class InternalTokenObject<T> {
     }
   }
 
-  private parseJwt_(token: string) {
+  private parseJwt_ = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
@@ -394,7 +372,7 @@ class InternalTokenObject<T> {
     return JSON.parse(jsonPayload);
   }
 
-  public getExpireDateTime_(token: string): Date {
+  private getExpireDateTime_ = (token: string): Date => {
     const jwtData = this.parseJwt_(token);
     if (jwtData.hasOwnProperty('iat')) {
       const d = new Date(0);
@@ -414,7 +392,7 @@ class InternalTokenObject<T> {
    *
    * @param authState
    */
-  public syncTokens(authState: AuthKitStateInterface<T>): void {
+  private syncTokens = (authState: AuthKitStateInterface<T>): void => {
     console.log("Sync Token is Called");
     console.log(authState);
     console.log(this);
@@ -445,11 +423,11 @@ class InternalTokenObject<T> {
     }
   }
 
-  private setAuthToken(
+  private setAuthToken = (
     authToken: string,
     authTokenType: string,
     authState: T | null
-  ):void {
+  ):void => {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime_(authToken);
       Cookies.set(this.authStorageName, authToken, {
@@ -479,9 +457,9 @@ class InternalTokenObject<T> {
     }
   }
 
-  private setRefreshToken(
+  private setRefreshToken = (
     refreshToken: string | null
-  ):void {
+  ):void => {
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&
         !!refreshToken) {
@@ -503,7 +481,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeAllToken(): void {
+  private removeAllToken = (): void => {
     if (this.authStorageType === 'cookie') {
       this.removeAllCookieToken_();
     } else {
@@ -514,7 +492,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Token from Cookies
    */
-  private removeAllCookieToken_(): void {
+  private removeAllCookieToken_ = (): void => {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -538,7 +516,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Token from LocalStorage
    */
-  private removeAllLSToken_(): void {
+  private removeAllLSToken_ = (): void => {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -550,7 +528,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeAuth(): void {
+  private removeAuth = (): void => {
     if (this.authStorageType === 'cookie') {
       this.removeAuthCookie();
     } else {
@@ -561,7 +539,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Token from Cookies
    */
-  private removeAuthCookie(): void {
+  private removeAuthCookie = (): void => {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -579,7 +557,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Token from LocalStorage
    */
-  private removeAuthToken(): void {
+  private removeAuthToken = (): void => {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -588,7 +566,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeRefresh(): void {
+  private removeRefresh = (): void => {
     if (this.authStorageType === 'cookie') {
       this.removeRefreshCookie();
     } else {
@@ -599,7 +577,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Token from Cookies
    */
-  private removeRefreshCookie(): void {
+  private removeRefreshCookie = (): void => {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -617,7 +595,7 @@ class InternalTokenObject<T> {
   /**
    * Remove Token from LocalStorage
    */
-  private removeRefreshToken(): void {
+  private removeRefreshToken = (): void => {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
