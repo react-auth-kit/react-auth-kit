@@ -395,6 +395,8 @@ class TokenObject<T> {
   private syncTokens(authState: AuthKitStateInterface<T>): void {
     console.log("Sync Token is Called");
     console.log(authState);
+    console.log(this);
+    
     
     if (!!authState.auth) {
       // Sync the Auth token part

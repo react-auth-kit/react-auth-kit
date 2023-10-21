@@ -18,10 +18,10 @@ const Login = () => {
     // Assuming that, all network Request is successfull, and the user is authenticated
 
     if (signIn({
-      token: '35v3443bn368367n306306wbn407qn420b436b4', //Just a random token
-      tokenType: 'Bearer',    // Token type set as Bearer
-      authState: {name: 'React User', uid: 123456},   // Dummy auth user state
-      expiresIn: 120  // Token Expriration time, in minutes
+      auth: {
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
+      },
+      userState: {name: 'React User', uid: 123456}
     })) {
       // If Login Successfull, then Redirect the user to secure route
       navigate('/secure')
