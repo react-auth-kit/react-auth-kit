@@ -5,7 +5,7 @@ import RoutesComponent from './Routes';
 function App() {
   return (
     <AuthProvider
-      authName={"_auth"} authType={"cookie"}
+      authName={"_auth"} authType={"localstorage"}
     >
       <RoutesComponent/>
     </AuthProvider>
