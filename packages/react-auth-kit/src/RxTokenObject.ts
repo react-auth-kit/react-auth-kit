@@ -453,7 +453,7 @@ class TokenObject<T> {
       }
     }
     else{
-      console.log(`Point A ${this.authStorageName} ${authToken}`);
+      console.log(`Point A ${this.authStorageName} ${authToken} ${typeof this.authStorageName} ${typeof authToken}`);
       window.localStorage.setItem(this.authStorageName, authToken);
       console.log(`Point B ${this.authStorageName} ${authToken}`);
       
