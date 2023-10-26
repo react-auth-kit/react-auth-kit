@@ -453,10 +453,19 @@ class TokenObject<T> {
       }
     }
     else{
+      console.log(`Point A ${this.authStorageName} ${authToken}`);
       localStorage.setItem(this.authStorageName, authToken);
+      console.log(`Point B ${this.authStorageName} ${authToken}`);
+      
+      console.log(`Point C ${this.authStorageTypeName} ${authTokenType}`);
       localStorage.setItem(this.authStorageTypeName, authTokenType);
+      console.log(`Point D ${this.authStorageTypeName} ${authTokenType}`);
+
       if (!!authState) {
+        console.log(`Point E ${this.stateStorageName} ${JSON.stringify(authState)}`);
         localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+        console.log(`Point F ${this.stateStorageName} ${JSON.stringify(authState)}`);
+
       }
     }
   }
