@@ -400,9 +400,6 @@ class TokenObject<T> {
    */
   private syncTokens = (authState: AuthKitStateInterface<T>): void => {
     console.log("Sync Token is Called");
-    console.log(authState);
-    console.log(this);
-    
     
     if (!!authState.auth) {
       // Sync the Auth token part
@@ -434,6 +431,7 @@ class TokenObject<T> {
     authTokenType: string,
     authState: T | null
   ):void => {
+    console.log('Setting Auth Token ' + this.authStorageType)
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime_(authToken);
       Cookies.set(this.authStorageName, authToken, {
@@ -466,6 +464,7 @@ class TokenObject<T> {
   private setRefreshToken = (
     refreshToken: string | null
   ):void => {
+    console.log('Setting Refresh Token ' + this.authStorageType)
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&
         !!refreshToken) {
