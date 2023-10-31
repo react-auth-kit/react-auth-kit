@@ -54,9 +54,9 @@ function AuthProvider<T extends object>(
   );
 
   // Sync the Auth Storage
-  React.useEffect(()=> {
-    tokenObject.syncTokens(tokenObject.value)
-  }, [tokenObject.value])
+  // React.useEffect(()=> {
+  //   tokenObject.syncTokens(tokenObject.value)
+  // }, [tokenObject.value])
 
   return (
     // @ts-ignore 'AnyAction' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype

@@ -71,16 +71,16 @@ class TokenObject<T> {
     this.authValue = this.initialToken_()
     this.authSubject = new BehaviorSubject(this.authValue);
 
-    // this.authSubject.subscribe({
-    //   next: this.syncTokens,
-    //   complete: ()=>{
-    //     console.log("Token Synced")
-    //   },
-    //   error: (err) =>{
-    //     console.error("Error Occured while syncing token")
-    //     console.log(err)
-    //   }
-    // })
+    this.authSubject.subscribe({
+      next: this.syncTokens,
+      complete: ()=>{
+        console.log("Token Synced")
+      },
+      error: (err) =>{
+        console.error("Error Occured while syncing token")
+        console.log(err)
+      }
+    })
 
   }
 
@@ -472,8 +472,11 @@ class TokenObject<T> {
         console.log(`Point E ${this.stateStorageName} ${JSON.stringify(authState)}`);
         window.localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
         console.log(`Point F ${this.stateStorageName} ${JSON.stringify(authState)}`);
-
       }
+
+      console.log(localStorage.getItem(this.authStorageName));
+      console.log(localStorage.getItem(this.authStorageTypeName));
+      console.log(localStorage.getItem(this.stateStorageName));
     }
   }
 
