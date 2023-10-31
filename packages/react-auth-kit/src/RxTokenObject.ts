@@ -69,16 +69,16 @@ class TokenObject<T> {
 
     this.authSubject = new BehaviorSubject(this.initialToken_());
 
-    this.authSubject.subscribe({
-      next: this.syncTokens,
-      complete: ()=>{
-        console.log("Token Synced")
-      },
-      error: (err) =>{
-        console.error("Error Occured while syncing token")
-        console.log(err)
-      }
-    })
+    // this.authSubject.subscribe({
+    //   next: this.syncTokens,
+    //   complete: ()=>{
+    //     console.log("Token Synced")
+    //   },
+    //   error: (err) =>{
+    //     console.error("Error Occured while syncing token")
+    //     console.log(err)
+    //   }
+    // })
 
   }
 
@@ -398,7 +398,7 @@ class TokenObject<T> {
    *
    * @param authState
    */
-  private syncTokens = (authState: AuthKitStateInterface<T>): void => {
+  public syncTokens = (authState: AuthKitStateInterface<T>): void => {
     console.log("Sync Token is Called");
     
     if (!!authState.auth) {
