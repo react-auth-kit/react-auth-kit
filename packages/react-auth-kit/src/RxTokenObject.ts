@@ -625,18 +625,12 @@ class TokenObject<T> {
   private removeRefreshCookie = (): void => {
     console.log("Remove Refresh Cookie is called");
 
-    Cookies.remove(this.authStorageName, {
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
-    Cookies.remove(this.authStorageTypeName, {
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
-    Cookies.remove(this.stateStorageName, {
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
+    if (this.isUsingRefreshToken && !!this.refreshTokenName) {
+      Cookies.remove(this.refreshTokenName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+    }
   }
 
   /**
@@ -645,9 +639,9 @@ class TokenObject<T> {
   private removeRefreshToken = (): void => {
     console.log("Remove Refresh Token is called");
 
-    localStorage.removeItem(this.authStorageName);
-    localStorage.removeItem(this.authStorageTypeName);
-    localStorage.removeItem(this.stateStorageName);
+    if (this.isUsingRefreshToken && !!this.refreshTokenName) {
+      localStorage.removeItem(this.refreshTokenName);
+    }
   }
 }
 
