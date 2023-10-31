@@ -24,7 +24,7 @@ function useAuthHeader(): () => (string) {
 
 
   return () => {
-    const obj = c.value();
+    const obj = c.value;
     if (!!obj.auth && isAuthenticated(obj)) {
       return `${obj.auth.type} ${obj.auth.token}`;
     } else {

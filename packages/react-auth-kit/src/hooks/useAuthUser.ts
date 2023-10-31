@@ -24,8 +24,8 @@ function useAuthUser(): () => any | null {
       'Please add the AuthProvider before Router');
   }
   return () => {
-    if (isAuthenticated(context.value())) {
-      return context.value().userState;
+    if (isAuthenticated(context.value)) {
+      return context.value.userState;
     } else {
       // TODO: Need to signout and redirect to login
       return null;

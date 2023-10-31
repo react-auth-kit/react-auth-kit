@@ -95,7 +95,7 @@ class TokenObject<T> {
 
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
-    let obj = this.value();
+    let obj = this.value;
 
     if(!!data.auth){
       // logged in
@@ -147,8 +147,12 @@ class TokenObject<T> {
     this.authSubject.next(obj);
   }
 
-  value = (): AuthKitStateInterface<T>  =>{
-    return this.authSubject.getValue();
+  // value = (): AuthKitStateInterface<T>  =>{
+  //   return this.authSubject.getValue();
+  // }
+
+  get value() {
+    return this.authSubject.value
   }
 
   /**
