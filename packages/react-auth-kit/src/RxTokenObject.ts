@@ -26,6 +26,7 @@ class TokenObject<T> {
   private readonly authStorageType: 'cookie' | 'localstorage';
   private readonly refreshTokenName: string | null;
   private readonly isUsingRefreshToken: boolean;
+  private authValue: AuthKitStateInterface<T>;
   private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
 
 
@@ -67,7 +68,8 @@ class TokenObject<T> {
 
     this.isUsingRefreshToken = !!this.refreshTokenName;
 
-    this.authSubject = new BehaviorSubject(this.initialToken_());
+    this.authValue = this.initialToken_()
+    this.authSubject = new BehaviorSubject(this.authValue);
 
     // this.authSubject.subscribe({
     //   next: this.syncTokens,
@@ -144,6 +146,7 @@ class TokenObject<T> {
     }
     console.log("Calling Rx Engine");
     console.log(obj);
+    this.authValue = obj;
     this.authSubject.next(obj);
   }
 
@@ -152,7 +155,7 @@ class TokenObject<T> {
   // }
 
   get value() {
-    return this.authSubject.value
+    return this.authValue
   }
 
   /**
