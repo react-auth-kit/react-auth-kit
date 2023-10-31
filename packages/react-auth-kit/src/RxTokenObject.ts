@@ -172,6 +172,8 @@ class TokenObject<T> {
    * @returns AuthKitStateInterface
    */
   private initialToken_ = (): AuthKitStateInterface<T> => {
+    console.log("initialToken_ is called");
+
     if (this.authStorageType === 'cookie') {
       return this.initialCookieToken_();
     } else {
@@ -190,6 +192,8 @@ class TokenObject<T> {
    * @returns AuthKitStateInterface
    */
   private initialCookieToken_ = (): AuthKitStateInterface<T> => {
+    console.log("initialCookieToken_ is called");
+
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const stateCookie = Cookies.get(this.stateStorageName);
@@ -216,6 +220,7 @@ class TokenObject<T> {
    * @returns AuthKitStateInterface
    */
   private initialLSToken_ = (): AuthKitStateInterface<T> => {
+    console.log("initialLSToken_ is called");
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const stateCookie = localStorage.getItem(this.stateStorageName);
@@ -257,6 +262,8 @@ class TokenObject<T> {
     stateCookie: string | null | undefined,
     refreshToken: string | null | undefined):
     AuthKitStateInterface<T> => {
+    console.log("checkTokenExist_ is called");
+
     try {
       // Work on refresh first
       let refresh;
@@ -506,6 +513,8 @@ class TokenObject<T> {
    * Remove Tokens on time of Logout
    */
   private removeAllToken = (): void => {
+    console.log("Remove all token is called");
+
     if (this.authStorageType === 'cookie') {
       this.removeAllCookieToken_();
     } else {
@@ -517,6 +526,8 @@ class TokenObject<T> {
    * Remove Token from Cookies
    */
   private removeAllCookieToken_ = (): void => {
+    console.log("Remove all cookie token is called");
+
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -541,6 +552,8 @@ class TokenObject<T> {
    * Remove Token from LocalStorage
    */
   private removeAllLSToken_ = (): void => {
+    console.log("Remove all ls token is called");
+
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -553,6 +566,8 @@ class TokenObject<T> {
    * Remove Tokens on time of Logout
    */
   private removeAuth = (): void => {
+    console.log("Remove Auth is called");
+    
     if (this.authStorageType === 'cookie') {
       this.removeAuthCookie();
     } else {
@@ -564,6 +579,8 @@ class TokenObject<T> {
    * Remove Token from Cookies
    */
   private removeAuthCookie = (): void => {
+    console.log("Remove Auth Cookie is called");
+
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -582,6 +599,8 @@ class TokenObject<T> {
    * Remove Token from LocalStorage
    */
   private removeAuthToken = (): void => {
+    console.log("Remove Auth Token is called");
+
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -591,6 +610,8 @@ class TokenObject<T> {
    * Remove Tokens on time of Logout
    */
   private removeRefresh = (): void => {
+    console.log("Remove Refresh is called");
+
     if (this.authStorageType === 'cookie') {
       this.removeRefreshCookie();
     } else {
@@ -602,6 +623,8 @@ class TokenObject<T> {
    * Remove Token from Cookies
    */
   private removeRefreshCookie = (): void => {
+    console.log("Remove Refresh Cookie is called");
+
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -620,6 +643,8 @@ class TokenObject<T> {
    * Remove Token from LocalStorage
    */
   private removeRefreshToken = (): void => {
+    console.log("Remove Refresh Token is called");
+
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
