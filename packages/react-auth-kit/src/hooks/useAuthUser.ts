@@ -16,13 +16,14 @@ import {isAuthenticated} from '../utils/utils';
  *
  * @returns - Auth State Function
  */
-function useAuthUser(): () => any | null {
+function useAuthUser<T>(): () => T | null {
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
     AuthKitError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
+  // @ts-ignore 
   return () => {
     if (isAuthenticated(context.value)) {
       return context.value.userState;
