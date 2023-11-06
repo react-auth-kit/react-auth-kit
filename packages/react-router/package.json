@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/react-router",
-  "version": "3.0.0-alpha.17",
+  "version": "3.0.0-alpha.35",
   "description": "React Router Support for React-auth-kit",
   "keywords": [
     "react",
