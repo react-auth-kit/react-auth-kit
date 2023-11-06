@@ -9,7 +9,7 @@ import * as React from 'react';
 import {useLocation, Navigate} from 'react-router-dom';
 import AuthContext from './AuthContext';
 import {doSignOut} from './utils/reducers';
-import {AuthKitError} from './errors';
+import {AuthError} from './errors';
 import {isAuthenticated} from './utils/utils';
 
 interface RequireAuthProps {
@@ -32,7 +32,7 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
     const context = React.useContext(AuthContext);
     if (context === null) {
       throw new
-      AuthKitError('Auth Provider is missing. ' +
+      AuthError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
     }
 

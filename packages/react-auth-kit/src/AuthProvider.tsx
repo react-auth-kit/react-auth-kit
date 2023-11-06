@@ -11,7 +11,7 @@ import * as React from 'react';
 import AuthKitContext from './AuthContext';
 import TokenObject from './RxTokenObject';
 import { AuthProviderProps } from './types';
-import { AuthKitError } from './errors';
+import { AuthError } from './errors';
 
 
 /**
@@ -37,7 +37,7 @@ function AuthProvider<T extends object>(
   if (authType === 'cookie') {
     if (!cookieDomain) {
       throw new
-        AuthKitError('authType \'cookie\' ' +
+        AuthError('authType \'cookie\' ' +
           'requires \'cookieDomain\' and \'cookieSecure\' ' +
           'props in AuthProvider');
     }

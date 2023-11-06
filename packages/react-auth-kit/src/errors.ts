@@ -8,12 +8,12 @@
 
 /**
  * @class
- * @name AuthKitError
+ * @name AuthError
  * @extends Error
  *
  * General Auth kit error class
  */
-export class AuthKitError extends Error {
+export class AuthError extends Error {
   /**
      * @constructor
      * @param message - Error message

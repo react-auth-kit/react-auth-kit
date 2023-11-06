@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import AuthContext from '../AuthContext';
-import {AuthKitError} from '../errors';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -20,7 +20,7 @@ function useIsAuthenticated(): ()=>boolean {
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthKitError('Auth Provider is missing. ' +
+    AuthError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
   return () => {

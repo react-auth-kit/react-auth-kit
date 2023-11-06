@@ -9,7 +9,7 @@
 
 import Cookies from 'js-cookie';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthKitError } from './errors';
+import { AuthError } from './errors';
 import { AuthKitStateInterface, AuthKitSetState } from './types';
 
 /**
@@ -391,7 +391,7 @@ class TokenObject<T> {
       return d;
     }
     else {
-      throw new AuthKitError('JWT has no iat param');
+      throw new AuthError('JWT has no iat param');
     }
   }
 
