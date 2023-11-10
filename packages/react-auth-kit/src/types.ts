@@ -93,18 +93,6 @@ export type signInFunctionParams<T> = SignInActionPayload<T>
 // }
 
 /**
- * Auth Provider Props
- */
-export interface AuthProviderProps {
-  authType: 'cookie' | 'localstorage'
-  authName: string,
-  refresh?: createRefreshParamInterface
-  cookieDomain?: string
-  cookieSecure?: boolean
-  children: React.ReactNode
-}
-
-/**
  * Refresh Token Callback Response
  */
 export type RefreshTokenCallbackResponse = {

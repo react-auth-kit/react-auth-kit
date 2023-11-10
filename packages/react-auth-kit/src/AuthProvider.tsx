@@ -10,9 +10,21 @@
 import * as React from 'react';
 import AuthKitContext from './AuthContext';
 import TokenObject from './RxTokenObject';
-import { AuthProviderProps } from './types';
 import { AuthError } from './errors';
+import type { createRefreshParamInterface } from './types';
 
+// const ContextKey = Symbol.for(`react-redux-context`)
+// const gT: {[ContextKey]?: Map<typeof React.createContext, Context<ReactReduxContextValue>>} = 
+// (typeof globalThis !== "undefined" ? globalThis : /* fall back to a per-module scope (pre-8.1 behaviour) if `globalThis` is not available */ {}) as any; 
+
+interface AuthProviderProps {
+  authType: 'cookie' | 'localstorage'
+  authName: string,
+  refresh?: createRefreshParamInterface
+  cookieDomain?: string
+  cookieSecure?: boolean
+  children: React.ReactNode
+}
 
 /**
  * AuthProvider - The Authentication Context Provider
