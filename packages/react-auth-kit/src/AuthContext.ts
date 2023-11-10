@@ -10,7 +10,11 @@ import * as React from 'react';
 import TokenObject from './RxTokenObject';
 
 function getContext<T>(): React.Context<TokenObject<T>>{
-    return React.createContext<TokenObject<T>>(null as any);
+    const context = React.createContext<TokenObject<T>>(null as any);
+    if (process.env.NODE_ENV !== 'production') {
+        context.displayName = 'ReactAuthKit'
+    }
+    return context;
 }
 
 export const AuthKitContext = getContext();
