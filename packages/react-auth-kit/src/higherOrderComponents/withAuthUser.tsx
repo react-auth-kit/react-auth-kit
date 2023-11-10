@@ -7,16 +7,15 @@
  */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
-import {AuthStateUserObject} from '../types';
-import {AuthKitError} from '../errors';
+import AuthContext from '../AuthContext';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
  * @interface withAuthProps
  */
-interface withAuthProps {
-    authState: AuthStateUserObject| null
+interface withAuthStateProps<T> {
+    authState: T | null
 }
 
 /**
@@ -25,30 +24,27 @@ interface withAuthProps {
  * @description Inject Authenticated User's state inside the Component's Prop
  * @param Component
  */
-function withAuthUser<P extends withAuthProps>(
+function withAuthUser<T, P extends withAuthStateProps<T>>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
+
+  const c = React.useContext(AuthContext);
+  if (c === null) {
+    throw new
+    AuthError('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
+
   return (props: P)=>{
-    return (
-      <AuthContextConsumer>
-        {(context) => {
-          if (context === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
-          }
-          if (context.authState.auth && isAuthenticated(context.authState)) {
-            return (
-              <Component {...props} authState={context.authState.userState}/>
-            );
-          } else {
-            return (
-              <Component {...props} authState={null}/>
-            );
-          }
-        }}
-      </AuthContextConsumer>
-    );
+    if (isAuthenticated(c.value)) {
+      return (
+        <Component {...props} authState={c.value.userState}/>
+      );
+    } else {
+      return (
+        <Component {...props} authState={null}/>
+      );
+    }
   };
 }
 /**

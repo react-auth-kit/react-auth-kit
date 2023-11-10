@@ -9,54 +9,8 @@
 
 import Cookies from 'js-cookie';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthKitError } from './errors';
-
-interface AuthKitSetState<T> {
-  auth?: {
-    token: string,
-    type: string
-  },
-  refresh?: string,
-  userState?: T
-}
-
-interface AuthKitStateInterfaceTrue<T> {
-  auth: {
-    token: string,
-    type: string,
-    expiresAt: Date
-  },
-  refresh: {
-    token: string,
-    expiresAt: Date
-  } | null,
-  userState: T | null,
-  isSignIn: boolean,
-  isUsingRefreshToken: boolean,
-}
-
-interface AuthKitStateInterfaceNoAuthOnlyRefresh {
-  auth: null,
-  refresh: {
-    token: string,
-    expiresAt: Date
-  },
-  userState: null,
-  isSignIn: boolean,
-  isUsingRefreshToken: boolean,
-}
-
-
-interface AuthKitStateInterfaceFalse {
-  auth: null,
-  refresh: null,
-  userState: null,
-  isSignIn: boolean,
-  isUsingRefreshToken: boolean,
-}
-
-type AuthKitStateInterface<T> = AuthKitStateInterfaceTrue<T> | AuthKitStateInterfaceFalse | AuthKitStateInterfaceNoAuthOnlyRefresh
-
+import { AuthError } from './errors';
+import { AuthKitStateInterface, AuthKitSetState } from './types';
 
 /**
  * @class TokenObject
@@ -72,6 +26,7 @@ class TokenObject<T> {
   private readonly authStorageType: 'cookie' | 'localstorage';
   private readonly refreshTokenName: string | null;
   private readonly isUsingRefreshToken: boolean;
+  private authValue: AuthKitStateInterface<T>;
   private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
 
 
@@ -113,27 +68,34 @@ class TokenObject<T> {
 
     this.isUsingRefreshToken = !!this.refreshTokenName;
 
-    this.authSubject = new BehaviorSubject(this.initialToken_());
+    this.authValue = this.initialToken_()
+    this.authSubject = new BehaviorSubject(this.authValue);
 
-    this.subscribe(this.syncTokens, (err)=>{
-      console.log("Error Happened")
-      console.log(err);
-      
-    });
+    this.authSubject.subscribe({
+      next: this.syncTokens,
+      complete: ()=>{
+        console.log("Token Synced")
+      },
+      error: (err) =>{
+        console.error("Error Occured while syncing token")
+        console.log(err)
+      }
+    })
+
   }
 
-  subscribe(next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) {
+  subscribe = (next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) => {
     this.authSubject.subscribe({
       next: next,
       error: error
     })
   }
 
-  observe(): Observable<AuthKitStateInterface<T>>{
+  observe = (): Observable<AuthKitStateInterface<T>> =>{
     return this.authSubject.asObservable();
   }
 
-  set(data: AuthKitSetState<T>) {
+  set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
     let obj = this.value;
 
@@ -175,18 +137,23 @@ class TokenObject<T> {
           }
         }
       }
-      else {
+      else if (data.refresh === null) {
         obj = {
           ...obj,
           refresh: null
         }
       }
     }
+    this.authValue = obj;
     this.authSubject.next(obj);
   }
 
-  get value(): AuthKitStateInterface<T> {
-    return this.authSubject.getValue();
+  // value = (): AuthKitStateInterface<T>  =>{
+  //   return this.authSubject.getValue();
+  // }
+
+  get value() {
+    return this.authSubject.value
   }
 
   /**
@@ -202,7 +169,7 @@ class TokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  private initialToken_(): AuthKitStateInterface<T> {
+  private initialToken_ = (): AuthKitStateInterface<T> => {
     if (this.authStorageType === 'cookie') {
       return this.initialCookieToken_();
     } else {
@@ -220,7 +187,7 @@ class TokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  private initialCookieToken_(): AuthKitStateInterface<T> {
+  private initialCookieToken_ = (): AuthKitStateInterface<T> => {
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const stateCookie = Cookies.get(this.stateStorageName);
@@ -246,7 +213,7 @@ class TokenObject<T> {
    *
    * @returns AuthKitStateInterface
    */
-  private initialLSToken_(): AuthKitStateInterface<T> {
+  private initialLSToken_ = (): AuthKitStateInterface<T> => {
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const stateCookie = localStorage.getItem(this.stateStorageName);
@@ -282,12 +249,12 @@ class TokenObject<T> {
    * @returns AuthKitStateInterface
    *
    */
-  private checkTokenExist_(
+  private checkTokenExist_ = (
     authToken: string | null | undefined,
     authTokenType: string | null | undefined,
     stateCookie: string | null | undefined,
     refreshToken: string | null | undefined):
-    AuthKitStateInterface<T> {
+    AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
       let refresh;
@@ -406,7 +373,7 @@ class TokenObject<T> {
     }
   }
 
-  private parseJwt_(token: string) {
+  private parseJwt_ = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
@@ -416,7 +383,7 @@ class TokenObject<T> {
     return JSON.parse(jsonPayload);
   }
 
-  private getExpireDateTime_(token: string): Date {
+  private getExpireDateTime_ = (token: string): Date => {
     const jwtData = this.parseJwt_(token);
     if (jwtData.hasOwnProperty('iat')) {
       const d = new Date(0);
@@ -424,7 +391,7 @@ class TokenObject<T> {
       return d;
     }
     else {
-      throw new AuthKitError('JWT has no iat param');
+      throw new AuthError('JWT has no iat param');
     }
   }
 
@@ -436,7 +403,7 @@ class TokenObject<T> {
    *
    * @param authState
    */
-  private syncTokens(authState: AuthKitStateInterface<T>): void {
+  public syncTokens = (authState: AuthKitStateInterface<T>): void => {
     if (!!authState.auth) {
       // Sync the Auth token part
       this.setAuthToken(
@@ -462,11 +429,11 @@ class TokenObject<T> {
     }
   }
 
-  private setAuthToken(
+  private setAuthToken = (
     authToken: string,
     authTokenType: string,
     authState: T | null
-  ):void {
+  ):void => {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime_(authToken);
       Cookies.set(this.authStorageName, authToken, {
@@ -488,17 +455,18 @@ class TokenObject<T> {
       }
     }
     else{
-      localStorage.setItem(this.authStorageName, authToken);
-      localStorage.setItem(this.authStorageTypeName, authTokenType);
+      window.localStorage.setItem(this.authStorageName, authToken);
+      window.localStorage.setItem(this.authStorageTypeName, authTokenType);
+
       if (!!authState) {
-        localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+        window.localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
       }
     }
   }
 
-  private setRefreshToken(
+  private setRefreshToken = (
     refreshToken: string | null
-  ):void {
+  ):void => {
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&
         !!refreshToken) {
@@ -520,7 +488,7 @@ class TokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeAllToken(): void {
+  private removeAllToken = (): void => {
     if (this.authStorageType === 'cookie') {
       this.removeAllCookieToken_();
     } else {
@@ -531,7 +499,7 @@ class TokenObject<T> {
   /**
    * Remove Token from Cookies
    */
-  private removeAllCookieToken_(): void {
+  private removeAllCookieToken_ = (): void => {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -555,7 +523,7 @@ class TokenObject<T> {
   /**
    * Remove Token from LocalStorage
    */
-  private removeAllLSToken_(): void {
+  private removeAllLSToken_ = (): void => {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -567,7 +535,7 @@ class TokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeAuth(): void {
+  private removeAuth = (): void => {
     if (this.authStorageType === 'cookie') {
       this.removeAuthCookie();
     } else {
@@ -578,7 +546,7 @@ class TokenObject<T> {
   /**
    * Remove Token from Cookies
    */
-  private removeAuthCookie(): void {
+  private removeAuthCookie = (): void => {
     Cookies.remove(this.authStorageName, {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
@@ -596,7 +564,7 @@ class TokenObject<T> {
   /**
    * Remove Token from LocalStorage
    */
-  private removeAuthToken(): void {
+  private removeAuthToken = (): void => {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
@@ -605,7 +573,7 @@ class TokenObject<T> {
   /**
    * Remove Tokens on time of Logout
    */
-  private removeRefresh(): void {
+  private removeRefresh = (): void => {
     if (this.authStorageType === 'cookie') {
       this.removeRefreshCookie();
     } else {
@@ -616,28 +584,22 @@ class TokenObject<T> {
   /**
    * Remove Token from Cookies
    */
-  private removeRefreshCookie(): void {
-    Cookies.remove(this.authStorageName, {
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
-    Cookies.remove(this.authStorageTypeName, {
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
-    Cookies.remove(this.stateStorageName, {
-      domain: this.cookieDomain,
-      secure: this.cookieSecure,
-    });
+  private removeRefreshCookie = (): void => {
+    if (this.isUsingRefreshToken && !!this.refreshTokenName) {
+      Cookies.remove(this.refreshTokenName, {
+        domain: this.cookieDomain,
+        secure: this.cookieSecure,
+      });
+    }
   }
 
   /**
    * Remove Token from LocalStorage
    */
-  private removeRefreshToken(): void {
-    localStorage.removeItem(this.authStorageName);
-    localStorage.removeItem(this.authStorageTypeName);
-    localStorage.removeItem(this.stateStorageName);
+  private removeRefreshToken = (): void => {
+    if (this.isUsingRefreshToken && !!this.refreshTokenName) {
+      localStorage.removeItem(this.refreshTokenName);
+    }
   }
 }
 

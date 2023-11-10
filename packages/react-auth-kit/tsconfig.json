@@ -3,7 +3,7 @@
     "include": [
         "src/**/*.ts",
         "src/**/*.tsx"
-    ],
+, "../../examples/create-react-app-refresh-token/TokenObject.ts"    ],
     "compilerOptions": {
         "outDir": ".",
         "emitDeclarationOnly": true

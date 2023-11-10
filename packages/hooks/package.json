@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/hook",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.17",
   "description": "React Hooks support for react auth kit",
   "keywords": [
     "hook",
@@ -24,5 +24,5 @@
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
   },
-  "gitHead": "d29d7d65ef13ce1daebe4785400c9bc5cab06e02"
+  "gitHead": "6c4618ae048bee06214a382df54dc63e8378575f"
 }

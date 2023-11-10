@@ -7,8 +7,8 @@
  */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
-import {AuthKitError} from '../errors';
+import AuthContext from '../AuthContext';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -28,30 +28,29 @@ interface withAuthHeaderProps {
 function withAuthHeader<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
 ):React.FunctionComponent<P> {
+
+  const c = React.useContext(AuthContext);
+  if (c === null) {
+    throw new
+    AuthError('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
+
+  const {value} = c;
+
   return (props) => {
-    return (
-      <AuthContextConsumer>
-        {(c) => {
-          if (c === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
+    if (!!value.auth && isAuthenticated(value)) {
+      return (
+        <Component
+          {...props}
+          authHeader={
+            `${value.auth.type} ${value.auth.token}`
           }
-          if (c.authState.auth && isAuthenticated(c.authState)) {
-            return (
-              <Component
-                {...props}
-                authHeader={
-                  `${c.authState.auth.type} ${c.authState.auth.token}`
-                }
-              />
-            );
-          } else {
-            return <Component {...props} authHeader={``}/>;
-          }
-        }}
-      </AuthContextConsumer>
-    );
+        />
+      );
+    } else {
+      return <Component {...props} authHeader={``}/>;
+    }
   };
 }
 /**

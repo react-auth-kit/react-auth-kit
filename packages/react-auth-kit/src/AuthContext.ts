@@ -1,16 +1,18 @@
 /**
  * 
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Auth Context
+ * @fileoverview Auth Store
  * @copyright Arkadip Bhattacharya 2020
  *
  */
 
 import * as React from 'react';
-import {AuthContextInterface} from './types';
+import TokenObject from './RxTokenObject';
 
-const AuthContext = React.createContext<AuthContextInterface | null>(null);
+function getContext<T>(): React.Context<TokenObject<T>>{
+    return React.createContext<TokenObject<T>>(null as any);
+}
 
-const AuthContextConsumer = AuthContext.Consumer;
-export {AuthContextConsumer};
-export default AuthContext;
+export const AuthKitContext = getContext();
+
+export default AuthKitContext;

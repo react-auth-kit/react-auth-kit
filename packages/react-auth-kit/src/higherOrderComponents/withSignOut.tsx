@@ -7,9 +7,9 @@
  */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
+import AuthContext from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
-import {AuthKitError} from '../errors';
+import {AuthError} from '../errors';
 
 /**
  * @interface withSignOutProps
@@ -28,30 +28,30 @@ interface withSignOutProps {
 function withSignOut<P extends withSignOutProps>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
+
+  const context = React.useContext(AuthContext);
+  if (context === null) {
+    throw new
+    AuthError('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
+
+  const signOut = ():boolean => {
+    try {
+      if (context) {
+        context.set(doSignOut());
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
   return (props) => {
     return (
-      <AuthContextConsumer>
-        {(c) => {
-          if (c === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
-          }
-          const signOut = () => {
-            try {
-              if (c) {
-                c.dispatch(doSignOut());
-                return true;
-              } else {
-                return false;
-              }
-            } catch (e) {
-              return false;
-            }
-          };
-          return <Component {...props} signOut={signOut}/>;
-        }}
-      </AuthContextConsumer>
+      <Component {...props} signOut={signOut}/>
     );
   };
 }

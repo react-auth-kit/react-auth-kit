@@ -9,7 +9,7 @@ import * as React from 'react';
 import {useLocation, Navigate} from 'react-router-dom';
 import AuthContext from './AuthContext';
 import {doSignOut} from './utils/reducers';
-import {AuthKitError} from './errors';
+import {AuthError} from './errors';
 import {isAuthenticated} from './utils/utils';
 
 interface RequireAuthProps {
@@ -32,18 +32,18 @@ const RequireAuth: React.FunctionComponent<RequireAuthProps> =
     const context = React.useContext(AuthContext);
     if (context === null) {
       throw new
-      AuthKitError('Auth Provider is missing. ' +
+      AuthError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
     }
 
     const location = useLocation();
 
-    if (!isAuthenticated(context.authState)) {
+    if (!isAuthenticated(context.value)) {
       // Redirect them to the /login page, but save the current location they
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
-      context.dispatch(doSignOut());
+      context.set(doSignOut());
       return <Navigate to={loginPath} state={{from: location}} replace />;
     }
 

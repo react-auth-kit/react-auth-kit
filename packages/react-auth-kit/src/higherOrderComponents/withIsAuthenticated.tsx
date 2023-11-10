@@ -7,15 +7,15 @@
  */
 
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
-import {AuthKitError} from '../errors';
+import AuthContext from '../AuthContext';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
  * @interface withAuthHeaderProps
  */
 interface withAuthHeaderProps {
-    isAuth: string
+    isAuth: boolean
 }
 
 /**
@@ -28,23 +28,20 @@ interface withAuthHeaderProps {
 function withIsAuthenticated<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
+
+  const c = React.useContext(AuthContext);
+  if (c === null) {
+    throw new
+    AuthError('Auth Provider is missing. ' +
+      'Please add the AuthProvider before Router');
+  }
+
   return (props) => {
-    return (
-      <AuthContextConsumer>
-        {(c) => {
-          if (c === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
-          }
-          if (c.authState.auth && isAuthenticated(c.authState)) {
-            return <Component {...props} isAuth={true}/>;
-          } else {
-            return <Component {...props} isAuth={false}/>;
-          }
-        }}
-      </AuthContextConsumer>
-    );
+    if ( isAuthenticated(c.value)) {
+      return <Component {...props} isAuth={true}/>;
+    } else {
+      return <Component {...props} isAuth={false}/>;
+    }
   };
 }
 
