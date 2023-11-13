@@ -24,12 +24,40 @@ export function doSignIn<T>(signInParams: SignInActionPayload<T>): AuthKitSetSta
  */
 export function doRefresh<T>(refreshTokenParam: RefreshTokenActionPayload<T>):
   AuthKitSetState<T> {
-  return {
-    auth: {
-      token: refreshTokenParam.newAuthToken!,
-      type: 'Bearer'
+  
+  if(!!refreshTokenParam.newAuthToken){
+    let ret : AuthKitSetState<T>= {
+      auth: {
+        token: refreshTokenParam.newAuthToken!,
+        type: !!refreshTokenParam.newAuthTokenType ? refreshTokenParam.newAuthTokenType : 'Bearer',
+      }
+    };
+    if(!!refreshTokenParam.newAuthUserState){
+      ret = {
+        ...ret,
+        userState: refreshTokenParam.newAuthUserState
+      }
     }
-  };
+    if(!!refreshTokenParam.newRefreshToken){
+      ret = {
+        ...ret,
+        refresh: refreshTokenParam.newRefreshToken
+      }
+    }
+    return ret;
+  }
+  else if(!!refreshTokenParam.newRefreshToken){
+    let ret = {
+      refresh: refreshTokenParam.newRefreshToken
+    }
+    return ret;
+  }
+  else {
+    return {
+      auth: null,
+      refresh: null
+    }
+  }
 }
 
 /**

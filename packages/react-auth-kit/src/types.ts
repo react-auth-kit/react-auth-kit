@@ -6,16 +6,6 @@
  *
  */
 
-import * as React from 'react';
-// import { AuthActions } from './utils/actions';
-
-/**
- * Universal types
- */
-export type AuthStateUserObject = {
-  [x: string]: any;
-}
-
 export interface SignInActionPayload<T> {
   auth: {
     token: string,
@@ -26,8 +16,9 @@ export interface SignInActionPayload<T> {
 }
 
 export interface RefreshTokenActionPayload<T> {
-  newAuthToken: string | null,
-  newRefreshToken?: string | null,
+  newAuthToken?: string,
+  newAuthTokenType?: string,
+  newRefreshToken?: string,
   newAuthUserState?: T | null
 }
 
@@ -95,13 +86,11 @@ export type signInFunctionParams<T> = SignInActionPayload<T>
 /**
  * Refresh Token Callback Response
  */
-export type RefreshTokenCallbackResponse = {
+export type RefreshTokenCallbackResponse<T> = {
   isSuccess: boolean,
   newAuthToken: string,
-  newAuthTokenExpireIn?: number | null,
-  newRefreshToken?: string | null,
-  newRefreshTokenExpiresIn?: number | null,
-  newAuthUserState?: AuthStateUserObject | null,
+  newRefreshToken?: string,
+  newAuthUserState?: T | null,
 };
 
 /**
@@ -109,19 +98,17 @@ export type RefreshTokenCallbackResponse = {
  */
 // Callback function
 
-export type refreshTokenCallback = (param: {
+export type refreshTokenCallback<T> = (param: {
   authToken?: string,
-  authTokenExpireAt?: Date,
   refreshToken?: string,
-  refreshTokenExpiresAt?: Date,
-  authUserState: AuthStateUserObject | null,
-}) => Promise<RefreshTokenCallbackResponse>
+  authUserState: T | null,
+}) => Promise<RefreshTokenCallbackResponse<T>>
 
 // createRefresh function parameter
-export interface createRefreshParamInterface {
+export interface createRefreshParamInterface<T> {
   interval: number,
-  refreshApiCallback: refreshTokenCallback
+  refreshApiCallback: refreshTokenCallback<T>
 }
 
-export type refreshFunctionType = (param: createRefreshParamInterface)
-  => createRefreshParamInterface
+export type refreshFunctionType<T> = (param: createRefreshParamInterface<T>)
+  => createRefreshParamInterface<T>

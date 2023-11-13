@@ -11,16 +11,18 @@ import * as React from 'react';
 import AuthKitContext from './AuthContext';
 import TokenObject from './RxTokenObject';
 import { AuthError } from './errors';
+import {useInterval} from './utils/hooks';
 import type { createRefreshParamInterface } from './types';
+import { doRefresh } from './utils/reducers';
 
 // const ContextKey = Symbol.for(`react-redux-context`)
 // const gT: {[ContextKey]?: Map<typeof React.createContext, Context<ReactReduxContextValue>>} = 
 // (typeof globalThis !== "undefined" ? globalThis : /* fall back to a per-module scope (pre-8.1 behaviour) if `globalThis` is not available */ {}) as any; 
 
-interface AuthProviderProps {
+interface AuthProviderProps<T> {
   authType: 'cookie' | 'localstorage'
   authName: string,
-  refresh?: createRefreshParamInterface
+  refresh?: createRefreshParamInterface<T>
   cookieDomain?: string
   cookieSecure?: boolean
   children: React.ReactNode
@@ -44,7 +46,7 @@ function AuthProvider<T extends object>(
     cookieDomain,
     cookieSecure,
     refresh
-  }: AuthProviderProps
+  }: AuthProviderProps<T>
 ): ReturnType<React.FC> {
   if (authType === 'cookie') {
     if (!cookieDomain) {
@@ -64,6 +66,33 @@ function AuthProvider<T extends object>(
     cookieDomain,
     cookieSecure
   );
+
+  if (refresh) {
+    useInterval(
+        () => {
+          refresh
+            .refreshApiCallback({
+              authToken: tokenObject.value.auth?.token,
+              authUserState: tokenObject.value.userState,
+              refreshToken: tokenObject.value.refresh?.token
+            })
+            .then((result) => {
+              // IF the API call is successful then refresh the AUTH state
+              if (result.isSuccess) {
+                // store the new value using the state update
+                tokenObject.set(doRefresh(result));
+              }
+              else {
+                // do something in future
+              }
+            })
+            .catch(()=>{
+              // do something in future
+            });
+        },
+      tokenObject.value.isSignIn ? refresh.interval : null,
+    );
+  }
 
   return (
     // @ts-ignore 'AnyAction' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype

@@ -95,6 +95,36 @@ class TokenObject<T> {
     return this.authSubject.asObservable();
   }
 
+  /**
+   * 
+   * @param data 
+   * 
+   * LOGIC
+   * 
+   * data ------ new auth is present and not null ---------- new user state ----- Replace Auth and User state
+   *   |    |                                         |
+   *   |    |                                         |
+   *   |    |                                         ----- no new user state --- Replace only the Auth use old user state
+   *   |    |
+   *   |    |
+   *   |    ---- new auth is null ----------------------------------------------- Clean auth and userstate
+   *   |    |
+   *   |    |
+   *   |    ---- no new auth data present --------------------------------------- Do nothing use the old auth ans user state
+   *   |
+   *   |
+   *   --- is using refesh token is true --- new refresh is present is not null - Update the refresh token
+   *    |                                 |
+   *    |                                 |
+   *    |                                 -- new refresh is null ---------------- Clean refresh token
+   *    |                                 |
+   *    |                                 |
+   *    |                                 -- no new refresh --------------------- Do nothing use the old refresh
+   *    |
+   *    |
+   *    -- is using refresh token is false -------------------------------------- Do nothing use the old refrssh
+   * 
+   */
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
     let obj = this.value;
