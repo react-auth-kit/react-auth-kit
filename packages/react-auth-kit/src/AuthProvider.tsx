@@ -9,87 +9,63 @@
 
 import * as React from 'react';
 import AuthKitContext from './AuthContext';
-import TokenObject from './RxTokenObject';
-import { AuthError } from './errors';
-import {useInterval} from './utils/hooks';
-import type { createRefreshParamInterface } from './types';
+import type { createStoreReturn } from './createStore';
+import { useInterval } from './utils/hooks';
 import { doRefresh } from './utils/reducers';
 
-// const ContextKey = Symbol.for(`react-redux-context`)
-// const gT: {[ContextKey]?: Map<typeof React.createContext, Context<ReactReduxContextValue>>} = 
-// (typeof globalThis !== "undefined" ? globalThis : /* fall back to a per-module scope (pre-8.1 behaviour) if `globalThis` is not available */ {}) as any; 
-
+/**
+ * Props of the AuthProvider Component
+ */
 interface AuthProviderProps<T> {
-  authType: 'cookie' | 'localstorage'
-  authName: string,
-  refresh?: createRefreshParamInterface<T>
-  cookieDomain?: string
-  cookieSecure?: boolean
+  /**
+   * Auth Kit Store
+   */
+  store: createStoreReturn<T>
+  
+  /**
+   * React Component
+   * Effectively your entine application
+   */
   children: React.ReactNode
 }
 
 /**
- * AuthProvider - The Authentication Context Provider
- *
- * @param children
- * @param authStorageName
- * @param cookieDomain
- * @param cookieSecure
- *
- * @return Functional Component
+ * 
+ * @param param0 
+ * @returns 
  */
 function AuthProvider<T extends object>(
   {
+    store,
     children,
-    authType,
-    authName,
-    cookieDomain,
-    cookieSecure,
-    refresh
   }: AuthProviderProps<T>
 ): ReturnType<React.FC> {
-  if (authType === 'cookie') {
-    if (!cookieDomain) {
-      throw new
-        AuthError('authType \'cookie\' ' +
-          'requires \'cookieDomain\' and \'cookieSecure\' ' +
-          'props in AuthProvider');
-    }
-  }
 
-  const refreshTokenName = refresh ? `${authName}_refresh` : null;
+  const { tokenObject, refresh } = store;
 
-  const tokenObject = new TokenObject<T>(
-    authName,
-    authType,
-    refreshTokenName,
-    cookieDomain,
-    cookieSecure
-  );
-
-  if (refresh) {
+  if (!!refresh) {
     useInterval(
-        () => {
-          refresh
-            .refreshApiCallback({
-              authToken: tokenObject.value.auth?.token,
-              authUserState: tokenObject.value.userState,
-              refreshToken: tokenObject.value.refresh?.token
-            })
-            .then((result) => {
-              // IF the API call is successful then refresh the AUTH state
-              if (result.isSuccess) {
-                // store the new value using the state update
-                tokenObject.set(doRefresh(result));
-              }
-              else {
-                // do something in future
-              }
-            })
-            .catch(()=>{
+      () => {
+        refresh
+          .refreshApiCallback({
+            authToken: tokenObject.value.auth?.token,
+            authUserState: tokenObject.value.userState,
+            refreshToken: tokenObject.value.refresh?.token
+          })
+          .then((result) => {
+            // IF the API call is successful then refresh the AUTH state
+            if (result.isSuccess) {
+              // store the new value using the state update
+              tokenObject.set(doRefresh(result));
+            }
+            else {
               // do something in future
-            });
-        },
+            }
+          })
+          .catch(() => {
+            // do something in future
+          });
+      },
       tokenObject.value.isSignIn ? refresh.interval : null,
     );
   }
