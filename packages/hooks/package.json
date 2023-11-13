@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/hook",
-  "version": "3.0.0-alpha.17",
+  "version": "3.0.0-alpha.36",
   "description": "React Hooks support for react auth kit",
   "keywords": [
     "hook",
