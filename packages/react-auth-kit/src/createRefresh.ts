@@ -14,8 +14,8 @@ import {createRefreshParamInterface} from './types';
  * it's just help to organize the code base
  * Use this function to create the refresh token system
  */
-function createRefresh(param: createRefreshParamInterface)
-  :createRefreshParamInterface {
+function createRefresh<T>(param: createRefreshParamInterface<T>)
+  :createRefreshParamInterface<T> {
   return param;
 }
 
