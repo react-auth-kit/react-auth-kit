@@ -10,26 +10,26 @@ import {isAuthenticated} from '../utils/utils';
  * Call the hook,
  * when you want to know if the user is authenticated or not
  *
- * This uses the context data to determine whether the user is authenticated 
+ * This uses the context data to determine whether the user is authenticated
  * or not.
- * 
+ *
  * @example
  * ```js
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
- * 
+ *
  * const Component = () => {
  *  const isAuthenticated = useIsAuthenticated()
  *  if (isAuthenticated()) {
  *    // user authenticated - do somthing
  *  }
  *  else {
- *    // user not authenticated 
+ *    // user not authenticated
  *  }
  * ```
  *
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
- * 
+ *
  * @returns React Hook with Authtication status Functionility.
  */
 function useIsAuthenticated(): ()=>boolean {
@@ -37,8 +37,8 @@ function useIsAuthenticated(): ()=>boolean {
   if (context === null) {
     throw new
     AuthError(
-      'Auth Provider is missing. ' +
-      'Make sure, you are using this hook inside the auth provider.'
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this hook inside the auth provider.',
     );
   }
   /**

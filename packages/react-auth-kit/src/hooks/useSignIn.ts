@@ -14,7 +14,7 @@ import {AuthError} from '../errors';
  * Also, this will call the rx engine to store the auth into into the storage
  *
  * @typeParam T - Type of User State Object
- * 
+ *
  * @example
  * Here's a an example without refresh token:
  * ```js
@@ -68,13 +68,13 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   if (context === null) {
     throw new
     AuthError(
-      'Auth Provider is missing. ' +
-      'Make sure, you are using this hook inside the auth provider.'
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this hook inside the auth provider.',
     );
   }
   /**
-   * 
-   * @param signInConfig - Parameters to perform sign in 
+   *
+   * @param signInConfig - Parameters to perform sign in
    * ```js
    * {
    *  auth: {

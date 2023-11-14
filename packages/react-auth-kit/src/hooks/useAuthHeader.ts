@@ -19,8 +19,8 @@ function useAuthHeader(): () => (string) {
   if (c === null) {
     throw new
     AuthError(
-      'Auth Provider is missing. ' +
-      'Make sure, you are using this hook inside the auth provider.'
+        'Auth Provider is missing. ' +
+      'Make sure, you are using this hook inside the auth provider.',
     );
   }
 
