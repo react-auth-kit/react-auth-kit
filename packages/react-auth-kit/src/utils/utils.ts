@@ -1,4 +1,15 @@
-import {AuthKitStateInterface} from '../types';
+/**
+ * @packageDocumentation
+ *
+ * Utility Module
+ *
+ * It contains all the utility functions
+ *
+ */
+
+import {
+  AuthKitStateInterface,
+} from '../types';
 
 /**
  *
