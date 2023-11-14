@@ -32,8 +32,10 @@ function withSignIn<T, P extends withSignInProps<T>>(
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
   }
 
   const signIn = (signInConfig: signInFunctionParams<T>): boolean => {

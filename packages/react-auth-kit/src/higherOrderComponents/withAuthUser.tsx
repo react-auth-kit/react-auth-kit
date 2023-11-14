@@ -30,8 +30,10 @@ function withAuthUser<T, P extends withAuthStateProps<T>>(
   const c = React.useContext(AuthContext);
   if (c === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
   }
 
   return (props: P)=>{

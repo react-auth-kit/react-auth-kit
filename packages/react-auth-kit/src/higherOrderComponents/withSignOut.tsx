@@ -1,21 +1,11 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Sign Out functionality <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
 import {AuthError} from '../errors';
 
-/**
- * @interface withSignOutProps
- */
+
 interface withSignOutProps {
-    signOut(): boolean
+  signOut(): boolean
 }
 
 /**
@@ -31,8 +21,10 @@ function withSignOut<P extends withSignOutProps>(
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
   }
 
   const signOut = ():boolean => {
