@@ -72,6 +72,19 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
       'Make sure, you are using this hook inside the auth provider.'
     );
   }
+  /**
+   * 
+   * @param signInConfig - Parameters to perform sign in 
+   * ```js
+   * {
+   *  auth: {
+   *    token: '<jwt token>'
+   *  },
+   *  userState: {name: 'React User', uid: 123456},
+   *  refresh: <refresh jwt token>
+   * }
+   * ```
+   */
   return (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token
