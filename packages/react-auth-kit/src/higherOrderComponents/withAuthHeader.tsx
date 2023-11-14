@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Authentication header <Higher Order Component>
  * @copyright Arkadip Bhattacharya 2020
- * 
+ *
  */
 
 import * as React from 'react';
@@ -28,7 +28,6 @@ interface withAuthHeaderProps {
 function withAuthHeader<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
 ):React.FunctionComponent<P> {
-
   const c = React.useContext(AuthContext);
   if (c === null) {
     throw new

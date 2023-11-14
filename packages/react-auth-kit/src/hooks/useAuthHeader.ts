@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Authentication header <hook>
  * @copyright Arkadip Bhattacharya 2020
- * 
+ *
  */
 
 import * as React from 'react';

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Sign Out functionality <Hook>
  * @copyright Arkadip Bhattacharya 2020

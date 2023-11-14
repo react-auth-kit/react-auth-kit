@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Sign In functionality <Higher Order Component>
  * @copyright Arkadip Bhattacharya 2020
- * 
+ *
  */
 
 import * as React from 'react';
@@ -29,7 +29,6 @@ interface withSignInProps<T> {
 function withSignIn<T, P extends withSignInProps<T>>(
     Component: React.ComponentType<P>,
 ):React.FunctionComponent<P> {
-
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
@@ -40,7 +39,7 @@ function withSignIn<T, P extends withSignInProps<T>>(
   const signIn = (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token
-      if (!!signInConfig.refresh) {
+      if (signInConfig.refresh) {
         // refresh token params are provided
         // sign in with refresh token
         context.set(doSignIn(signInConfig));
@@ -53,7 +52,7 @@ function withSignIn<T, P extends withSignInProps<T>>(
       }
     } else {
       // Not using refresh token
-      if (!!signInConfig.refresh) {
+      if (signInConfig.refresh) {
         // params are not expected but provided
         // throw an error
         throw new Error('The app doesn\'t implement \'refreshToken\' ' +
@@ -69,7 +68,7 @@ function withSignIn<T, P extends withSignInProps<T>>(
 
   return (props) => {
     return (
-      <Component {...props} signIn={signIn}/>    
+      <Component {...props} signIn={signIn}/>
     );
   };
 }

@@ -12,22 +12,24 @@ module.exports = {
   ],
   'parser': '@typescript-eslint/parser',
   'parserOptions': {
-    'ecmaFeatures': {
-      'jsx': true,
-    },
-    'ecmaVersion': 12,
-    'sourceType': 'module',
+    'project': './tsconfig.test.json',
+    'tsconfigRootDir': __dirname,
+    'ecmaVersion': 2018,
+    'sourceType': 'module'
   },
   'plugins': [
     'react',
     '@typescript-eslint',
+    'eslint-plugin-tsdoc'
   ],
   'settings': {
     'react': {
       'version': 'detect',
     }
   },
+
   'rules': {
+    'tsdoc/syntax': 'warn',
     'react/prop-types': 0,
     'react/display-name': 0,
     "react/react-in-jsx-scope": "off",

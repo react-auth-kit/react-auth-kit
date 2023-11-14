@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Sign In functionality <hook>
  * @copyright Arkadip Bhattacharya 2020
@@ -29,7 +29,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   return (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token
-      if (!!signInConfig.refresh) {
+      if (signInConfig.refresh) {
         // refresh token params are provided
         // sign in with refresh token
         context.set(doSignIn(signInConfig));
@@ -42,7 +42,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
       }
     } else {
       // Not using refresh token
-      if (!!signInConfig.refresh) {
+      if (signInConfig.refresh) {
         // params are not expected but provided
         // throw an error
         throw new Error('The app doesn\'t implement \'refreshToken\' ' +

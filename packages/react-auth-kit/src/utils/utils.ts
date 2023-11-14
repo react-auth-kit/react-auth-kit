@@ -11,7 +11,7 @@ import {AuthKitStateInterface} from '../types';
   * It the state is not NULL, it checks the expires time.
   */
 function isAuthenticated<T>(auth: AuthKitStateInterface<T>) : boolean {
-  if (!!auth.auth) {
+  if (auth.auth) {
     return new Date(auth.auth.expiresAt) > new Date();
   }
   return false;

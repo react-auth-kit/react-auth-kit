@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Authentication User <hook>
  * @copyright Arkadip Bhattacharya 2020
- * 
+ *
  */
 
 import * as React from 'react';
@@ -23,7 +23,7 @@ function useAuthUser<T>(): () => T | null {
     AuthError('Auth Provider is missing. ' +
       'Please add the AuthProvider before Router');
   }
-  // @ts-ignore 
+  // @ts-ignore
   return () => {
     if (isAuthenticated(context.value)) {
       return context.value.userState;

@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Authentication User <Higher Order Component>
  * @copyright Arkadip Bhattacharya 2020
- * 
+ *
  */
 
 import * as React from 'react';
@@ -27,7 +27,6 @@ interface withAuthStateProps<T> {
 function withAuthUser<T, P extends withAuthStateProps<T>>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
-
   const c = React.useContext(AuthContext);
   if (c === null) {
     throw new

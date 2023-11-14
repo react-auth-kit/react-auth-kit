@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Sign Out functionality <Higher Order Component>
  * @copyright Arkadip Bhattacharya 2020
- * 
+ *
  */
 
 import * as React from 'react';
@@ -28,7 +28,6 @@ interface withSignOutProps {
 function withSignOut<P extends withSignOutProps>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
-
   const context = React.useContext(AuthContext);
   if (context === null) {
     throw new
@@ -47,7 +46,7 @@ function withSignOut<P extends withSignOutProps>(
     } catch (e) {
       return false;
     }
-  }
+  };
 
   return (props) => {
     return (

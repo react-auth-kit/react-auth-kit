@@ -2,7 +2,7 @@
     "extends": "../../tsconfig.base.json",
     "include": [
         "src/**/*.ts",
-        "src/**/*.tsx"
+        "src/**/*.tsx",
     ],
     "compilerOptions": {
         "outDir": ".",
@@ -12,6 +12,5 @@
         "node_modules",
         "dist",
         "types",
-        "*/__tests__/*"
     ]
 }
