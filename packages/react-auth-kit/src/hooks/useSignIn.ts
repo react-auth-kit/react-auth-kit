@@ -67,8 +67,10 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   const context = useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-      'Make sure, you are using this hook inside the auth provider');
+    AuthError(
+      'Auth Provider is missing. ' +
+      'Make sure, you are using this hook inside the auth provider.'
+    );
   }
   return (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {

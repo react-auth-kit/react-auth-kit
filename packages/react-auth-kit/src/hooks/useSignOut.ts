@@ -44,8 +44,10 @@ function useSignOut(): () => (boolean) {
   const context = useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-        'Please add the AuthProvider before Router');
+    AuthError(
+      'Auth Provider is missing. ' +
+      'Make sure, you are using this hook inside the auth provider.'
+    );
   }
 
   return () => {

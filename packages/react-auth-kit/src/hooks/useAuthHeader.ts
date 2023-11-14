@@ -18,8 +18,10 @@ function useAuthHeader(): () => (string) {
   const c = React.useContext(AuthContext);
   if (c === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+      'Auth Provider is missing. ' +
+      'Make sure, you are using this hook inside the auth provider.'
+    );
   }
 
 

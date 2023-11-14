@@ -1,27 +1,18 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Authentication status <hook>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
 
-import * as React from 'react';
+import {useContext} from 'react';
 import AuthContext from '../AuthContext';
 import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
-/**
-  *@function
-  *@name useIsAuthenticated
-  *@description check weather user is authenticated or not
-  */
+
 function useIsAuthenticated(): ()=>boolean {
-  const context = React.useContext(AuthContext);
+  const context = useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+      'Auth Provider is missing. ' +
+      'Make sure, you are using this hook inside the auth provider.'
+    );
   }
   return () => {
     if (!isAuthenticated(context.value)) {
@@ -31,7 +22,5 @@ function useIsAuthenticated(): ()=>boolean {
     }
   };
 }
-/**
-  *@exports useIsAuthenticated
-  */
+
 export default useIsAuthenticated;
