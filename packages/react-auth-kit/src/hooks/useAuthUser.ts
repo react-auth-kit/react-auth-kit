@@ -1,23 +1,54 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Authentication User <hook>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
-import * as React from 'react';
+import {useContext} from 'react';
 import AuthContext from '../AuthContext';
 import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
- * Auth State Hook
+ * Auth User Data React Hook
  *
- * @returns - Auth State Function
+ * Call the hook,
+ * to get the authenticated user data into your React Component
+ *
+ * This uses the context data to determine get the user data
+ *
+ * @example
+ * Here is the example for JavaScript
+ * ```js
+ * import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+ *
+ * const Component = () => {
+ *  const authUser = useAuthUser()
+ *  const name = authUser.name;
+ *  const uuid = authUser.uuid;
+ *  ...
+ * }
+ * ```
+ * Here is the example for TypeScript
+ * ```tsx
+ * import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+ *
+ * interface IUserData {
+ *  name: string;
+ *  uuid: string;
+ * };
+ *
+ * const Component = () => {
+ *  const authUser = useAuthUser<IUserData>()
+ *  const name = authUser.name;
+ *  const uuid = authUser.uuid;
+ *  ...
+ * }
+ * ```
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ *
+ * @returns React Hook with user state functionility.
+ * If the user is authenticated, then user data is returned.
+ * If the user is not authenticated, then `null` is ruturned.
  */
-function useAuthUser<T>(): () => T | null {
-  const context = React.useContext(AuthContext);
+function useAuthUser<T>(): T | null {
+  const context = useContext(AuthContext);
   if (context === null) {
     throw new
     AuthError(
@@ -25,15 +56,13 @@ function useAuthUser<T>(): () => T | null {
         'Make sure, you are using this hook inside the auth provider.',
     );
   }
-  // @ts-ignore
-  return () => {
-    if (isAuthenticated(context.value)) {
-      return context.value.userState;
-    } else {
-      // TODO: Need to signout and redirect to login
-      return null;
-    }
-  };
+
+  if (isAuthenticated(context.value)) {
+    return context.value.userState as T;
+  } else {
+    // TODO: Need to signout and redirect to login
+    return null;
+  }
 }
 
 export default useAuthUser;
