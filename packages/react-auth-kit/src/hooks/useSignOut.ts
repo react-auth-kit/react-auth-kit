@@ -1,32 +1,51 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Sign Out functionality <Hook>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
+import {useContext} from 'react';
 
-import * as React from 'react';
 import AuthContext from '../AuthContext';
-import {doSignOut} from '../utils/reducers';
 import {AuthError} from '../errors';
+import {doSignOut} from '../utils/reducers';
 
 /**
-  *@public
-  *@function
-  *@name useSignOut
-  *@description Sign out Hook
-  */
+ * Sign Out React Hook
+ *
+ * Call the hook,
+ * when you want to sign out and delete all the auth state
+ *
+ * This will remove the authState from memory and
+ * also remove the stored data from cookie or localstorage
+ *
+ * @example
+ * Here's a simple example:
+ * ```js
+ * import useSignOut from 'react-auth-kit/hooks/useSignOut'
+ *
+ * const SecureComponent = () => {
+ *   const signOut = useSignOut()
+ *   return (
+ *     <button onClick={() => signOut()}>Sign Out!</button>
+ *   )
+ * }
+ * ```
+ * @remarks
+ * For Now, this hook doesn't redirects automatically.
+ * So one need to writw the redirect logic himself.
+ *
+ * ```js
+ * const signOut = useSignOut()
+ * signOut()
+ * navigate('/login')
+ * ```
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope
+ *
+ * @returns React Hook with SignOut Functionility
+ */
 function useSignOut(): () => (boolean) {
-  /**
-   *A constant c.
-   *@kind constant
-   */
-  const context = React.useContext(AuthContext);
+  const context = useContext(AuthContext);
   if (context === null) {
     throw new
     AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+        'Please add the AuthProvider before Router');
   }
 
   return () => {
@@ -42,7 +61,5 @@ function useSignOut(): () => (boolean) {
     }
   };
 }
-/**
-  *@exports useSignOut
-  */
+
 export default useSignOut;
