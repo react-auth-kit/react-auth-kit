@@ -13,6 +13,8 @@ import {AuthError} from '../errors';
  * This will authenticate the user by writing the uer state into the mamory
  * Also, this will call the rx engine to store the auth into into the storage
  *
+ * @typeParam T - Type of User State Object
+ * 
  * @example
  * Here's a an example without refresh token:
  * ```js
