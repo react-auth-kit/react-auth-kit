@@ -8,7 +8,7 @@ import {AuthError} from '../errors';
  */
 interface withSignOutProps {
   /**
-   * 
+   *
    */
   signOut(): boolean
 }
@@ -16,16 +16,16 @@ interface withSignOutProps {
 /**
  * @deprecated Higher-order components are not commonly used in
  * modern React code, use Hooks instead
- * 
+ *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
  * the `signOut` function into the class based component props.
- * 
- * Call the `signOut` function in the prop 
+ *
+ * Call the `signOut` function in the prop
  * to sign out and delete all the auth state
  *
  * This will remove the authState from memory and
  * also remove the stored data from cookie or localstorage
- * 
+ *
  * @example
  * Here's a simple example:
  * ```js
@@ -39,7 +39,7 @@ interface withSignOutProps {
  * For Now, this hook doesn't redirects automatically.
  * So one need to writw the redirect logic himself.
  *
- * 
+ *
  * @param Component - React Class based Component
  * @returns React Higher Order Component with injected `signOut` prop
  */

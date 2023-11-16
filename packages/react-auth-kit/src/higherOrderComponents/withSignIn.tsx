@@ -9,9 +9,9 @@ import {AuthError} from '../errors';
  */
 interface withSignInProps<T> {
   /**
-   * 
+   *
    * Sign in Function, that signs in the user
-   * 
+   *
    * @param signInConfig - @param signInConfig - Parameters to perform sign in
    * ```js
    * {
@@ -28,16 +28,16 @@ interface withSignInProps<T> {
 /**
  * @deprecated Higher-order components are not commonly used in
  * modern React code, use Hooks instead
- * 
+ *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
  * the `signIn` function into the class based component props.
- * 
+ *
  * Call the `signIn` function in the prop
  * to sign In and authenticate the user
  *
  * This will authenticate the user by writing the uer state into the mamory
  * Also, this will call the rx engine to store the auth into into the storage
- * 
+ *
  * @example
  * Here is an example without refresh token:
  * ```jsx
@@ -51,7 +51,7 @@ interface withSignInProps<T> {
  * }
  * export default withSignIn(MyComponent);
  * ```
- * 
+ *
  * Here is an example with refresh token:
  * ```jsx
  * class MyComponent extends React.Component {
@@ -65,9 +65,9 @@ interface withSignInProps<T> {
  * }
  * export default withSignIn(MyComponent);
  * ```
- * 
+ *
  * @typeParam T - Type of User State Object
- * 
+ *
  * @param Component - React Class based Component
  * @returns React Higher Order Component with injected `signIn` prop
  */

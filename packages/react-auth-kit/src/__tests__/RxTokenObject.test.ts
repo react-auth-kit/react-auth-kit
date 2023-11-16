@@ -16,10 +16,26 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': false, 'refresh': null, 'userState': null});
+    expect(tokenObject.value).toMatchObject(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': false,
+          'refresh': null,
+          'userState': null,
+        },
+    );
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': false, 'refresh': null, 'userState': null});
+    expect(subscriber).toHaveBeenCalledWith(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': false,
+          'refresh': null,
+          'userState': null,
+        },
+    );
   });
 
   it('No Existing Local Storage is there', () => {
@@ -34,10 +50,26 @@ describe('Initial Value [Without Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': false, 'refresh': null, 'userState': null});
+    expect(tokenObject.value).toMatchObject(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': false,
+          'refresh': null,
+          'userState': null,
+        },
+    );
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': false, 'refresh': null, 'userState': null});
+    expect(subscriber).toHaveBeenCalledWith(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': false,
+          'refresh': null,
+          'userState': null,
+        },
+    );
   });
 
   describe('Existing Cookies are there', () => {
@@ -53,7 +85,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Cookies are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'+
+      '.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIi'+
+      'wiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
       Cookies.set('__', token);
 
       const subscriber = jest.fn();
@@ -127,7 +161,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Auth Cookie JWT has no iat param', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZ'+
+      'p5JYIgP_edcw_A';
       Cookies.set('__', token);
 
       expect(Cookies.get('__')).toBe(token);
@@ -167,7 +203,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Auth Cookie was expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+      'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE'+
+      '-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       Cookies.set('__', token);
 
       const subscriber = jest.fn();
@@ -216,7 +254,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Local Storage are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.'+
+      'E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
       localStorage.setItem('__', token);
 
       const subscriber = jest.fn();
@@ -291,7 +331,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Auth Local Storage JWT has no iat param', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp'+
+      '5JYIgP_edcw_A';
       localStorage.setItem('__', token);
 
       const subscriber = jest.fn();
@@ -328,7 +370,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Auth Localstorage was expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-'+
+      'aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       localStorage.setItem('__', token);
 
       const subscriber = jest.fn();
@@ -378,10 +422,24 @@ describe('Initial Value [With Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': true, 'refresh': null, 'userState': null});
+    expect(tokenObject.value).toMatchObject(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': true,
+          'refresh': null,
+          'userState': null,
+        },
+    );
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': true, 'refresh': null, 'userState': null});
+    expect(subscriber).toHaveBeenCalledWith(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': true, 'refresh': null, 'userState': null,
+        },
+    );
   });
 
   it('No Existing Local Storage is there', () => {
@@ -396,10 +454,26 @@ describe('Initial Value [With Refresh Token]', () => {
 
     tokenObject.subscribe(subscriber);
 
-    expect(tokenObject.value).toMatchObject({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': true, 'refresh': null, 'userState': null});
+    expect(tokenObject.value).toMatchObject(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': true,
+          'refresh': null,
+          'userState': null,
+        },
+    );
     expect(subscriber).toBeCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
-    expect(subscriber).toHaveBeenCalledWith({'auth': null, 'isSignIn': false, 'isUsingRefreshToken': true, 'refresh': null, 'userState': null});
+    expect(subscriber).toHaveBeenCalledWith(
+        {
+          'auth': null,
+          'isSignIn': false,
+          'isUsingRefreshToken': true,
+          'refresh': null,
+          'userState': null,
+        },
+    );
   });
 
   describe('Existing Cookies are there', () => {
@@ -416,10 +490,14 @@ describe('Initial Value [With Refresh Token]', () => {
     });
 
     it('Existing Cookies are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxM'+
+      'jM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.'+
+      'E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdW'+
+      'IiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODY'+
+      'zfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -467,11 +545,14 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Cookie is not a proper JWT but Refresh Token is a proper JWT', () => {
+    it('Existing Auth Cookie is not a proper JWT but Refresh'+
+    ' Token is a proper JWT', () => {
       const token = 'tampered_';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
+      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.'+
+      'pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -516,11 +597,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Cookie JWT has no iat param but Refresh Token is a proper JWT', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+    it('Existing Auth Cookie JWT has no iat param but Refresh'+
+    ' Token is a proper JWT', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYI'+
+      'gP_edcw_A';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
+      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.';
+      'pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -611,11 +697,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Cookie and Refresh Cookies JWT both are not have iat param', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+    it('Existing Auth Cookie and Refresh Cookies JWT both'+
+    ' are not have iat param', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+      'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5'+
+      'JYIgP_edcw_A';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
+      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfe'+
+      'akZp5JYIgP_edcw_A';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -657,11 +748,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Cookie was already expired but Refresh Cookie is not expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+    it('Existing Auth Cookie was already expired but Refresh'+
+    ' Cookie is not expired', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7t'+
+      'O7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
+      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXp'+
+      'DIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -706,10 +802,14 @@ describe('Initial Value [With Refresh Token]', () => {
     });
 
     it('Existing Auth Cookie and Refresh Cookie were already expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-a'+
+      'Rz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJb'+
+      'NAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -765,10 +865,14 @@ describe('Initial Value [With Refresh Token]', () => {
     });
 
     it('Existing Local Storage are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NT'+
+      'Y3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHP'+
+      'EnC8XmukxiRRcAIo31U9wWW99RVQumA';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
+      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpD'+
+      'IqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -814,11 +918,14 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Token is not a proper JWT but Refresh Token is a proper JWT', () => {
+    it('Existing Auth Token is not a proper JWT but'+
+    ' Refresh Token is a proper JWT', () => {
       const token = 'tampered_';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
+      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDI'+
+      'qK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -861,11 +968,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Token JWT has no iat param but Refresh Token is a proper JWT', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+    it('Existing Auth Token JWT has no iat param but Refresh'+
+    ' Token is a proper JWT', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+      'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5'+
+      'JYIgP_edcw_A';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
+      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDI'+
+      'qK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -952,11 +1064,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Token and Refresh Token JWT are not have iat param', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+    it('Existing Auth Token and Refresh Token JWT'+
+    ' are not have iat param', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JY'+
+      'IgP_edcw_A';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
+      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfe'+
+      'akZp5JYIgP_edcw_A';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -996,11 +1113,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Token was already expired but Refresh Token is not expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+    it('Existing Auth Token was already expired but Refresh '+
+    'Token is not expired', () => {
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO'+
+      '7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
+      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDI'+
+      'qK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -1043,10 +1165,14 @@ describe('Initial Value [With Refresh Token]', () => {
     });
 
     it('Existing Auth Token and Refresh Token were already expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7t'+
+      'O7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
+      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-'+
+      'aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -1089,10 +1215,15 @@ describe('Initial Value [With Refresh Token]', () => {
 
 // describe('Set New Value [Without Refresh Token]', () => {
 //   describe('No existing Value is present [Using Cookie]', () => {
-//     const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+//     const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdW'+
+//     'IiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA'+
+//     '1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
 //     const old_exp = 8008605195;
 
-//     const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxMTE2NDY0ODI1NiwiZXhwIjoxMTE2NDY0ODI1Nn0.FZ5Fhw9izxIR2lQMI3LYOP_Bnfo16289V5ZW5_o2dcM';
+//     const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWI'+
+//     'iOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxMTE2NDY0O'+
+//     'DI1NiwiZXhwIjoxMTE2NDY0ODI1Nn0.FZ5Fhw9izxIR2lQMI3LYOP_Bnfo1628'+
+//     '9V5ZW5_o2dcM';
 //     const new_exp = 11164648256;
 
 //     beforeEach(() => {
