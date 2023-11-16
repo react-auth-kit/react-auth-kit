@@ -7,7 +7,9 @@ import {isAuthenticated} from '../utils/utils';
  * Auth Header React Hook
  *
  * Call the hook,
- * to get the auth header in the format `type token` for network request
+ * to get the auth header for network request
+ * 
+ * **Format: `type token` (authType-space-authToken)**
  *
  * @example
  * Here is a simple example

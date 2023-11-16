@@ -1,29 +1,41 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Authentication header <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
- * @interface withAuthHeaderProps
+ * Type of the properties, that are injected to the component
  */
 interface withAuthHeaderProps {
-    authHeader: string
+  /**
+   * The string which contains the auth header for the network requests
+   * 
+   * Format: `type token`
+   */
+  authHeader: string
 }
 
 /**
- * @public
- * @function
- * @name withAuthHeader
- * @description Inject Authentication Header inside the Component's Prop
- * @param Component - React Component
+ * React {@link https://hoc | HOC} that injects the auth header into
+ * the class based component propes
+ * 
+ * **Format: `type token` (authType-space-authToken)**
+ * 
+ * ```tsx
+ * class MyComponent extends React.Component {
+ *  render() {
+ *    return <h1>Hello, {this.props.authHeader}</h1>;
+ *  }
+ * }
+ * export default withAuthHeader(MyComponent);
+ * 
+ * ```
+ * 
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ * 
+ * @param Component - React Class based Component with injected `authHeader`
+ * @returns React Higher Order Component
  */
 function withAuthHeader<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
