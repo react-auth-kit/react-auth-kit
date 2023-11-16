@@ -16,7 +16,8 @@ interface withAuthHeaderProps {
 }
 
 /**
- * @deprecated
+ * @deprecated - Higher-order components are not commonly used in
+ * modern React code, use Hooks instead
  *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the auth header into
  * the class based component props
@@ -36,7 +37,7 @@ interface withAuthHeaderProps {
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
  *
- * @param Component - React Class based Component with injected `authHeader`
+ * @param Component - React Class based Component
  * @returns React Higher Order Component with injected `authHeader` proe
  */
 function withAuthHeader<P extends withAuthHeaderProps>(
