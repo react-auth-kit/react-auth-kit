@@ -16,7 +16,7 @@ interface withAuthHeaderProps {
 }
 
 /**
- * @deprecated - Higher-order components are not commonly used in
+ * @deprecated Higher-order components are not commonly used in
  * modern React code, use Hooks instead
  *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the auth header into
@@ -69,7 +69,5 @@ function withAuthHeader<P extends withAuthHeaderProps>(
     }
   };
 }
-/**
-  *@exports withAuthHeader
-  */
+
 export default withAuthHeader;

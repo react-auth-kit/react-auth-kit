@@ -7,8 +7,7 @@ import {isAuthenticated} from '../utils/utils';
 /**
  * Is Authenticated React Hook
  *
- * Call the hook,
- * when you want to know if the user is authenticated or not
+ * Call the hook to know if the user is authenticated or not
  *
  * This uses the context data to determine whether the user is authenticated
  * or not.

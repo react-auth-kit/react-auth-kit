@@ -1,11 +1,11 @@
-import { useRef, useEffect } from 'react';
-import type { MutableRefObject } from 'react';
+import {useRef, useEffect} from 'react';
+import type {MutableRefObject} from 'react';
 /**
- * 
+ *
  * React Hook to use the `setInterval` in the component
- * 
+ *
  * @internal
- * 
+ *
  * @param callback - The function that will be called on each interval
  * @param delay - The delay on which the callback function is called
  * @returns - The Reference of the `setInterval` function

@@ -7,8 +7,7 @@ import {AuthError} from '../errors';
 /**
  * Sign In React Hook
  *
- * Call the hook,
- * when you want to sign In and authenticate the user
+ * Call the hook to sign In and authenticate the user
  *
  * This will authenticate the user by writing the uer state into the mamory
  * Also, this will call the rx engine to store the auth into into the storage
@@ -98,7 +97,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
         // throw an error
         throw new AuthError(
             'This appication is using refresh token feature.'+
-          ' So please include `refresh` param in the parameters',
+            ' So please include `refresh` param in the parameters',
         );
       }
     } else {
@@ -106,11 +105,11 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
       if (signInConfig.refresh) {
         // params are not expected but provided
         // throw an error
-        throw new Error(
+        throw new AuthError(
             'This appication is not using refresh token feature.'+
-          ' So please remove the `refresh` param in the parameters.'+
-          ' In Case you want to use refresh token feature,'+
-          ' make sure you added that while creating the store.',
+            ' So please remove the `refresh` param in the parameters.'+
+            ' In Case you want to use refresh token feature,'+
+            ' make sure you added that while creating the store.',
         );
       } else {
         // sign in without the refresh token

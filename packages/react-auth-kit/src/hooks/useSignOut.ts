@@ -7,8 +7,7 @@ import {doSignOut} from '../utils/reducers';
 /**
  * Sign Out React Hook
  *
- * Call the hook,
- * when you want to sign out and delete all the auth state
+ * Call the hook to sign out and delete all the auth state
  *
  * This will remove the authState from memory and
  * also remove the stored data from cookie or localstorage

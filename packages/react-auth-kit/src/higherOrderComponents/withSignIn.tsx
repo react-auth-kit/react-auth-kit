@@ -1,11 +1,3 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Sign In functionality <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
@@ -13,18 +5,71 @@ import {doSignIn} from '../utils/reducers';
 import {AuthError} from '../errors';
 
 /**
- * @interface withSignInProps
+ * Type of the React props, that are injected to the component
  */
 interface withSignInProps<T> {
-    signIn(signInConfig: signInFunctionParams<T>): boolean
+  /**
+   * 
+   * Sign in Function, that signs in the user
+   * 
+   * @param signInConfig - @param signInConfig - Parameters to perform sign in
+   * ```js
+   * {
+   *  auth: {
+   *    token: '<jwt token>'
+   *  },
+   *  userState: {name: 'React User', uid: 123456},
+   *  refresh: <refresh jwt token>
+   * }
+   * ```
+   */
+  signIn(signInConfig: signInFunctionParams<T>): boolean
 }
-
 /**
- * @public
- * @function
- * @name withSignIn
- * @description Inject sign in functionality inside the Component's Prop
- * @param Component
+ * @deprecated Higher-order components are not commonly used in
+ * modern React code, use Hooks instead
+ * 
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
+ * the `signIn` function into the class based component props.
+ * 
+ * Call the `signIn` function in the prop
+ * to sign In and authenticate the user
+ *
+ * This will authenticate the user by writing the uer state into the mamory
+ * Also, this will call the rx engine to store the auth into into the storage
+ * 
+ * @example
+ * Here is an example without refresh token:
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  this.props.signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456}
+ *  })
+ * }
+ * export default withSignIn(MyComponent);
+ * ```
+ * 
+ * Here is an example with refresh token:
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  this.props.signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456},
+ *    refresh: <refresh jwt token>
+ *  }),
+ * }
+ * export default withSignIn(MyComponent);
+ * ```
+ * 
+ * @typeParam T - Type of User State Object
+ * 
+ * @param Component - React Class based Component
+ * @returns React Higher Order Component with injected `signIn` prop
  */
 function withSignIn<T, P extends withSignInProps<T>>(
     Component: React.ComponentType<P>,
@@ -49,17 +94,22 @@ function withSignIn<T, P extends withSignInProps<T>>(
       } else {
         // refresh token params are not provided
         // throw an error
-        throw new AuthError('Make sure you given "refreshToken" and  ' +
-          '"refreshTokenExpireIn" parameter');
+        throw new AuthError(
+            'This appication is using refresh token feature.'+
+            ' So please include `refresh` param in the parameters',
+        );
       }
     } else {
       // Not using refresh token
       if (signInConfig.refresh) {
         // params are not expected but provided
         // throw an error
-        throw new Error('The app doesn\'t implement \'refreshToken\' ' +
-          'feature.\nSo you have to implement refresh token feature ' +
-          'from \'AuthProvider\' before using it.');
+        throw new AuthError(
+            'This appication is not using refresh token feature.'+
+            ' So please remove the `refresh` param in the parameters.'+
+            ' In Case you want to use refresh token feature,'+
+            ' make sure you added that while creating the store.',
+        );
       } else {
         // sign in without the refresh token
         context.set(doSignIn(signInConfig));

@@ -3,17 +3,45 @@ import AuthContext from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
 import {AuthError} from '../errors';
 
-
+/**
+ * Type of the React props, that are injected to the component
+ */
 interface withSignOutProps {
+  /**
+   * 
+   */
   signOut(): boolean
 }
 
 /**
- * @public
- * @function
- * @name withSignOut
- * @description Inject sign Out functionality inside the Component's Prop
- * @param Component
+ * @deprecated Higher-order components are not commonly used in
+ * modern React code, use Hooks instead
+ * 
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
+ * the `signOut` function into the class based component props.
+ * 
+ * Call the `signOut` function in the prop 
+ * to sign out and delete all the auth state
+ *
+ * This will remove the authState from memory and
+ * also remove the stored data from cookie or localstorage
+ * 
+ * @example
+ * Here's a simple example:
+ * ```js
+ * class MyComponent extends React.Component {
+ *  this.props.signOut();
+ *  ...
+ * }
+ * export default withSignOut(MyComponent);
+ * ```
+ * @remarks
+ * For Now, this hook doesn't redirects automatically.
+ * So one need to writw the redirect logic himself.
+ *
+ * 
+ * @param Component - React Class based Component
+ * @returns React Higher Order Component with injected `signOut` prop
  */
 function withSignOut<P extends withSignOutProps>(
     Component: React.ComponentType<P>,

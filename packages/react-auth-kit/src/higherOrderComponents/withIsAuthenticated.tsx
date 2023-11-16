@@ -14,20 +14,20 @@ interface withAuthHeaderProps {
 }
 
 /**
- * @deprecated - Higher-order components are not commonly used in
+ * @deprecated Higher-order components are not commonly used in
  * modern React code, use Hooks instead
  *
- * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects 
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
  * the authentication state into the class based component props
  *
  * @example
  * ```jsx
  * class MyComponent extends React.Component {
  *  render() {
- *    return <h1>Hello, {this.props.authState}</h1>;
+ *    return <h1>Hello, {this.props.isAuth}</h1>;
  *  }
  * }
- * export default withAuthUser(MyComponent);
+ * export default withIsAuthenticated(MyComponent);
  * ```
  *
  * @throws AuthError
