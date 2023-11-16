@@ -9,7 +9,7 @@ import {isAuthenticated} from '../utils/utils';
 interface withAuthHeaderProps {
   /**
    * The string which contains the auth header for the network requests
-   * 
+   *
    * Format: `type token`
    */
   authHeader: string
@@ -18,9 +18,9 @@ interface withAuthHeaderProps {
 /**
  * React {@link https://hoc | HOC} that injects the auth header into
  * the class based component propes
- * 
+ *
  * **Format: `type token` (authType-space-authToken)**
- * 
+ *
  * ```tsx
  * class MyComponent extends React.Component {
  *  render() {
@@ -28,12 +28,12 @@ interface withAuthHeaderProps {
  *  }
  * }
  * export default withAuthHeader(MyComponent);
- * 
+ *
  * ```
- * 
+ *
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
- * 
+ *
  * @param Component - React Class based Component with injected `authHeader`
  * @returns React Higher Order Component
  */

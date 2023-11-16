@@ -8,7 +8,7 @@ import {isAuthenticated} from '../utils/utils';
  *
  * Call the hook,
  * to get the auth header for network request
- * 
+ *
  * **Format: `type token` (authType-space-authToken)**
  *
  * @example
