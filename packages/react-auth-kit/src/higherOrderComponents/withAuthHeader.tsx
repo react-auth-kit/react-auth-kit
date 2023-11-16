@@ -16,11 +16,14 @@ interface withAuthHeaderProps {
 }
 
 /**
- * React {@link https://hoc | HOC} that injects the auth header into
- * the class based component propes
+ * @deprecated
+ *
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the auth header into
+ * the class based component props
  *
  * **Format: `type token` (authType-space-authToken)**
  *
+ * @example
  * ```tsx
  * class MyComponent extends React.Component {
  *  render() {
@@ -28,14 +31,13 @@ interface withAuthHeaderProps {
  *  }
  * }
  * export default withAuthHeader(MyComponent);
- *
  * ```
  *
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
  *
  * @param Component - React Class based Component with injected `authHeader`
- * @returns React Higher Order Component
+ * @returns React Higher Order Component with injected `authHeader` proe
  */
 function withAuthHeader<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,

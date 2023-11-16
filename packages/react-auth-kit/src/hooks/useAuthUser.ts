@@ -11,6 +11,8 @@ import {isAuthenticated} from '../utils/utils';
  *
  * This uses the context data to determine get the user data
  *
+ * @typeParam T - Type of User State Object
+ *
  * @example
  * Here is the example for JavaScript
  * ```js

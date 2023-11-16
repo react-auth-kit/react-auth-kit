@@ -1,28 +1,47 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Authentication User <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
 import * as React from 'react';
 import AuthContext from '../AuthContext';
 import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
- * @interface withAuthProps
+ * Type of the React props, that are injected to the component
+ *
+ * @typeParam T - Type of User State Object
  */
 interface withAuthStateProps<T> {
-    authState: T | null
+  /**
+   * State of the user provided on signin or refresh
+   *
+   * If the type is null then user may be not authenticated.
+   * Use `isAuthenticated` to verify
+   */
+  authState: T | null
 }
 
 /**
- * @function
- * @name withAuthUser
- * @description Inject Authenticated User's state inside the Component's Prop
- * @param Component
+ * @deprecated
+ *
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the user state into
+ * the class based component props
+ *
+ * If the prop is null then user may be not authenticated.
+ * Use `isAuthenticated` to verify
+ *
+ * @example
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  render() {
+ *    return <h1>Hello, {this.props.authState}</h1>;
+ *  }
+ * }
+ * export default withAuthUser(MyComponent);
+ * ```
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ *
+ * @param Component - React Class based Component with injected user state
+ * @returns React Higher Order Component with injected `authState` prop
  */
 function withAuthUser<T, P extends withAuthStateProps<T>>(
     Component: React.ComponentType<P>,
@@ -48,7 +67,5 @@ function withAuthUser<T, P extends withAuthStateProps<T>>(
     }
   };
 }
-/**
- * @exports withAuthUser
- */
+
 export default withAuthUser;
