@@ -1,38 +1,40 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Auth Context Provider
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
-
 import * as React from 'react';
 import AuthKitContext from './AuthContext';
 import type {createStoreReturn} from './createStore';
 import {useInterval} from './utils/hooks';
-import {doRefresh} from './utils/reducers';
+import {doRefresh, doSignOut} from './utils/reducers';
 
 /**
  * Props of the AuthProvider Component
  */
 interface AuthProviderProps<T> {
   /**
-   * Auth Kit Store
+   * Auth Kit Store.
+   * 
+   * Create the store using the `createStore` function
    */
   store: createStoreReturn<T>
 
   /**
-   * React Component
+   * React Component.
    * Effectively your entine application
    */
   children: React.ReactNode
 }
 
 /**
- *
- * @param param0
- * @returns
+ * 
+ * React Provider that includes React Auth Kit functionility in your React
+ * Application. 
+ * 
+ * @remarks
+ * Make sure you wrap your application as well as your router components in AuthProvider.
+ * 
+ * AuthProvider should be your Top Most element so that if can work effectively
+ * throughout the application.
+ * 
+ * 
+ * @returns React Functional component with React Auth Kit Recharged.
  */
 function AuthProvider<T extends object>(
     {
@@ -57,11 +59,12 @@ function AuthProvider<T extends object>(
                   // store the new value using the state update
                   tokenObject.set(doRefresh(result));
                 } else {
-                  // do something in future
+                  // signout if failed to refresh
+                  tokenObject.set(doSignOut());
                 }
               })
               .catch(() => {
-                // do something in future
+                // Retry for Future
               });
         },
       tokenObject.value.isSignIn ? refresh.interval : null,
