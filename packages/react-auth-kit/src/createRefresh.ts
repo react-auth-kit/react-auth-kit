@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Refresh Token engine
  * @copyright Arkadip Bhattacharya 2020

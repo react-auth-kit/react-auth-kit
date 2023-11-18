@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview Token Object Engine
  * @copyright Arkadip Bhattacharya 2020
@@ -8,9 +8,9 @@
 
 
 import Cookies from 'js-cookie';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthError } from './errors';
-import { AuthKitStateInterface, AuthKitSetState } from './types';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {AuthError} from './errors';
+import {AuthKitStateInterface, AuthKitSetState} from './types';
 
 /**
  * @class TokenObject
@@ -51,11 +51,11 @@ class TokenObject<T> {
    * @constructor
    */
   constructor(
-    authStorageName: string,
-    authStorageType: 'cookie' | 'localstorage',
-    refreshTokenName: string | null,
-    cookieDomain?: string,
-    cookieSecure?: boolean,
+      authStorageName: string,
+      authStorageType: 'cookie' | 'localstorage',
+      refreshTokenName: string | null,
+      cookieDomain?: string,
+      cookieSecure?: boolean,
   ) {
     this.authStorageName = authStorageName;
     this.authStorageType = authStorageType;
@@ -68,39 +68,38 @@ class TokenObject<T> {
 
     this.isUsingRefreshToken = !!this.refreshTokenName;
 
-    this.authValue = this.initialToken_()
+    this.authValue = this.initialToken_();
     this.authSubject = new BehaviorSubject(this.authValue);
 
     this.authSubject.subscribe({
       next: this.syncTokens,
       complete: ()=>{
-        console.log("Token Synced")
+        console.log('Token Synced');
       },
       error: (err) =>{
-        console.error("Error Occured while syncing token")
-        console.log(err)
-      }
-    })
-
+        console.error('Error Occured while syncing token');
+        console.log(err);
+      },
+    });
   }
 
   subscribe = (next: ((value: AuthKitStateInterface<T>) => void), error?: ((err: any) => void)) => {
     this.authSubject.subscribe({
       next: next,
-      error: error
-    })
-  }
+      error: error,
+    });
+  };
 
   observe = (): Observable<AuthKitStateInterface<T>> =>{
     return this.authSubject.asObservable();
-  }
+  };
 
   /**
-   * 
-   * @param data 
-   * 
+   *
+   * @param data
+   *
    * LOGIC
-   * 
+   *
    * data ------ new auth is present and not null ---------- new user state ----- Replace Auth and User state
    *   |    |                                         |
    *   |    |                                         |
@@ -123,16 +122,16 @@ class TokenObject<T> {
    *    |
    *    |
    *    -- is using refresh token is false -------------------------------------- Do nothing use the old refrssh
-   * 
+   *
    */
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
     let obj = this.value;
 
-    if(!!data.auth){
+    if (data.auth) {
       // logged in
       let userState = obj.userState;
-      if(data.userState !== undefined){
+      if (data.userState !== undefined) {
         userState = data.userState;
       }
 
@@ -141,49 +140,47 @@ class TokenObject<T> {
         auth: {
           'token': data.auth.token,
           'type': data.auth.type,
-          'expiresAt': this.getExpireDateTime_(data.auth.token)
+          'expiresAt': this.getExpireDateTime_(data.auth.token),
         },
         isSignIn: true,
-        userState: userState
-      }
-    }
-    else if (data.auth === null){
+        userState: userState,
+      };
+    } else if (data.auth === null) {
       // sign out
       obj = {
         ...obj,
         auth: null,
         isSignIn: false,
-        userState: null
-      }
+        userState: null,
+      };
     }
 
-    if(this.isUsingRefreshToken){
-      if(!!data.refresh){
+    if (this.isUsingRefreshToken) {
+      if (data.refresh) {
         obj = {
           ...obj,
           refresh: {
             'token': data.refresh,
-            'expiresAt': this.getExpireDateTime_(data.refresh)
-          }
-        }
-      }
-      else if (data.refresh === null) {
+            'expiresAt': this.getExpireDateTime_(data.refresh),
+          },
+        };
+      } else if (data.refresh === null) {
         obj = {
           ...obj,
-          refresh: null
-        }
+          refresh: null,
+        };
       }
     }
     this.authValue = obj;
     this.authSubject.next(obj);
-  }
+  };
 
   // value = (): AuthKitStateInterface<T>  =>{
   //   return this.authSubject.getValue();
   // }
 
   get value() {
-    return this.authSubject.value
+    return this.authSubject.value;
   }
 
   /**
@@ -205,7 +202,7 @@ class TokenObject<T> {
     } else {
       return this.initialLSToken_();
     }
-  }
+  };
 
   /**
    * Get the Initial Token from Cookies
@@ -226,12 +223,12 @@ class TokenObject<T> {
       this.refreshTokenName != null ? Cookies.get(this.refreshTokenName) : null;
 
     return this.checkTokenExist_(
-      authToken,
-      authTokenType,
-      stateCookie,
-      refreshToken
+        authToken,
+        authTokenType,
+        stateCookie,
+        refreshToken,
     );
-  }
+  };
 
   /**
    * Get the Initial Token from LocalStorage
@@ -254,12 +251,12 @@ class TokenObject<T> {
 
 
     return this.checkTokenExist_(
-      authToken,
-      authTokenType,
-      stateCookie,
-      refreshToken
+        authToken,
+        authTokenType,
+        stateCookie,
+        refreshToken,
     );
-  }
+  };
 
   /**
    * Check if the Initial token is valid or not,
@@ -280,36 +277,34 @@ class TokenObject<T> {
    *
    */
   private checkTokenExist_ = (
-    authToken: string | null | undefined,
-    authTokenType: string | null | undefined,
-    stateCookie: string | null | undefined,
-    refreshToken: string | null | undefined):
+      authToken: string | null | undefined,
+      authTokenType: string | null | undefined,
+      stateCookie: string | null | undefined,
+      refreshToken: string | null | undefined):
     AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
       let refresh;
       if (this.isUsingRefreshToken && !!refreshToken) {
         // If the refresh token is tampered, then it'll stop the execution and will go at catch.
-        const refreshTokenExpiresAt = this.getExpireDateTime_(refreshToken); 
-        if (refreshTokenExpiresAt < new Date()){
+        const refreshTokenExpiresAt = this.getExpireDateTime_(refreshToken);
+        if (refreshTokenExpiresAt < new Date()) {
           refresh = null;
-        }
-        else {
+        } else {
           refresh = {
             token: refreshToken,
-            expiresAt: refreshTokenExpiresAt
+            expiresAt: refreshTokenExpiresAt,
           };
         }
-      }
-      else {
+      } else {
         refresh = null;
       }
-      
+
       // If we are using refrsh token, but refesh is null null,
-      // Then definitely we are not able to get the refersh token or the refresh token is expired. 
+      // Then definitely we are not able to get the refersh token or the refresh token is expired.
       // So, we'll not authenticate the user.
       // And will delete any token, if there's any
-      if(this.isUsingRefreshToken && !refresh){
+      if (this.isUsingRefreshToken && !refresh) {
         this.removeAllToken();
         return {
           auth: null,
@@ -325,13 +320,12 @@ class TokenObject<T> {
       let authState: T | null;
       if (!!authToken && !!authTokenType && !!stateCookie) {
         // Using a local Try catch, as we don't want the auth token to make the refrsh token to be null;
-        try{
+        try {
           const expiresAt = this.getExpireDateTime_(authToken);
-          if(expiresAt < new Date()){    // DONE
+          if (expiresAt < new Date()) { // DONE
             auth = null;
             authState = null;
-          }
-          else {
+          } else {
             authState = JSON.parse(stateCookie) as T;
             auth = {
               token: authToken,
@@ -339,20 +333,18 @@ class TokenObject<T> {
               expiresAt: expiresAt,
             };
           }
-        }
-        catch (e) {
+        } catch (e) {
           auth = null;
           authState = null;
         }
-      }
-      else {
+      } else {
         auth = null;
         authState = null;
       }
 
 
-      if(!!refresh){
-        if(!!auth && !!authState){
+      if (refresh) {
+        if (!!auth && !!authState) {
           return {
             auth: auth,
             refresh: refresh,
@@ -369,7 +361,7 @@ class TokenObject<T> {
           isUsingRefreshToken: this.isUsingRefreshToken,
           isSignIn: false,
         };
-      } else if(!this.isUsingRefreshToken && !!auth && !!authState){
+      } else if (!this.isUsingRefreshToken && !!auth && !!authState) {
         return {
           auth: auth,
           refresh: null,
@@ -387,12 +379,10 @@ class TokenObject<T> {
           isSignIn: false,
         };
       }
-
-
     }
     // Error occured. So declearing as signed out
     catch (e) {
-      this.removeAllToken()
+      this.removeAllToken();
       return {
         auth: null,
         refresh: null,
@@ -401,17 +391,17 @@ class TokenObject<T> {
         isSignIn: false,
       };
     }
-  }
+  };
 
   private parseJwt_ = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
     return JSON.parse(jsonPayload);
-  }
+  };
 
   private getExpireDateTime_ = (token: string): Date => {
     const jwtData = this.parseJwt_(token);
@@ -419,11 +409,10 @@ class TokenObject<T> {
       const d = new Date(0);
       d.setUTCSeconds(jwtData.iat);
       return d;
-    }
-    else {
+    } else {
       throw new AuthError('JWT has no iat param');
     }
-  }
+  };
 
   /**
    * Sync Auth Tokens on time of login and logout
@@ -434,35 +423,33 @@ class TokenObject<T> {
    * @param authState
    */
   public syncTokens = (authState: AuthKitStateInterface<T>): void => {
-    if (!!authState.auth) {
+    if (authState.auth) {
       // Sync the Auth token part
       this.setAuthToken(
-        authState.auth.token,
-        authState.auth.type,
-        authState.userState
+          authState.auth.token,
+          authState.auth.type,
+          authState.userState,
       );
-    } 
-    else {
+    } else {
       // Remove the auth token part
       this.removeAuth();
     }
 
-    if (!!authState.refresh && this.isUsingRefreshToken){
+    if (!!authState.refresh && this.isUsingRefreshToken) {
       // Sync the refresh part
       this.setRefreshToken(
-        authState.refresh.token
-      )
-    }
-    else {
+          authState.refresh.token,
+      );
+    } else {
       // Remove the refresh part
       this.removeRefresh();
     }
-  }
+  };
 
   private setAuthToken = (
-    authToken: string,
-    authTokenType: string,
-    authState: T | null
+      authToken: string,
+      authTokenType: string,
+      authState: T | null,
   ):void => {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime_(authToken);
@@ -476,26 +463,25 @@ class TokenObject<T> {
         domain: this.cookieDomain,
         secure: this.cookieSecure,
       });
-      if (!!authState) {
+      if (authState) {
         Cookies.set(this.stateStorageName, JSON.stringify(authState), {
           expires: expiresAt,
           domain: this.cookieDomain,
           secure: this.cookieSecure,
         });
       }
-    }
-    else{
+    } else {
       window.localStorage.setItem(this.authStorageName, authToken);
       window.localStorage.setItem(this.authStorageTypeName, authTokenType);
 
-      if (!!authState) {
+      if (authState) {
         window.localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
       }
     }
-  }
+  };
 
   private setRefreshToken = (
-    refreshToken: string | null
+      refreshToken: string | null,
   ):void => {
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&
@@ -507,13 +493,12 @@ class TokenObject<T> {
           secure: this.cookieSecure,
         });
       }
-    }
-    else{
+    } else {
       if (this.isUsingRefreshToken && !!this.refreshTokenName && !!refreshToken) {
         localStorage.setItem(this.refreshTokenName, refreshToken);
       }
     }
-  }
+  };
 
   /**
    * Remove Tokens on time of Logout
@@ -524,7 +509,7 @@ class TokenObject<T> {
     } else {
       this.removeAllLSToken_();
     }
-  }
+  };
 
   /**
    * Remove Token from Cookies
@@ -548,7 +533,7 @@ class TokenObject<T> {
         secure: this.cookieSecure,
       });
     }
-  }
+  };
 
   /**
    * Remove Token from LocalStorage
@@ -560,7 +545,7 @@ class TokenObject<T> {
     if (this.isUsingRefreshToken && !!this.refreshTokenName) {
       localStorage.removeItem(this.refreshTokenName);
     }
-  }
+  };
 
   /**
    * Remove Tokens on time of Logout
@@ -571,7 +556,7 @@ class TokenObject<T> {
     } else {
       this.removeAuthToken();
     }
-  }
+  };
 
   /**
    * Remove Token from Cookies
@@ -589,7 +574,7 @@ class TokenObject<T> {
       domain: this.cookieDomain,
       secure: this.cookieSecure,
     });
-  }
+  };
 
   /**
    * Remove Token from LocalStorage
@@ -598,7 +583,7 @@ class TokenObject<T> {
     localStorage.removeItem(this.authStorageName);
     localStorage.removeItem(this.authStorageTypeName);
     localStorage.removeItem(this.stateStorageName);
-  }
+  };
 
   /**
    * Remove Tokens on time of Logout
@@ -609,7 +594,7 @@ class TokenObject<T> {
     } else {
       this.removeRefreshToken();
     }
-  }
+  };
 
   /**
    * Remove Token from Cookies
@@ -621,7 +606,7 @@ class TokenObject<T> {
         secure: this.cookieSecure,
       });
     }
-  }
+  };
 
   /**
    * Remove Token from LocalStorage
@@ -630,7 +615,7 @@ class TokenObject<T> {
     if (this.isUsingRefreshToken && !!this.refreshTokenName) {
       localStorage.removeItem(this.refreshTokenName);
     }
-  }
+  };
 }
 
 export default TokenObject;

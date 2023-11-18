@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview PrivateRoute component
  * @copyright Arkadip Bhattacharya 2020

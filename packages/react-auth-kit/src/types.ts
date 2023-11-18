@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Arkadip Bhattacharya <hi@arkadip.dev>
  * @fileoverview General types used in the library
  * @copyright Arkadip Bhattacharya 2020
