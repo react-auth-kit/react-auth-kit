@@ -1,16 +1,16 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Auth Store
- * @copyright Arkadip Bhattacharya 2020
- *
- */
-
-import * as React from 'react';
+import {createContext} from 'react';
+import type { Context } from 'react';
 import TokenObject from './RxTokenObject';
 
-function getContext<T>(): React.Context<TokenObject<T>> {
-  const context = React.createContext<TokenObject<T>>(null as any);
+/**
+ * @internal
+ * 
+ * React Context to globally hold the TokenObject instance in the application.
+ * 
+ * @returns React Context with Token Object inside
+ */
+function getContext<T>(): Context<TokenObject<T>> {
+  const context = createContext<TokenObject<T>>(null as any);
   if (process.env.NODE_ENV !== 'production') {
     context.displayName = 'ReactAuthKit';
   }
