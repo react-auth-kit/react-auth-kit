@@ -1,11 +1,6 @@
 /**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview Index (Main entry point)
- * @copyright Arkadip Bhattacharya 2020
- *
+ * Entry point of the Library.
  */
-
 
 export type * from './types';
 

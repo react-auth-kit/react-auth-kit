@@ -1,27 +1,55 @@
 import TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
-import {createRefreshParamInterface} from './types';
+import type {createRefreshParamInterface} from './types';
 
 interface createStoreParam<T> {
-    authName: string;
-    authType: 'cookie' | 'localstorage';
-    refresh?: createRefreshParamInterface<T>;
-    cookieDomain?: string;
-    cookieSecure?: boolean;
+  /**
+   *
+   */
+  authName: string;
+  /**
+   *
+   */
+  authType: 'cookie' | 'localstorage';
+  /**
+   *
+   */
+  refresh?: createRefreshParamInterface<T>;
+  /**
+   *
+   */
+  cookieDomain?: string;
+  /**
+   *
+   */
+  cookieSecure?: boolean;
 }
 
+/**
+ *
+ */
 export interface createStoreReturn<T> {
-    tokenObject: TokenObject<T>
-    refresh?: createRefreshParamInterface<T>;
+  /**
+   *
+   */
+  tokenObject: TokenObject<T>;
+  /**
+   *
+   */
+  refresh?: createRefreshParamInterface<T>;
 }
-
+/**
+ *
+ * @param params
+ * @returns
+ */
 export default function createStore<T>(params: createStoreParam<T>): createStoreReturn<T> {
   if (params.authType === 'cookie') {
     if (!params.cookieDomain && !params.cookieSecure) {
-      throw new
-      AuthError('authType \'cookie\' ' +
-                    'requires \'cookieDomain\' and \'cookieSecure\' ' +
-                    'props in AuthProvider');
+      throw new AuthError(
+          'authType \'cookie\' requires \'cookieDomain\''+
+          ' and \'cookieSecure\' props in AuthProvider',
+      );
     }
   }
 
