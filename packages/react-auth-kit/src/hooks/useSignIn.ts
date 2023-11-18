@@ -13,10 +13,12 @@ import {AuthError} from '../errors';
  * Also, this will call the rx engine to store the auth into into the storage
  *
  * @typeParam T - Type of User State Object
+ * @param signInConfig - Params for sign In
+ * @returns React Hook with SignIn Functionility
  *
  * @example
  * Here's a an example without refresh token:
- * ```js
+ * ```jsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
  *
  * const LoginComponent = () => {
@@ -31,11 +33,32 @@ import {AuthError} from '../errors';
  * ```
  *
  * Here's a an example with refresh token:
- * ```js
+ * ```jsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
  *
  * const LoginComponent = () => {
  *  const signIn = useSignIn()
+ *  signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456},
+ *    refresh: <refresh jwt token>
+ *  })
+ * }
+ * ```
+ * 
+ * Here's a an example with refresh token in TypeScript:
+ * ```tsx
+ * import useSignIn from 'react-auth-kit/hooks/useSignIn'
+ *
+ *  interface IUserData {
+ *  name: string;
+ *  uuid: string;
+ * };
+ *
+ * const LoginComponent = () => {
+ *  const signIn = useSignIn<IUserData>()
  *  signIn({
  *    auth: {
  *      token: '<jwt token>'
@@ -60,7 +83,6 @@ import {AuthError} from '../errors';
  *
  * Thrown if refresh token is not added, is spite used.
  *
- * @returns React Hook with SignIn Functionility
  */
 function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   const context = useContext(AuthContext);

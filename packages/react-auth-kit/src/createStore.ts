@@ -4,46 +4,97 @@ import type {createRefreshParamInterface} from './types';
 
 interface createStoreParam<T> {
   /**
-   *
+   * The name of the cookie or localstore object on which the auth token is stored.
+   * 
+   * This name will also be used as a prefix for all other cookies.
    */
   authName: string;
   /**
-   *
+   * Type of the Storage.
+   * 
+   * - `cookie` - Store all the auth information in the cookie
+   * - `localstorage` - Store all the auth information in the localstorage
    */
   authType: 'cookie' | 'localstorage';
   /**
-   *
-   */
-  refresh?: createRefreshParamInterface<T>;
-  /**
-   *
+   * Domain of the cookie, for which the cookie is valid.
+   * 
+   * Needed if you are using `cookie` as authType
+   * 
+   * @see {@link https://github.com/js-cookie/js-cookie#domain}
    */
   cookieDomain?: string;
   /**
-   *
+   * Indicating if the cookie transmission requires a secure protocol (https).
+   * 
+   * Needed if you are using `cookie` as authType
+   * 
+   * @see {@link https://github.com/js-cookie/js-cookie#secure}
    */
   cookieSecure?: boolean;
+  /**
+   * Refresh API. Created using `createRefresh` function.
+   */
+  refresh?: createRefreshParamInterface<T>;
 }
 
 /**
- *
+ * Return type of createStore Function
  */
 export interface createStoreReturn<T> {
   /**
-   *
+   * Instance of the token object
    */
   tokenObject: TokenObject<T>;
   /**
-   *
+   * Instance of the Refresh interface, if there is any.
    */
   refresh?: createRefreshParamInterface<T>;
 }
 /**
- *
- * @param params
- * @returns
+ * 
+ * createStore creates the default store for React Auth Kit.
+ * 
+ * This store is like a Redux store, where every object and data is stored in.
+ * 
+ * @typeParam T - Type of User State Object
+ * @param params - Parameter to create a new store for auth kit
+ * @returns Auth Kit Store
+ * 
+ * @example
+ * Here is an example on JavaScript
+ * ```jsx
+ * import createStore from 'react-auth-kit/createStore';
+ * 
+ * const store = createStore({
+ *  authName:'_auth',
+ *  authType:'cookie',
+ *  cookieDomain: window.location.hostname,
+ *  cookieSecure: window.location.protocol === 'https:'
+ * })
+ * ```
+ * 
+ * Here is an example on TypeScript
+ * ```tsx
+ * interface IUserData {
+ *  name: string;
+ *  uuid: string;
+ * };
+ * 
+ * const store = createStore<IUserData>({
+ *  authName:'_auth',
+ *  authType:'cookie',
+ *  cookieDomain: window.location.hostname,
+ *  cookieSecure: window.location.protocol === 'https:'
+ * })
+ * ```
  */
 export default function createStore<T>(params: createStoreParam<T>): createStoreReturn<T> {
+  /**
+   * If the type of the auth is is cookie,
+   * then developer must provide the cookieDomain and cookieSecure params
+   * for regid usecase.
+   */
   if (params.authType === 'cookie') {
     if (!params.cookieDomain && !params.cookieSecure) {
       throw new AuthError(
@@ -52,14 +103,21 @@ export default function createStore<T>(params: createStoreParam<T>): createStore
       );
     }
   }
-
+  
+  /**
+   * If the refresh param is not undefined, then let's create the refresh auth
+   */
   const refreshTokenName = params.refresh ? `${params.authName}_refresh` : null;
+  
+  /**
+   * Instanciate the TokenObject with proper prameters
+   */
   const tokenObject = new TokenObject<T>(
-      params.authName,
-      params.authType,
-      refreshTokenName,
-      params.cookieDomain,
-      params.cookieSecure,
+    params.authName,
+    params.authType,
+    refreshTokenName,
+    params.cookieDomain,
+    params.cookieSecure,
   );
 
   return {
