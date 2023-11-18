@@ -8,7 +8,8 @@ import {AuthError} from '../errors';
  */
 interface withSignOutProps {
   /**
-   *
+   * Sign Out Function.
+   * Call this to signout the user
    */
   signOut(): boolean
 }
