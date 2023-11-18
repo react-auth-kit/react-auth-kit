@@ -10,7 +10,7 @@ import {doRefresh, doSignOut} from './utils/reducers';
 interface AuthProviderProps<T> {
   /**
    * Auth Kit Store.
-   * 
+   *
    * Create the store using the `createStore` function
    */
   store: createStoreReturn<T>
@@ -23,17 +23,22 @@ interface AuthProviderProps<T> {
 }
 
 /**
- * 
+ *
  * React Provider that includes React Auth Kit functionility in your React
- * Application. 
- * 
+ * Application.
+ *
  * @remarks
  * Make sure you wrap your application as well as your router components in AuthProvider.
- * 
+ *
  * AuthProvider should be your Top Most element so that if can work effectively
  * throughout the application.
- * 
- * 
+ *
+ * @example
+ * ```jsx
+ *
+ * ```
+ *
+ *
  * @returns React Functional component with React Auth Kit Recharged.
  */
 function AuthProvider<T extends object>(
