@@ -16,6 +16,11 @@ import {AuthError} from '../errors';
  * @param signInConfig - Params for sign In
  * @returns React Hook with SignIn Functionility
  *
+ * @throws AuthError
+ * - Thrown if the Hook is used outside the Provider Scope.
+ * - Thrown if refresh token is added, in spite not used.
+ * - Thrown if refresh token is not added, is spite used.
+ *
  * @example
  * Here's a an example without refresh token:
  * ```jsx
@@ -47,7 +52,7 @@ import {AuthError} from '../errors';
  *  })
  * }
  * ```
- * 
+ *
  * Here's a an example with refresh token in TypeScript:
  * ```tsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
@@ -75,13 +80,6 @@ import {AuthError} from '../errors';
  *
  * If you are not using refresh token, make sure you don't include
  * that in the parameter, else it throws AuthError.
- *
- * @throws AuthError
- * Thrown if the Hook is used outside the Provider Scope.
- *
- * Thrown if refresh token is added, in spite not used.
- *
- * Thrown if refresh token is not added, is spite used.
  *
  */
 function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {

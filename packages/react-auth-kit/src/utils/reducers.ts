@@ -19,21 +19,20 @@ import {
 } from '../types';
 
 /**
+ * @internal
+ *
  * Do Sign In reducer.
  * It is used to convert the incoming payload into
  * the specified format for the auth state.
  * It doesn't contains any important buisness logic.
+*
+ * @typeParam T - Type of User State Object
+ * @param signInParams - Sign in parameters
+ * @returns Object that is modified to auth state to used further
  *
  * @remarks
  * - If the `auth.type` is not set, then by default it is set as `Bearer`
  * - If the `userState` is not set, then by default it is `{}` (an empty object)
- *
- * @param signInParams - Sign in parameters
- * @returns Object that is modified to auth state to used further
- *
- * @internal
- *
- * @typeParam T - Type of User State Object
  *
  */
 export function doSignIn<T>(

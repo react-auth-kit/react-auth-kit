@@ -13,12 +13,12 @@ import {
 
 /**
  *
+ * @typeParam T - Type of User State Object
  * @param auth - The Auth Object
  * @returns A boolean value indicting if currently authenticated or not
  *
  * @internal
  *
- * @typeParam T - Type of User State Object
  */
 function isAuthenticated<T>(auth: AuthKitStateInterface<T>) : boolean {
   if (auth.auth) {

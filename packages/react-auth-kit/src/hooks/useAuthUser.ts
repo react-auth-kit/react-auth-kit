@@ -13,6 +13,13 @@ import {isAuthenticated} from '../utils/utils';
  *
  * @typeParam T - Type of User State Object
  *
+ * @returns React Hook with user state functionility.
+ * If the user is authenticated, then user data is returned.
+ * If the user is not authenticated, then `null` is ruturned.
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ *
  * @example
  * Here is the example for JavaScript
  * ```js
@@ -41,13 +48,6 @@ import {isAuthenticated} from '../utils/utils';
  *  ...
  * }
  * ```
- *
- * @throws AuthError
- * Thrown if the Hook is used outside the Provider Scope.
- *
- * @returns React Hook with user state functionility.
- * If the user is authenticated, then user data is returned.
- * If the user is not authenticated, then `null` is ruturned.
  */
 function useAuthUser<T>(): T | null {
   const context = useContext(AuthContext);

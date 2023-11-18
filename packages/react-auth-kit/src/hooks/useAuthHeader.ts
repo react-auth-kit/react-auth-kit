@@ -26,12 +26,12 @@ import {isAuthenticated} from '../utils/utils';
  * }
  * ```
  *
- * @throws AuthError
- * Thrown if the Hook is used outside the Provider Scope.
- *
  * @returns If the user is authenticated,
  * then `'auth.type auth.token'` is returned.
  * If the user is not authenticated, then `null` is ruturned.
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
  */
 function useAuthHeader(): string | null {
   const c = useContext(AuthContext);
