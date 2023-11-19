@@ -37,7 +37,11 @@ interface AuthProviderProps<T> {
  *
  * @example
  * ```jsx
- *
+ * const store = createStore()
+ * 
+ * <AuthProvider store={store}>
+ *  <RoutesComponent/>
+ * </AuthProvider>
  * ```
  *
  */
