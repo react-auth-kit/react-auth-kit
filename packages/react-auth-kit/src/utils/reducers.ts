@@ -12,11 +12,17 @@
  *
  */
 
-import {
-  AuthKitSetState,
-  SignInActionPayload,
-  RefreshTokenActionPayload,
+import type {
+  SignInActionPayload
 } from '../types';
+
+import type {
+  RefreshTokenActionPayload
+} from '../createRefresh';
+
+import type {
+  AuthKitSetState
+} from '../RxTokenObject';
 
 /**
  * @internal

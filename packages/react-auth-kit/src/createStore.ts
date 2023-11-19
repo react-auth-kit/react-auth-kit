@@ -1,7 +1,10 @@
 import TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
-import type {createRefreshParamInterface} from './types';
+import type {createRefreshParamInterface} from './createRefresh';
 
+/**
+ * Store Creation Param
+ */
 interface createStoreParam<T> {
   /**
    * The name of the cookie or localstore object on which

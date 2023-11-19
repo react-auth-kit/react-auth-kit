@@ -1,7 +1,42 @@
 import Cookies from 'js-cookie';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {AuthError} from './errors';
-import {AuthKitStateInterface, AuthKitSetState} from './types';
+import {AuthKitStateInterface} from './types';
+
+/**
+ * Set State Data
+ */
+export interface AuthKitSetState<T> {
+  
+  /**
+   * Authentication Object
+   */
+  auth?: {
+
+    /**
+     * JWT access token
+     */
+    token: string,
+
+    /**
+     * Type of the access token
+     * 
+     * @example
+     * Bearer
+     */
+    type: string
+  } | null,
+  
+  /**
+   * Refresh JWT token
+   */
+  refresh?: string | null,
+
+  /**
+   * User state object
+   */
+  userState?: T
+}
 
 
 class TokenObject<T> {

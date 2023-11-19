@@ -46,7 +46,7 @@ const refreshApi = createRefresh({
       return {
         isSuccess: false
       } 
-    }    
+    }
   }
 })
 
