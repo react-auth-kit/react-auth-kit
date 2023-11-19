@@ -40,15 +40,54 @@ export interface AuthKitSetState<T> {
 
 
 class TokenObject<T> {
+  /**
+   * Name of the storage for the access token
+   */
   private readonly authStorageName: string;
+
+  /**
+   * Name of the storage for the user state
+   */
   private readonly stateStorageName: string;
+
+  /**
+   * Domain Name for the cookie
+   */
   private readonly cookieDomain?: string;
+
+  /**
+   * HTTP Secure for the cookie
+   */
   private readonly cookieSecure?: boolean;
+
+  /**
+   * Name of the storage for the auth token type
+   */
   private readonly authStorageTypeName: string;
+
+  /**
+   * Type of the Storage to be used to store the data
+   */
   private readonly authStorageType: 'cookie' | 'localstorage';
+
+  /**
+   * Name of the storage for the refresh token
+   */
   private readonly refreshTokenName: string | null;
+
+  /**
+   * Boolean value to check if the application is using refresh token feature or not
+   */
   private readonly isUsingRefreshToken: boolean;
+
+  /**
+   * Auth Value
+   */
   private authValue: AuthKitStateInterface<T>;
+  
+  /**
+   * RX Auth subject
+   */
   private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
 
 
