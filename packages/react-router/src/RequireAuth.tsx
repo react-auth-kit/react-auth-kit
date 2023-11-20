@@ -1,10 +1,3 @@
-/**
- *
- * @author Arkadip Bhattacharya <hi@arkadip.dev>
- * @fileoverview PrivateRoute component
- * @copyright Arkadip Bhattacharya 2020
- *
- */
 import * as React from 'react';
 import {useLocation, Navigate} from 'react-router-dom';
 import AuthContext from 'react-auth-kit/AuthContext';

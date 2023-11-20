@@ -43,7 +43,10 @@
   },
   "devDependencies": {
     "@types/node": "20.9.0",
-    "@types/react": "18.2.28"
+    "@types/react": "18.2.28",
+    "@types/react-router-dom": "5.3.3",
+    "react": "18.2.0",
+    "react-router-dom": "6.19.0"
   },
-  "gitHead": "6c4618ae048bee06214a382df54dc63e8378575f"
+  "gitHead": "9def1f1659a48d4bfbac3ddacd42967f95aa5766"
 }

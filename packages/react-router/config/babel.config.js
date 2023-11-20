@@ -31,7 +31,8 @@ module.exports = (api) => {
       overrides: [
         {
           test: [
-            // TODO
+            './src/index.ts',
+            './src/RequireAuth.tsx'
           ],
           presets: [
             ["@babel/preset-env", { targets: { ie: 11 } }],
