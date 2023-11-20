@@ -38,5 +38,11 @@
     "react": ">=16.8.0 || ^17.x || ^18.x",
     "react-router-dom": ">=6.x"
   },
-  "gitHead": "6c4618ae048bee06214a382df54dc63e8378575f"
+  "gitHead": "6c4618ae048bee06214a382df54dc63e8378575f",
+  "dependencies": {
+    "react-auth-kit": "*"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.28"
+  }
 }
