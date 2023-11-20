@@ -11,19 +11,32 @@
   "author": "Arkadip Bhattacharya <hi@arkadip.dev>",
   "homepage": "https://authkit.arkadip.dev/",
   "license": "MIT",
-  "main": "src/index.tsx",
+  "source": "/src/index.ts",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "files": [
-    "src"
+    "*.js",
+    "*.d.ts"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
   },
   "scripts": {
-    "test": "echo 'OK'"
+    "build": "run-s build:*",
+    "build:build": "tsc --project tsconfig.json && babel --config-file ./config/babel.config.js src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
+    "test": "run-s test:*",
+    "test:unit": "jest --config ./config/jest.config.js",
+    "test:lint": "eslint src",
+    "test:unit:watch": "jest --watch"
   },
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0 || ^17.x || ^18.x",
+    "react-router-dom": ">=6.x"
   },
   "gitHead": "6c4618ae048bee06214a382df54dc63e8378575f"
 }

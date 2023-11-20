@@ -54,26 +54,12 @@
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
   },
   "devDependencies": {
-    "@babel/cli": "7.17.10",
-    "@babel/core": "7.18.2",
-    "@babel/plugin-transform-optional-catch-binding": "7.22.11",
-    "@babel/plugin-transform-runtime": "7.18.2",
-    "@babel/preset-env": "7.18.2",
-    "@babel/preset-react": "7.17.12",
-    "@babel/preset-typescript": "7.17.12",
     "@testing-library/react": "14.0.0",
     "@types/jest": "29.5.5",
     "@types/js-cookie": "3.0.4",
     "@types/node": "20.9.0",
     "@types/react": "18.2.28",
     "@types/react-dom": "18.2.13",
-    "@types/react-router-dom": "5.3.3",
-    "@typescript-eslint/eslint-plugin": "6.8.0",
-    "@typescript-eslint/parser": "6.8.0",
-    "eslint": "8.53.0",
-    "eslint-config-google": "0.14.0",
-    "eslint-plugin-jest": "27.4.2",
-    "eslint-plugin-react": "7.33.2",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.4.3",
     "ts-jest": "29.1.1"
@@ -84,8 +70,7 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0 || ^17.x || ^18.x",
-    "react-dom": ">=16.8.0 || ^17.x || ^18.x",
-    "react-router-dom": ">=6.x"
+    "react-dom": ">=16.8.0 || ^17.x || ^18.x"
   },
   "gitHead": "6c4618ae048bee06214a382df54dc63e8378575f"
 }
