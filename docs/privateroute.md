@@ -12,14 +12,14 @@ React Auth Kit has a `RequireAuth` functionality Based on [React Router](https:/
 !!! danger ""
 
     RequireAuth is only available in react-auth-kit v2.x. It can be used with React Router v6. If you are using React Router v5,
-    please use React-kuth-kit v1.x with PrivateRoute.
+    please use React-auth-kit v1.x with PrivateRoute.
     Visit [this page](https://authkit.arkadip.dev/v1.6.13/privateroute/) to know more.
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="privateroute"></div>
 
 ## Import
 
-```js
+```jsx
 import { RequireAuth } from 'react-auth-kit'
 ```
 
@@ -48,7 +48,6 @@ Add `RequireAuth` in your Routes Files inside `BrowserRouter` or `HashRouter`
     <br>
 
 ```jsx
-import React from "react"
 import {BrowserRouter, Route} from "react-router-dom"
 import {RequireAuth} from 'react-auth-kit'
 import SecureComponent from "./SecureComponent";
