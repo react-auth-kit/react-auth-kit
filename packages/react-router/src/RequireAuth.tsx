@@ -5,28 +5,33 @@ import {doSignOut} from 'react-auth-kit/utils/reducers';
 import {AuthError} from 'react-auth-kit/errors';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 
+/**
+ * 
+ */
 interface RequireAuthProps {
+  /**
+   * 
+   */
   children: JSX.Element,
+  /**
+   * 
+   */
   loginPath: string
 }
 
 /**
- * Private Route for Components
- *
- * @remarks
- * This Component is based on {@link https://reactrouter.com/web/api/Route | reactrouter.Route}.
- * So you need to install react-route-dom before use it
- *
- * @param props
+ * 
+ * @returns 
  */
-
-const RequireAuth: React.FunctionComponent<RequireAuthProps> =
+const RequireAuth: React.FC<RequireAuthProps> =
   ({children, loginPath}) => {
     const context = React.useContext(AuthContext);
     if (context === null) {
       throw new
-      AuthError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+      AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.'
+      );
     }
 
     const location = useLocation();
