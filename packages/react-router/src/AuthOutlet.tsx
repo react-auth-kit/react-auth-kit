@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Navigate, Outlet, useLocation} from 'react-router-dom';
+import {Navigate, Outlet, useLocation} from 'react-router';
 
 import AuthKitContext from 'react-auth-kit/AuthContext';
 import {AuthError} from 'react-auth-kit';

@@ -1,12 +1,13 @@
 # `@auth-kit/react-router`
 
-This library is a part of `react-auth-kit` ecosystem. This library contains usful function to manage private route using react-router-dom.
+This library is a part of `react-auth-kit` ecosystem. 
+This library contains usful function to manage private route using *react-router* or *react-router-dom*.
 
 ## Usage
 
 ### AuthOutlet
 
-AuthOutlet provide easy solution using *react-router-dom* to manage private-route. 
+AuthOutlet provide easy solution using *react-router* or *react-router-dom* to manage private-route. 
 
 Routes inside the `AuthOutlet` will stay protected and only properly authenticated user can access the route.
 

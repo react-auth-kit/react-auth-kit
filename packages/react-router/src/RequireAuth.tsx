@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useLocation, Navigate} from 'react-router-dom';
+import {useLocation, Navigate} from 'react-router';
 import AuthContext from 'react-auth-kit/AuthContext';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 import {AuthError} from 'react-auth-kit/errors';
