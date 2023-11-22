@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/react-router",
-  "version": "3.0.0-alpha.41",
+  "version": "3.0.0-alpha.42",
   "description": "React Router Support for React-auth-kit",
   "keywords": [
     "react",
@@ -47,6 +47,6 @@
   },
   "gitHead": "9def1f1659a48d4bfbac3ddacd42967f95aa5766",
   "dependencies": {
-    "react-auth-kit": "^3.0.0-alpha.41"
+    "react-auth-kit": "^3.0.0-alpha.42"
   }
 }
