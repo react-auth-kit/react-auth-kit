@@ -45,6 +45,8 @@ If the user is not authenticated then the user will be redirected to the `fallba
 #### Example
 
 ```jsx
+import RequireAuth from '@auth-kit/react-router/RequireAuth';
+
 const RoutesComponent = () => {
  return (
    <BrowserRouter>
