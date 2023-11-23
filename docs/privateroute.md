@@ -48,11 +48,11 @@ Add `RequireAuth` in your Routes Files inside `BrowserRouter` or `HashRouter`
     <br>
 
 ```jsx
-import {BrowserRouter, Route} from "react-router-dom"
+import {BrowserRouter, Route, Routes} from "react-router-dom"
 import {RequireAuth} from 'react-auth-kit'
 import SecureComponent from "./SecureComponent";
 
-const Routes = () => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
