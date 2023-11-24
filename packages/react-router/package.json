@@ -45,7 +45,7 @@
     "react": "18.2.0",
     "react-router": "6.19.0"
   },
-  "gitHead": "9def1f1659a48d4bfbac3ddacd42967f95aa5766",
+  "gitHead": "5b25edbae186725d50682221b77427200ee89f30",
   "dependencies": {
     "react-auth-kit": "^3.0.0-alpha.42"
   }

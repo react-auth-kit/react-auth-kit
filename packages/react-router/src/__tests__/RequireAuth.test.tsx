@@ -13,19 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import * as React from 'react';
 import {render, screen} from '@testing-library/react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import AuthProvider from '../AuthProvider';
-import AuthContext from '../AuthContext';
-import {AuthKitStateInterface} from '../types';
-import {doSignOut} from '../utils/reducers';
-import RequireAuth from '../PrivateRoute';
+import AuthProvider from 'react-auth-kit/AuthProvider';
+import AuthContext from 'react-auth-kit/AuthContext';
+import {doSignOut} from 'react-auth-kit/utils/reducers';
+import createStore from 'react-auth-kit/createStore';
+
+import RequireAuth from '../RequireAuth';
 
 // Helpers
 const getPastDate = () => new Date(new Date().getTime() - 1000);
 const getFutureDate = () => new Date(new Date().getTime() + 1000);
 const getFakeContextValue = (expiresAt: Date, dispatch = jest.fn()) => {
-  const authState: AuthKitStateInterface = {
+  const authState = {
     auth: {
       token: 'fake-token',
       type: 'cookie',
@@ -43,17 +46,24 @@ const getFakeContextValue = (expiresAt: Date, dispatch = jest.fn()) => {
   };
 };
 
+const store = createStore<object>({
+    authName:'_auth',
+    authType:'cookie',
+    cookieDomain: window.location.hostname,
+    cookieSecure: window.location.protocol === 'https:',
+  })
+  
+
 describe('PrivateRoute component', () => {
   it('renders successfully with AuthProvider', () => {
     const {container} = render(
-        <AuthProvider authType={'cookie'} authName={'_Hi'}
-          cookieDomain={window.location.hostname}>
+        <AuthProvider store={store}>
           <BrowserRouter>
             <Routes>
               <Route path={'/login'}/>
               <Route path={'/'}/>
               <Route element={
-                <RequireAuth loginPath={'/login'}>
+                <RequireAuth fallbackPath={'/login'}>
                   <div>
                     Protected
                   </div>
@@ -74,7 +84,7 @@ describe('PrivateRoute component', () => {
           <Routes>
             <Route path={'/login'}/>
             <Route path={'/'} element={
-              <RequireAuth loginPath={'/login'}>
+              <RequireAuth fallbackPath={'/login'}>
                 <div>
                 Protected
                 </div>
@@ -95,7 +105,7 @@ describe('PrivateRoute component', () => {
             <Routes>
               <Route path={'/login'}/>
               <Route path={'/'} element={
-                <RequireAuth loginPath={'/login'}>
+                <RequireAuth fallbackPath={'/login'}>
                   <div>
                     <TestComponent/>
                   </div>
@@ -124,7 +134,7 @@ describe('PrivateRoute component', () => {
                 </div>
               }/>
               <Route path={'/'} element={
-                <RequireAuth loginPath={'/login'}>
+                <RequireAuth fallbackPath={'/login'}>
                   <div>
                     <TestComponent/>
                   </div>
@@ -150,7 +160,7 @@ describe('PrivateRoute component', () => {
               <Routes>
                 <Route path={'/login'}/>
                 <Route path={'/'} element={
-                  <RequireAuth loginPath={'/login'}>
+                  <RequireAuth fallbackPath={'/login'}>
                     <div>
                         Protected
                     </div>
