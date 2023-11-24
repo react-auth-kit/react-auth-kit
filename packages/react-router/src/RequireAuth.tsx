@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useLocation, Navigate} from 'react-router';
+import {Navigate} from 'react-router';
 import AuthContext from 'react-auth-kit/AuthContext';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 import {AuthError} from 'react-auth-kit/errors';
@@ -54,18 +54,17 @@ const RequireAuth: React.FC<RequireAuthProps> =
       throw new
       AuthError(
           'Auth Provider is missing. ' +
-        'Make sure, you are using this component inside the auth provider.',
+          'Make sure, you are using this component inside the auth provider.',
       );
     }
 
     if (!isAuthenticated(context.value)) {
-      const location = useLocation();
       // Redirect them to the /login page, but save the current location they
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
       context.set(doSignOut());
-      return <Navigate to={fallbackPath} state={{from: location}} replace />;
+      return <Navigate to={fallbackPath} replace />;
     }
 
     return children;
