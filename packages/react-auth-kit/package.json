@@ -32,6 +32,7 @@
     ".": "./index.js",
     "./AuthContext": "./AuthContext.js",
     "./AuthProvider": "./AuthProvider.js",
+    "./createStore": "./createStore.js",
     "./errors": "./errors.js",
     "./hooks/*": "./hooks/*.js",
     "./higherOrderComponents/*": "./higherOrderComponents/*.js",
