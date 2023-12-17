@@ -44,6 +44,12 @@ It is production-ready, and gives you the following:
 
 Visit [https://authkit.arkadip.dev](https://authkit.arkadip.dev) for the offical documentation.
 
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/react-auth-kit/react-auth-kit.svg)](https://starchart.cc/react-auth-kit/react-auth-kit)
+
+
 ## Hall of Fames ✨
 
 We love our contributors! If you'd like to contribute anything from a bug-fix to a feature update, you can read our [CONTRIBUTING GUIDE](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md)

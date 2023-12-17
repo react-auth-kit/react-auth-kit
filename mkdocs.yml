@@ -66,6 +66,7 @@ nav:
       - createRefresh: 'reference/react-auth-kit/createRefresh.md'
       - createStore: 'reference/react-auth-kit/createStore.md'
       - Errors: 'reference/react-auth-kit/errors.md'
+      - Types: 'reference/react-auth-kit/types.md'
       - Hooks:
         - 'reference/react-auth-kit/hooks/index.md'
         - useAuthHeader: 'reference/react-auth-kit/hooks/useAuthHeader.md'

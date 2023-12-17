@@ -13,9 +13,6 @@ hide:
 </p>
 
 <p style="text-align: center">
-<a href="https://github.com/react-auth-kit/react-auth-kit/actions">
-    <img src="https://github.com/react-auth-kit/react-auth-kit/workflows/NPM%20Deploy/badge.svg" alt="NPM Deploy">
-</a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
     <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
 </a>
@@ -46,6 +43,12 @@ It is production-ready, and gives you the following:
 * ⌨️ Highly typed and written in `TypeScript`
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/react-auth-kit/react-auth-kit.svg)](https://starchart.cc/react-auth-kit/react-auth-kit)
+
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
