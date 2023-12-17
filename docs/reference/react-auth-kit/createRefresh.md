@@ -1,5 +1,5 @@
 ---
-title: createRefresh | React Auth Kit
+title: createRefresh - React Auth Kit
 description: Create the Refresh Token engine for React Auth Kit
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: createStore | React Auth Kit
+title: createStore - React Auth Kit
 description: Create the Auth Data Store for react
 ---
 

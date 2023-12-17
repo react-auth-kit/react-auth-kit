@@ -1,5 +1,5 @@
 ---
-title:  AuthProvider | React Auth Kit
+title:  AuthProvider - React Auth Kit
 description: React Provider for React Auth Kit
 ---
 
