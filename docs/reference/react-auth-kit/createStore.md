@@ -9,7 +9,7 @@ description: Create the Auth Data Store for react
 
 ## Function Signature
 
-**createStore**<`T`\>([`params`]()): [`createStoreReturn`](../interfaces/createStore.createStoreReturn.md)<`T`\>
+**createStore**<`T`\>([`params`](#parameters)): `createStoreReturn`<`T`\>
 
 createStore creates the default store for React Auth Kit.
 
@@ -69,6 +69,8 @@ const store = createStore<IUserData>({
 #### Defined in
 
 [packages/react-auth-kit/src/createStore.ts:96](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/createStore.ts#L96)
+
+---
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>
