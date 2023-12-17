@@ -1,5 +1,5 @@
 ---
-title: RequireAuth | react-router | React Auth Kit
+title: RequireAuth - react-router - React Auth Kit
 description: "@auth-kit/react-router/RequireAuth"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: AuthOutlet | react-router | React Auth Kit
+title: AuthOutlet - react-router - React Auth Kit
 description: "@auth-kit/react-router/AuthOutlet"
 ---
 
