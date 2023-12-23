@@ -1,6 +1,6 @@
 ---
-title: Authenticated User's Data
-description: Get the Authenticated user's data from any component using the Auth User Hook or Auth User Higher-order Component.
+title: Reference - React Auth Kit
+description: Reference for React Auth Kit library
 ---
 
 # Reference
@@ -11,16 +11,16 @@ description: Get the Authenticated user's data from any component using the Auth
 
 React Auth Kit Core Library
 
-- [AuthProvider](./react-auth-kit/authprovider.md)
-- [createStore](./react-auth-kit/createStore.md)
-- [createRefresh](./react-auth-kit/createRefresh.md)
+- [AuthProvider](./react-auth-kit/authprovider.md) - Auth Provider for react auth kit
+- [createStore](./react-auth-kit/createStore.md) - Create auth store with create store
+- [createRefresh](./react-auth-kit/createRefresh.md) - Create the refresh token system
 
 ## @auth-kit/react-router
 
 React Auth Kit Plugin to interact with React Router.
 
-- [AuthOutlet](./react-router/authoutlet.md)
-- [RequireAuth](./react-router/requireauth.md)
+- [AuthOutlet](./react-router/authoutlet.md) - Private Route for multiple components at once
+- [RequireAuth](./react-router/requireauth.md) - Pirvate Route one component
 
 ---
 
