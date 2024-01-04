@@ -50,7 +50,7 @@
     "lint-staged": "15.0.0",
     "markdownlint-cli": "0.37.0",
     "tslib": "2.6.2",
-    "typedoc": "0.25.1",
+    "typedoc": "0.25.6",
     "typescript": "5.2.2"
   },
   "dependencies": {
