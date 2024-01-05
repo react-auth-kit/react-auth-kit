@@ -5,7 +5,7 @@ description: Get the auth header into the react component
 
 # useAuthHeader
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref-useAuthHeader"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref-useAuthHeader"></div>
 
 ## Function Signature
 

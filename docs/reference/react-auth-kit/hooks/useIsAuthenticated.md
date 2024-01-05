@@ -5,7 +5,7 @@ description: Check the authentication status inside the react component
 
 # useIsAuthenticated
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_useIsAuthenticated"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useIsAuthenticated"></div>
 
 ## Function Signature
 

@@ -5,7 +5,7 @@ description: Get the data of the user into the react component
 
 # useAuthUser
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_useAuthUser"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useAuthUser"></div>
 
 ## Function Signature
 

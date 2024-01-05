@@ -5,7 +5,7 @@ description: Hooks for React Auth Kit
 
 # React Auth Kit Hooks
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_hoc"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_hoc"></div>
 
 Here are the list of hooks, that are supported by react auth kit
 
