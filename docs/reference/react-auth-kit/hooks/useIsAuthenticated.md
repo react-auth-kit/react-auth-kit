@@ -39,8 +39,7 @@ const Component = () => {
 
 ## Throws
 
-[AuthError](./../errors.md#autherror)
-Thrown if the Hook is used outside the Provider Scope.
+[AuthError](./../errors.md#autherror) - Thrown if the Hook is used outside the Provider Scope.
 
 
 #### Defined in
