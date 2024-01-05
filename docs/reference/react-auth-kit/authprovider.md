@@ -6,7 +6,7 @@ description: React Provider for React Auth Kit
 
 # AuthProvider
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_AuthProvider"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_AuthProvider"></div>
 
 
 ## Function Signature

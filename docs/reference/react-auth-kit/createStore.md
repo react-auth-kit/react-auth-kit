@@ -5,7 +5,7 @@ description: Create the Auth Data Store for react
 
 # createStore
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_createStore"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_createStore"></div>
 
 ## Function Signature
 

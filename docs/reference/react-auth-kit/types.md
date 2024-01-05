@@ -5,7 +5,7 @@ description: React Auth Kit Types
 
 # React Auth Kit Types
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_types"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_types"></div>
 
 
 ## createRefreshParamInterface
