@@ -56,7 +56,7 @@ export default withAuthUser(MyComponent);
 
 #### Defined in
 
-[higherOrderComponents/withAuthUser.tsx:47](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withAuthUser.tsx#L47)
+[higherOrderComponents/withAuthUser.tsx](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withAuthUser.tsx#L47)
 
 ---
 

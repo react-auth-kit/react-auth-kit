@@ -44,7 +44,7 @@ const Component = () => {
 
 #### Defined in
 
-[hooks/useIsAuthenticated.ts:35](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useIsAuthenticated.ts#L35)
+[hooks/useIsAuthenticated.ts](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useIsAuthenticated.ts#L35)
 
 ---
 

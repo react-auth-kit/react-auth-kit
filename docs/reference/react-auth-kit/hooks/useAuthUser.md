@@ -71,7 +71,7 @@ Thrown if the Hook is used outside the Provider Scope.
 
 #### Defined in
 
-[hooks/useAuthUser.ts:52](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useAuthUser.ts#L52)
+[hooks/useAuthUser.ts](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useAuthUser.ts#L52)
 
 ---
 

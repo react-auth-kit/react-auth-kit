@@ -56,7 +56,7 @@ navigate('/login')
 
 #### Defined in
 
-[hooks/useSignOut.ts:43](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useSignOut.ts#L43)
+[hooks/useSignOut.ts](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useSignOut.ts#L43)
 
 ---
 

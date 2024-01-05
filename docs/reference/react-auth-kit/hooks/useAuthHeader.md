@@ -50,7 +50,7 @@ Thrown if the Hook is used outside the Provider Scope.
 
 #### Defined in
 
-[hooks/useAuthHeader.ts:36](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useAuthHeader.ts#L36)
+[hooks/useAuthHeader.ts](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/hooks/useAuthHeader.ts#L36)
 
 ---
 

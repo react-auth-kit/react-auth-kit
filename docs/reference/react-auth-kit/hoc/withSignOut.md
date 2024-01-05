@@ -44,7 +44,7 @@ also remove the stored data from cookie or localstorage
 ## Example
 
 Here's a simple example:
-```js
+```jsx
 class MyComponent extends React.Component {
  this.props.signOut();
  ...
@@ -64,7 +64,7 @@ So one need to writw the redirect logic himself.
 
 #### Defined in
 
-[higherOrderComponents/withSignOut.tsx:47](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withSignOut.tsx#L47)
+[higherOrderComponents/withSignOut.tsx](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withSignOut.tsx#L47)
 
 ---
 

@@ -38,7 +38,7 @@ the class based component props
 
 ## Example
 
-```tsx
+```jsx
 class MyComponent extends React.Component {
  render() {
    return <h1>Hello, {this.props.authHeader}</h1>;
@@ -54,7 +54,7 @@ export default withAuthHeader(MyComponent);
 
 #### Defined in
 
-[higherOrderComponents/withAuthHeader.tsx:43](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withAuthHeader.tsx#L43)
+[higherOrderComponents/withAuthHeader.tsx](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withAuthHeader.tsx#L43)
 
 ---
 

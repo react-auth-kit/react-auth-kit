@@ -51,7 +51,7 @@ export default withIsAuthenticated(MyComponent);
 
 #### Defined in
 
-[higherOrderComponents/withIsAuthenticated.tsx:39](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withIsAuthenticated.tsx#L39)
+[higherOrderComponents/withIsAuthenticated.tsx](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withIsAuthenticated.tsx#L39)
 
 ---
 
