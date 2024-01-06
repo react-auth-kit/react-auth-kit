@@ -20,10 +20,10 @@ module.exports = (api) => {
         ["@babel/preset-env", { targets: { node: 12 } }],
         "@babel/preset-typescript",
       ],
-      plugins: [
-        "@babel/plugin-transform-optional-catch-binding",
-        "@babel/plugin-transform-runtime",
-      ],
+      // plugins: [
+      //   // "@babel/plugin-transform-optional-catch-binding",
+      //   // "@babel/plugin-transform-runtime",
+      // ],
       ignore: [
         "../src/**/__tests__/**",
       ],
