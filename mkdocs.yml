@@ -49,15 +49,16 @@ nav:
 
   - Getting Started:
     - 'getting_started/index.md'
-    - Installation: 'getting_started/installation.md'
+    - Installation : 'getting_started/installation.md'
     - Integration: 'getting_started/integration.md'
-    - Execute User Sign In: 'getting_started/signin.md'
-    - Execute User Sign Out: 'getting_started/signout.md'
-    - Private Route: 'getting_started/privateroute.md'
-    - Get User's Data: 'getting_started/authdata.md'
-    - Get Auth Header for Network request: 'getting_started/authheader.md'
-    - Check the Authentication Status: 'getting_started/checkauth.md'
+    - Sign In: 'getting_started/signin.md'
+    - Sign Out: 'getting_started/signout.md'
+    - User Data: 'getting_started/authdata.md'
+    - Auth Header: 'getting_started/authheader.md'
+    - Auth Status: 'getting_started/checkauth.md'
     - Refresh Token: 'getting_started/refreshtoken.md'
+    - Private Route: 
+        - 'getting_started/privateroute/index.md'
 
   - Reference: 
     - 'reference/index.md'
