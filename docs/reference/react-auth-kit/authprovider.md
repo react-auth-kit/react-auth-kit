@@ -24,10 +24,10 @@ Application.
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :--------- |
-| `store` | `createStoreReturn`<`T`\> | Returned value from [createStore](./createStore.md) function |
-| `children` | `React.ReactNode` | React Component or Element |
+| Name | Type | Required | Description |
+| :------ | :------ | :------- |:--------- |
+| `store` | `createStoreReturn`<`T`\> | :heavy_check_mark: | Returned value from [createStore](./createStore.md) function |
+| `children` | `React.ReactNode` | :heavy_check_mark: | React Component or Element |
 
 ## Returns
 
@@ -39,7 +39,7 @@ React Functional component with React Auth Kit Recharged.
 
 Make sure you wrap your application as well as your router components in AuthProvider.
 
-AuthProvider should be your Top Most element so that if can work effectively
+AuthProvider should be your Top Most element so that it can work effectively
 throughout the application.
 
 ## Example

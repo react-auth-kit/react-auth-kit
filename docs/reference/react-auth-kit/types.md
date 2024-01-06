@@ -14,10 +14,10 @@ Refresh Token parameter types
 
 ### Parameter
 
-| Name | Type | Description |
-| :--- | :--- | :---------- |
-| interval | number | Interval on which the callback function is called |
-| refreshApiCallback | `#!ts refreshTokenCallback<T>` | A Callback function which'll have the network request |
+| Name | Type | Required | Description |
+| :--- | :--- | :------- | :---------- |
+| interval | `number` | :heavy_check_mark: | Interval on which the callback function is called |
+| refreshApiCallback | `#!ts refreshTokenCallback<T>` | :heavy_check_mark: | A Callback function which'll have the network request |
 
 
 ---

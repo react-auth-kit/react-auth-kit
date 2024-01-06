@@ -13,7 +13,7 @@ description: Create the Refresh Token engine for React Auth Kit
 
 **createRefresh**<`T`\>([`createRefreshParamInterface`](./types.md#createrefreshparaminterface)): [`createRefreshParamInterface`](./types.md#createrefreshparaminterface)<`T`\>
 
-## Type parameters
+## Type Parameters
 
 | Name | Description |
 | :------ | :------------ |
@@ -21,15 +21,15 @@ description: Create the Refresh Token engine for React Auth Kit
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `param` | [`createRefreshParamInterface`](./types.md#createrefreshparaminterface)\<`T`\> | Parameters required for the refresh engine |
+| Name | Type | Required | Description |
+| :------ | :------ | :----- | :------ |
+| `param` | [`createRefreshParamInterface`](./types.md#createrefreshparaminterface)<`T`\> | :heavy_check_mark: | Parameters required for the refresh engine |
 
 ## Returns
 
 [`createRefreshParamInterface`]()<`T`\>
 
-Same params with added layer of safety net.
+Same params with an added layer of safety net.
 
 ## Example
 
@@ -62,8 +62,7 @@ const refresh = createRefresh({
 
 ## Remarks
 
-This function doesn't really "do anything" at runtime,
-it's just help to organize the code base
+This function doesn't really "do anything" at runtime, it just helps to organize the code base
 Use this function to create the refresh token system
 
 ---

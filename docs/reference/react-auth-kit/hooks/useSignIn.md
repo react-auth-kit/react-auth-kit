@@ -75,23 +75,7 @@ const LoginComponent = () => {
 }
 ```
 
-Here's a an example with refresh token:
-```jsx
-import useSignIn from 'react-auth-kit/hooks/useSignIn'
-
-const LoginComponent = () => {
- const signIn = useSignIn()
- signIn({
-   auth: {
-     token: '<jwt token>'
-   },
-   userState: {name: 'React User', uid: 123456},
-   refresh: <refresh jwt token>
- })
-}
-```
-
-Here's a an example with refresh token in TypeScript:
+Here's an example with refresh token in TypeScript:
 ```jsx
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 

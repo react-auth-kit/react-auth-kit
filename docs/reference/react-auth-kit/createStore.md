@@ -13,9 +13,9 @@ description: Create the Auth Data Store for react
 
 createStore creates the default store for React Auth Kit.
 
-This store is like a Redux store, where every object and data is stored in.
+This store is like a Redux store, where every object and data is stored.
 
-## Type parameters
+## Type Parameters
 
 | Name | Description |
 | :------ | :------ |
@@ -23,13 +23,13 @@ This store is like a Redux store, where every object and data is stored in.
 
 ## Parameters
 
-| Name | Type | Description |
-| :-------- | :------ | :------ |
-| `authName` | `string` | This name will also be used as a prefix for all other cookies. |
-| `authType` | `string` | Type of the Storage. Options : `cookie` , `localstorage` |
-| `cookieDomain` | `string (optional)` | Domain of the cookie, for which the cookie is valid. Needed if you are using `cookie` as authType |
-| `cookieSecure` | `boolean (optional)` | Indicating if the cookie transmission requires a secure protocol (https). Needed if you are using `cookie` as authType |
-| `refresh` | `createRefreshParamInterface<T> (optional)` | Refresh API. Created using [`createRefresh`](./createRefresh.md) function. |
+| Name       | Type    | Required | Description |
+| :--------- | :------ | :----- | :------ |
+| `authName` | `string` | :heavy_check_mark: | This name will also be used as a prefix for all other cookies. |
+| `authType` | `string` | :heavy_check_mark: | Type of the Storage. Options : `cookie` , `localstorage` |
+| `cookieDomain` | `string` | :heavy_multiplication_x: | Domain of the cookie, for which the cookie is valid. Needed if you are using `cookie` as authType |
+| `cookieSecure` | `boolean` | :heavy_multiplication_x: | Indicating if the cookie transmission requires a secure protocol (https). Needed if you are using `cookie` as authType |
+| `refresh` | `createRefreshParamInterface<T>` | :heavy_multiplication_x: | Refresh API. Created using [`createRefresh`](./createRefresh.md) function. |
 
 ## Returns
 

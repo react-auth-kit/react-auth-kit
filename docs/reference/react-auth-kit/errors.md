@@ -15,9 +15,9 @@ description: React Auth Kit errors
 
 ### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `message` | `string` | Error Message to be shown to the developer. |
+| Name | Type | Required | Description |
+| :------ | :------ | :------ | :------ |
+| `message` | `string` | :heavy_check_mark: | Error Message to be shown to the developer. |
 
 #### Defined in
 
