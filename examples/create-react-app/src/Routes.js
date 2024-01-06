@@ -14,7 +14,7 @@ const RoutesComponent = () => {
           <Route path={'/'} element={<Home/>}/>
           <Route path={'/login' } element={<Login/>}/>
           <Route path={'/secure'} element={
-            <RequireAuth loginPath={'/login'}>
+            <RequireAuth fallbackPath={'/login'}>
               <SecureComponent/>
             </RequireAuth>
           }/>
