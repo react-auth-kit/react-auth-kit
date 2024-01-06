@@ -4,7 +4,7 @@ description: Get the formatted authentication token by just calling Auth Header 
 ---
 
 
-# Authentication Header
+# Authentication Header  :material-ip-network:
 
 Get the Auth Header for future request from any Component simply by using `HOC` or `Hooks`
 

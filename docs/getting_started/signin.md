@@ -127,7 +127,7 @@ import withSignIn from 'react-auth-kit/hoc/withSignIn';
 
 ### Usage
 
-```jsx title="SignIn.js" hl_lines="1 7 8 9 10 11 12 13 14 15"
+```jsx title="SignIn.js" hl_lines="1 7 8 9 10 11 12 13 14 15 16 17"
 import { withSignIn } from 'react-auth-kit'
 
 class signInComponent extends React.Component {

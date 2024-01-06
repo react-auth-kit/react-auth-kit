@@ -3,7 +3,7 @@ title: Auth status - React Auth Kit
 description: Check if the user is authenticated or not inside a component by just calling Auth Header hook or Higher order component.
 ---
 
-# Check the Authentication status
+# Authentication status :material-list-status:
 
 > Check if any user is authenticated or not
 
