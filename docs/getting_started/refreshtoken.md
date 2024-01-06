@@ -1,5 +1,5 @@
 ---
-title: Refresh the Auth Token periodically
+title: Refresh Token - React Auth Kit
 description: Refresh the auth token in the background by using the Refresh token feature. Just use the createRefresh builder.
 ---
 
@@ -9,7 +9,7 @@ description: Refresh the auth token in the background by using the Refresh token
 Often JWT comes with a new challenge.
 You have to `refresh` the JWT token periodically using a token, named Refresh token.
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="refresh"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="refresh"></div>
 
 > A refresh token is a special kind of token used to obtain a renewed access token.
 You can request new access tokens until the refresh token is on the DenyList.

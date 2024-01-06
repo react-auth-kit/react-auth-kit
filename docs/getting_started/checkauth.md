@@ -1,5 +1,5 @@
 ---
-title: Check the Authentication status
+title: Auth status - React Auth Kit
 description: Check if the user is authenticated or not inside a component by just calling Auth Header hook or Higher order component.
 ---
 
@@ -7,7 +7,7 @@ description: Check if the user is authenticated or not inside a component by jus
 
 > Check if any user is authenticated or not
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="checkauth"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="checkauth"></div>
 
 ## Introduction
 

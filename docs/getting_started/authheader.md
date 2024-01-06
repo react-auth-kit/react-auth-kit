@@ -1,5 +1,5 @@
 ---
-title: Authentication Header
+title: Auth Header - React Auth Kit
 description: Get the formatted authentication token by just calling Auth Header hook or Higher order component and pass it to all the API calls.
 ---
 
@@ -11,7 +11,7 @@ Get the Auth Header for future request from any Component simply by using `HOC` 
 - To get the Auth Header from _Higher Order Components_, use `withAuthHeader`
 - To get the Auth Header using _React Hooks_, use `useAuthHeader`
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="authheader"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="authheader"></div>
 
 ## Using Hooks
 

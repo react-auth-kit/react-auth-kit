@@ -1,5 +1,5 @@
 ---
-title: Authenticated User's Data
+title: User Data - React Auth Kit
 description: Get the Authenticated user's data from any component using the Auth User Hook or Auth User Higher-order Component.
 ---
 
@@ -10,7 +10,7 @@ Get the Authorized user's state from any Component simply by using `HOC` or `Hoo
 - To get the Authorized user's state from _Higher Order Components_, use `withAuthUser`
 - To get the Authorized user's state using _React Hooks_, use `useAuthUser`
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="authdata"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="authdata"></div>
 
 ## Using Hooks
 

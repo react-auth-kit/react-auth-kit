@@ -15,7 +15,7 @@ React Auth Kit has a `RequireAuth` functionality Based on [React Router](https:/
     please use React-kuth-kit v1.x with PrivateRoute.
     Visit [this page](https://authkit.arkadip.dev/v1.6.13/privateroute/) to know more.
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="privateroute"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="privateroute"></div>
 
 ## Import
 

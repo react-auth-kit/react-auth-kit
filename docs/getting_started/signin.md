@@ -1,9 +1,9 @@
 ---
-title: Sign In 
+title: Sign In - React Auth Kit
 description: Setup the powerful Sign In operation of React auth kit using both React Hook and Higher Order Component.
 ---
 
-# Sign In
+# Sign In :material-location-enter:
 
 > :material-lock: Implement Sign In on your Single Page Web App
 
@@ -14,7 +14,7 @@ React Auth Kit has easy to implement Sign In procedures.
 - For Functional Components, you can use `#!js useSignIn()` hook inside any components
 - For class based components, you can wrap the component inside `#!js withSignIn()` HOC function.
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="signin"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="signin"></div>
 
 ---
 

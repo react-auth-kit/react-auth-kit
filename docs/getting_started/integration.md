@@ -1,5 +1,5 @@
 ---
-title: Integration
+title: Integration - React Auth Kit
 description: Easily integrate the ease and power of React Auth Kit into your React Web Application with just two lines of code.
 ---
 
@@ -7,7 +7,7 @@ description: Easily integrate the ease and power of React Auth Kit into your Rea
 
 React Auth Kit uses an [`RxJs`](https://rxjs.dev/)-based store to maintain data and React's [Context API](https://react.dev/reference/react/createContext) to distribute data throughout the application.
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="integration"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="integration"></div>
 
 ---
 

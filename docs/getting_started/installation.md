@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Installation - React Auth Kit
 description: Download and Installation of React Auth Kit in your Project
 ---
 
