@@ -14,7 +14,7 @@ Get the Auth Header for future requests from any Component simply by using `HOC`
 - For class-based components, you can wrap the component inside `#!js withAuthHeader()` HOC function.
 
 
-## Hooks
+## Hook
 
 ### Import
 

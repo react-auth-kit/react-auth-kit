@@ -13,7 +13,7 @@ Get the Authorized user's state from any Component simply by using `HOC` or `Hoo
 - For class-based components, you can wrap the component inside `#!js withAuthUser()` HOC function.
 
 
-## Hooks
+## Hook
 
 ### Import
 
@@ -42,12 +42,11 @@ const SomeComponent = () => {
 
 [reference/react-auth-kit/hooks/useAuthUser](./../reference/react-auth-kit/hooks/useAuthUser.md)
 
-
 ## Higher Order Component
 
 ### Import
 
-```jsx title="Import useAuthUser in your app"
+```jsx title="Import withAuthUser in your app"
 import withAuthUser from 'react-auth-kit/hoc/withAuthUser';
 ```
 

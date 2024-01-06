@@ -5,42 +5,36 @@ description: Check if the user is authenticated or not inside a component by jus
 
 # Authentication status :material-list-status:
 
-> Check if any user is authenticated or not
-
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="checkauth"></div>
 
 ## Introduction
 
-There are many times, when you have to understand if any user is authenticated
-(especially in `login` pages, where you have to redirect your user to its dashboard or allow to login)
-
-For this reason, `React Auth Kit` comes with `isAuth` functions
+To get the information of whether the user is authenticated or not, `React Auth Kit` comes with `isAuth` functions
 
 ---
 
 `IsAuth` functionality available in both `hook` and `Higher Order Component`
 
-- For Functional Components, you can use `useIsAuthenticated` function inside any components
-- For class based components, you can wrap the component inside `withIsAuthenticated` function
+- For Functional Components, you can use `#!js useIsAuthenticated()` hook inside any components
+- For class-based components, you can wrap the component inside `#!js withIsAuthenticated()` HOC function.
 
 ---
 
-## Usage
-
-### Functional Component
+## Hook
 
 Check the `authentication status` in React Functional Components(FC) by adding the `useIsAuthenticated` hook inside it.
 
-#### Import
+### Import
 
-```jsx
-import {useIsAuthenticated} from 'react-auth-kit';
+```jsx title="Import useIsAuthenticated in your app"
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 ```
 
-#### Demo
+### Demo
 
-```jsx
-import {useIsAuthenticated} from 'react-auth-kit';
+```jsx title="Component.js"
+import React from 'react';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 
 const AnyComponent = () => {
     const isAuthenticated = useIsAuthenticated()
@@ -54,33 +48,31 @@ const AnyComponent = () => {
 }
 ```
 
-#### API
+### API
 
-`useIsAuthenticated()`
-
-_**Returns**_  `() => boolean`
+[reference/react-auth-kit/hooks/useIsAuthenticated](./../reference/react-auth-kit/hooks/useIsAuthenticated.md)
 
 ---
 
-### Class Based Component
+## Higher Order Component
 
-#### Import
+### Import
 
-```javascript
-import {withIsAuthenticated} from 'react-auth-kit';
+```jsx title="Import withAuthUser in your app"
+import withIsAuthenticated from 'react-auth-kit/hoc/withIsAuthenticated';
 ```
 
-#### Demo
+### Usage
 
 ```javascript
 import React from "react";
-import {withIsAuthenticated} from 'react-auth-kit';
+import withIsAuthenticated from 'react-auth-kit/hoc/withIsAuthenticated';
 
 class SomeComponent extends React.Component {
 
     render(){
         if(this.props.isAuthenticated()){
-                // Redirect to Dashboard
+            // Redirect to Dashboard
         }
         else {
             // Redirect to Login
@@ -91,15 +83,9 @@ class SomeComponent extends React.Component {
 export default withIsAuthenticated(SomeComponent)
 ```
 
-#### API
+### API
 
-`#!ts withIsAuthenticated<P>(Component: React.ComponentType<P>): React.FC<P>`
-
-_**Parameters**_
-
-- Component: `#!ts React.ComponentType<P>`
-
-_**Returns**_  `#!ts React.FC<P>` (Functional Component with `isAuthenticated()` prop)
+[reference/react-auth-kit/hoc/withIsAuthenticated](./../reference/react-auth-kit/hoc/withIsAuthenticated.md)
 
 ---
 
