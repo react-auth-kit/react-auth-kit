@@ -116,8 +116,7 @@ const SignInComponent = () => {
 
 ## Higher Order Component
 
-
-Wrap class based component with `#!js withSignIn()` to implement signin.
+Wrap class-based component with `#!js withSignIn()` to implement signin.
 
 ### Import
 
