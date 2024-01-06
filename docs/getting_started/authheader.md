@@ -4,55 +4,64 @@ description: Get the formatted authentication token by just calling Auth Header 
 ---
 
 
-# Authentication Header  :material-ip-network:
-
-Get the Auth Header for future request from any Component simply by using `HOC` or `Hooks`
-
-- To get the Auth Header from _Higher Order Components_, use `withAuthHeader`
-- To get the Auth Header using _React Hooks_, use `useAuthHeader`
+# Auth Header  :material-ip-network:
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="authheader"></div>
 
-## Using Hooks
+Get the Auth Header for future requests from any Component simply by using `HOC` or `Hooks`
 
-```js
-import {useAuthHeader} from 'react-auth-kit'
+- For Functional Components, you can use `#!js useAuthHeader()` hook inside any components
+- For class-based components, you can wrap the component inside `#!js withAuthHeader()` HOC function.
+
+
+## Hooks
+
+### Import
+
+```js title="Import useAuthHeader in your app"
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 ```
 
-### Demo
+### Usage
 
-```jsx
+```jsx title="SecureComponent.js"
 import React from 'react'
-import {useAuthHeader} from 'react-auth-kit'
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 
 const SomeComponent = () => {
     const authHeader = useAuthHeader()
 
     return(
         <div>
-            {authHeader()}
+            {authHeader}
         </div>
     )
 }
 ```
 
-## Using Higher Order Component
+### API
 
-```jsx
-import {withAuthHeader} from 'react-auth-kit'
+[reference/react-auth-kit/hooks/useAuthHeader](./../reference/react-auth-kit/hooks/useAuthHeader.md)
+
+## Higher Order Component
+
+### Import
+
+```js title="Import withAuthHeader in your app"
+import withAuthHeader from 'react-auth-kit/hoc/withAuthHeader';
 ```
 
-### Demo
+### Usage
 
-```jsx
-import React from 'react'
-import {withAuthHeader} from 'react-auth-kit'
+```jsx title="SecureComponent.js"
+import React from 'react';
+import withAuthHeader from 'react-auth-kit/hoc/withAuthHeader';
 
 class SomeComponent extends React.Component {
     render(){
         return (
             <div>
-                {this.props.authHeader()}
+                {this.props.authHeader}
             </div>
         )
     }
@@ -61,5 +70,11 @@ class SomeComponent extends React.Component {
 export default withAuthHeader(SomeComponent)
 ```
 
+### API
+
+[reference/react-auth-kit/hoc/withAuthHeader](./../reference/react-auth-kit/hoc/withAuthHeader.md)
+
+---
+
 <p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>
