@@ -18,6 +18,7 @@ description: Add Authentication in your React Auth Kit
 - [**User Data** :material-information:](./authdata.md) - Get the current user's data in your app.
 - [**Auth Header** :material-ip-network:](./authheader.md) - Get the Auth Header for Network request in your app.
 - [**Auth Status** :material-list-status:](./checkauth.md) - Get the Auth Status (boolean value) in your components before rendering.
+- [**Refresh Token** :material-refresh:](./refreshtoken.md) - Refresh the Access Token using the Refresh token
 
 ## Private Routing
 
