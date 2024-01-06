@@ -12,7 +12,7 @@ React Auth Kit has easy-to-implement Signin procedures.
 **signIn** functionality available in both `React Hook` and `Higher Order Component`
 
 - For Functional Components, you can use `#!js useSignIn()` hook inside any components
-For class-based components, you can wrap the component inside `#!js withSignIn()` HOC function.
+- For class-based components, you can wrap the component inside `#!js withSignIn()` HOC function.
 
 
 ---

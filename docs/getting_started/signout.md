@@ -1,6 +1,6 @@
 ---
 title: Sign Out - React Auth Kit
-description: The Sign out Hook or Sign out Higher-order Component handles all the necessary Sign out operations in one function.
+description: Sign out Hook or Sign out Higher-order Component handles all the necessary Sign out operations in one function.
 ---
 
 # Sign Out :material-exit-run:
@@ -12,7 +12,7 @@ React Auth Kit has easy-to-implement Sign Out procedures.
 **signOut** functionality available in both `React Hook` and `Higher Order Component`
 
 - For Functional Components, you can use `#!js useSignOut()` hook inside any components
-For class-based components, you can wrap the component inside `#!js withSignOut()` HOC function.
+- For class-based components, you can wrap the component inside `#!js withSignOut()` HOC function.
 
 
 ## Hook
