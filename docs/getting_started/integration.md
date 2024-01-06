@@ -13,11 +13,11 @@ React Auth Kit uses an [`RxJs`](https://rxjs.dev/)-based store to maintain data 
 
 ## Store Creation
 
-To use React Auth Kit in the application, we first need to create the store which holds the data for our application.
+To use React Auth Kit in the application, we first need to create the store that holds the data for our application.
 
 ### Import
 
-```js
+```js title="Import createStore in your app"
 import createStore from 'react-auth-kit/createStore';
 ```
 
@@ -42,7 +42,7 @@ AuthProvider provides top-level [context](https://reactjs.org/docs/context.html)
 
 ### Import
 
-```javascript
+```js title="Import AuthProvider in your app"
 import AuthProvider from 'react-auth-kit';
 ```
 
@@ -75,9 +75,9 @@ export default App;
 
 !!! warning
 
-    If you are using the Refresh Token feature, then you must have to add the `refresh` prop with proper value,
+    If you are using the Refresh Token feature, then you must add the `refresh` prop with proper value,
     otherwise refresh token will throw a not implemented error. If you are not using the Refresh Token feature,
     then don't add it
 
 <p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>

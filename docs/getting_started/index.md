@@ -9,9 +9,7 @@ description: Add Authentication in your React Auth Kit
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="getting_started"></div>
 
-## Content
-
-### Basic Instrumentation
+## Basic Instrumentation
 
 - [**Installation** :fontawesome-brands-square-js:](./installation.md) - Install React Auth Kit in your project.
 - [**Integration** :simple-integromat:](./integration.md) - Integrate and unleash the power.
@@ -21,5 +19,5 @@ description: Add Authentication in your React Auth Kit
 - [**Auth Header** :material-ip-network:](./authheader.md) - Get the Auth Header for Network request in your app.
 - [**Auth Status** :material-list-status:](./checkauth.md) - Get the Auth Status (boolean value) in your components before rendering.
 
-### Private Routing
+## Private Routing
 
