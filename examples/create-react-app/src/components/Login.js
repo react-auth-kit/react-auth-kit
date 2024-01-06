@@ -5,7 +5,6 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import {useNavigate, Navigate} from 'react-router-dom'
 
 
-
 const Login = () => {
 
   const isAuthenticated = useIsAuthenticated()
@@ -22,7 +21,7 @@ const Login = () => {
 
     if (signIn({
       auth: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8'
       },
       userState: {name: 'React User', uid: 123456}
     })) {
