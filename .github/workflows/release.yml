@@ -34,7 +34,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
       - name: Checkout
@@ -67,10 +67,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setting Up Node 16.x
+      - name: Setting Up Node 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: NPM Install
         run: npm ci

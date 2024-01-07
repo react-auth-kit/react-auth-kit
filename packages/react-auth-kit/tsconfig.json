@@ -5,6 +5,13 @@
         "src/**/*.tsx"
     ],
     "compilerOptions": {
-        "outDir": "./dist/esm"
-    }
+        "outDir": ".",
+        "emitDeclarationOnly": true
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "types",
+        "*/__tests__/*"
+    ]
 }

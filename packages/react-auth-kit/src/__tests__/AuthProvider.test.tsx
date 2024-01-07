@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
+import Cookies from 'js-cookie';
 import {render, screen} from '@testing-library/react';
 import {AuthContextConsumer} from '../AuthContext';
 import AuthProvider from '../AuthProvider';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import React from 'react';
 import createRefresh from '../createRefresh';
 import {AuthStateUserObject} from '../types';
-import Cookies from 'js-cookie';
 
 describe('AuthProvider renders successfully', ()=>{
   it('With localStorage', ()=>{
@@ -61,28 +60,6 @@ describe('AuthProvider renders successfully', ()=>{
             </BrowserRouter>
           </AuthProvider>,
       );
-    });
-
-    it('Throws an error, then props are missing', ()=>{
-      jest.spyOn(console, 'error').mockImplementation(jest.fn());
-
-      expect(() => render(
-          <AuthProvider
-            authType={'cookie'}
-            authName={'_auth'}
-          >
-            <BrowserRouter>
-              <Routes>
-                <Route path={'/'} element={
-                  <div>
-                    Empty
-                  </div>
-                }/>
-                <Route/>
-              </Routes>
-            </BrowserRouter>
-          </AuthProvider>,
-      )).toThrow();
     });
   });
 });

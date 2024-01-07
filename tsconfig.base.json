@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
+    "target": "es2019",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "./types",
-    "sourceMap": true,
-    "module": "ESNext",
-    "target": "ES5",
+    "skipLibCheck": true,
+    "strict": true,
+    "module": "esnext",
     "lib": [
       "dom",
       "es6"
     ],
     "moduleResolution": "Node",
-    "jsx": "react",
-    "esModuleInterop": true,
+    "jsx": "react-jsx",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
@@ -20,8 +21,6 @@
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false

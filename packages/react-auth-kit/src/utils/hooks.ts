@@ -1,42 +1,28 @@
-/*
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+import {useRef, useEffect} from 'react';
+import type {MutableRefObject} from 'react';
 
-import * as React from 'react';
 
 /**
- * React useInterval Hook
- * Used to integrate the power of setInterval seamlessly
+ * @internal
  *
- * @param callback - The callback function
- * @param delay - The amount of delay in minutes.
+ * React Hook to use the `setInterval` in the component
  *
- * @returns the ref of setInterval
+ * @param callback - The function that will be called on each interval
+ * @param delay - The delay on which the callback function is called
+ * @returns - The Reference of the `setInterval` function
  */
 function useInterval(callback: ()=>void, delay:number|null)
-  : React.MutableRefObject<number | null> {
-  const savedCallback = React.useRef(callback);
-  const intervalRef = React.useRef<number | null>(null);
+  : MutableRefObject<number | null> {
+  const savedCallback = useRef(callback);
+  const intervalRef = useRef<number | null>(null);
 
   // Remember the latest callback if it changes.
-  React.useEffect(() => {
+  useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
   // Set up the interval.
-  React.useEffect(() => {
+  useEffect(() => {
     const tick = () => savedCallback.current();
 
     if (typeof delay === 'number') {

@@ -1,105 +1,143 @@
-/**
- *@author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- *@fileoverview Sign In functionality <hook>
- *@copyright Arkadip Bhattacharya 2020
- *@license Apache-2.0
- *
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import * as React from 'react';
+import {useContext} from 'react';
 import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
-import {AuthKitError} from '../errors';
+import {AuthError} from '../errors';
 
 /**
- *@function
- *@name useSignIn
- *@description Authentication SignIn Hook
- *@returns - Sign In function
+ * Sign In React Hook
+ *
+ * Call the hook to sign In and authenticate the user
+ *
+ * This will authenticate the user by writing the uer state into the mamory
+ * Also, this will call the rx engine to store the auth into into the storage
+ *
+ * @typeParam T - Type of User State Object
+ * @param signInConfig - Params for sign In
+ * @returns React Hook with SignIn Functionility
+ *
+ * @throws AuthError
+ * - Thrown if the Hook is used outside the Provider Scope.
+ * - Thrown if refresh token is added, in spite not used.
+ * - Thrown if refresh token is not added, is spite used.
+ *
+ * @example
+ * Here's a an example without refresh token:
+ * ```jsx
+ * import useSignIn from 'react-auth-kit/hooks/useSignIn'
+ *
+ * const LoginComponent = () => {
+ *  const signIn = useSignIn()
+ *  signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456}
+ *  })
+ * }
+ * ```
+ *
+ * Here's a an example with refresh token:
+ * ```jsx
+ * import useSignIn from 'react-auth-kit/hooks/useSignIn'
+ *
+ * const LoginComponent = () => {
+ *  const signIn = useSignIn()
+ *  signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456},
+ *    refresh: <refresh jwt token>
+ *  })
+ * }
+ * ```
+ *
+ * Here's a an example with refresh token in TypeScript:
+ * ```tsx
+ * import useSignIn from 'react-auth-kit/hooks/useSignIn'
+ *
+ *  interface IUserData {
+ *  name: string;
+ *  uuid: string;
+ * };
+ *
+ * const LoginComponent = () => {
+ *  const signIn = useSignIn<IUserData>()
+ *  signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456},
+ *    refresh: <refresh jwt token>
+ *  })
+ * }
+ * ```
+ *
+ * @remarks
+ * If you are using refresh token, make sure you add that in the parameter,
+ * else it throws AuthError
+ *
+ * If you are not using refresh token, make sure you don't include
+ * that in the parameter, else it throws AuthError.
+ *
  */
-function useSignIn(): (signInConfig: signInFunctionParams) => boolean {
-  const context = React.useContext(AuthContext);
+function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
+  const context = useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthKitError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this hook inside the auth provider.',
+    );
   }
-  return (signInConfig: signInFunctionParams): boolean => {
-    const {
-      token,
-      tokenType,
-      authState,
-      expiresIn,
-      refreshToken,
-      refreshTokenExpireIn,
-    } = signInConfig;
-    const expTime = new Date(new Date().getTime() + expiresIn * 60 * 1000);
-    if (context.authState.isUsingRefreshToken) {
+  /**
+   *
+   * @param signInConfig - Parameters to perform sign in
+   * ```js
+   * {
+   *  auth: {
+   *    token: '<jwt token>'
+   *  },
+   *  userState: {name: 'React User', uid: 123456},
+   *  refresh: <refresh jwt token>
+   * }
+   * ```
+   */
+  return (signInConfig: signInFunctionParams<T>): boolean => {
+    if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token
-      if (!!refreshToken && !!refreshTokenExpireIn) {
+      if (signInConfig.refresh) {
         // refresh token params are provided
         // sign in with refresh token
-        const refreshTokenExpireAt =
-          new Date(new Date().getTime() + refreshTokenExpireIn * 60 * 1000);
-        context.dispatch(doSignIn({
-          auth: {
-            token: token,
-            type: tokenType,
-            expiresAt: expTime,
-          },
-          userState: authState ? authState : null,
-          refresh: {
-            token: refreshToken,
-            expiresAt: refreshTokenExpireAt,
-          },
-        }));
+        context.set(doSignIn(signInConfig));
         return true;
       } else {
         // refresh token params are not provided
         // throw an error
-        throw new AuthKitError('Make sure you given "refreshToken" and  ' +
-          '"refreshTokenExpireIn" parameter');
+        throw new AuthError(
+            'This appication is using refresh token feature.'+
+            ' So please include `refresh` param in the parameters',
+        );
       }
     } else {
       // Not using refresh token
-      if (!!refreshToken && !!refreshTokenExpireIn) {
+      if (signInConfig.refresh) {
         // params are not expected but provided
         // throw an error
-        throw new Error('The app doesn\'t implement \'refreshToken\' ' +
-          'feature.\nSo you have to implement refresh token feature ' +
-          'from \'AuthProvider\' before using it.');
+        throw new AuthError(
+            'This appication is not using refresh token feature.'+
+            ' So please remove the `refresh` param in the parameters.'+
+            ' In Case you want to use refresh token feature,'+
+            ' make sure you added that while creating the store.',
+        );
       } else {
         // sign in without the refresh token
-        context.dispatch(doSignIn({
-          auth: {
-            token: token,
-            type: tokenType,
-            expiresAt: expTime,
-          },
-          userState: authState ? authState : null,
-          refresh: null,
-        }));
+        context.set(doSignIn(signInConfig));
         return true;
       }
     }
   };
 }
 
-/**
- *@exports useSignIn
- */
 export default useSignIn;

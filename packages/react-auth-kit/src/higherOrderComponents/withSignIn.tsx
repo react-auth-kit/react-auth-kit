@@ -1,119 +1,126 @@
-/**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Sign In functionality <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
+import AuthContext from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
-import {AuthKitError} from '../errors';
+import {AuthError} from '../errors';
 
 /**
- * @interface withSignInProps
+ * Type of the React props, that are injected to the component
  */
-interface withSignInProps {
-    signIn(params: signInFunctionParams): boolean
+interface withSignInProps<T> {
+  /**
+   *
+   * Sign in Function, that signs in the user
+   *
+   * @param signInConfig - @param signInConfig - Parameters to perform sign in
+   * ```js
+   * {
+   *  auth: {
+   *    token: '<jwt token>'
+   *  },
+   *  userState: {name: 'React User', uid: 123456},
+   *  refresh: <refresh jwt token>
+   * }
+   * ```
+   */
+  signIn(signInConfig: signInFunctionParams<T>): boolean
 }
-
 /**
- * @public
- * @function
- * @name withSignIn
- * @description Inject sign in functionality inside the Component's Prop
- * @param Component
+ * @deprecated Higher-order components are not commonly used in
+ * modern React code, use Hooks instead
+ *
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
+ * the `signIn` function into the class based component props.
+ *
+ * Call the `signIn` function in the prop
+ * to sign In and authenticate the user
+ *
+ * This will authenticate the user by writing the uer state into the mamory
+ * Also, this will call the rx engine to store the auth into into the storage
+ *
+ * @example
+ * Here is an example without refresh token:
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  this.props.signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456}
+ *  })
+ * }
+ * export default withSignIn(MyComponent);
+ * ```
+ *
+ * Here is an example with refresh token:
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  this.props.signIn({
+ *    auth: {
+ *      token: '<jwt token>'
+ *    },
+ *    userState: {name: 'React User', uid: 123456},
+ *    refresh: <refresh jwt token>
+ *  }),
+ * }
+ * export default withSignIn(MyComponent);
+ * ```
+ *
+ * @typeParam T - Type of User State Object
+ *
+ * @param Component - React Class based Component
+ * @returns React Higher Order Component with injected `signIn` prop
  */
-function withSignIn<P extends withSignInProps>(
+function withSignIn<T, P extends withSignInProps<T>>(
     Component: React.ComponentType<P>,
 ):React.FunctionComponent<P> {
+  const context = React.useContext(AuthContext);
+  if (context === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
+  }
+
+  const signIn = (signInConfig: signInFunctionParams<T>): boolean => {
+    if (context.value.isUsingRefreshToken) {
+      // Using the power of refresh token
+      if (signInConfig.refresh) {
+        // refresh token params are provided
+        // sign in with refresh token
+        context.set(doSignIn(signInConfig));
+        return true;
+      } else {
+        // refresh token params are not provided
+        // throw an error
+        throw new AuthError(
+            'This appication is using refresh token feature.'+
+            ' So please include `refresh` param in the parameters',
+        );
+      }
+    } else {
+      // Not using refresh token
+      if (signInConfig.refresh) {
+        // params are not expected but provided
+        // throw an error
+        throw new AuthError(
+            'This appication is not using refresh token feature.'+
+            ' So please remove the `refresh` param in the parameters.'+
+            ' In Case you want to use refresh token feature,'+
+            ' make sure you added that while creating the store.',
+        );
+      } else {
+        // sign in without the refresh token
+        context.set(doSignIn(signInConfig));
+        return true;
+      }
+    }
+  };
+
   return (props) => {
     return (
-      <AuthContextConsumer>
-        {(c) => {
-          if (c === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
-          }
-          const signIn = (signInConfig: signInFunctionParams)
-            : boolean => {
-            const {
-              token,
-              tokenType,
-              authState,
-              expiresIn,
-              refreshToken,
-              refreshTokenExpireIn,
-            } = signInConfig;
-            const expTime =
-              new Date(new Date().getTime() + expiresIn * 60 * 1000);
-            if (c.authState.isUsingRefreshToken) {
-              // Using the power of refresh token
-              if (!!refreshToken && !!refreshTokenExpireIn) {
-                // refresh token params are provided
-                // sign in with refresh token
-                const refreshTokenExpireAt = new Date(new Date().getTime() +
-                  refreshTokenExpireIn * 60 * 1000);
-                c.dispatch(doSignIn({
-                  auth: {
-                    token: token,
-                    type: tokenType,
-                    expiresAt: expTime,
-                  },
-                  userState: authState ? authState : null,
-                  refresh: {
-                    token: refreshToken,
-                    expiresAt: refreshTokenExpireAt,
-                  },
-                }));
-                return true;
-              } else {
-                // refresh token params are not provided
-                // throw an error
-                throw new AuthKitError('Make sure you given "refreshToken"'+
-                ' and "refreshTokenExpireIn" parameter');
-              }
-            } else {
-              // Not using refresh token
-              if (!!refreshToken && !!refreshTokenExpireIn) {
-                // params are not expected but provided
-                // throw an error
-                throw new AuthKitError('The app doesn\'t implement ' +
-                  '\'refreshToken\' feature.\n So you have to'+
-                  ' implement refresh token feature' +
-                  ' from \'AuthProvider\' before using it.');
-              } else {
-                // sign in without the refresh token
-                c.dispatch(doSignIn({
-                  auth: {
-                    token: token,
-                    type: tokenType,
-                    expiresAt: expTime,
-                  },
-                  userState: authState ? authState : null,
-                  refresh: null,
-                }));
-                return true;
-              }
-            }
-          };
-          return <Component {...props} signIn={signIn}/>;
-        }}
-      </AuthContextConsumer>
+      <Component {...props} signIn={signIn}/>
     );
   };
 }

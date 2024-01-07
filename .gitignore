@@ -4,3 +4,15 @@ types
 /env/
 coverage
 .eslintcache
+
+# Generated files
+.docusaurus
+.cache-loader
+packages/react-auth-kit/higherOrderComponents
+packages/react-auth-kit/hooks
+packages/react-auth-kit/utils
+packages/react-auth-kit/__tests__
+packages/*/*.js
+packages/*/*.d.ts
+packages/*/*.d.ts.map
+packages/*/lib

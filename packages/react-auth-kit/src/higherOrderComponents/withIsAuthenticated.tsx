@@ -1,62 +1,59 @@
-/**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Authentication status <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
-import {AuthKitError} from '../errors';
+import AuthContext from '../AuthContext';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
- * @interface withAuthHeaderProps
+ * Type of the React props, that are injected to the component
  */
 interface withAuthHeaderProps {
-    isAuth: string
+  /**
+   * A boolean value indicating if the user is authenticated or not
+   */
+  isAuth: boolean
 }
 
 /**
- * @public
- * @function
- * @name withIsAuthenticated
- * @description Inject Authentication status inside the Component's Prop
- * @param Component
+ * @deprecated Higher-order components are not commonly used in
+ * modern React code, use Hooks instead
+ *
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
+ * the authentication state into the class based component props
+ *
+ * @example
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  render() {
+ *    return <h1>Hello, {this.props.isAuth}</h1>;
+ *  }
+ * }
+ * export default withIsAuthenticated(MyComponent);
+ * ```
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ *
+ * @param Component - React Class based Component
+ * @returns React Higher Order Component with injected `isAuth` prop
  */
 function withIsAuthenticated<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
-  return (props) => {
-    return (
-      <AuthContextConsumer>
-        {(c) => {
-          if (c === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
-          }
-          if (c.authState.auth && isAuthenticated(c.authState)) {
-            return <Component {...props} isAuth={true}/>;
-          } else {
-            return <Component {...props} isAuth={false}/>;
-          }
-        }}
-      </AuthContextConsumer>
+  const c = React.useContext(AuthContext);
+  if (c === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
     );
+  }
+
+  return (props) => {
+    if ( isAuthenticated(c.value)) {
+      return <Component {...props} isAuth={true}/>;
+    } else {
+      return <Component {...props} isAuth={false}/>;
+    }
   };
 }
 

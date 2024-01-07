@@ -1,49 +1,70 @@
-/**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Authentication User <hook>
- * @copyright Arkadip Bhattacharya 2020
- *
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import * as React from 'react';
+import {useContext} from 'react';
 import AuthContext from '../AuthContext';
-import {AuthStateUserObject} from '../types';
-import {AuthKitError} from '../errors';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
- * Auth State Hook
+ * Auth User Data React Hook
  *
- * @returns - Auth State Function
+ * Call the hook,
+ * to get the authenticated user data into your React Component
+ *
+ * This uses the context data to determine get the user data
+ *
+ * @typeParam T - Type of User State Object
+ *
+ * @returns React Hook with user state functionility.
+ * If the user is authenticated, then user data is returned.
+ * If the user is not authenticated, then `null` is ruturned.
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ *
+ * @example
+ * Here is the example for JavaScript
+ * ```js
+ * import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+ *
+ * const Component = () => {
+ *  const authUser = useAuthUser()
+ *  const name = authUser.name;
+ *  const uuid = authUser.uuid;
+ *  ...
+ * }
+ * ```
+ * Here is the example for TypeScript
+ * ```tsx
+ * import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+ *
+ * interface IUserData {
+ *  name: string;
+ *  uuid: string;
+ * };
+ *
+ * const Component = () => {
+ *  const authUser = useAuthUser<IUserData>()
+ *  const name = authUser.name;
+ *  const uuid = authUser.uuid;
+ *  ...
+ * }
+ * ```
  */
-function useAuthUser(): () => AuthStateUserObject | null {
-  const context = React.useContext(AuthContext);
+function useAuthUser<T>(): T | null {
+  const context = useContext(AuthContext);
   if (context === null) {
     throw new
-    AuthKitError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this hook inside the auth provider.',
+    );
   }
-  return () => {
-    if (isAuthenticated(context.authState)) {
-      return context.authState.userState;
-    } else {
-      // TODO: Need to signout and redirect to login
-      return null;
-    }
-  };
+
+  if (isAuthenticated(context.value)) {
+    return context.value.userState as T;
+  } else {
+    // TODO: Need to signout and redirect to login
+    return null;
+  }
 }
 
 export default useAuthUser;

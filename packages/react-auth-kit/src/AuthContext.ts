@@ -1,28 +1,22 @@
+import {createContext} from 'react';
+import type {Context} from 'react';
+import TokenObject from './RxTokenObject';
+
 /**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Auth Context
- * @copyright Arkadip Bhattacharya 2020
+ * @internal
+ * @returns React Context with Token Object inside
  *
- * Copyright 2020 Arkadip Bhattacharya
+ * React Context to globally hold the TokenObject instance in the application.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
+function getContext<T>(): Context<TokenObject<T>> {
+  const context = createContext<TokenObject<T>>(null as any);
+  if (process.env.NODE_ENV !== 'production') {
+    context.displayName = 'ReactAuthKit';
+  }
+  return context;
+}
 
-import * as React from 'react';
-import {AuthContextInterface} from './types';
+export const AuthKitContext = getContext();
 
-const AuthContext = React.createContext<AuthContextInterface | null>(null);
-
-const AuthContextConsumer = AuthContext.Consumer;
-export {AuthContextConsumer};
-export default AuthContext;
+export default AuthKitContext;

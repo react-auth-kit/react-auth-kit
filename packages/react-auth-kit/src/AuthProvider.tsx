@@ -1,86 +1,97 @@
 import * as React from 'react';
-import AuthContext from './AuthContext';
-import TokenObject from './TokenObject';
-import {AuthProviderProps} from './types';
-import {authReducer, doRefresh} from './utils/reducers';
+import AuthKitContext from './AuthContext';
+import type {createStoreReturn} from './createStore';
 import {useInterval} from './utils/hooks';
-import { AuthKitError } from './errors';
-
+import {doRefresh, doSignOut} from './utils/reducers';
 
 /**
- * AuthProvider - The Authentication Context Provider
- *
- * @param children
- * @param authStorageName
- * @param cookieDomain
- * @param cookieSecure
- *
- * @return Functional Component
+ * Props of the AuthProvider Component
  */
-const AuthProvider: React.FunctionComponent<AuthProviderProps> =
-  ({
-    children,
-    authType,
-    authName,
-    cookieDomain,
-    cookieSecure,
-    refresh,
-  }) => {
-    if (authType === 'cookie') {
-      if (!cookieDomain) {
-        throw new
-        AuthKitError('authType \'cookie\' ' +
-          'requires \'cookieDomain\' and \'cookieSecure\' ' +
-          'props in AuthProvider');
-      }
-    }
+interface AuthProviderProps<T> {
+  /**
+   * Auth Kit Store.
+   *
+   * Create the store using the `createStore` function
+   */
+  store: createStoreReturn<T>
 
-    const refreshTokenName = refresh ? `${authName}_refresh` : null;
+  /**
+   * React Component.
+   * Effectively your entine application
+   */
+  children: React.ReactNode
+}
 
-    const tokenObject = new TokenObject(authName, authType,
-        refreshTokenName, cookieDomain, cookieSecure);
+/**
+ *
+ * React Provider that includes React Auth Kit functionility in your React
+ * Application.
+ *
+ * @returns React Functional component with React Auth Kit Recharged.
+ *
+ * @remarks
+ * Make sure you wrap your application as well as your router components in AuthProvider.
+ *
+ * AuthProvider should be your Top Most element so that if can work effectively
+ * throughout the application.
+ *
+ * @example
+ * ```jsx
+ * const store = createStore()
+ * 
+ * <AuthProvider store={store}>
+ *  <RoutesComponent/>
+ * </AuthProvider>
+ * ```
+ *
+ */
+function AuthProvider<T extends object>(
+    {
+      store,
+      children,
+    }: AuthProviderProps<T>,
+): ReturnType<React.FC> {
+  const {tokenObject, refresh} = store;
 
-    const [authState, dispatch] =
-      React.useReducer(authReducer, tokenObject.initialToken());
-
-    if (refresh) {
-      useInterval(
-          () => {
-            refresh
+  if (refresh) {
+    useInterval(
+        () => {
+          refresh
               .refreshApiCallback({
-                authToken: authState.auth?.token,
-                authTokenExpireAt: authState.auth?.expiresAt,
-                authUserState: authState.userState,
-                refreshToken: authState.refresh?.token,
-                refreshTokenExpiresAt: authState.refresh?.expiresAt,
+                authToken: tokenObject.value.auth?.token,
+                authUserState: tokenObject.value.userState,
+                refreshToken: tokenObject.value.refresh?.token,
               })
               .then((result) => {
                 // IF the API call is successful then refresh the AUTH state
                 if (result.isSuccess) {
                   // store the new value using the state update
-                  dispatch(doRefresh(result));
-                }
-                else {
-                  // do something in future
+                  tokenObject.set(doRefresh(result));
+                } else {
+                  // signout if failed to refresh
+                  tokenObject.set(doSignOut());
                 }
               })
-              .catch(()=>{
-                // do something in future
+              .catch(() => {
+                // Retry for Future
               });
-          },
-        authState.isSignIn ? refresh.interval : null,
-      );
-    }
-
-    React.useEffect(() => {
-      tokenObject.syncTokens(authState);
-    }, [authState]);
-
-    return (
-      <AuthContext.Provider value={{authState, dispatch}}>
-        {children}
-      </AuthContext.Provider>
+        },
+      tokenObject.value.isSignIn ? refresh.interval : null,
     );
-  };
+  }
+
+  return (
+    // @ts-ignore 'AnyAction' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype
+    <AuthKitContext.Provider value={tokenObject}>
+      {children}
+    </AuthKitContext.Provider>
+  );
+}
+
+// Default prop for AuthProvider
+AuthProvider.defaultProps = {
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === 'https:',
+};
 
 export default AuthProvider;

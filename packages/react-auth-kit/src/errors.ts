@@ -1,21 +1,10 @@
 /**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Error file
- * @copyright Arkadip Bhattacharya 2023
+ * Base Error Class for all the auth kit related errors.
  */
-
-/**
- * @class
- * @name AuthKitError
- * @extends Error
- *
- * General Auth kit error class
- */
-export class AuthKitError extends Error {
+export class AuthError extends Error {
   /**
-     * @constructor
-     * @param message - Error message
-     */
+   * @param message - Error Message to be shown to the developer.
+   */
   constructor(message: string) {
     super(message);
   }

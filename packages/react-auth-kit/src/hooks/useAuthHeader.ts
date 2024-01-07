@@ -1,47 +1,55 @@
-/**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Authentication header <hook>
- * @copyright Arkadip Bhattacharya 2020
- *
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import * as React from 'react';
+import {useContext} from 'react';
 import AuthContext from '../AuthContext';
-import {AuthKitError} from '../errors';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
+ * Auth Header React Hook
  *
+ * Call the hook,
+ * to get the auth header for network request
+ *
+ * **Format: `type token` (authType-space-authToken)**
+ *
+ * @example
+ * Here is a simple example
+ * ```jsx
+ * import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
+ *
+ * const Component = () => {
+ *  const authHeader = useAuthHeader();
+ *  const headers = {
+ *    'Authorization': authHeader
+ *  }
+ *  // use the headers in the network request
+ *  ...
+ * }
+ * ```
+ *
+ * @returns If the user is authenticated,
+ * then `'auth.type auth.token'` is returned.
+ * If the user is not authenticated, then `null` is ruturned.
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
  */
-function useAuthHeader(): () => (string) {
-  const c = React.useContext(AuthContext);
+function useAuthHeader(): string | null {
+  const c = useContext(AuthContext);
   if (c === null) {
     throw new
-    AuthKitError('Auth Provider is missing. ' +
-      'Please add the AuthProvider before Router');
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this hook inside the auth provider.',
+    );
   }
 
+  const {value} = c;
 
-  return () => {
-    if (c.authState.auth && isAuthenticated(c.authState)) {
-      return `${c.authState.auth.type} ${c.authState.auth.token}`;
-    } else {
-      return ``;
-    }
-  };
+  if (!!value.auth && isAuthenticated(value)) {
+    return `${value.auth.type} ${value.auth.token}`;
+  } else {
+    return null;
+  }
 }
 
 export default useAuthHeader;

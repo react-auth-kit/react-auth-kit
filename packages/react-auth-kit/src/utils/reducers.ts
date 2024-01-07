@@ -1,118 +1,151 @@
 /**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Reducers for useReducer
- * @copyright Arkadip Bhattacharya 2020
+ * @packageDocumentation
  *
- * Copyright 2020 Arkadip Bhattacharya
+ * Reducer Module
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * It contains all the reducers
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ * @remarks
+ * A reducer is a function that takes input from the user
+ * and converts to the actual state object,
+ * that can be processed by React Auth Kit state system.
  *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
-import {AuthKitStateInterface} from '../types';
-import {
-  ActionType,
-  AuthActions,
-  SignInAction,
-  SignInActionPayload,
-  SignOutAction,
-  RefreshTokenAction,
-  RefreshTokenActionPayload,
-} from './actions';
+
+import type {
+  SignInActionPayload
+} from '../types';
+
+import type {
+  RefreshTokenActionPayload
+} from '../createRefresh';
+
+import type {
+  AuthKitSetState
+} from '../RxTokenObject';
 
 /**
- * Auth Reducer
- * Used in auth state
- * @param state
- * @param action
+ * @internal
+ *
+ * Do Sign In reducer.
+ * It is used to convert the incoming payload into
+ * the specified format for the auth state.
+ * It doesn't contains any important buisness logic.
+*
+ * @typeParam T - Type of User State Object
+ * @param signInParams - Sign in parameters
+ * @returns Object that is modified to auth state to used further
+ *
+ * @remarks
+ * - If the `auth.type` is not set, then by default it is set as `Bearer`
+ * - If the `userState` is not set, then by default it is `{}` (an empty object)
+ *
  */
-export function authReducer(state: AuthKitStateInterface,
-    action: AuthActions)
-  : AuthKitStateInterface {
-  switch (action.type) {
-    case ActionType.SignIn:
-      return {
-        ...state,
-        auth: action.payload.auth,
-        refresh: action.payload.refresh,
-        userState: action.payload.userState,
-        isSignIn: true,
+export function doSignIn<T>(
+    signInParams: SignInActionPayload<T>,
+): AuthKitSetState<T> {
+  const authType = signInParams.auth.type ?
+    signInParams.auth.type :
+    'Bearer';
+  const authToken = signInParams.auth.token;
+
+  return {
+    auth: {
+      token: authToken,
+      type: authType,
+    },
+    refresh: signInParams.refresh,
+    userState: signInParams.userState || {} as T,
+  };
+}
+
+/**
+ * Do refresh reducer
+ * When the token is refrshed,
+ * this reducer is used to convert the incoming data from
+ * the refresh token functionality.
+ *
+ * @remarks
+ *
+ * Here is the internal decision graph
+ * ```
+ * refreshTokenParam
+ *        |
+ *        |-- new auth token -------------------------> Update the auth data
+ *        |                   |
+ *        |                   |
+ *        |                   |-- new user state -----> Add user state in
+ *        |                   |                         the updated auth data
+ *        |                   |
+ *        |                   |-- new refresh token --> Add new refresh token in
+ *        |                                             the updated auth state
+ *        |
+ *        |-- No auth token only refresh token -------> Update the refresh token
+ *        |
+ *        |
+ *        --- No auth token and refresh token --------> Make everything Null
+ * ```
+ *
+ * @param refreshTokenParam - Parameters set by the
+ * refresh token called
+ * @returns Object that is modified to auth state to used
+ * further to set the refreshed auth states
+ *
+ * @internal
+ *
+ * @typeParam T - Type of User State Object
+ */
+export function doRefresh<T>(refreshTokenParam: RefreshTokenActionPayload<T>):
+  AuthKitSetState<T> {
+  if (refreshTokenParam.newAuthToken) {
+    let ret : AuthKitSetState<T>= {
+      auth: {
+        token: refreshTokenParam.newAuthToken!,
+        type: refreshTokenParam.newAuthTokenType ?
+          refreshTokenParam.newAuthTokenType :
+          'Bearer',
+      },
+    };
+    if (refreshTokenParam.newAuthUserState) {
+      ret = {
+        ...ret,
+        userState: refreshTokenParam.newAuthUserState,
       };
-    case ActionType.SignOut:
-      return {
-        ...state,
-        auth: null,
-        refresh: null,
-        userState: null,
-        isSignIn: false,
+    }
+    if (refreshTokenParam.newRefreshToken) {
+      ret = {
+        ...ret,
+        refresh: refreshTokenParam.newRefreshToken,
       };
-    case ActionType.RefreshToken:
-      if (state.isSignIn && state.auth && state.refresh) {
-        return {
-          ...state,
-          auth: {
-            token: action.payload.newAuthToken ?
-              action.payload.newAuthToken : state.auth.token,
-            type: state.auth.type,
-            expiresAt: action.payload.newAuthTokenExpireIn ?
-              new Date(new Date().getTime() +
-                action.payload.newAuthTokenExpireIn * 60 * 1000) :
-              state.auth.expiresAt,
-          },
-          refresh: {
-            token: action.payload.newRefreshToken ?
-              action.payload.newRefreshToken : state.refresh.token,
-            expiresAt: action.payload.newRefreshTokenExpiresIn ?
-              new Date(new Date().getTime() +
-                action.payload.newRefreshTokenExpiresIn * 60 * 1000) :
-              state.refresh.expiresAt,
-          },
-          userState: action.payload.newAuthUserState ?
-            action.payload.newAuthUserState : state.userState,
-        };
-      } else {
-        return state;
-      }
+    }
+    return ret;
+  } else if (refreshTokenParam.newRefreshToken) {
+    const ret = {
+      refresh: refreshTokenParam.newRefreshToken,
+    };
+    return ret;
+  } else {
+    return {
+      auth: null,
+      refresh: null,
+    };
   }
 }
 
-// Helper functions
 /**
- * used to make sign in
- * @param signInParams
+ * Do sign out reducer
+ * Called Internally to make the auth state signed out
+ *
+ * @returns Object that is modified to be used further to
+ * update the auth state to make it signed out
+ *
+ * @internal
+ *
+ * @typeParam T - Type of User State Object
+ *
  */
-export function doSignIn(signInParams: SignInActionPayload): SignInAction {
-  return ({
-    type: ActionType.SignIn,
-    payload: signInParams,
-  });
-}
-
-/**
- * used to refresh the Token
- * @param refreshTokenParam
- */
-export function doRefresh(refreshTokenParam: RefreshTokenActionPayload):
-  RefreshTokenAction {
-  return ({
-    type: ActionType.RefreshToken,
-    payload: refreshTokenParam,
-  });
-}
-
-/**
- * Used to make sign out
- */
-export function doSignOut(): SignOutAction {
-  return ({
-    type: ActionType.SignOut,
-  });
+export function doSignOut<T>(): AuthKitSetState<T> {
+  return {
+    auth: null,
+  };
 }

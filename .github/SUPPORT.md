@@ -17,4 +17,4 @@ See [`contributing.md`](https://github.com/react-auth-kit/react-auth-kit/blob/ma
 
 ## License
 
-[Apache-2.0](https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE) © [React Auth Kit](https://github.com/react-auth-kit/react-auth-kit)
+[MIT](https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE) © [React Auth Kit](https://github.com/react-auth-kit/react-auth-kit)

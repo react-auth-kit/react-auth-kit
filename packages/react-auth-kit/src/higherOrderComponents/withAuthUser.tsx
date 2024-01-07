@@ -1,68 +1,72 @@
-/**
- * @author Arkadip Bhattacharya <in2arkadipb13@gmail.com>
- * @fileoverview Authentication User <Higher Order Component>
- * @copyright Arkadip Bhattacharya 2020
- *
- * Copyright 2020 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import * as React from 'react';
-import {AuthContextConsumer} from '../AuthContext';
-import {AuthStateUserObject} from '../types';
-import {AuthKitError} from '../errors';
+import AuthContext from '../AuthContext';
+import {AuthError} from '../errors';
 import {isAuthenticated} from '../utils/utils';
 
 /**
- * @interface withAuthProps
+ * Type of the React props, that are injected to the component
+ *
+ * @typeParam T - Type of User State Object
  */
-interface withAuthProps {
-    authState: AuthStateUserObject| null
+interface withAuthStateProps<T> {
+  /**
+   * State of the user provided on signin or refresh
+   *
+   * If the type is null then user may be not authenticated.
+   * Use `isAuthenticated` to verify
+   */
+  authState: T | null
 }
 
 /**
- * @function
- * @name withAuthUser
- * @description Inject Authenticated User's state inside the Component's Prop
- * @param Component
+ * @deprecated Higher-order components are not commonly used in
+ * modern React code, use Hooks instead
+ *
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the user state into
+ * the class based component props
+ *
+ * If the prop is null then user may be not authenticated.
+ * Use `isAuthenticated` to verify
+ *
+ * @example
+ * ```jsx
+ * class MyComponent extends React.Component {
+ *  render() {
+ *    return <h1>Hello, {this.props.authState}</h1>;
+ *  }
+ * }
+ * export default withAuthUser(MyComponent);
+ * ```
+ *
+ * @throws AuthError
+ * Thrown if the Hook is used outside the Provider Scope.
+ *
+ * @param Component - React Class based Component
+ * @returns React Higher Order Component with injected `authState` prop
  */
-function withAuthUser<P extends withAuthProps>(
+function withAuthUser<T, P extends withAuthStateProps<T>>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
-  return (props: P)=>{
-    return (
-      <AuthContextConsumer>
-        {(context) => {
-          if (context === null) {
-            throw new
-            AuthKitError('Auth Provider is missing. ' +
-              'Please add the AuthProvider before Router');
-          }
-          if (context.authState.auth && isAuthenticated(context.authState)) {
-            return (
-              <Component {...props} authState={context.authState.userState}/>
-            );
-          } else {
-            return (
-              <Component {...props} authState={null}/>
-            );
-          }
-        }}
-      </AuthContextConsumer>
+  const c = React.useContext(AuthContext);
+  if (c === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
     );
+  }
+
+  return (props: P)=>{
+    if (isAuthenticated(c.value)) {
+      return (
+        <Component {...props} authState={c.value.userState}/>
+      );
+    } else {
+      return (
+        <Component {...props} authState={null}/>
+      );
+    }
   };
 }
-/**
- * @exports withAuthUser
- */
+
 export default withAuthUser;
