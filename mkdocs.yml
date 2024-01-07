@@ -58,7 +58,7 @@ nav:
     - Auth Status: 'getting_started/checkauth.md'
     - Refresh Token: 'getting_started/refreshtoken.md'
     - Private Route: 
-        - 'getting_started/privateroute/index.md'
+        - React Router: 'getting_started/privateroute/react-router.md'
 
   - Reference: 
     - 'reference/index.md'

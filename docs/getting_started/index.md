@@ -22,3 +22,12 @@ description: Add Authentication in your React Auth Kit
 
 ## Private Routing
 
+React Auth Kit supports various routers like `react-router`, `next js router` to handle Private Routing and Redirection
+
+- [React Router](./privateroute/react-router.md) - Integrate Private Route with React Router and React Router Dom
+
+---
+
+<p align="center">&mdash; 🔑  &mdash;</p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">
+MIT License</a> code</i></p>

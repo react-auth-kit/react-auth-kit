@@ -16,14 +16,14 @@ hide:
 <a href="https://www.npmjs.com/package/react-auth-kit">
     <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
 </a>
+<a href="https://www.npmjs.com/package/react-auth-kit">
+    <img src="https://img.shields.io/npm/dw/react-auth-kit?logo=npm" alt="NPM Downloads">
+</a>
 <a href="https://bundlephobia.com/result?p=react-auth-kit">
     <img src="https://img.shields.io/bundlephobia/minzip/react-auth-kit?style=flat-square" alt="Test Suites">
 </a>
 <a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
     <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
-</a>
-<a href="https://snyk.io/advisor/npm-package/react-auth-kit">
-    <img src="https://img.shields.io/snyk/vulnerabilities/npm/react-auth-kit?logo=snyk&style=flat-square" alt="Snyk">
 </a>
 </p>
 
@@ -38,7 +38,7 @@ It is production-ready, and gives you the following:
 * ⚛️ Build for React JS
 * ⚡ Works with Gastsby, Next JS
 * 🚀 Fast and easy to Implement
-* 🛡️ Supports Json Web Token (JWT)
+* 🛡️ Supports JSON Web Token (JWT)
 * 🔒 Secure Client Side Authentication
 * ⌨️ Highly typed and written in `TypeScript`
 
