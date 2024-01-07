@@ -1,3 +1,12 @@
+## [3.0.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.7...v3.0.0) (2024-01-07)
+
+
+### Features
+
+* **RxJS:** Using RxJS Based Token Store for Better Performance.
+* **Tree Stacking:** Using Tree Stacked Codebase for smaller build
+* **MonoRepo:** Extendable Monorepo based Achitecture
+
 ## [2.12.7](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.6...v2.12.7) (2023-09-18)
 
 
