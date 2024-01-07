@@ -15,25 +15,25 @@
         <link rel="canonical" href="https://authkit.arkadip.dev/update/">
       
       
-        <link rel="prev" href="../refreshtoken/">
+        <link rel="prev" href="../reference/react-router/authoutlet/">
       
       
-        <link rel="next" href="../contributing/">
+        <link rel="next" href="2to3/">
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
     
     
       
-        <title>Update Auth Kit from v1 to v2 - React Auth Kit</title>
+        <title>Index - React Auth Kit</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -63,7 +63,7 @@
 
 <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-G1WZBFV5R2"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-G1WZBFV5R2",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-G1WZBFV5R2",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
   
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
   
 
     
@@ -76,7 +76,7 @@
 <meta property="keywords"
       content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-kit, jwt with react, state, react-state, auth-state"/>
 <meta property="og:type" content="website" />
-<meta property="og:title" content="React Auth Kit - Update Auth Kit from v1 to v2" />
+<meta property="og:title" content="React Auth Kit - Index" />
 <meta property="og:description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token" />
 <meta property="og:url" content="https://authkit.arkadip.dev/update/" />
 <meta property="og:image" content="https://authkit.arkadip.dev/img/banner.png" />
@@ -85,7 +85,7 @@
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="https://authkit.arkadip.dev/update/">
-<meta name="twitter:title" content="React Auth Kit - Update Auth Kit from v1 to v2" />
+<meta name="twitter:title" content="React Auth Kit - Index" />
 <meta name="twitter:description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token" />
 <meta name="twitter:image" content="https://authkit.arkadip.dev/img/banner.svg" />
 <script 
@@ -116,11 +116,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#update-auth-kit-from-v1-to-v2" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -150,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Update Auth Kit from v1 to v2
+              Index
             
           </span>
         </div>
@@ -163,20 +158,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
       </label>
     
   
@@ -202,11 +197,18 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -269,16 +271,58 @@
         
   
   
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting_started/" class="md-tabs__link">
+          
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/" class="md-tabs__link">
+          
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
     
   
   
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../installation/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
-  Documentation
+    
+  
+  Upgradation Guide
 
         </a>
       </li>
@@ -352,6 +396,7 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
@@ -370,50 +415,84 @@
       
   
   
-    
   
   
     
     
-    
-    
-    
       
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting_started/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
-    Documentation
+    Getting Started
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Documentation
+            Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../getting_started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -432,8 +511,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../integration/" class="md-nav__link">
+      <a href="../getting_started/integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -452,8 +532,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../signin/" class="md-nav__link">
+      <a href="../getting_started/signin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -472,28 +553,9 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../privateroute/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Private Route
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
     <li class="md-nav__item">
-      <a href="../signout/" class="md-nav__link">
+      <a href="../getting_started/signout/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -512,12 +574,13 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../authdata/" class="md-nav__link">
+      <a href="../getting_started/authdata/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Auth User Data
+    User Data
   </span>
   
 
@@ -532,8 +595,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../authheader/" class="md-nav__link">
+      <a href="../getting_started/authheader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -552,12 +616,13 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../checkauth/" class="md-nav__link">
+      <a href="../getting_started/checkauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Check Authentication
+    Auth Status
   </span>
   
 
@@ -572,8 +637,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../refreshtoken/" class="md-nav__link">
+      <a href="../getting_started/refreshtoken/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -591,90 +657,69 @@
                 
   
   
+  
+  
     
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
+    
       
         
       
+    
+    
+    
+    
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
           
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="">
+            
   
   <span class="md-ellipsis">
-    Update Auth Kit from v1 to v2
+    Private Route
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            Private Route
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/privateroute/react-router/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Update Auth Kit from v1 to v2
+    React Router
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whats-changed" class="md-nav__link">
-    What's changed
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-to-v2" class="md-nav__link">
-    Update to v2
-  </a>
-  
-    <nav class="md-nav" aria-label="Update to v2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#component-structure-in-v1" class="md-nav__link">
-    Component structure in v1
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#component-structure-in-v2" class="md-nav__link">
-    Component structure in v2
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -690,6 +735,802 @@
     
       
       
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    React Auth Kit
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            React Auth Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/authprovider/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AuthProvider
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/createRefresh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    createRefresh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/createStore/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    createStore
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/react-auth-kit/hooks/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Hooks
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Hooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hooks/useAuthHeader/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    useAuthHeader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hooks/useAuthUser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    useAuthUser
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hooks/useIsAuthenticated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    useIsAuthenticated
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hooks/useSignIn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    useSignIn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hooks/useSignOut/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    useSignOut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/react-auth-kit/hoc/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Higher Order Component
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Higher Order Component
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hoc/withAuthHeader/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    useAuthHeader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hoc/withAuthUser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    withAuthuser
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hoc/withIsAuthenticated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    withIsAuthenticated
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hoc/withSignIn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    withSignIn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-auth-kit/hoc/withSignOut/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    withSignOut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    @auth-kit/react-router
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            @auth-kit/react-router
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-router/requireauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RequireAuth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/react-router/authoutlet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AuthOutlet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  <span class="md-ellipsis">
+    Upgradation Guide
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Upgradation Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2to3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update from v2 to v3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="1to2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update from v1 to v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
@@ -724,50 +1565,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whats-changed" class="md-nav__link">
-    What's changed
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-to-v2" class="md-nav__link">
-    Update to v2
-  </a>
-  
-    <nav class="md-nav" aria-label="Update to v2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#component-structure-in-v1" class="md-nav__link">
-    Component structure in v1
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#component-structure-in-v2" class="md-nav__link">
-    Component structure in v2
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -785,42 +1582,9 @@
   
 
 
-<h1 id="update-auth-kit-from-v1-to-v2">Update Auth Kit from v1 to v2<a class="headerlink" href="#update-auth-kit-from-v1-to-v2" title="Permanent link">&para;</a></h1>
-<h2 id="whats-changed">What's changed<a class="headerlink" href="#whats-changed" title="Permanent link">&para;</a></h2>
-<ul>
-<li>React Auth Kit v2 comes with the support of <code>React Router v6</code>.</li>
-<li>React Auth Kit v2 stops using the <code>PrivateRoute</code> component.</li>
-<li>React Auth Kit v2 introduces new component named <code>RequireAuth</code>.</li>
-<li><code>RequireAuth</code> will replace the use-cases of <code>PrivateRoute</code>. It also will make the process easier to manage.</li>
-</ul>
-<h2 id="update-to-v2">Update to v2<a class="headerlink" href="#update-to-v2" title="Permanent link">&para;</a></h2>
-<h3 id="component-structure-in-v1">Component structure in v1<a class="headerlink" href="#component-structure-in-v1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">RouteComponent</span><pre><span></span><code>&lt;BrowserRouter&gt;
-  &lt;Switch&gt;
-    &lt;Route path={&#39;/&#39;} component={Home} exact/&gt;
-    &lt;Route path={&#39;/login&#39; } component={Login} exact/&gt;
-    &lt;PrivateRoute path={&#39;/secure&#39;}
-                  component={SecureComponent}
-                  loginPath={&#39;/login&#39;} exact
-    /&gt;
-  &lt;/Switch&gt;
-&lt;/BrowserRouter&gt;
-</code></pre></div>
-<h3 id="component-structure-in-v2">Component structure in v2<a class="headerlink" href="#component-structure-in-v2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">RouteComponent</span><pre><span></span><code>&lt;BrowserRouter&gt;
-  &lt;Routes&gt;
-    &lt;Route path={&#39;/&#39;} element={&lt;Home/&gt;}/&gt;
-    &lt;Route path={&#39;/login&#39; } element={&lt;Login/&gt;}/&gt;
-    &lt;Route path={&#39;/secure&#39;} element={
-        &lt;RequireAuth loginPath={&#39;/login&#39;}&gt;
-          &lt;SecureComponent/&gt;
-        &lt;/RequireAuth&gt;
-    }/&gt;
-  &lt;/Routes&gt;
-&lt;/BrowserRouter&gt;
-</code></pre></div>
-<p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+  <h1>Index</h1>
+
+
 
 
   
@@ -834,6 +1598,12 @@
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -855,10 +1625,85 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.instant", "navigation.tabs", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
     
     
-      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tracking", "navigation.top", "navigation.sections", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       

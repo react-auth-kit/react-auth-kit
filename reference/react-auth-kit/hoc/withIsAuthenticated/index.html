@@ -6,32 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token">
+        <meta name="description" content="Inject authentication status inside your react class-based component">
       
       
         <meta name="author" content="Arkadip Bhattacharya">
       
       
-        <link rel="canonical" href="https://authkit.arkadip.dev/">
+        <link rel="canonical" href="https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withIsAuthenticated/">
       
       
+        <link rel="prev" href="../withAuthUser/">
       
-        <link rel="next" href="getting_started/">
+      
+        <link rel="next" href="../withSignIn/">
       
       
-      <link rel="icon" href="img/favicon.png">
+      <link rel="icon" href="../../../../img/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
     
     
       
-        <title>React Auth Kit</title>
+        <title>withIsAuthenticated - React Auth Kit - React Auth Kit</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.fad675c6.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -50,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -69,19 +71,21 @@
     
 
 
+    
+
 <meta property="keywords"
       content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-kit, jwt with react, state, react-state, auth-state"/>
 <meta property="og:type" content="website" />
-<meta property="og:title" content="React Auth Kit" />
+<meta property="og:title" content="React Auth Kit - withIsAuthenticated - React Auth Kit" />
 <meta property="og:description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token" />
-<meta property="og:url" content="https://authkit.arkadip.dev/" />
+<meta property="og:url" content="https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withIsAuthenticated/" />
 <meta property="og:image" content="https://authkit.arkadip.dev/img/banner.png" />
 <meta property="og:image:type" content="image/svg+xml" />
 <meta property="og:image:width" content="1280" />
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="https://authkit.arkadip.dev/">
-<meta name="twitter:title" content="React Auth Kit" />
+<meta name="twitter:site" content="https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withIsAuthenticated/">
+<meta name="twitter:title" content="React Auth Kit - withIsAuthenticated - React Auth Kit" />
 <meta name="twitter:description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token" />
 <meta name="twitter:image" content="https://authkit.arkadip.dev/img/banner.svg" />
 <script 
@@ -113,7 +117,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stargazers-over-time" class="md-skip">
+        <a href="#withisauthenticated" class="md-skip">
           Skip to content
         </a>
       
@@ -127,9 +131,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="React Auth Kit" class="md-header__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
+    <a href="../../../.." title="React Auth Kit" class="md-header__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
       
-  <img src="img/logo.svg" alt="logo">
+  <img src="../../../../img/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -146,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              withIsAuthenticated - React Auth Kit
             
           </span>
         </div>
@@ -255,11 +259,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
         
   
     
@@ -278,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="getting_started/" class="md-tabs__link">
+        <a href="../../../../getting_started/" class="md-tabs__link">
           
   
     
@@ -294,11 +296,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="reference/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
           
   
     
@@ -318,7 +322,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="update/" class="md-tabs__link">
+        <a href="../../../../update/" class="md-tabs__link">
           
   
     
@@ -336,7 +340,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="contributing/" class="md-tabs__link">
+      <a href="../../../../contributing/" class="md-tabs__link">
         
   
     
@@ -359,9 +363,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -372,9 +374,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="React Auth Kit" class="md-nav__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
+    <a href="../../../.." title="React Auth Kit" class="md-nav__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
       
-  <img src="img/logo.svg" alt="logo">
+  <img src="../../../../img/logo.svg" alt="logo">
 
     </a>
     React Auth Kit
@@ -398,28 +400,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -428,33 +412,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stargazers-over-time" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stargazers over time
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -507,7 +464,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="getting_started/" class="md-nav__link ">
+            <a href="../../../../getting_started/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -540,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/installation/" class="md-nav__link">
+      <a href="../../../../getting_started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -561,7 +518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/integration/" class="md-nav__link">
+      <a href="../../../../getting_started/integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -582,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/signin/" class="md-nav__link">
+      <a href="../../../../getting_started/signin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -603,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/signout/" class="md-nav__link">
+      <a href="../../../../getting_started/signout/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -624,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/authdata/" class="md-nav__link">
+      <a href="../../../../getting_started/authdata/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -645,7 +602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/authheader/" class="md-nav__link">
+      <a href="../../../../getting_started/authheader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -666,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/checkauth/" class="md-nav__link">
+      <a href="../../../../getting_started/checkauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -687,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/refreshtoken/" class="md-nav__link">
+      <a href="../../../../getting_started/refreshtoken/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -752,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/privateroute/react-router/" class="md-nav__link">
+      <a href="../../../../getting_started/privateroute/react-router/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -785,6 +742,8 @@
       
   
   
+    
+  
   
   
     
@@ -805,17 +764,17 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/" class="md-nav__link ">
+            <a href="../../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -832,7 +791,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Reference
@@ -845,8 +804,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -871,12 +832,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
@@ -890,7 +851,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             React Auth Kit
@@ -904,7 +865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/authprovider/" class="md-nav__link">
+      <a href="../../authprovider/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -925,7 +886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/createRefresh/" class="md-nav__link">
+      <a href="../../createRefresh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -946,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/createStore/" class="md-nav__link">
+      <a href="../../createStore/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -967,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/errors/" class="md-nav__link">
+      <a href="../../errors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -988,7 +949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/types/" class="md-nav__link">
+      <a href="../../types/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1039,7 +1000,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/react-auth-kit/hooks/" class="md-nav__link ">
+            <a href="../../hooks/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1072,7 +1033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useAuthHeader/" class="md-nav__link">
+      <a href="../../hooks/useAuthHeader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1093,7 +1054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useAuthUser/" class="md-nav__link">
+      <a href="../../hooks/useAuthUser/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1114,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useIsAuthenticated/" class="md-nav__link">
+      <a href="../../hooks/useIsAuthenticated/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1135,7 +1096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useSignIn/" class="md-nav__link">
+      <a href="../../hooks/useSignIn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1156,7 +1117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useSignOut/" class="md-nav__link">
+      <a href="../../hooks/useSignOut/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1182,6 +1143,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1205,17 +1168,17 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/react-auth-kit/hoc/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1232,7 +1195,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2_7">
             <span class="md-nav__icon md-icon"></span>
             Higher Order Component
@@ -1248,7 +1211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withAuthHeader/" class="md-nav__link">
+      <a href="../withAuthHeader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1269,7 +1232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withAuthUser/" class="md-nav__link">
+      <a href="../withAuthUser/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1287,10 +1250,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withIsAuthenticated/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    withIsAuthenticated
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1299,6 +1282,95 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#function-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function Signature
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#throws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throws
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Throws">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defined-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defined in
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1311,7 +1383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withSignIn/" class="md-nav__link">
+      <a href="../withSignIn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1332,7 +1404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withSignOut/" class="md-nav__link">
+      <a href="../withSignOut/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1415,7 +1487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-router/requireauth/" class="md-nav__link">
+      <a href="../../../react-router/requireauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1436,7 +1508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-router/authoutlet/" class="md-nav__link">
+      <a href="../../../react-router/authoutlet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1499,7 +1571,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="update/" class="md-nav__link ">
+            <a href="../../../../update/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1532,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update/2to3/" class="md-nav__link">
+      <a href="../../../../update/2to3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1553,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update/1to2/" class="md-nav__link">
+      <a href="../../../../update/1to2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1581,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributing/" class="md-nav__link">
+      <a href="../../../../contributing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1602,9 +1674,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1612,6 +1682,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1621,11 +1693,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stargazers-over-time" class="md-nav__link">
+  <a href="#function-signature" class="md-nav__link">
     <span class="md-ellipsis">
-      Stargazers over time
+      Function Signature
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#throws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throws
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Throws">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defined-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defined in
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1647,56 +1779,72 @@
   
 
 
-  <h1>Home</h1>
+<h1 id="withisauthenticated">withIsAuthenticated<a class="headerlink" href="#withisauthenticated" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Deprecated</strong> Higher-order components are not commonly used in modern React code, use Hooks instead</p>
+</blockquote>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_withIsAuthenticated"></div>
 
-<p style="text-align: center">
-    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
-</p>
-
-<p style="text-align: center">
-    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
-</p>
-
-<p style="text-align: center">
-<a href="https://www.npmjs.com/package/react-auth-kit">
-    <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
-</a>
-<a href="https://www.npmjs.com/package/react-auth-kit">
-    <img src="https://img.shields.io/npm/dw/react-auth-kit?logo=npm" alt="NPM Downloads">
-</a>
-<a href="https://bundlephobia.com/result?p=react-auth-kit">
-    <img src="https://img.shields.io/bundlephobia/minzip/react-auth-kit?style=flat-square" alt="Test Suites">
-</a>
-<a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
-    <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
-</a>
-</p>
-
+<h2 id="function-signature">Function Signature<a class="headerlink" href="#function-signature" title="Permanent link">&para;</a></h2>
+<p><strong>withIsAuthenticated</strong>&lt;<code>P</code>&gt;(<code>Component</code>): <code>React.FunctionComponent</code>&lt;<code>P</code>&gt;</p>
+<h2 id="type-parameters">Type parameters<a class="headerlink" href="#type-parameters" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>P</code></td>
+<td style="text-align: left;">extends <code>withAuthHeaderProps</code></td>
+<td style="text-align: left;">Props of the component</td>
+</tr>
+</tbody>
+</table>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Component</code></td>
+<td style="text-align: left;"><code>ComponentType</code>&lt;<code>P</code>&gt;</td>
+<td style="text-align: left;">React Class based Component</td>
+</tr>
+</tbody>
+</table>
+<h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h2>
+<p><code>React.FunctionComponent</code>&lt;<code>P</code>&gt;</p>
+<p>React Higher Order Component with injected <code>isAuth</code> prop</p>
+<p>React <a href="https://legacy.reactjs.org/docs/higher-order-components.html">HOC</a> that injects
+the authentication state into the class based component props</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">MyComponent</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w"> </span><span class="nx">render</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Hello</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">isAuth</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">withIsAuthenticated</span><span class="p">(</span><span class="nx">MyComponent</span><span class="p">);</span>
+</span></code></pre></div>
+<h2 id="throws">Throws<a class="headerlink" href="#throws" title="Permanent link">&para;</a></h2>
+<p><a href="../../errors/#autherror">AuthError</a> - Thrown if the Hook is used outside the Provider Scope.</p>
+<h4 id="defined-in">Defined in<a class="headerlink" href="#defined-in" title="Permanent link">&para;</a></h4>
+<p><a href="https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/higherOrderComponents/withIsAuthenticated.tsx#L39">higherOrderComponents/withIsAuthenticated.tsx</a></p>
 <hr />
-<p><strong>React Auth Kit</strong> is a lightweight <code>auth state management</code> library for React JS based projects.</p>
-<p>It is production-ready, and gives you the following:</p>
-<ul>
-<li>📦 Very lightweight</li>
-<li>🔧 Easy to use</li>
-<li>⚛️ Build for React JS</li>
-<li>⚡ Works with Gastsby, Next JS</li>
-<li>🚀 Fast and easy to Implement</li>
-<li>🛡️ Supports JSON Web Token (JWT)</li>
-<li>🔒 Secure Client Side Authentication</li>
-<li>⌨️ Highly typed and written in <code>TypeScript</code></li>
-</ul>
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
-
-<h2 id="stargazers-over-time">Stargazers over time<a class="headerlink" href="#stargazers-over-time" title="Permanent link">&para;</a></h2>
-<p><a href="https://starchart.cc/react-auth-kit/react-auth-kit"><img alt="Stargazers over time" src="https://starchart.cc/react-auth-kit/react-auth-kit.svg" /></a></p>
 <p align="center">&mdash; 🔑  &mdash;</p>
-<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
+<p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>
 
 
   
 
-
-  
 
 
 
@@ -1808,10 +1956,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tracking", "navigation.top", "navigation.sections", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tracking", "navigation.top", "navigation.sections", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       

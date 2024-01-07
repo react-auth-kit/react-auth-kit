@@ -6,32 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token">
+        <meta name="description" content="Refresh the auth token in the background by using the Refresh token feature. Just use the createRefresh builder.">
       
       
         <meta name="author" content="Arkadip Bhattacharya">
       
       
-        <link rel="canonical" href="https://authkit.arkadip.dev/">
+        <link rel="canonical" href="https://authkit.arkadip.dev/getting_started/refreshtoken/">
       
       
+        <link rel="prev" href="../checkauth/">
       
-        <link rel="next" href="getting_started/">
+      
+        <link rel="next" href="../privateroute/react-router/">
       
       
-      <link rel="icon" href="img/favicon.png">
+      <link rel="icon" href="../../img/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
     
     
       
-        <title>React Auth Kit</title>
+        <title>Refresh Token - React Auth Kit - React Auth Kit</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -50,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -69,19 +71,21 @@
     
 
 
+    
+
 <meta property="keywords"
       content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-kit, jwt with react, state, react-state, auth-state"/>
 <meta property="og:type" content="website" />
-<meta property="og:title" content="React Auth Kit" />
+<meta property="og:title" content="React Auth Kit - Refresh Token - React Auth Kit" />
 <meta property="og:description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token" />
-<meta property="og:url" content="https://authkit.arkadip.dev/" />
+<meta property="og:url" content="https://authkit.arkadip.dev/getting_started/refreshtoken/" />
 <meta property="og:image" content="https://authkit.arkadip.dev/img/banner.png" />
 <meta property="og:image:type" content="image/svg+xml" />
 <meta property="og:image:width" content="1280" />
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="https://authkit.arkadip.dev/">
-<meta name="twitter:title" content="React Auth Kit" />
+<meta name="twitter:site" content="https://authkit.arkadip.dev/getting_started/refreshtoken/">
+<meta name="twitter:title" content="React Auth Kit - Refresh Token - React Auth Kit" />
 <meta name="twitter:description" content="Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token" />
 <meta name="twitter:image" content="https://authkit.arkadip.dev/img/banner.svg" />
 <script 
@@ -113,7 +117,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stargazers-over-time" class="md-skip">
+        <a href="#refresh-the-access-token-using-refresh-token" class="md-skip">
           Skip to content
         </a>
       
@@ -127,9 +131,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="React Auth Kit" class="md-header__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
+    <a href="../.." title="React Auth Kit" class="md-header__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
       
-  <img src="img/logo.svg" alt="logo">
+  <img src="../../img/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -146,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Refresh Token - React Auth Kit
             
           </span>
         </div>
@@ -255,11 +259,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -274,11 +276,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="getting_started/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
     
@@ -298,7 +302,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="reference/" class="md-tabs__link">
+        <a href="../../reference/" class="md-tabs__link">
           
   
     
@@ -318,7 +322,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="update/" class="md-tabs__link">
+        <a href="../../update/" class="md-tabs__link">
           
   
     
@@ -336,7 +340,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="contributing/" class="md-tabs__link">
+      <a href="../../contributing/" class="md-tabs__link">
         
   
     
@@ -359,9 +363,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -372,9 +374,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="React Auth Kit" class="md-nav__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
+    <a href="../.." title="React Auth Kit" class="md-nav__button md-logo" aria-label="React Auth Kit" data-md-component="logo">
       
-  <img src="img/logo.svg" alt="logo">
+  <img src="../../img/logo.svg" alt="logo">
 
     </a>
     React Auth Kit
@@ -398,28 +400,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -428,33 +412,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stargazers-over-time" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stargazers over time
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -463,6 +420,8 @@
       
   
   
+    
+  
   
   
     
@@ -497,17 +456,17 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="getting_started/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -524,7 +483,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -540,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -561,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/integration/" class="md-nav__link">
+      <a href="../integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -582,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/signin/" class="md-nav__link">
+      <a href="../signin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -603,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/signout/" class="md-nav__link">
+      <a href="../signout/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -624,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/authdata/" class="md-nav__link">
+      <a href="../authdata/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -645,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/authheader/" class="md-nav__link">
+      <a href="../authheader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -666,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/checkauth/" class="md-nav__link">
+      <a href="../checkauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -684,10 +643,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="getting_started/refreshtoken/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Refresh Token
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -696,6 +675,77 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-builder-createrefresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Builder (createRefresh)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Builder (createRefresh)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-the-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with the App
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -752,7 +802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/privateroute/react-router/" class="md-nav__link">
+      <a href="../privateroute/react-router/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -815,7 +865,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/" class="md-nav__link ">
+            <a href="../../reference/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -904,7 +954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/authprovider/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/authprovider/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -925,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/createRefresh/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/createRefresh/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -946,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/createStore/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/createStore/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -967,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/errors/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/errors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -988,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/types/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/types/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1039,7 +1089,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/react-auth-kit/hooks/" class="md-nav__link ">
+            <a href="../../reference/react-auth-kit/hooks/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1072,7 +1122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useAuthHeader/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hooks/useAuthHeader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1093,7 +1143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useAuthUser/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hooks/useAuthUser/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1114,7 +1164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useIsAuthenticated/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hooks/useIsAuthenticated/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1135,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useSignIn/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hooks/useSignIn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1156,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hooks/useSignOut/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hooks/useSignOut/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1215,7 +1265,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/react-auth-kit/hoc/" class="md-nav__link ">
+            <a href="../../reference/react-auth-kit/hoc/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1248,7 +1298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withAuthHeader/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hoc/withAuthHeader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1269,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withAuthUser/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hoc/withAuthUser/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1290,7 +1340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withIsAuthenticated/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hoc/withIsAuthenticated/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1311,7 +1361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withSignIn/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hoc/withSignIn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1332,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-auth-kit/hoc/withSignOut/" class="md-nav__link">
+      <a href="../../reference/react-auth-kit/hoc/withSignOut/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1415,7 +1465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-router/requireauth/" class="md-nav__link">
+      <a href="../../reference/react-router/requireauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1436,7 +1486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/react-router/authoutlet/" class="md-nav__link">
+      <a href="../../reference/react-router/authoutlet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1499,7 +1549,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="update/" class="md-nav__link ">
+            <a href="../../update/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1532,7 +1582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update/2to3/" class="md-nav__link">
+      <a href="../../update/2to3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1553,7 +1603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update/1to2/" class="md-nav__link">
+      <a href="../../update/1to2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1581,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributing/" class="md-nav__link">
+      <a href="../../contributing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1602,9 +1652,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1612,6 +1660,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1621,9 +1671,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stargazers-over-time" class="md-nav__link">
+  <a href="#api-builder-createrefresh" class="md-nav__link">
     <span class="md-ellipsis">
-      Stargazers over time
+      API Builder (createRefresh)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Builder (createRefresh)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-the-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with the App
     </span>
   </a>
   
@@ -1647,56 +1739,85 @@
   
 
 
-  <h1>Home</h1>
+<h1 id="refresh-the-access-token-using-refresh-token">Refresh the Access token using Refresh Token <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4a8 8 0 0 0-8 8 8 8 0 0 0 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35Z"/></svg></span><a class="headerlink" href="#refresh-the-access-token-using-refresh-token" title="Permanent link">&para;</a></h1>
+<p>Often JWT comes with a new challenge.
+You have to <code>refresh</code> the JWT token periodically using a token, named Refresh token.</p>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="refresh"></div>
 
-<p style="text-align: center">
-    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
-</p>
-
-<p style="text-align: center">
-    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
-</p>
-
-<p style="text-align: center">
-<a href="https://www.npmjs.com/package/react-auth-kit">
-    <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
-</a>
-<a href="https://www.npmjs.com/package/react-auth-kit">
-    <img src="https://img.shields.io/npm/dw/react-auth-kit?logo=npm" alt="NPM Downloads">
-</a>
-<a href="https://bundlephobia.com/result?p=react-auth-kit">
-    <img src="https://img.shields.io/bundlephobia/minzip/react-auth-kit?style=flat-square" alt="Test Suites">
-</a>
-<a href="https://www.codacy.com/gh/react-auth-kit/react-auth-kit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=react-auth-kit/react-auth-kit&amp;utm_campaign=Badge_Grade">
-    <img src="https://app.codacy.com/project/badge/Grade/a65202426152483d8e63d6623721080c" alt="Codacy Badge">
-</a>
-</p>
-
+<blockquote>
+<p>A refresh token is a special kind of token used to obtain a renewed access token.
+You can request new access tokens until the refresh token is on the DenyList.
+Applications must store refresh tokens securely because they essentially allow a user to remain authenticated forever.</p>
+</blockquote>
+<p>React Auth Kit implements an easy approach to integrate the refresh token.</p>
+<p>You can either use the refresh token in your application or you can leave it.</p>
 <hr />
-<p><strong>React Auth Kit</strong> is a lightweight <code>auth state management</code> library for React JS based projects.</p>
-<p>It is production-ready, and gives you the following:</p>
-<ul>
-<li>📦 Very lightweight</li>
-<li>🔧 Easy to use</li>
-<li>⚛️ Build for React JS</li>
-<li>⚡ Works with Gastsby, Next JS</li>
-<li>🚀 Fast and easy to Implement</li>
-<li>🛡️ Supports JSON Web Token (JWT)</li>
-<li>🔒 Secure Client Side Authentication</li>
-<li>⌨️ Highly typed and written in <code>TypeScript</code></li>
-</ul>
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
-
-<h2 id="stargazers-over-time">Stargazers over time<a class="headerlink" href="#stargazers-over-time" title="Permanent link">&para;</a></h2>
-<p><a href="https://starchart.cc/react-auth-kit/react-auth-kit"><img alt="Stargazers over time" src="https://starchart.cc/react-auth-kit/react-auth-kit.svg" /></a></p>
+<h2 id="api-builder-createrefresh">API Builder (createRefresh)<a class="headerlink" href="#api-builder-createrefresh" title="Permanent link">&para;</a></h2>
+<p>To build the refresh token API, you have to use <code>createRefresh</code> function.
+It is an identity function. It is mainly used for type checking and mobility.</p>
+<h3 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h3>
+<div class="language-js highlight"><span class="filename">Import createRefresh in your app</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">createRefresh</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit/createRefresh&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">my_refresh_api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createRefresh</span><span class="p">({</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">interval</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="c1">// The time in sec to refresh the Access token,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">refreshApiCallback</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">param</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/refresh&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">param</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">authToken</span><span class="si">}</span><span class="sb">`</span><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="p">})</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Refreshing&quot;</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="nx">newAuthToken</span><span class="o">:</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="nx">newAuthTokenExpireIn</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="nx">newRefreshTokenExpiresIn</span><span class="o">:</span><span class="w"> </span><span class="mf">60</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="nx">isSuccess</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">})</span>
+</span></code></pre></div>
+<h3 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p><a href="../../reference/react-auth-kit/createRefresh/">reference/react-auth-kit/createRefresh</a></p>
+<hr />
+<h2 id="integration-with-the-app">Integration with the App<a class="headerlink" href="#integration-with-the-app" title="Permanent link">&para;</a></h2>
+<p>To add the refresh token feature, simply add the return value of <code>createRefresh</code> function in the <code>createStore</code> in the refresh prop.</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">AuthProvider</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">refreshApi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./refreshApi&quot;</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createStore</span><span class="p">({</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nx">authName</span><span class="o">:</span><span class="s1">&#39;_auth&#39;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nx">authType</span><span class="o">:</span><span class="s1">&#39;cookie&#39;</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">cookieDomain</span><span class="o">:</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nx">cookieSecure</span><span class="o">:</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;https:&#39;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nx">refresh</span><span class="o">:</span><span class="w"> </span><span class="nx">my_refresh_api</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">});</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="p">&lt;</span><span class="nt">AuthProvider</span><span class="w"> </span><span class="na">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}&gt;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">      </span><span class="p">&lt;</span><span class="nt">Routes</span><span class="p">/&gt;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="p">&lt;/</span><span class="nt">AuthProvider</span><span class="p">&gt;</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Only use the return from createRefresh as the prop value</p>
+<p>Using values other than the return of <code>createRefresh</code> will cause the application to break.
+So only use the return of <code>createRefresh</code> as the prop value.</p>
+</div>
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>
 
 
   
 
-
-  
 
 
 
@@ -1808,10 +1929,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tracking", "navigation.top", "navigation.sections", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.tracking", "navigation.top", "navigation.sections", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
       
         <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
       
