@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "14.0.0",
-    "@types/jest": "29.5.5",
+    "@types/jest": "29.5.11",
     "@types/js-cookie": "3.0.4",
     "@types/node": "20.10.6",
     "@types/react": "18.2.28",
