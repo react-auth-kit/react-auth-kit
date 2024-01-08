@@ -30,16 +30,16 @@ interface withSignInProps<T> {
  * modern React code, use Hooks instead
  *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
- * the `signIn` function into the class based component props.
+ * the `signIn` function into the class-based component props.
  *
  * Call the `signIn` function in the prop
  * to sign In and authenticate the user
  *
- * This will authenticate the user by writing the uer state into the mamory
- * Also, this will call the rx engine to store the auth into into the storage
+ * This will authenticate the user by writing the user state into the memory
+ * Also, this will call the RX engine to store the auth in the storage
  *
  * @example
- * Here is an example without refresh token:
+ * Here is an example without the refresh token:
  * ```jsx
  * class MyComponent extends React.Component {
  *  this.props.signIn({

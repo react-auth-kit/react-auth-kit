@@ -18,7 +18,7 @@ interface withAuthHeaderProps {
  * modern React code, use Hooks instead
  *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
- * the authentication state into the class based component props
+ * the authentication state into the class-based component props
  *
  * @example
  * ```jsx
@@ -33,7 +33,7 @@ interface withAuthHeaderProps {
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
  *
- * @param Component - React Class based Component
+ * @param Component - React class-based Component
  * @returns React Higher Order Component with injected `isAuth` prop
  */
 function withIsAuthenticated<P extends withAuthHeaderProps>(

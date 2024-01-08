@@ -24,7 +24,7 @@ interface AuthProviderProps<T> {
 
 /**
  *
- * React Provider that includes React Auth Kit functionility in your React
+ * React Provider that includes React Auth Kit functionality in your React
  * Application.
  *
  * @returns React Functional component with React Auth Kit Recharged.
@@ -32,7 +32,7 @@ interface AuthProviderProps<T> {
  * @remarks
  * Make sure you wrap your application as well as your router components in AuthProvider.
  *
- * AuthProvider should be your Top Most element so that if can work effectively
+ * AuthProvider should be your Topmost element so that it can work effectively
  * throughout the application.
  *
  * @example

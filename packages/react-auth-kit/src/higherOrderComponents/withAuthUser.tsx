@@ -23,9 +23,9 @@ interface withAuthStateProps<T> {
  * modern React code, use Hooks instead
  *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the user state into
- * the class based component props
+ * the class-based component props
  *
- * If the prop is null then user may be not authenticated.
+ * If the prop is null then the user may be not authenticated.
  * Use `isAuthenticated` to verify
  *
  * @example

@@ -9,12 +9,12 @@ import {AuthError} from '../errors';
  *
  * Call the hook to sign In and authenticate the user
  *
- * This will authenticate the user by writing the uer state into the mamory
- * Also, this will call the rx engine to store the auth into into the storage
+ * This will authenticate the user by writing the user state into the memory
+ * Also, this will call the RX engine to store the auth in the storage
  *
  * @typeParam T - Type of User State Object
  * @param signInConfig - Params for sign In
- * @returns React Hook with SignIn Functionility
+ * @returns React Hook with SignIn Functionality
  *
  * @throws AuthError
  * - Thrown if the Hook is used outside the Provider Scope.
@@ -22,7 +22,7 @@ import {AuthError} from '../errors';
  * - Thrown if refresh token is not added, is spite used.
  *
  * @example
- * Here's a an example without refresh token:
+ * Here's an example without the refresh token:
  * ```jsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
  *
@@ -75,10 +75,10 @@ import {AuthError} from '../errors';
  * ```
  *
  * @remarks
- * If you are using refresh token, make sure you add that in the parameter,
+ * If you are using the refresh token, make sure you add that in the parameter,
  * else it throws AuthError
  *
- * If you are not using refresh token, make sure you don't include
+ * If you are not using the refresh token, make sure you don't include
  * that in the parameter, else it throws AuthError.
  *
  */

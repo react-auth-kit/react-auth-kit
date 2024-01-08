@@ -12,7 +12,7 @@ import {doSignOut} from '../utils/reducers';
  * This will remove the authState from memory and
  * also remove the stored data from cookie or localstorage
 *
- * @returns React Hook with SignOut Functionility
+ * @returns React Hook with SignOut Functionality
  *
  * @example
  * Here's a simple example:
@@ -27,8 +27,8 @@ import {doSignOut} from '../utils/reducers';
  * }
  * ```
  * @remarks
- * For Now, this hook doesn't redirects automatically.
- * So one need to writw the redirect logic himself.
+ * For Now, this hook doesn't redirect automatically.
+ * So one needs to write the redirect logic himself.
  *
  * ```js
  * const signOut = useSignOut()

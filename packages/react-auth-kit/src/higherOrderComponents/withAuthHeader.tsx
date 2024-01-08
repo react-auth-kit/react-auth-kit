@@ -18,9 +18,9 @@ interface withAuthHeaderProps {
 /**
  * @deprecated Higher-order components are not commonly used in
  * modern React code, use Hooks instead
- *
- * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects the auth header into
- * the class based component props
+ * 
+ * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HCO} that injects the auth header into
+ * the class-based component props
  *
  * **Format: `type token` (authType-space-authToken)**
  *

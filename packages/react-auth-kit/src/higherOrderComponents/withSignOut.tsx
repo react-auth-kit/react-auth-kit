@@ -19,7 +19,7 @@ interface withSignOutProps {
  * modern React code, use Hooks instead
  *
  * React {@link https://legacy.reactjs.org/docs/higher-order-components.html | HOC} that injects
- * the `signOut` function into the class based component props.
+ * the `signOut` function into the class-based component props.
  *
  * Call the `signOut` function in the prop
  * to sign out and delete all the auth state

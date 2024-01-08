@@ -28,7 +28,7 @@ import {isAuthenticated} from '../utils/utils';
  *
  * @returns If the user is authenticated,
  * then `'auth.type auth.token'` is returned.
- * If the user is not authenticated, then `null` is ruturned.
+ * If the user is not authenticated, then `null` is returned.
  *
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.

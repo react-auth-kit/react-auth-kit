@@ -9,19 +9,19 @@ import {isAuthenticated} from '../utils/utils';
  * Call the hook,
  * to get the authenticated user data into your React Component
  *
- * This uses the context data to determine get the user data
+ * This uses the context data to determine the user data
  *
  * @typeParam T - Type of User State Object
  *
- * @returns React Hook with user state functionility.
+ * @returns React Hook with user state functionality.
  * If the user is authenticated, then user data is returned.
- * If the user is not authenticated, then `null` is ruturned.
+ * If the user is not authenticated, then `null` is returned.
  *
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
  *
  * @example
- * Here is the example for JavaScript
+ * Here is the example of JavaScript
  * ```js
  * import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
  *
@@ -32,7 +32,7 @@ import {isAuthenticated} from '../utils/utils';
  *  ...
  * }
  * ```
- * Here is the example for TypeScript
+ * Here is the example of TypeScript
  * ```tsx
  * import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
  *
