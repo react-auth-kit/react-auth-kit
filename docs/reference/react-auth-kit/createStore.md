@@ -7,6 +7,12 @@ description: Create the Auth Data Store for react
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_createStore"></div>
 
+## Import
+
+```js
+import createStore from 'react-auth-kit/createStore';
+```
+
 ## Function Signature
 
 **createStore**<`T`\>([`params`](#parameters)): `createStoreReturn`<`T`\>

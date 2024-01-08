@@ -9,12 +9,17 @@ description: React Provider for React Auth Kit
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_withSignOut"></div>
 
+## Import
+
+```js
+import withSignOut from 'react-auth-kit/higherOrderComponents/withSignOut';
+```
+
 ## Function Signature
 
 **withSignOut**<`P`\>(`Component`): `React.FunctionComponent`<`P`\>
 
-
-## Type parameters
+## Type Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -33,7 +38,7 @@ description: React Provider for React Auth Kit
 React Higher Order Component with injected `signOut` prop
 
 React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects
-the `signOut` function into the class based component props.
+the `signOut` function into the class-based component props.
 
 Call the `signOut` function in the prop
 to sign out and delete all the auth state
@@ -54,8 +59,8 @@ export default withSignOut(MyComponent);
 
 ## Remarks
 
-For Now, this hook doesn't redirects automatically.
-So one need to writw the redirect logic himself.
+For Now, this hook doesn't redirect automatically.
+So one needs to write the redirect logic himself.
 
 ## Throws
 

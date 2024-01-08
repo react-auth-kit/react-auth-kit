@@ -7,6 +7,12 @@ description: Get the data of the user into the react component
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useAuthUser"></div>
 
+## Import
+
+```js
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+```
+
 ## Function Signature
 
 **useAuthUser**<`T`\>`(): T | null`
@@ -16,9 +22,9 @@ Auth User Data React Hook
 Call the hook,
 to get the authenticated user data into your React Component
 
-This uses the context data to determine get the user data
+This uses the context data to determine the user data
 
-## Type parameters
+## Type Parameters
 
 | Name | Description |
 | :------ | :------ |
@@ -28,14 +34,13 @@ This uses the context data to determine get the user data
 
 `T` \| ``null``
 
-React Hook with user state functionility.
+React Hook with user state functionality.
 If the user is authenticated, then user data is returned.
-If the user is not authenticated, then `null` is ruturned.
+If the user is not authenticated, then `null` is returned.
 
 
 ## Example
-
-Here is the example for JavaScript
+Here is an example of JavaScript
 ```js
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
 
@@ -46,7 +51,7 @@ const Component = () => {
  ...
 }
 ```
-Here is the example for TypeScript
+Here is the example of TypeScript
 ```ts
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
 
@@ -63,8 +68,7 @@ const Component = () => {
 }
 ```
 
-
-**`Throws`**
+## Throws
 
 [AuthError](./../errors.md#autherror)
 Thrown if the Hook is used outside the Provider Scope.

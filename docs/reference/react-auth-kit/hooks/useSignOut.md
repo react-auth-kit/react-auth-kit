@@ -7,6 +7,12 @@ description: Hook to sign out or log out your user from the application
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useSignOut"></div>
 
+## Import
+
+```js
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
+```
+
 ## Function Signature
 
 **useSignOut**(): () => `boolean`
@@ -16,11 +22,11 @@ Sign Out React Hook
 Call the hook to sign out and delete all the auth state
 
 This will remove the authState from memory and
-also remove the stored data from cookie or localstorage
+also remove the stored data from `cookie` or `localstorage`
 
 ## Returns
 
-React Hook with SignOut Functionility
+React Hook with SignOut Functionality
 
 `fn` => (): `boolean`
 
@@ -41,8 +47,8 @@ const SecureComponent = () => {
 
 ## Remarks
 
-For Now, this hook doesn't redirects automatically.
-So one need to writw the redirect logic himself.
+For Now, this hook doesn't redirect automatically.
+So one needs to write the redirect logic himself.
 
 ```js
 const signOut = useSignOut()

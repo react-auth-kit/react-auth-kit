@@ -9,11 +9,17 @@ description: Inject User's state inside your react class-based component
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_withAuthUser"></div>
 
+## Import
+
+```js
+import withAuthUser from 'react-auth-kit/higherOrderComponents/withAuthUser';
+```
+
 ## Function Signature
 
 **withAuthUser**<`T`, `P`\>(`Component`): `React.FunctionComponent`<`P`\>
 
-## Type parameters
+## Type Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------- |
@@ -33,10 +39,9 @@ description: Inject User's state inside your react class-based component
 React Higher Order Component with injected `authState` prop
 
 
-React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects the user state into
-the class based component props
+React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects the user state into the class-based component props
 
-If the prop is null then user may be not authenticated.
+If the prop is null then the user may be not authenticated.
 Use `isAuthenticated` to verify
 
 ## Example

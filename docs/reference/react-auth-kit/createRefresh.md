@@ -8,6 +8,12 @@ description: Create the Refresh Token engine for React Auth Kit
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_createRefresh"></div>
 
+## Import
+
+```js
+import createRefresh from 'react-auth-kit/createRefresh';
+```
+
 
 ## Function Signature
 

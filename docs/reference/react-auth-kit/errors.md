@@ -9,6 +9,12 @@ description: React Auth Kit errors
 
 ## AuthError
 
+### Import
+
+```js
+import { AuthError } from 'react-auth-kit/errors';
+```
+
 ### constructor
 
 `#!ts new AuthError(message)`

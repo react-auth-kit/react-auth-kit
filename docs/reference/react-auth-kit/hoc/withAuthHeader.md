@@ -9,11 +9,17 @@ description: Inject Auth header inside your react class-based component
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_withAuthHeder"></div>
 
+## Import
+
+```js
+import withAuthHeader from 'react-auth-kit/higherOrderComponents/withAuthHeader';
+```
+
 ## Function Signature
 
 **withAuthHeader**<`P`\>(`Component`): `React.FunctionComponent`<`P`\>
 
-## Type parameters
+## Type Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------- |
@@ -29,10 +35,9 @@ description: Inject Auth header inside your react class-based component
 
 `React.FunctionComponent`<`P`\>
 
-React Higher Order Component with injected `authHeader` proe
+React Higher Order Component with injected `authHeader` prop.
 
-React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects the auth header into
-the class based component props
+React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects the auth header into the class-based component props
 
 **Format: `type token` (authType-space-authToken)**
 

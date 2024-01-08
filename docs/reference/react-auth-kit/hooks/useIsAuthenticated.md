@@ -1,17 +1,21 @@
 ---
 title:  useIsAuthenticated - React Auth Kit
-description: Check the authentication status inside the react component
+description: Check the authentication status inside the React component
 ---
 
 # useIsAuthenticated
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useIsAuthenticated"></div>
 
+## Import
+
+```js
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+```
+
 ## Function Signature
 
-**useIsAuthenticated**(): () => `boolean`
-
-Is Authenticated React Hook
+**useIsAuthenticated**(): () => `boolean`Is Authenticated, React Hook
 
 Call the hook to know if the user is authenticated or not
 

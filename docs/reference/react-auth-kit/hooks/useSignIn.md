@@ -7,6 +7,12 @@ description: Hook to signin or login your user into your application
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useSignIn"></div>
 
+## Import
+
+```js
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+```
+
 ## Function Signature
 
 **useSignIn**<`T`\>(): ([`signInConfig`](#signinconfig-parameters): `signInFunctionParams`<`T`\>) => `boolean`
@@ -15,17 +21,17 @@ Sign In React Hook
 
 Call the hook to sign In and authenticate the user
 
-This will authenticate the user by writing the uer state into the mamory
-Also, this will call the rx engine to store the auth into into the storage
+This will authenticate the user by writing the user state into the memory
+Also, this will call the RX engine to store the auth in the storage
 
-## Type parameters
+## Type Parameters
 
 | Name | Description |
 | :------ | :------ |
 | `T` | Type of User State Object |
 
 ## Returns
-React Hook with SignIn Functionility
+React Hook with SignIn Functionality
 
 `fn` => ([`signInConfig`](#signinconfig-parameters)): `boolean`
 
@@ -60,7 +66,7 @@ React Hook with SignIn Functionility
 
 ## Example
 
-Here's a an example without refresh token:
+Here's an example without the refresh token:
 ```jsx
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 
@@ -75,7 +81,7 @@ const LoginComponent = () => {
 }
 ```
 
-Here's an example with refresh token in TypeScript:
+Here's an example with a refresh token in TypeScript:
 ```jsx
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 
@@ -98,18 +104,18 @@ const LoginComponent = () => {
 
 ## Remarks
 
-If you are using refresh token, make sure you add that in the parameter,
+If you are using the refresh token, make sure you add that in the parameter,
 else it throws AuthError
 
-If you are not using refresh token, make sure you don't include
+If you are not using the refresh token, make sure you don't include
 that in the parameter, else it throws AuthError.
 
 ## Throws
 
 [AuthError](./../errors.md#autherror)
 
-- Thrown if the Hook is used outside the Provider Scope.
-- Thrown if refresh token is added, in spite not used.
+- Thrown if the Hook is used outside the Auth Provider Scope.
+- Thrown if refresh token is added, despite not being used.
 - Thrown if refresh token is not added, is spite used.
 
 #### Defined in

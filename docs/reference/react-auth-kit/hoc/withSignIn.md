@@ -9,12 +9,18 @@ description: React Provider for React Auth Kit
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_withSignIn"></div>
 
+## Import
+
+```js
+import withSignIn from 'react-auth-kit/higherOrderComponents/withSignIn';
+```
+
 ## Function Signature
 
 **withSignIn**<`T`, `P`\>(`Component`): `React.FunctionComponent`<`P`\>
 
 
-## Type parameters
+## Type Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -44,17 +50,17 @@ description: React Provider for React Auth Kit
 React Higher Order Component with injected `signIn` prop
 
 React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects
-the `signIn` function into the class based component props.
+the `signIn` function into the class-based component props.
 
 Call the `signIn` function in the prop
 to sign In and authenticate the user
 
-This will authenticate the user by writing the uer state into the mamory
-Also, this will call the rx engine to store the auth into into the storage
+This will authenticate the user by writing the user state into the memory
+Also, this will call the RX engine to store the auth in the storage
 
 ## Example
 
-Here is an example without refresh token:
+Here is an example without the refresh token:
 ```jsx
 class MyComponent extends React.Component {
  this.props.signIn({
@@ -67,7 +73,7 @@ class MyComponent extends React.Component {
 export default withSignIn(MyComponent);
 ```
 
-Here is an example with refresh token:
+Here is an example with a refresh token:
 ```jsx
 class MyComponent extends React.Component {
  this.props.signIn({

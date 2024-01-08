@@ -9,11 +9,17 @@ description: Inject authentication status inside your react class-based componen
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_withIsAuthenticated"></div>
 
+## Import
+
+```js
+import withIsAuthenticated from 'react-auth-kit/higherOrderComponents/withIsAuthenticated';
+```
+
 ## Function Signature
 
 **withIsAuthenticated**<`P`\>(`Component`): `React.FunctionComponent`<`P`\>
 
-## Type parameters
+## Type Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -32,7 +38,7 @@ description: Inject authentication status inside your react class-based componen
 React Higher Order Component with injected `isAuth` prop
 
 React [HOC](https://legacy.reactjs.org/docs/higher-order-components.html) that injects
-the authentication state into the class based component props
+the authentication state into the class-based component props
 
 ## Example
 

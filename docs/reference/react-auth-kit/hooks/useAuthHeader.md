@@ -7,10 +7,15 @@ description: Get the auth header into the react component
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref-useAuthHeader"></div>
 
+## Import
+
+```js
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
+```
+
 ## Function Signature
 
 **useAuthHeader**(): `string` | ``null``
-
 
 Auth Header React Hook
 
@@ -25,7 +30,7 @@ to get the auth header inside the component
 
 If the user is authenticated,
 then `'auth.type auth.token'` is returned.
-If the user is not authenticated, then `null` is ruturned.
+If the user is not authenticated, then `null` is returned.
 
 ## Example
 
