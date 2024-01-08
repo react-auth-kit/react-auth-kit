@@ -7,14 +7,17 @@ description: "@auth-kit/react-router/AuthOutlet"
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_AuthOutlet"></div>
 
+## Import
+
+```js
+import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
+```
 
 ## Function Signature
 
 **AuthOutlet**(`#!js {fallbackPath: string}`): `React.ReactNode`
 
-
-AuthOutlet provides a easy solution to implement private route solution
-using react-router-dom route system
+AuthOutlet provides an easy solution to implement private route solutions using the react-router-dom route system
 
 ## Parameters
 

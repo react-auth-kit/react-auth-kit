@@ -7,13 +7,18 @@ description: "@auth-kit/react-router/RequireAuth"
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_RequireAuth"></div>
 
+## Import
+
+```js
+import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
+```
+
 ## Function Signature
 
 **RequireAuth**(`#!js {fallbackPath: string}`): `React.ReactNode`
 
-RequireAuth provides solution for implement auth on per component basis
-for private route solution
-using react-router-dom route system
+RequireAuth provides a solution for implementing auth on per per-component basis
+for private route solutions using the react-router-dom route system
 
 ## Parameters
 
