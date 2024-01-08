@@ -23,9 +23,8 @@ interface RequireAuthProps {
 }
 
 /**
- * RequireAuth provides solution for implement auth on per component basis
- * for private route solution
- * using react-router-dom route system
+ * RequireAuth provides a solution for implementing auth on per per-component basis
+ * for private route solutions using the react-router-dom route system
  *
  * @example
  *

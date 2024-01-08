@@ -20,8 +20,8 @@ interface AuthOutletProps {
 }
 
 /**
- * AuthOutlet provides a easy solution to implement private route solution
- * using react-router-dom route system
+ * AuthOutlet provides an easy solution to implement private 
+ * route solutions using the react-router-dom route system
  *
  * @example
  *
