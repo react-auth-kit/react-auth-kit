@@ -1,3 +1,11 @@
+## [3.0.1](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.0...v3.0.1) (2024-01-09)
+
+
+### Features
+
+* **Docs:** Added import statements in the reference docs.
+* **Deps:** Updated all the dependencies with latest once.
+
 ## [3.0.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.12.7...v3.0.0) (2024-01-07)
 
 
