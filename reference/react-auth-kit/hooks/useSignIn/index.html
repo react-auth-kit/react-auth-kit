@@ -1144,6 +1144,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#function-signature" class="md-nav__link">
     <span class="md-ellipsis">
       Function Signature
@@ -1155,7 +1164,7 @@
         <li class="md-nav__item">
   <a href="#type-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Type parameters
+      Type Parameters
     </span>
   </a>
   
@@ -1717,6 +1726,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#function-signature" class="md-nav__link">
     <span class="md-ellipsis">
       Function Signature
@@ -1728,7 +1746,7 @@
         <li class="md-nav__item">
   <a href="#type-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Type parameters
+      Type Parameters
     </span>
   </a>
   
@@ -1830,13 +1848,16 @@
 <h1 id="usesignin">useSignIn<a class="headerlink" href="#usesignin" title="Permanent link">&para;</a></h1>
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_useSignIn"></div>
 
+<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">useSignIn</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit/hooks/useSignIn&#39;</span><span class="p">;</span>
+</span></code></pre></div>
 <h2 id="function-signature">Function Signature<a class="headerlink" href="#function-signature" title="Permanent link">&para;</a></h2>
 <p><strong>useSignIn</strong>&lt;<code>T</code>&gt;(): (<a href="#signinconfig-parameters"><code>signInConfig</code></a>: <code>signInFunctionParams</code>&lt;<code>T</code>&gt;) =&gt; <code>boolean</code></p>
 <p>Sign In React Hook</p>
 <p>Call the hook to sign In and authenticate the user</p>
-<p>This will authenticate the user by writing the uer state into the mamory
-Also, this will call the rx engine to store the auth into into the storage</p>
-<h2 id="type-parameters">Type parameters<a class="headerlink" href="#type-parameters" title="Permanent link">&para;</a></h2>
+<p>This will authenticate the user by writing the user state into the memory
+Also, this will call the RX engine to store the auth in the storage</p>
+<h2 id="type-parameters">Type Parameters<a class="headerlink" href="#type-parameters" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1852,7 +1873,7 @@ Also, this will call the rx engine to store the auth into into the storage</p>
 </tbody>
 </table>
 <h2 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">&para;</a></h2>
-<p>React Hook with SignIn Functionility</p>
+<p>React Hook with SignIn Functionality</p>
 <p><code>fn</code> =&gt; (<a href="#signinconfig-parameters"><code>signInConfig</code></a>): <code>boolean</code></p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <table>
@@ -1908,61 +1929,61 @@ Also, this will call the rx engine to store the auth into into the storage</p>
 </tr>
 </tbody>
 </table>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nx">auth</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ey.........o1&#39;</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Bearer&#39;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nx">refresh</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ey..........92&#39;</span><span class="p">,</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nx">userState</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;The Dev&#39;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nx">uuid</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fff-fff-ffff&#39;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">auth</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ey.........o1&#39;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Bearer&#39;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nx">refresh</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ey..........92&#39;</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nx">userState</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;The Dev&#39;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nx">uuid</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fff-fff-ffff&#39;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
 </span></code></pre></div>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<p>Here's a an example without refresh token:
-<div class="language-jsx highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">useSignIn</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit/hooks/useSignIn&#39;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">LoginComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">signIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useSignIn</span><span class="p">()</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w"> </span><span class="nx">signIn</span><span class="p">({</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">   </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">     </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;jwt token&gt;&#39;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">   </span><span class="p">},</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">   </span><span class="nx">userState</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React User&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">uid</span><span class="o">:</span><span class="w"> </span><span class="mf">123456</span><span class="p">}</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w"> </span><span class="p">})</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<p>Here's an example with refresh token in TypeScript:
+<p>Here's an example without the refresh token:
 <div class="language-jsx highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">useSignIn</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit/hooks/useSignIn&#39;</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w"> </span><span class="kr">interface</span><span class="w"> </span><span class="nx">IUserData</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w"> </span><span class="nx">uuid</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">};</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">LoginComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">signIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useSignIn</span><span class="p">&lt;</span><span class="nt">IUserData</span><span class="p">&gt;()</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w"> </span><span class="nx">signIn</span><span class="p">({</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">   </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">     </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;jwt token&gt;&#39;</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">   </span><span class="p">},</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">   </span><span class="nx">userState</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React User&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">uid</span><span class="o">:</span><span class="w"> </span><span class="mf">123456</span><span class="p">},</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">   </span><span class="nx">refresh</span><span class="o">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">refresh</span><span class="w"> </span><span class="na">jwt</span><span class="w"> </span><span class="na">token</span><span class="p">&gt;</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w"> </span><span class="p">})</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">}</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">LoginComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">signIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useSignIn</span><span class="p">()</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w"> </span><span class="nx">signIn</span><span class="p">({</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">   </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">     </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;jwt token&gt;&#39;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">   </span><span class="p">},</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">   </span><span class="nx">userState</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React User&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">uid</span><span class="o">:</span><span class="w"> </span><span class="mf">123456</span><span class="p">}</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w"> </span><span class="p">})</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p>Here's an example with a refresh token in TypeScript:
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">useSignIn</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-auth-kit/hooks/useSignIn&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w"> </span><span class="kr">interface</span><span class="w"> </span><span class="nx">IUserData</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w"> </span><span class="nx">uuid</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">};</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">LoginComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">signIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useSignIn</span><span class="p">&lt;</span><span class="nt">IUserData</span><span class="p">&gt;()</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w"> </span><span class="nx">signIn</span><span class="p">({</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">   </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">     </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;jwt token&gt;&#39;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">   </span><span class="p">},</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">   </span><span class="nx">userState</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;React User&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">uid</span><span class="o">:</span><span class="w"> </span><span class="mf">123456</span><span class="p">},</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">   </span><span class="nx">refresh</span><span class="o">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">refresh</span><span class="w"> </span><span class="na">jwt</span><span class="w"> </span><span class="na">token</span><span class="p">&gt;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w"> </span><span class="p">})</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">}</span>
 </span></code></pre></div></p>
 <h2 id="remarks">Remarks<a class="headerlink" href="#remarks" title="Permanent link">&para;</a></h2>
-<p>If you are using refresh token, make sure you add that in the parameter,
+<p>If you are using the refresh token, make sure you add that in the parameter,
 else it throws AuthError</p>
-<p>If you are not using refresh token, make sure you don't include
+<p>If you are not using the refresh token, make sure you don't include
 that in the parameter, else it throws AuthError.</p>
 <h2 id="throws">Throws<a class="headerlink" href="#throws" title="Permanent link">&para;</a></h2>
 <p><a href="../../errors/#autherror">AuthError</a></p>
 <ul>
-<li>Thrown if the Hook is used outside the Provider Scope.</li>
-<li>Thrown if refresh token is added, in spite not used.</li>
+<li>Thrown if the Hook is used outside the Auth Provider Scope.</li>
+<li>Thrown if refresh token is added, despite not being used.</li>
 <li>Thrown if refresh token is not added, is spite used.</li>
 </ul>
 <h4 id="defined-in">Defined in<a class="headerlink" href="#defined-in" title="Permanent link">&para;</a></h4>
