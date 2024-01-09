@@ -20,29 +20,9 @@ module.exports = (api) => {
         ["@babel/preset-env", { targets: { node: 12 } }],
         "@babel/preset-typescript",
       ],
-      // plugins: [
-      //   // "@babel/plugin-transform-optional-catch-binding",
-      //   // "@babel/plugin-transform-runtime",
-      // ],
       ignore: [
-        "../src/**/__tests__/**",
+        "**/__tests__/**",
       ],
-      comments: false,
-      overrides: [
-        {
-          test: [
-            "../src/index.tsx",
-            "../src/AuthContext.ts",
-            "../src/AuthProvider.tsx",
-            "../src/PrivateRoute.tsx",
-            "../src/hooks/*",
-            "../src/higherOrderComponents/*"
-          ],
-          presets: [
-            ["@babel/preset-env", { targets: { ie: 11 } }],
-            ["@babel/preset-react", { runtime: "automatic" }],
-          ],
-        }
-      ]
+      comments: false
     }
   }
