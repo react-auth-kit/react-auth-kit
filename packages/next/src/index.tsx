@@ -3,11 +3,46 @@
 import * as React from 'react'
 import { useRouter } from "next/navigation";
 
-export const Auth = () => {
-    const { push } = useRouter();
+import AuthKitContext from 'react-auth-kit/AuthContext';
+import {AuthError} from 'react-auth-kit';
+import {isAuthenticated} from 'react-auth-kit/utils/utils';
+import {doSignOut} from 'react-auth-kit/utils/reducers';
+
+
+/**
+ * Component Props for Auth Outlet
+ */
+interface NextAuthProps {
+   /**
+    * Path to redirect if the user is not authenticated
+    *
+    * @example
+    * `/login`
+    */
+   fallbackPath: string
+ }
+
+export const Auth = ({ fallbackPath }: NextAuthProps) => {
+   const context = React.useContext(AuthKitContext);
+   if (context === null) {
+     throw new
+     AuthError(
+         'Auth Provider is missing. ' +
+         'Make sure, you are using this component inside the auth provider.',
+     );
+   }
+   const { push } = useRouter();
   
-    React.useEffect(() => {
-       push('/hello-nextjs');
-    }, []);
-    return <></>;
-  };
+   React.useEffect(() => {
+      if (!isAuthenticated(context.value)) {
+         // Redirect them to the /login page, but save the current location they
+         // were trying to go to when they were redirected. This allows us to
+         // send them along to that page after they login, which is a nicer
+         // user experience than dropping them off on the home page.
+         context.set(doSignOut());
+         push(fallbackPath);
+      }
+   }, []);
+   
+   return <></>;
+};
