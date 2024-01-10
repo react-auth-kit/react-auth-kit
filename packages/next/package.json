@@ -36,7 +36,7 @@
     "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
   },
   "scripts": {
-    "test": "node ./__tests__/next.test.js"
+    "build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\""
   },
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
