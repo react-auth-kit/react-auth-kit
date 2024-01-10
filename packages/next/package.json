@@ -1,0 +1,44 @@
+{
+  "name": "@auth-kit/next",
+  "version": "3.0.1",
+  "description": "Next Js Plugin for React Auth Kit",
+  "keywords": [
+    "Next",
+    "Js",
+    "Next",
+    "React",
+    "Auth",
+    "JWT"
+  ],
+  "author": "Arkadip Bhattacharya <hi@arkadip.dev>",
+  "homepage": "https://authkit.arkadip.dev",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "*.js",
+    "*.d.ts"
+  ],
+  "peerDependencies": {
+    "next": ">=14",
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "next": "14.0.4",
+    "react": "18.2.0"
+  },
+  "dependencies": {
+    "react-auth-kit": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/next.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
+  }
+}
