@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import AuthKitContext from './AuthContext';
 import type {createStoreReturn} from './createStore';
