@@ -12,17 +12,17 @@ import {doSignOut} from 'react-auth-kit/utils/reducers';
 /**
  * Component Props for Auth Outlet
  */
-interface NextAuthProps {
-   /**
-    * Path to redirect if the user is not authenticated
-    *
-    * @example
-    * `/login`
-    */
-   fallbackPath: string
- }
+// interface NextAuthProps {
+//    /**
+//     * Path to redirect if the user is not authenticated
+//     *
+//     * @example
+//     * `/login`
+//     */
+//    fallbackPath: string
+//  }
 
-export function useAuth ({ fallbackPath }: NextAuthProps) {
+export function useAuth () {
    console.log(AuthKitContext);
    const context = React.useContext(AuthKitContext);
    console.log(context);
