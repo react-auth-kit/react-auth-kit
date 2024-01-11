@@ -3,8 +3,7 @@
 import * as React from 'react'
 // import { useRouter } from "next/navigation";
 
-import AuthKitContext from 'react-auth-kit/AuthContext';
-import {AuthError} from 'react-auth-kit';
+import {useReactAuthKitContext} from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 
@@ -23,17 +22,9 @@ import {doSignOut} from 'react-auth-kit/utils/reducers';
 //  }
 
 export function useAuth () {
-   console.log(AuthKitContext);
-   const context = React.useContext(AuthKitContext);
+   const context = useReactAuthKitContext()
    console.log(context);
 
-   if (context === null) {
-     throw new
-     AuthError(
-         'Auth Provider is missing. ' +
-         'Make sure, you are using this component inside the auth provider.',
-     );
-   }
    // const { push } = useRouter();
   
    React.useEffect(() => {
