@@ -23,7 +23,10 @@ interface NextAuthProps {
  }
 
 export function useAuth ({ fallbackPath }: NextAuthProps) {
+   console.log(AuthKitContext);
    const context = React.useContext(AuthKitContext);
+   console.log(context);
+
    if (context === null) {
      throw new
      AuthError(
