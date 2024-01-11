@@ -32,9 +32,6 @@
     "next": "14.0.4",
     "react": "18.2.0"
   },
-  "dependencies": {
-    "react-auth-kit": "^3.0.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
@@ -45,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
   },
-  "gitHead": "67147981178e410dbb3b183ed7c3372c509194e3"
+  "gitHead": "67147981178e410dbb3b183ed7c3372c509194e3",
+  "dependencies": {
+    "react-auth-kit": "*"
+  }
 }
