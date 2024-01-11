@@ -1,3 +1,5 @@
+"use client";
+
 import {createContext} from 'react';
 import type {Context} from 'react';
 import TokenObject from './RxTokenObject';
