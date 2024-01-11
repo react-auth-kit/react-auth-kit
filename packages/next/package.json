@@ -20,6 +20,10 @@
     "*.js",
     "*.d.ts"
   ],
+  "exports": {
+    ".": "./index.js",
+    "./useAuth": "./useAuth.js"
+  },
   "peerDependencies": {
     "next": ">=14",
     "react": ">=18"

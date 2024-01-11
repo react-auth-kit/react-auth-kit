@@ -22,7 +22,7 @@ interface NextAuthProps {
    fallbackPath: string
  }
 
-export function Auth({ fallbackPath }: NextAuthProps) {
+export function useAuth ({ fallbackPath }: NextAuthProps) {
    const context = React.useContext(AuthKitContext);
    if (context === null) {
      throw new
@@ -43,6 +43,4 @@ export function Auth({ fallbackPath }: NextAuthProps) {
          push(fallbackPath);
       }
    }, []);
-   
-   return <></>;
-}
+};
