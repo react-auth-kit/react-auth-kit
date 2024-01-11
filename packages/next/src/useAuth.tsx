@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react'
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 import AuthKitContext from 'react-auth-kit/AuthContext';
 import {AuthError} from 'react-auth-kit';
@@ -34,7 +34,7 @@ export function useAuth ({ fallbackPath }: NextAuthProps) {
          'Make sure, you are using this component inside the auth provider.',
      );
    }
-   const { push } = useRouter();
+   // const { push } = useRouter();
   
    React.useEffect(() => {
       if (!isAuthenticated(context.value)) {
@@ -43,7 +43,7 @@ export function useAuth ({ fallbackPath }: NextAuthProps) {
          // send them along to that page after they login, which is a nicer
          // user experience than dropping them off on the home page.
          context.set(doSignOut());
-         push(fallbackPath);
+         // push(fallbackPath);
       }
    }, []);
 };
