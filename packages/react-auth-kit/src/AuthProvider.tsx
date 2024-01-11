@@ -90,10 +90,4 @@ function AuthProvider<T extends object>(
   );
 }
 
-// Default prop for AuthProvider
-AuthProvider.defaultProps = {
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:',
-};
-
 export default AuthProvider;
