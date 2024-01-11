@@ -1,8 +1,9 @@
 "use client";
 
-import {createContext} from 'react';
+import {createContext, useContext} from 'react';
 import type {Context} from 'react';
 import TokenObject from './RxTokenObject';
+import { AuthError } from './errors';
 
 /**
  * @internal
@@ -20,5 +21,17 @@ function getContext<T>(): Context<TokenObject<T>> {
 }
 
 export const AuthKitContext = getContext();
+
+export function useReactAuthKitContext(): TokenObject<unknown>{
+  const context = useContext(AuthKitContext);
+  if (context === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
+  }
+  return context;
+}
 
 export default AuthKitContext;
