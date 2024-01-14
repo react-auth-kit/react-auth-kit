@@ -289,6 +289,8 @@ class TokenObject<T> {
    */
   private initialToken_ = (): AuthKitStateInterface<T> => {
     if (this.authStorageType === 'cookie') {
+      console.log(`Engine type : ${typeof window !== undefined}`);
+      
       if (typeof window !== undefined) {
         console.log("Rendering from Client side");
         
