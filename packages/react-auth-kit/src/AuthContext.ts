@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import {createContext, useContext} from 'react';
 import type {Context} from 'react';
@@ -20,7 +20,7 @@ function getContext<T>(): Context<TokenObject<T>> {
   return context;
 }
 
-export const AuthKitContext = getContext();
+const AuthKitContext = getContext();
 
 export function useReactAuthKitContext(): TokenObject<unknown>{
   const context = useContext(AuthKitContext);

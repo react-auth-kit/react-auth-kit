@@ -20,9 +20,11 @@ const Providers = ({
   }) => {
     
   return (
-    <AuthProvider store={store}>
+    <>
+      <AuthProvider store={store}>
         {children}
-    </AuthProvider>
+      </AuthProvider>
+    </>
   )
 }
 
