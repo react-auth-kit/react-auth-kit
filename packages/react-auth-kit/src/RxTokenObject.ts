@@ -290,10 +290,13 @@ class TokenObject<T> {
   private initialToken_ = (): AuthKitStateInterface<T> => {
     if (this.authStorageType === 'cookie') {
       if (typeof window !== undefined) {
+        console.log("Rendering from Client side");
+        
         return this.initialCookieToken_();
       }
       else {
         // next js server side rendering
+        console.log("Rendering from Server side");
         return this.initialCookieServerToken_();
       }
     } else {
@@ -346,6 +349,11 @@ class TokenObject<T> {
 
     const refreshToken = this.isUsingRefreshToken &&
       this.refreshTokenName != null ? cookieStore.get(this.refreshTokenName)?.value : null;
+    
+    console.log(authToken);
+    console.log(authTokenType);
+    console.log(stateCookie);
+    console.log(refreshToken);
 
     return this.checkTokenExist_(
       authToken,
