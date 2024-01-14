@@ -1,15 +1,16 @@
 "use client"
 
+import { cookies } from 'next/headers'
 import Cookies from 'js-cookie';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {AuthError} from './errors';
-import {AuthKitStateInterface} from './types';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthError } from './errors';
+import { AuthKitStateInterface } from './types';
 
 /**
  * Set State Data
  */
 export interface AuthKitSetState<T> {
-  
+
   /**
    * Authentication Object
    */
@@ -28,7 +29,7 @@ export interface AuthKitSetState<T> {
      */
     type: string
   } | null,
-  
+
   /**
    * Refresh JWT token
    */
@@ -86,7 +87,7 @@ class TokenObject<T> {
    * Auth Value
    */
   private authValue: AuthKitStateInterface<T>;
-  
+
   /**
    * RX Auth subject
    */
@@ -113,11 +114,11 @@ class TokenObject<T> {
    *
    */
   constructor(
-      authStorageName: string,
-      authStorageType: 'cookie' | 'localstorage',
-      refreshTokenName: string | null,
-      cookieDomain?: string,
-      cookieSecure?: boolean,
+    authStorageName: string,
+    authStorageType: 'cookie' | 'localstorage',
+    refreshTokenName: string | null,
+    cookieDomain?: string,
+    cookieSecure?: boolean,
   ) {
     this.authStorageName = authStorageName;
     this.authStorageType = authStorageType;
@@ -135,10 +136,10 @@ class TokenObject<T> {
 
     this.authSubject.subscribe({
       next: this.syncTokens,
-      complete: ()=>{
+      complete: () => {
         console.log('Token Synced');
       },
-      error: (err) =>{
+      error: (err) => {
         console.error('Error Occured while syncing token');
         console.log(err);
       },
@@ -175,7 +176,7 @@ class TokenObject<T> {
    * 
    * @see {@link https://rxjs.dev/api/index/class/Subject#asObservable}
    */
-  observe = (): Observable<AuthKitStateInterface<T>> =>{
+  observe = (): Observable<AuthKitStateInterface<T>> => {
     return this.authSubject.asObservable();
   };
 
@@ -288,7 +289,13 @@ class TokenObject<T> {
    */
   private initialToken_ = (): AuthKitStateInterface<T> => {
     if (this.authStorageType === 'cookie') {
-      return this.initialCookieToken_();
+      if (typeof window !== undefined) {
+        return this.initialCookieToken_();
+      }
+      else {
+        // next js server side rendering
+        return this.initialCookieServerToken_();
+      }
     } else {
       return this.initialLSToken_();
     }
@@ -313,11 +320,64 @@ class TokenObject<T> {
       this.refreshTokenName != null ? Cookies.get(this.refreshTokenName) : null;
 
     return this.checkTokenExist_(
-        authToken,
-        authTokenType,
-        stateCookie,
-        refreshToken,
+      authToken,
+      authTokenType,
+      stateCookie,
+      refreshToken,
     );
+  };
+
+  /**
+   * Get the Initial Token from Cookies
+   *
+   * @remarks
+   * If the `authStorageType` is `cookie`
+   * then this function is called
+   * And returns the Tokens and states Stored in all 4 cookies
+   *
+   * @returns Initial State from Cookies
+   */
+  private initialCookieServerToken_ = (): AuthKitStateInterface<T> => {
+    const cookieStore = cookies();
+
+    const authToken = cookieStore.get(this.authStorageName)?.value;
+    const authTokenType = cookieStore.get(this.authStorageTypeName)?.value;
+    const stateCookie = cookieStore.get(this.stateStorageName)?.value;
+
+    const refreshToken = this.isUsingRefreshToken &&
+      this.refreshTokenName != null ? cookieStore.get(this.refreshTokenName)?.value : null;
+
+    return this.checkTokenExist_(
+      authToken,
+      authTokenType,
+      stateCookie,
+      refreshToken,
+    );
+
+    // const d = import('next/headers').then(module=> {
+    //   const cookieStore = module.cookies();
+
+    //   const authToken = cookieStore.get(this.authStorageName)?.value;
+    //   const authTokenType = cookieStore.get(this.authStorageTypeName)?.value;
+    //   const stateCookie = cookieStore.get(this.stateStorageName)?.value;
+
+    //   const refreshToken = this.isUsingRefreshToken &&
+    //     this.refreshTokenName != null ? cookieStore.get(this.refreshTokenName)?.value : null;
+
+    //   return this.checkTokenExist_(
+    //       authToken,
+    //       authTokenType,
+    //       stateCookie,
+    //       refreshToken,
+    //   );
+
+
+    // }).catch(err=>{
+    //   console.log(err);
+    //   console.error("Server Side Cookies are only supported in Next");
+    //   return this.checkTokenExist_(null, null, null, null)
+    // })
+
   };
 
   /**
@@ -341,10 +401,10 @@ class TokenObject<T> {
 
 
     return this.checkTokenExist_(
-        authToken,
-        authTokenType,
-        stateCookie,
-        refreshToken,
+      authToken,
+      authTokenType,
+      stateCookie,
+      refreshToken,
     );
   };
 
@@ -360,10 +420,10 @@ class TokenObject<T> {
    * @returns Auth State with all conditions and guard in place
    */
   private checkTokenExist_ = (
-      authToken: string | null | undefined,
-      authTokenType: string | null | undefined,
-      stateCookie: string | null | undefined,
-      refreshToken: string | null | undefined):
+    authToken: string | null | undefined,
+    authTokenType: string | null | undefined,
+    stateCookie: string | null | undefined,
+    refreshToken: string | null | undefined):
     AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
@@ -485,7 +545,7 @@ class TokenObject<T> {
   private parseJwt = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
@@ -524,9 +584,9 @@ class TokenObject<T> {
     if (authState.auth) {
       // Sync the Auth token part
       this.setAuthToken(
-          authState.auth.token,
-          authState.auth.type,
-          authState.userState,
+        authState.auth.token,
+        authState.auth.type,
+        authState.userState,
       );
     } else {
       // Remove the auth token part
@@ -536,7 +596,7 @@ class TokenObject<T> {
     if (!!authState.refresh && this.isUsingRefreshToken) {
       // Sync the refresh part
       this.setRefreshToken(
-          authState.refresh.token,
+        authState.refresh.token,
       );
     } else {
       // Remove the refresh part
@@ -545,10 +605,10 @@ class TokenObject<T> {
   };
 
   private setAuthToken = (
-      authToken: string,
-      authTokenType: string,
-      authState: T | null,
-  ):void => {
+    authToken: string,
+    authTokenType: string,
+    authState: T | null,
+  ): void => {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime(authToken);
       Cookies.set(this.authStorageName, authToken, {
@@ -579,8 +639,8 @@ class TokenObject<T> {
   };
 
   private setRefreshToken = (
-      refreshToken: string | null,
-  ):void => {
+    refreshToken: string | null,
+  ): void => {
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&
         !!refreshToken) {
