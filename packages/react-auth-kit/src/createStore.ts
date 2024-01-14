@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
