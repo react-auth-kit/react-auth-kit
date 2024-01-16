@@ -22,7 +22,7 @@
   ],
   "exports": {
     ".": "./index.js",
-    "./useAuth": "./useAuth.js"
+    "./useNextAuth": "./useNextAuth.js"
   },
   "peerDependencies": {
     "next": ">=14",

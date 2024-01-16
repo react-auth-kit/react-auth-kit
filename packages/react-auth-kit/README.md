@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
+    <em>🔑 Authentication Library for React Js for Token-Based Auth with JSON Web Token(JWT) 🔑</em>
 </p>
 
 <p align="center">
@@ -22,7 +22,16 @@
 </a>
 </p>
 
+
 ---
+
+
+<h2 align="center">
+<a href="https://authkit.arkadip.dev">
+    https://authkit.arkadip.dev 🚀
+</a>
+</h2>
+
 
 # Introduction
 
@@ -32,21 +41,22 @@ authentication very easy
 It is production-ready, and gives you the following:
 
 * 📦 Very lightweight
+* 🌲 Tree Stacking 
 * 🔧 Easy to use
 * ⚛️ Build for React JS
-* ⚡ Works with Gastsby, Next JS
+* ⚡ Works with Next JS
 * 🚀 Fast and easy to Implement
-* 🛡️ Supports Json Web Token (JWT)
+* 🛡️ Supports JSON Web Token (JWT)
 * 🔒 Secure Client Side Authentication
 * ⌨️ Highly typed and written in `TypeScript`
 
 ## Documentation
 
-Visit [https://authkit.arkadip.dev](https://authkit.arkadip.dev) for the offical documentation.
+[https://authkit.arkadip.dev](https://authkit.arkadip.dev).
 
-## Hall of Fames ✨
+## Hall of Fames
 
-We love our contributors! If you'd like to contribute anything from a bug-fix to a feature update, you can read our [CONTRIBUTING GUIDE](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md)
+We love our contributors! If you'd like to contribute anything from a bug fix to a feature update, you can read our [CONTRIBUTING GUIDE](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md)
 
 [![Contributors](https://contrib.rocks/image?repo=react-auth-kit/react-auth-kit)](https://github.com/react-auth-kit/react-auth-kit/graphs/contributors)
 

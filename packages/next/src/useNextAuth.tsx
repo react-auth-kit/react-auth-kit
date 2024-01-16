@@ -21,7 +21,7 @@ interface NextAuthProps {
    fallbackPath: string
  }
 
-export function useAuth ({fallbackPath}:NextAuthProps):boolean {
+export function useNextAuth ({fallbackPath}:NextAuthProps):boolean {
    const context = useReactAuthKitContext()
    const [login, setLogIn] = React.useState(false);
 
