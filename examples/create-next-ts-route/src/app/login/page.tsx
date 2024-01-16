@@ -6,7 +6,7 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import { useRouter } from 'next/navigation'
 import { UserData } from '@/types'
 
-const page = () => {
+const Page = () => {
   const isAuthenticated = useIsAuthenticated()
   const signIn = useSignIn<UserData>()
   const { push } = useRouter()
@@ -51,4 +51,4 @@ const page = () => {
   }
 }
 
-export default page
+export default Page
