@@ -44,10 +44,9 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
-    "test": "run-s test:*",
-    "test:unit": "jest",
+    "test": "jest",
     "lint": "eslint src",
-    "test:unit:watch": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
