@@ -1,7 +1,6 @@
 "use client"
 
 import { UserData } from '@/types';
-import { useAuth } from '@auth-kit/next/useAuth';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
@@ -9,7 +8,6 @@ import useSignOut from 'react-auth-kit/hooks/useSignOut';
 
 export const SecureData = () => {
     // for login route redirection
-    useAuth({ fallbackPath: '/login', });
   
     // for logout
     const data = useAuthUser<UserData>()
