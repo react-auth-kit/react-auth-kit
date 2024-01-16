@@ -3,8 +3,7 @@
 import * as React from 'react'
 import { useRouter } from "next/navigation";
 
-import AuthKitContext from 'react-auth-kit/AuthContext';
-import {AuthError} from 'react-auth-kit';
+import { useReactAuthKitContext } from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 
@@ -20,20 +19,13 @@ interface NextAuthProps {
     * `/login`
     */
    fallbackPath: string
+   children: React.ReactNode
  }
 
-export function Auth({ fallbackPath }: NextAuthProps) {
-   console.log(AuthKitContext);
-   const context = React.useContext(AuthKitContext);
-   console.log(context);
+export function NextAuth({ fallbackPath, children }: NextAuthProps) {
+   const context = useReactAuthKitContext();
+   const [login, setLogIn] = React.useState(false);
    
-   if (context === null) {
-     throw new
-     AuthError(
-         'Auth Provider is missing. ' +
-         'Make sure, you are using this component inside the auth provider.',
-     );
-   }
    const { push } = useRouter();
   
    React.useEffect(() => {
@@ -45,7 +37,10 @@ export function Auth({ fallbackPath }: NextAuthProps) {
          context.set(doSignOut());
          push(fallbackPath);
       }
+      else {
+         setLogIn(true);
+      }
    }, []);
    
-   return <></>;
+   return login && children;
 }
