@@ -23,7 +23,7 @@ interface NextAuthProps {
 
 export function useAuth ({fallbackPath}:NextAuthProps):boolean {
    const context = useReactAuthKitContext()
-   console.log(context);
+   const [login, setLogIn] = React.useState(false);
 
    const { push } = useRouter();
   
@@ -36,6 +36,9 @@ export function useAuth ({fallbackPath}:NextAuthProps):boolean {
          context.set(doSignOut());
          push(fallbackPath);
       }
+      else {
+         setLogIn(true);
+      }
    }, []);
-   return true;
+   return login;
 };
