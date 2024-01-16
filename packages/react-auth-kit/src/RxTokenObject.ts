@@ -1,6 +1,5 @@
-// "use client"
+"use client"
 
-import { cookies } from 'next/headers'
 import Cookies from 'js-cookie';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthError } from './errors';
@@ -289,18 +288,7 @@ class TokenObject<T> {
    */
   private initialToken_ = (): AuthKitStateInterface<T> => {
     if (this.authStorageType === 'cookie') {
-      console.log(`Engine type : ${typeof window !== undefined}`);
-      
-      if (typeof window !== undefined) {
-        console.log("Rendering from Client side");
-        
-        return this.initialCookieToken_();
-      }
-      else {
-        // next js server side rendering
-        console.log("Rendering from Server side");
-        return this.initialCookieServerToken_();
-      }
+      return this.initialCookieToken_();
     } else {
       return this.initialLSToken_();
     }
@@ -332,63 +320,6 @@ class TokenObject<T> {
     );
   };
 
-  /**
-   * Get the Initial Token from Cookies
-   *
-   * @remarks
-   * If the `authStorageType` is `cookie`
-   * then this function is called
-   * And returns the Tokens and states Stored in all 4 cookies
-   *
-   * @returns Initial State from Cookies
-   */
-  private initialCookieServerToken_ = (): AuthKitStateInterface<T> => {
-    const cookieStore = cookies();
-
-    const authToken = cookieStore.get(this.authStorageName)?.value;
-    const authTokenType = cookieStore.get(this.authStorageTypeName)?.value;
-    const stateCookie = cookieStore.get(this.stateStorageName)?.value;
-
-    const refreshToken = this.isUsingRefreshToken &&
-      this.refreshTokenName != null ? cookieStore.get(this.refreshTokenName)?.value : null;
-    
-    console.log(authToken);
-    console.log(authTokenType);
-    console.log(stateCookie);
-    console.log(refreshToken);
-
-    return this.checkTokenExist_(
-      authToken,
-      authTokenType,
-      stateCookie,
-      refreshToken,
-    );
-
-    // const d = import('next/headers').then(module=> {
-    //   const cookieStore = module.cookies();
-
-    //   const authToken = cookieStore.get(this.authStorageName)?.value;
-    //   const authTokenType = cookieStore.get(this.authStorageTypeName)?.value;
-    //   const stateCookie = cookieStore.get(this.stateStorageName)?.value;
-
-    //   const refreshToken = this.isUsingRefreshToken &&
-    //     this.refreshTokenName != null ? cookieStore.get(this.refreshTokenName)?.value : null;
-
-    //   return this.checkTokenExist_(
-    //       authToken,
-    //       authTokenType,
-    //       stateCookie,
-    //       refreshToken,
-    //   );
-
-
-    // }).catch(err=>{
-    //   console.log(err);
-    //   console.error("Server Side Cookies are only supported in Next");
-    //   return this.checkTokenExist_(null, null, null, null)
-    // })
-
-  };
 
   /**
    * Get the Initial Token from LocalStorage
