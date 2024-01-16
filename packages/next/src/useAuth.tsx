@@ -21,7 +21,7 @@ interface NextAuthProps {
    fallbackPath: string
  }
 
-export function useAuth ({fallbackPath}:NextAuthProps) {
+export function useAuth ({fallbackPath}:NextAuthProps):boolean {
    const context = useReactAuthKitContext()
    console.log(context);
 
@@ -37,4 +37,5 @@ export function useAuth ({fallbackPath}:NextAuthProps) {
          push(fallbackPath);
       }
    }, []);
+   return true;
 };
