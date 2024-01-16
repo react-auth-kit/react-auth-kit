@@ -50,7 +50,7 @@
     "react": "18.2.0",
     "react-router": "6.21.1"
   },
-  "gitHead": "f5ad701c17b9c2e2b6c27b3865a99f2a941c1dff",
+  "gitHead": "a284b2e8b61f94c0431c1018f65340c7a76301e9",
   "dependencies": {
     "react-auth-kit": "^3.0.2-alpha.15"
   }
