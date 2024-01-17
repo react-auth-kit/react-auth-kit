@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
 import Cookies from 'js-cookie';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthError } from './errors';
-import { AuthKitStateInterface } from './types';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {AuthError} from './errors';
+import {AuthKitStateInterface} from './types';
 
 /**
  * Set State Data
@@ -22,7 +22,7 @@ export interface AuthKitSetState<T> {
 
     /**
      * Type of the access token
-     * 
+     *
      * @example
      * Bearer
      */
@@ -113,11 +113,11 @@ class TokenObject<T> {
    *
    */
   constructor(
-    authStorageName: string,
-    authStorageType: 'cookie' | 'localstorage',
-    refreshTokenName: string | null,
-    cookieDomain?: string,
-    cookieSecure?: boolean,
+      authStorageName: string,
+      authStorageType: 'cookie' | 'localstorage',
+      refreshTokenName: string | null,
+      cookieDomain?: string,
+      cookieSecure?: boolean,
   ) {
     this.authStorageName = authStorageName;
     this.authStorageType = authStorageType;
@@ -147,32 +147,32 @@ class TokenObject<T> {
 
   /**
    * Subscribe method for TokenObject
-   * 
+   *
    * @param next - A callback function that gets called by the producer during
-   * the subscription when the producer "has" the `value`. It won't be called 
+   * the subscription when the producer "has" the `value`. It won't be called
    * if `error` or `complete` callback functions have been called
    * @param error - A callback function that gets called by the producer
    * if and when it encountered a problem of any kind
-   * @param complete - A callback function that gets called by the producer 
+   * @param complete - A callback function that gets called by the producer
    * if and when it has no more values to provide
    */
   subscribe = (
-    next: ((value: AuthKitStateInterface<T>) => void),
-    error?: ((err: any) => void),
-    complete?: (() => void)
+      next: ((value: AuthKitStateInterface<T>) => void),
+      error?: ((err: any) => void),
+      complete?: (() => void),
   ) => {
     this.authSubject.subscribe({
       next: next,
       error: error,
-      complete: complete
+      complete: complete,
     });
   };
 
   /**
    * Observe method for TokenObject
-   * 
+   *
    * @returns A RxJs Observable for further subscription
-   * 
+   *
    * @see {@link https://rxjs.dev/api/index/class/Subject#asObservable}
    */
   observe = (): Observable<AuthKitStateInterface<T>> => {
@@ -182,15 +182,15 @@ class TokenObject<T> {
   /**
    * @internal
    * @param data - The data to set the state
-   * 
+   *
    * @remarks
    * Below is the logic
    * ```txt
-   * data - new auth is present - new user state ----- Replace Auth and 
+   * data - new auth is present - new user state ----- Replace Auth and
    *  |   |     and not null    |                         User state
    *  |   |                     |
-   *  |   |                     - no new user state --- Replace only 
-   *  |   |                                           the Auth use old 
+   *  |   |                     - no new user state --- Replace only
+   *  |   |                                           the Auth use old
    *  |   |                                              user state
    *  |   |
    *  |   |
@@ -202,7 +202,7 @@ class TokenObject<T> {
    *  |
    *  -- is using refesh token is true - new refresh is ---- Update the
    *   |                               |   present is       refresh token
-   *   |                               |    not null 
+   *   |                               |    not null
    *   |                               |
    *   |                               |
    *   |                               - new refresh ------- Clean refresh token
@@ -313,17 +313,17 @@ class TokenObject<T> {
       this.refreshTokenName != null ? Cookies.get(this.refreshTokenName) : null;
 
     return this.checkTokenExist_(
-      authToken,
-      authTokenType,
-      stateCookie,
-      refreshToken,
+        authToken,
+        authTokenType,
+        stateCookie,
+        refreshToken,
     );
   };
 
 
   /**
    * Get the Initial Token from LocalStorage
-   * 
+   *
    * @remarks
    * If the `authStorageType` is `localstorage`
    * then this function is called
@@ -342,29 +342,29 @@ class TokenObject<T> {
 
 
     return this.checkTokenExist_(
-      authToken,
-      authTokenType,
-      stateCookie,
-      refreshToken,
+        authToken,
+        authTokenType,
+        stateCookie,
+        refreshToken,
     );
   };
 
   /**
    * Check for all the existance for the Tokens
    * Called Internally by `initialCookieToken_()` and `initialLSToken_()`
-   * 
+   *
    * @param authToken - Auth token from cookie or localstorage
    * @param authTokenType - Auth token type from cookie or localstorage
    * @param stateCookie - User state from cookie of localstorage
    * @param refreshToken - Refresh token from cookie or localstorage
-   * 
+   *
    * @returns Auth State with all conditions and guard in place
    */
   private checkTokenExist_ = (
-    authToken: string | null | undefined,
-    authTokenType: string | null | undefined,
-    stateCookie: string | null | undefined,
-    refreshToken: string | null | undefined):
+      authToken: string | null | undefined,
+      authTokenType: string | null | undefined,
+      stateCookie: string | null | undefined,
+      refreshToken: string | null | undefined):
     AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
@@ -479,14 +479,14 @@ class TokenObject<T> {
 
   /**
    * Function to patse the JWT
-   * 
+   *
    * @param token - JWT to purse
    * @returns Parsed data from JWT
    */
   private parseJwt = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
@@ -495,10 +495,10 @@ class TokenObject<T> {
 
   /**
    * Get the Expire Date from JWT
-   * 
+   *
    * @param token - JWT from which to get the Expire time
    * @returns Expire Date
-   * 
+   *
    * @remarks
    * Get `exp` param from the JWT data payload and convert that to Date
    */
@@ -525,9 +525,9 @@ class TokenObject<T> {
     if (authState.auth) {
       // Sync the Auth token part
       this.setAuthToken(
-        authState.auth.token,
-        authState.auth.type,
-        authState.userState,
+          authState.auth.token,
+          authState.auth.type,
+          authState.userState,
       );
     } else {
       // Remove the auth token part
@@ -537,7 +537,7 @@ class TokenObject<T> {
     if (!!authState.refresh && this.isUsingRefreshToken) {
       // Sync the refresh part
       this.setRefreshToken(
-        authState.refresh.token,
+          authState.refresh.token,
       );
     } else {
       // Remove the refresh part
@@ -546,9 +546,9 @@ class TokenObject<T> {
   };
 
   private setAuthToken = (
-    authToken: string,
-    authTokenType: string,
-    authState: T | null,
+      authToken: string,
+      authTokenType: string,
+      authState: T | null,
   ): void => {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime(authToken);
@@ -580,7 +580,7 @@ class TokenObject<T> {
   };
 
   private setRefreshToken = (
-    refreshToken: string | null,
+      refreshToken: string | null,
   ): void => {
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&

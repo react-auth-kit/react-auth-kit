@@ -47,12 +47,12 @@ const getFakeContextValue = (expiresAt: Date, dispatch = jest.fn()) => {
 };
 
 const store = createStore<object>({
-    authName:'_auth',
-    authType:'cookie',
-    cookieDomain: window.location.hostname,
-    cookieSecure: window.location.protocol === 'https:',
-  })
-  
+  authName: '_auth',
+  authType: 'cookie',
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === 'https:',
+});
+
 
 describe('PrivateRoute component', () => {
   it('renders successfully with AuthProvider', () => {

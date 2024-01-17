@@ -13,15 +13,15 @@
  */
 
 import type {
-  SignInActionPayload
+  SignInActionPayload,
 } from '../types';
 
 import type {
-  RefreshTokenActionPayload
+  RefreshTokenActionPayload,
 } from '../createRefresh';
 
 import type {
-  AuthKitSetState
+  AuthKitSetState,
 } from '../RxTokenObject';
 
 /**

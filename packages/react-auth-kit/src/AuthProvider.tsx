@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import AuthKitContext from './AuthContext';
@@ -40,7 +40,7 @@ interface AuthProviderProps<T> {
  * @example
  * ```jsx
  * const store = createStore()
- * 
+ *
  * <AuthProvider store={store}>
  *  <RoutesComponent/>
  * </AuthProvider>
