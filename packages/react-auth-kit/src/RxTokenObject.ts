@@ -40,7 +40,10 @@ export interface AuthKitSetState<T> {
   userState?: T
 }
 
-
+/**
+ * TokenObject Class.
+ * It is holding all the data for the authentication
+ */
 class TokenObject<T> {
   /**
    * Name of the storage for the access token
@@ -78,7 +81,8 @@ class TokenObject<T> {
   private readonly refreshTokenName: string | null;
 
   /**
-   * Boolean value to check if the application is using refresh token feature or not
+   * Boolean value to check if the application
+   * is using refresh token feature or not
    */
   private readonly isUsingRefreshToken: boolean;
 
@@ -99,8 +103,8 @@ class TokenObject<T> {
    * @param authStorageName - Name of the Token,
    * which will store the Authorization Token
    *
-   * @param authStorageType - Type of the auth Storage, `
-   * cookie` or `localstorage`
+   * @param authStorageType - Type of the auth Storage,
+   * `cookie` or `localstorage`
    *
    * @param refreshTokenName - Name of the refresh Token,
    * if `undefined`, then no refreshToken feature is using
@@ -364,13 +368,14 @@ class TokenObject<T> {
       authToken: string | null | undefined,
       authTokenType: string | null | undefined,
       stateCookie: string | null | undefined,
-      refreshToken: string | null | undefined):
-    AuthKitStateInterface<T> => {
+      refreshToken: string | null | undefined,
+  ): AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
       let refresh;
       if (this.isUsingRefreshToken && !!refreshToken) {
-        // If the refresh token is tampered, then it'll stop the execution and will go at catch.
+        // If the refresh token is tampered,
+        // then it'll stop the execution and will go at catch.
         const refreshTokenExpiresAt = this.getExpireDateTime(refreshToken);
         if (refreshTokenExpiresAt < new Date()) {
           refresh = null;
@@ -385,7 +390,8 @@ class TokenObject<T> {
       }
 
       // If we are using refrsh token, but refesh is null null,
-      // Then definitely we are not able to get the refersh token or the refresh token is expired.
+      // Then definitely we are not able to get the refersh token
+      // or the refresh token is expired.
       // So, we'll not authenticate the user.
       // And will delete any token, if there's any
       if (this.isUsingRefreshToken && !refresh) {
@@ -403,7 +409,8 @@ class TokenObject<T> {
       let auth;
       let authState: T | null;
       if (!!authToken && !!authTokenType && !!stateCookie) {
-        // Using a local Try catch, as we don't want the auth token to make the refrsh token to be null;
+        // Using a local Try catch, as we don't want
+        // the auth token to make the refrsh token to be null;
         try {
           const expiresAt = this.getExpireDateTime(authToken);
           if (expiresAt < new Date()) { // DONE
@@ -463,9 +470,8 @@ class TokenObject<T> {
           isSignIn: false,
         };
       }
-    }
+    } catch (e) {
     // Error occured. So declearing as signed out
-    catch (e) {
       this.removeAllToken();
       return {
         auth: null,
@@ -486,9 +492,10 @@ class TokenObject<T> {
   private parseJwt = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    const jsonPayload = decodeURIComponent(
+        atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
 
     return JSON.parse(jsonPayload);
   };
@@ -504,7 +511,7 @@ class TokenObject<T> {
    */
   private getExpireDateTime = (token: string): Date => {
     const jwtData = this.parseJwt(token);
-    if (jwtData.hasOwnProperty('exp')) {
+    if (Object.prototype.hasOwnProperty.call(jwtData, 'exp')) {
       const d = new Date(0);
       d.setUTCSeconds(jwtData.exp as number);
       return d;
@@ -519,7 +526,7 @@ class TokenObject<T> {
    * Set the New Cookies or new Localstorage on login
    * Or Remove the old Cookies or old Localstorage on logout
    *
-   * @param authState
+   * @param authState - Current Auth State
    */
   public syncTokens = (authState: AuthKitStateInterface<T>): void => {
     if (authState.auth) {
@@ -574,7 +581,10 @@ class TokenObject<T> {
       window.localStorage.setItem(this.authStorageTypeName, authTokenType);
 
       if (authState) {
-        window.localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+        window.localStorage.setItem(
+            this.stateStorageName,
+            JSON.stringify(authState),
+        );
       }
     }
   };
@@ -593,7 +603,9 @@ class TokenObject<T> {
         });
       }
     } else {
-      if (this.isUsingRefreshToken && !!this.refreshTokenName && !!refreshToken) {
+      if (this.isUsingRefreshToken &&
+          !!this.refreshTokenName && !!refreshToken
+      ) {
         localStorage.setItem(this.refreshTokenName, refreshToken);
       }
     }

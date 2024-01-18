@@ -24,14 +24,14 @@ interface NextAuthProps {
 
 /**
  * React hook to implement the NextAuth feature
- * @param arg - Params of the hook 
+ * @param arg - Params of the hook
  * @returns - Authentication Ready state
- * 
+ *
  * @remarks
  * Usage of this hook will make the page CSR, any SSR will not work in
  * private routes, as the private data in stored on the client side,
  * only CSR is available at this moment.
- * 
+ *
  * @example
  * ```jsx
  * 'use client'

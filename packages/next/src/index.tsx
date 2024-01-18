@@ -23,16 +23,16 @@ interface NextAuthProps {
  }
 
 /**
-  * 
+  *
   * Next Js Page Wrapper component.
-  * 
-  * @param props - The Properties of the component 
+  *
+  * @param props - The Properties of the component
   * @returns - Compoent with React Auth Kit integrated
-  * 
+  *
   * @example
   * ```jsx
   * // layout.jsx
-  * 
+  *
   * export default function Layout({
   *   children,
   * }: {
@@ -41,7 +41,7 @@ interface NextAuthProps {
   *   return <NextAuth fallbackPath={'/login'}>{children}</NextAuth>
   * }
   * ```
-  * 
+  *
   */
 export function NextAuth({fallbackPath, children}: NextAuthProps) {
   const context = useReactAuthKitContext();

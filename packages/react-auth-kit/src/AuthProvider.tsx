@@ -32,7 +32,8 @@ interface AuthProviderProps<T> {
  * @returns React Functional component with React Auth Kit Recharged.
  *
  * @remarks
- * Make sure you wrap your application as well as your router components in AuthProvider.
+ * Make sure you wrap your application as well as your
+ * router components in AuthProvider.
  *
  * AuthProvider should be your Topmost element so that it can work effectively
  * throughout the application.
@@ -83,7 +84,8 @@ function AuthProvider<T extends object>(
   }
 
   return (
-    // @ts-ignore 'AnyAction' is assignable to the constraint of type 'T', but 'T' could be instantiated with a different subtype
+    // @ts-expect-error 'AnyAction' is assignable to the constraint of type 'T'
+    // , but 'T' could be instantiated with a different subtype
     <AuthKitContext.Provider value={tokenObject}>
       {children}
     </AuthKitContext.Provider>

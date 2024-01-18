@@ -23,12 +23,13 @@ function getContext<T>(): Context<TokenObject<T>> {
 const AuthKitContext = getContext();
 
 /**
- * 
+ *
  * @internal
  * @returns TokenObject from the context
- * 
- * React Context consumer to globally hold the TokenObject instance in the application.
- * 
+ *
+ * React Context consumer to globally hold the
+ * TokenObject instance in the application.
+ *
  */
 export function useReactAuthKitContext(): TokenObject<unknown> {
   const context = useContext(AuthKitContext);

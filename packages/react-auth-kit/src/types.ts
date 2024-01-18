@@ -186,4 +186,7 @@ interface AuthKitStateInterfaceFalse {
 /**
  * Auth State Object
  */
-export type AuthKitStateInterface<T> = AuthKitStateInterfaceTrue<T> | AuthKitStateInterfaceFalse | AuthKitStateInterfaceNoAuthOnlyRefresh
+export type AuthKitStateInterface<T> =
+  AuthKitStateInterfaceTrue<T> |
+  AuthKitStateInterfaceFalse |
+  AuthKitStateInterfaceNoAuthOnlyRefresh;
