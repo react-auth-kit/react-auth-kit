@@ -48,7 +48,7 @@
     "@types/react": "18.2.47",
     "@types/react-router-dom": "5.3.3",
     "react": "18.2.0",
-    "react-router": "6.21.2"
+    "react-router": "6.21.3"
   },
   "gitHead": "5b25edbae186725d50682221b77427200ee89f30",
   "dependencies": {
