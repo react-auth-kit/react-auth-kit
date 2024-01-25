@@ -57,7 +57,7 @@
     "eslint-plugin-jest": "27.6.3",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "husky": "8.0.3",
+    "husky": "9.0.1",
     "lerna": "^8.0.0",
     "lint-staged": "15.2.0",
     "markdownlint-cli": "0.38.0",
