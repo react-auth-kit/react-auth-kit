@@ -44,7 +44,7 @@
     "react-router": ">=6.x"
   },
   "devDependencies": {
-    "@types/node": "20.11.15",
+    "@types/node": "20.11.16",
     "@types/react": "18.2.48",
     "@types/react-router-dom": "5.3.3",
     "react": "18.2.0",
