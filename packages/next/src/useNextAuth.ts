@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 
 import {useReactAuthKitContext} from 'react-auth-kit/AuthContext';
@@ -47,11 +47,11 @@ interface NextAuthProps {
  */
 export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
   const context = useReactAuthKitContext();
-  const [login, setLogIn] = React.useState(false);
+  const [login, setLogIn] = useState(false);
 
   const {push} = useRouter();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isAuthenticated(context.value)) {
       // Redirect them to the /login page, but save the current location they
       // were trying to go to when they were redirected. This allows us to

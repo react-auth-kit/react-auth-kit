@@ -22,6 +22,7 @@
   ],
   "exports": {
     ".": "./index.js",
+    "./NextAuth": "./NextAuth.js",
     "./useNextAuth": "./useNextAuth.js"
   },
   "peerDependencies": {
