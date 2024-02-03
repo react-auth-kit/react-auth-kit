@@ -5,7 +5,7 @@ description: "@auth-kit/react-router/RequireAuth"
 
 # RequireAuth
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_RequireAuth"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_RequireAuth"></div>
 
 ## Import
 

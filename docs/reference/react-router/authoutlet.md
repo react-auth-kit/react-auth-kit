@@ -5,7 +5,7 @@ description: "@auth-kit/react-router/AuthOutlet"
 
 # AuthOutlet
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_AuthOutlet"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_AuthOutlet"></div>
 
 ## Import
 
