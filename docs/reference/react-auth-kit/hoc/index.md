@@ -5,13 +5,13 @@ description: Higher Order Components for React Auth Kit
 
 # React Auth Kit Higher Order Components
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="ref_hoc"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_hoc"></div>
 
-- [withAuthHeader](./withAuthHeader.md) - Inject Auth header inside your react class-based component
-- [withAuthUser](./withAuthUser.md) - Inject User's state inside your react class-based component
+- [withAuthHeader](./withAuthHeader.md) - Inject the Auth header inside your react class-based component
+- [withAuthUser](./withAuthUser.md) - Inject the User's state inside your react class-based component
 - [withIsAuthenticated](./withIsAuthenticated.md) - Inject authentication status inside your react class-based component
-- [withSignIn](./withSignIn.md) - Inject sign in function to login or signin the user inside your react class-based component
-- [withSignOut](./withSignOut.md) - Inject sign out function to logout or signout the user inside your react class-based component
+- [withSignIn](./withSignIn.md) - Inject sign-in function to log in or sign in the user inside your react class-based component
+- [withSignOut](./withSignOut.md) - Inject sign out function to log out or sign out the user inside your react class-based component
 
 
 ---

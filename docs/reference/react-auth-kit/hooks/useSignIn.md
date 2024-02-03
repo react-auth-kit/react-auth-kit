@@ -1,6 +1,6 @@
 ---
 title:  useSignIn - React Auth Kit
-description: Hook to signin or login your user into your application
+description: Hook to sign in or log in your user into your application
 ---
 
 # useSignIn
