@@ -34,7 +34,7 @@ const store = createStore({
 
 ### API
 
-[reference/react-auth-kit/createStore](./../reference/react-auth-kit/createStore.md)
+[reference/react-auth-kit/createStore](./../../reference/react-auth-kit/createStore.md)
 
 ## AuthProvider
 
@@ -66,7 +66,7 @@ export default App;
 
 ### API
 
-[reference/react-auth-kit/AuthProvider](./../reference/react-auth-kit/authprovider.md)
+[reference/react-auth-kit/AuthProvider](./../../reference/react-auth-kit/authprovider.md)
 
 !!! warning
 

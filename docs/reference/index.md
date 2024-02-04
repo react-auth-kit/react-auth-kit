@@ -17,14 +17,18 @@ React Auth Kit Core Library
 - [Hooks](./react-auth-kit/hooks/index.md) - React Auth Kit hooks to interact with the library
 - [Higher Order Component](./react-auth-kit/hoc/index.md) - Higher Order Components to interact with the library
 
-### Higher Order Components
-
 ## @auth-kit/react-router
 
 React Auth Kit Plugin to interact with React Router.
 
 - [AuthOutlet](./react-router/authoutlet.md) - Private Route for multiple components at once
-- [RequireAuth](./react-router/requireauth.md) - Pirvate Route one component
+- [RequireAuth](./react-router/requireauth.md) - Private Route one component
+
+## @auth-kit/next
+
+Raact Auth Kit Plugin to interact with Next.
+
+- [NextAuth](./next/next-auth.md) - Private Route integration for Next Js Pages or Layout
 
 ---
 
