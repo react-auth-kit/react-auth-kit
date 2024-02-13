@@ -1,3 +1,14 @@
+## [3.2.0](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.1...v3.2.0) (2024-01-09)
+
+🎉 Next.Js Support is there!! 🎉
+
+### Features
+
+* **Next.Js:** Added support for Next.Js.
+* **@auth-kit/next:** New Package for Rect Auth Kit for Next.Js
+
+
+
 ## [3.0.1](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.0...v3.0.1) (2024-01-09)
 
 
