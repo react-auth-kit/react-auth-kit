@@ -1,12 +1,15 @@
 site_name: React Auth Kit
-site_description: Powerful and easy to use authentication management Library for React JS apps, uses Token-Based Authentication using JSON Web Token
+site_description: Powerful, easy to use and Batteries enabled authentication management Library for React JS and Next Js apps, uses Token-Based Authentication using JSON Web Token
 site_author: Arkadip Bhattacharya
 site_url: https://authkit.arkadip.dev/
 
 repo_url: https://github.com/react-auth-kit/react-auth-kit
 repo_name: react-auth-kit/react-auth-kit
 
-copyright:  Copyright &copy; 2020 - 2023 React Auth Kit
+copyright:  Copyright &copy; 2020 - 2024 React Auth Kit
+
+extra_css:
+  - stylesheets/extra.css
 
 theme:
   name: 'material'
@@ -49,16 +52,21 @@ nav:
 
   - Getting Started:
     - 'getting_started/index.md'
-    - Installation : 'getting_started/installation.md'
-    - Integration: 'getting_started/integration.md'
-    - Sign In: 'getting_started/signin.md'
-    - Sign Out: 'getting_started/signout.md'
-    - User Data: 'getting_started/authdata.md'
-    - Auth Header: 'getting_started/authheader.md'
-    - Auth Status: 'getting_started/checkauth.md'
-    - Refresh Token: 'getting_started/refreshtoken.md'
+    - Integration: 
+      - React App (CRA, Vite): 'getting_started/integration/react-app.md'
+      - Next Js App Router: 'getting_started/integration/next-app-router.md'
+    
+    - Functionalities:
+      - Sign In: 'getting_started/signin.md'
+      - Sign Out: 'getting_started/signout.md'
+      - User Data: 'getting_started/authdata.md'
+      - Auth Header: 'getting_started/authheader.md'
+      - Auth Status: 'getting_started/checkauth.md'
+      - Refresh Token: 'getting_started/refreshtoken.md'
+
     - Private Route: 
-        - React Router: 'getting_started/privateroute/react-router.md'
+      - React Router: 'getting_started/privateroute/react-router.md'
+      - Next Js App Router: 'getting_started/privateroute/next-app.md'
 
   - Reference: 
     - 'reference/index.md'
@@ -85,7 +93,9 @@ nav:
     - '@auth-kit/react-router':
       - RequireAuth: 'reference/react-router/requireauth.md'
       - AuthOutlet: 'reference/react-router/authoutlet.md'
-
+    - '@auth-kit/next':
+      - NextAuth: 'reference/next/next-auth.md'
+  
   - Upgradation Guide:
       - 'update/index.md'
       - Update from v2 to v3: 'update/2to3.md'
@@ -116,7 +126,8 @@ markdown_extensions:
   - tables
   - pymdownx.details
   - pymdownx.inlinehilite
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+     alternate_style: true
   - pymdownx.superfences
   - attr_list
   - md_in_html

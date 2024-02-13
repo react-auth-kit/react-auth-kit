@@ -1,15 +1,39 @@
-# `@auth-kit/react-router`
+<h1 align="center">
+@auth-kit/react-router
+</h1>
 
-This library is a part of `react-auth-kit` ecosystem. 
-This library contains usful function to manage private route using *react-router* or *react-router-dom*.
+<p align="center">
+<a href="https://codecov.io/gh/react-auth-kit/react-auth-kit">
+  <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL"/>
+</a>
+<a href="https://www.npmjs.com/package/@auth-kit/react-router">
+    <img src="https://img.shields.io/npm/v/@auth-kit/react-router.svg?logo=npm" alt="Test Suites">
+</a>
+<a href="https://bundlephobia.com/result?p=react-auth-kit">
+    <img src="https://img.shields.io/bundlephobia/minzip/%40auth-kit/react-router?style=flat-square" alt="Test Suites">
+</a>
+</p>
+
+<h2 align="center">
+<a href="https://authkit.arkadip.dev">
+    https://authkit.arkadip.dev 🚀
+</a>
+</h2>
+
+
+<p align="center">
+  <em>🔑 This library is a part of the `react-auth-kit` ecosystem.  🔑</em>
+
+  This library contains useful functions to manage private routes using _react-router_* or *react-router-dom*.
+</p>
+
 
 ## Usage
 
 ### AuthOutlet
+AuthOutlet provides an easy solution using *react-router* or *react-router-dom* to manage private-route. 
 
-AuthOutlet provide easy solution using *react-router* or *react-router-dom* to manage private-route. 
-
-Routes inside the `AuthOutlet` will stay protected and only properly authenticated user can access the route.
+Routes inside the `AuthOutlet` will stay protected and only properly authenticated users can access the route.
 
 If the user is not authenticated then the user will be redirected to the `fallbackPath`.
 
@@ -35,9 +59,9 @@ function App() {
 
 ### RequireAuth
 
-RequireAuth provides a per route base private route solution to implement private route solution.
+RequireAuth provides a per route base private route solution to implement a private route solution.
 
-Component inside the `RequireAuth` will stay protected and only properly authenticated user can access the route.
+Component inside the `RequireAuth` will stay protected and only properly authenticated users can access the route.
 
 If the user is not authenticated then the user will be redirected to the `fallbackPath`.
 
@@ -66,7 +90,9 @@ const RoutesComponent = () => {
 
 ## Reference
 
-Reference page is under work
+[Reference](https://authkit.arkadip.dev/reference/react-router/requireauth/)
+
+---
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>

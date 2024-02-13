@@ -3,7 +3,7 @@ title: Sign In - React Auth Kit
 description: Setup the Signin or Login operation of React auth kit in your React-based app using both React Hook and Higher Order Component.
 ---
 
-# Sign In :material-location-enter:
+# :material-location-enter: Sign In
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="signin"></div>
 
@@ -23,14 +23,13 @@ Call `#!js useSignIn()` hook inside any component to signin the user.
 
 ### Import
 
-```js title="Import useSignIn in your app"
+```js title="Import useSignIn in your app" linenums="1"
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 ```
 
 ### Usage
 
-
-```jsx title="SignIn.js" hl_lines="1 4 8 9 10 11 12 13 14 15 16 17 18"
+```jsx title="SignIn.js" hl_lines="1 4 8 9 10 11 12 13 14 15 16 17 18" linenums="1"
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 
 const SignInComponent = () => {
@@ -65,7 +64,7 @@ const SignInComponent = () => {
     <summary>Full Example Code</summary>
     <br>
 
-```jsx hl_lines="3 6 14 15 16 17 18 19 20 21 22"
+```jsx hl_lines="3 6 14 15 16 17 18 19 20 21 22" linenums="1"
 import React from "react"
 import axios from 'axios'
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
@@ -108,10 +107,6 @@ const SignInComponent = () => {
 
 </details>
 
-### API
-
-[reference/react-auth-kit/hooks/useSignIn](./../reference/react-auth-kit/hooks/useSignIn.md)
-
 ---
 
 ## Higher Order Component
@@ -120,13 +115,13 @@ Wrap class-based component with `#!js withSignIn()` to implement signin.
 
 ### Import
 
-```js title="Import withSignIn in your app"
+```js title="Import withSignIn in your app" linenums="1"
 import withSignIn from 'react-auth-kit/hoc/withSignIn';
 ```
 
 ### Usage
 
-```jsx title="SignIn.js" hl_lines="1 7 8 9 10 11 12 13 14 15 16 17"
+```jsx title="SignIn.js" hl_lines="1 7 8 9 10 11 12 13 14 15 16 17" linenums="1"
 import { withSignIn } from 'react-auth-kit'
 
 class signInComponent extends React.Component {
@@ -162,7 +157,7 @@ export default withSignIn(signInComponent)
     <summary>Full Example Code</summary>
     <br>
 
-```jsx
+```jsx title="SignIn.js" linenums="1"
 import React from 'react'
 import axios from 'axios'
 import { withSignIn } from 'react-auth-kit'
@@ -212,9 +207,10 @@ export default withSignIn(signInComponent)
 
 </details>
 
-### API
+## API
 
-[reference/react-auth-kit/hoc/withSignIn](./../reference/react-auth-kit/hoc/withSignIn.md)
+- [useSignIn](./../reference/react-auth-kit/hooks/useSignIn.md)
+- [withSignIn](./../reference/react-auth-kit/hoc/withSignIn.md)
 
 
 ---

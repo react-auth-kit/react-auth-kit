@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/react-router",
-  "version": "3.0.1",
+  "version": "3.0.2-alpha.19",
   "description": "React Router Support for React-auth-kit",
   "keywords": [
     "react",
@@ -30,11 +30,10 @@
   },
   "scripts": {
     "build": "run-s build:*",
-    "build:build": "tsc --project tsconfig.json && babel --config-file ./config/babel.config.js src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
-    "test": "run-s test:*",
-    "test:unit": "jest --config ./config/jest.config.js",
+    "build:build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
+    "test": "jest",
     "lint": "eslint src",
-    "test:unit:watch": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
@@ -50,8 +49,8 @@
     "react": "18.2.0",
     "react-router": "6.21.3"
   },
-  "gitHead": "5b25edbae186725d50682221b77427200ee89f30",
+  "gitHead": "a284b2e8b61f94c0431c1018f65340c7a76301e9",
   "dependencies": {
-    "react-auth-kit": "^3.0.1"
+    "react-auth-kit": "^3.0.2-alpha.19"
   }
 }

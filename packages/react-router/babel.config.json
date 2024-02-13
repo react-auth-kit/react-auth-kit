@@ -1,0 +1,18 @@
+{ 
+    "extends": "../../babel.config.js",
+    "overrides": [
+        {
+            "test": [
+              "./src/index.ts",
+              "./src/RequireAuth.tsx",
+              "./src/AuthOutlet.tsx"
+
+            ],
+            "presets": [
+              ["@babel/preset-env", { "targets": { "ie": 11 } }],
+              ["@babel/preset-react", { "runtime": "automatic" }]
+            ]
+          }
+    ]
+}
+

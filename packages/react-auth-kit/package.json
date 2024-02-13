@@ -1,6 +1,6 @@
 {
   "name": "react-auth-kit",
-  "version": "3.0.1",
+  "version": "3.0.2-alpha.19",
   "description": "Authentication Library for React, which makes Token based auth very easy",
   "keywords": [
     "react",
@@ -30,10 +30,11 @@
   ],
   "exports": {
     ".": "./index.js",
-    "./AuthContext": "./AuthContext.js",
-    "./AuthProvider": "./AuthProvider.js",
-    "./createStore": "./createStore.js",
     "./errors": "./errors.js",
+    "./AuthContext": "./AuthContext.js",
+    "./createStore": "./createStore.js",
+    "./AuthProvider": "./AuthProvider.js",
+    "./createRefresh": "./createRefresh.js",
     "./hooks/*": "./hooks/*.js",
     "./higherOrderComponents/*": "./higherOrderComponents/*.js",
     "./utils/*": "./utils/*.js"
@@ -43,11 +44,10 @@
     "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json && babel --config-file ./config/babel.config.js src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
-    "test": "run-s test:*",
-    "test:unit": "jest --config ./config/jest.config.js",
+    "build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
+    "test": "jest",
     "lint": "eslint src",
-    "test:unit:watch": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "bugs": {
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
@@ -61,15 +61,17 @@
     "@types/react-dom": "18.2.18",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.4.3",
-    "ts-jest": "29.1.2"
+    "next": "^14.0.4",
+    "ts-jest": "29.1.1"
   },
   "dependencies": {
     "js-cookie": "^3.0.1",
     "rxjs": "^7.8.1"
   },
   "peerDependencies": {
+    "next": ">=13.0 || ^14.x",
     "react": ">=16.8.0 || ^17.x || ^18.x",
     "react-dom": ">=16.8.0 || ^17.x || ^18.x"
   },
-  "gitHead": "5b25edbae186725d50682221b77427200ee89f30"
+  "gitHead": "a284b2e8b61f94c0431c1018f65340c7a76301e9"
 }

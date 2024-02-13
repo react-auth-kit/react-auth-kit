@@ -1,5 +1,5 @@
 import './App.css'
-import RoutesPage from './routesPage'
+import RoutesPage from './RoutesPage'
 import AuthProvider from 'react-auth-kit'
 import createStore from 'react-auth-kit/createStore';
 

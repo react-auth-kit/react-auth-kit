@@ -1,3 +1,5 @@
+'use client';
+
 import TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
 import type {createRefreshParamInterface} from './createRefresh';

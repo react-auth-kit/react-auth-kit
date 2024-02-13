@@ -1,10 +1,12 @@
+'use client';
+
 import {AuthError} from './errors';
 
 /**
- * Payload for Refresh token 
+ * Payload for Refresh token
  */
 export interface RefreshTokenActionPayload<T> {
-  
+
   /**
    * New Auth token from the network response
    */
@@ -14,12 +16,12 @@ export interface RefreshTokenActionPayload<T> {
    * New Auth Token type from the network response
    */
   newAuthTokenType?: string,
-  
+
   /**
    * New Refresh token from the nwtwork response. Can be null
    */
   newRefreshToken?: string,
-  
+
   /**
    * New User state from the network. Can be null
    */
@@ -30,35 +32,35 @@ export interface RefreshTokenActionPayload<T> {
 /**
  * Refresh Token Callback Response
  */
-interface RefreshTokenCallbackResponse<T> extends RefreshTokenActionPayload<T>  {
-  
+interface RefreshTokenCallbackResponse<T> extends RefreshTokenActionPayload<T> {
+
   /**
    * If the refresh operation is successful or not
-   * 
+   *
    * If the isSuceess is `true`, then the `token` and other items will be
    * replaced with the new network response
-   * 
+   *
    * If the isSuceess is `false`, then everything will be wiped and user will
    * be sgined out
    */
   isSuccess: boolean
-};
+}
 
 /**
- * 
+ *
  */
 type refreshTokenCallback<T> = (param: {
-  
+
   /**
    * Existing Auth token for the refresh operation
    */
   authToken?: string,
-  
+
   /**
    * Existing Refresh token for the refresh operation
    */
   refreshToken?: string,
-  
+
   /**
    * Existing User State for the User state
    */
@@ -69,15 +71,15 @@ type refreshTokenCallback<T> = (param: {
  * Parameter for the Refresh operation
  */
 export interface createRefreshParamInterface<T> {
-  
+
   /**
    * Interval on which the callback function is called
    */
   interval: number,
-  
+
   /**
    * A Callback function which'll have the network request
-   * 
+   *
    * @example
    * ```js
    * refreshApiCallback: async (param) => {
@@ -97,7 +99,7 @@ export interface createRefreshParamInterface<T> {
    *    console.error(error)
    *    return {
    *      isSuccess: false
-   *    } 
+   *    }
    *  }
    * }
    * ```

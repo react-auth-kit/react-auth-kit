@@ -1,3 +1,5 @@
+'use client';
+
 import Cookies from 'js-cookie';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {AuthError} from './errors';
@@ -7,7 +9,7 @@ import {AuthKitStateInterface} from './types';
  * Set State Data
  */
 export interface AuthKitSetState<T> {
-  
+
   /**
    * Authentication Object
    */
@@ -20,13 +22,13 @@ export interface AuthKitSetState<T> {
 
     /**
      * Type of the access token
-     * 
+     *
      * @example
      * Bearer
      */
     type: string
   } | null,
-  
+
   /**
    * Refresh JWT token
    */
@@ -38,7 +40,10 @@ export interface AuthKitSetState<T> {
   userState?: T
 }
 
-
+/**
+ * TokenObject Class.
+ * It is holding all the data for the authentication
+ */
 class TokenObject<T> {
   /**
    * Name of the storage for the access token
@@ -76,7 +81,8 @@ class TokenObject<T> {
   private readonly refreshTokenName: string | null;
 
   /**
-   * Boolean value to check if the application is using refresh token feature or not
+   * Boolean value to check if the application
+   * is using refresh token feature or not
    */
   private readonly isUsingRefreshToken: boolean;
 
@@ -84,7 +90,7 @@ class TokenObject<T> {
    * Auth Value
    */
   private authValue: AuthKitStateInterface<T>;
-  
+
   /**
    * RX Auth subject
    */
@@ -97,8 +103,8 @@ class TokenObject<T> {
    * @param authStorageName - Name of the Token,
    * which will store the Authorization Token
    *
-   * @param authStorageType - Type of the auth Storage, `
-   * cookie` or `localstorage`
+   * @param authStorageType - Type of the auth Storage,
+   * `cookie` or `localstorage`
    *
    * @param refreshTokenName - Name of the refresh Token,
    * if `undefined`, then no refreshToken feature is using
@@ -133,10 +139,10 @@ class TokenObject<T> {
 
     this.authSubject.subscribe({
       next: this.syncTokens,
-      complete: ()=>{
+      complete: () => {
         console.log('Token Synced');
       },
-      error: (err) =>{
+      error: (err) => {
         console.error('Error Occured while syncing token');
         console.log(err);
       },
@@ -145,50 +151,50 @@ class TokenObject<T> {
 
   /**
    * Subscribe method for TokenObject
-   * 
+   *
    * @param next - A callback function that gets called by the producer during
-   * the subscription when the producer "has" the `value`. It won't be called 
+   * the subscription when the producer "has" the `value`. It won't be called
    * if `error` or `complete` callback functions have been called
    * @param error - A callback function that gets called by the producer
    * if and when it encountered a problem of any kind
-   * @param complete - A callback function that gets called by the producer 
+   * @param complete - A callback function that gets called by the producer
    * if and when it has no more values to provide
    */
   subscribe = (
-    next: ((value: AuthKitStateInterface<T>) => void),
-    error?: ((err: any) => void),
-    complete?: (() => void)
+      next: ((value: AuthKitStateInterface<T>) => void),
+      error?: ((err: any) => void),
+      complete?: (() => void),
   ) => {
     this.authSubject.subscribe({
       next: next,
       error: error,
-      complete: complete
+      complete: complete,
     });
   };
 
   /**
    * Observe method for TokenObject
-   * 
+   *
    * @returns A RxJs Observable for further subscription
-   * 
+   *
    * @see {@link https://rxjs.dev/api/index/class/Subject#asObservable}
    */
-  observe = (): Observable<AuthKitStateInterface<T>> =>{
+  observe = (): Observable<AuthKitStateInterface<T>> => {
     return this.authSubject.asObservable();
   };
 
   /**
    * @internal
    * @param data - The data to set the state
-   * 
+   *
    * @remarks
    * Below is the logic
    * ```txt
-   * data - new auth is present - new user state ----- Replace Auth and 
+   * data - new auth is present - new user state ----- Replace Auth and
    *  |   |     and not null    |                         User state
    *  |   |                     |
-   *  |   |                     - no new user state --- Replace only 
-   *  |   |                                           the Auth use old 
+   *  |   |                     - no new user state --- Replace only
+   *  |   |                                           the Auth use old
    *  |   |                                              user state
    *  |   |
    *  |   |
@@ -200,7 +206,7 @@ class TokenObject<T> {
    *  |
    *  -- is using refesh token is true - new refresh is ---- Update the
    *   |                               |   present is       refresh token
-   *   |                               |    not null 
+   *   |                               |    not null
    *   |                               |
    *   |                               |
    *   |                               - new refresh ------- Clean refresh token
@@ -318,9 +324,10 @@ class TokenObject<T> {
     );
   };
 
+
   /**
    * Get the Initial Token from LocalStorage
-   * 
+   *
    * @remarks
    * If the `authStorageType` is `localstorage`
    * then this function is called
@@ -349,25 +356,26 @@ class TokenObject<T> {
   /**
    * Check for all the existance for the Tokens
    * Called Internally by `initialCookieToken_()` and `initialLSToken_()`
-   * 
+   *
    * @param authToken - Auth token from cookie or localstorage
    * @param authTokenType - Auth token type from cookie or localstorage
    * @param stateCookie - User state from cookie of localstorage
    * @param refreshToken - Refresh token from cookie or localstorage
-   * 
+   *
    * @returns Auth State with all conditions and guard in place
    */
   private checkTokenExist_ = (
       authToken: string | null | undefined,
       authTokenType: string | null | undefined,
       stateCookie: string | null | undefined,
-      refreshToken: string | null | undefined):
-    AuthKitStateInterface<T> => {
+      refreshToken: string | null | undefined,
+  ): AuthKitStateInterface<T> => {
     try {
       // Work on refresh first
       let refresh;
       if (this.isUsingRefreshToken && !!refreshToken) {
-        // If the refresh token is tampered, then it'll stop the execution and will go at catch.
+        // If the refresh token is tampered,
+        // then it'll stop the execution and will go at catch.
         const refreshTokenExpiresAt = this.getExpireDateTime(refreshToken);
         if (refreshTokenExpiresAt < new Date()) {
           refresh = null;
@@ -382,7 +390,8 @@ class TokenObject<T> {
       }
 
       // If we are using refrsh token, but refesh is null null,
-      // Then definitely we are not able to get the refersh token or the refresh token is expired.
+      // Then definitely we are not able to get the refersh token
+      // or the refresh token is expired.
       // So, we'll not authenticate the user.
       // And will delete any token, if there's any
       if (this.isUsingRefreshToken && !refresh) {
@@ -400,7 +409,8 @@ class TokenObject<T> {
       let auth;
       let authState: T | null;
       if (!!authToken && !!authTokenType && !!stateCookie) {
-        // Using a local Try catch, as we don't want the auth token to make the refrsh token to be null;
+        // Using a local Try catch, as we don't want
+        // the auth token to make the refrsh token to be null;
         try {
           const expiresAt = this.getExpireDateTime(authToken);
           if (expiresAt < new Date()) { // DONE
@@ -460,9 +470,8 @@ class TokenObject<T> {
           isSignIn: false,
         };
       }
-    }
+    } catch (e) {
     // Error occured. So declearing as signed out
-    catch (e) {
       this.removeAllToken();
       return {
         auth: null,
@@ -476,32 +485,33 @@ class TokenObject<T> {
 
   /**
    * Function to patse the JWT
-   * 
+   *
    * @param token - JWT to purse
    * @returns Parsed data from JWT
    */
   private parseJwt = (token: string) => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    const jsonPayload = decodeURIComponent(
+        atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
 
     return JSON.parse(jsonPayload);
   };
 
   /**
    * Get the Expire Date from JWT
-   * 
+   *
    * @param token - JWT from which to get the Expire time
    * @returns Expire Date
-   * 
+   *
    * @remarks
    * Get `exp` param from the JWT data payload and convert that to Date
    */
   private getExpireDateTime = (token: string): Date => {
     const jwtData = this.parseJwt(token);
-    if (jwtData.hasOwnProperty('exp')) {
+    if (Object.prototype.hasOwnProperty.call(jwtData, 'exp')) {
       const d = new Date(0);
       d.setUTCSeconds(jwtData.exp as number);
       return d;
@@ -516,7 +526,7 @@ class TokenObject<T> {
    * Set the New Cookies or new Localstorage on login
    * Or Remove the old Cookies or old Localstorage on logout
    *
-   * @param authState
+   * @param authState - Current Auth State
    */
   public syncTokens = (authState: AuthKitStateInterface<T>): void => {
     if (authState.auth) {
@@ -546,7 +556,7 @@ class TokenObject<T> {
       authToken: string,
       authTokenType: string,
       authState: T | null,
-  ):void => {
+  ): void => {
     if (this.authStorageType === 'cookie') {
       const expiresAt = this.getExpireDateTime(authToken);
       Cookies.set(this.authStorageName, authToken, {
@@ -571,14 +581,17 @@ class TokenObject<T> {
       window.localStorage.setItem(this.authStorageTypeName, authTokenType);
 
       if (authState) {
-        window.localStorage.setItem(this.stateStorageName, JSON.stringify(authState));
+        window.localStorage.setItem(
+            this.stateStorageName,
+            JSON.stringify(authState),
+        );
       }
     }
   };
 
   private setRefreshToken = (
       refreshToken: string | null,
-  ):void => {
+  ): void => {
     if (this.authStorageType === 'cookie') {
       if (this.isUsingRefreshToken && !!this.refreshTokenName &&
         !!refreshToken) {
@@ -590,7 +603,9 @@ class TokenObject<T> {
         });
       }
     } else {
-      if (this.isUsingRefreshToken && !!this.refreshTokenName && !!refreshToken) {
+      if (this.isUsingRefreshToken &&
+          !!this.refreshTokenName && !!refreshToken
+      ) {
         localStorage.setItem(this.refreshTokenName, refreshToken);
       }
     }
