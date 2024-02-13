@@ -1,6 +1,6 @@
 {
   "name": "react-auth-kit",
-  "version": "3.0.2-alpha.19",
+  "version": "3.1.0",
   "description": "Authentication Library for React, which makes Token based auth very easy",
   "keywords": [
     "react",
