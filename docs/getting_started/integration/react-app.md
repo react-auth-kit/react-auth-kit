@@ -3,7 +3,7 @@ title: Integration - React Auth Kit
 description: Easily integrate the ease and power of React Auth Kit into your React Web Application with just two lines of code.
 ---
 
-# Integration :simple-integromat:
+# :simple-react:{ .lg .middle .label-color} Integration
 
 React Auth Kit uses an [`RxJs`](https://rxjs.dev/)-based store to maintain data and React's [Context API](https://react.dev/reference/react/createContext) to distribute data throughout the application.
 
@@ -17,13 +17,13 @@ To use React Auth Kit in the application, we first need to create the store that
 
 ### Import
 
-```js title="Import createStore in your app"
+```js title="Import createStore in your app" linenums="1"
 import createStore from 'react-auth-kit/createStore';
 ```
 
 ### Usage
 
-```js title="Create Store"
+```js title="Create Store" linenums="1"
 const store = createStore({
   authName:'_auth',
   authType:'cookie',
@@ -32,17 +32,13 @@ const store = createStore({
 });
 ```
 
-### API
-
-[reference/react-auth-kit/createStore](./../../reference/react-auth-kit/createStore.md)
-
 ## AuthProvider
 
 AuthProvider provides top-level [context](https://reactjs.org/docs/context.html) API for React Auth Kit.
 
 ### Import
 
-```js title="Import AuthProvider in your app"
+```js title="Import AuthProvider in your app" linenums="1"
 import AuthProvider from 'react-auth-kit';
 ```
 
@@ -50,7 +46,7 @@ import AuthProvider from 'react-auth-kit';
 
 Integrate `AuthProvider` before Routes. The best place is `app.js`.
 
-```jsx title="app.js" hl_lines="6 7 8"
+```jsx title="app.js" hl_lines="6 7 8" linenums="1"
 import React from 'react';
 import { AuthProvider } from 'react-auth-kit'
 import RouteComponent from './routes';
@@ -64,9 +60,10 @@ const App = () => (
 export default App;
 ```
 
-### API
+## API
 
-[reference/react-auth-kit/AuthProvider](./../../reference/react-auth-kit/authprovider.md)
+- [createStore](./../../reference/react-auth-kit/createStore.md)
+- [AuthProvider](./../../reference/react-auth-kit/authprovider.md)
 
 !!! warning
 

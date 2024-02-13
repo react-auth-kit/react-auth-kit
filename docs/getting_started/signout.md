@@ -3,7 +3,7 @@ title: Sign Out - React Auth Kit
 description: Sign out Hook or Sign out Higher-order Component handles all the necessary Sign out operations in one function.
 ---
 
-# Sign Out :material-exit-run:
+# :material-exit-run: Sign Out
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="signout"></div>
 
@@ -21,13 +21,13 @@ Call `#!js useSignOut()` hook inside any component to signout the user.
 
 ### Import
 
-```js title="Import useSignOut in your app"
+```js title="Import useSignOut in your app" linenums="1"
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 ```
 
 ### Usage
 
-```jsx title="SignOut.js"
+```jsx title="SignOut.js" linenums="1" hl_lines="2 5 8"
 import React from "react"
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 
@@ -40,24 +40,19 @@ const SignOutComponent = () => {
 }
 ```
 
-### API
-
-[reference/react-auth-kit/hooks/useSignOut](./../reference/react-auth-kit/hooks/useSignOut.md)
-
-
 ## Higher Order Component
 
 Wrap class-based component with `#!js withSignOut()` to implement signout.
 
 ### Import
 
-```js title="Import withSignOut in your app"
+```js title="Import withSignOut in your app" linenums="1"
 import withSignOut from 'react-auth-kit/hoc/withSignOut';
 ```
 
 ### Demo
 
-```jsx title="SignOut.js"
+```jsx title="SignOut.js" linenums="1" hl_lines="2 8 13"
 import React from "react"
 import withSignOut from 'react-auth-kit/hoc/withSignOut';
 
@@ -73,9 +68,10 @@ class signOutComponent extends React.Component {
 export default withSignIn(signOutComponent)
 ```
 
-### API
+## API
 
-[reference/react-auth-kit/hoc/withSignOut](./../reference/react-auth-kit/hoc/withSignOut.md)
+- [useSignOut](./../reference/react-auth-kit/hooks/useSignOut.md)
+- [withSignOut](./../reference/react-auth-kit/hoc/withSignOut.md)
 
 ---
 

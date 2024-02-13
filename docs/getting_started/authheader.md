@@ -4,7 +4,7 @@ description: Get the formatted authentication token by just calling Auth Header 
 ---
 
 
-# Auth Header  :material-ip-network:
+# :material-ip-network: Auth Header
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="authheader"></div>
 
@@ -18,13 +18,13 @@ Get the Auth Header for future requests from any Component simply by using `HOC`
 
 ### Import
 
-```js title="Import useAuthHeader in your app"
+```js title="Import useAuthHeader in your app" linenums="1"
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 ```
 
 ### Usage
 
-```jsx title="SecureComponent.js"
+```jsx title="SecureComponent.js" linenums="1" hl_lines="2 5 9"
 import React from 'react'
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 
@@ -39,21 +39,17 @@ const SomeComponent = () => {
 }
 ```
 
-### API
-
-[reference/react-auth-kit/hooks/useAuthHeader](./../reference/react-auth-kit/hooks/useAuthHeader.md)
-
 ## Higher Order Component
 
 ### Import
 
-```js title="Import withAuthHeader in your app"
+```js title="Import withAuthHeader in your app" linenums="1"
 import withAuthHeader from 'react-auth-kit/hoc/withAuthHeader';
 ```
 
 ### Usage
 
-```jsx title="SecureComponent.js"
+```jsx title="SecureComponent.js" linenums="1" hl_lines="2 8 14"
 import React from 'react';
 import withAuthHeader from 'react-auth-kit/hoc/withAuthHeader';
 
@@ -70,9 +66,10 @@ class SomeComponent extends React.Component {
 export default withAuthHeader(SomeComponent)
 ```
 
-### API
+## API
 
-[reference/react-auth-kit/hoc/withAuthHeader](./../reference/react-auth-kit/hoc/withAuthHeader.md)
+- [useAuthHeader](./../reference/react-auth-kit/hooks/useAuthHeader.md)
+- [withAuthHeader](./../reference/react-auth-kit/hoc/withAuthHeader.md)
 
 ---
 

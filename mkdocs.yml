@@ -54,7 +54,7 @@ nav:
     - 'getting_started/index.md'
     - Integration: 
       - React App (CRA, Vite): 'getting_started/integration/react-app.md'
-      - Next Js: 'getting_started/integration/next.md'
+      - Next Js App Router: 'getting_started/integration/next-app-router.md'
     
     - Functionalities:
       - Sign In: 'getting_started/signin.md'

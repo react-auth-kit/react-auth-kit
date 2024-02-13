@@ -1,9 +1,9 @@
 ---
-title: Private Route
+title: React Router - Private Route
 description: The RequireAuth component renders child componentsif the user is logged in. If not logged in the user is redirected to the page specified in loginPath prop.
 ---
 
-# Private Route with React Router
+# :simple-reactrouter: Private Route with React Router 
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="privateroute_reactrouter"></div>
 
@@ -16,19 +16,25 @@ description: The RequireAuth component renders child componentsif the user is lo
 
 To use Private Route with React Router, you need to install the `react-router plugin` for react auth kit.
 
-### npm :fontawesome-brands-npm:
-
 To install and save in your `package.json` dependencies, run:
 
-```bash title="Install With NPM"
-npm install --save @auth-kit/react-router
-```
+=== ":simple-npm: npm"
 
-### yarn :fontawesome-brands-yarn:
+    ```bash title="Install With NPM"  linenums="1"
+    npm install --save @auth-kit/react-router
+    ```
 
-```bash title="Install With Yarn"
-yarn add @auth-kit/react-router
-```
+=== ":simple-yarn: yarn"
+
+    ```bash title="Install With Yarn" linenums="1"
+    yarn add @auth-kit/react-router
+    ```
+
+=== ":simple-pnpm: pnpm"
+
+    ```bash title="Install With PNPM"  linenums="1"
+    pnpm install --save @auth-kit/react-router
+    ```
 
 ## Usage
 
@@ -43,7 +49,7 @@ These Functions are:
 
 #### Import
 
-```js title="Import AuthOutlet"
+```js title="Import AuthOutlet"  linenums="1"
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 ```
 
@@ -51,7 +57,7 @@ import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 
 Add `AuthOutlet` in your Routes Files inside `BrowserRouter` or `HashRouter`
 
-```jsx title="RouteComponent.jsx" hl_lines="5"
+```jsx title="RouteComponent.jsx" hl_lines="5"  linenums="1"
 <BrowserRouter>
   <Routes>
     <Route path={'/'} element={<Home/>}/>
@@ -68,7 +74,7 @@ Add `AuthOutlet` in your Routes Files inside `BrowserRouter` or `HashRouter`
     <summary>Full Code</summary>
     <br>
 
-```jsx
+```jsx  linenums="1"
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet';
@@ -96,7 +102,7 @@ const Routes = () => {
 
 #### Import
 
-```js title="Import RequireAuth"
+```js title="Import RequireAuth" linenums="1"
 import RequireAuth from '@auth-kit/react-router/RequireAuth'
 ```
 
@@ -104,7 +110,7 @@ import RequireAuth from '@auth-kit/react-router/RequireAuth'
 
 Add `RequireAuth` in your Routes Files inside `BrowserRouter` or `HashRouter`
 
-```jsx title="RouteComponent.jsx" hl_lines="5 6 7 8 9 10"
+```jsx title="RouteComponent.jsx" hl_lines="5 6 7 8 9 10" linenums="1"
 <BrowserRouter>
   <Routes>
     <Route path={'/'} element={<Home/>}/>
@@ -124,7 +130,7 @@ Add `RequireAuth` in your Routes Files inside `BrowserRouter` or `HashRouter`
     <summary>Full Code</summary>
     <br>
 
-```jsx
+```jsx linenums="1"
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import RequireAuth from '@auth-kit/react-router/RequireAuth';

@@ -14,7 +14,9 @@ Manage authentication with ease on your React-based projects using React Auth Ki
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="getting_started"></div>
 
-## Installation
+---
+
+## :material-cloud-download: Installation
 
 React-Auth-Kit and all it's plugins are available as a npm package.
 
@@ -96,19 +98,19 @@ React-Auth-Kit and all it's plugins are available as a npm package.
 
 </div>
 
-## Integration
+## :material-attachment: Integration
 Integrate React Auth Kit into your application easily
 
 <div class="grid cards" markdown>
 
 - [:simple-react: **Integration with CRA and Vite**](./integration/react-app.md) - Integrate and unleash the power.
-- [:simple-nextdotjs: **Integration with Next. Js**](./integration/next.md) - Integrate and unleash the power.
+- [:simple-nextdotjs: **Integration with Next. Js**](./integration/next-app-router.md) - Integrate and unleash the power.
 
 </div>
 
-## Functionalities
+## :material-function: Functionalities
 Add up multiple functions to your application
-
+hl_lines="2 5 9"
 <div class="grid cards" markdown>
 
 - [:material-location-enter: **Sign In**](./signin.md) - Perform the Login or Signin Operation.
@@ -120,7 +122,7 @@ Add up multiple functions to your application
 
 </div>
 
-## Private Routing
+## :material-door-closed-lock: Private Routing
 
 React Auth Kit supports various various routering frameworks to handle Private Routing and Redirection
 

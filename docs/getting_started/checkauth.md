@@ -3,7 +3,7 @@ title: Auth status - React Auth Kit
 description: Check if the user is authenticated or not inside a component by just calling Auth Header hook or Higher order component.
 ---
 
-# Authentication status :material-list-status:
+# :material-list-status: Authentication status
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="checkauth"></div>
 
@@ -26,20 +26,20 @@ Check the `authentication status` in React Functional Components(FC) by adding t
 
 ### Import
 
-```jsx title="Import useIsAuthenticated in your app"
+```jsx title="Import useIsAuthenticated in your app" linenums="1"
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 ```
 
 ### Demo
 
-```jsx title="Component.js"
+```jsx title="Component.js" linenums="1" hl_lines="2 5"
 import React from 'react';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 
 const AnyComponent = () => {
     const isAuthenticated = useIsAuthenticated()
 
-    if(isAuthenticated()){
+    if(isAuthenticated){
         // Redirect to Dashboard
     }
     else {
@@ -48,30 +48,26 @@ const AnyComponent = () => {
 }
 ```
 
-### API
-
-[reference/react-auth-kit/hooks/useIsAuthenticated](./../reference/react-auth-kit/hooks/useIsAuthenticated.md)
-
 ---
 
 ## Higher Order Component
 
 ### Import
 
-```jsx title="Import withAuthUser in your app"
+```jsx title="Import withAuthUser in your app" linenums="1"
 import withIsAuthenticated from 'react-auth-kit/hoc/withIsAuthenticated';
 ```
 
 ### Usage
 
-```javascript
+```jsx title="component.jsx" linenums="1" hl_lines="2 7 16"
 import React from "react";
 import withIsAuthenticated from 'react-auth-kit/hoc/withIsAuthenticated';
 
 class SomeComponent extends React.Component {
 
     render(){
-        if(this.props.isAuthenticated()){
+        if(this.props.isAuthenticated){
             // Redirect to Dashboard
         }
         else {
@@ -83,9 +79,10 @@ class SomeComponent extends React.Component {
 export default withIsAuthenticated(SomeComponent)
 ```
 
-### API
+## API
 
-[reference/react-auth-kit/hoc/withIsAuthenticated](./../reference/react-auth-kit/hoc/withIsAuthenticated.md)
+- [useIsAuthenticated](./../reference/react-auth-kit/hooks/useIsAuthenticated.md)
+- [withIsAuthenticated](./../reference/react-auth-kit/hoc/withIsAuthenticated.md)
 
 ---
 

@@ -4,7 +4,7 @@ description: Refresh the auth token in the background by using the Refresh token
 ---
 
 
-# Refresh the Access token using Refresh Token :material-refresh:
+# :material-refresh: Refresh the Access token using Refresh Token
 
 Often JWT comes with a new challenge.
 You have to `refresh` the JWT token periodically using a token, named Refresh token.
@@ -29,14 +29,14 @@ It is an identity function. It is mainly used for type checking and mobility.
 
 ### Import
 
-```js title="Import createRefresh in your app"
+```js title="Import createRefresh in your app" linenums="1"
 import createRefresh from 'react-auth-kit/createRefresh';
 ```
 
 ### Usage
 
-```js
-const my_refresh_api = createRefresh({
+```js title="refresh.js" linenums="1"
+const refresh = createRefresh({
   interval: 10 // The time in sec to refresh the Access token,
   refreshApiCallback: async (param) => {
     try {
@@ -62,26 +62,22 @@ const my_refresh_api = createRefresh({
 
 ```
 
-### API
-
-[reference/react-auth-kit/createRefresh](./../reference/react-auth-kit/createRefresh.md)
-
 ---
 
 ## Integration with the App
 
 To add the refresh token feature, simply add the return value of `createRefresh` function in the `createStore` in the refresh prop.
 
-```jsx
+```jsx title="app.js" linenums="1"
 import {AuthProvider} from 'react-auth-kit'
-import refreshApi from "./refreshApi";
+import refresh from "./refresh";
 
 const store = createStore({
   authName:'_auth',
   authType:'cookie',
   cookieDomain: window.location.hostname,
   cookieSecure: window.location.protocol === 'https:',
-  refresh: my_refresh_api
+  refresh: refresh
 });
 
 function App() {
@@ -92,6 +88,11 @@ function App() {
   );
 }
 ```
+
+## API
+
+[createRefresh](./../reference/react-auth-kit/createRefresh.md)
+
 
 !!! warning "Only use the return from createRefresh as the prop value"
 
