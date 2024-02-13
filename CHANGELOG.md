@@ -1,4 +1,4 @@
-## [3.2.0](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.1...v3.2.0) (2024-01-09)
+## [3.1.0](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.1...v3.1.0) (2024-02-13)
 
 🎉 Next.Js Support is there!! 🎉
 
