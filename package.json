@@ -62,7 +62,7 @@
     "lint-staged": "15.2.2",
     "markdownlint-cli": "0.39.0",
     "mkdirp": "3.0.1",
-    "npm-run-all2": "5.0.0",
+    "npm-run-all2": "5.0.2",
     "rimraf": "5.0.5",
     "tslib": "2.6.2",
     "typedoc": "0.25.8",
