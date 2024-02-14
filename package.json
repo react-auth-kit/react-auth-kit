@@ -65,7 +65,7 @@
     "npm-run-all2": "5.0.0",
     "rimraf": "5.0.5",
     "tslib": "2.6.2",
-    "typedoc": "0.25.7",
+    "typedoc": "0.25.8",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "5.3.3"
   },
