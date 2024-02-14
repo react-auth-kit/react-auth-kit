@@ -1,9 +1,13 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
+  <img width="566" alt="Vector" src="https://github.com/react-auth-kit/react-auth-kit/assets/1328388/7a57d5fd-4f67-4538-95f9-b30e2a0c7881" alt="React Auth Kit Banner">
 </p>
 
 <p align="center">
-    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
+    <em>🔑 Authentication Library for React JS for Token Based Auth with Json Web Token(JWT) 🔑</em>
+</p>
+
+<p align="center">
+    <em>Looking for a hosted alternative? <a href="https://clerk.com/?utm_source=sponsorship&utm_medium=github&utm_campaign=react-auth-kit&utm_content=readme">Try Clerk →</a></em>
 </p>
 
 <p align="center">
