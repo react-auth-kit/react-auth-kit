@@ -104,10 +104,13 @@ export default function createStore<T>(
    * for regid usecase.
    */
   if (params.authType === 'cookie') {
-    if (!params.cookieDomain && !params.cookieSecure) {
+    if (
+      params.cookieDomain === undefined || 
+      params.cookieSecure === undefined
+    ) {
       throw new AuthError(
           'authType \'cookie\' requires \'cookieDomain\''+
-          ' and \'cookieSecure\' props in AuthProvider',
+          ' and \'cookieSecure\' to be present in the param',
       );
     }
   }
