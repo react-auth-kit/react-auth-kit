@@ -1,7 +1,7 @@
 'use client';
 
 import type {ReactNode} from 'react';
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 
 import {useReactAuthKitContext} from 'react-auth-kit/AuthContext';
