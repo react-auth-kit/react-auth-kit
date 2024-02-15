@@ -48,7 +48,7 @@ interface AuthProviderProps<T> {
  * ```
  *
  */
-function AuthProvider<T extends object>(
+function AuthProvider<T>(
     {
       store,
       children,
