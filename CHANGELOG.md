@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/react-auth-kit/react-auth-kit/compare/v3.1.0...v3.1.1) (2024-02-15)
+
+
+### Fixes
+
+* **AuthProvider Type Issue:** Fixed type error with Store and AuthProvider prop
+* **createStore param:** Robust cookieDomain and cookieSecure parameter check for cookie type
+
+
 ## [3.1.0](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.1...v3.1.0) (2024-02-13)
 
 🎉 Next.Js Support is there!! 🎉
@@ -6,7 +15,6 @@
 
 * **Next.Js:** Added support for Next.Js.
 * **@auth-kit/next:** New Package for Rect Auth Kit for Next.Js
-
 
 
 ## [3.0.1](https://github.com/react-auth-kit/react-auth-kit/compare/v3.0.0...v3.0.1) (2024-01-09)
