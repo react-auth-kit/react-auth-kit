@@ -2,187 +2,187 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://authkit.arkadip.dev/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/contributing/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/authdata/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/authheader/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/checkauth/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/refreshtoken/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/signin/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/signout/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/integration/next-app-router/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/integration/react-app/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/privateroute/next-app/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/getting_started/privateroute/react-router/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/next/next-auth/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/authprovider/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/createRefresh/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/createStore/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/errors/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/types/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hoc/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withAuthHeader/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withAuthUser/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withIsAuthenticated/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withSignIn/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hoc/withSignOut/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hooks/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hooks/useAuthHeader/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hooks/useAuthUser/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hooks/useIsAuthenticated/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hooks/useSignIn/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-auth-kit/hooks/useSignOut/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-router/authoutlet/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/reference/react-router/requireauth/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/update/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/update/1to2/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://authkit.arkadip.dev/update/2to3/</loc>
-         <lastmod>2024-02-15</lastmod>
+         <lastmod>2024-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
