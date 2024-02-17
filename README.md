@@ -13,6 +13,12 @@
     <em>🔑 Authentication Library for React JS for Token Based Auth with Json Web Token(JWT) 🔑</em>
 </p>
 
+<h2 align="center">
+<a href="https://authkit.arkadip.dev">
+    https://authkit.arkadip.dev 🚀
+</a>
+</h2>
+
 <p align="center">
     <em>Looking for a hosted alternative? <a href="https://clerk.com/?utm_source=sponsorship&utm_medium=github&utm_campaign=react-auth-kit&utm_content=readme">Try Clerk →</a></em>
 </p>
@@ -48,14 +54,9 @@ It is production-ready, and gives you the following:
 * 🔒 Secure Client Side Authentication
 * ⌨️ Highly typed and written in `TypeScript`
 
-## Documentation
+## Stargazers ⭐
 
-Visit [https://authkit.arkadip.dev](https://authkit.arkadip.dev) for the offical documentation.
-
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/react-auth-kit/react-auth-kit.svg)](https://starchart.cc/react-auth-kit/react-auth-kit)
+[![Stargazers over time](https://starchart.cc/react-auth-kit/react-auth-kit.svg?variant=adaptive)](https://starchart.cc/react-auth-kit/react-auth-kit)
 
 
 ## Hall of Fames ✨
