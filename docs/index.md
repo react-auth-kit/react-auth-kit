@@ -5,17 +5,23 @@ hide:
   - title
 ---
 
+<style>
+  .md-typeset h1,
+  .md-content__button {
+    display: none;
+  }
+</style>
+
 <img width="30%" src="./img/logo.png" align="left" alt="logo"/>
 <img width="65%" src="./img/banner.svg" alt="React Auth Kit Banner" />
 
-<p align="center">
-    <img height="50px" src="./img/nextdotjs.svg" alt="Next Js">
-    <img height="50px" src="./img/reactquery.svg" alt="React Query">
-    <img height="50px" src="./img/remix.svg" alt="Remix">
-    <img height="50px" src="./img/react.svg" alt="React Js">
-    <img height="50px" src="./img/reactrouter.svg" alt="React Router">
-</p>
-
+<figure markdown="span">
+    ![Next Js](./img/nextdotjs.svg){: style="height:50px" }
+    ![React Query](./img/reactquery.svg){: style="height:50px" }
+    ![Remix](./img/remix.svg){: style="height:50px" }
+    ![React Js](./img/react.svg){: style="height:50px" }
+    ![React Router](./img/reactrouter.svg){: style="height:50px" }
+</figure>
 
 <p style="text-align: center">
     <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
