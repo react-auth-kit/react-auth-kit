@@ -1,6 +1,6 @@
-<p align="center">
-  <img width="566" alt="Vector" src="https://github.com/react-auth-kit/react-auth-kit/assets/1328388/7a57d5fd-4f67-4538-95f9-b30e2a0c7881" alt="React Auth Kit Banner">
-</p>
+<img width="566" alt="Vector" src="https://github.com/react-auth-kit/react-auth-kit/assets/1328388/7a57d5fd-4f67-4538-95f9-b30e2a0c7881" alt="React Auth Kit Banner">
+
+
 
 <p align="center">
     <em>🔑 Authentication Library for React JS for Token Based Auth with Json Web Token(JWT) 🔑</em>

@@ -4,9 +4,18 @@ hide:
   - toc
   - title
 ---
-<p style="text-align: center">
-    <img src="https://raw.githubusercontent.com/react-auth-kit/react-auth-kit/master/docs/img/banner.svg" alt="React Auth Kit Banner"/>
+
+<img width="30%" src="./img/logo.png" align="left" alt="logo"/>
+<img width="65%" src="./img/banner.svg" alt="React Auth Kit Banner" />
+
+<p align="center">
+    <img height="50px" src="./img/nextdotjs.svg" alt="Next Js">
+    <img height="50px" src="./img/reactquery.svg" alt="React Query">
+    <img height="50px" src="./img/remix.svg" alt="Remix">
+    <img height="50px" src="./img/react.svg" alt="React Js">
+    <img height="50px" src="./img/reactrouter.svg" alt="React Router">
 </p>
+
 
 <p style="text-align: center">
     <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
