@@ -1,6 +1,13 @@
-<img width="566" alt="Vector" src="https://github.com/react-auth-kit/react-auth-kit/assets/1328388/7a57d5fd-4f67-4538-95f9-b30e2a0c7881" alt="React Auth Kit Banner">
+<img width="30%" src="./docs/img/logo.png" align="left" alt="logo"/>
+<img width="65%" src="./docs/img/banner.svg" alt="React Auth Kit Banner" />
 
-
+<p align="center">
+    <img height="50px" src="./docs/img/nextdotjs.svg" alt="Next Js">
+    <img height="50px" src="./docs/img/reactquery.svg" alt="React Query">
+    <img height="50px" src="./docs/img/remix.svg" alt="Remix">
+    <img height="50px" src="./docs/img/react.svg" alt="React Js">
+    <img height="50px" src="./docs/img/reactrouter.svg" alt="React Router">
+</p>
 
 <p align="center">
     <em>🔑 Authentication Library for React JS for Token Based Auth with Json Web Token(JWT) 🔑</em>
