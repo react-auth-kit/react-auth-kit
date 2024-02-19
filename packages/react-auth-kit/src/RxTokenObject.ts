@@ -805,9 +805,9 @@ class TokenObject<T> {
    * Log function
    * @param msg to log
    */
-  private log = (msg: any): void => {
+  private log = (msg: any, ...optionalParams: any[]): void => {
     if (this.debug) {
-      console.log(`[Auth Kit] - ${msg}`)
+      console.log(`[Auth Kit] - ${msg}`, optionalParams)
     }
   };
 }
