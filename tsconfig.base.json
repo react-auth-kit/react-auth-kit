@@ -9,7 +9,8 @@
     "module": "esnext",
     "lib": [
       "dom",
-      "es6"
+      "ES6",
+      "ES2021.String"
     ],
     "moduleResolution": "Node",
     "jsx": "react-jsx",

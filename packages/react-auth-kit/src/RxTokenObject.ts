@@ -461,7 +461,7 @@ class TokenObject<T> {
             authState = null;
           } else {
             try{
-              authState = JSON.parse(stateCookie) as T;
+              authState = JSON.parse(stateCookie.replaceAll("\\", "")) as T;
               auth = {
                 token: authToken,
                 type: authTokenType,
