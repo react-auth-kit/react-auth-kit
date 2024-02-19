@@ -472,6 +472,7 @@ class TokenObject<T> {
             `checkTokenExist - auth token or auth state is invalid 
             ${authToken} ${stateCookie}`
           );
+          this.log(e);
           auth = null;
           authState = null;
         }
