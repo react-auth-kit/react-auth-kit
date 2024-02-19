@@ -468,8 +468,9 @@ class TokenObject<T> {
                 expiresAt: expiresAt,
               };
             }
-            catch (e) {
+            catch (err) {
               this.log('state cookie JSON parsing failed');
+              this.log(err);
               auth = null;
               authState = null;  
             }
