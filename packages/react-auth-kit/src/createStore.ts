@@ -42,6 +42,11 @@ interface createStoreParam<T> {
    * Refresh API. Created using `createRefresh` function.
    */
   refresh?: createRefreshParamInterface<T>;
+
+  /**
+   * If Debug or not. Use this to debug your auth flow
+   */
+  debug?: boolean;
 }
 
 /**
@@ -103,16 +108,17 @@ export default function createStore<T>(
    * then developer must provide the cookieDomain and cookieSecure params
    * for regid usecase.
    */
-  if (params.authType === 'cookie') {
-    if (
+  if (
+    params.authType === 'cookie' && 
+    (
       params.cookieDomain === undefined || 
       params.cookieSecure === undefined
-    ) {
-      throw new AuthError(
-          'authType \'cookie\' requires \'cookieDomain\''+
-          ' and \'cookieSecure\' to be present in the param',
-      );
-    }
+    )
+  ) {
+    throw new AuthError(
+      'authType \'cookie\' requires \'cookieDomain\''+
+      ' and \'cookieSecure\' to be present in the param',
+    );
   }
 
   /**
@@ -127,6 +133,7 @@ export default function createStore<T>(
       params.authName,
       params.authType,
       refreshTokenName,
+      params.debug === undefined ? false : params.debug,
       params.cookieDomain,
       params.cookieSecure,
   );
