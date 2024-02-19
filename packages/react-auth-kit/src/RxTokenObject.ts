@@ -460,12 +460,19 @@ class TokenObject<T> {
             auth = null;
             authState = null;
           } else {
-            authState = JSON.parse(stateCookie) as T;
-            auth = {
-              token: authToken,
-              type: authTokenType,
-              expiresAt: expiresAt,
-            };
+            try{
+              authState = JSON.parse(stateCookie) as T;
+              auth = {
+                token: authToken,
+                type: authTokenType,
+                expiresAt: expiresAt,
+              };
+            }
+            catch (e) {
+              this.log('state cookie JSON parsing failed');
+              auth = null;
+              authState = null;  
+            }
           }
         } catch (e) {
           this.log(
