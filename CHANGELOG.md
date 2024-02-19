@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/react-auth-kit/react-auth-kit/compare/v3.1.1...v3.1.2) (2024-02-19)
+
+
+### Fixes
+
+* **User Data Serialization:** User Data cookie deserialization issue. `JSON.parse` error fixed 
+* **debugger added:** Added `debug=true` param on the createStore to debug the entire auth flow
+
+
 ## [3.1.1](https://github.com/react-auth-kit/react-auth-kit/compare/v3.1.0...v3.1.1) (2024-02-15)
 
 
