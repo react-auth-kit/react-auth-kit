@@ -237,7 +237,7 @@ class TokenObject<T> {
 
     if (data.auth) {
       // logged in
-      let userState = obj.userState;
+      let {userState} = obj;
       if (data.userState !== undefined) {
         userState = data.userState;
       }
@@ -684,12 +684,12 @@ class TokenObject<T> {
           secure: this.cookieSecure,
         });
       }
-    } else {
-      if (this.isUsingRefreshToken &&
-          !!this.refreshTokenName && !!refreshToken
-      ) {
-        localStorage.setItem(this.refreshTokenName, refreshToken);
-      }
+    }
+    else if (
+      this.isUsingRefreshToken &&
+      !!this.refreshTokenName && !!refreshToken
+    ) {
+      localStorage.setItem(this.refreshTokenName, refreshToken);
     }
   };
 
