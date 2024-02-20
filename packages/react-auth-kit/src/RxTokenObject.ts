@@ -199,19 +199,21 @@ class TokenObject<T> {
    * @remarks
    * Below is the logic
    * ```txt
-   * data - new auth is present - new user state ----- Replace Auth and
-   *  |   |     and not null    |                         User state
-   *  |   |                     |
-   *  |   |                     - no new user state --- Replace only
-   *  |   |                                           the Auth use old
-   *  |   |                                              user state
+   * data
+   *  |
+   *  |---- new user state is present ----- Replace User state
+   *  |
+   *  |
+   *  |---- new auth is present ----------- Replace Auth token
+   *  |   |     and not null
+   *  |   |
    *  |   |
    *  |   |
    *  |   ---- new auth is null ----------------------- Clean auth and
    *  |   |                                               userstate
    *  |   |
    *  |   ---- no new auth data ----------------------- Do nothing use the
-   *  |            present                            old auth ans user state
+   *  |            present                            old auth and user state
    *  |
    *  -- is using refesh token is true - new refresh is ---- Update the
    *   |                               |   present is       refresh token
@@ -230,18 +232,18 @@ class TokenObject<T> {
    */
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
-    this.log(`[Auth Kit] - Set Function is called with -> ${data}`);
-    this.log(`[Auth Kit] - Set Function Old Data ${this.value}`);
+    this.log(`Set Function is called with`);
+    console.dir(data)
+    this.log(`Set Function Old Data`);
+    console.dir(this.value)
 
     let obj = this.value;
 
-    if (data.auth) {
-      // logged in
-      let {userState} = obj;
-      if (data.userState !== undefined) {
-        userState = data.userState;
-      }
+    if(data.userState !== undefined){
+      obj.userState = data.userState
+    }
 
+    if (data.auth) {
       obj = {
         ...obj,
         auth: {
@@ -249,8 +251,7 @@ class TokenObject<T> {
           'type': data.auth.type,
           'expiresAt': this.getExpireDateTime(data.auth.token),
         },
-        isSignIn: true,
-        userState: userState,
+        isSignIn: true
       };
     } else if (data.auth === null) {
       // sign out
@@ -278,7 +279,8 @@ class TokenObject<T> {
         };
       }
     }
-    this.log(`[Auth Kit] - Set Function New Data ${obj}`);
+    this.log(`[Auth Kit] - Set Function New Data`);
+    this.log(obj)
     this.authValue = obj;
     this.authSubject.next(obj);
   };
