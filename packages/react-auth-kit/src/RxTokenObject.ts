@@ -264,7 +264,7 @@ class TokenObject<T> {
             isSignIn: false,
             userState: null,
           };
-          new AuthError("Given Auth Token is already expired.")
+          new AuthError("Given Auth Token is already expired.");
         }
       }
       catch(e){
@@ -274,7 +274,7 @@ class TokenObject<T> {
           isSignIn: false,
           userState: null,
         };
-        new AuthError("Error pursing the Auth Token. Make sure you provided a valid JWT.")
+        new AuthError("Error pursing the Auth Token. Make sure you provided a valid JWT.");
       }
     } else if (data.auth === null) {
       // sign out
@@ -287,14 +287,45 @@ class TokenObject<T> {
     }
 
     if (this.isUsingRefreshToken) {
-      if (data.refresh) {
+      if (obj.auth === null){
         obj = {
           ...obj,
-          refresh: {
-            'token': data.refresh,
-            'expiresAt': this.getExpireDateTime(data.refresh),
-          },
+          refresh: null,
         };
+      }
+      else if (data.refresh) {
+        try{
+          let ref_exp = this.getExpireDateTime(data.refresh);
+          if(ref_exp > new Date()){
+            obj = {
+              ...obj,
+              refresh: {
+                'token': data.refresh,
+                'expiresAt': ref_exp,
+              },
+            };
+          }
+          else {
+            obj = {
+              ...obj,
+              auth: null,
+              isSignIn: false,
+              userState: null,
+              refresh: null
+            };
+            new AuthError("Given Refresh Token is already expired.");
+          }
+        }
+        catch(e){
+          obj = {
+            ...obj,
+            auth: null,
+            isSignIn: false,
+            userState: null,
+            refresh: null
+          };
+          new AuthError("Error pursing the Auth Token. Make sure you provided a valid JWT.");
+        }
       } else if (data.refresh === null) {
         obj = {
           ...obj,
