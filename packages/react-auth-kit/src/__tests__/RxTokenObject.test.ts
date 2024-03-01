@@ -10,6 +10,7 @@ describe('Initial Value [Without Refresh Token]', () => {
         '__',
         'cookie',
         null,
+        false,
         window.location.hostname,
         window.location.protocol === 'https:',
     );
@@ -43,9 +44,10 @@ describe('Initial Value [Without Refresh Token]', () => {
     expect(subscriber.mock.calls).toHaveLength(0);
 
     const tokenObject = new TokenObject<object>(
-        '__',
-        'localstorage',
-        null,
+      '__',
+      'localstorage',
+      null,
+      false
     );
 
     tokenObject.subscribe(subscriber);
@@ -85,9 +87,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Cookies are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'+
-      '.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIi'+
-      'wiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
+      '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
       Cookies.set('__', token);
 
       const subscriber = jest.fn();
@@ -97,6 +99,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'cookie',
           null,
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -116,7 +119,7 @@ describe('Initial Value [Without Refresh Token]', () => {
       };
 
       expect(tokenObject.value).toMatchObject(resp);
-      expect(subscriber).toBeCalled();
+      expect(subscriber).toHaveBeenCalled();
       expect(subscriber.mock.calls).toHaveLength(1);
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
@@ -136,6 +139,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'cookie',
           null,
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -177,6 +181,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'cookie',
           null,
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -215,6 +220,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'cookie',
           null,
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -254,9 +260,9 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Local Storage are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
-      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.'+
-      'E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NT'+
+      'Y3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqN'+
+      'wnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
       localStorage.setItem('__', token);
 
       const subscriber = jest.fn();
@@ -266,6 +272,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -308,6 +315,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -347,6 +355,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -382,6 +391,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -416,6 +426,7 @@ describe('Initial Value [With Refresh Token]', () => {
         '__',
         'cookie',
         '__re',
+        false,
         window.location.hostname,
         window.location.protocol === 'https:',
     );
@@ -450,6 +461,7 @@ describe('Initial Value [With Refresh Token]', () => {
         '__',
         'localstorage',
         '__re',
+        false
     );
 
     tokenObject.subscribe(subscriber);
@@ -490,14 +502,14 @@ describe('Initial Value [With Refresh Token]', () => {
     });
 
     it('Existing Cookies are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxM'+
-      'jM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.'+
-      'E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
+      'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdW'+
-      'IiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODY'+
-      'zfQ.pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -512,6 +524,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -550,9 +563,9 @@ describe('Initial Value [With Refresh Token]', () => {
       const token = 'tampered_';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
-      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.'+
-      'pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -568,6 +581,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -604,9 +618,9 @@ describe('Initial Value [With Refresh Token]', () => {
       'gP_edcw_A';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
-      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.';
-      'pXpDIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -622,6 +636,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -671,6 +686,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -722,6 +738,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -751,13 +768,13 @@ describe('Initial Value [With Refresh Token]', () => {
     it('Existing Auth Cookie was already expired but Refresh'+
     ' Cookie is not expired', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
-      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7t'+
-      'O7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo5NzE0OTc5OTV9.LTw5GVQ3Y4h3'+
+      '5tZ6HMSS5fRh8hknu3vM1bN7wx4DvM0';
       Cookies.set('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi'+
-      'IxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXp'+
-      'DIqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       Cookies.set('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -772,6 +789,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -824,6 +842,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'cookie',
           '__re',
+          false,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -865,14 +884,14 @@ describe('Initial Value [With Refresh Token]', () => {
     });
 
     it('Existing Local Storage are there', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NT'+
-      'Y3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA1MTk1fQ.E0EVT_4KVJHP'+
-      'EnC8XmukxiRRcAIo31U9wWW99RVQumA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
+      'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
-      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpD'+
-      'IqK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -887,6 +906,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -923,9 +943,9 @@ describe('Initial Value [With Refresh Token]', () => {
       const token = 'tampered_';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
-      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDI'+
-      'qK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -941,6 +961,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -968,16 +989,16 @@ describe('Initial Value [With Refresh Token]', () => {
       expect(subscriber).toHaveBeenCalledWith(resp);
     });
 
-    it('Existing Auth Token JWT has no iat param but Refresh'+
+    it('Existing Auth Token JWT has no exp param but Refresh'+
     ' Token is a proper JWT', () => {
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
       'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5'+
       'JYIgP_edcw_A';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
-      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDI'+
-      'qK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -993,6 +1014,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -1040,6 +1062,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -1089,6 +1112,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -1115,14 +1139,12 @@ describe('Initial Value [With Refresh Token]', () => {
 
     it('Existing Auth Token was already expired but Refresh '+
     'Token is not expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
-      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO'+
-      '7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo5NzE0OTc5OTV9.LTw5GVQ3Y4h35tZ6HMSS5fRh8hknu3vM1bN7wx4DvM0';
       localStorage.setItem('__', token);
 
-      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI'+
-      'xMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjIwODYzfQ.pXpDI'+
-      'qK20WJgkzMLbR7yjL4VD-NBMYsOVptOGR7Wf2E';
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
+      'iIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjIwODYzfQ.q'+
+      'vc94iV3P4eJQ9Z_Pnjbz2yLs1jz-KGek3uD6kFndEE';
       localStorage.setItem('__re', refreshToken);
 
       const subscriber = jest.fn();
@@ -1137,6 +1159,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -1187,6 +1210,7 @@ describe('Initial Value [With Refresh Token]', () => {
           '__',
           'localstorage',
           '__re',
+          false
       );
 
       tokenObject.subscribe(subscriber);
@@ -1213,188 +1237,800 @@ describe('Initial Value [With Refresh Token]', () => {
   });
 });
 
-// describe('Set New Value [Without Refresh Token]', () => {
-//   describe('No existing Value is present [Using Cookie]', () => {
-//     const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdW'+
-//     'IiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo4MDA4NjA'+
-//     '1MTk1fQ.E0EVT_4KVJHPEnC8XmukxiRRcAIo31U9wWW99RVQumA';
-//     const old_exp = 8008605195;
+describe('Set New Value with Existing Value present [Without Refresh Token]', () => {
+  describe('Using Cookie', () => {
+    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+    '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
+    'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
+    const old_exp = 8008605195;
 
-//     const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWI'+
-//     'iOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxMTE2NDY0O'+
-//     'DI1NiwiZXhwIjoxMTE2NDY0ODI1Nn0.FZ5Fhw9izxIR2lQMI3LYOP_Bnfo1628'+
-//     '9V5ZW5_o2dcM';
-//     const new_exp = 11164648256;
+    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+    'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMTE2NDY0ODI1Nn0.Vf-miK3nrkJ'+
+    '1svSRu_4AHmPxVPceN6GqESN7rsffLmg';
+    const new_exp = 11164648256;
 
-//     beforeEach(() => {
-//       Cookies.set('__', old_token);
-//       Cookies.set('___type', 'Bearer');
-//       Cookies.set('___state', '{}');
-//     })
+    let subscribe_count: number;
+    beforeEach(() => {
+      subscribe_count = 0;
+      Cookies.set('__', old_token);
+      Cookies.set('___type', 'Bearer');
+      Cookies.set('___state', '{}');
+    })
 
-//     afterEach(() => {
-//       Cookies.remove('__');
-//       Cookies.remove('___type');
-//       Cookies.remove('___state');
-//     });
+    afterEach(() => {
+      Cookies.remove('__');
+      Cookies.remove('___type');
+      Cookies.remove('___state');
+    });
 
-//     it("Setting up new token", (done) => {
-//       const subscriber = jest.fn()
-//       expect(subscriber.mock.calls).toHaveLength(0);
+    it("Setting up new token", (done) => {
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
 
-//       expect(Cookies.get('__')).toBe(old_token);
-//       expect(Cookies.get('___type')).toBe('Bearer');
-//       expect(Cookies.get('___state')).toBe('{}');
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
 
-//       const tokenObject = new TokenObject<object>(
-//         '__',
-//         'cookie',
-//         null,
-//         window.location.hostname,
-//         window.location.protocol === 'https:',
-//       );
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
 
-//       // tokenObject.subscribe(subscriber);
-//       tokenObject.observe().subscribe(subscriber);
+      const new_resp = {
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(new_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
 
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(Cookies.get('__')).toBe(new_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          done();
+        }
+      });
 
-//       const resp = {
-//         "auth": {
-//           'token': old_token,
-//           'type': 'Bearer',
-//           'expiresAt': new Date(old_exp * 1000),
-//         },
-//         "isSignIn": true,
-//         "isUsingRefreshToken": false,
-//         "refresh": null,
-//         "userState": {}
-//       }
+      tokenObject.set({
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+        }
+      });
+    }, 10000);
 
+    it("Setting up new User State", (done) => {
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
 
-//       expect(Cookies.get('__')).toBe(old_token);
-//       expect(Cookies.get('___type')).toBe('Bearer');
-//       expect(Cookies.get('___state')).toBe('{}');
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
 
-//       expect(tokenObject.value).toMatchObject(resp);
-//       expect(subscriber).toBeCalled();
-//       expect(subscriber.mock.calls).toHaveLength(1);
-//       expect(subscriber).toHaveBeenCalledWith(resp);
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
 
-//       tokenObject.set({
-//         "auth": {
-//           'token': new_token,
-//           'type': 'Bearer',
-//         }
-//       });
+      const new_resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {
+          'a': 'b'
+        }
+      }
 
-//       const new_resp = {
-//         "auth": {
-//           'token': new_token,
-//           'type': 'Bearer',
-//           'expiresAt': new Date(new_exp * 1000),
-//         },
-//         "isSignIn": true,
-//         "isUsingRefreshToken": false,
-//         "refresh": null,
-//         "userState": {}
-//       }
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
+          done();
+        }
+      });
 
-//       setTimeout(() => {
-//         // Check if both subscribers were called with the updated value
+      tokenObject.set({
+        userState: {
+          'a': 'b'
+        }
+      });
 
-//         expect(subscriber).toBeCalled();
-//         expect(subscriber).toBeCalledWith(new_resp);
-//         expect(tokenObject.value).toMatchObject(new_resp);
+    }, 10000);
 
-//         expect(Cookies.get('__')).toBe(new_token);
-//         expect(Cookies.get('___type')).toBe('Bearer');
-//         expect(Cookies.get('___state')).toBe('{}');
-//         done();
-//       }, 0);
-//     });
+    it("Setting up new token and new state", (done)=>{
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
 
-// it("Setting up new User State", (done) => {
-//   const subscriber = jest.fn()
-//   expect(subscriber.mock.calls).toHaveLength(0);
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
 
-//   expect(Cookies.get('__')).toBe(old_token);
-//   expect(Cookies.get('___type')).toBe('Bearer');
-//   expect(Cookies.get('___state')).toBe('{}');
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
 
-//   const tokenObject = new TokenObject<object>(
-//     '__',
-//     'cookie',
-//     null,
-//     window.location.hostname,
-//     window.location.protocol === 'https:',
-//   );
+      const new_resp = {
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(new_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {
+          'a': 'b'
+        }
+      }
 
-//   tokenObject.subscribe(subscriber, (err) => {
-//     console.log(err)
-//   });
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(Cookies.get('__')).toBe(new_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
+          done();
+        }
+      });
 
-//   const resp = {
-//     "auth": {
-//       'token': old_token,
-//       'type': 'Bearer',
-//       'expiresAt': new Date(old_exp * 1000),
-//     },
-//     "isSignIn": true,
-//     "isUsingRefreshToken": false,
-//     "refresh": null,
-//     "userState": {}
-//   }
+      tokenObject.set({
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+        },
+        userState: {
+          'a': 'b'
+        }
+      });
+    }, 10000);
 
+    it("Setting up new tampered token and new state", (done)=>{
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
 
-//   expect(Cookies.get('__')).toBe(old_token);
-//   expect(Cookies.get('___type')).toBe('Bearer');
-//   expect(Cookies.get('___state')).toBe('{}');
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
 
-//   expect(tokenObject.value).toMatchObject(resp);
-//   expect(subscriber).toBeCalled();
-//   expect(subscriber.mock.calls).toHaveLength(1);
-//   expect(subscriber).toHaveBeenCalledWith(resp);
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
 
-//   tokenObject.set({
-//     userState: {
-//       'a': 'b'
-//     }
-//   });
+      const new_resp = {
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": null
+      }
 
-//   const new_resp = {
-//     "auth": {
-//       'token': old_token,
-//       'type': 'Bearer',
-//       'expiresAt': new Date(old_exp * 1000),
-//     },
-//     "isSignIn": true,
-//     "isUsingRefreshToken": false,
-//     "refresh": null,
-//     "userState": {
-//       'a': 'b'
-//     }
-//   }
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(Cookies.get('__')).toBeUndefined();
+          expect(Cookies.get('___type')).toBeUndefined();
+          expect(Cookies.get('___state')).toBeUndefined();
+          done();
+        }
+      });
 
-//   setTimeout(() => {
-//     // Check if both subscribers were called with the updated value
-//     console.log("Timeout called");
+      tokenObject.set({
+        "auth": {
+          'token': 'tampered_',
+          'type': 'Bearer',
+        },
+        userState: {
+          'a': 'b'
+        }
+      })
+    }, 10000);
 
-//     expect(subscriber.mock.calls).toHaveLength(2);
-//     expect(subscriber.mock.calls[1][0]).toMatchObject(new_resp);
-//     // expect(tokenObject.value).toMatchObject(new_resp);
+    it("Setting up new expired token and new state", (done)=>{
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
 
-//     expect(Cookies.get('__')).toBe(old_exp);
-//     expect(Cookies.get('___type')).toBe('Bearer');
-//     expect(Cookies.get('___state')).toBe("{'a': 'b'}");
-//     console.log(Cookies.get('___state'))
-//     done();
-//   }, 0);
-// }, 10000);
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
 
-// });
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
 
+      const new_resp = {
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": null
+      }
 
-// describe('Existing Value is present', ()=>{
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(Cookies.get('__')).toBeUndefined();
+          expect(Cookies.get('___type')).toBeUndefined();
+          expect(Cookies.get('___state')).toBeUndefined();
+          done();
+        }
+      });
 
-// });
-// });
+      tokenObject.set({
+        "auth": {
+          'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+                'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJb'+
+                'NAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA',
+          'type': 'Bearer',
+        },
+        userState: {
+          'a': 'b'
+        }
+      })
+    }, 10000);
+
+    it("Removing Auth Token", (done)=>{
+      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('___type')).toBe('Bearer');
+      expect(Cookies.get('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": null
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('___type')).toBe('Bearer');
+          expect(Cookies.get('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(Cookies.get('__')).toBeUndefined();
+          expect(Cookies.get('___type')).toBeUndefined();
+          expect(Cookies.get('___state')).toBeUndefined();
+          done();
+        }
+      });
+
+      tokenObject.set({
+        "auth": null
+      });
+    }, 10000);
+  });
+
+  describe('Using Locat Storage', () => {
+    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+    '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
+    'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
+    const old_exp = 8008605195;
+
+    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+    'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMTE2NDY0ODI1Nn0.Vf-miK3nrkJ'+
+    '1svSRu_4AHmPxVPceN6GqESN7rsffLmg';
+    const new_exp = 11164648256;
+
+    let subscribe_count: number;
+    beforeEach(() => {
+      subscribe_count = 0;
+      localStorage.setItem('__', old_token);
+      localStorage.setItem('___type', 'Bearer');
+      localStorage.setItem('___state', '{}');
+    })
+
+    afterEach(() => {
+      localStorage.removeItem('__');
+      localStorage.removeItem('___type');
+      localStorage.removeItem('___state');
+    });
+
+    it("Setting up new token", (done) => {
+      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        true
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(new_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          done();
+        }
+      });
+
+      tokenObject.set({
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+        }
+      });
+    }, 10000);
+
+    it("Setting up new User State", (done) => {
+      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        true
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {
+          'a': 'b'
+        }
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
+          done();
+        }
+      });
+
+      tokenObject.set({
+        userState: {
+          'a': 'b'
+        }
+      });
+
+    }, 10000);
+
+    it("Setting up new token and new state", (done)=>{
+      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        true
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(new_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {
+          'a': 'b'
+        }
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
+          done();
+        }
+      });
+
+      tokenObject.set({
+        "auth": {
+          'token': new_token,
+          'type': 'Bearer',
+        },
+        userState: {
+          'a': 'b'
+        }
+      });
+    }, 10000);
+
+    it("Setting up new tampered token and new state", (done)=>{
+      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        true
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": null
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(localStorage.getItem('__')).toBeNull();
+          expect(localStorage.getItem('___type')).toBeNull();
+          expect(localStorage.getItem('___state')).toBeNull();
+          done();
+        }
+      });
+
+      tokenObject.set({
+        "auth": {
+          'token': 'tampered_',
+          'type': 'Bearer',
+        },
+        userState: {
+          'a': 'b'
+        }
+      })
+    }, 10000);
+
+    it("Setting up new expired token and new state", (done)=>{
+      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        true
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": null
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(localStorage.getItem('__')).toBeNull();
+          expect(localStorage.getItem('___type')).toBeNull();
+          expect(localStorage.getItem('___state')).toBeNull();
+          done();
+        }
+      });
+
+      tokenObject.set({
+        "auth": {
+          'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+                'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJb'+
+                'NAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA',
+          'type': 'Bearer',
+        },
+        userState: {
+          'a': 'b'
+        }
+      })
+    }, 10000);
+
+    it("Removing Auth Token", (done)=>{
+      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('___type')).toBe('Bearer');
+      expect(localStorage.getItem('___state')).toBe('{}');
+
+      const tokenObject = new TokenObject<object>(
+        '__',
+        'localstorage',
+        null,
+        true
+      );
+
+      const resp = {
+        "auth": {
+          'token': old_token,
+          'type': 'Bearer',
+          'expiresAt': new Date(old_exp * 1000),
+        },
+        "isSignIn": true,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": {}
+      }
+
+      const new_resp = {
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": false,
+        "refresh": null,
+        "userState": null
+      }
+
+      tokenObject.subscribe(data => {
+        if(subscribe_count == 0){
+          expect(data).toMatchObject(resp);
+          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('___type')).toBe('Bearer');
+          expect(localStorage.getItem('___state')).toBe('{}');
+          subscribe_count++;
+        }
+        else {
+          expect(data).toMatchObject(new_resp);
+          expect(localStorage.getItem('__')).toBeNull();
+          expect(localStorage.getItem('___type')).toBeNull();
+          expect(localStorage.getItem('___state')).toBeNull();
+          done();
+        }
+      });
+
+      tokenObject.set({
+        "auth": null
+      });
+    }, 10000);
+  });
+});

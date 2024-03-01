@@ -244,15 +244,38 @@ class TokenObject<T> {
     }
 
     if (data.auth) {
-      obj = {
-        ...obj,
-        auth: {
-          'token': data.auth.token,
-          'type': data.auth.type,
-          'expiresAt': this.getExpireDateTime(data.auth.token),
-        },
-        isSignIn: true
-      };
+      try{
+        let exp = this.getExpireDateTime(data.auth.token);
+        if(exp > new Date()){
+          obj = {
+            ...obj,
+            auth: {
+              'token': data.auth.token,
+              'type': data.auth.type,
+              'expiresAt': exp,
+            },
+            isSignIn: true
+          };
+        }
+        else{
+          obj = {
+            ...obj,
+            auth: null,
+            isSignIn: false,
+            userState: null,
+          };
+          new AuthError("Given Auth Token is already expired.")
+        }
+      }
+      catch(e){
+        obj = {
+          ...obj,
+          auth: null,
+          isSignIn: false,
+          userState: null,
+        };
+        new AuthError("Error pursing the Auth Token. Make sure you provided a valid JWT.")
+      }
     } else if (data.auth === null) {
       // sign out
       obj = {
