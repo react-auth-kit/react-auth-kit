@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth-kit/react-router": "3.0.2-alpha.10",
-    "@testing-library/jest-dom": "6.4.0",
+    "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.5.2",
     "react": "18.2.0",
