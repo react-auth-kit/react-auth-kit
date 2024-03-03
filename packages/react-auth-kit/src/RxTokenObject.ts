@@ -1,7 +1,7 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {AuthError} from './errors';
 import {AuthKitStateInterface} from './types';
 
@@ -147,14 +147,7 @@ class TokenObject<T> {
     this.log(`[Auth Kit] - Initial Value ${this.authValue}`)
 
     this.authSubject.subscribe({
-      next: this.syncTokens,
-      complete: () => {
-        console.log('Token Synced');
-      },
-      error: (err) => {
-        console.error('Error Occured while syncing token');
-        console.log(err);
-      },
+      next: this.syncTokens
     });
   }
 
@@ -179,17 +172,6 @@ class TokenObject<T> {
       error: error,
       complete: complete,
     });
-  };
-
-  /**
-   * Observe method for TokenObject
-   *
-   * @returns A RxJs Observable for further subscription
-   *
-   * @see {@link https://rxjs.dev/api/index/class/Subject#asObservable}
-   */
-  observe = (): Observable<AuthKitStateInterface<T>> => {
-    return this.authSubject.asObservable();
   };
 
   /**
