@@ -3,7 +3,7 @@
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 
-import {useReactAuthKitContext} from 'react-auth-kit/AuthContext';
+import {useReactAuthKit} from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 
@@ -46,7 +46,7 @@ interface NextAuthProps {
  * ```
  */
 export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
-  const context = useReactAuthKitContext();
+  const context = useReactAuthKit();
   const [login, setLogIn] = useState(false);
 
   const {push} = useRouter();
