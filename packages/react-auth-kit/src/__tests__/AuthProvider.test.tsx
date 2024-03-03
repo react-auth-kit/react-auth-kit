@@ -63,6 +63,7 @@ describe('AuthProvider renders successfully', ()=>{
     });
   });
 });
+
 describe('Authprovider with refresh Token', ()=> {
   afterEach(() => {
     jest.useRealTimers();

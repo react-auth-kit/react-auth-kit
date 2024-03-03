@@ -8,15 +8,9 @@ module.exports = {
       "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended",
       'plugin:react/recommended',
+      "plugin:react/jsx-runtime",
       'google',
     ],
-    'parser': '@typescript-eslint/parser',
-    'parserOptions': {
-      'project': './tsconfig.test.json',
-      'tsconfigRootDir': __dirname,
-      'ecmaVersion': 2018,
-      'sourceType': 'module'
-    },
     'plugins': [
       'react',
       '@typescript-eslint',

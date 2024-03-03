@@ -20,11 +20,11 @@ import AuthProvider from '../index';
 
 
 describe('Index', () => {
-  it('Imports are working',()=>{
+  it('Imports are working', ()=>{
     expect(AuthProvider).toBeTruthy();
 
     expect(AuthError).toBeTruthy();
-  })
+  });
 });
 
 export {};

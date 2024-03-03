@@ -144,10 +144,10 @@ class TokenObject<T> {
     this.authValue = this.initialToken_();
     this.authSubject = new BehaviorSubject(this.authValue);
 
-    this.log(`[Auth Kit] - Initial Value ${this.authValue}`)
+    this.log(`[Auth Kit] - Initial Value ${this.authValue}`);
 
     this.authSubject.subscribe({
-      next: this.syncTokens
+      next: this.syncTokens,
     });
   }
 
@@ -215,20 +215,20 @@ class TokenObject<T> {
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
     this.log(`Set Function is called with`);
-    console.dir(data)
+    console.dir(data);
     this.log(`Set Function Old Data`);
-    console.dir(this.value)
+    console.dir(this.value);
 
     let obj = this.value;
 
-    if(data.userState !== undefined){
-      obj.userState = data.userState
+    if (data.userState !== undefined) {
+      obj.userState = data.userState;
     }
 
     if (data.auth) {
-      try{
-        let exp = this.getExpireDateTime(data.auth.token);
-        if(exp > new Date()){
+      try {
+        const exp = this.getExpireDateTime(data.auth.token);
+        if (exp > new Date()) {
           obj = {
             ...obj,
             auth: {
@@ -236,27 +236,27 @@ class TokenObject<T> {
               'type': data.auth.type,
               'expiresAt': exp,
             },
-            isSignIn: true
+            isSignIn: true,
           };
-        }
-        else{
+        } else {
           obj = {
             ...obj,
             auth: null,
             isSignIn: false,
             userState: null,
           };
-          new AuthError("Given Auth Token is already expired.");
+          new AuthError('Given Auth Token is already expired.');
         }
-      }
-      catch(e){
+      } catch (e) {
         obj = {
           ...obj,
           auth: null,
           isSignIn: false,
           userState: null,
         };
-        new AuthError("Error pursing the Auth Token. Make sure you provided a valid JWT.");
+        new AuthError(
+            'Error pursing the Auth Token. Make sure you provided a valid JWT.',
+        );
       }
     } else if (data.auth === null) {
       // sign out
@@ -269,44 +269,44 @@ class TokenObject<T> {
     }
 
     if (this.isUsingRefreshToken) {
-      if (obj.auth === null){
+      if (obj.auth === null) {
         obj = {
           ...obj,
           refresh: null,
         };
-      }
-      else if (data.refresh) {
-        try{
-          let ref_exp = this.getExpireDateTime(data.refresh);
-          if(ref_exp > new Date()){
+      } else if (data.refresh) {
+        try {
+          const refreshExpireTime = this.getExpireDateTime(data.refresh);
+          if (refreshExpireTime > new Date()) {
             obj = {
               ...obj,
               refresh: {
                 'token': data.refresh,
-                'expiresAt': ref_exp,
+                'expiresAt': refreshExpireTime,
               },
             };
-          }
-          else {
+          } else {
             obj = {
               ...obj,
               auth: null,
               isSignIn: false,
               userState: null,
-              refresh: null
+              refresh: null,
             };
-            new AuthError("Given Refresh Token is already expired.");
+            new AuthError('Given Refresh Token is already expired.');
           }
-        }
-        catch(e){
+        } catch (e) {
           obj = {
             ...obj,
             auth: null,
             isSignIn: false,
             userState: null,
-            refresh: null
+            refresh: null,
           };
-          new AuthError("Error pursing the Auth Token. Make sure you provided a valid JWT.");
+          new AuthError(
+              'Error pursing the Auth Token.'+
+              ' Make sure you provided a valid JWT.',
+          );
         }
       } else if (data.refresh === null) {
         obj = {
@@ -316,7 +316,7 @@ class TokenObject<T> {
       }
     }
     this.log(`[Auth Kit] - Set Function New Data`);
-    this.log(obj)
+    this.log(obj);
     this.authValue = obj;
     this.authSubject.next(obj);
   };
@@ -423,31 +423,31 @@ class TokenObject<T> {
   ): AuthKitStateInterface<T> => {
     this.log('checkTokenExist_ is called');
     this.log(
-      `Params: authToken: ${authToken}, authTokenType: ${authTokenType},
-      stateCookie: ${stateCookie}, refreshToken: ${refreshToken}`
-    )
+        `Params: authToken: ${authToken}, authTokenType: ${authTokenType},
+      stateCookie: ${stateCookie}, refreshToken: ${refreshToken}`,
+    );
 
     try {
       // Work on refresh first
       let refresh;
       if (this.isUsingRefreshToken && !!refreshToken) {
         this.log(
-          `checkTokenExist - isUsingRefreshToken
-          = ${this.isUsingRefreshToken} refrehToken - ${refreshToken}`
+            `checkTokenExist - isUsingRefreshToken
+          = ${this.isUsingRefreshToken} refrehToken - ${refreshToken}`,
         );
         // If the refresh token is tampered,
         // then it'll stop the execution and will go at catch.
         const refreshTokenExpiresAt = this.getExpireDateTime(refreshToken);
         if (refreshTokenExpiresAt < new Date()) {
           this.log(
-            `checkTokenExist - refresh token is expired 
-            ${refreshTokenExpiresAt} ${new Date()}`
+              `checkTokenExist - refresh token is expired 
+            ${refreshTokenExpiresAt} ${new Date()}`,
           );
           refresh = null;
         } else {
           this.log(
-            `checkTokenExist - new refresh token is assigned 
-            ${refreshToken}`
+              `checkTokenExist - new refresh token is assigned 
+            ${refreshToken}`,
           );
           refresh = {
             token: refreshToken,
@@ -456,8 +456,8 @@ class TokenObject<T> {
         }
       } else {
         this.log(
-          `checkTokenExist - Refesh Token is invalid or not using
-           refresh feature ${this.isUsingRefreshToken} ${refreshToken}`
+            `checkTokenExist - Refesh Token is invalid or not using
+           refresh feature ${this.isUsingRefreshToken} ${refreshToken}`,
         );
         refresh = null;
       }
@@ -469,7 +469,7 @@ class TokenObject<T> {
       // And will delete any token, if there's any
       if (this.isUsingRefreshToken && !refresh) {
         this.log(
-          `checkTokenExist - Removing Refresh Token`
+            `checkTokenExist - Removing Refresh Token`,
         );
         this.removeAllToken();
         return {
@@ -487,43 +487,47 @@ class TokenObject<T> {
       if (!!authToken && !!authTokenType && !!stateCookie) {
         // Using a local Try catch, as we don't want
         // the auth token to make the refrsh token to be null;
-        this.log(`checkTokenExist - authToken, authTokenType, stateCookie exists`);
+        this.log(
+            `checkTokenExist - authToken, authTokenType, stateCookie exists`,
+        );
         try {
           const expiresAt = this.getExpireDateTime(authToken);
           if (expiresAt < new Date()) {
             this.log(
-              `checkTokenExist - auth token is expired 
-              ${expiresAt} ${new Date()}`
+                `checkTokenExist - auth token is expired 
+              ${expiresAt} ${new Date()}`,
             );
             auth = null;
             authState = null;
           } else {
-            try{
-              authState = JSON.parse(stateCookie.replaceAll("\\", "")) as T;
+            try {
+              authState = JSON.parse(stateCookie.replaceAll('\\', '')) as T;
               auth = {
                 token: authToken,
                 type: authTokenType,
                 expiresAt: expiresAt,
               };
-            }
-            catch (err) {
+            } catch (err) {
               this.log('state cookie JSON parsing failed');
               this.log(err);
               auth = null;
-              authState = null;  
+              authState = null;
             }
           }
         } catch (e) {
           this.log(
-            `checkTokenExist - auth token or auth state is invalid 
-            ${authToken} ${stateCookie}`
+              `checkTokenExist - auth token or auth state is invalid 
+            ${authToken} ${stateCookie}`,
           );
           this.log(e);
           auth = null;
           authState = null;
         }
       } else {
-        this.log(`checkTokenExist - authToken, authTokenType, stateCookie doesn't exists`);
+        this.log(
+            `checkTokenExist `+
+            `- authToken, authTokenType, stateCookie doesn't exists`,
+        );
         auth = null;
         authState = null;
       }
@@ -531,7 +535,7 @@ class TokenObject<T> {
 
       if (refresh) {
         if (!!auth && !!authState) {
-          this.log("checkTokenExist - Returning auth and refrsh");
+          this.log('checkTokenExist - Returning auth and refrsh');
           this.log({
             auth: auth,
             refresh: refresh,
@@ -547,7 +551,7 @@ class TokenObject<T> {
             isSignIn: true,
           };
         }
-        this.log("checkTokenExist - Removing Auth Token")
+        this.log('checkTokenExist - Removing Auth Token');
         this.removeAuth();
         this.log({
           auth: null,
@@ -564,7 +568,7 @@ class TokenObject<T> {
           isSignIn: false,
         };
       } else if (!this.isUsingRefreshToken && !!auth && !!authState) {
-        this.log("checkTokenExist - Returning auth");
+        this.log('checkTokenExist - Returning auth');
         this.log({
           auth: auth,
           refresh: null,
@@ -722,8 +726,7 @@ class TokenObject<T> {
           secure: this.cookieSecure,
         });
       }
-    }
-    else if (
+    } else if (
       this.isUsingRefreshToken &&
       !!this.refreshTokenName && !!refreshToken
     ) {
@@ -850,11 +853,11 @@ class TokenObject<T> {
 
   /**
    * Log function
-   * @param msg to log
+   * @param msg - The Message to log to the console
    */
   private log = (msg: any, ...optionalParams: any[]): void => {
     if (this.debug) {
-      console.log(`[Auth Kit] - ${msg}`, optionalParams)
+      console.log(`[Auth Kit] - ${msg}`, optionalParams);
     }
   };
 }
