@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-describe('PrivateRoute', () => {
-  it('is truthy', () => {
-    expect(1).toBeTruthy();
-  });
+
+import {AuthError} from '../index';
+import AuthProvider from '../index';
+
+
+describe('Index', () => {
+  it('Imports are working',()=>{
+    expect(AuthProvider).toBeTruthy();
+
+    expect(AuthError).toBeTruthy();
+  })
 });
 
 export {};
