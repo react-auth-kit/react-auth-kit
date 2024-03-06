@@ -1,8 +1,6 @@
 'use client';
 
-import {useContext} from 'react';
-import AuthContext from '../AuthContext';
-import {AuthError} from '../errors';
+import {useReactAuthKit} from '../AuthContext';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -24,7 +22,7 @@ import {isAuthenticated} from '../utils/utils';
  *
  * const Component = () => {
  *  const isAuthenticated = useIsAuthenticated()
- *  if (isAuthenticated()) {
+ *  if (isAuthenticated) {
  *    // user authenticated - do somthing
  *  }
  *  else {
@@ -33,25 +31,9 @@ import {isAuthenticated} from '../utils/utils';
  * ```
  *
  */
-function useIsAuthenticated(): ()=>boolean {
-  const context = useContext(AuthContext);
-  if (context === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this hook inside the auth provider.',
-    );
-  }
-  /**
-   * @returns - Whether the current user is signed in or not
-   */
-  return () => {
-    if (!isAuthenticated(context.value)) {
-      return false;
-    } else {
-      return true;
-    }
-  };
+function useIsAuthenticated(): boolean {
+  const {value} = useReactAuthKit();
+  return isAuthenticated(value);
 }
 
 export default useIsAuthenticated;

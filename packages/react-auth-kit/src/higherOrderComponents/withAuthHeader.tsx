@@ -1,6 +1,5 @@
 import * as React from 'react';
-import AuthContext from '../AuthContext';
-import {AuthError} from '../errors';
+import {useReactAuthKit} from '../AuthContext';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -12,7 +11,7 @@ interface withAuthHeaderProps {
    *
    * Format: `type token`
    */
-  authHeader: string
+  authHeader: string | null
 }
 
 /**
@@ -43,16 +42,7 @@ interface withAuthHeaderProps {
 function withAuthHeader<P extends withAuthHeaderProps>(
     Component: React.ComponentType<P>,
 ):React.FunctionComponent<P> {
-  const c = React.useContext(AuthContext);
-  if (c === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this component inside the auth provider.',
-    );
-  }
-
-  const {value} = c;
+  const {value} = useReactAuthKit();
 
   return (props) => {
     if (!!value.auth && isAuthenticated(value)) {
@@ -65,7 +55,7 @@ function withAuthHeader<P extends withAuthHeaderProps>(
         />
       );
     } else {
-      return <Component {...props} authHeader={``}/>;
+      return <Component {...props} authHeader={null}/>;
     }
   };
 }

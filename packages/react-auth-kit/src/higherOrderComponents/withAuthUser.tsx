@@ -1,6 +1,5 @@
 import * as React from 'react';
-import AuthContext from '../AuthContext';
-import {AuthError} from '../errors';
+import {useReactAuthKit} from '../AuthContext';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -47,19 +46,12 @@ interface withAuthStateProps<T> {
 function withAuthUser<T, P extends withAuthStateProps<T>>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
-  const c = React.useContext(AuthContext);
-  if (c === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this component inside the auth provider.',
-    );
-  }
+  const {value} = useReactAuthKit();
 
   return (props: P)=>{
-    if (isAuthenticated(c.value)) {
+    if (isAuthenticated(value)) {
       return (
-        <Component {...props} authState={c.value.userState}/>
+        <Component {...props} authState={value.userState}/>
       );
     } else {
       return (

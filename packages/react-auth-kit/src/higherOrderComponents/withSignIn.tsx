@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AuthContext from '../AuthContext';
+import {useReactAuthKit} from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
 import {AuthError} from '../errors';
@@ -74,14 +74,7 @@ interface withSignInProps<T> {
 function withSignIn<T, P extends withSignInProps<T>>(
     Component: React.ComponentType<P>,
 ):React.FunctionComponent<P> {
-  const context = React.useContext(AuthContext);
-  if (context === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this component inside the auth provider.',
-    );
-  }
+  const context = useReactAuthKit();
 
   const signIn = (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {
@@ -99,22 +92,19 @@ function withSignIn<T, P extends withSignInProps<T>>(
             ' So please include `refresh` param in the parameters',
         );
       }
+    } else if (signInConfig.refresh) {
+      // params are not expected but provided
+      // throw an error
+      throw new AuthError(
+          'This appication is not using refresh token feature.'+
+          ' So please remove the `refresh` param in the parameters.'+
+          ' In Case you want to use refresh token feature,'+
+          ' make sure you added that while creating the store.',
+      );
     } else {
-      // Not using refresh token
-      if (signInConfig.refresh) {
-        // params are not expected but provided
-        // throw an error
-        throw new AuthError(
-            'This appication is not using refresh token feature.'+
-            ' So please remove the `refresh` param in the parameters.'+
-            ' In Case you want to use refresh token feature,'+
-            ' make sure you added that while creating the store.',
-        );
-      } else {
-        // sign in without the refresh token
-        context.set(doSignIn(signInConfig));
-        return true;
-      }
+      // sign in without the refresh token
+      context.set(doSignIn(signInConfig));
+      return true;
     }
   };
 

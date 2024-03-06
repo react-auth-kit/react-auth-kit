@@ -1,7 +1,6 @@
 import * as React from 'react';
-import AuthContext from '../AuthContext';
+import {useReactAuthKit} from '../AuthContext';
 import {doSignOut} from '../utils/reducers';
-import {AuthError} from '../errors';
 
 /**
  * Type of the React props, that are injected to the component
@@ -47,14 +46,7 @@ interface withSignOutProps {
 function withSignOut<P extends withSignOutProps>(
     Component: React.ComponentType<P>,
 ): React.FunctionComponent<P> {
-  const context = React.useContext(AuthContext);
-  if (context === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this component inside the auth provider.',
-    );
-  }
+  const context = useReactAuthKit();
 
   const signOut = ():boolean => {
     try {

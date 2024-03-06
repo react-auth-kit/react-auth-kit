@@ -1,7 +1,6 @@
 'use client';
 
-import {useContext} from 'react';
-import AuthContext from '../AuthContext';
+import {useReactAuthKit} from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
 import {AuthError} from '../errors';
@@ -85,14 +84,7 @@ import {AuthError} from '../errors';
  *
  */
 function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
-  const context = useContext(AuthContext);
-  if (context === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this hook inside the auth provider.',
-    );
-  }
+  const context = useReactAuthKit();
   /**
    *
    * @param signInConfig - Parameters to perform sign in
@@ -122,22 +114,19 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
             ' So please include `refresh` param in the parameters',
         );
       }
+    } else if (signInConfig.refresh) {
+      // params are not expected but provided
+      // throw an error
+      throw new AuthError(
+          'This appication is not using refresh token feature.'+
+          ' So please remove the `refresh` param in the parameters.'+
+          ' In Case you want to use refresh token feature,'+
+          ' make sure you added that while creating the store.',
+      );
     } else {
-      // Not using refresh token
-      if (signInConfig.refresh) {
-        // params are not expected but provided
-        // throw an error
-        throw new AuthError(
-            'This appication is not using refresh token feature.'+
-            ' So please remove the `refresh` param in the parameters.'+
-            ' In Case you want to use refresh token feature,'+
-            ' make sure you added that while creating the store.',
-        );
-      } else {
-        // sign in without the refresh token
-        context.set(doSignIn(signInConfig));
-        return true;
-      }
+      // sign in without the refresh token
+      context.set(doSignIn(signInConfig));
+      return true;
     }
   };
 }
