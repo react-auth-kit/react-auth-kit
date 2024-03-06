@@ -3,6 +3,7 @@
 import {createContext, useContext} from 'react';
 import type {Context} from 'react';
 import TokenObject from './RxTokenObject';
+import { AuthError } from './errors';
 
 /**
  * @internal
@@ -31,7 +32,15 @@ const AuthKitContext = getContext();
  *
  */
 export function useReactAuthKit(): TokenObject<unknown> {
-  return useContext(AuthKitContext);
+  const context = useContext(AuthKitContext);
+  if (context === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
+  }
+  return context;
 }
 
 export default AuthKitContext;
