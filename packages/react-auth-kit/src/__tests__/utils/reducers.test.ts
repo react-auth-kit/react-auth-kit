@@ -1,109 +1,109 @@
 import {
   doSignIn,
   doSignOut,
-  doRefresh
+  doRefresh,
 } from '../../utils/reducers';
 
-describe("Do Sign In", ()=>{
-  it("Default Values", ()=>{
+describe('Do Sign In', ()=>{
+  it('Default Values', ()=>{
     const res = doSignIn({
       auth: {
-        token: 'token'
-      }
+        token: 'token',
+      },
     });
     expect(res).toEqual({
       auth: {
         token: 'token',
-        type: "Bearer"
+        type: 'Bearer',
       },
       refresh: undefined,
-      userState: {}
-    })
+      userState: {},
+    });
   });
 
-  it("Extra Values", ()=>{
+  it('Extra Values', ()=>{
     const res = doSignIn({
       auth: {
         token: 'token',
-        type: 'hello'
+        type: 'hello',
       },
       refresh: 'refresh',
       userState: {
-        name: 'aaa'
-      }
+        name: 'aaa',
+      },
     });
     expect(res).toEqual({
       auth: {
         token: 'token',
-        type: "hello"
+        type: 'hello',
       },
       refresh: 'refresh',
       userState: {
-        name: 'aaa'
-      }
-    })
-  });
-});
-
-test("Do Sign Out", ()=>{
-  const res = doSignOut()
-  expect(res).toEqual({
-    auth: null
-  })
-});
-
-describe("Do refresh", ()=>{
-  it("New Auth Token", ()=> {
-    const res = doRefresh({
-      newAuthToken: 'token'
-    });
-    expect(res).toEqual({
-      auth: {
-        token: "token",
-        type: "Bearer"
-      }
-    })
-  });
-  it("New Auth Token and Type", ()=> {
-    const res = doRefresh({
-      newAuthToken: 'token',
-      newAuthTokenType: 'type'
-    });
-    expect(res).toEqual({
-      auth: {
-        token: "token",
-        type: "type"
-      }
-    })
-  });
-  it("New Auth Token and Refresh Token", ()=> {
-    const res = doRefresh({
-      newAuthToken: 'token',
-      newRefreshToken: 'refresh'
-    });
-    expect(res).toEqual({
-      auth: {
-        token: "token",
-        type: "Bearer"
+        name: 'aaa',
       },
-      refresh: 'refresh'
-    })
+    });
   });
-  it("New Auth Token and Auth state", ()=> {
+});
+
+test('Do Sign Out', ()=>{
+  const res = doSignOut();
+  expect(res).toEqual({
+    auth: null,
+  });
+});
+
+describe('Do refresh', ()=>{
+  it('New Auth Token', ()=> {
+    const res = doRefresh({
+      newAuthToken: 'token',
+    });
+    expect(res).toEqual({
+      auth: {
+        token: 'token',
+        type: 'Bearer',
+      },
+    });
+  });
+  it('New Auth Token and Type', ()=> {
+    const res = doRefresh({
+      newAuthToken: 'token',
+      newAuthTokenType: 'type',
+    });
+    expect(res).toEqual({
+      auth: {
+        token: 'token',
+        type: 'type',
+      },
+    });
+  });
+  it('New Auth Token and Refresh Token', ()=> {
+    const res = doRefresh({
+      newAuthToken: 'token',
+      newRefreshToken: 'refresh',
+    });
+    expect(res).toEqual({
+      auth: {
+        token: 'token',
+        type: 'Bearer',
+      },
+      refresh: 'refresh',
+    });
+  });
+  it('New Auth Token and Auth state', ()=> {
     const res = doRefresh({
       newAuthToken: 'token',
       newAuthUserState: {
-        name: 'react'
-      }
+        name: 'react',
+      },
     });
     expect(res).toEqual({
       auth: {
-        token: "token",
-        type: "Bearer"
+        token: 'token',
+        type: 'Bearer',
       },
       userState: {
-        name: 'react'
-      }
-    })
+        name: 'react',
+      },
+    });
   });
-})
+});

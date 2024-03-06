@@ -21,7 +21,14 @@ describe('Store without refreshtoken', ()=>{
       cookieDomain: window.location.hostname,
       cookieSecure: false,
     });
-    const tokenObject = new TokenObject('__auth', 'cookie', null, false, window.location.hostname, false);
+    const tokenObject = new TokenObject(
+        '__auth',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        false,
+    );
     expect(store).not.toThrow(AuthError);
     expect(store().refresh).toBeUndefined();
     expect(store().tokenObject.value).toEqual(tokenObject.value);
@@ -53,7 +60,12 @@ describe('Store with refreshtoken', ()=>{
       refresh: refresh,
       debug: true,
     });
-    const tokenObject = new TokenObject('__auth', 'localstorage', '__auth_state', false);
+    const tokenObject = new TokenObject(
+        '__auth',
+        'localstorage',
+        '__auth_state',
+        false,
+    );
     expect(store.refresh).toBeUndefined();
     expect(store.tokenObject.value).toEqual(tokenObject.value);
   });

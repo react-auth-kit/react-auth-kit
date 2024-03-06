@@ -84,8 +84,8 @@ function AuthProvider<T>(
   }
 
   return (
-    // @ts-expect-error 'AnyAction' is assignable to the constraint of type 'T'
-    // , but 'T' could be instantiated with a different subtype
+    // @ts-expect-error 'TokenObject' is assignable to the constraint
+    // of type 'T', but 'T' could be instantiated with a different subtype
     <AuthKitContext.Provider value={tokenObject}>
       {children}
     </AuthKitContext.Provider>

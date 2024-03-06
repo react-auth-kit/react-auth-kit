@@ -3,7 +3,7 @@
 import {createContext, useContext} from 'react';
 import type {Context} from 'react';
 import TokenObject from './RxTokenObject';
-import { AuthError } from './errors';
+import {AuthError} from './errors';
 
 /**
  * @internal

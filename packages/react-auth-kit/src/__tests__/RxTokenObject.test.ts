@@ -1211,7 +1211,9 @@ describe('Initial Value [With Refresh Token]', () => {
 
     it('Existing Auth Token was already expired but Refresh '+
     'Token is not expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo5NzE0OTc5OTV9.LTw5GVQ3Y4h35tZ6HMSS5fRh8hknu3vM1bN7wx4DvM0';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0N'+
+      'TY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo5NzE0OTc5OTV9.LTw5GVQ3Y4h3'+
+      '5tZ6HMSS5fRh8hknu3vM1bN7wx4DvM0';
       localStorage.setItem('__', token);
 
       const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO'+
@@ -1309,22 +1311,22 @@ describe('Initial Value [With Refresh Token]', () => {
   });
 });
 
-describe('Set New Value with Existing Value present [Without Refresh Token]', () => {
+describe('Set New Value with Existing Value [Without Refresh Token]', () => {
   describe('Using Cookie', () => {
-    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+    const oldToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
     'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    const old_exp = 8008605195;
+    const oldExp = 8008605195;
 
-    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+    const newToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
     'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMTE2NDY0ODI1Nn0.Vf-miK3nrkJ'+
     '1svSRu_4AHmPxVPceN6GqESN7rsffLmg';
-    const new_exp = 11164648256;
+    const newExp = 11164648256;
 
-    let subscribe_count: number;
+    let subscribeCount: number;
     beforeEach(() => {
-      subscribe_count = 0;
-      Cookies.set('__', old_token);
+      subscribeCount = 0;
+      Cookies.set('__', oldToken);
       Cookies.set('___type', 'Bearer');
       Cookies.set('___state', '{}');
     });
@@ -1336,7 +1338,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     });
 
     it('Setting up new token', (done) => {
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
@@ -1351,9 +1353,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1361,11 +1363,11 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1374,15 +1376,15 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
           done();
@@ -1391,14 +1393,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
       });
     }, 10000);
 
     it('Setting up new User State', (done) => {
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
@@ -1413,9 +1415,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1423,11 +1425,11 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1438,17 +1440,17 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
-          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
+          expect(Cookies.get('___state')).toBe('{"a":"b"}');
           done();
         }
       });
@@ -1461,7 +1463,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Setting up new token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
@@ -1476,9 +1478,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1486,11 +1488,11 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1501,24 +1503,24 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
-          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
+          expect(Cookies.get('___state')).toBe('{"a":"b"}');
           done();
         }
       });
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
         'userState': {
@@ -1528,7 +1530,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Setting up new tampered token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
@@ -1543,9 +1545,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1553,7 +1555,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': false,
@@ -1562,14 +1564,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -1589,7 +1591,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Setting up new expired token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
@@ -1604,9 +1606,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1614,7 +1616,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': false,
@@ -1623,14 +1625,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -1652,7 +1654,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Removing Auth Token', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
@@ -1667,9 +1669,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1677,7 +1679,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': false,
@@ -1686,14 +1688,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -1708,20 +1710,20 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
   });
 
   describe('Using Locat Storage', () => {
-    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+    const oldToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
     'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    const old_exp = 8008605195;
+    const oldExp = 8008605195;
 
-    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+    const newToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
     'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMTE2NDY0ODI1Nn0.Vf-miK3nrkJ'+
     '1svSRu_4AHmPxVPceN6GqESN7rsffLmg';
-    const new_exp = 11164648256;
+    const newExp = 11164648256;
 
-    let subscribe_count: number;
+    let subscribeCount: number;
     beforeEach(() => {
-      subscribe_count = 0;
-      localStorage.setItem('__', old_token);
+      subscribeCount = 0;
+      localStorage.setItem('__', oldToken);
       localStorage.setItem('___type', 'Bearer');
       localStorage.setItem('___state', '{}');
     });
@@ -1733,7 +1735,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     });
 
     it('Setting up new token', (done) => {
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
 
@@ -1746,9 +1748,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1756,11 +1758,11 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1769,15 +1771,15 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
           done();
@@ -1786,14 +1788,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
       });
     }, 10000);
 
     it('Setting up new User State', (done) => {
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
 
@@ -1806,9 +1808,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1816,11 +1818,11 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1831,17 +1833,17 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
-          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
+          expect(localStorage.getItem('___state')).toBe('{"a":"b"}');
           done();
         }
       });
@@ -1854,7 +1856,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Setting up new token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
 
@@ -1867,9 +1869,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1877,11 +1879,11 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1892,24 +1894,24 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
-          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
+          expect(localStorage.getItem('___state')).toBe('{"a":"b"}');
           done();
         }
       });
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
         'userState': {
@@ -1919,7 +1921,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Setting up new tampered token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
 
@@ -1932,9 +1934,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -1942,7 +1944,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': false,
@@ -1951,14 +1953,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -1978,7 +1980,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Setting up new expired token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
 
@@ -1991,9 +1993,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -2001,7 +2003,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': false,
@@ -2010,14 +2012,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -2039,7 +2041,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
     }, 10000);
 
     it('Removing Auth Token', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
 
@@ -2052,9 +2054,9 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': false,
@@ -2062,7 +2064,7 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': false,
@@ -2071,14 +2073,14 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -2093,25 +2095,25 @@ describe('Set New Value with Existing Value present [Without Refresh Token]', ()
   });
 });
 
-describe('Set New Value with Existing Value present [With Refresh Token]', () => {
+describe('Set New Value with Existing Value [With Refresh Token]', () => {
   describe('Using Cookie', () => {
-    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+    const oldToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
     'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    const old_exp = 8008605195;
+    const oldExp = 8008605195;
 
-    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+    const newToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
     'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMTE2NDY0ODI1Nn0.Vf-miK3nrkJ'+
     '1svSRu_4AHmPxVPceN6GqESN7rsffLmg';
-    const new_exp = 11164648256;
+    const newExp = 11164648256;
 
-    let subscribe_count: number;
+    let subscribeCount: number;
     beforeEach(() => {
-      subscribe_count = 0;
-      Cookies.set('__', old_token);
+      subscribeCount = 0;
+      Cookies.set('__', oldToken);
       Cookies.set('___type', 'Bearer');
       Cookies.set('___state', '{}');
-      Cookies.set('___refresh', old_token);
+      Cookies.set('___refresh', oldToken);
     });
 
     afterEach(() => {
@@ -2122,10 +2124,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     });
 
     it('Setting up new Auth token', (done) => {
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2139,48 +2141,48 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
-          subscribe_count++;
+          expect(Cookies.get('___refresh')).toBe(oldToken);
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
           done();
         }
@@ -2188,17 +2190,17 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
       });
     }, 10000);
 
     it('Setting up new User State', (done) => {
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2212,30 +2214,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -2243,20 +2245,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
-          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___state')).toBe('{"a":"b"}');
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
           done();
         }
@@ -2270,10 +2272,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2287,30 +2289,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -2318,20 +2320,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
-          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___state')).toBe('{"a":"b"}');
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
           done();
         }
@@ -2339,7 +2341,7 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
         'userState': {
@@ -2349,10 +2351,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new tampered token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2366,20 +2368,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -2388,15 +2390,15 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
-          subscribe_count++;
+          expect(Cookies.get('___refresh')).toBe(oldToken);
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -2418,10 +2420,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new expired token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2435,20 +2437,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -2457,16 +2459,16 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -2490,10 +2492,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Removing Auth Token', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2507,20 +2509,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -2529,16 +2531,16 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -2556,10 +2558,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     // / Refresh
 
     it('Setting up new Refresh token', (done) => {
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2573,64 +2575,64 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(new_token);
+          expect(Cookies.get('___refresh')).toBe(newToken);
 
           done();
         }
       });
 
       tokenObject.set({
-        refresh: new_token,
+        refresh: newToken,
       });
     }, 10000);
 
     it('Setting up new tampered Refresh token', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2644,20 +2646,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -2666,15 +2668,15 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
-          subscribe_count++;
+          expect(Cookies.get('___refresh')).toBe(oldToken);
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -2690,10 +2692,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new expired Refresh token', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2707,20 +2709,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -2729,16 +2731,16 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
@@ -2756,10 +2758,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Removing Refresh Token', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2773,24 +2775,24 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
@@ -2799,17 +2801,17 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
           expect(Cookies.get('___refresh')).toBeUndefined();
@@ -2824,10 +2826,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new Auth and Refresh token', (done) => {
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2841,49 +2843,49 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(new_token);
+          expect(Cookies.get('___refresh')).toBe(newToken);
 
           done();
         }
@@ -2891,18 +2893,18 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
-        'refresh': new_token,
+        'refresh': newToken,
       });
     }, 10000);
 
     it('Setting up new Refresh token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2916,30 +2918,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -2947,27 +2949,27 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
-          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
-          expect(Cookies.get('___refresh')).toBe(new_token);
+          expect(Cookies.get('___state')).toBe('{"a":"b"}');
+          expect(Cookies.get('___refresh')).toBe(newToken);
 
           done();
         }
       });
 
       tokenObject.set({
-        'refresh': new_token,
+        'refresh': newToken,
         'userState': {
           'a': 'b',
         },
@@ -2975,10 +2977,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new Auth token, Refresh token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -2992,49 +2994,49 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(new_token);
+          expect(Cookies.get('___refresh')).toBe(newToken);
 
           done();
         }
@@ -3042,18 +3044,18 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
-        'refresh': new_token,
+        'refresh': newToken,
       });
     }, 10000);
 
     it('Setting up new Refresh token and new state', (done)=>{
-      expect(Cookies.get('__')).toBe(old_token);
+      expect(Cookies.get('__')).toBe(oldToken);
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
-      expect(Cookies.get('___refresh')).toBe(old_token);
+      expect(Cookies.get('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3067,30 +3069,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -3098,29 +3100,29 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(Cookies.get('__')).toBe(old_token);
+          expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          expect(Cookies.get('___refresh')).toBe(old_token);
+          expect(Cookies.get('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(Cookies.get('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
-          expect(Cookies.get('___state')).toBe('{\"a\":\"b\"}');
-          expect(Cookies.get('___refresh')).toBe(new_token);
+          expect(Cookies.get('___state')).toBe('{"a":"b"}');
+          expect(Cookies.get('___refresh')).toBe(newToken);
 
           done();
         }
       });
 
       tokenObject.set({
-        'refresh': new_token,
+        'refresh': newToken,
         'auth': {
-          token: new_token,
+          token: newToken,
           type: 'Bearer',
         },
         'userState': {
@@ -3131,23 +3133,23 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
   });
 
   describe('Using LocalStorage', () => {
-    const old_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+    const oldToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
     'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    const old_exp = 8008605195;
+    const oldExp = 8008605195;
 
-    const new_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
+    const newToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
     'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMTE2NDY0ODI1Nn0.Vf-miK3nrkJ'+
     '1svSRu_4AHmPxVPceN6GqESN7rsffLmg';
-    const new_exp = 11164648256;
+    const newExp = 11164648256;
 
-    let subscribe_count: number;
+    let subscribeCount: number;
     beforeEach(() => {
-      subscribe_count = 0;
-      localStorage.setItem('__', old_token);
+      subscribeCount = 0;
+      localStorage.setItem('__', oldToken);
       localStorage.setItem('___type', 'Bearer');
       localStorage.setItem('___state', '{}');
-      localStorage.setItem('___refresh', old_token);
+      localStorage.setItem('___refresh', oldToken);
     });
 
     afterEach(() => {
@@ -3158,10 +3160,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     });
 
     it('Setting up new Auth token', (done) => {
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3175,48 +3177,48 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
-          subscribe_count++;
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
           done();
         }
@@ -3224,17 +3226,17 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
       });
     }, 10000);
 
     it('Setting up new User State', (done) => {
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3248,30 +3250,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -3279,20 +3281,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
-          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___state')).toBe('{"a":"b"}');
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
           done();
         }
@@ -3306,10 +3308,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3323,30 +3325,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -3354,20 +3356,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
-          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___state')).toBe('{"a":"b"}');
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
           done();
         }
@@ -3375,7 +3377,7 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
         'userState': {
@@ -3385,10 +3387,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new tampered token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3402,20 +3404,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -3424,15 +3426,15 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
-          subscribe_count++;
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -3454,10 +3456,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new expired token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3471,20 +3473,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -3493,16 +3495,16 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -3526,10 +3528,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Removing Auth Token', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3543,20 +3545,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -3565,16 +3567,16 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -3592,10 +3594,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     // / Refresh
 
     it('Setting up new Refresh token', (done) => {
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3609,64 +3611,64 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(new_token);
+          expect(localStorage.getItem('___refresh')).toBe(newToken);
 
           done();
         }
       });
 
       tokenObject.set({
-        refresh: new_token,
+        refresh: newToken,
       });
     }, 10000);
 
     it('Setting up new tampered Refresh token', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3680,20 +3682,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -3702,15 +3704,15 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
-          subscribe_count++;
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -3726,10 +3728,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new expired Refresh token', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3743,20 +3745,20 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': null,
         'isSignIn': false,
         'isUsingRefreshToken': true,
@@ -3765,16 +3767,16 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
+          expect(data).toMatchObject(newResp);
           expect(localStorage.getItem('__')).toBeNull();
           expect(localStorage.getItem('___type')).toBeNull();
           expect(localStorage.getItem('___state')).toBeNull();
@@ -3792,10 +3794,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Removing Refresh Token', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3809,24 +3811,24 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
@@ -3835,17 +3837,17 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
           expect(localStorage.getItem('___refresh')).toBeNull();
@@ -3860,10 +3862,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new Auth and Refresh token', (done) => {
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3877,49 +3879,49 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(new_token);
+          expect(localStorage.getItem('___refresh')).toBe(newToken);
 
           done();
         }
@@ -3927,18 +3929,18 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
-        'refresh': new_token,
+        'refresh': newToken,
       });
     }, 10000);
 
     it('Setting up new Refresh token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -3952,30 +3954,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -3983,27 +3985,27 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
-          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
-          expect(localStorage.getItem('___refresh')).toBe(new_token);
+          expect(localStorage.getItem('___state')).toBe('{"a":"b"}');
+          expect(localStorage.getItem('___refresh')).toBe(newToken);
 
           done();
         }
       });
 
       tokenObject.set({
-        'refresh': new_token,
+        'refresh': newToken,
         'userState': {
           'a': 'b',
         },
@@ -4011,10 +4013,10 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
     }, 10000);
 
     it('Setting up new Auth token, Refresh token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -4028,49 +4030,49 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {},
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(new_token);
+          expect(localStorage.getItem('___refresh')).toBe(newToken);
 
           done();
         }
@@ -4078,18 +4080,18 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       tokenObject.set({
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
         },
-        'refresh': new_token,
+        'refresh': newToken,
       });
     }, 10000);
 
     it('Setting up new Refresh token and new state', (done)=>{
-      expect(localStorage.getItem('__')).toBe(old_token);
+      expect(localStorage.getItem('__')).toBe(oldToken);
       expect(localStorage.getItem('___type')).toBe('Bearer');
       expect(localStorage.getItem('___state')).toBe('{}');
-      expect(localStorage.getItem('___refresh')).toBe(old_token);
+      expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
 
       const tokenObject = new TokenObject<object>(
@@ -4103,30 +4105,30 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
 
       const resp = {
         'auth': {
-          'token': old_token,
+          'token': oldToken,
           'type': 'Bearer',
-          'expiresAt': new Date(old_exp * 1000),
+          'expiresAt': new Date(oldExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': old_token,
-          'expiresAt': new Date(old_exp * 1000),
+          'token': oldToken,
+          'expiresAt': new Date(oldExp * 1000),
         },
         'userState': {},
       };
 
-      const new_resp = {
+      const newResp = {
         'auth': {
-          'token': new_token,
+          'token': newToken,
           'type': 'Bearer',
-          'expiresAt': new Date(new_exp * 1000),
+          'expiresAt': new Date(newExp * 1000),
         },
         'isSignIn': true,
         'isUsingRefreshToken': true,
         'refresh': {
-          'token': new_token,
-          'expiresAt': new Date(new_exp * 1000),
+          'token': newToken,
+          'expiresAt': new Date(newExp * 1000),
         },
         'userState': {
           'a': 'b',
@@ -4134,29 +4136,29 @@ describe('Set New Value with Existing Value present [With Refresh Token]', () =>
       };
 
       tokenObject.subscribe((data) => {
-        if (subscribe_count == 0) {
+        if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
-          expect(localStorage.getItem('__')).toBe(old_token);
+          expect(localStorage.getItem('__')).toBe(oldToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
           expect(localStorage.getItem('___state')).toBe('{}');
-          expect(localStorage.getItem('___refresh')).toBe(old_token);
+          expect(localStorage.getItem('___refresh')).toBe(oldToken);
 
-          subscribe_count++;
+          subscribeCount++;
         } else {
-          expect(data).toMatchObject(new_resp);
-          expect(localStorage.getItem('__')).toBe(new_token);
+          expect(data).toMatchObject(newResp);
+          expect(localStorage.getItem('__')).toBe(newToken);
           expect(localStorage.getItem('___type')).toBe('Bearer');
-          expect(localStorage.getItem('___state')).toBe('{\"a\":\"b\"}');
-          expect(localStorage.getItem('___refresh')).toBe(new_token);
+          expect(localStorage.getItem('___state')).toBe('{"a":"b"}');
+          expect(localStorage.getItem('___refresh')).toBe(newToken);
 
           done();
         }
       });
 
       tokenObject.set({
-        'refresh': new_token,
+        'refresh': newToken,
         'auth': {
-          token: new_token,
+          token: newToken,
           type: 'Bearer',
         },
         'userState': {

@@ -1,12 +1,9 @@
-//@ts-ignore
-import React from 'react';
-
 import AuthKitContext from '../AuthContext';
 import {useReactAuthKit} from '../AuthContext';
 import {render} from '@testing-library/react';
 import Cookies from 'js-cookie';
 import TokenObject from '../RxTokenObject';
-import { AuthError } from '../errors';
+import {AuthError} from '../errors';
 
 test('All Expected Exports are there', ()=>{
   expect(AuthKitContext).toBeTruthy();
@@ -44,12 +41,12 @@ test('Testing Conext Workflow', ()=>{
   expect(data?.innerHTML).toEqual(` ${JSON.stringify(tokenObject.value)} `);
 });
 
-test("Throws error without AuthKitContext.Provider", ()=>{
+test('Throws error without AuthKitContext.Provider', ()=>{
   const TestComponent = () => {
     const c = useReactAuthKit();
     return <div id="test"> {JSON.stringify(c.value)} </div>;
   };
   expect(() => render(
-    <TestComponent/>
-  )).toThrow(AuthError)
+      <TestComponent/>,
+  )).toThrow(AuthError);
 });
