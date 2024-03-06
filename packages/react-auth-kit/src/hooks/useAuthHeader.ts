@@ -1,8 +1,6 @@
 'use client';
 
-import {useContext} from 'react';
-import AuthContext from '../AuthContext';
-import {AuthError} from '../errors';
+import { useReactAuthKit } from '../AuthContext';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -36,16 +34,7 @@ import {isAuthenticated} from '../utils/utils';
  * Thrown if the Hook is used outside the Provider Scope.
  */
 function useAuthHeader(): string | null {
-  const c = useContext(AuthContext);
-  if (c === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this hook inside the auth provider.',
-    );
-  }
-
-  const {value} = c;
+  const {value} = useReactAuthKit()
 
   if (!!value.auth && isAuthenticated(value)) {
     return `${value.auth.type} ${value.auth.token}`;
