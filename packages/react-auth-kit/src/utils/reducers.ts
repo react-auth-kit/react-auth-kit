@@ -44,9 +44,7 @@ import type {
 export function doSignIn<T>(
     signInParams: SignInActionPayload<T>,
 ): AuthKitSetState<T> {
-  const authType = signInParams.auth.type ?
-    signInParams.auth.type :
-    'Bearer';
+  const authType = signInParams.auth.type || 'Bearer';
   const authToken = signInParams.auth.token;
 
   return {
@@ -97,39 +95,25 @@ export function doSignIn<T>(
  */
 export function doRefresh<T>(refreshTokenParam: RefreshTokenActionPayload<T>):
   AuthKitSetState<T> {
-  if (refreshTokenParam.newAuthToken) {
-    let ret : AuthKitSetState<T>= {
-      auth: {
-        token: refreshTokenParam.newAuthToken!,
-        type: refreshTokenParam.newAuthTokenType ?
-          refreshTokenParam.newAuthTokenType :
-          'Bearer',
-      },
-    };
-    if (refreshTokenParam.newAuthUserState) {
-      ret = {
-        ...ret,
-        userState: refreshTokenParam.newAuthUserState,
-      };
-    }
-    if (refreshTokenParam.newRefreshToken) {
-      ret = {
-        ...ret,
-        refresh: refreshTokenParam.newRefreshToken,
-      };
-    }
-    return ret;
-  } else if (refreshTokenParam.newRefreshToken) {
-    const ret = {
-      refresh: refreshTokenParam.newRefreshToken,
-    };
-    return ret;
-  } else {
-    return {
-      auth: null,
-      refresh: null,
+  let ret : AuthKitSetState<T>= {
+    auth: {
+      token: refreshTokenParam.newAuthToken!,
+      type: refreshTokenParam.newAuthTokenType || 'Bearer',
+    },
+  };
+  if (refreshTokenParam.newAuthUserState) {
+    ret = {
+      ...ret,
+      userState: refreshTokenParam.newAuthUserState,
     };
   }
+  if (refreshTokenParam.newRefreshToken) {
+    ret = {
+      ...ret,
+      refresh: refreshTokenParam.newRefreshToken,
+    };
+  }
+  return ret;
 }
 
 /**
