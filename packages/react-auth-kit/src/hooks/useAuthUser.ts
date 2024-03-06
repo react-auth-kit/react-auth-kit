@@ -1,8 +1,6 @@
 'use client';
 
-import {useContext} from 'react';
-import AuthContext from '../AuthContext';
-import {AuthError} from '../errors';
+import {useReactAuthKit} from '../AuthContext';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -52,19 +50,11 @@ import {isAuthenticated} from '../utils/utils';
  * ```
  */
 function useAuthUser<T>(): T | null {
-  const context = useContext(AuthContext);
-  if (context === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this hook inside the auth provider.',
-    );
-  }
+  const {value} = useReactAuthKit();
 
-  if (isAuthenticated(context.value)) {
-    return context.value.userState as T;
+  if (isAuthenticated(value)) {
+    return value.userState as T;
   } else {
-    // TODO: Need to signout and redirect to login
     return null;
   }
 }

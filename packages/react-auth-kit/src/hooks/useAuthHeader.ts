@@ -1,6 +1,6 @@
 'use client';
 
-import { useReactAuthKit } from '../AuthContext';
+import {useReactAuthKit} from '../AuthContext';
 import {isAuthenticated} from '../utils/utils';
 
 /**
@@ -34,7 +34,7 @@ import {isAuthenticated} from '../utils/utils';
  * Thrown if the Hook is used outside the Provider Scope.
  */
 function useAuthHeader(): string | null {
-  const {value} = useReactAuthKit()
+  const {value} = useReactAuthKit();
 
   if (!!value.auth && isAuthenticated(value)) {
     return `${value.auth.type} ${value.auth.token}`;

@@ -6,17 +6,15 @@ import TokenObject from '../../RxTokenObject';
 import Cookies from 'js-cookie';
 
 describe('useAuthHeader', () => {
-
   it('should return an empty string if the user is not in the context', () => {
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
-
 
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={tokenObject}>
@@ -35,14 +33,14 @@ describe('useAuthHeader', () => {
     Cookies.set('__', token);
     Cookies.set('___type', 'Bearer');
     Cookies.set('___state', '{}');
-    
+
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      true,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
 
     const wrapper = ({children}: {children: React.ReactNode}) => (

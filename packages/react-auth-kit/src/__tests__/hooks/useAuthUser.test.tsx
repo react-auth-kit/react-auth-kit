@@ -1,77 +1,56 @@
-/*
- * Copyright 2021 Arkadip Bhattacharya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import React from 'react';
 import {renderHook} from '@testing-library/react';
+
 import useAuthUser from '../../hooks/useAuthUser';
 import AuthContext from '../../AuthContext';
+import TokenObject from '../../RxTokenObject';
+import Cookies from 'js-cookie';
 
 describe('useAuthUser', () => {
-  it('should thrown an error if the AuthContext is not available', () => {
-    expect(useAuthUser).toThrow(Error);
-  });
-
   it('should return null if the user is not in authenticated', () => {
-    const fakeAuthState = {
-      authState: {
-        auth: null,
-        refresh: null,
-        userState: {
-          id: 'user-id',
-        },
-        isSignIn: false,
-        isUsingRefreshToken: false,
-      },
-      dispatch: () => null,
-    };
+    const tokenObject = new TokenObject<unknown>(
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+    );
+
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={fakeAuthState}>
+      <AuthContext.Provider value={tokenObject}>
         {children}
       </AuthContext.Provider>
     );
 
     const {result} = renderHook(() => useAuthUser(), {wrapper});
-    expect(result.current()).toBe(null);
+    expect(result.current).toBeNull();
   });
 
   it('should return the user state if the user is authenticated', () => {
-    const fakeAuthState = {
-      authState: {
-        auth: {
-          type: 'Bearer',
-          token: 'xxxxxxxxx',
-          expiresAt: new Date(new Date().getTime() + 10*60000),
-        },
-        refresh: null,
-        userState: {
-          id: 'user-id',
-        },
-        isSignIn: false,
-        isUsingRefreshToken: false,
-      },
-      dispatch: () => null,
-    };
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
+      '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
+    Cookies.set('__', token);
+    Cookies.set('___type', 'Bearer');
+    Cookies.set('___state', '{"name":"react"}');
+
+    const tokenObject = new TokenObject<unknown>(
+        '__',
+        'cookie',
+        null,
+        true,
+        window.location.hostname,
+        window.location.protocol === 'https:',
+    );
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={fakeAuthState}>
+      <AuthContext.Provider value={tokenObject}>
         {children}
       </AuthContext.Provider>
     );
 
     const {result} = renderHook(() => useAuthUser(), {wrapper});
-    expect(result.current()).toStrictEqual({id: 'user-id'});
+    expect(result.current).toStrictEqual({name: 'react'});
   });
 });
 
