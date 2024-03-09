@@ -215,9 +215,13 @@ class TokenObject<T> {
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
     this.log(`Set Function is called with`);
-    console.dir(data);
+    if(this.debug){
+      console.dir(data);
+    }
     this.log(`Set Function Old Data`);
-    console.dir(this.value);
+    if(this.debug){
+      console.dir(this.value);
+    }
 
     let obj = this.value;
 

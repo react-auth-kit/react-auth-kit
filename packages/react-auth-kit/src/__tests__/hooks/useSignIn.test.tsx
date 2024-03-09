@@ -15,7 +15,7 @@ describe('useSignIn', () => {
         '__',
         'cookie',
         '___refresh',
-        true,
+        false,
         window.location.hostname,
         window.location.protocol === 'https:',
       );
@@ -42,7 +42,7 @@ describe('useSignIn', () => {
         '__',
         'cookie',
         null,
-        true,
+        false,
         window.location.hostname,
         window.location.protocol === 'https:',
       );
@@ -74,7 +74,7 @@ describe('useSignIn', () => {
         '__',
         'cookie',
         null,
-        true,
+        false,
         window.location.hostname,
         window.location.protocol === 'https:',
       );
@@ -110,7 +110,7 @@ describe('useSignIn', () => {
         '__',
         'cookie',
         '___refresh',
-        true,
+        false,
         window.location.hostname,
         window.location.protocol === 'https:',
       );

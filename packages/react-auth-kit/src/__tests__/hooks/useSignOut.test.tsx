@@ -13,7 +13,7 @@ describe('useSignOut', () => {
       '__',
       'cookie',
       null,
-      true,
+      false,
       window.location.hostname,
       window.location.protocol === 'https:',
     );
