@@ -30,7 +30,6 @@ test('Testing Conext Workflow', ()=>{
       window.location.protocol === 'https:',
   );
 
-
   render(
       <AuthKitContext.Provider value={tokenObject as any}>
         <TestComponent/>

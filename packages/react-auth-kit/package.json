@@ -22,7 +22,6 @@
     "test": "__tests__"
   },
   "files": [
-    "higherOrderComponents",
     "hooks",
     "utils",
     "*.js",
@@ -36,7 +35,6 @@
     "./AuthProvider": "./AuthProvider.js",
     "./createRefresh": "./createRefresh.js",
     "./hooks/*": "./hooks/*.js",
-    "./higherOrderComponents/*": "./higherOrderComponents/*.js",
     "./utils/*": "./utils/*.js"
   },
   "repository": {
