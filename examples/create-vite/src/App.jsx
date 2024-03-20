@@ -2,6 +2,7 @@ import './App.css'
 import RoutesPage from './RoutesPage'
 import AuthProvider from 'react-auth-kit'
 import createStore from 'react-auth-kit/createStore';
+import ReactRouterPlugin from '@auth-kit/react-router/route'
 
 const store = createStore({
   authName:'_auth',
@@ -13,7 +14,7 @@ const store = createStore({
 function App() {
   return (
     <>
-      <AuthProvider store={store}>
+      <AuthProvider store={store} router={ReactRouterPlugin}>
         <RoutesPage/>
       </AuthProvider>
     </>

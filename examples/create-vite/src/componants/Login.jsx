@@ -20,21 +20,16 @@ const Login = () => {
   const loginHandler = () => {
     // Assuming that, all network Request is successfull, and the user is authenticated
 
-    if (signIn({
+    signIn({
       auth: {
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8'
       },
-      userState: {name: 'Manas Baroi', uid: 123456}
-    })) {
-      // If Login Successfull, then Redirect the user to secure route
-      navigate('/secure')
-    } else {
-      // Else, there must be some error. So, throw an error
-      alert("Error Occoured. Try Again")
-    }
+      userState: {name: 'Manas Baroi', uid: 123456},
+      navigateTo: '/secure'
+    })
   }
-  console.log(isAuthenticated())
-  if (isAuthenticated()) {
+  console.log(isAuthenticated)
+  if (isAuthenticated) {
     // If authenticated user, then redirect to secure dashboard
 
     return (
