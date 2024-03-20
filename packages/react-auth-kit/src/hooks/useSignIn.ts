@@ -107,8 +107,9 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
       else {
         throw new
           AuthError(
-              'Auth Provider is missing. Make sure, you'+
-              ' are using this component inside the auth provider.',
+            'Router Plugin is not implemented in the AuthProvider. Please'+
+            ' use the router prop of AuthProvider and Router plugin to'+
+            ' use this feture'
           );
       }
     }
