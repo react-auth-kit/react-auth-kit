@@ -23,7 +23,7 @@
     ".": "./index.js",
     "./AuthOutlet": "./AuthOutlet.js",
     "./RequireAuth": "./RequireAuth.js",
-    "./route": "./router.js"
+    "./route": "./route.js"
   },
   "repository": {
     "type": "git",
