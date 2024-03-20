@@ -22,7 +22,8 @@
   "exports": {
     ".": "./index.js",
     "./AuthOutlet": "./AuthOutlet.js",
-    "./RequireAuth": "./RequireAuth.js"
+    "./RequireAuth": "./RequireAuth.js",
+    "./ReactRouterPlugin": "./router.js"
   },
   "repository": {
     "type": "git",
