@@ -33,6 +33,11 @@ export interface SignInActionPayload<T> {
    * User information
    */
   userState?: T,
+
+  /**
+   * Path to Redirect after logging in
+   */
+  navigateTo?: string
 }
 
 /**

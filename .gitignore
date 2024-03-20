@@ -10,6 +10,7 @@ coverage
 .cache-loader
 packages/react-auth-kit/higherOrderComponents
 packages/react-auth-kit/hooks
+packages/react-auth-kit/route
 packages/react-auth-kit/utils
 packages/react-auth-kit/__tests__
 packages/*/*.js

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Navigate} from 'react-router';
-import AuthContext from 'react-auth-kit/AuthContext';
+import { useReactAuthKit } from 'react-auth-kit/AuthContext';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
-import {AuthError} from 'react-auth-kit/errors';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 
 /**
@@ -48,14 +47,8 @@ interface RequireAuthProps {
  */
 const RequireAuth: React.FC<RequireAuthProps> =
   ({children, fallbackPath}) => {
-    const context = React.useContext(AuthContext);
-    if (context === null) {
-      throw new
-      AuthError(
-          'Auth Provider is missing. ' +
-          'Make sure, you are using this component inside the auth provider.',
-      );
-    }
+    const context = useReactAuthKit();
+
 
     // TODO: needed fallbackPath check
 

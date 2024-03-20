@@ -1,6 +1,7 @@
 'use client';
 
-import {useReactAuthKit} from '../AuthContext';
+import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
+import { AuthError } from '../errors';
 import {doSignOut} from '../utils/reducers';
 
 /**
@@ -39,11 +40,24 @@ import {doSignOut} from '../utils/reducers';
  * Thrown if the Hook is used outside the Provider Scope
  *
  */
-function useSignOut(): () => void {
+function useSignOut(): ({navigateTo}: {navigateTo?: string}) => void {
   const context = useReactAuthKit();
+  const router = useReactAuthKitRouter();
 
-  return () => {
+  return ({navigateTo}: {navigateTo?: string}) => {
     context.set(doSignOut());
+    if(navigateTo){
+      if(router){
+        router.useNavigate({to: navigateTo})
+      }
+      else {
+        throw new
+          AuthError(
+              'Auth Provider is missing. Make sure, you'+
+              ' are using this component inside the auth provider.',
+          );
+      }
+    }
   };
 }
 
