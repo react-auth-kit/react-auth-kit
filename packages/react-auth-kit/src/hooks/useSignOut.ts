@@ -40,11 +40,11 @@ import {doSignOut} from '../utils/reducers';
  * Thrown if the Hook is used outside the Provider Scope
  *
  */
-function useSignOut(): ({navigateTo}: {navigateTo?: string}) => void {
+function useSignOut(): (navigateTo?: string) => void {
   const context = useReactAuthKit();
   const router = useReactAuthKitRouter();
 
-  return ({navigateTo}: {navigateTo?: string}) => {
+  return (navigateTo?: string) => {
     context.set(doSignOut());
     if(navigateTo){
       if(router){
