@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/node": "20.11.30",
-    "@types/react": "18.2.66",
+    "@types/react": "18.2.69",
     "@types/react-router-dom": "5.3.3",
     "react": "18.2.0",
     "react-router": "6.22.3"
