@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@auth-kit/react-router": "3.1.4-alpha.8+951c230a",
+    "@auth-kit/react-router": "3.1.4-alpha.11+478bf01d",
     "react": "^18.2.0",
-    "react-auth-kit": "3.1.4-alpha.8+951c230a",
+    "react-auth-kit": "3.1.4-alpha.11+478bf01d",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1"
   },
