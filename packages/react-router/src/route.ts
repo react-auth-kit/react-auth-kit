@@ -6,8 +6,9 @@ class ReactRouterPlugin implements Router{
     navigate({ to }: { to: string; }): void {
         redirect(to)
     }
-    useNavigate({ to }: { to: string; }): void {
-        useReactRouteNavigate()(to)
+    useNavigate(): ({ to }: { to: string; }) => void {
+        const navigate = useReactRouteNavigate();
+        return ({to}: { to: string; })=> navigate(to)
     }   
 }
 
