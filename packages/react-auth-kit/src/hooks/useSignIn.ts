@@ -86,6 +86,8 @@ import {AuthError} from '../errors';
 function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   const context = useReactAuthKit();
   const router = useReactAuthKitRouter();
+  const navigate = router ? router.useNavigate() : null;
+
   /**
    *
    * @param signInConfig - Parameters to perform sign in
@@ -101,8 +103,8 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
    */
   const redirectAfterSignin = (to?: string) => {
     if(to){
-      if(router){
-        router.useNavigate({to})
+      if(router && navigate){
+        navigate({to})
       }
       else {
         throw new
