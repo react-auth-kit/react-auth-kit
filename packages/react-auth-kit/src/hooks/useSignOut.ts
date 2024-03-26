@@ -42,13 +42,16 @@ import {doSignOut} from '../utils/reducers';
  */
 function useSignOut(): (navigateTo?: string) => void {
   const context = useReactAuthKit();
+
   const router = useReactAuthKitRouter();
+  const navigate = router ? router.useNavigate() : null;
+
 
   return (navigateTo?: string) => {
     context.set(doSignOut());
     if(navigateTo){
-      if(router){
-        router.useNavigate({to: navigateTo})
+      if(router && navigate){
+        navigate({to: navigateTo})
       }
       else {
         throw new
