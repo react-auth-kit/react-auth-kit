@@ -1,6 +1,6 @@
-abstract class Router {
-    abstract navigate({to}: {to: string}): void
-    abstract useNavigate(): ({to}: {to: string})=> void
+interface Router {
+    navigate: ({to}: {to: string}) => void
+    useNavigate: () => ({to}: {to: string}) => void
 }
 
 export default Router;
