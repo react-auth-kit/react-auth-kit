@@ -41,12 +41,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "7.23.9",
-    "@babel/core": "7.24.0",
-    "@babel/preset-env": "7.24.0",
-    "@babel/preset-react": "7.23.3",
-    "@babel/preset-typescript": "7.23.3",
-    "@commitlint/cli": "19.1.0",
+    "@babel/cli": "7.24.1",
+    "@babel/core": "7.24.3",
+    "@babel/preset-env": "7.24.3",
+    "@babel/preset-react": "7.24.1",
+    "@babel/preset-typescript": "7.24.1",
+    "@commitlint/cli": "19.2.1",
     "@commitlint/config-conventional": "19.1.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
@@ -55,7 +55,7 @@
     "eslint": "8.57.0",
     "eslint-config-google": "0.14.0",
     "eslint-plugin-jest": "27.9.0",
-    "eslint-plugin-react": "7.33.2",
+    "eslint-plugin-react": "7.34.1",
     "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "9.0.11",
     "lerna": "^8.0.0",
@@ -67,7 +67,7 @@
     "tslib": "2.6.2",
     "typedoc": "0.25.12",
     "typedoc-plugin-markdown": "^3.17.1",
-    "typescript": "5.3.3"
+    "typescript": "5.4.3"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "npm test"
