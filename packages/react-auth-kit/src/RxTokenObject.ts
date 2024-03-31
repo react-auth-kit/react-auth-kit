@@ -2,6 +2,7 @@
 
 import Cookies from 'js-cookie';
 import {BehaviorSubject} from 'rxjs';
+import deepEqual from 'deep-equal';
 import {AuthError} from './errors';
 import {AuthKitStateInterface} from './types';
 
@@ -338,7 +339,9 @@ class TokenObject<T> {
     this.log(`[Auth Kit] - Set Function New Data`);
     this.log(obj);
     this.authValue = obj;
-    this.authSubject.next(obj);
+    if(!deepEqual(this.value, obj)){
+      this.authSubject.next(obj);
+    }
   };
 
   /**

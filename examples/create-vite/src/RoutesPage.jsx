@@ -9,7 +9,6 @@ import Secure from './componants/Secure'
 
 const RoutesPage = () => {
   return (
-    <BrowserRouter>
         <Routes>
           <Route path={'/'} element={<Home/>}/>
           <Route path={'/login' } element={<Login/>}/>
@@ -19,7 +18,6 @@ const RoutesPage = () => {
             </RequireAuth>
           }/>
         </Routes>
-    </BrowserRouter>
   )
 }
 

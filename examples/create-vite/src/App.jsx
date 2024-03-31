@@ -3,6 +3,7 @@ import RoutesPage from './RoutesPage'
 import AuthProvider from 'react-auth-kit'
 import createStore from 'react-auth-kit/createStore';
 import ReactRouterPlugin from '@auth-kit/react-router/route'
+import { BrowserRouter } from 'react-router-dom';
 
 const store = createStore({
   authName:'_auth',
@@ -14,9 +15,12 @@ const store = createStore({
 function App() {
   return (
     <>
+    <BrowserRouter>
+
       <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath='/login'>
         <RoutesPage/>
       </AuthProvider>
+    </BrowserRouter>
     </>
   )
 }
