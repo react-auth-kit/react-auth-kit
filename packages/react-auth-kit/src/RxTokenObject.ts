@@ -333,7 +333,7 @@ class TokenObject<T> {
     }
     this.log(`Set Function New Data`, obj);
     if(!deepEqual(this.value, obj)){
-
+      this.log("Updating the value in the Set Function")
       this.authValue = obj;
       this.authSubject.next(obj);
     }
