@@ -71,7 +71,14 @@ function AuthProvider<T>(
     }: AuthProviderProps<T>,
 ): ReturnType<React.FC> {
   const {tokenObject, refresh} = store;
-  // const navigate = router ? router.useNavigate() : null;
+  const navigate = router ? router.useNavigate() : null;
+
+  if(router && navigate && fallbackPath){
+    tokenObject.onSignOut(()=> {
+      console.log(`React Auth Kit - onSignOut - Navigating to ${fallbackPath}`);
+      navigate({to: fallbackPath});
+    })
+  }
 
   if (refresh) {
     useInterval(

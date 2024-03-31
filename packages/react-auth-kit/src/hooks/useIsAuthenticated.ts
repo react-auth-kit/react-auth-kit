@@ -1,6 +1,6 @@
 'use client';
 
-import {useReactAuthKit, useReactAuthKitConfig, useReactAuthKitRouter} from '../AuthContext';
+import {useReactAuthKit} from '../AuthContext';
 import { doSignOut } from '../utils/reducers';
 
 /**
@@ -33,9 +33,6 @@ import { doSignOut } from '../utils/reducers';
  */
 function useIsAuthenticated(): () => boolean {
   const {value, set} = useReactAuthKit();
-  const router = useReactAuthKitRouter();
-  const {fallbackPath} = useReactAuthKitConfig();
-  const navigate = router ? router.useNavigate() : null;
 
   return () => {
     console.log("React Auth Kit - useIsAuthenticated called");
@@ -44,11 +41,6 @@ function useIsAuthenticated(): () => boolean {
     }
 
     set(doSignOut());
-    if (router && navigate && fallbackPath) {
-      console.log(`React Auth Kit - Navigating to ${fallbackPath}`);
-      navigate({to: fallbackPath});
-    }
-    
     return false;
   }
 }

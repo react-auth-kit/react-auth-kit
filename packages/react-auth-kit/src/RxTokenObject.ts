@@ -174,6 +174,22 @@ class TokenObject<T> {
     });
   };
 
+  onSignIn(callback: (value: AuthKitStateInterface<T>)=> void) {
+    this.subscribe((value)=> {
+      if(value.auth !== null){
+        callback(value)
+      }
+    })
+  }
+
+  onSignOut(callback: (value: AuthKitStateInterface<T>)=> void) {
+    this.subscribe((value)=> {
+      if(value.auth === null){
+        callback(value)
+      }
+    })
+  }
+
   /**
    * @internal
    * @param data - The data to set the state
