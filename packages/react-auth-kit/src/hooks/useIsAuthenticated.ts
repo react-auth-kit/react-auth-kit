@@ -42,6 +42,8 @@ function useIsAuthenticated(): () => boolean {
       return new Date(value.auth.expiresAt) > new Date();
     }
     if (router && navigate && fallbackPath) {
+      console.log(`React Auth Kit - Navigating to ${fallbackPath}`);
+      
       navigate({to: fallbackPath});
     }
     return false;

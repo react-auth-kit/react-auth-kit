@@ -18,7 +18,7 @@ const SecureComponent = () => {
         const res = await axios.get(
             'https://demo4875674.mockable.io/hello',
             {
-                headers: {'Authorization': authHeader}
+                headers: {'Authorization': authHeader()}
             }
         )
         console.log(res.data);
@@ -26,7 +26,7 @@ const SecureComponent = () => {
     
     return (
         <div className='p-2'>
-            <p className='p-6 font-bold text-4xl'>{`Hello ${authUser.name}, your U-ID is: ${authUser.uid}`}</p>
+            <p className='p-6 font-bold text-4xl'>{`Hello ${authUser().name}, your U-ID is: ${authUser().uid}`}</p>
             <button className='p-2 border rounded-md bg-red-500 hover:bg-red-700 text-white' onClick={signOutAction}>Sign Out!</button>
 
             <button className='p-2 border rounded-md bg-green-500 hover:bg-green-700 text-white' onClick={getData}>Get Data</button>

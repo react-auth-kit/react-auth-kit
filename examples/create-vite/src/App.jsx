@@ -14,7 +14,7 @@ const store = createStore({
 function App() {
   return (
     <>
-      <AuthProvider store={store} router={ReactRouterPlugin}>
+      <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath='/login'>
         <RoutesPage/>
       </AuthProvider>
     </>
