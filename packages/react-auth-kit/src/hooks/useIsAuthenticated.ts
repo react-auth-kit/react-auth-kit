@@ -1,6 +1,7 @@
 'use client';
 
 import {useReactAuthKit, useReactAuthKitConfig, useReactAuthKitRouter} from '../AuthContext';
+import { doSignOut } from '../utils/reducers';
 
 /**
  * Is Authenticated React Hook
@@ -31,7 +32,7 @@ import {useReactAuthKit, useReactAuthKitConfig, useReactAuthKitRouter} from '../
  *
  */
 function useIsAuthenticated(): () => boolean {
-  const {value} = useReactAuthKit();
+  const {value, set} = useReactAuthKit();
   const router = useReactAuthKitRouter();
   const {fallbackPath} = useReactAuthKitConfig();
   const navigate = router ? router.useNavigate() : null;
@@ -41,6 +42,7 @@ function useIsAuthenticated(): () => boolean {
     if (value.auth) {
       return new Date(value.auth.expiresAt) > new Date();
     }
+    set(doSignOut());
     if (router && navigate && fallbackPath) {
       console.log(`React Auth Kit - Navigating to ${fallbackPath}`);
       
