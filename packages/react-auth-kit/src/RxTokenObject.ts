@@ -145,7 +145,7 @@ class TokenObject<T> {
     this.authValue = this.initialToken_();
     this.authSubject = new BehaviorSubject(this.authValue);
 
-    this.log(`Initial Value ${this.authValue}`);
+    this.log(`Initial Value`, this.authValue);
 
     this.authSubject.subscribe({
       next: this.syncTokens,
@@ -231,11 +231,9 @@ class TokenObject<T> {
    */
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
-    this.log(`Set Function is called with ${data}`);
-    this.log(`Set Function Old Data`);
-    if (this.debug) {
-      console.dir(this.value);
-    }
+    this.log(`Set Function is called with`, data);
+    this.log(`Set Function Old Data`, this.value);
+
 
     let obj = this.value;
 
@@ -333,7 +331,7 @@ class TokenObject<T> {
         };
       }
     }
-    this.log(`Set Function New Data ${obj}`);
+    this.log(`Set Function New Data`, obj);
     if(!deepEqual(this.value, obj)){
 
       this.authValue = obj;
@@ -874,9 +872,9 @@ class TokenObject<T> {
    * Log function
    * @param msg - The Message to log to the console
    */
-  private log = (msg: any, optionalParams?: any): void => {
+  private log = (msg: any, ...optionalParams: any[]): void => {
     if (this.debug) {
-      console.dir(`React Auth Kit - ${msg}`, optionalParams);
+      console.log(`React Auth Kit - ${msg}`, optionalParams);
     }
   };
 }
