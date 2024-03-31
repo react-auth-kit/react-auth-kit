@@ -33,14 +33,15 @@ import useIsAuthenticated from './useIsAuthenticated';
  * @throws AuthError
  * Thrown if the Hook is used outside the Provider Scope.
  */
-function useAuthHeader(): string | null {
+function useAuthHeader(): () => string | null {
   const {value} = useReactAuthKit();
   const isAuthenticated = useIsAuthenticated();
-
-  if (!!value.auth && isAuthenticated()) {
-    return `${value.auth.type} ${value.auth.token}`;
-  } else {
-    return null;
+  return () => {
+    if (!!value.auth && isAuthenticated()) {
+      return `${value.auth.type} ${value.auth.token}`;
+    } else {
+      return null;
+    }
   }
 }
 

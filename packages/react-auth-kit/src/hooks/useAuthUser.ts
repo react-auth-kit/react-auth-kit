@@ -49,14 +49,16 @@ import useIsAuthenticated from './useIsAuthenticated';
  * }
  * ```
  */
-function useAuthUser<T>(): T | null {
+function useAuthUser<T>(): () =>  T | null {
   const {value} = useReactAuthKit();
   const isAuthenticated = useIsAuthenticated();
 
-  if (isAuthenticated()) {
-    return value.userState as T;
-  } else {
-    return null;
+  return () => {
+    if (isAuthenticated()) {
+      return value.userState as T;
+    } else {
+      return null;
+    }
   }
 }
 

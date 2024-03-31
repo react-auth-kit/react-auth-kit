@@ -21,14 +21,14 @@ const Login = () => {
 
     signIn({
       auth: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzExODY4MjgwfQ.HsHziJnbWnv7Ns3xwKiA-4RJ4rR93qC4ZS4I0IxKcdY'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzExODY5MTgwfQ.mgPeIKzkh9ukc_1pNpoHmXNmosuIYgX6bPgHwmfuljE'
       },
       userState: {name: 'Manas Baroi', uid: 123456},
       navigateTo: '/secure'
     })
   }
-  console.log(isAuthenticated)
-  if (isAuthenticated) {
+  console.log(isAuthenticated())
+  if (isAuthenticated()) {
     // If authenticated user, then redirect to secure dashboard
 
     return (
