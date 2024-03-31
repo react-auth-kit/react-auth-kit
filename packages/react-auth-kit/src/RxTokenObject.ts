@@ -339,6 +339,8 @@ class TokenObject<T> {
     this.log(`[Auth Kit] - Set Function New Data`);
     this.log(obj);
     this.authValue = obj;
+    this.log(this.value);
+    this.log(obj);
     if(!deepEqual(this.value, obj)){
       this.authSubject.next(obj);
     }
