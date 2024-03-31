@@ -26,7 +26,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           'userState': null,
         },
     );
-    expect(subscriber).toBeCalled();
+    expect(subscriber).toHaveBeenCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
     expect(subscriber).toHaveBeenCalledWith(
         {

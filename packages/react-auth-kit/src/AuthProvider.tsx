@@ -26,6 +26,12 @@ interface AuthProviderProps<T> {
   router?: Router
 
   /**
+   * Fallback Path
+   * The path to redirect if signed out
+   */
+  fallbackPath?: string
+
+  /**
    * React Component.
    * Effectively your entine application
    */
@@ -60,10 +66,12 @@ function AuthProvider<T>(
     {
       store,
       router,
+      fallbackPath,
       children,
     }: AuthProviderProps<T>,
 ): ReturnType<React.FC> {
   const {tokenObject, refresh} = store;
+  // const navigate = router ? router.useNavigate() : null;
 
   if (refresh) {
     useInterval(
@@ -93,9 +101,11 @@ function AuthProvider<T>(
   }
 
   return (
-    // @ts-expect-error 'TokenObject' is assignable to the constraint
-    // of type 'T', but 'T' could be instantiated with a different subtype
-    <AuthKitContext.Provider value={{token: tokenObject, router}}>
+    <AuthKitContext.Provider
+      // @ts-expect-error 'TokenObject' is assignable to the constraint
+      // of type 'T', but 'T' could be instantiated with a different subtype
+      value={{token: tokenObject, router, config: {fallbackPath}}}
+    >
       {children}
     </AuthKitContext.Provider>
   );

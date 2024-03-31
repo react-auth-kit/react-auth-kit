@@ -1,7 +1,7 @@
 'use client';
 
 import {useReactAuthKit} from '../AuthContext';
-import {isAuthenticated} from '../utils/utils';
+import useIsAuthenticated from './useIsAuthenticated';
 
 /**
  * Auth Header React Hook
@@ -35,8 +35,9 @@ import {isAuthenticated} from '../utils/utils';
  */
 function useAuthHeader(): string | null {
   const {value} = useReactAuthKit();
+  const isAuthenticated = useIsAuthenticated();
 
-  if (!!value.auth && isAuthenticated(value)) {
+  if (!!value.auth && isAuthenticated) {
     return `${value.auth.type} ${value.auth.token}`;
   } else {
     return null;

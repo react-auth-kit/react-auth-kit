@@ -1,7 +1,7 @@
 'use client';
 
 import {useReactAuthKit} from '../AuthContext';
-import {isAuthenticated} from '../utils/utils';
+import useIsAuthenticated from './useIsAuthenticated';
 
 /**
  * Auth User Data React Hook
@@ -51,8 +51,9 @@ import {isAuthenticated} from '../utils/utils';
  */
 function useAuthUser<T>(): T | null {
   const {value} = useReactAuthKit();
+  const isAuthenticated = useIsAuthenticated();
 
-  if (isAuthenticated(value)) {
+  if (isAuthenticated) {
     return value.userState as T;
   } else {
     return null;

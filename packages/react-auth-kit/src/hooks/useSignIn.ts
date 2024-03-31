@@ -102,20 +102,19 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
    * ```
    */
   const redirectAfterSignin = (to?: string) => {
-    if(to){
-      if(router && navigate){
-        navigate({to})
-      }
-      else {
+    if (to) {
+      if (router && navigate) {
+        navigate({to});
+      } else {
         throw new
-          AuthError(
+        AuthError(
             'Router Plugin is not implemented in the AuthProvider. Please'+
             ' use the router prop of AuthProvider and Router plugin to'+
-            ' use this feture'
-          );
+            ' use this feture',
+        );
       }
     }
-  }
+  };
   return (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token

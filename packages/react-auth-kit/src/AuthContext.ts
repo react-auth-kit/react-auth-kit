@@ -6,9 +6,14 @@ import TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
 import Router from './route';
 
+interface ReactAuthKitContextConfig {
+  fallbackPath?: string
+}
+
 interface ReactAuthKitContext<T> {
   token: TokenObject<T>
   router?: Router
+  config: ReactAuthKitContextConfig
 }
 
 /**
@@ -49,6 +54,12 @@ export function useReactAuthKit(): TokenObject<unknown> {
   return context.token;
 }
 
+/**
+ *
+ * @internal
+ * @returns Router Object from the context
+ *
+ */
 export function useReactAuthKitRouter(): Router|undefined {
   const context = useContext(AuthKitContext);
   if (context === null) {
@@ -59,6 +70,22 @@ export function useReactAuthKitRouter(): Router|undefined {
     );
   }
   return context.router;
+}
+
+/**
+ * @internal
+ * @returns React Auth Kit configurations
+ */
+export function useReactAuthKitConfig(): ReactAuthKitContextConfig {
+  const context = useContext(AuthKitContext);
+  if (context === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
+  }
+  return context.config;
 }
 
 export default AuthKitContext;

@@ -1,7 +1,7 @@
 'use client';
 
 import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
-import { AuthError } from '../errors';
+import {AuthError} from '../errors';
 import {doSignOut} from '../utils/reducers';
 
 /**
@@ -49,17 +49,16 @@ function useSignOut(): (navigateTo?: string) => void {
 
   return (navigateTo?: string) => {
     context.set(doSignOut());
-    if(navigateTo){
-      if(router && navigate){
-        navigate({to: navigateTo})
-      }
-      else {
+    if (navigateTo) {
+      if (router && navigate) {
+        navigate({to: navigateTo});
+      } else {
         throw new
-          AuthError(
-              'Router Plugin is not implemented in the AuthProvider. Please'+
+        AuthError(
+            'Router Plugin is not implemented in the AuthProvider. Please'+
               ' use the router prop of AuthProvider and Router plugin to'+
-              ' use this feture'
-          );
+              ' use this feture',
+        );
       }
     }
   };

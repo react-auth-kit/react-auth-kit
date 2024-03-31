@@ -5,17 +5,17 @@ import AuthContext from '../../AuthContext';
 import TokenObject from '../../RxTokenObject';
 import * as reducers from '../../utils/reducers';
 
-const spy = jest.spyOn(reducers,  'doSignOut');
+const spy = jest.spyOn(reducers, 'doSignOut');
 
 describe('useSignOut', () => {
   it('Without refresh token', ()=> {
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={tokenObject}>
@@ -24,7 +24,7 @@ describe('useSignOut', () => {
     );
 
     const {result} = renderHook(() => useSignOut(), {wrapper});
-    
+
     result.current();
     expect(spy).toHaveBeenCalled();
   });

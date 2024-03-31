@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Navigate} from 'react-router';
-import { useReactAuthKit } from 'react-auth-kit/AuthContext';
+import {useReactAuthKit} from 'react-auth-kit/AuthContext';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 
