@@ -37,7 +37,7 @@ function useAuthHeader(): string | null {
   const {value} = useReactAuthKit();
   const isAuthenticated = useIsAuthenticated();
 
-  if (!!value.auth && isAuthenticated) {
+  if (!!value.auth && isAuthenticated()) {
     return `${value.auth.type} ${value.auth.token}`;
   } else {
     return null;

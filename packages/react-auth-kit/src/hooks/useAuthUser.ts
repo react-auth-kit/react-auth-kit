@@ -53,7 +53,7 @@ function useAuthUser<T>(): T | null {
   const {value} = useReactAuthKit();
   const isAuthenticated = useIsAuthenticated();
 
-  if (isAuthenticated) {
+  if (isAuthenticated()) {
     return value.userState as T;
   } else {
     return null;

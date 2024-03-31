@@ -30,19 +30,23 @@ import {useReactAuthKit, useReactAuthKitConfig, useReactAuthKitRouter} from '../
  * ```
  *
  */
-function useIsAuthenticated(): boolean {
+function useIsAuthenticated(): () => boolean {
   const {value} = useReactAuthKit();
   const router = useReactAuthKitRouter();
   const {fallbackPath} = useReactAuthKitConfig();
   const navigate = router ? router.useNavigate() : null;
 
-  if (value.auth) {
-    return new Date(value.auth.expiresAt) > new Date();
+  return () => {
+    console.log("React Auth Kit - useIsAuthenticated called");
+    
+    if (value.auth) {
+      return new Date(value.auth.expiresAt) > new Date();
+    }
+    if (router && navigate && fallbackPath) {
+      navigate({to: fallbackPath});
+    }
+    return false;
   }
-  if (router && navigate && fallbackPath) {
-    navigate({to: fallbackPath});
-  }
-  return false;
 }
 
 export default useIsAuthenticated;
