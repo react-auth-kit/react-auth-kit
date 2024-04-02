@@ -1,11 +1,11 @@
 'use client'
 
-import { useAuth } from "@auth-kit/next/useAuth"
+import NextAuth from "@auth-kit/next"
 
 export default function DashboardLayout({
     children,
   }: {
     children: React.ReactNode
   }) {
-    return useAuth({ fallbackPath: '/login'}) && children;
-  }
+  return <NextAuth fallbackPath={'/login'}>{children}</NextAuth>
+}

@@ -4,16 +4,13 @@ import React from 'react'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { UserData } from '@/types';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
-import { useRouter } from 'next/navigation';
 
 const page = () => {
     const data = useAuthUser<UserData>()
     const signOut = useSignOut();
-    const { push } = useRouter();
   
     const logOutHandler = () => {
-      signOut()
-      push('/')
+      signOut('/')
     }
   
     return (

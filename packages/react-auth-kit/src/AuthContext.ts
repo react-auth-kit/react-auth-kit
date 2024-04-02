@@ -2,9 +2,9 @@
 
 import {createContext, useContext} from 'react';
 import type {Context} from 'react';
-import TokenObject from './RxTokenObject';
+import type TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
-import Router from './route';
+import type Router from './route';
 
 interface ReactAuthKitContextConfig {
   fallbackPath?: string

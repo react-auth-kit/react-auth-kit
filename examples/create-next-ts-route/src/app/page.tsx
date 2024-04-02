@@ -1,7 +1,6 @@
 "use client";
 
-import React, { Component } from 'react'
-import Link from 'next/link'
+import React from 'react'
 import Hero from './componants/Hero'
 
 

@@ -19,18 +19,13 @@ const Page = () => {
   const loginHandler = () => {
     // Assuming that, all network Request is successfull, and the user is authenticated
 
-    if (signIn({
-      auth: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8'
-      },
-      userState: { name: 'Manas Baroi', uid: '123456', email: 'manas@abc.com' }
-    })) {
-      // If Login Successfull, then Redirect the user to secure route
-      push('/secure')
-    } else {
-      // Else, there must be some error. So, throw an error
-      alert("Error Occoured. Try Again")
-    }
+  signIn({
+    auth: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzEyMDYxNTQwfQ.YdSeW9BKMykgD__a2LnfoVr9ZtFEhgXPA0CZwUfbEes'
+    },
+    userState: { name: 'Manas Baroi', uid: '123456', email: 'manas@abc.com' },
+    navigateTo: '/secure'
+  })
   }
   console.log(isAuthenticated())
   if (isAuthenticated()) {
