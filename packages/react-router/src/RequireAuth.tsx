@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {Navigate} from 'react-router';
-import {useReactAuthKit} from 'react-auth-kit/AuthContext';
+import {useReactAuthKit, useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
+import { AuthError } from 'react-auth-kit';
 
 /**
  * Component Props for Require Auth
@@ -15,10 +16,11 @@ interface RequireAuthProps {
   /**
    * Path to redirect if the user is not authenticated
    *
+   * @deprecated Use AuthProvider fallpackPath prop instead. Will be removed in the upcoming version
    * @example
    * `/login`
    */
-  fallbackPath: string
+  fallbackPath?: string
 }
 
 /**
@@ -48,9 +50,17 @@ interface RequireAuthProps {
 const RequireAuth: React.FC<RequireAuthProps> =
   ({children, fallbackPath}) => {
     const context = useReactAuthKit();
+    const config = useReactAuthKitConfig();
 
-
-    // TODO: needed fallbackPath check
+    
+    let fp;
+    if(!fallbackPath && !config.fallbackPath) {
+      throw new AuthError("fallbackPath prop must be present in AuthProvider or RequireAuth component")
+    } else if (fallbackPath) {
+      fp = fallbackPath
+    } else {
+      fp = config.fallbackPath
+    }
 
     if (!isAuthenticated(context.value)) {
       // Redirect them to the /login page, but save the current location they
@@ -58,7 +68,8 @@ const RequireAuth: React.FC<RequireAuthProps> =
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
       context.set(doSignOut());
-      return <Navigate to={fallbackPath} replace />;
+      // @ts-expect-error To is perfest
+      return <Navigate to={fp} replace />;
     }
 
     return children;

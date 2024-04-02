@@ -15,10 +15,12 @@ const SecureComponent = () => {
     }
 
     const getData = async () => {
+        const header = authHeader();
+        console.log(header);
         const res = await axios.get(
             'https://demo4875674.mockable.io/hello',
             {
-                headers: {'Authorization': authHeader()}
+                headers: {'Authorization': header}
             }
         )
         console.log(res.data);
