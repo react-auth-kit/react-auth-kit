@@ -14,6 +14,12 @@ interface Router {
      * @returns Hook function
      */
     useNavigate: () => ({to}: {to: string}) => void
+
+    /**
+     * 
+     * @returns Current path
+     */
+    usePath: () => () => string
 }
 
 export default Router;
