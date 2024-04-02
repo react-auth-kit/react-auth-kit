@@ -21,7 +21,7 @@ const Login = () => {
 
     signIn({
       auth: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzExODcxNzQwfQ.gckANDZphIVZmS4fgF4pIfOSIWrcXni3OurX7KHJBiE'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzEyMDU2NTYwfQ.VAZbHldKNxEhnTtOODxCplrpPBHmM4CSVpXsnTLhljA'
       },
       userState: {name: 'Manas Baroi', uid: 123456},
       navigateTo: '/secure'

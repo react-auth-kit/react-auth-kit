@@ -41,11 +41,15 @@ function useIsAuthenticated(): () => boolean {
 
   return () => {
     console.log("React Auth Kit - useIsAuthenticated called");
+    
     if (value.auth && new Date(value.auth.expiresAt) > new Date()) {
       return true;
     }
+    
+    if (value.auth && new Date(value.auth.expiresAt) <= new Date()) {
+      set(doSignOut());
+    }
 
-    set(doSignOut());
     if(router && navigate && fallbackPath){
       navigate({to: fallbackPath});
     }
