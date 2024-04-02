@@ -3,9 +3,10 @@
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 
-import {useReactAuthKit} from 'react-auth-kit/AuthContext';
+import {useReactAuthKit, useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
+import { AuthError } from 'react-auth-kit';
 
 
 /**
@@ -15,10 +16,11 @@ interface NextAuthProps {
   /**
   * Path to redirect if the user is not authenticated
   *
+  * @deprecated Use AuthProvider fallpackPath prop instead. Will be removed in the upcoming version
   * @example
   * `/login`
   */
-  fallbackPath: string
+  fallbackPath?: string
 }
 
 
@@ -47,9 +49,19 @@ interface NextAuthProps {
  */
 export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
   const context = useReactAuthKit();
+  const {push} = useRouter();
+  const config = useReactAuthKitConfig();
+
   const [login, setLogIn] = useState(false);
 
-  const {push} = useRouter();
+  let fp: string;
+  if(!fallbackPath && !config.fallbackPath) {
+    throw new AuthError("fallbackPath prop must be present in AuthProvider or RequireAuth component")
+  } else if (fallbackPath) {
+    fp = fallbackPath
+  } else {
+    fp = config.fallbackPath || ''
+  }
 
   useEffect(() => {
     if (!isAuthenticated(context.value)) {
@@ -58,7 +70,7 @@ export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
       context.set(doSignOut());
-      push(fallbackPath);
+      push(fp);
     } else {
       setLogIn(true);
     }

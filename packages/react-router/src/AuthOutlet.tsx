@@ -52,7 +52,7 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
   } else if (fallbackPath) {
     fp = fallbackPath
   } else {
-    fp = config.fallbackPath
+    fp = config.fallbackPath || ''
   }
 
   if (!isAuthenticated(context.value)) {
@@ -61,7 +61,6 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
     // send them along to that page after they login, which is a nicer
     // user experience than dropping them off on the home page.
     context.set(doSignOut());
-    // @ts-expect-error To is perfest
     return <Navigate to={fp} replace />;
   }
 
