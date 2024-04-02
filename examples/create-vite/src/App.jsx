@@ -17,7 +17,6 @@ function App() {
   return (
     <>
     <BrowserRouter>
-
       <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath='/login'>
         <RoutesPage/>
       </AuthProvider>
