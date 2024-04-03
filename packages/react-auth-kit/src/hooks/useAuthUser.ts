@@ -49,7 +49,7 @@ import useIsAuthenticated from './useIsAuthenticated';
  * }
  * ```
  */
-function useAuthUser<T>(): () =>  T | null {
+function useAuthUser<T>(): () => T | null {
   const {value} = useReactAuthKit();
   const isAuthenticated = useIsAuthenticated();
 
@@ -59,7 +59,7 @@ function useAuthUser<T>(): () =>  T | null {
     } else {
       return null;
     }
-  }
+  };
 }
 
 export default useAuthUser;

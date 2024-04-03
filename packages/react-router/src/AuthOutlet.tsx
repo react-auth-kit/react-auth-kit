@@ -4,7 +4,7 @@ import {Navigate, Outlet} from 'react-router';
 import {useReactAuthKit, useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
-import { AuthError } from 'react-auth-kit';
+import {AuthError} from 'react-auth-kit';
 
 /**
  * Component Props for Auth Outlet
@@ -47,12 +47,12 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
   const config = useReactAuthKitConfig();
 
   let fp;
-  if(!fallbackPath && !config.fallbackPath) {
-    throw new AuthError("fallbackPath prop must be present in AuthProvider or AuthOutlet component")
+  if (!fallbackPath && !config.fallbackPath) {
+    throw new AuthError('fallbackPath prop must be present in AuthProvider or AuthOutlet component');
   } else if (fallbackPath) {
-    fp = fallbackPath
+    fp = fallbackPath;
   } else {
-    fp = config.fallbackPath || ''
+    fp = config.fallbackPath || '';
   }
 
   if (!isAuthenticated(context.value)) {

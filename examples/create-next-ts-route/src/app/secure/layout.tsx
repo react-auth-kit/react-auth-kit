@@ -7,5 +7,5 @@ export default function DashboardLayout({
   }: {
     children: React.ReactNode
   }) {
-  return <NextAuth fallbackPath={'/login'}>{children}</NextAuth>
+  return <NextAuth>{children}</NextAuth>
 }

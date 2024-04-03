@@ -16,7 +16,7 @@ interface Router {
     useNavigate: () => ({to}: {to: string}) => void
 
     /**
-     * 
+     *
      * @returns Current path
      */
     usePath: () => () => string

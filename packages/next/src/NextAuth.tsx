@@ -4,10 +4,13 @@ import type {ReactNode} from 'react';
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 
-import {useReactAuthKit, useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
+import {
+  useReactAuthKit,
+  useReactAuthKitConfig,
+} from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
 import {doSignOut} from 'react-auth-kit/utils/reducers';
-import { AuthError } from 'react-auth-kit';
+import {AuthError} from 'react-auth-kit';
 
 
 /**
@@ -17,7 +20,8 @@ interface NextAuthProps {
    /**
     * Path to redirect if the user is not authenticated
     *
-    * @deprecated Use AuthProvider fallpackPath prop instead. Will be removed in the upcoming version
+    * @deprecated Use AuthProvider fallpackPath prop instead.
+    * Will be removed in the upcoming version
     * @example
     * `/login`
     */
@@ -54,12 +58,15 @@ export default function NextAuth({fallbackPath, children}: NextAuthProps) {
   const {push} = useRouter();
 
   let fp: string;
-  if(!fallbackPath && !config.fallbackPath) {
-    throw new AuthError("fallbackPath prop must be present in AuthProvider or RequireAuth component")
+  if (!fallbackPath && !config.fallbackPath) {
+    throw new AuthError(
+        'fallbackPath prop must be present in'+
+        ' AuthProvider or NextAuth component',
+    );
   } else if (fallbackPath) {
-    fp = fallbackPath
+    fp = fallbackPath;
   } else {
-    fp = config.fallbackPath || ''
+    fp = config.fallbackPath || '';
   }
 
   useEffect(() => {

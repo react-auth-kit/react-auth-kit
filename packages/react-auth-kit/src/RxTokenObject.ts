@@ -175,20 +175,28 @@ class TokenObject<T> {
     });
   };
 
+  /**
+   * Callback hook, when the user is signed in this function will be called
+   * @param callback function to be called
+   */
   onSignIn(callback: (value: AuthKitStateInterface<T>)=> void) {
     this.subscribe((value)=> {
-      if(value.auth !== null){
-        callback(value)
+      if (value.auth !== null) {
+        callback(value);
       }
-    })
+    });
   }
 
+  /**
+   * Callback hook, when the user is signed out, this function will be called
+   * @param callback function to be called
+   */
   onSignOut(callback: (value: AuthKitStateInterface<T>)=> void) {
     this.subscribe((value)=> {
-      if(value.auth === null){
-        callback(value)
+      if (value.auth === null) {
+        callback(value);
       }
-    })
+    });
   }
 
   /**
@@ -332,8 +340,8 @@ class TokenObject<T> {
       }
     }
     this.log(`Set Function New Data`, obj);
-    if(!deepEqual(this.value, obj)){
-      this.log("Updating the value in the Set Function")
+    if (!deepEqual(this.value, obj)) {
+      this.log('Updating the value in the Set Function');
       this.authValue = obj;
       this.authSubject.next(obj);
     }

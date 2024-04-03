@@ -16,8 +16,8 @@ const ReactRouterPlugin: Router = {
   },
   usePath: function(): () => string {
     const location = useLocation();
-    return () => location.pathname; 
-  }
+    return () => location.pathname;
+  },
 };
 
 export default ReactRouterPlugin;

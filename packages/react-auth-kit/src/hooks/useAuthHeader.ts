@@ -42,7 +42,7 @@ function useAuthHeader(): () => string | null {
     } else {
       return null;
     }
-  }
+  };
 }
 
 export default useAuthHeader;
