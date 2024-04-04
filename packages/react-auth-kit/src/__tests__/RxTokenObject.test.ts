@@ -1375,6 +1375,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
         'userState': {},
       };
 
+      const fn = jest.fn();
+
       tokenObject.subscribe((data) => {
         if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
@@ -1387,9 +1389,12 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
+          expect(fn).toHaveBeenCalled();
           done();
         }
       });
+
+      tokenObject.onSignIn(fn);
 
       tokenObject.set({
         'auth': {
@@ -1408,7 +1413,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'cookie',
           null,
-          false,
+          true,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -1445,13 +1450,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
-          console.log(resp);
-          console.log(data);
           subscribeCount++;
         } else {
-          console.log(data);
-          console.log(newResp);
-                    
           expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
@@ -1672,6 +1672,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           window.location.protocol === 'https:',
       );
 
+      const fn = jest.fn();
+      
       const resp = {
         'auth': {
           'token': oldToken,
@@ -1704,9 +1706,12 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
+          expect(fn).toHaveBeenCalled();
           done();
         }
       });
+
+      tokenObject.onSignOut(fn);
 
       tokenObject.set({
         'auth': null,
