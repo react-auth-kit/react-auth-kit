@@ -243,7 +243,7 @@ class TokenObject<T> {
     this.log(`Set Function Old Data`, this.value);
 
 
-    let obj = this.value;
+    let obj = {...this.value};
 
     if (data.userState !== undefined) {
       obj.userState = data.userState;

@@ -1445,8 +1445,13 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
+          console.log(resp);
+          console.log(data);
           subscribeCount++;
         } else {
+          console.log(data);
+          console.log(newResp);
+                    
           expect(data).toMatchObject(newResp);
           expect(Cookies.get('__')).toBe(oldToken);
           expect(Cookies.get('___type')).toBe('Bearer');
@@ -1709,7 +1714,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
     }, 10000);
   });
 
-  describe('Using Locat Storage', () => {
+  describe('Using Local Storage', () => {
     const oldToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
     'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
@@ -1743,7 +1748,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1803,7 +1808,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1864,7 +1869,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1929,7 +1934,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1988,7 +1993,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -2049,7 +2054,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
