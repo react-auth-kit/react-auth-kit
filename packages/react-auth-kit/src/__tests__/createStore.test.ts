@@ -76,7 +76,7 @@ describe('Store with refreshtoken', ()=>{
       authType: 'cookie',
       cookieDomain: window.location.hostname,
       cookieSecure: false,
-      refresh: refresh
+      refresh: refresh,
     });
     const tokenObject = new TokenObject(
         '__auth',

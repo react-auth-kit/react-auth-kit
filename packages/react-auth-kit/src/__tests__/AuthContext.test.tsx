@@ -4,7 +4,7 @@ import AuthKitContext from '../AuthContext';
 import {
   useReactAuthKit,
   useReactAuthKitConfig,
-  useReactAuthKitRouter
+  useReactAuthKitRouter,
 } from '../AuthContext';
 import {render} from '@testing-library/react';
 import Cookies from 'js-cookie';
@@ -19,67 +19,82 @@ test('All Expected Exports are there', ()=>{
   expect(useReactAuthKitRouter).toBeTruthy();
 });
 
-// test('Testing Context Workflow', ()=>{
-//   const TestComponent = () => {
-//     const c = useReactAuthKit();
-//     return <div id="test"> {JSON.stringify(c.value)} </div>;
-//   };
+test('Testing Context Workflow', ()=>{
+  const TestComponent = () => {
+    const c = useReactAuthKit();
+    return <div id="test"> {JSON.stringify(c.value)} </div>;
+  };
 
-//   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
-//       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
-//       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-//   Cookies.set('__', token);
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
+      '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
+  Cookies.set('__', token);
 
-//   const tokenObject = new TokenObject<object>(
-//       '__',
-//       'cookie',
-//       null,
-//       false,
-//       window.location.hostname,
-//       window.location.protocol === 'https:',
-//   );
+  const tokenObject = new TokenObject<object>(
+      '__',
+      'cookie',
+      null,
+      false,
+      window.location.hostname,
+      window.location.protocol === 'https:',
+  );
 
-//   render(
-//       // @ts-expect-error 
-//       <AuthKitContext.Provider value={{token: tokenObject, router: undefined, config: {fallbackPath: '/login'}}}>
-//         <TestComponent/>
-//       </AuthKitContext.Provider>,
-//   );
+  render(
+      <AuthKitContext.Provider value={
+        {
+          // @ts-expect-error Type error
+          token: tokenObject,
+          router: undefined,
+          config: {fallbackPath: '/login'},
+        }
+      }
+      >
+        <TestComponent/>
+      </AuthKitContext.Provider>,
+  );
 
-//   const data = document.querySelector('#test');
-//   expect(data?.innerHTML).toEqual(` ${JSON.stringify(tokenObject.value)} `);
-// });
+  const data = document.querySelector('#test');
+  expect(data?.innerHTML).toEqual(` ${JSON.stringify(tokenObject.value)} `);
+});
 
-// test('Testing Context config Workflow', ()=>{
-//   const TestComponent = () => {
-//     const c = useReactAuthKitConfig();
-//     return <div id="test"> {JSON.stringify(c)} </div>;
-//   };
+test('Testing Context config Workflow', ()=>{
+  const TestComponent = () => {
+    const c = useReactAuthKitConfig();
+    return <div id="test"> {JSON.stringify(c)} </div>;
+  };
 
-//   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
-//       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
-//       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-//   Cookies.set('__', token);
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
+      '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
+  Cookies.set('__', token);
 
-//   const tokenObject = new TokenObject<object>(
-//       '__',
-//       'cookie',
-//       null,
-//       false,
-//       window.location.hostname,
-//       window.location.protocol === 'https:',
-//   );
+  const tokenObject = new TokenObject<object>(
+      '__',
+      'cookie',
+      null,
+      false,
+      window.location.hostname,
+      window.location.protocol === 'https:',
+  );
 
-//   render(
-//     // @ts-expect-error 
-//     <AuthKitContext.Provider value={{token: tokenObject, router: undefined, config: {fallbackPath: '/login'}}}>
-//       <TestComponent/>
-//     </AuthKitContext.Provider>,
-//   );
+  render(
+      <AuthKitContext.Provider value={
+        {
+          // @ts-expect-error Any type
+          token: tokenObject,
+          router: undefined,
+          config: {fallbackPath: '/login'},
+        }
+      }>
+        <TestComponent/>
+      </AuthKitContext.Provider>,
+  );
 
-//   const data = document.querySelector('#test');
-//   expect(data?.innerHTML).toEqual(` ${JSON.stringify({fallbackPath: '/login'})} `);
-// });
+  const data = document.querySelector('#test');
+  expect(data?.innerHTML).toEqual(
+      ` ${JSON.stringify({fallbackPath: '/login'})} `,
+  );
+});
 
 describe('Context Workflow', ()=>{
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
@@ -87,36 +102,41 @@ describe('Context Workflow', ()=>{
     '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
   let tokenObject: TokenObject<object>;
   let AuthProvider: React.FC<React.PropsWithChildren>;
-  
-  const navigate_fn = jest.fn();
+
+  const navigateFn = jest.fn();
 
   beforeEach(()=>{
     Cookies.set('__', token);
     tokenObject = new TokenObject<object>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
 
     const ReactRouterPlugin: Router = {
-      navigate: navigate_fn,
+      navigate: navigateFn,
       useNavigate: function(): ({to}: { to: string; }) => void {
         return jest.fn();
       },
       usePath: function(): () => string {
-        return jest.fn()
+        return jest.fn();
       },
     };
-    
-    AuthProvider = ({children}) => (
-    // @ts-expect-error
-    <AuthKitContext.Provider value={{token: tokenObject, router: ReactRouterPlugin, config: {fallbackPath: '/login'}}}>
-      {children}
-    </AuthKitContext.Provider>)
 
+    AuthProvider = ({children}) => (
+      <AuthKitContext.Provider value={
+        {
+          // @ts-expect-error Type error
+          token: tokenObject,
+          router: ReactRouterPlugin,
+          config: {fallbackPath: '/login'},
+        }
+      }>
+        {children}
+      </AuthKitContext.Provider>);
   });
 
   it('useReactAuthKit', ()=>{
@@ -126,9 +146,9 @@ describe('Context Workflow', ()=>{
     };
 
     render(
-      <AuthProvider>
-        <TestComponent/>
-      </AuthProvider>
+        <AuthProvider>
+          <TestComponent/>
+        </AuthProvider>,
     );
 
     const data = document.querySelector('#test');
@@ -142,31 +162,32 @@ describe('Context Workflow', ()=>{
     };
 
     render(
-      <AuthProvider>
-        <TestComponent/>
-      </AuthProvider>
+        <AuthProvider>
+          <TestComponent/>
+        </AuthProvider>,
     );
 
     const data = document.querySelector('#test');
-    expect(data?.innerHTML).toEqual(` ${JSON.stringify({fallbackPath: '/login'})} `);
+    expect(data?.innerHTML).toEqual(
+        ` ${JSON.stringify({fallbackPath: '/login'})} `,
+    );
   });
 
   it('useReactAuthKitConfig', ()=>{
     const TestComponent = () => {
       const c = useReactAuthKitRouter();
-      c?.navigate({to:'/hello'})
+      c?.navigate({to: '/hello'});
       return <div id="test"> Hi </div>;
     };
 
     render(
-      <AuthProvider>
-        <TestComponent/>
-      </AuthProvider>
+        <AuthProvider>
+          <TestComponent/>
+        </AuthProvider>,
     );
-    
-    expect(navigate_fn).toHaveBeenCalled()
-    expect(navigate_fn).toHaveBeenCalledWith({to:'/hello'})
-    
+
+    expect(navigateFn).toHaveBeenCalled();
+    expect(navigateFn).toHaveBeenCalledWith({to: '/hello'});
   });
 });
 
@@ -180,7 +201,7 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
         <TestComponent/>,
     )).toThrow(AuthError);
   });
-  
+
   it('useReactAuthKitRouter', ()=>{
     const TestComponent = () => {
       useReactAuthKitRouter();
@@ -190,7 +211,7 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
         <TestComponent/>,
     )).toThrow(AuthError);
   });
-  
+
   it('useReactAuthKitConfig', ()=>{
     const TestComponent = () => {
       useReactAuthKitConfig();

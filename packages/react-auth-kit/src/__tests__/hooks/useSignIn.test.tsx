@@ -21,7 +21,7 @@ describe('useSignIn', () => {
           window.location.protocol === 'https:',
       );
       const wrapper = ({children}: {children: React.ReactNode}) => (
-        <AuthContext.Provider value={{token: tokenObject, config:{}}}>
+        <AuthContext.Provider value={{token: tokenObject, config: {}}}>
           {children}
         </AuthContext.Provider>
       );
@@ -48,7 +48,7 @@ describe('useSignIn', () => {
           window.location.protocol === 'https:',
       );
       const wrapper = ({children}: {children: React.ReactNode}) => (
-        <AuthContext.Provider value={{token: tokenObject, config:{}}}>
+        <AuthContext.Provider value={{token: tokenObject, config: {}}}>
           {children}
         </AuthContext.Provider>
       );
@@ -78,7 +78,7 @@ describe('useSignIn', () => {
           window.location.protocol === 'https:',
       );
       const wrapper = ({children}: {children: React.ReactNode}) => (
-        <AuthContext.Provider value={{token: tokenObject, config:{}}}>
+        <AuthContext.Provider value={{token: tokenObject, config: {}}}>
           {children}
         </AuthContext.Provider>
       );
@@ -94,7 +94,7 @@ describe('useSignIn', () => {
         refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
-        navigateTo: '/secure'
+        navigateTo: '/secure',
       })).toThrow(AuthError);
     });
   });
@@ -110,7 +110,7 @@ describe('useSignIn', () => {
           window.location.protocol === 'https:',
       );
       const wrapper = ({children}: {children: React.ReactNode}) => (
-        <AuthContext.Provider value={{token: tokenObject, config:{}}}>
+        <AuthContext.Provider value={{token: tokenObject, config: {}}}>
           {children}
         </AuthContext.Provider>
       );
@@ -146,7 +146,7 @@ describe('useSignIn', () => {
           window.location.protocol === 'https:',
       );
       const wrapper = ({children}: {children: React.ReactNode}) => (
-        <AuthContext.Provider value={{token: tokenObject, config:{}}}>
+        <AuthContext.Provider value={{token: tokenObject, config: {}}}>
           {children}
         </AuthContext.Provider>
       );
@@ -180,33 +180,39 @@ describe('useSignIn', () => {
   });
 
   describe('Proper Redirection is working without Refresh token', ()=>{
-    let navigate_fn: jest.Mock<any, any, any>;
+    let navigateFn: jest.Mock<any, any, any>;
     const ReactRouterPlugin: Router = {
       navigate: jest.fn(),
       useNavigate: function(): ({to}: { to: string; }) => void {
-        return navigate_fn;
+        return navigateFn;
       },
       usePath: function(): () => string {
-        return jest.fn()
+        return jest.fn();
       },
     };
 
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
 
     const AuthProvider = ({children} : {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, router: ReactRouterPlugin, config: {fallbackPath: '/login'}}}>
+      <AuthContext.Provider value={
+        {
+          token: tokenObject,
+          router: ReactRouterPlugin,
+          config: {fallbackPath: '/login'},
+        }
+      }>
         {children}
-      </AuthContext.Provider>)
+      </AuthContext.Provider>);
 
     beforeEach(()=>{
-      navigate_fn = jest.fn();
+      navigateFn = jest.fn();
     });
 
     it('navigateTo param is specified', ()=>{
@@ -217,10 +223,10 @@ describe('useSignIn', () => {
           '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
           '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         },
-        navigateTo: '/secure'
+        navigateTo: '/secure',
       })).not.toThrow(AuthError);
-      expect(navigate_fn).toHaveBeenCalled();
-      expect(navigate_fn).toHaveBeenCalledWith({to: '/secure'})
+      expect(navigateFn).toHaveBeenCalled();
+      expect(navigateFn).toHaveBeenCalledWith({to: '/secure'});
     });
 
     it('navigateTo param is not specified', ()=>{
@@ -230,40 +236,46 @@ describe('useSignIn', () => {
           token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
           '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
           '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
-        }
+        },
       })).not.toThrow(AuthError);
-      expect(navigate_fn).not.toHaveBeenCalled();
+      expect(navigateFn).not.toHaveBeenCalled();
     });
   });
 
   describe('Proper Redirection is working With Refresh Token', ()=>{
-    let navigate_fn: jest.Mock<any, any, any>;
+    let navigateFn: jest.Mock<any, any, any>;
     const ReactRouterPlugin: Router = {
       navigate: jest.fn(),
       useNavigate: function(): ({to}: { to: string; }) => void {
-        return navigate_fn;
+        return navigateFn;
       },
       usePath: function(): () => string {
-        return jest.fn()
+        return jest.fn();
       },
     };
 
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      '__refresh',
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        '__refresh',
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
 
     const AuthProvider = ({children} : {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, router: ReactRouterPlugin, config: {fallbackPath: '/login'}}}>
+      <AuthContext.Provider value={
+        {
+          token: tokenObject,
+          router: ReactRouterPlugin,
+          config: {fallbackPath: '/login'},
+        }
+      }>
         {children}
-      </AuthContext.Provider>)
-      
+      </AuthContext.Provider>);
+
     beforeEach(()=>{
-      navigate_fn = jest.fn();
+      navigateFn = jest.fn();
     });
 
     it('navigateTo param is specified', ()=>{
@@ -277,10 +289,10 @@ describe('useSignIn', () => {
         refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
-        navigateTo: '/secure'
+        navigateTo: '/secure',
       })).not.toThrow(AuthError);
-      expect(navigate_fn).toHaveBeenCalled();
-      expect(navigate_fn).toHaveBeenCalledWith({to: '/secure'})
+      expect(navigateFn).toHaveBeenCalled();
+      expect(navigateFn).toHaveBeenCalledWith({to: '/secure'});
     });
 
     it('navigateTo param is not specified', ()=>{
@@ -293,11 +305,9 @@ describe('useSignIn', () => {
         },
         refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
-        '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8'
+        '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
       })).not.toThrow(AuthError);
-      expect(navigate_fn).not.toHaveBeenCalled();
+      expect(navigateFn).not.toHaveBeenCalled();
     });
-
-
   });
 });

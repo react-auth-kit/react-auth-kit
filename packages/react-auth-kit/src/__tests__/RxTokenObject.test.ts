@@ -1673,7 +1673,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
       );
 
       const fn = jest.fn();
-      
+
       const resp = {
         'auth': {
           'token': oldToken,

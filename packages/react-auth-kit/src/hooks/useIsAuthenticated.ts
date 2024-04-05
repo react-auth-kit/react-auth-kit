@@ -1,6 +1,10 @@
 'use client';
 
-import {useReactAuthKit, useReactAuthKitConfig, useReactAuthKitRouter} from '../AuthContext';
+import {
+  useReactAuthKit,
+  useReactAuthKitConfig,
+  useReactAuthKitRouter,
+} from '../AuthContext';
 
 import {doSignOut} from '../utils/reducers';
 
