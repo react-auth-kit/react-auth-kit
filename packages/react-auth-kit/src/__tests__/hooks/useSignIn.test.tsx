@@ -1,11 +1,13 @@
 import React from 'react';
 import {renderHook} from '@testing-library/react';
-import useSignIn from '../../hooks/useSignIn';
+
+import type Router from '../../route';
+
+import {AuthError} from '../../errors';
 import AuthContext from '../../AuthContext';
 import TokenObject from '../../RxTokenObject';
+import useSignIn from '../../hooks/useSignIn';
 import * as reducers from '../../utils/reducers';
-import {AuthError} from '../../errors';
-import type Router from '../../route';
 
 const spy = jest.spyOn(reducers, 'doSignIn');
 

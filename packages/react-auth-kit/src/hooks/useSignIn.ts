@@ -122,6 +122,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
         // refresh token params are provided
         // sign in with refresh token
         context.set(doSignIn(signInConfig));
+        redirectAfterSignin(signInConfig.navigateTo);
         return true;
       } else {
         // refresh token params are not provided
