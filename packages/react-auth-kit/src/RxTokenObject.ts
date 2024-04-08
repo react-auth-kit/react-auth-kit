@@ -191,10 +191,10 @@ class TokenObject<T> {
    * Callback hook, when the user is signed out, this function will be called
    * @param callback - function to be called
    */
-  onSignOut(callback: (value: AuthKitStateInterface<T>)=> void) {
+  onSignOut(callback: ()=> void) {
     this.subscribe((value)=> {
       if (value.auth === null) {
-        callback(value);
+        callback();
       }
     });
   }
