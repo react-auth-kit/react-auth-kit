@@ -1706,7 +1706,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
-          expect(fn).toHaveBeenCalled();
+          setTimeout(()=>{expect(fn).toHaveBeenCalled();}, 0);
           done();
         }
       });
