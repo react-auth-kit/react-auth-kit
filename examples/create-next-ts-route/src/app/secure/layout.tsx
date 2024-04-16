@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import NextAuth from "@auth-kit/next"
+import NextAuth from '@auth-kit/next';
 
 export default function DashboardLayout({
-    children,
-  }: {
+  children,
+}: {
     children: React.ReactNode
   }) {
-  return <NextAuth>{children}</NextAuth>
+  return <NextAuth>{children}</NextAuth>;
 }
