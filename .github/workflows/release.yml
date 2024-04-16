@@ -48,6 +48,9 @@ jobs:
       - name: NPM Install
         run: npm ci
 
+      - name: NPM Build
+        run: npm build
+
       - name: NPM Test
         run: npm test
 
@@ -74,6 +77,9 @@ jobs:
 
       - name: NPM Install
         run: npm ci
+
+      - name: NPM Build
+        run: npm build
 
       - name: NPM Test
         run: npm test
