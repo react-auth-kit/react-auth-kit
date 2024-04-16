@@ -9,7 +9,7 @@ jest.useFakeTimers();
 
 describe('AuthProvider', () => {
   it('Renders Successfully', () => {
-    const tokenObject = new TokenObject<object>(
+    const tokenObject = new TokenObject<Record<string, unknown>>(
         '__',
         'cookie',
         null,

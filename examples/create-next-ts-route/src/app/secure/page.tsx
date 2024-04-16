@@ -6,7 +6,7 @@ import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 import {UserData} from '@/types';
 
-const Page = () => {
+const Page = (): JSX.Element => {
   const data = useAuthUser<UserData>();
   const signOut = useSignOut();
 
@@ -16,7 +16,6 @@ const Page = () => {
 
   return (
     <div>
-
       <h1>{`The User name is  : ${data?.name}`}</h1>
       <button onClick={logOutHandler}>Log Out</button>
     </div>

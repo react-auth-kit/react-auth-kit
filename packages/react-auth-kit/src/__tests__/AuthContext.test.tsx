@@ -100,14 +100,14 @@ describe('Context Workflow', ()=>{
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
     '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-  let tokenObject: TokenObject<object>;
+  let tokenObject: TokenObject<Record<string, unknown>>;
   let AuthProvider: React.FC<React.PropsWithChildren>;
 
   const navigateFn = jest.fn();
 
   beforeEach(()=>{
     Cookies.set('__', token);
-    tokenObject = new TokenObject<object>(
+    tokenObject = new TokenObject<Record<string, unknown>>(
         '__',
         'cookie',
         null,

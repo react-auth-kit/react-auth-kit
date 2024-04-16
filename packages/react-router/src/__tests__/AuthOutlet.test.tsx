@@ -10,7 +10,7 @@ import * as useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 import AuthOutlet from '../AuthOutlet';
 import {AuthError} from 'react-auth-kit';
 
-const store = createStore<object>({
+const store = createStore<Record<string, unknown>>({
   authName: '_auth',
   authType: 'cookie',
   cookieDomain: window.location.hostname,
@@ -141,7 +141,7 @@ describe('Redirection', () => {
     spy.mockImplementation(() => () => false);
 
     const TestComponent = () => <p>Test Component</p>;
-    const store = createStore<object>({
+    const store = createStore<Record<string, unknown>>({
       authName: '_auth',
       authType: 'cookie',
       cookieDomain: window.location.hostname,
@@ -179,7 +179,7 @@ describe('Redirection', () => {
     spy.mockImplementation(() => () => false);
 
     const TestComponent = () => <p>Test Component</p>;
-    const store = createStore<object>({
+    const store = createStore<Record<string, unknown>>({
       authName: '_auth',
       authType: 'cookie',
       cookieDomain: window.location.hostname,
