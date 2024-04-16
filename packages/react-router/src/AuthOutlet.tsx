@@ -13,7 +13,8 @@ interface AuthOutletProps {
   /**
    * Path to redirect if the user is not authenticated
    *
-   * @deprecated Use AuthProvider fallpackPath prop instead. Will be removed in the upcoming version
+   * @deprecated Use AuthProvider fallpackPath prop instead.
+   * Will be removed in the upcoming version
    * @example
    * `/login`
    */
@@ -47,16 +48,17 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
   const config = useReactAuthKitConfig();
 
   let fp;
-  if(fallbackPath !== undefined){
+  if (fallbackPath !== undefined) {
     fp = fallbackPath;
-  }
-  else if(
+  } else if (
     fallbackPath === undefined && config.fallbackPath !== undefined
-  ){
+  ) {
     fp = config.fallbackPath;
-  }
-  else {
-    throw new AuthError('fallbackPath prop must be present in AuthProvider or AuthOutlet component');
+  } else {
+    throw new AuthError(
+        'fallbackPath prop must be present'+
+      ' in AuthProvider or AuthOutlet component',
+    );
   }
 
   if (!isAuthenticated()) {

@@ -1,5 +1,5 @@
 import RequireAuth from '../index';
 
-test('Index',()=>{
-    expect(RequireAuth).toBeTruthy()
-})
+test('Index', ()=>{
+  expect(RequireAuth).toBeTruthy();
+});

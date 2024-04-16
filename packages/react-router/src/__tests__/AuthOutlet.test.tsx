@@ -1,14 +1,14 @@
 // import * as React from 'react';
 import Cookies from 'js-cookie';
-import { render, screen } from '@testing-library/react';
-import { Routes, Route, MemoryRouter } from 'react-router-dom';
+import {render, screen} from '@testing-library/react';
+import {Routes, Route, MemoryRouter} from 'react-router-dom';
 
 import createStore from 'react-auth-kit/createStore';
 import AuthProvider from 'react-auth-kit/AuthProvider';
 import * as useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
 import AuthOutlet from '../AuthOutlet';
-import { AuthError } from 'react-auth-kit';
+import {AuthError} from 'react-auth-kit';
 
 const store = createStore<object>({
   authName: '_auth',
@@ -22,75 +22,75 @@ describe('Error Conditions', () => {
     jest.spyOn(console, 'error').mockImplementation(jest.fn());
 
     expect(() => render(
-      <MemoryRouter>
-        <Routes>
-          <Route element={<AuthOutlet fallbackPath={'/login'} />}>
-            <Route path={'/'} element={
-              <div>
-                Protected
-              </div>
-            } />
-          </Route>
-          <Route path={'/login'} element={
-            <div>
-              Login
-            </div>
-          } />
-        </Routes>
-      </MemoryRouter>,
-    )).toThrow(AuthError);
-  });
-
-  it('throws, when there is no fallbackPath', () => {
-    expect(() => render(
-      <AuthProvider store={store}>
         <MemoryRouter>
           <Routes>
-            <Route element={<AuthOutlet />}>
+            <Route element={<AuthOutlet fallbackPath={'/login'} />}>
               <Route path={'/'} element={
                 <div>
-                  Protected
+                Protected
                 </div>
               } />
             </Route>
             <Route path={'/login'} element={
               <div>
-                Login
+              Login
               </div>
             } />
           </Routes>
         </MemoryRouter>,
-      </AuthProvider>
+    )).toThrow(AuthError);
+  });
+
+  it('throws, when there is no fallbackPath', () => {
+    expect(() => render(
+        <AuthProvider store={store}>
+          <MemoryRouter>
+            <Routes>
+              <Route element={<AuthOutlet />}>
+                <Route path={'/'} element={
+                  <div>
+                  Protected
+                  </div>
+                } />
+              </Route>
+              <Route path={'/login'} element={
+                <div>
+                Login
+                </div>
+              } />
+            </Routes>
+          </MemoryRouter>,
+        </AuthProvider>,
     )).toThrow(AuthError);
   });
 });
 
 describe('Rendering Successfully', () => {
   it('With AuthProvider', () => {
-    const { container } = render(
-      <AuthProvider store={store}>
-        <MemoryRouter>
-          <Routes>
-            <Route path={'/login'} element={
-              <div>
-                Login
-              </div>
-            } />
-            <Route path={'/'} element={
-              <div>
-                Home
-              </div>
-            } />
-            <Route element={<AuthOutlet fallbackPath={'/login'} />}>
-              <Route path={'/'} element={
+    const {container} = render(
+        <AuthProvider store={store}>
+          <MemoryRouter>
+            <Routes>
+              <Route path={'/login'} element={
                 <div>
-                  Protected
+                Login
                 </div>
               } />
-          </Route>
-          </Routes>
-        </MemoryRouter>
-      </AuthProvider>,
+              <Route path={'/'} element={
+                <div>
+                Home
+                </div>
+              } />
+              <Route element={<AuthOutlet fallbackPath={'/login'} />}>
+                <Route path={'/'} element={
+                  <div>
+                  Protected
+                  </div>
+                } />
+              </Route>
+            </Routes>
+          </MemoryRouter>
+        </AuthProvider>,
     );
     expect(container.nodeName).toMatch('DIV');
   });
@@ -111,24 +111,24 @@ describe('Rendering Successfully', () => {
     });
 
     render(
-      <AuthProvider store={store}>
-        <MemoryRouter>
-          <Routes>
-            <Route element={<AuthOutlet fallbackPath={'/login'} />}>
-              <Route path={'/'} element={
+        <AuthProvider store={store}>
+          <MemoryRouter>
+            <Routes>
+              <Route element={<AuthOutlet fallbackPath={'/login'} />}>
+                <Route path={'/'} element={
+                  <div>
+                    <TestComponent />
+                  </div>
+                } />
+              </Route>
+              <Route path={'/login'} element={
                 <div>
-                  <TestComponent />
+                Login
                 </div>
               } />
-            </Route>
-            <Route path={'/login'} element={
-              <div>
-                Login
-              </div>
-            } />
-          </Routes>
-        </MemoryRouter>
-      </AuthProvider>,
+            </Routes>
+          </MemoryRouter>
+        </AuthProvider>,
     );
 
     expect(screen.getByText(/test component/i)).toBeTruthy();
@@ -137,7 +137,7 @@ describe('Rendering Successfully', () => {
 
 describe('Redirection', () => {
   it('With Component fallbackPath', () => {
-    const spy = jest.spyOn(useIsAuthenticated, 'default')
+    const spy = jest.spyOn(useIsAuthenticated, 'default');
     spy.mockImplementation(() => () => false);
 
     const TestComponent = () => <p>Test Component</p>;
@@ -149,33 +149,33 @@ describe('Redirection', () => {
     });
 
     render(
-      <AuthProvider store={store}>
-        <MemoryRouter>
-          <Routes>
-            <Route element={<AuthOutlet fallbackPath={'/login'} />}>
-              <Route path={'/'} element={<TestComponent />} />
-            </Route>
-            
-            <Route 
-              path={'/login'}
-              element={
-                <div>
+        <AuthProvider store={store}>
+          <MemoryRouter>
+            <Routes>
+              <Route element={<AuthOutlet fallbackPath={'/login'} />}>
+                <Route path={'/'} element={<TestComponent />} />
+              </Route>
+
+              <Route
+                path={'/login'}
+                element={
+                  <div>
                   Login
-                </div>
-              }
-            />
-          </Routes>
-        </MemoryRouter>
-      </AuthProvider>,
+                  </div>
+                }
+              />
+            </Routes>
+          </MemoryRouter>
+        </AuthProvider>,
     );
 
     expect(screen.getByText(/Login/i)).toBeTruthy();
     expect(spy).toHaveBeenCalled();
-    spy.mockRestore()
+    spy.mockRestore();
   });
 
   it('With AuthProvider fallbackPath', () => {
-    const spy = jest.spyOn(useIsAuthenticated, 'default')
+    const spy = jest.spyOn(useIsAuthenticated, 'default');
     spy.mockImplementation(() => () => false);
 
     const TestComponent = () => <p>Test Component</p>;
@@ -187,24 +187,26 @@ describe('Redirection', () => {
     });
 
     render(
-      <AuthProvider store={store} fallbackPath='/login'>
-        <MemoryRouter>
-          <Routes>
-            <Route element={<AuthOutlet/>}>
-              <Route path={'/'} element={<TestComponent />} />
-            </Route>
-            
-            <Route path={'/login'} element={
-              <div>
+        <AuthProvider store={store} fallbackPath='/login'>
+          <MemoryRouter>
+            <Routes>
+              <Route element={<AuthOutlet/>}>
+                <Route path={'/'} element={<TestComponent />} />
+              </Route>
+
+              <Route path={'/login'} element={
+                <div>
                 Login With AuthProvider fallbackPath
-              </div>
-            } />
-          </Routes>
-        </MemoryRouter>
-      </AuthProvider>,
+                </div>
+              } />
+            </Routes>
+          </MemoryRouter>
+        </AuthProvider>,
     );
 
-    expect(screen.getByText(/Login With AuthProvider fallbackPath/i)).toBeTruthy();
-    spy.mockRestore()
+    expect(
+        screen.getByText(/Login With AuthProvider fallbackPath/i),
+    ).toBeTruthy();
+    spy.mockRestore();
   });
 });

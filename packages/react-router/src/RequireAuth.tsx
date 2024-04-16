@@ -16,7 +16,8 @@ interface RequireAuthProps {
   /**
    * Path to redirect if the user is not authenticated
    *
-   * @deprecated Use AuthProvider fallpackPath prop instead. Will be removed in the upcoming version
+   * @deprecated Use AuthProvider fallpackPath prop instead.
+   * Will be removed in the upcoming version
    * @example
    * `/login`
    */
@@ -53,16 +54,17 @@ const RequireAuth: React.FC<RequireAuthProps> =
     const isAuthenticated = useIsAuthenticated();
 
     let fp;
-    if(fallbackPath !== undefined){
+    if (fallbackPath !== undefined) {
       fp = fallbackPath;
-    }
-    else if(
+    } else if (
       fallbackPath === undefined && config.fallbackPath !== undefined
-    ){
+    ) {
       fp = config.fallbackPath;
-    }
-    else {
-      throw new AuthError('fallbackPath prop must be present in AuthProvider or RequireAuth component');
+    } else {
+      throw new AuthError(
+          'fallbackPath prop must be present'+
+        ' in AuthProvider or RequireAuth component',
+      );
     }
 
 

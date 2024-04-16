@@ -1,6 +1,10 @@
 import Router from 'react-auth-kit/route';
 
-import {useNavigate as useReactRouteNavigate, redirect, useLocation} from 'react-router';
+import {
+  useNavigate as useReactRouteNavigate,
+  redirect,
+  useLocation,
+} from 'react-router';
 
 /**
  * React Router

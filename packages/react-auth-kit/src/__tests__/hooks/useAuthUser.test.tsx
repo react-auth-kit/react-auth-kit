@@ -55,9 +55,9 @@ describe('useAuthUser', () => {
   });
 
   it('the auth is there and expired', () => {
-    const spy = jest.fn()
-    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKit')
-    // @ts-ignore
+    const spy = jest.fn();
+    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKit');
+    // @ts-expect-error response type is missing
     mockUseReactAuthKit.mockImplementation(()=>(
       {
         value: {
@@ -66,23 +66,23 @@ describe('useAuthUser', () => {
             '3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMDA4NjA1MTk1fQ.zII9AZg'+
             'jgXMlfuNmN7dx-v-ROl3vl4eJdFc_3XfLWbs',
             type: 'Bearer',
-            expiresAt: new Date(1008605195)
+            expiresAt: new Date(1008605195),
           },
-          userState: {"name":"react"},
+          userState: {'name': 'react'},
           isSignIn: true,
           isUsingRefreshToken: false,
-        }, 
-        set: spy
+        },
+        set: spy,
       }
-    ))
+    ));
 
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={{token: tokenObject, config: {}}}>
@@ -94,7 +94,7 @@ describe('useAuthUser', () => {
     expect(result.current()).toBeNull();
     expect(spy).toHaveBeenCalled();
 
-    mockUseReactAuthKit.mockRestore()
+    mockUseReactAuthKit.mockRestore();
   });
 });
 

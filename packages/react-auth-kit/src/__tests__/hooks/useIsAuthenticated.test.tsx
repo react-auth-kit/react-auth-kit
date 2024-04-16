@@ -29,9 +29,9 @@ describe('useIsAuthenticated', () => {
   });
 
   it('the auth is there and expired', () => {
-    const spy = jest.fn()
-    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKit')
-    // @ts-ignore
+    const spy = jest.fn();
+    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKit');
+    // @ts-expect-error response type is missing
     mockUseReactAuthKit.mockImplementation(()=>(
       {
         value: {
@@ -40,23 +40,23 @@ describe('useIsAuthenticated', () => {
             '3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxMDA4NjA1MTk1fQ.zII9AZg'+
             'jgXMlfuNmN7dx-v-ROl3vl4eJdFc_3XfLWbs',
             type: 'Bearer',
-            expiresAt: new Date(1008605195)
+            expiresAt: new Date(1008605195),
           },
-          userState: {"name":"react"},
+          userState: {'name': 'react'},
           isSignIn: true,
           isUsingRefreshToken: false,
-        }, 
-        set: spy
+        },
+        set: spy,
       }
-    ))
+    ));
 
     const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+        '__',
+        'cookie',
+        null,
+        false,
+        window.location.hostname,
+        window.location.protocol === 'https:',
     );
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider value={{token: tokenObject, config: {}}}>
@@ -68,7 +68,7 @@ describe('useIsAuthenticated', () => {
     expect(result.current()).toBe(false);
     expect(spy).toHaveBeenCalled();
 
-    mockUseReactAuthKit.mockRestore()
+    mockUseReactAuthKit.mockRestore();
   });
 
   it('the auth is there and not expired', () => {
@@ -100,15 +100,15 @@ describe('useIsAuthenticated', () => {
 
 describe('Redirection', ()=>{
   const tokenObject = new TokenObject<unknown>(
-    '__',
-    'cookie',
-    null,
-    false,
-    window.location.hostname,
-    window.location.protocol === 'https:',
+      '__',
+      'cookie',
+      null,
+      false,
+      window.location.hostname,
+      window.location.protocol === 'https:',
   );
 
-  const navigateSpy = jest.fn()
+  const navigateSpy = jest.fn();
 
   const ReactRouterPlugin: Router = {
     navigate: jest.fn(),
@@ -139,7 +139,9 @@ describe('Redirection', ()=>{
 
   it('Only Router Plugin is there', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, router: ReactRouterPlugin, config: {}}}>
+      <AuthContext.Provider
+        value={{token: tokenObject, router: ReactRouterPlugin, config: {}}}
+      >
         {children}
       </AuthContext.Provider>
     );
@@ -151,7 +153,9 @@ describe('Redirection', ()=>{
 
   it('Only Fallback Path is there', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {fallbackPath: '/b'}}}>
+      <AuthContext.Provider
+        value={{token: tokenObject, config: {fallbackPath: '/b'}}}
+      >
         {children}
       </AuthContext.Provider>
     );
@@ -163,7 +167,15 @@ describe('Redirection', ()=>{
 
   it('Fallbackpath is same as current path', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, router: ReactRouterPlugin, config: {fallbackPath: '/a'}}}>
+      <AuthContext.Provider
+        value={
+          {
+            token: tokenObject,
+            router: ReactRouterPlugin,
+            config: {fallbackPath: '/a'},
+          }
+        }
+      >
         {children}
       </AuthContext.Provider>
     );
@@ -175,7 +187,15 @@ describe('Redirection', ()=>{
 
   it('Fallbackpath is different from current path', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, router: ReactRouterPlugin, config: {fallbackPath: '/b'}}}>
+      <AuthContext.Provider
+        value={
+          {
+            token: tokenObject,
+            router: ReactRouterPlugin,
+            config: {fallbackPath: '/b'},
+          }
+        }
+      >
         {children}
       </AuthContext.Provider>
     );
@@ -183,6 +203,6 @@ describe('Redirection', ()=>{
     const {result} = renderHook(() => useIsAuthenticated(), {wrapper});
     expect(result.current()).toBe(false);
     expect(navigateSpy).toHaveBeenCalled();
-    expect(navigateSpy).toHaveBeenCalledWith({"to": "/b"})
+    expect(navigateSpy).toHaveBeenCalledWith({'to': '/b'});
   });
-})
+});
