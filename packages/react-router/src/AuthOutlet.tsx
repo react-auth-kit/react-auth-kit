@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Navigate, Outlet} from 'react-router';
 
-import {useReactAuthKit, useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
-import {isAuthenticated} from 'react-auth-kit/utils/utils';
-import {doSignOut} from 'react-auth-kit/utils/reducers';
 import {AuthError} from 'react-auth-kit';
+import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+
 
 /**
  * Component Props for Auth Outlet
@@ -43,24 +43,27 @@ interface AuthOutletProps {
  * ```
  */
 const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
-  const context = useReactAuthKit();
+  const isAuthenticated = useIsAuthenticated();
   const config = useReactAuthKitConfig();
 
   let fp;
-  if (!fallbackPath && !config.fallbackPath) {
-    throw new AuthError('fallbackPath prop must be present in AuthProvider or AuthOutlet component');
-  } else if (fallbackPath) {
+  if(fallbackPath !== undefined){
     fp = fallbackPath;
-  } else {
-    fp = config.fallbackPath || '';
+  }
+  else if(
+    fallbackPath === undefined && config.fallbackPath !== undefined
+  ){
+    fp = config.fallbackPath;
+  }
+  else {
+    throw new AuthError('fallbackPath prop must be present in AuthProvider or AuthOutlet component');
   }
 
-  if (!isAuthenticated(context.value)) {
+  if (!isAuthenticated()) {
     // Redirect them to the /login page, but save the current location they
     // were trying to go to when they were redirected. This allows us to
     // send them along to that page after they login, which is a nicer
     // user experience than dropping them off on the home page.
-    context.set(doSignOut());
     return <Navigate to={fp} replace />;
   }
 
