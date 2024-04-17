@@ -10,7 +10,7 @@
     "react": "18.2.0",
     "react-auth-kit": "3.0.2-alpha.10",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.21.1",
+    "react-router-dom": "6.22.3",
     "react-scripts": "5.0.1"
   },
   "scripts": {
