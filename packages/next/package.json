@@ -23,7 +23,8 @@
   "exports": {
     ".": "./index.js",
     "./NextAuth": "./NextAuth.js",
-    "./useNextAuth": "./useNextAuth.js"
+    "./useNextAuth": "./useNextAuth.js",
+    "./route": "./route.js"
   },
   "peerDependencies": {
     "next": ">=14",

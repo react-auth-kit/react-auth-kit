@@ -2,6 +2,7 @@
 
 import Cookies from 'js-cookie';
 import {BehaviorSubject} from 'rxjs';
+import deepEqual from 'deep-equal';
 import {AuthError} from './errors';
 import {AuthKitStateInterface} from './types';
 
@@ -144,7 +145,7 @@ class TokenObject<T> {
     this.authValue = this.initialToken_();
     this.authSubject = new BehaviorSubject(this.authValue);
 
-    this.log(`[Auth Kit] - Initial Value ${this.authValue}`);
+    this.log(`Initial Value`, this.authValue);
 
     this.authSubject.subscribe({
       next: this.syncTokens,
@@ -173,6 +174,30 @@ class TokenObject<T> {
       complete: complete,
     });
   };
+
+  /**
+   * Callback hook, when the user is signed in this function will be called
+   * @param callback - function to be called
+   */
+  onSignIn(callback: (value: AuthKitStateInterface<T>)=> void) {
+    this.subscribe((value)=> {
+      if (value.auth !== null) {
+        callback(value);
+      }
+    });
+  }
+
+  /**
+   * Callback hook, when the user is signed out, this function will be called
+   * @param callback - function to be called
+   */
+  onSignOut(callback: ()=> void) {
+    this.subscribe((value)=> {
+      if (value.auth === null) {
+        callback();
+      }
+    });
+  }
 
   /**
    * @internal
@@ -214,16 +239,11 @@ class TokenObject<T> {
    */
   set = (data: AuthKitSetState<T>) => {
     // Before setting need to check the tokens.
-    this.log(`Set Function is called with`);
-    if(this.debug){
-      console.dir(data);
-    }
-    this.log(`Set Function Old Data`);
-    if(this.debug){
-      console.dir(this.value);
-    }
+    this.log(`Set Function is called with`, data);
+    this.log(`Set Function Old Data`, this.value);
 
-    let obj = this.value;
+
+    let obj = {...this.value};
 
     if (data.userState !== undefined) {
       obj.userState = data.userState;
@@ -319,10 +339,12 @@ class TokenObject<T> {
         };
       }
     }
-    this.log(`[Auth Kit] - Set Function New Data`);
-    this.log(obj);
-    this.authValue = obj;
-    this.authSubject.next(obj);
+    this.log(`Set Function New Data`, obj);
+    if (!deepEqual(this.value, obj)) {
+      this.log('Updating the value in the Set Function');
+      this.authValue = obj;
+      this.authSubject.next(obj);
+    }
   };
 
   /**
@@ -512,8 +534,7 @@ class TokenObject<T> {
                 expiresAt: expiresAt,
               };
             } catch (err) {
-              this.log('state cookie JSON parsing failed');
-              this.log(err);
+              this.log('state cookie JSON parsing failed ${err}');
               auth = null;
               authState = null;
             }
@@ -523,7 +544,7 @@ class TokenObject<T> {
               `checkTokenExist - auth token or auth state is invalid 
             ${authToken} ${stateCookie}`,
           );
-          this.log(e);
+          this.log(`Error Occured: ${e}`);
           auth = null;
           authState = null;
         }
@@ -861,7 +882,7 @@ class TokenObject<T> {
    */
   private log = (msg: any, ...optionalParams: any[]): void => {
     if (this.debug) {
-      console.log(`[Auth Kit] - ${msg}`, optionalParams);
+      console.log(`React Auth Kit - ${msg}`, optionalParams);
     }
   };
 }

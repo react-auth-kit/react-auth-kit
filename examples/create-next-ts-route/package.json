@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth-kit/next": "3.0.2-alpha.18",
+    "@auth-kit/next": "3.1.4-alpha.40+51fcb7ab",
     "next": "14.0.4",
     "react": "^18",
-    "react-auth-kit": "3.0.2-alpha.16",
+    "react-auth-kit": "3.1.4-alpha.40+51fcb7ab",
     "react-dom": "^18"
   },
   "devDependencies": {

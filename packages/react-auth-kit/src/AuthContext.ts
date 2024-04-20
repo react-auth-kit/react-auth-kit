@@ -2,8 +2,19 @@
 
 import {createContext, useContext} from 'react';
 import type {Context} from 'react';
-import TokenObject from './RxTokenObject';
+import type TokenObject from './RxTokenObject';
 import {AuthError} from './errors';
+import type Router from './route';
+
+interface ReactAuthKitContextConfig {
+  fallbackPath?: string
+}
+
+interface ReactAuthKitContext<T> {
+  token: TokenObject<T>
+  router?: Router
+  config: ReactAuthKitContextConfig
+}
 
 /**
  * @internal
@@ -12,8 +23,8 @@ import {AuthError} from './errors';
  * React Context to globally hold the TokenObject instance in the application.
  *
  */
-function getContext<T>(): Context<TokenObject<T>> {
-  const context = createContext<TokenObject<T>>(null as any);
+function getContext<T>(): Context<ReactAuthKitContext<T>> {
+  const context = createContext<ReactAuthKitContext<T>>(null as any);
   if (process.env.NODE_ENV !== 'production') {
     context.displayName = 'ReactAuthKit';
   }
@@ -40,7 +51,41 @@ export function useReactAuthKit(): TokenObject<unknown> {
         'Make sure, you are using this component inside the auth provider.',
     );
   }
-  return context;
+  return context.token;
+}
+
+/**
+ *
+ * @internal
+ * @returns Router Object from the context
+ *
+ */
+export function useReactAuthKitRouter(): Router|undefined {
+  const context = useContext(AuthKitContext);
+  if (context === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
+  }
+  return context.router;
+}
+
+/**
+ * @internal
+ * @returns React Auth Kit configurations
+ */
+export function useReactAuthKitConfig(): ReactAuthKitContextConfig {
+  const context = useContext(AuthKitContext);
+  if (context === null) {
+    throw new
+    AuthError(
+        'Auth Provider is missing. ' +
+        'Make sure, you are using this component inside the auth provider.',
+    );
+  }
+  return context.config;
 }
 
 export default AuthKitContext;

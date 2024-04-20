@@ -2,16 +2,15 @@ import React from 'react'
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 
-import {useNavigate, Navigate} from 'react-router-dom'
+import {Navigate, useLocation} from 'react-router-dom'
 
 
 
 const Login = () => {
-
+  const location = useLocation()
   const isAuthenticated = useIsAuthenticated()
   const signIn = useSignIn()
-  const navigate = useNavigate()
-
+  console.log(location.pathname)
   /**
    * Login Handle, the callback function onClick from the "Login" button
    *
@@ -20,20 +19,15 @@ const Login = () => {
   const loginHandler = () => {
     // Assuming that, all network Request is successfull, and the user is authenticated
 
-    if (signIn({
+    signIn({
       auth: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzEyMDU5MzgwfQ.ve0xaiNmSO1vycA14QCsA843maM6g2mEDJlw9Dubxyw'
       },
-      userState: {name: 'Manas Baroi', uid: 123456}
-    })) {
-      // If Login Successfull, then Redirect the user to secure route
-      navigate('/secure')
-    } else {
-      // Else, there must be some error. So, throw an error
-      alert("Error Occoured. Try Again")
-    }
+      userState: {name: 'Manas Baroi', uid: 123456},
+      navigateTo: '/secure'
+    })
   }
-  console.log(isAuthenticated())
+  // console.log(isAuthenticated())
   if (isAuthenticated()) {
     // If authenticated user, then redirect to secure dashboard
 

@@ -1,6 +1,6 @@
 'use client';
 
-import {useReactAuthKit} from '../AuthContext';
+import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
 import {signInFunctionParams} from '../types';
 import {doSignIn} from '../utils/reducers';
 import {AuthError} from '../errors';
@@ -85,6 +85,9 @@ import {AuthError} from '../errors';
  */
 function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
   const context = useReactAuthKit();
+  const router = useReactAuthKitRouter();
+  const navigate = router ? router.useNavigate() : null;
+
   /**
    *
    * @param signInConfig - Parameters to perform sign in
@@ -98,6 +101,20 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
    * }
    * ```
    */
+  const redirectAfterSignin = (to?: string) => {
+    if (to) {
+      if (router && navigate) {
+        navigate({to});
+      } else {
+        throw new
+        AuthError(
+            'Router Plugin is not implemented in the AuthProvider. Please'+
+            ' use the router prop of AuthProvider and Router plugin to'+
+            ' use this feture',
+        );
+      }
+    }
+  };
   return (signInConfig: signInFunctionParams<T>): boolean => {
     if (context.value.isUsingRefreshToken) {
       // Using the power of refresh token
@@ -105,6 +122,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
         // refresh token params are provided
         // sign in with refresh token
         context.set(doSignIn(signInConfig));
+        redirectAfterSignin(signInConfig.navigateTo);
         return true;
       } else {
         // refresh token params are not provided
@@ -126,6 +144,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
     } else {
       // sign in without the refresh token
       context.set(doSignIn(signInConfig));
+      redirectAfterSignin(signInConfig.navigateTo);
       return true;
     }
   };

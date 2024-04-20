@@ -26,7 +26,7 @@ describe('Initial Value [Without Refresh Token]', () => {
           'userState': null,
         },
     );
-    expect(subscriber).toBeCalled();
+    expect(subscriber).toHaveBeenCalled();
     expect(subscriber.mock.calls).toHaveLength(1);
     expect(subscriber).toHaveBeenCalledWith(
         {
@@ -1375,6 +1375,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
         'userState': {},
       };
 
+      const fn = jest.fn();
+
       tokenObject.subscribe((data) => {
         if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
@@ -1387,9 +1389,12 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBe(newToken);
           expect(Cookies.get('___type')).toBe('Bearer');
           expect(Cookies.get('___state')).toBe('{}');
+          expect(fn).toHaveBeenCalled();
           done();
         }
       });
+
+      tokenObject.onSignIn(fn);
 
       tokenObject.set({
         'auth': {
@@ -1408,7 +1413,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'cookie',
           null,
-          false,
+          true,
           window.location.hostname,
           window.location.protocol === 'https:',
       );
@@ -1667,6 +1672,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           window.location.protocol === 'https:',
       );
 
+      const fn = jest.fn();
+
       const resp = {
         'auth': {
           'token': oldToken,
@@ -1699,9 +1706,14 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           expect(Cookies.get('__')).toBeUndefined();
           expect(Cookies.get('___type')).toBeUndefined();
           expect(Cookies.get('___state')).toBeUndefined();
+          setTimeout(()=>{
+            expect(fn).toHaveBeenCalled();
+          }, 0);
           done();
         }
       });
+
+      tokenObject.onSignOut(fn);
 
       tokenObject.set({
         'auth': null,
@@ -1709,7 +1721,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
     }, 10000);
   });
 
-  describe('Using Locat Storage', () => {
+  describe('Using Local Storage', () => {
     const oldToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
     'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
@@ -1743,7 +1755,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1803,7 +1815,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1864,7 +1876,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1929,7 +1941,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -1988,7 +2000,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {
@@ -2049,7 +2061,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           '__',
           'localstorage',
           null,
-          true,
+          false,
       );
 
       const resp = {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import RequireAuth from '@auth-kit/react-router/RequireAuth'
 
@@ -9,7 +9,6 @@ import Secure from './componants/Secure'
 
 const RoutesPage = () => {
   return (
-    <BrowserRouter>
         <Routes>
           <Route path={'/'} element={<Home/>}/>
           <Route path={'/login' } element={<Login/>}/>
@@ -19,7 +18,6 @@ const RoutesPage = () => {
             </RequireAuth>
           }/>
         </Routes>
-    </BrowserRouter>
   )
 }
 

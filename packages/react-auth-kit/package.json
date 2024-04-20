@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "14.2.2",
+    "@types/deep-equal": "^1.0.4",
     "@types/jest": "29.5.12",
     "@types/js-cookie": "3.0.6",
     "@types/node": "20.12.4",
@@ -63,6 +64,7 @@
     "ts-jest": "29.1.2"
   },
   "dependencies": {
+    "deep-equal": "^2.2.3",
     "js-cookie": "^3.0.1",
     "rxjs": "^7.8.1"
   },

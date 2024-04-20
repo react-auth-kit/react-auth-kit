@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
+    "build": "npx lerna run build",
     "test": "npx lerna run test",
     "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json"
   },

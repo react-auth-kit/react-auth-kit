@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Navigate} from 'react-router';
-import AuthContext from 'react-auth-kit/AuthContext';
-import {doSignOut} from 'react-auth-kit/utils/reducers';
-import {AuthError} from 'react-auth-kit/errors';
-import {isAuthenticated} from 'react-auth-kit/utils/utils';
+
+import {AuthError} from 'react-auth-kit';
+import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
 /**
  * Component Props for Require Auth
@@ -16,10 +16,12 @@ interface RequireAuthProps {
   /**
    * Path to redirect if the user is not authenticated
    *
+   * @deprecated Use AuthProvider fallpackPath prop instead.
+   * Will be removed in the upcoming version
    * @example
    * `/login`
    */
-  fallbackPath: string
+  fallbackPath?: string
 }
 
 /**
@@ -48,24 +50,31 @@ interface RequireAuthProps {
  */
 const RequireAuth: React.FC<RequireAuthProps> =
   ({children, fallbackPath}) => {
-    const context = React.useContext(AuthContext);
-    if (context === null) {
-      throw new
-      AuthError(
-          'Auth Provider is missing. ' +
-          'Make sure, you are using this component inside the auth provider.',
+    const config = useReactAuthKitConfig();
+    const isAuthenticated = useIsAuthenticated();
+
+    let fp;
+    if (fallbackPath !== undefined) {
+      fp = fallbackPath;
+    } else if (
+      fallbackPath === undefined && config.fallbackPath !== undefined
+    ) {
+      fp = config.fallbackPath;
+    } else {
+      throw new AuthError(
+          'fallbackPath prop must be present'+
+        ' in AuthProvider or RequireAuth component',
       );
     }
 
-    // TODO: needed fallbackPath check
 
-    if (!isAuthenticated(context.value)) {
+    if (!isAuthenticated()) {
       // Redirect them to the /login page, but save the current location they
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they login, which is a nicer
       // user experience than dropping them off on the home page.
-      context.set(doSignOut());
-      return <Navigate to={fallbackPath} replace />;
+
+      return <Navigate to={fp} replace />;
     }
 
     return children;

@@ -1,14 +1,13 @@
-"use client";
+'use client';
 
-import React, { Component } from 'react'
-import Link from 'next/link'
-import Hero from './componants/Hero'
+import React from 'react';
+import Hero from './componants/Hero';
 
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
-   <main>
-   <Hero />
-   </main>
-  )
+    <main>
+      <Hero />
+    </main>
+  );
 }

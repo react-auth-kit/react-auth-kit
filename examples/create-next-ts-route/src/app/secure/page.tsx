@@ -1,28 +1,25 @@
-"use client"
+'use client';
 
-import React from 'react'
-import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
-import { UserData } from '@/types';
+import React from 'react';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
-import { useRouter } from 'next/navigation';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
-const page = () => {
-    const data = useAuthUser<UserData>()
-    const signOut = useSignOut();
-    const { push } = useRouter();
-  
-    const logOutHandler = () => {
-      signOut()
-      push('/')
-    }
-  
-    return (
-      <div className='flex h-screen justify-center items-center flex-col'>
-       
-        <h1 className='font-bold p-2'>{`The User name is  : ${data?.name}`}</h1>
-        <button onClick={logOutHandler} className="inline-flex items-center px-4 py-2 font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600  ms-3">Log Out</button>
-      </div>
-    )
-}
+import {UserData} from '@/types';
 
-export default page
+const Page = (): JSX.Element => {
+  const data = useAuthUser<UserData>();
+  const signOut = useSignOut();
+
+  const logOutHandler = () => {
+    signOut('/');
+  };
+
+  return (
+    <div>
+      <h1>{`The User name is  : ${data?.name}`}</h1>
+      <button onClick={logOutHandler}>Log Out</button>
+    </div>
+  );
+};
+
+export default Page;

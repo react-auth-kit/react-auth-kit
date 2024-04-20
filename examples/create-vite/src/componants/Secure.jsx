@@ -1,23 +1,38 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
 import useSignOut from 'react-auth-kit/hooks/useSignOut'
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
 
 
 const SecureComponent = () => {
     const signOut = useSignOut()
     const authUser = useAuthUser()
-    const navigate = useNavigate()
+    const authHeader = useAuthHeader();
 
     const signOutAction = () => {
-        signOut()
-        navigate('/login')
+        signOut('/login')
+    }
+
+    const getData = async () => {
+        const header = authHeader();
+        console.log(header);
+        const res = await axios.get(
+            'https://demo4875674.mockable.io/hello',
+            {
+                headers: {'Authorization': header}
+            }
+        )
+        console.log(res.data);
     }
     
     return (
         <div className='p-2'>
-            <p className='p-6 font-bold text-4xl'>{`Hello ${authUser.name}, your U-ID is: ${authUser.uid}`}</p>
+            <p className='p-6 font-bold text-4xl'>{`Hello ${authUser().name}, your U-ID is: ${authUser().uid}`}</p>
             <button className='p-2 border rounded-md bg-red-500 hover:bg-red-700 text-white' onClick={signOutAction}>Sign Out!</button>
+
+            <button className='p-2 border rounded-md bg-green-500 hover:bg-green-700 text-white' onClick={getData}>Get Data</button>
+
         </div>
     )
 }

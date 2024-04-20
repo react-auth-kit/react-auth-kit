@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Navigate, Outlet} from 'react-router';
 
-import AuthKitContext from 'react-auth-kit/AuthContext';
 import {AuthError} from 'react-auth-kit';
-import {isAuthenticated} from 'react-auth-kit/utils/utils';
-import {doSignOut} from 'react-auth-kit/utils/reducers';
+import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+
 
 /**
  * Component Props for Auth Outlet
@@ -13,10 +13,12 @@ interface AuthOutletProps {
   /**
    * Path to redirect if the user is not authenticated
    *
+   * @deprecated Use AuthProvider fallpackPath prop instead.
+   * Will be removed in the upcoming version
    * @example
    * `/login`
    */
-  fallbackPath: string
+  fallbackPath?: string
 }
 
 /**
@@ -42,24 +44,29 @@ interface AuthOutletProps {
  * ```
  */
 const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
-  const context = React.useContext(AuthKitContext);
-  if (context === null) {
-    throw new
-    AuthError(
-        'Auth Provider is missing. ' +
-        'Make sure, you are using this component inside the auth provider.',
+  const isAuthenticated = useIsAuthenticated();
+  const config = useReactAuthKitConfig();
+
+  let fp;
+  if (fallbackPath !== undefined) {
+    fp = fallbackPath;
+  } else if (
+    fallbackPath === undefined && config.fallbackPath !== undefined
+  ) {
+    fp = config.fallbackPath;
+  } else {
+    throw new AuthError(
+        'fallbackPath prop must be present'+
+      ' in AuthProvider or AuthOutlet component',
     );
   }
 
-  // TODO: needed fallbackPath check
-
-  if (!isAuthenticated(context.value)) {
+  if (!isAuthenticated()) {
     // Redirect them to the /login page, but save the current location they
     // were trying to go to when they were redirected. This allows us to
     // send them along to that page after they login, which is a nicer
     // user experience than dropping them off on the home page.
-    context.set(doSignOut());
-    return <Navigate to={fallbackPath} replace />;
+    return <Navigate to={fp} replace />;
   }
 
   return <Outlet />;

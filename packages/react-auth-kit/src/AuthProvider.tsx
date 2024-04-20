@@ -5,6 +5,7 @@ import AuthKitContext from './AuthContext';
 import type {createStoreReturn} from './createStore';
 import {useInterval} from './utils/hooks';
 import {doRefresh, doSignOut} from './utils/reducers';
+import Router from './route';
 
 /**
  * Props of the AuthProvider Component
@@ -16,6 +17,19 @@ interface AuthProviderProps<T> {
    * Create the store using the `createStore` function
    */
   store: createStoreReturn<T>
+
+  /**
+   * Auth Kit Router.
+   *
+   * Internally used to redirect after signin and token expiration
+   */
+  router?: Router
+
+  /**
+   * Fallback Path
+   * The path to redirect if signed out
+   */
+  fallbackPath?: string
 
   /**
    * React Component.
@@ -40,9 +54,11 @@ interface AuthProviderProps<T> {
  *
  * @example
  * ```jsx
+ * import ReactRouterPlugin from '@auth-kit/react-router/route'
+ *
  * const store = createStore()
  *
- * <AuthProvider store={store}>
+ * <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath='/login'>
  *  <RoutesComponent/>
  * </AuthProvider>
  * ```
@@ -51,6 +67,8 @@ interface AuthProviderProps<T> {
 function AuthProvider<T>(
     {
       store,
+      router,
+      fallbackPath,
       children,
     }: AuthProviderProps<T>,
 ): ReturnType<React.FC> {
@@ -84,9 +102,11 @@ function AuthProvider<T>(
   }
 
   return (
-    // @ts-expect-error 'TokenObject' is assignable to the constraint
-    // of type 'T', but 'T' could be instantiated with a different subtype
-    <AuthKitContext.Provider value={tokenObject}>
+    <AuthKitContext.Provider
+      // @ts-expect-error 'TokenObject' is assignable to the constraint
+      // of type 'T', but 'T' could be instantiated with a different subtype
+      value={{token: tokenObject, router, config: {fallbackPath}}}
+    >
       {children}
     </AuthKitContext.Provider>
   );
