@@ -54,8 +54,6 @@ jobs:
       - name: NPM Test
         run: npm test
 
-      - name: Generate Codecov Report
-        uses: codecov/codecov-action@v4
 
   test-os:
     name: Test on ${{ matrix.os }} using Node.js LTS
@@ -84,8 +82,36 @@ jobs:
       - name: NPM Test
         run: npm test
 
-      - name: Generate Codecov Report
+  generate-coverage:
+    name: Generate Coverage
+    needs: 
+      - check-commit
+      - test-node
+      - test-os
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setting Up Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM Test
+        run: npm run test:coverage
+
+      - name: Coverage Report to codecov
         uses: codecov/codecov-action@v4
+        with:
+          flags: unittests # optional
+          directory: ./packages/*/coverage
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+    
 
 #   release:
 #     name: Release
