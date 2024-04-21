@@ -57,6 +57,7 @@ It is production-ready, and gives you the following:
 ## Stargazers ⭐
 
 [![Stargazers over time](https://starchart.cc/react-auth-kit/react-auth-kit.svg?variant=adaptive)](https://starchart.cc/react-auth-kit/react-auth-kit)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Freact-auth-kit%2Freact-auth-kit.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Freact-auth-kit%2Freact-auth-kit?ref=badge_shield)
 
 
 ## Hall of Fames ✨
@@ -67,3 +68,7 @@ We love our contributors! If you'd like to contribute anything from a bug-fix to
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">MIT License</a> code</i></p>
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Freact-auth-kit%2Freact-auth-kit.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Freact-auth-kit%2Freact-auth-kit?ref=badge_large)
