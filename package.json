@@ -12,7 +12,9 @@
     "prepare": "husky install",
     "build": "npx lerna run build",
     "test": "npx lerna run test",
-    "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json"
+    "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json",
+    "test:coverage": "npx lerna run test -- --coverage"
+
   },
   "keywords": [
     "react",
