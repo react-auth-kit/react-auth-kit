@@ -102,6 +102,9 @@ jobs:
       - name: NPM Install
         run: npm ci
 
+      - name: NPM Build
+        run: npm run build
+      
       - name: NPM Test
         run: npm run test:coverage
 
