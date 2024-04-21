@@ -8,7 +8,7 @@
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "testEnvironment": "jsdom",
   "verbose": true,
-  "collectCoverage": true,
+  "collectCoverage": false,
   "coverageDirectory": "coverage",
   "coverageReporters": ["lcov", "html", "text"],
   "collectCoverageFrom": ["src/**/*.(js|jsx|ts|tsx)"]
