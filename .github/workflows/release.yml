@@ -112,7 +112,7 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           flags: unittests # optional
-          directory: ./packages/*/coverage
+          files: ./packages/**/coverage/*.xml
           token: ${{ secrets.CODECOV_TOKEN }} # required
     
 
