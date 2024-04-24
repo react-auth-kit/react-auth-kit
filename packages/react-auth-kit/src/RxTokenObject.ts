@@ -1,8 +1,9 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import {BehaviorSubject} from 'rxjs';
 import deepEqual from 'deep-equal';
+import {BehaviorSubject} from 'rxjs';
+
 import {AuthError} from './errors';
 import {AuthKitStateInterface} from './types';
 
