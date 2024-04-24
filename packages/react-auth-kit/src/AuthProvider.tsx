@@ -1,11 +1,12 @@
 'use client';
 
 import * as React from 'react';
+
+import Router from './route';
+import {useInterval} from './utils/hooks';
 import AuthKitContext from './AuthContext';
 import type {createStoreReturn} from './createStore';
-import {useInterval} from './utils/hooks';
 import {doRefresh, doSignOut} from './utils/reducers';
-import Router from './route';
 
 /**
  * Props of the AuthProvider Component

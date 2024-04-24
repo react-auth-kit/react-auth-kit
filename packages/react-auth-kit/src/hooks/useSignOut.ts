@@ -1,8 +1,8 @@
 'use client';
 
-import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
 import {AuthError} from '../errors';
 import {doSignOut} from '../utils/reducers';
+import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
 
 /**
  * Sign Out React Hook

@@ -1,9 +1,9 @@
 'use client';
 
-import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
-import {signInFunctionParams} from '../types';
-import {doSignIn} from '../utils/reducers';
 import {AuthError} from '../errors';
+import {doSignIn} from '../utils/reducers';
+import type {signInFunctionParams} from '../types';
+import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
 
 /**
  * Sign In React Hook
