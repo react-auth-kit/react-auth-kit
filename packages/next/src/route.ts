@@ -6,7 +6,7 @@ import {usePathname, useRouter, redirect} from 'next/navigation';
  * Next Js
  * React Auth Kit Plugin
  */
-const ReactRouterPlugin: Router = {
+const NextPlugin: Router = {
   navigate: function({to}: { to: string; }): void {
     redirect(to);
   },
@@ -20,4 +20,4 @@ const ReactRouterPlugin: Router = {
   },
 };
 
-export default ReactRouterPlugin;
+export default NextPlugin;
