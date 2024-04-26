@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "next": "14.2.3",
-    "react": "18.2.0"
+    "react": "18.3.1"
   },
   "repository": {
     "type": "git",
