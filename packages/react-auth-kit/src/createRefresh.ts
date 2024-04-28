@@ -1,5 +1,6 @@
 'use client';
 
+import type React from 'react';
 import {AuthError} from './errors';
 
 /**
@@ -75,7 +76,7 @@ export interface createRefreshParamInterface<T> {
   /**
    * Interval on which the callback function is called
    */
-  interval: number,
+  interval: number;
 
   /**
    * A Callback function which'll have the network request
@@ -104,7 +105,9 @@ export interface createRefreshParamInterface<T> {
    * }
    * ```
    */
-  refreshApiCallback: refreshTokenCallback<T>
+  refreshApiCallback: refreshTokenCallback<T>;
+
+  initalRefreshComponent?: React.ReactNode;
 }
 
 
