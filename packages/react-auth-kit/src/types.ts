@@ -80,7 +80,7 @@ type AuthKitStateInterfaceSignedIn<T> = {
   /**
    * User state
    */
-  userState: T,
+  userState: T | null,
 
   /**
    * Boolean value to know if the user is signed in or not
@@ -112,7 +112,7 @@ type AuthKitStateInterfaceSignedOut = {
   isSignIn: false,
 }
 
-type AuthKitStateInterfaceSignedInAuthToken<T> = AuthKitStateInterfaceSignedIn<T> | AuthKitStateInterfaceSignedOut
+export type AuthKitStateInterfaceAuthToken<T> = AuthKitStateInterfaceSignedIn<T> | AuthKitStateInterfaceSignedOut
 
 /**
  * Auth State Object
@@ -168,5 +168,5 @@ type AuthKitStateInterfaceRefresh = AuthKitStateInterfaceWithRefresh | AuthKitSt
  * Auth State Object
  */
 export type AuthKitStateInterface<T> =
-  AuthKitStateInterfaceSignedInAuthToken<T> &
+  AuthKitStateInterfaceAuthToken<T> &
   AuthKitStateInterfaceRefresh;
