@@ -2,11 +2,11 @@
 
 import * as React from 'react';
 
-import Router from './route';
-import {useInterval} from './utils/hooks';
+import type Router from './route';
+import type { createStoreReturn } from './createStore';
+
+import Refresh from './Refresh';
 import AuthKitContext from './AuthContext';
-import type {createStoreReturn} from './createStore';
-import {doRefresh, doSignOut} from './utils/reducers';
 
 /**
  * Props of the AuthProvider Component
@@ -66,49 +66,29 @@ interface AuthProviderProps<T> {
  *
  */
 function AuthProvider<T>(
-    {
-      store,
-      router,
-      fallbackPath,
-      children,
-    }: AuthProviderProps<T>,
+  {
+    store,
+    router,
+    fallbackPath,
+    children,
+  }: AuthProviderProps<T>,
 ): ReturnType<React.FC> {
-  const {tokenObject, refresh} = store;
-
-  if (refresh) {
-    useInterval(
-        () => {
-          refresh
-              .refreshApiCallback({
-                authToken: tokenObject.value.auth?.token,
-                authUserState: tokenObject.value.userState,
-                refreshToken: tokenObject.value.refresh?.token,
-              })
-              .then((result) => {
-                // IF the API call is successful then refresh the AUTH state
-                if (result.isSuccess) {
-                  // store the new value using the state update
-                  tokenObject.set(doRefresh(result));
-                } else {
-                  // signout if failed to refresh
-                  tokenObject.set(doSignOut());
-                }
-              })
-              .catch(() => {
-                // Retry for Future
-              });
-        },
-      tokenObject.value.isSignIn ? refresh.interval : null,
-    );
-  }
+  const { tokenObject, refresh } = store;
 
   return (
     <AuthKitContext.Provider
       // @ts-expect-error 'TokenObject' is assignable to the constraint
       // of type 'T', but 'T' could be instantiated with a different subtype
-      value={{token: tokenObject, router, config: {fallbackPath}}}
+      value={{ token: tokenObject, router, config: { fallbackPath } }}
     >
-      {children}
+      {refresh ?
+        (
+          <Refresh refresh={refresh} store={tokenObject}>
+            {children}
+          </Refresh>
+        ) :
+        children
+      }
     </AuthKitContext.Provider>
   );
 }
