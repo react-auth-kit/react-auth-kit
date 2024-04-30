@@ -22,7 +22,7 @@ type RefreshTokenActionPayloadFalse = {
 /**
  * Payload for Refresh token Success True
  */
-type RefreshTokenActionPayloadTrue<T> = {
+export type RefreshTokenActionPayloadTrue<T> = {
 
   /**
    * New Auth token from the network response
