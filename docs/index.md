@@ -61,7 +61,7 @@ It is production-ready, and gives you the following:
 * 🔒 Secure Client Side Authentication
 * ⌨️ Highly typed and written in `TypeScript`
 
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
+<div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="index"></div>
 
 
 ## Stargazers ⭐
