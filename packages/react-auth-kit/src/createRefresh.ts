@@ -4,9 +4,25 @@ import type React from 'react';
 import {AuthError} from './errors';
 
 /**
- * Payload for Refresh token
+ * Payload for Refresh token False
  */
-export interface RefreshTokenActionPayload<T> {
+type RefreshTokenActionPayloadFalse = {
+  /**
+   * If the refresh operation is successful or not
+   *
+   * If the isSuceess is `true`, then the `token` and other items will be
+   * replaced with the new network response
+   *
+   * If the isSuceess is `false`, then everything will be wiped and user will
+   * be sgined out
+   */
+  isSuccess: false
+}
+
+/**
+ * Payload for Refresh token Success True
+ */
+type RefreshTokenActionPayloadTrue<T> = {
 
   /**
    * New Auth token from the network response
@@ -27,13 +43,6 @@ export interface RefreshTokenActionPayload<T> {
    * New User state from the network. Can be null
    */
   newAuthUserState?: T | null,
-}
-
-
-/**
- * Refresh Token Callback Response
- */
-interface RefreshTokenCallbackResponse<T> extends RefreshTokenActionPayload<T> {
 
   /**
    * If the refresh operation is successful or not
@@ -42,10 +51,16 @@ interface RefreshTokenCallbackResponse<T> extends RefreshTokenActionPayload<T> {
    * replaced with the new network response
    *
    * If the isSuceess is `false`, then everything will be wiped and user will
-   * be sgined out
+   * be signed out
    */
   isSuccess: boolean
 }
+
+/**
+ * Response type by the refrsh token
+ */
+type RefreshTokenCallbackResponse<T> = RefreshTokenActionPayloadTrue<T> | RefreshTokenActionPayloadFalse;
+
 
 /**
  *
