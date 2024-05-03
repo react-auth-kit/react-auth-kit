@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthProvider Renders Refresh component 1`] = `
+<div>
+  <div>
+    <span
+      id="refresh"
+    >
+      Refreshssssssssssssssss
+    </span>
+    <div
+      id="test"
+    >
+      Hello
+    </div>
+  </div>
+</div>
+`;
