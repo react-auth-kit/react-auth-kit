@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "7.8.0",
     "eslint": "8.57.0",
     "eslint-config-google": "0.14.0",
-    "eslint-plugin-jest": "28.3.0",
+    "eslint-plugin-jest": "28.4.0",
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "9.0.11",
