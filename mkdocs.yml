@@ -36,7 +36,6 @@ theme:
     - content.code.copy
     - content.code.select
     - navigation.indexes
-    - navigation.instant
     - navigation.tabs
     - navigation.tracking
     - navigation.top
@@ -117,9 +116,6 @@ extra:
 
 plugins:
   - search
-
-extra_javascript:
-  - https://media.ethicalads.io/media/client/ethicalads.min.js
 
 markdown_extensions:
   - admonition
