@@ -15,8 +15,10 @@ You're not viewing the latest version.
 {% elif page and page.title and not page.is_homepage %}
     {% set title = title ~ " - " ~ page.title | striptags %}
 {% endif %}
+<script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
 <meta property="keywords"
-      content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-kit, jwt with react, state, react-state, auth-state"/>
+      content="react, auth, authtication, react-authentication, jwt, jsonwebtoken, react-jwt, react-jsonwebtoken, react-auth-kit, jwt with react, state, react-state, auth-state, next, next auth, capacitor, capacitorjs, react-router, private-route"/>
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ title }}" />
 <meta property="og:description" content="{{ config.site_description }}" />
@@ -30,10 +32,11 @@ You're not viewing the latest version.
 <meta name="twitter:title" content="{{ title }}" />
 <meta name="twitter:description" content="{{ config.site_description }}" />
 <meta name="twitter:image" content="https://authkit.arkadip.dev/img/banner.svg" />
-<meta name="google-adsense-account" content="ca-pub-4077277774959103">
 {% endblock %}
 
+
 {% block footer %}
+<div data-ea-publisher="authkitarkadipme" data-ea-type="image" data-ea-style="stickybox"></div>
 <script>
   if(document.readyState === "complete") {
       console.log("DOM updated")
