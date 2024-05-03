@@ -4,6 +4,7 @@ import type TokenObject from "./RxTokenObject";
 
 import { useInterval } from "./utils/hooks";
 import { doRefresh, doSignOut } from "./utils/reducers";
+import { AuthError } from "./errors";
 
 interface RefreshProps<T> {
     refresh: createRefreshParamInterface<T> 
@@ -13,6 +14,29 @@ interface RefreshProps<T> {
 
 function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T>>): ReactNode {
     const [initialRefreshing, setInitialRefreshing] = useState<boolean>(true);
+
+    const refreshApiCall = () => {
+      refresh.refreshApiCallback({
+        authToken: store.value.auth?.token,
+        authUserState: store.value.userState,
+        refreshToken: store.value.refresh?.token,
+      })
+      .then((result) => {
+        // IF the API call is successful then refresh the AUTH state
+        if (result.isSuccess) {
+          // store the new value using the state update
+          store.set(doRefresh(result));
+        } else {
+          // signout if failed to refresh
+          store.set(doSignOut());
+        }
+      })
+      .catch(() => {
+        // Retry for Future
+        store.set(doSignOut());
+        throw new AuthError('Some error occured on the Refresh API. Unable to refresh for now')
+      });
+    }
 
     useEffect(()=>{
       if(!initialRefreshing){
@@ -29,25 +53,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       // Else If refresh condition met
       else if(value.isUsingRefreshToken && value.refresh && value.refresh.expiresAt > new Date()){
         // Refresh the auth token by calling the doRefresh
-
-        refresh.refreshApiCallback({
-          authToken: store.value.auth?.token,
-          authUserState: store.value.userState,
-          refreshToken: store.value.refresh?.token,
-        })
-        .then((result) => {
-          // IF the API call is successful then refresh the AUTH state
-          if (result.isSuccess) {
-            // store the new value using the state update
-            store.set(doRefresh(result));
-          } else {
-            // signout if failed to refresh
-            store.set(doSignOut());
-          }
-        })
-        .catch(() => {
-          // Retry for Future
-        });
+        refreshApiCall();    
       }
       // Else
       else {
@@ -59,27 +65,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
     }, [])
 
     useInterval(
-      () => {
-        refresh
-          .refreshApiCallback({
-            authToken: store.value.auth?.token,
-            authUserState: store.value.userState,
-            refreshToken: store.value.refresh?.token,
-          })
-          .then((result) => {
-            // IF the API call is successful then refresh the AUTH state
-            if (result.isSuccess) {
-              // store the new value using the state update
-              store.set(doRefresh(result));
-            } else {
-              // signout if failed to refresh
-              store.set(doSignOut());
-            }
-          })
-          .catch(() => {
-            // Retry for Future
-          });
-      },
+      refreshApiCall,
       store.value.isSignIn ? refresh.interval : null,
     );
 
