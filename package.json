@@ -14,7 +14,6 @@
     "test": "npx lerna run test",
     "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json",
     "test:coverage": "npx lerna run test -- --coverage"
-
   },
   "keywords": [
     "react",
@@ -51,8 +50,6 @@
     "@babel/preset-typescript": "7.24.1",
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/git": "10.0.1",
     "@typescript-eslint/eslint-plugin": "7.8.0",
     "@typescript-eslint/parser": "7.8.0",
     "eslint": "8.57.0",
@@ -74,15 +71,5 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "npm test"
-  },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
-    ]
   }
 }
