@@ -1,7 +1,7 @@
-import React from 'react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import createRefresh from 'react-auth-kit/createRefresh'
+import RefreshComponent from './refreshComponent';
 
 const mock = new MockAdapter(axios);
 
@@ -9,15 +9,7 @@ mock.onPost("/refresh").reply(200, {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8"
 });
 
-const RefreshComponent = () => {
-  console.log("Initial refresh called");
-  
-  return (
-    <div>
-      Initial refreshing................
-    </div>
-  )
-}
+
 
 const refreshApi = createRefresh({
   interval: 10,
