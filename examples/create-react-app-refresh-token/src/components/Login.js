@@ -1,7 +1,6 @@
 import React from 'react'
 import useSignIn from 'react-auth-kit/hooks/useSignIn'
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
-
 import {Navigate} from 'react-router-dom'
 
 const Login = () => {
