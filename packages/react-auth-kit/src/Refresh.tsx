@@ -11,10 +11,23 @@ interface RefreshProps<T> {
     store: TokenObject<T>
 }
 
-
+/**
+ * React Component
+ * Refresh Feature
+ * 
+ * Initial Refresh and Pariodic Refresh
+ * 
+ * @internal
+ * 
+ * @param param0 - Parameters
+ * @returns React Functional Component with Refresh Implementation
+ */
 function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T>>): ReactNode {
     const [initialRefreshing, setInitialRefreshing] = useState<boolean>(true);
 
+    /**
+     * Refresh API calling
+     */
     const refreshApiCall = () => {
       refresh.refreshApiCallback({
         authToken: store.value.auth?.token,
@@ -38,6 +51,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       });
     }
 
+    // Initial Refresh
     useEffect(()=>{
       if(!initialRefreshing){
         return;
@@ -53,17 +67,20 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       // Else If refresh condition met
       else if(value.isUsingRefreshToken && value.refresh && value.refresh.expiresAt > new Date()){
         // Refresh the auth token by calling the doRefresh
-        refreshApiCall();    
+        refreshApiCall();
+        setInitialRefreshing(false);
       }
-      // Else
+      // IF the user is sign out
       else {
         // make a SignOut call
+        
         store.set(doSignOut());
+        setInitialRefreshing(false);
       }
       // Set refreshing to false
-      setInitialRefreshing(false);
     }, [])
 
+    // Pariodically refresh
     useInterval(
       refreshApiCall,
       store.value.isSignIn ? refresh.interval : null,
