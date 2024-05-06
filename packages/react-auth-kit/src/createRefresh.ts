@@ -59,7 +59,7 @@ export type RefreshTokenActionPayloadTrue<T> = {
 /**
  * Response type by the refrsh token
  */
-type RefreshTokenCallbackResponse<T> = RefreshTokenActionPayloadTrue<T> | RefreshTokenActionPayloadFalse;
+export type RefreshTokenCallbackResponse<T> = RefreshTokenActionPayloadTrue<T> | RefreshTokenActionPayloadFalse;
 
 
 /**
