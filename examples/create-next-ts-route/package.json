@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@auth-kit/next": "3.1.4-alpha.40+51fcb7ab",
-    "next": "14.0.4",
+    "next": "14.1.1",
     "react": "^18",
     "react-auth-kit": "3.1.4-alpha.40+51fcb7ab",
     "react-dom": "^18"
