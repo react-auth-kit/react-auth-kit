@@ -51,7 +51,7 @@
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
   },
   "devDependencies": {
-    "@testing-library/react": "15.0.7",
+    "@testing-library/react": "16.0.0",
     "@types/deep-equal": "^1.0.4",
     "@types/jest": "29.5.12",
     "@types/js-cookie": "3.0.6",
