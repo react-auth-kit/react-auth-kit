@@ -64,7 +64,7 @@
     "mkdirp": "3.0.1",
     "npm-run-all2": "6.2.0",
     "rimraf": "5.0.7",
-    "tslib": "2.6.2",
+    "tslib": "2.6.3",
     "typedoc": "0.25.13",
     "typedoc-plugin-markdown": "^4.0.0",
     "typescript": "5.4.5"
