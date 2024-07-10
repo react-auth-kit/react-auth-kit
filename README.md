@@ -47,7 +47,7 @@ It is production-ready, and gives you the following:
 
 * 📦 Very lightweight
 * 🔧 Easy to use
-* ⚛️ Build for React JS
+* ⚛️ Built for React JS
 * ⚡ Works with Gastsby, Next JS
 * 🚀 Fast and easy to Implement
 * 🛡️ Supports Json Web Token (JWT)
