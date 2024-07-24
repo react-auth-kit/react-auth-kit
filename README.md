@@ -20,10 +20,6 @@
 </h2>
 
 <p align="center">
-    <em>Looking for a hosted alternative? <a href="https://clerk.com/?utm_source=sponsorship&utm_medium=github&utm_campaign=react-auth-kit&utm_content=readme">Try Clerk →</a></em>
-</p>
-
-<p align="center">
   
 <a href="https://codecov.io/gh/react-auth-kit/react-auth-kit">
   <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL"/>
@@ -47,7 +43,7 @@ It is production-ready, and gives you the following:
 
 * 📦 Very lightweight
 * 🔧 Easy to use
-* ⚛️ Build for React JS
+* ⚛️ Built for React JS
 * ⚡ Works with Gastsby, Next JS
 * 🚀 Fast and easy to Implement
 * 🛡️ Supports Json Web Token (JWT)

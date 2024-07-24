@@ -27,9 +27,6 @@ hide:
     <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
 </p>
 
-<p>
-  Looking for a hosted alternative? <a href="https://clerk.com/?utm_source=sponsorship&utm_medium=github&utm_campaign=react-auth-kit&utm_content=website">Try Clerk →</a>
-</p>
 
 <p style="text-align: center">
 <a href="https://www.npmjs.com/package/react-auth-kit">
@@ -60,8 +57,6 @@ It is production-ready, and gives you the following:
 * 🛡️ Supports JSON Web Token (JWT)
 * 🔒 Secure Client Side Authentication
 * ⌨️ Highly typed and written in `TypeScript`
-
-<div data-ea-publisher="authkitarkadipme" data-ea-type="text" data-ea-keywords="web|react|javascript|python|database|node|mongo" id="index"></div>
 
 
 ## Stargazers ⭐
