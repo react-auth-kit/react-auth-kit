@@ -98,9 +98,6 @@ React-Auth-Kit and all it's plugins are available as a npm package.
 
 </div>
 
-<div>
-Looking for a hosted alternative? Clerk provides complete suite of embeddable UIs, flexible APIs, and admin dashboards to authenticate and manage your users. <a href="https://clerk.com/?utm_source=sponsorship&utm_medium=github&utm_campaign=react-auth-kit&utm_content=docs">Try Clerk →</a>
-</div>
 
 ## :material-attachment: Integration
 Integrate React Auth Kit into your application easily
@@ -113,6 +110,7 @@ Integrate React Auth Kit into your application easily
 </div>
 
 ## :material-function: Functionalities
+
 Add up multiple functions to your application
 hl_lines="2 5 9"
 <div class="grid cards" markdown>

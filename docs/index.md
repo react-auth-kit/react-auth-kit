@@ -27,9 +27,6 @@ hide:
     <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
 </p>
 
-<p>
-  Looking for a hosted alternative? <a href="https://clerk.com/?utm_source=sponsorship&utm_medium=github&utm_campaign=react-auth-kit&utm_content=website">Try Clerk →</a>
-</p>
 
 <p style="text-align: center">
 <a href="https://www.npmjs.com/package/react-auth-kit">
