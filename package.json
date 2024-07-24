@@ -67,7 +67,7 @@
     "tslib": "2.6.3",
     "typedoc": "0.25.13",
     "typedoc-plugin-markdown": "^4.0.0",
-    "typescript": "5.4.5"
+    "typescript": "5.5.4"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "npm test"
