@@ -19,30 +19,34 @@
   "types": "index.d.ts",
   "directories": {
     "src": "src",
+    "lib": "dist",
     "test": "__tests__"
   },
   "files": [
     "hooks",
     "utils",
+    "dist",
     "*.js",
     "*.d.ts"
   ],
   "exports": {
-    ".": "./index.js",
-    "./errors": "./errors.js",
-    "./AuthContext": "./AuthContext.js",
-    "./createStore": "./createStore.js",
-    "./AuthProvider": "./AuthProvider.js",
-    "./createRefresh": "./createRefresh.js",
-    "./hooks/*": "./hooks/*.js",
-    "./utils/*": "./utils/*.js"
+    ".": "./dist/index.js",
+    "./errors": "./dist/errors.js",
+    "./AuthContext": "./dist/AuthContext.js",
+    "./createStore": "./dist/createStore.js",
+    "./AuthProvider": "./dist/AuthProvider.js",
+    "./createRefresh": "./dist/createRefresh.js",
+    "./hooks/*": "./dist/hooks/*.js",
+    "./utils/*": "./dist/utils/*.js",
+    "./route": "./dist/route/index.js"
+
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
+    "build": "rimraf ./dist && mkdirp ./dist && tsc --project tsconfig.json && babel src --out-dir ./dist --extensions \".tsx,.ts,.js,.jsx\"",
     "test": "jest",
     "lint": "eslint src",
     "test:watch": "jest --watch"
