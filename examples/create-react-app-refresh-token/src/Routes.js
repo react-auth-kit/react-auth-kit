@@ -1,5 +1,5 @@
 import React from 'react'
-import { RequireAuth } from 'react-auth-kit'
+import RequireAuth from '@auth-kit/react-router/RequireAuth'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import Login from './components/Login'
@@ -12,7 +12,7 @@ const RoutesComponent = () => {
         <Route path={'/'} element={<Home/>}/>
         <Route path={'/login' } element={<Login/>}/>
         <Route path={'/secure'} element={
-          <RequireAuth loginPath={'/login'}>
+          <RequireAuth fallbackPath={'/login'}>
             <SecureComponent/>
           </RequireAuth>
         }/>

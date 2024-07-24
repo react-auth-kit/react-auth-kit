@@ -17,7 +17,7 @@ import type {
 } from '../types';
 
 import type {
-  RefreshTokenActionPayload,
+  RefreshTokenActionPayloadTrue,
 } from '../createRefresh';
 
 import type {
@@ -93,11 +93,11 @@ export function doSignIn<T>(
  *
  * @typeParam T - Type of User State Object
  */
-export function doRefresh<T>(refreshTokenParam: RefreshTokenActionPayload<T>):
+export function doRefresh<T>(refreshTokenParam: RefreshTokenActionPayloadTrue<T>):
   AuthKitSetState<T> {
   let ret : AuthKitSetState<T>= {
     auth: {
-      token: refreshTokenParam.newAuthToken!,
+      token: refreshTokenParam.newAuthToken,
       type: refreshTokenParam.newAuthTokenType || 'Bearer',
     },
   };

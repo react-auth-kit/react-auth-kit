@@ -21,9 +21,10 @@ const Login = () => {
 
     signIn({
       auth: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzEyMDU5MzgwfQ.ve0xaiNmSO1vycA14QCsA843maM6g2mEDJlw9Dubxyw'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzE0NDYyMTczfQ.J8A_jlXgeZQWm_kMP5sqq6tK0nLLWJGpGXVRtm2DNc8'
       },
       userState: {name: 'Manas Baroi', uid: 123456},
+      refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
       navigateTo: '/secure'
     })
   }

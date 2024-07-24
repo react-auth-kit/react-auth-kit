@@ -16,14 +16,15 @@
   "module": "index.js",
   "types": "index.d.ts",
   "files": [
+    "dist",
     "*.js",
     "*.d.ts"
   ],
   "exports": {
-    ".": "./index.js",
-    "./AuthOutlet": "./AuthOutlet.js",
-    "./RequireAuth": "./RequireAuth.js",
-    "./route": "./route.js"
+    ".": "./dist/index.js",
+    "./AuthOutlet": "./dist/AuthOutlet.js",
+    "./RequireAuth": "./dist/RequireAuth.js",
+    "./route": "./dist/route.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,7 @@
   },
   "scripts": {
     "build": "run-s build:*",
-    "build:build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
+    "build:build": "rimraf ./dist && mkdirp ./dist && tsc --project tsconfig.json && babel src --out-dir ./dist --extensions \".tsx,.ts,.js,.jsx\"",
     "test": "jest",
     "lint": "eslint src",
     "test:watch": "jest --watch"

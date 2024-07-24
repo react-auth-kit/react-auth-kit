@@ -309,6 +309,7 @@ class TokenObject<T> {
                 'token': data.refresh,
                 'expiresAt': refreshExpireTime,
               },
+              isUsingRefreshToken: true
             };
           } else {
             obj = {
@@ -559,7 +560,7 @@ class TokenObject<T> {
       }
 
 
-      if (refresh) {
+      if (this.isUsingRefreshToken && refresh) {
         if (!!auth && !!authState) {
           this.log('checkTokenExist - Returning auth and refrsh');
           this.log({
@@ -573,7 +574,7 @@ class TokenObject<T> {
             auth: auth,
             refresh: refresh,
             userState: authState,
-            isUsingRefreshToken: this.isUsingRefreshToken,
+            isUsingRefreshToken: !!this.isUsingRefreshToken,
             isSignIn: true,
           };
         }

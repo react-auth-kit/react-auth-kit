@@ -56,6 +56,7 @@ describe('Do refresh', ()=>{
   it('New Auth Token', ()=> {
     const res = doRefresh({
       newAuthToken: 'token',
+      isSuccess: true
     });
     expect(res).toEqual({
       auth: {
@@ -68,6 +69,7 @@ describe('Do refresh', ()=>{
     const res = doRefresh({
       newAuthToken: 'token',
       newAuthTokenType: 'type',
+      isSuccess: true
     });
     expect(res).toEqual({
       auth: {
@@ -80,6 +82,7 @@ describe('Do refresh', ()=>{
     const res = doRefresh({
       newAuthToken: 'token',
       newRefreshToken: 'refresh',
+      isSuccess: true
     });
     expect(res).toEqual({
       auth: {
@@ -95,6 +98,7 @@ describe('Do refresh', ()=>{
       newAuthUserState: {
         name: 'react',
       },
+      isSuccess: true
     });
     expect(res).toEqual({
       auth: {
