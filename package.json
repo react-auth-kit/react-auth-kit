@@ -9,7 +9,7 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "npx lerna run build",
     "test": "npx lerna run test",
     "test:docs": "markdownlint './docs/**/*.md' --ignore node_modules -c .markdownlint.json",
@@ -65,7 +65,7 @@
     "npm-run-all2": "6.2.2",
     "rimraf": "6.0.1",
     "tslib": "2.6.3",
-    "typedoc": "0.25.13",
+    "typedoc": "0.26.5",
     "typedoc-plugin-markdown": "^4.0.0",
     "typescript": "5.4.5"
   },
