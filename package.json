@@ -52,7 +52,7 @@
     "@commitlint/config-conventional": "19.2.2",
     "@typescript-eslint/eslint-plugin": "8.4.0",
     "@typescript-eslint/parser": "8.4.0",
-    "eslint": "8.57.0",
+    "eslint": "9.10.0",
     "eslint-config-google": "0.14.0",
     "eslint-plugin-jest": "28.8.0",
     "eslint-plugin-react": "7.35.0",
