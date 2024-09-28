@@ -55,7 +55,7 @@
     "eslint": "9.10.0",
     "eslint-config-google": "0.14.0",
     "eslint-plugin-jest": "28.8.3",
-    "eslint-plugin-react": "7.35.2",
+    "eslint-plugin-react": "7.37.0",
     "eslint-plugin-tsdoc": "^0.3.0",
     "husky": "9.1.5",
     "lerna": "^8.0.0",
