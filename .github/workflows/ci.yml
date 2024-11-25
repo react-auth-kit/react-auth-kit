@@ -84,7 +84,7 @@ jobs:
         if: steps.changed-ignored.outputs.only_modified == 'false'
 
       - name: Coverage Report to codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: steps.changed-ignored.outputs.only_modified == 'false'
         with:
           flags: unittests # optional
