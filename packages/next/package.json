@@ -31,7 +31,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "next": "14.2.18",
+    "next": "15.0.3",
     "react": "18.3.1"
   },
   "repository": {
