@@ -60,8 +60,8 @@
     "@types/jest": "29.5.14",
     "@types/js-cookie": "3.0.6",
     "@types/node": "22.10.5",
-    "@types/react": "18.3.18",
-    "@types/react-dom": "18.3.5",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.4.3",
     "next": "^15.0.0",
@@ -73,8 +73,8 @@
     "rxjs": "^7.8.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0 || ^17.x || ^18.x",
-    "react-dom": ">=16.8.0 || ^17.x || ^18.x"
+    "react": ">=16.8.0 || ^17.x || ^18.x || ^19.x",
+    "react-dom": ">=16.8.0 || ^17.x || ^18.x || ^19.x"
   },
   "gitHead": "8326f5a8a331e0eacc59bbc4aab7da0671b86a84"
 }

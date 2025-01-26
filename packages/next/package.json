@@ -32,8 +32,8 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "next": "15.0.3",
-    "react": "18.3.1"
+    "next": "15.1.6",
+    "react": "19.0.0"
   },
   "repository": {
     "type": "git",
