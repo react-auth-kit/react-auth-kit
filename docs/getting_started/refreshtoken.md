@@ -6,8 +6,7 @@ description: Refresh the auth token in the background by using the Refresh token
 
 # :material-refresh: Refresh the Access token using Refresh Token
 
-Often JWT comes with a new challenge.
-You have to `refresh` the JWT token periodically using a token, named Refresh token.
+`Refresh` the access token periodically using a Refresh token.
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="refresh"></div>
 
@@ -25,7 +24,6 @@ You can either use the refresh token in your application or you can leave it.
 
 To build the refresh token API, you have to use `createRefresh` function.
 It is an identity function. It is mainly used for type checking and mobility.
-
 
 ### Import
 
@@ -46,7 +44,7 @@ const refresh = createRefresh({
       console.log("Refreshing")
       return {
         isSuccess: true,
-        newAuthToken: response.data.token,
+        newAuthToken: response.data.token,    // New Access token
         newAuthTokenExpireIn: 10,
         newRefreshTokenExpiresIn: 60
       }
@@ -58,8 +56,27 @@ const refresh = createRefresh({
       } 
     }
   }
+  initalRefreshComponent: <RefreshComponent/>   // Optional, The component to show while refreshing for the first time
 })
 
+```
+
+### Initial Refresh Component
+
+You can show a loading component while refreshing for the first time.
+
+Here is an example of the initial refresh component.
+
+```jsx title="refresh.js" linenums="1"
+const RefreshComponent = () => {
+ return (
+  <div>
+   Initial refreshing................
+  </div>
+ )
+}
+
+export default RefreshComponent;
 ```
 
 ---
@@ -92,7 +109,6 @@ function App() {
 ## API
 
 [createRefresh](./../reference/react-auth-kit/createRefresh.md)
-
 
 !!! warning "Only use the return from createRefresh as the prop value"
 

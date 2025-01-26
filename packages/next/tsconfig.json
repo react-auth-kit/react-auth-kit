@@ -5,7 +5,7 @@
         "src/**/*.tsx"
     ],
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./dist",
         "emitDeclarationOnly": true
     },
     "exclude": [

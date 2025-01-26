@@ -17,14 +17,15 @@
   "module": "index.js",
   "types": "index.d.ts",
   "files": [
+    "dist",
     "*.js",
     "*.d.ts"
   ],
   "exports": {
-    ".": "./index.js",
-    "./NextAuth": "./NextAuth.js",
-    "./useNextAuth": "./useNextAuth.js",
-    "./route": "./route.js"
+    ".": "./dist/index.js",
+    "./NextAuth": "./dist/NextAuth.js",
+    "./useNextAuth": "./dist/useNextAuth.js",
+    "./route": "./dist/route.js"
   },
   "peerDependencies": {
     "next": ">=14",
@@ -39,7 +40,7 @@
     "url": "git+https://github.com/react-auth-kit/react-auth-kit.git"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json && babel src --out-dir . --extensions \".tsx,.ts,.js,.jsx\"",
+    "build": "rimraf ./dist && mkdirp ./dist && tsc --project tsconfig.json && babel src --out-dir ./dist --extensions \".tsx,.ts,.js,.jsx\"",
     "test": "jest",
     "lint": "eslint src"
   },

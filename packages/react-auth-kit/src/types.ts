@@ -51,7 +51,7 @@ export type signInFunctionParams<T> = SignInActionPayload<T>
  * 2. Refresh token can be there or not
  * 3. User state can be there or not
  */
-interface AuthKitStateInterfaceTrue<T> {
+type AuthKitStateInterfaceSignedIn<T> = {
 
   /**
    * Authentication part of the State
@@ -78,6 +78,50 @@ interface AuthKitStateInterfaceTrue<T> {
   },
 
   /**
+   * User state
+   */
+  userState: T | null,
+
+  /**
+   * Boolean value to know if the user is signed in or not
+   */
+  isSignIn: true
+}
+
+/**
+ * Auth State Object
+ * 1. when the user is authenticated
+ * 2. Refresh token can be there or not
+ * 3. User state can be there or not
+ */
+type AuthKitStateInterfaceSignedOut = {
+
+  /**
+   * Authentication part of the State
+   */
+  auth: null
+
+  /**
+   * User state
+   */
+  userState: null,
+
+  /**
+   * Boolean value to know if the user is signed in or not
+   */
+  isSignIn: false,
+}
+
+export type AuthKitStateInterfaceAuthToken<T> = AuthKitStateInterfaceSignedIn<T> | AuthKitStateInterfaceSignedOut
+
+/**
+ * Auth State Object
+ * 1. when the user is authenticated
+ * 2. Refresh token can be there or not
+ * 3. User state can be there or not
+ */
+type AuthKitStateInterfaceWithRefresh = {
+  /**
    * Auth Refresh token part
    */
   refresh: {
@@ -94,104 +138,35 @@ interface AuthKitStateInterfaceTrue<T> {
   } | null,
 
   /**
-   * User state
-   */
-  userState: T | null,
-
-  /**
-   * Boolean value to know if the user is signed in or not
-   */
-  isSignIn: boolean,
-
-  /**
    * If the current system is using refresh token or not
    */
-  isUsingRefreshToken: boolean,
+  isUsingRefreshToken: true,
 }
 
 /**
  * Auth State Object
- * 1. when the user is not authenticated
- * 2. Refresh token is there
- * 3. User state is null
+ * 1. when the user is authenticated
+ * 2. Refresh token can be there or not
+ * 3. User state can be there or not
  */
-interface AuthKitStateInterfaceNoAuthOnlyRefresh {
-
-  /**
-   * Authentication part of the State
-   */
-  auth: null,
-
+type AuthKitStateInterfaceWithoutRefresh = {
   /**
    * Auth Refresh token part
-   */
-  refresh: {
-
-    /**
-     * Refresh token
-     */
-    token: string,
-
-    /**
-     * Expiry time of the Refresh token
-     */
-    expiresAt: Date
-  },
-
-  /**
-   * User State
-   */
-  userState: null,
-
-  /**
-   * Boolean value to know if the user is signed in or not
-   */
-  isSignIn: boolean,
-
-  /**
-   * If the current system is using refresh token or not
-   */
-  isUsingRefreshToken: boolean,
-}
-
-/**
- * Auth State Object
- * 1. when the user is not authenticated
- * 2. Refresh token is null
- * 3. User state is null
- */
-interface AuthKitStateInterfaceFalse {
-
-  /**
-   * Authentication part of the State, which is null
-   */
-  auth: null,
-
-  /**
-   * Refresh token part, which is null
    */
   refresh: null,
 
   /**
-   * User state, which is null
-   */
-  userState: null,
-
-  /**
-   * Is Sign In, which is false
-   */
-  isSignIn: boolean,
-
-  /**
    * If the current system is using refresh token or not
    */
-  isUsingRefreshToken: boolean,
+  isUsingRefreshToken: false,
 }
+
+type AuthKitStateInterfaceRefresh = AuthKitStateInterfaceWithRefresh | AuthKitStateInterfaceWithoutRefresh
+
 
 /**
  * Auth State Object
  */
 export type AuthKitStateInterface<T> =
-  AuthKitStateInterfaceTrue<T> |
-  AuthKitStateInterfaceFalse |
-  AuthKitStateInterfaceNoAuthOnlyRefresh;
+  AuthKitStateInterfaceAuthToken<T> &
+  AuthKitStateInterfaceRefresh;
