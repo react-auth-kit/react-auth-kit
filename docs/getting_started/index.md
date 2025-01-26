@@ -111,8 +111,7 @@ Integrate React Auth Kit into your application easily
 
 ## :material-function: Functionalities
 
-Add up multiple functions to your application
-hl_lines="2 5 9"
+Add up authentication related functions to your application
 <div class="grid cards" markdown>
 
 - [:material-location-enter: **Sign In**](./signin.md) - Perform the Login or Signin Operation.
@@ -126,8 +125,7 @@ hl_lines="2 5 9"
 
 ## :material-door-closed-lock: Private Routing
 
-React Auth Kit supports various various routering frameworks to handle Private Routing and Redirection
-
+Access specfic private routes to only authenticated users
 <div class="grid cards" markdown>
 
 - [:simple-reactrouter: **React Router**](./privateroute/react-router.md) - Integrate Private Route with React Router and React Router Dom
