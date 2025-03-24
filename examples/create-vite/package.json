@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@auth-kit/react-router": "3.1.4-alpha.71+f241c108",
-    "axios": "^1.7.4",
+    "axios": "^1.8.4",
     "react": "^18.2.0",
     "react-auth-kit": "3.1.4-alpha.70+8aa48366",
     "react-dom": "^18.2.0",
