@@ -270,7 +270,7 @@ class TokenObject<T> {
             isSignIn: false,
             userState: null,
           };
-          new AuthError('Given Auth Token is already expired.');
+          throw new AuthError('Given Auth Token is already expired.');
         }
       } catch (e) {
         obj = {
@@ -279,7 +279,7 @@ class TokenObject<T> {
           isSignIn: false,
           userState: null,
         };
-        new AuthError(
+        throw new AuthError(
             'Error pursing the Auth Token. Make sure you provided a valid JWT.',
         );
       }
@@ -319,7 +319,7 @@ class TokenObject<T> {
               userState: null,
               refresh: null,
             };
-            new AuthError('Given Refresh Token is already expired.');
+            throw new AuthError('Given Refresh Token is already expired.');
           }
         } catch (e) {
           obj = {
@@ -329,7 +329,7 @@ class TokenObject<T> {
             userState: null,
             refresh: null,
           };
-          new AuthError(
+          throw new AuthError(
               'Error pursing the Auth Token.'+
               ' Make sure you provided a valid JWT.',
           );
