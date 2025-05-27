@@ -49,7 +49,7 @@
     "@types/react": "19.0.8",
     "@types/react-router-dom": "5.3.3",
     "react": "19.0.0",
-    "react-router": "7.1.3",
+    "react-router": "7.5.2",
     "react-router-dom": "7.1.3"
   },
   "gitHead": "8326f5a8a331e0eacc59bbc4aab7da0671b86a84",
