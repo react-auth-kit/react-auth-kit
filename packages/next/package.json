@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "next": "15.2.4",
-    "react": "19.0.0"
+    "react": "19.1.0"
   },
   "repository": {
     "type": "git",
