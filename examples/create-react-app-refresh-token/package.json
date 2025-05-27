@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "axios": "^1.7.9",
+    "axios": "^1.9.0",
     "react": "^18.3.0",
     "react-auth-kit": "3.1.4-alpha.57+f862ddc5",
     "react-dom": "^18.3.0",
