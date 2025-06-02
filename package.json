@@ -66,7 +66,7 @@
     "rimraf": "6.0.1",
     "tslib": "2.8.1",
     "typedoc": "0.28.5",
-    "typedoc-plugin-markdown": "4.6.3",
+    "typedoc-plugin-markdown": "4.6.4",
     "typescript": "5.8.3"
   },
   "lint-staged": {
