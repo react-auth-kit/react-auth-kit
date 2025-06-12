@@ -65,7 +65,7 @@
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.4.3",
     "next": "^15.0.0",
-    "ts-jest": "29.3.4"
+    "ts-jest": "29.4.0"
   },
   "dependencies": {
     "deep-equal": "^2.2.3",
