@@ -46,7 +46,7 @@ React-Auth-Kit and all its plugins are available as a npm package.
         pnpm install react-auth-kit
         ```
 
--   :simple-nextdotjs: { .lg .middle .label-color } __@auth-kit/next__{ .label-color }
+-   :simple-nextdotjs:{ .lg .middle .label-color } __@auth-kit/next__{ .label-color }
 
     ---
 
@@ -70,7 +70,7 @@ React-Auth-Kit and all its plugins are available as a npm package.
         pnpm install @auth-kit/next
         ```
 
--   :simple-reactrouter: { .lg .middle .label-color } __@auth-kit/react-router__{ .label-color }
+-   :simple-reactrouter:{ .lg .middle .label-color } __@auth-kit/react-router__{ .label-color }
 
     ---
 
