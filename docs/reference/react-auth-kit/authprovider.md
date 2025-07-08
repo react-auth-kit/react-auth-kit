@@ -32,7 +32,7 @@ Application.
 
 | Name | Type              | Required | Description |
 | :------ |:------------------| :------- |:--------- |
-| `store` | `Store`<`T`\>     | :heavy_check_mark: | Returned value from [createStore](./createStore.md) function |
+| `store` | `Store`<`T`\>     | :heavy_check_mark: | Returned value from [authStore](authStore.md) function |
 | `children` | `React.ReactNode` | :heavy_check_mark: | React Component or Element |
 
 ## Returns
@@ -52,9 +52,9 @@ throughout the application.
 
 ```react
 import AuthProvider from 'react-auth-kit';
-import createStore from 'react-auth-kit/createStore';
+import authStore from 'react-auth-kit/store';
 
-const store = createStore();
+const store = authStore();
 
 <AuthProvider store={store}>
  <RoutesComponent/>

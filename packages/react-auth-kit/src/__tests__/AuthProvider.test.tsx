@@ -4,7 +4,7 @@ import TokenObject from '../RxTokenObject';
 import AuthProvider from './../AuthProvider';
 
 import * as Ref from './../Refresh';
-import createStore from '../createStore';
+import authStore from '../store';
 import createRefresh from '../createRefresh';
 
 const Refresh = jest.spyOn(Ref, 'default');
@@ -45,9 +45,9 @@ describe('AuthProvider', () => {
     const createRefreshData = createRefresh({
       interval: 10,
       refreshApiCallback: jest.fn()
-    }) 
+    })
 
-    const store = createStore({
+    const store = authStore({
       authName: '__',
       authType: 'cookie',
       cookieDomain: window.location.hostname,

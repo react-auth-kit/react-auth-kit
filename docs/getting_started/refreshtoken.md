@@ -83,13 +83,13 @@ export default RefreshComponent;
 
 ## Integration with the App
 
-To add the refresh token feature, simply add the return value of `createRefresh` function in the `createStore` in the refresh prop.
+To add the refresh token feature, simply add the return value of `createRefresh` function in the `authStore` in the refresh prop.
 
 ```jsx title="app.js" linenums="1"
 import {AuthProvider} from 'react-auth-kit'
 import refresh from "./refresh";
 
-const store = createStore({
+const store = authStore({
   authName:'_auth',
   authType:'cookie',
   cookieDomain: window.location.hostname,

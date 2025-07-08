@@ -4,7 +4,7 @@ import { render, waitFor } from "@testing-library/react";
 
 import Refresh from "../Refresh";
 import createRefresh, { RefreshTokenCallbackResponse } from "../createRefresh";
-import createStore from "../createStore";
+import authStore from "../store";
 import * as reducers from '../utils/reducers';
 
 jest.useFakeTimers()
@@ -18,7 +18,7 @@ describe("Initial Refresh", () => {
 			This is the initial Refresh
 		</div>
 	)
-	
+
 	afterEach(() => {
 		Cookies.remove('__');
 		Cookies.remove('___type');
@@ -48,7 +48,7 @@ describe("Initial Refresh", () => {
 			initalRefreshComponent: <InitialRefreshData/>
 		});
 
-		const store = createStore({
+		const store = authStore({
 			authName: '__',
 			authType: 'cookie',
 			cookieDomain: window.location.hostname,
@@ -71,15 +71,15 @@ describe("Initial Refresh", () => {
 		expect(doSignOutSpy).not.toHaveBeenCalled();
 		expect(doRefreshSpy).not.toHaveBeenCalled();
 	});
-	
+
 	describe('If refresh condition is there and if the refresh component is there, render inital refresh component and api call and reducer call and state update', () => {
 		it('API call is successfull', async () => {
 			const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
 			'0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
 			'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
 			Cookies.set('___refresh', refreshToken);
-	
-	
+
+
 			const api = jest.fn(
 				() => new Promise<RefreshTokenCallbackResponse<unknown>>((resolve) => {
 					setTimeout(resolve, 50, {
@@ -94,8 +94,8 @@ describe("Initial Refresh", () => {
 				refreshApiCallback: api,
 				initalRefreshComponent: <InitialRefreshData/>
 			});
-	
-			const store = createStore({
+
+			const store = authStore({
 				authName: '__',
 				authType: 'cookie',
 				cookieDomain: window.location.hostname,
@@ -103,7 +103,7 @@ describe("Initial Refresh", () => {
 				refresh: createRefreshData,
 				debug: true
 			});
-	
+
 			const {container} = render(
 				// @ts-expect-error refresh type
 				<Refresh refresh={store.refresh} store={store.tokenObject}>
@@ -112,11 +112,11 @@ describe("Initial Refresh", () => {
 					</div>
 				</Refresh>
 			);
-	
+
 			expect(container).toMatchSnapshot();
 
 			jest.advanceTimersByTime(55);
-			
+
 			await waitFor(() => expect(api).toHaveBeenCalledTimes(1))
 
 			expect(container).toMatchSnapshot();
@@ -132,7 +132,7 @@ describe("Initial Refresh", () => {
 			// );
 		});
 	});
-	
+
 	// describe('If refresh condition is there and if the refresh component is there, only api call and reducer call and state update', () => {
 	// 	it('API call is successfull', () => {
 
@@ -141,7 +141,7 @@ describe("Initial Refresh", () => {
 
 	// 	});
 	// });
-	
+
 	it('If no refresh token is there, do not refresh, and call signOut', () => {
 		const api = jest.fn()
 		const createRefreshData = createRefresh({
@@ -150,7 +150,7 @@ describe("Initial Refresh", () => {
 			initalRefreshComponent: <InitialRefreshData />
 		});
 
-		const store = createStore({
+		const store = authStore({
 			authName: '__',
 			authType: 'cookie',
 			cookieDomain: window.location.hostname,
@@ -174,7 +174,7 @@ describe("Initial Refresh", () => {
 		expect(doSignOutSpy).toHaveBeenCalled();
 		expect(doRefreshSpy).not.toHaveBeenCalled();
 	});
-	
+
 	// it('If the refresh component is called once, then it should not called multiple times', () => {
 
 	// });

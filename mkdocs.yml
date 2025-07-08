@@ -51,10 +51,10 @@ nav:
 
   - Getting Started:
     - 'getting_started/index.md'
-    - Integration: 
+    - Integration:
       - React App (CRA, Vite): 'getting_started/integration/react-app.md'
       - Next Js App Router: 'getting_started/integration/next-app-router.md'
-    
+
     - Functionalities:
       - Sign In: 'getting_started/signin.md'
       - Sign Out: 'getting_started/signout.md'
@@ -63,16 +63,16 @@ nav:
       - Auth Status: 'getting_started/checkauth.md'
       - Refresh Token: 'getting_started/refreshtoken.md'
 
-    - Private Route: 
+    - Private Route:
       - React Router: 'getting_started/privateroute/react-router.md'
       - Next Js App Router: 'getting_started/privateroute/next-app.md'
 
-  - Reference: 
+  - Reference:
     - 'reference/index.md'
     - React Auth Kit:
       - AuthProvider: 'reference/react-auth-kit/authprovider.md'
       - createRefresh: 'reference/react-auth-kit/createRefresh.md'
-      - createStore: 'reference/react-auth-kit/createStore.md'
+      - createStore: 'reference/react-auth-kit/authStore.md'
       - Errors: 'reference/react-auth-kit/errors.md'
       - Types: 'reference/react-auth-kit/types.md'
       - Hooks:
@@ -94,7 +94,7 @@ nav:
       - AuthOutlet: 'reference/react-router/authoutlet.md'
     - '@auth-kit/next':
       - NextAuth: 'reference/next/next-auth.md'
-  
+
   - Upgradation Guide:
       - 'update/index.md'
       - Update from v2 to v3: 'update/2to3.md'

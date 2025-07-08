@@ -17,14 +17,14 @@ To use React Auth Kit in the application, we first need to create the store that
 
 ### Import
 
-```js title="Import createStore in your app" linenums="1"
-import createStore from 'react-auth-kit/createStore';
+```js title="Import authStore in your app" linenums="1"
+import authStore from 'react-auth-kit/store';
 ```
 
 ### Usage
 
 ```js title="Create Store" linenums="1"
-const store = createStore({
+const store = authStore({
   authName:'_auth',
   authType:'cookie',
   cookieDomain: window.location.hostname,
@@ -62,7 +62,7 @@ export default App;
 
 ## API
 
-- [createStore](./../../reference/react-auth-kit/createStore.md)
+- [authStore](../../reference/react-auth-kit/authStore.md)
 - [AuthProvider](./../../reference/react-auth-kit/authprovider.md)
 
 !!! warning

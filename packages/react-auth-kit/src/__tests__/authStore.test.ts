@@ -1,11 +1,11 @@
 import TokenObject from '../RxTokenObject';
 import createRefresh, {createRefreshParamInterface} from '../createRefresh';
-import createStore from '../createStore';
+import authStore from '../store';
 import {AuthError} from '../errors';
 
 describe('Store without refreshtoken', ()=>{
   it('Store creation local store', ()=> {
-    const store = createStore({
+    const store = authStore({
       authName: '__auth',
       authType: 'localstorage',
     });
@@ -15,7 +15,7 @@ describe('Store without refreshtoken', ()=>{
   });
 
   it('Store creation cookie', ()=> {
-    const store = () => createStore({
+    const store = () => authStore({
       authName: '__auth',
       authType: 'cookie',
       cookieDomain: window.location.hostname,
@@ -54,7 +54,7 @@ describe('Store with refreshtoken', ()=>{
   });
 
   it('Store creation local store', ()=> {
-    const store = createStore({
+    const store = authStore({
       authName: '__auth',
       authType: 'localstorage',
       refresh: refresh,
@@ -71,7 +71,7 @@ describe('Store with refreshtoken', ()=>{
   });
 
   it('Store creation cookie', ()=> {
-    const store = () => createStore({
+    const store = () => authStore({
       authName: '__auth',
       authType: 'cookie',
       cookieDomain: window.location.hostname,
@@ -93,16 +93,16 @@ describe('Store with refreshtoken', ()=>{
   });
 });
 
-describe('createStore Throws error if cookie params not given', ()=>{
+describe('authStore Throws error if cookie params not given', ()=>{
   it('cookieDomain and cookieSecure', ()=>{
-    const store = () => createStore({
+    const store = () => authStore({
       authName: '__auth',
       authType: 'cookie',
     });
     expect(store).toThrow(AuthError);
   });
   it('cookieSecure', ()=>{
-    const store = () => createStore({
+    const store = () => authStore({
       authName: '__auth',
       authType: 'cookie',
       cookieSecure: false,
@@ -110,7 +110,7 @@ describe('createStore Throws error if cookie params not given', ()=>{
     expect(store).toThrow(AuthError);
   });
   it('cookieDomain', ()=>{
-    const store = () => createStore({
+    const store = () => authStore({
       authName: '__auth',
       authType: 'cookie',
       cookieDomain: window.location.hostname,

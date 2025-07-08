@@ -22,14 +22,14 @@ To use React Auth Kit in the application, we first need to create the store that
 
 ### Import
 
-```js title="Import createStore in your app" linenums="1"
-import createStore from 'react-auth-kit/createStore';
+```js title="Import authStore in your app" linenums="1"
+import authStore from 'react-auth-kit/store';
 ```
 
 ### Usage
 
 ```js title="src/store.{js|ts}" linenums="1"
-const store = createStore({
+const store = authStore({
   authName:'_auth',
   authType:'cookie',
   cookieDomain: window.location.hostname,
@@ -47,10 +47,10 @@ In the Provider file, we'll initialize the AuthProvider and pass the store.
 "use client"; // (1)
 
 import React from 'react';
-import createStore from 'react-auth-kit/createStore';
+import authStore from 'react-auth-kit/store';
 import AuthProvider from 'react-auth-kit/AuthProvider';
 
-const store = createStore({
+const store = authStore({
     authName:"__auth",
     authType:"cookie",
     cookieDomain:'127.0.0.1',
@@ -109,7 +109,7 @@ The complete example is available in [examples/create-next-ts-route](https://git
 
 ## API
 
-- [createStore](./../../reference/react-auth-kit/createStore.md)
+- [authStore](../../reference/react-auth-kit/authStore.md)
 - [AuthProvider](./../../reference/react-auth-kit/authprovider.md)
 
 

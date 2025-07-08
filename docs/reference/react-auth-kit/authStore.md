@@ -1,23 +1,23 @@
 ---
-title: createStore - React Auth Kit
+title: authStore - React Auth Kit
 description: Create the Auth Data Store for react
 ---
 
-# createStore
+# authStore
 
 <div data-ea-publisher="authkitarkadipme" data-ea-type="text" id="ref_createStore"></div>
 
 ## Import
 
 ```js
-import createStore from 'react-auth-kit/createStore';
+import authStore from 'react-auth-kit/store';
 ```
 
 ## Function Signature
 
-**createStore**<`T`\>([`params`](#parameters)): `Store`<`T`\>
+**authStore**<`T`\>([`params`](#parameters)): `Store`<`T`\>
 
-createStore creates the default store for React Auth Kit.
+authStore creates the default store for React Auth Kit.
 
 This store is like a Redux store, where every object and data is stored.
 
@@ -46,9 +46,9 @@ Auth Kit Store
 Here is an example on JavaScript
 
 ```jsx
-import createStore from 'react-auth-kit/createStore';
+import authStore from 'react-auth-kit/store';
 
-const store = createStore({
+const store = authStore({
  authName:'_auth',
  authType:'cookie',
  cookieDomain: window.location.hostname,
@@ -64,7 +64,7 @@ interface IUserData {
  uuid: string;
 };
 
-const store = createStore<IUserData>({
+const store = authStore<IUserData>({
  authName:'_auth',
  authType:'cookie',
  cookieDomain: window.location.hostname,
@@ -74,7 +74,7 @@ const store = createStore<IUserData>({
 
 #### Defined in
 
-[packages/react-auth-kit/src/createStore.ts:96](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/createStore.ts#L96)
+[packages/react-auth-kit/src/store/authStore.ts](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/createStore.ts#L96)
 
 ---
 

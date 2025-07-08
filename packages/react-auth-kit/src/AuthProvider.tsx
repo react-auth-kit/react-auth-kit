@@ -3,10 +3,10 @@
 import * as React from 'react';
 
 import type Router from './route';
-import type { Store } from './createStore';
 
 import Refresh from './Refresh';
 import AuthKitContext from './AuthContext';
+import type {Store} from "./store";
 
 /**
  * Props of the AuthProvider Component
@@ -15,7 +15,7 @@ interface AuthProviderProps<T> {
   /**
    * Auth Kit Store.
    *
-   * Create the store using the `createStore` function
+   * Create the store using the `authStore` function
    */
   store: Store<T>
 
@@ -57,7 +57,7 @@ interface AuthProviderProps<T> {
  * ```jsx
  * import ReactRouterPlugin from '@auth-kit/react-router/route'
  *
- * const store = createStore()
+ * const store = authStore()
  *
  * <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath="/login">
  *  <RoutesComponent/>
