@@ -14,7 +14,7 @@ const Login = () => {
   /**
    * Login Handle, the callback function onClick from the "Login" button
    *
-   * This function demostrate a dummy authentication, using useSignIn function
+   * This function demostrate a fake authentication, using useSignIn function
    */
   const loginHandler = () => {
     // Assuming that, all network Request is successfull, and the user is authenticated
@@ -41,7 +41,7 @@ const Login = () => {
     )
   } else {
     // If not authenticated, use the login flow
-    // For Demostration, I'm using just a button to login.
+    // For Demostration; I'm using just a button to log in.
     // In reality, there should be a form, validation, nwetowrk request and other things
     return (
       <button onClick={loginHandler}>Log In!!</button>

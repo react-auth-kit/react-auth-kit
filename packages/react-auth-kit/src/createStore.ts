@@ -104,9 +104,9 @@ export default function createStore<T>(
     params: createStoreParam<T>,
 ): createStoreReturn<T> {
   /**
-   * If the type of the auth is is cookie,
-   * then developer must provide the cookieDomain and cookieSecure params
-   * for regid usecase.
+   * If the type of the auth is cookie,
+   * then a developer must provide the cookieDomain and cookieSecure params
+   * for a solid use case.
    */
   if (
     params.authType === 'cookie' &&

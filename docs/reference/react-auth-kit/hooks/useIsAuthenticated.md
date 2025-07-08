@@ -32,13 +32,13 @@ or not.
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 
 const Component = () => {
- const isAuthenticated = useIsAuthenticated()
- if (isAuthenticated()) {
-   // user authenticated - do somthing
- }
- else {
-   // user not authenticated
- }
+  const isAuthenticated = useIsAuthenticated()
+  if (isAuthenticated()) {
+    // user authenticated - do somthing
+  } else {
+    // user not authenticated
+  }
+}
 ```
 
 ## Throws

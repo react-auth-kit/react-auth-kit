@@ -35,7 +35,7 @@ import createRefresh from 'react-auth-kit/createRefresh';
 
 ```js title="refresh.js" linenums="1"
 const refresh = createRefresh({
-  interval: 10 // The time in sec to refresh the Access token,
+  interval: 10, // The time in sec to refresh the Access token,
   refreshApiCallback: async (param) => {
     try {
       const response = await axios.post("/refresh", param, {
@@ -53,9 +53,9 @@ const refresh = createRefresh({
       console.error(error)
       return {
         isSuccess: false
-      } 
+      }
     }
-  }
+  },
   initalRefreshComponent: <RefreshComponent/>   // Optional, The component to show while refreshing for the first time
 })
 

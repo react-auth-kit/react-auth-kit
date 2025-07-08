@@ -19,3 +19,4 @@ packages/*/*.d.ts.map
 packages/*/lib
 
 .nx
+.venv

@@ -15,11 +15,11 @@ Please answer the following questions for yourself before asking questions.
 - [ ] I am running the latest version
 - [ ] I checked the documentation and found no answer
 - [ ] I checked to make sure that this is not already asked
-- [ ] I'm asking the question in the correct repository
+- [ ] I'm asking in the correct repository
 
 **Describe the question** \
 A clear detailed description of what is your question.
-Give correct refrences asked in question
+Give correct references asked in question
 
 **Related issues** \
 If your question is containing an already created issue. Tag the issue

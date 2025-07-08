@@ -17,7 +17,7 @@ import NextAuth from '@auth-kit/next/NextAuth'
 
 **NextAuth**(`#!js {fallbackPath: string}`): `React.ReactNode`
 
-NextAuth provides an easy solution to implement private route solutions using the next js route system
+NextAuth provides an easy solution to implement private route solutions using the Next.js route system
 
 ## Parameters
 

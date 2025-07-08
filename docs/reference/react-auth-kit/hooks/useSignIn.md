@@ -83,9 +83,9 @@ const LoginComponent = () => {
 
 Here's an example with a refresh token in TypeScript:
 ```jsx
-import useSignIn from 'react-auth-kit/hooks/useSignIn'
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
 
- interface IUserData {
+interface IUserData {
  name: string;
  uuid: string;
 };
@@ -97,7 +97,7 @@ const LoginComponent = () => {
      token: '<jwt token>'
    },
    userState: {name: 'React User', uid: 123456},
-   refresh: <refresh jwt token>
+   refresh: "<refresh jwt token>"
  })
 }
 ```

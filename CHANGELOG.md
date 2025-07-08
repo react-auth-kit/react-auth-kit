@@ -3,7 +3,7 @@
 
 ### Fixes
 
-* **User Data Serialization:** User Data cookie deserialization issue. `JSON.parse` error fixed 
+* **User Data Serialization:** User Data cookie deserialization issue. `JSON.parse` error fixed
 * **debugger added:** Added `debug=true` param on the createStore to debug the entire auth flow
 
 
@@ -295,7 +295,7 @@
 * added the description for installation ([40fbbce](https://github.com/react-auth-kit/react-auth-kit/commit/40fbbce838daf15f52420257fd6475aecc123dd7))
 * Installation MD is updated ([c6213e9](https://github.com/react-auth-kit/react-auth-kit/commit/c6213e9c538696081e5eaf97239f99a3dffa22e9))
 * updated site description ([64fcab2](https://github.com/react-auth-kit/react-auth-kit/commit/64fcab2a8612c7921696a4384dd4472494040a2c))
-* updated the sign in page ([7e8dc75](https://github.com/react-auth-kit/react-auth-kit/commit/7e8dc7537b004a3967fc0ca733e5751f37d8e0db))
+* updated the sign-in page ([7e8dc75](https://github.com/react-auth-kit/react-auth-kit/commit/7e8dc7537b004a3967fc0ca733e5751f37d8e0db))
 
 # [2.5.0](https://github.com/react-auth-kit/react-auth-kit/compare/v2.4.0...v2.5.0) (2022-10-18)
 

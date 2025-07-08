@@ -24,7 +24,7 @@ hide:
 </figure>
 
 <p style="text-align: center">
-    <em>🔑 Authentication Library for React Js for Token Based Auth with Json Web Token(JWT) 🔑</em>
+    <em>🔑 Authentication Library for React Js for Token-Based Auth with Json Web Token(JWT) 🔑</em>
 </p>
 
 
@@ -45,9 +45,9 @@ hide:
 
 ---
 
-**React Auth Kit** is a lightweight `auth state management` library for React JS based projects.
+**React Auth Kit** is a lightweight `auth state management` library for React JS-based projects.
 
-It is production-ready, and gives you the following:
+It is production-ready and gives you the following:
 
 * 📦 Very lightweight
 * 🔧 Easy to use

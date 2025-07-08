@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import TokenObject from '../RxTokenObject';
+import {AuthError} from "../errors";
 
 describe('Initial Value [Without Refresh Token]', () => {
   it('No Existing cookie is there', () => {
@@ -1342,7 +1343,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
       expect(Cookies.get('___type')).toBe('Bearer');
       expect(Cookies.get('___state')).toBe('{}');
 
-      const tokenObject = new TokenObject<object>(
+      const tokenObject = () => new TokenObject<object>(
           '__',
           'cookie',
           null,
@@ -1350,6 +1351,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           window.location.hostname,
           window.location.protocol === 'https:',
       );
+
+      expect(tokenObject).toThrow(AuthError)
 
       const resp = {
         'auth': {
@@ -1377,7 +1380,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
 
       const fn = jest.fn();
 
-      tokenObject.subscribe((data) => {
+      tokenObject().subscribe((data) => {
         if (subscribeCount == 0) {
           expect(data).toMatchObject(resp);
           expect(Cookies.get('__')).toBe(oldToken);
@@ -1394,9 +1397,9 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
         }
       });
 
-      tokenObject.onSignIn(fn);
+      tokenObject().onSignIn(fn);
 
-      tokenObject.set({
+      tokenObject().set({
         'auth': {
           'token': newToken,
           'type': 'Bearer',
@@ -1584,15 +1587,19 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
         }
       });
 
-      tokenObject.set({
-        'auth': {
-          'token': 'tampered_',
-          'type': 'Bearer',
-        },
-        'userState': {
-          'a': 'b',
-        },
-      });
+      const t = () => {
+        tokenObject.set({
+          'auth': {
+            'token': 'tampered_',
+            'type': 'Bearer',
+          },
+          'userState': {
+            'a': 'b',
+          },
+        });
+      }
+
+      expect(t).toThrow(AuthError);
     }, 10000);
 
     it('Setting up new expired token and new state', (done)=>{

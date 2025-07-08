@@ -28,7 +28,7 @@ In general, there are two main types of contribution,
 
 ## Steps for local setup
 
-1. We use [Github Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). Follow the steps specified at [CONTRIBUTING.md](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md) to set up a local repo of the project.
+1. We use [GitHub Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). Follow the steps specified at [CONTRIBUTING.md](https://github.com/react-auth-kit/react-auth-kit/blob/master/CONTRIBUTING.md) to set up a local repo of the project.
 
 2. Install Material for MkDocs.
 
@@ -78,15 +78,15 @@ In general, there are two main types of contribution,
 
 1. All pages must include a proper title and an introduction.
 
-2. If the document contains a technical term, it must be highlighted using \*term\* markdown syntax.
+2. If the document contains a technical term, it must be highlighted using \*term\* Markdown syntax.
 
 3. If the document contains an acronym or initialism, it should be first introduced highlighted in its expanded form followed by the commonly-accepted abbreviation in brackets (like Free and open-source software (FOSS)).
 
 4. Use paragraphs to introduce a single concept and move on to a new paragraph before introducing another or expanding upon the first concept. Keep the size of those paragraphs to no more than four to five lines.
 
-5. If you find you're putting commas in a sentence consider splitting it into two or more sentences for improved clarity.
+5. If you find you're putting commas in a sentence, consider splitting it into two or more sentences for improved clarity.
 
-6. Split the document up into as many sub-sections as makes sense. This is especially helpful for the readers who want to skip ahead for reference, as we can also use subheads as navigational anchors.
+6. Split the document up into as many subsections as makes sense. This is especially helpful for the readers who want to skip ahead for reference, as we can also use subheads as navigational anchors.
 
 <p align="center">&mdash; 🔑  &mdash;</p>
 <p align="center"><i>React Auth Kit is <a href="https://github.com/react-auth-kit/react-auth-kit/blob/master/LICENSE">Apache 2.0 License</a> code</i></p>

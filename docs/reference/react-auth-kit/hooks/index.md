@@ -9,9 +9,9 @@ description: Hooks for React Auth Kit
 
 Here are the list of hooks, that are supported by react auth kit
 
-- [useAuthHeader](./useAuthHeader.md) - Get the auth header into the react component
-- [useAuthUser](./useAuthUser.md) - Get the data of the user into the react component
-- [useIsAuthenticated](./useIsAuthenticated.md) - Check the authentication status inside the react component
+- [useAuthHeader](./useAuthHeader.md) - Get the auth header into the React component
+- [useAuthUser](./useAuthUser.md) - Get the data of the user into the React component
+- [useIsAuthenticated](./useIsAuthenticated.md) - Check the authentication status inside the React component
 - [useSignIn](./useSignIn.md) - Use this hook to signin or login your user into your application
 - [useSignOut](./useSignOut.md) - Use this hook to sign out or log out your user from the application
 

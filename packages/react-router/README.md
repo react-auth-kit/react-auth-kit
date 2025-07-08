@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="https://codecov.io/gh/react-auth-kit/react-auth-kit">
-  <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL"/>
+  <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL" alt="CodeCov coverage"/>
 </a>
 <a href="https://www.npmjs.com/package/@auth-kit/react-router">
     <img src="https://img.shields.io/npm/v/@auth-kit/react-router.svg?logo=npm" alt="Test Suites">
@@ -31,7 +31,7 @@
 ## Usage
 
 ### AuthOutlet
-AuthOutlet provides an easy solution using *react-router* or *react-router-dom* to manage private-route. 
+AuthOutlet provides an easy solution using *react-router* or *react-router-dom* to manage private-route.
 
 Routes inside the `AuthOutlet` will stay protected and only properly authenticated users can access the route.
 

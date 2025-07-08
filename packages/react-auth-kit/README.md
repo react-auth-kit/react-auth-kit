@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  
+
 <a href="https://codecov.io/gh/react-auth-kit/react-auth-kit">
-  <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL"/>
+  <img src="https://codecov.io/gh/react-auth-kit/react-auth-kit/branch/master/graph/badge.svg?token=H188T7PXLL" alt="CodeCov coverage"/>
 </a>
 <a href="https://www.npmjs.com/package/react-auth-kit">
     <img src="https://img.shields.io/npm/v/react-auth-kit.svg?logo=npm" alt="Test Suites">
@@ -41,7 +41,7 @@ authentication very easy
 It is production-ready, and gives you the following:
 
 * 📦 Very lightweight
-* 🌲 Tree Stacking 
+* 🌲 Tree Stacking
 * 🔧 Easy to use
 * ⚛️ Build for React JS
 * ⚡ Works with Next JS

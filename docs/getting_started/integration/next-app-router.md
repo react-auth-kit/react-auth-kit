@@ -39,7 +39,7 @@ const store = createStore({
 
 ## Provider
 
-React Auth Kit uses React's context Provider API. So we'll use the provided guide by Varcel to implement context API in the Next Js application. [Read the vercel provided blog](https://vercel.com/guides/react-context-state-management-nextjs)
+React Auth Kit uses React's context Provider API. So we'll use the provided guide by Varcel to implement context API in the Next.js application. [Read the vercel provided blog](https://vercel.com/guides/react-context-state-management-nextjs)
 
 In the Provider file, we'll initialize the AuthProvider and pass the store.
 
@@ -62,7 +62,7 @@ const Providers = ({
   }: {
     children: React.ReactNode
   }) => {
-    
+
   return (
     <AuthProvider store={store}>
       {children}
@@ -77,7 +77,7 @@ export default Providers;
 
 ## Integrate with the Application
 
-We now have to take the `Provider`, and integrate it with the `RootLayout` so use it in the application. Providers added in the `RootLayout` are visible throughout the application. 
+We now have to take the `Provider`, and integrate it with the `RootLayout` so use it in the application. Providers added in the `RootLayout` are visible throughout the application.
 
 ```jsx
 import Providers from './providers'; // (1)
@@ -101,7 +101,7 @@ export default function RootLayout({
 ```
 
 1. Importing the previously created `Providers` component.
-2. Wrap the whole Application inside the Provider. 
+2. Wrap the whole Application inside the Provider.
 
 ## Example
 

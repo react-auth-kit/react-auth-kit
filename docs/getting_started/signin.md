@@ -42,7 +42,7 @@ const SignInComponent = () => {
                 token: 'ey....mA',
                 type: 'Bearer'
             },
-            refresh: 'ey....mA'
+            refresh: 'ey....mA',
             userState: {
                 name: 'React User',
                 uid: 123456
@@ -83,7 +83,7 @@ const SignInComponent = () => {
                             token: res.data.token,
                             type: 'Bearer'
                         },
-                        refresh: res.data.refreshToken
+                        refresh: res.data.refreshToken,
                         userState: res.data.authUserState
                     })){ // Only if you are using refreshToken feature
                         // Redirect or do-something
@@ -133,7 +133,7 @@ class signInComponent extends React.Component {
                 token: 'ey....mA',
                 type: 'Bearer'
             },
-            refresh: 'ey....mA'
+            refresh: 'ey....mA',
             userState: {
                 name: 'React User',
                 uid: 123456
@@ -175,7 +175,7 @@ class signInComponent extends React.Component {
                             token: 'ey....mA',
                             type: 'Bearer'
                         },
-                        refresh: 'ey....mA'
+                        refresh: 'ey....mA',
                         userState: {
                             name: 'React User',
                             uid: 123456

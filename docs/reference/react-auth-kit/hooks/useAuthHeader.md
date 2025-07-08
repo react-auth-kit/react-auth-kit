@@ -42,7 +42,7 @@ const Component = () => {
  const authHeader = useAuthHeader();
  const headers = {
    'Authorization': authHeader
- }
+ },
  // use the headers in the network request
  ...
 }

@@ -22,7 +22,7 @@ interface AuthProviderProps<T> {
   /**
    * Auth Kit Router.
    *
-   * Internally used to redirect after signin and token expiration
+   * Internally used to redirect after sign-in and token expiration
    */
   router?: Router
 
@@ -34,7 +34,7 @@ interface AuthProviderProps<T> {
 
   /**
    * React Component.
-   * Effectively your entine application
+   * Effectively your entire application
    */
   children: React.ReactNode
 }
@@ -59,7 +59,7 @@ interface AuthProviderProps<T> {
  *
  * const store = createStore()
  *
- * <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath='/login'>
+ * <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath="/login">
  *  <RoutesComponent/>
  * </AuthProvider>
  * ```

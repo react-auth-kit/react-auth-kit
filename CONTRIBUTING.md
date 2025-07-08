@@ -16,7 +16,7 @@ We love your input! We want to make contributing to this project as easy and tra
 
 ## Steps to follow :scroll:
 
-We use [Github Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). We actively welcome your pull requests. So here are the steps to get started.
+We use [GitHub Flow](https://guides.github.com/introduction/flow/index.html), all code changes happen through [Pull Requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests). We actively welcome your pull requests. So here are the steps to get started.
 
 ### 1. Fork it :fork_and_knife:
 
@@ -100,7 +100,7 @@ Types:
 
 - **ci**: a commit of the type ci are changes to our CI configuration files and scripts.
 
-- **style**: a commit of the type style are changes that do not affect the meaning of the code (white-space, formatting, missing semi-colon, etc).
+- **style**: a commit of the type style is changes that do not affect the meaning of the code (white-space, formatting, missing semicolon, etc.).
 
 - **docs**: a commit of the type docs are documentation changes only.
 
