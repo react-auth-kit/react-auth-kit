@@ -51,7 +51,7 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
   if (fallbackPath !== undefined) {
     fp = fallbackPath;
   } else if (
-    fallbackPath === undefined && config.fallbackPath !== undefined
+    config.fallbackPath !== undefined
   ) {
     fp = config.fallbackPath;
   } else {

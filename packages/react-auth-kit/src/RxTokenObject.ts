@@ -84,7 +84,7 @@ class TokenObject<T> {
 
   /**
    * Boolean value to check if the application
-   * is using refresh token feature or not
+   * is using the refresh token feature or not
    */
   private readonly isUsingRefreshToken: boolean;
 
@@ -115,6 +115,8 @@ class TokenObject<T> {
    *
    * @param refreshTokenName - Name of the refresh Token,
    * if `undefined`, then no refreshToken feature is using
+   *
+   * @param debug - Whether to run in debug mode or not
    *
    * @param cookieDomain - domain name for the Cookies,
    * only applicable when `authStorageType` is `cookie`
@@ -362,7 +364,7 @@ class TokenObject<T> {
    *
    * @remarks
    * If the `authStorageType` is `cookie`,
-   * get information from `initialCookieToken()` function
+   * get information from the `initialCookieToken ()` function
    *
    * If the `authTokenType` is `localStorage`
    * get information from `initialLSToken()` function
@@ -381,7 +383,7 @@ class TokenObject<T> {
    * Get the Initial Token from Cookies
    *
    * @remarks
-   * If the `authStorageType` is `cookie`
+   * If the `authStorageType` is `cookie`,
    * then this function is called
    * And returns the Tokens and states Stored in all 4 cookies
    *
@@ -408,7 +410,7 @@ class TokenObject<T> {
    * Get the Initial Token from LocalStorage
    *
    * @remarks
-   * If the `authStorageType` is `localstorage`
+   * If the `authStorageType` is `localstorage`,
    * then this function is called
    * And returns the Tokens and states Stored in all 4 cookies
    *
@@ -433,7 +435,7 @@ class TokenObject<T> {
   };
 
   /**
-   * Check for all the existance for the Tokens
+   * Check for all the existence for the Tokens
    * Called Internally by `initialCookieToken_()` and `initialLSToken_()`
    *
    * @param authToken - Auth token from cookie or localstorage
@@ -463,18 +465,18 @@ class TokenObject<T> {
             `checkTokenExist - isUsingRefreshToken
           = ${this.isUsingRefreshToken} refrehToken - ${refreshToken}`,
         );
-        // If the refresh token is tampered,
+        // If the refresh token is tampered with,
         // then it'll stop the execution and will go at catch.
         const refreshTokenExpiresAt = this.getExpireDateTime(refreshToken);
         if (refreshTokenExpiresAt < new Date()) {
           this.log(
-              `checkTokenExist - refresh token is expired 
+              `checkTokenExist - refresh token is expired
             ${refreshTokenExpiresAt} ${new Date()}`,
           );
           refresh = null;
         } else {
           this.log(
-              `checkTokenExist - new refresh token is assigned 
+              `checkTokenExist - new refresh token is assigned
             ${refreshToken}`,
           );
           refresh = {
@@ -490,11 +492,11 @@ class TokenObject<T> {
         refresh = null;
       }
 
-      // If we are using refrsh token, but refesh is null null,
-      // Then definitely we are not able to get the refersh token
+      // If we are using the refresh token, but refresh is null,
+      // Then definitely we are not able to get the refresh token,
       // or the refresh token is expired.
       // So, we'll not authenticate the user.
-      // And will delete any token, if there's any
+      // And will delete any token if there's any
       if (this.isUsingRefreshToken && !refresh) {
         this.log(
             `checkTokenExist - Removing Refresh Token`,
@@ -522,7 +524,7 @@ class TokenObject<T> {
           const expiresAt = this.getExpireDateTime(authToken);
           if (expiresAt < new Date()) {
             this.log(
-                `checkTokenExist - auth token is expired 
+                `checkTokenExist - auth token is expired
               ${expiresAt} ${new Date()}`,
             );
             auth = null;
@@ -543,7 +545,7 @@ class TokenObject<T> {
           }
         } catch (e) {
           this.log(
-              `checkTokenExist - auth token or auth state is invalid 
+              `checkTokenExist - auth token or auth state is invalid
             ${authToken} ${stateCookie}`,
           );
           this.log(`Error Occured: ${e}`);
@@ -574,7 +576,7 @@ class TokenObject<T> {
             auth: auth,
             refresh: refresh,
             userState: authState,
-            isUsingRefreshToken: !!this.isUsingRefreshToken,
+            isUsingRefreshToken: this.isUsingRefreshToken,
             isSignIn: true,
           };
         }
@@ -622,7 +624,7 @@ class TokenObject<T> {
         };
       }
     } catch (e) {
-    // Error occured. So declearing as signed out
+    // Error occurred. So declaring as signed out
       this.removeAllToken();
       return {
         auth: null,
@@ -881,6 +883,7 @@ class TokenObject<T> {
   /**
    * Log function
    * @param msg - The Message to log to the console
+   * @param optionalParams - Optional Parameter
    */
   private log = (msg: any, ...optionalParams: any[]): void => {
     if (this.debug) {

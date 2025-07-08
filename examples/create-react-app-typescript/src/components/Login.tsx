@@ -7,7 +7,7 @@ import {useNavigate, Navigate} from 'react-router-dom'
 interface UserData {
   name: String
   uid: Number
-};
+}
 
 const Login = () => {
   const isAuthenticated = useIsAuthenticated()

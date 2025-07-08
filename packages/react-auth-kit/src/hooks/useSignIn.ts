@@ -14,13 +14,12 @@ import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
  * Also, this will call the RX engine to store the auth in the storage
  *
  * @typeParam T - Type of User State Object
- * @param signInConfig - Params for sign In
  * @returns React Hook with SignIn Functionality
  *
  * @throws AuthError
  * - Thrown if the Hook is used outside the Provider Scope.
- * - Thrown if refresh token is added, in spite not used.
- * - Thrown if refresh token is not added, is spite used.
+ * - Thrown if the refresh token is added, in spite not used.
+ * - Thrown if the refresh token is not added, is spite used.
  *
  * @example
  * Here's an example without the refresh token:
@@ -38,7 +37,7 @@ import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
  * }
  * ```
  *
- * Here's a an example with refresh token:
+ * Here's an example with refresh token:
  * ```jsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
  *
@@ -54,7 +53,7 @@ import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
  * }
  * ```
  *
- * Here's a an example with refresh token in TypeScript:
+ * Here's an example with a refresh token in TypeScript:
  * ```tsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
  *
@@ -90,7 +89,6 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
 
   /**
    *
-   * @param signInConfig - Parameters to perform sign in
    * ```js
    * {
    *  auth: {
@@ -100,8 +98,9 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
    *  refresh: <refresh jwt token>
    * }
    * ```
+   * @param to - The path to redirect
    */
-  const redirectAfterSignin = (to?: string) => {
+  const redirectAfterSignIn = (to?: string) => {
     if (to) {
       if (router && navigate) {
         navigate({to});
@@ -122,7 +121,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
         // refresh token params are provided
         // sign in with refresh token
         context.set(doSignIn(signInConfig));
-        redirectAfterSignin(signInConfig.navigateTo);
+        redirectAfterSignIn(signInConfig.navigateTo);
         return true;
       } else {
         // refresh token params are not provided
@@ -144,7 +143,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
     } else {
       // sign in without the refresh token
       context.set(doSignIn(signInConfig));
-      redirectAfterSignin(signInConfig.navigateTo);
+      redirectAfterSignIn(signInConfig.navigateTo);
       return true;
     }
   };

@@ -19,7 +19,7 @@ React Auth Kit has easy-to-implement Signin procedures.
 
 ## Hook
 
-Call `#!js useSignIn()` hook inside any component to signin the user.
+Call `#!js useSignIn()` hook inside any component to sign in the user.
 
 ### Import
 

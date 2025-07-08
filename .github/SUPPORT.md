@@ -5,7 +5,7 @@
 > abide by its terms.
 
 Hi!  👋
-We’re excited that you’re using **remark** and we’d love to help.
+We’re excited that you’re using **remark**, and we’d love to help.
 To help us help you, please read through the following guidelines.
 
 Please understand that people involved with this project often do so for fun,

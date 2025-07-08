@@ -12,6 +12,7 @@ hide:
   }
 </style>
 
+<!--suppress CheckImageSize -->
 <img width="30%" src="./img/logo.png" align="left" alt="logo"/>
 <img width="65%" src="./img/banner.svg" alt="React Auth Kit Banner" />
 

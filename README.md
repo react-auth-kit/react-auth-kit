@@ -1,3 +1,4 @@
+<!--suppress CheckImageSize -->
 <img width="30%" src="./docs/img/logo.png" align="left" alt="logo"/>
 <img width="65%" src="./docs/img/banner.svg" alt="React Auth Kit Banner" />
 

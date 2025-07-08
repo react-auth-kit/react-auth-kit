@@ -3,7 +3,7 @@ import Router from 'react-auth-kit/route';
 import {usePathname, useRouter, redirect} from 'next/navigation';
 
 /**
- * Next Js
+ * Next.js
  * React Auth Kit Plugin
  */
 const NextPlugin: Router = {

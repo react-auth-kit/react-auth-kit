@@ -33,7 +33,7 @@ import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
  * ```js
  * const signOut = useSignOut()
  * signOut()
- * navigate('/login')
+ * navigate("/login")
  * ```
  *
  * @throws AuthError

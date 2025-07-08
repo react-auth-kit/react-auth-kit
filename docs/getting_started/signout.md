@@ -17,7 +17,7 @@ React Auth Kit has easy-to-implement Sign Out procedures.
 
 ## Hook
 
-Call `#!js useSignOut()` hook inside any component to signout the user.
+Call `#!js useSignOut()` hook inside any component to sign out the user.
 
 ### Import
 
