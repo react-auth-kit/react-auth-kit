@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import type Router from './route';
-import type { createStoreReturn } from './createStore';
+import type { Store } from './createStore';
 
 import Refresh from './Refresh';
 import AuthKitContext from './AuthContext';
@@ -17,7 +17,7 @@ interface AuthProviderProps<T> {
    *
    * Create the store using the `createStore` function
    */
-  store: createStoreReturn<T>
+  store: Store<T>
 
   /**
    * Auth Kit Router.

@@ -15,7 +15,7 @@ import createStore from 'react-auth-kit/createStore';
 
 ## Function Signature
 
-**createStore**<`T`\>([`params`](#parameters)): `createStoreReturn`<`T`\>
+**createStore**<`T`\>([`params`](#parameters)): `Store`<`T`\>
 
 createStore creates the default store for React Auth Kit.
 

@@ -52,7 +52,7 @@ interface createStoreParam<T> {
 /**
  * Return type of createStore Function
  */
-export interface createStoreReturn<T> {
+export interface Store<T> {
   /**
    * Instance of the token object
    */
@@ -102,7 +102,7 @@ export interface createStoreReturn<T> {
  */
 export default function createStore<T>(
     params: createStoreParam<T>,
-): createStoreReturn<T> {
+): Store<T> {
   /**
    * If the type of the auth is cookie,
    * then a developer must provide the cookieDomain and cookieSecure params

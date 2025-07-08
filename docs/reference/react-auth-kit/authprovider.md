@@ -17,7 +17,7 @@ import AuthProvider from 'react-auth-kit';
 
 ## Function Signature
 
-**AuthProvider**<`T`\>(`#!js {store: createStoreReturn<T>, children: React.ReactNode}`): `ReturnType`<`#!js React.FC`\>
+**AuthProvider**<`T`\>(`#!js {store: Store<T>, children: React.ReactNode}`): `ReturnType`<`#!js React.FC`\>
 
 React Provider that includes React Auth Kit functionality in your React
 Application.
@@ -30,9 +30,9 @@ Application.
 
 ## Parameters
 
-| Name | Type | Required | Description |
-| :------ | :------ | :------- |:--------- |
-| `store` | `createStoreReturn`<`T`\> | :heavy_check_mark: | Returned value from [createStore](./createStore.md) function |
+| Name | Type              | Required | Description |
+| :------ |:------------------| :------- |:--------- |
+| `store` | `Store`<`T`\>     | :heavy_check_mark: | Returned value from [createStore](./createStore.md) function |
 | `children` | `React.ReactNode` | :heavy_check_mark: | React Component or Element |
 
 ## Returns
@@ -52,7 +52,7 @@ throughout the application.
 
 ```react
 import AuthProvider from 'react-auth-kit';
-import createStore from 'react-auth-kit/createStore'; 
+import createStore from 'react-auth-kit/createStore';
 
 const store = createStore();
 
