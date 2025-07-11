@@ -4,21 +4,22 @@ import type TokenObject from "./RxTokenObject";
 
 import { useInterval } from "./utils/hooks";
 import { doRefresh, doSignOut } from "./utils/reducers";
-import { AuthError } from "./errors";
+
+import {BaseAuthKitError} from "./error/BaseAuthKitError";
 
 interface RefreshProps<T> {
-    refresh: createRefreshParamInterface<T> 
+    refresh: createRefreshParamInterface<T>
     store: TokenObject<T>
 }
 
 /**
  * React Component
  * Refresh Feature
- * 
+ *
  * Initial Refresh and Pariodic Refresh
- * 
+ *
  * @internal
- * 
+ *
  * @param param0 - Parameters
  * @returns React Functional Component with Refresh Implementation
  */
@@ -47,7 +48,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       .catch(() => {
         // Retry for Future
         store.set(doSignOut());
-        throw new AuthError('Some error occured on the Refresh API. Unable to refresh for now')
+        throw new BaseAuthKitError('Some error occured on the Refresh API. Unable to refresh for now')
       });
     }
 
@@ -56,7 +57,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       if(!initialRefreshing){
         return;
       }
-      
+
       // Check for Initial condition
       const {value} = store;
       // If everything is okay,
@@ -73,7 +74,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       // IF the user is sign out
       else {
         // make a SignOut call
-        
+
         store.set(doSignOut());
         setInitialRefreshing(false);
       }

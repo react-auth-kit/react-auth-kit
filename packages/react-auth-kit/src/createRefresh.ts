@@ -1,7 +1,8 @@
 'use client';
 
 import type React from 'react';
-import {AuthError} from './errors';
+
+import {BaseAuthKitError} from "./error/BaseAuthKitError";
 
 /**
  * Payload for Refresh token False
@@ -139,7 +140,7 @@ export interface createRefreshParamInterface<T> {
 function createRefresh<T>(param: createRefreshParamInterface<T>)
   :createRefreshParamInterface<T> {
   if (param.interval < 0) {
-    throw new AuthError(
+    throw new BaseAuthKitError(
         'Refresh interval is a time in seconds and can\'t be a negative(-ve)'+
         ' number. Make sure you are using possitive number.',
     );

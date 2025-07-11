@@ -1,5 +1,6 @@
 import createRefresh from '../createRefresh';
-import {AuthError} from '../errors';
+
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 test('createRefresh is working as expected', ()=>{
   const data = {
@@ -33,7 +34,7 @@ describe('createRefresh throws error for negative interval', ()=>{
         };
       },
     });
-    expect(refresh).toThrow(AuthError);
+    expect(refresh).toThrow(BaseAuthKitError);
   });
   it('Positive Interval Number', ()=>{
     const refresh = () => createRefresh({
@@ -49,6 +50,6 @@ describe('createRefresh throws error for negative interval', ()=>{
         };
       },
     });
-    expect(refresh).not.toThrow(AuthError);
+    expect(refresh).not.toThrow(BaseAuthKitError);
   });
 });

@@ -1,7 +1,8 @@
 import TokenObject from '../RxTokenObject';
 import createRefresh, {createRefreshParamInterface} from '../createRefresh';
 import authStore from '../store';
-import {AuthError} from '../errors';
+
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 describe('Store without refreshtoken', ()=>{
   it('Store creation local store', ()=> {
@@ -29,7 +30,7 @@ describe('Store without refreshtoken', ()=>{
         window.location.hostname,
         false,
     );
-    expect(store).not.toThrow(AuthError);
+    expect(store).not.toThrow(BaseAuthKitError);
     expect(store().refresh).toBeUndefined();
     expect(store().tokenObject.value).toEqual(tokenObject.value);
   });
@@ -87,7 +88,7 @@ describe('Store with refreshtoken', ()=>{
         false,
     );
 
-    expect(store).not.toThrow(AuthError);
+    expect(store).not.toThrow(BaseAuthKitError);
     expect(store().refresh).toEqual(refresh);
     expect(store().tokenObject.value).toEqual(tokenObject.value);
   });
@@ -99,7 +100,7 @@ describe('authStore Throws error if cookie params not given', ()=>{
       authName: '__auth',
       authType: 'cookie',
     });
-    expect(store).toThrow(AuthError);
+    expect(store).toThrow(BaseAuthKitError);
   });
   it('cookieSecure', ()=>{
     const store = () => authStore({
@@ -107,7 +108,7 @@ describe('authStore Throws error if cookie params not given', ()=>{
       authType: 'cookie',
       cookieSecure: false,
     });
-    expect(store).toThrow(AuthError);
+    expect(store).toThrow(BaseAuthKitError);
   });
   it('cookieDomain', ()=>{
     const store = () => authStore({
@@ -115,6 +116,6 @@ describe('authStore Throws error if cookie params not given', ()=>{
       authType: 'cookie',
       cookieDomain: window.location.hostname,
     });
-    expect(store).toThrow(AuthError);
+    expect(store).toThrow(BaseAuthKitError);
   });
 });

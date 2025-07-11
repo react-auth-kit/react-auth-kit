@@ -5,7 +5,8 @@ import AuthContext from '../../AuthContext';
 import TokenObject from '../../RxTokenObject';
 import * as reducers from '../../utils/reducers';
 import type Router from '../../route';
-import {AuthError} from '../../errors';
+
+import {BaseAuthKitError} from "../../error/BaseAuthKitError";
 
 const spy = jest.spyOn(reducers, 'doSignOut');
 
@@ -82,6 +83,6 @@ describe('Redirection after signOut', ()=>{
     );
 
     const {result} = renderHook(() => useSignOut(), {wrapper: AuthProvider});
-    expect(() => result.current('/login')).toThrow(AuthError);
+    expect(() => result.current('/login')).toThrow(BaseAuthKitError);
   });
 });

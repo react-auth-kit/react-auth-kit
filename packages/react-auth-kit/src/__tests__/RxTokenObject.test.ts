@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import TokenObject from '../RxTokenObject';
-import {AuthError} from "../errors";
+
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 describe('Initial Value [Without Refresh Token]', () => {
   it('No Existing cookie is there', () => {
@@ -1352,7 +1353,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
           window.location.protocol === 'https:',
       );
 
-      expect(tokenObject).toThrow(AuthError)
+      expect(tokenObject).toThrow(BaseAuthKitError)
 
       const resp = {
         'auth': {
@@ -1599,7 +1600,7 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
         });
       }
 
-      expect(t).toThrow(AuthError);
+      expect(t).toThrow(BaseAuthKitError);
     }, 10000);
 
     it('Setting up new expired token and new state', (done)=>{

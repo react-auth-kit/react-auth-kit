@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Arkadip Bhattacharya
+ * Copyright 2025 Arkadip Bhattacharya
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,8 @@
  * limitations under the License.
  */
 
-
-import {BaseAuthKitError} from '../index';
-import AuthProvider from '../index';
-
-
-describe('Index', () => {
-  it('Imports are working', ()=>{
-    expect(AuthProvider).toBeTruthy();
-
-    expect(BaseAuthKitError).toBeTruthy();
-  });
-});
-
-export {};
+/**
+ * Base Error Class for all the auth kit related errors.
+ */
+export class BaseAuthKitError extends Error {
+}

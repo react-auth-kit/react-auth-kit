@@ -1,9 +1,9 @@
 'use client';
 
-import {AuthError} from '../errors';
 import {doSignIn} from '../utils/reducers';
 import type {signInFunctionParams} from '../types';
 import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 /**
  * Sign In React Hook
@@ -16,7 +16,7 @@ import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
  * @typeParam T - Type of User State Object
  * @returns React Hook with SignIn Functionality
  *
- * @throws AuthError
+ * @throws BaseAuthKitError
  * - Thrown if the Hook is used outside the Provider Scope.
  * - Thrown if the refresh token is added, in spite not used.
  * - Thrown if the refresh token is not added, is spite used.
@@ -106,7 +106,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
         navigate({to});
       } else {
         throw new
-        AuthError(
+        BaseAuthKitError(
             'Router Plugin is not implemented in the AuthProvider. Please'+
             ' use the router prop of AuthProvider and Router plugin to'+
             ' use this feture',
@@ -126,7 +126,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
       } else {
         // refresh token params are not provided
         // throw an error
-        throw new AuthError(
+        throw new BaseAuthKitError(
             'This appication is using refresh token feature.'+
             ' So please include `refresh` param in the parameters',
         );
@@ -134,7 +134,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
     } else if (signInConfig.refresh) {
       // params are not expected but provided
       // throw an error
-      throw new AuthError(
+      throw new BaseAuthKitError(
           'This appication is not using refresh token feature.'+
           ' So please remove the `refresh` param in the parameters.'+
           ' In Case you want to use refresh token feature,'+

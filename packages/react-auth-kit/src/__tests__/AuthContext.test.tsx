@@ -9,8 +9,8 @@ import {
 import {render} from '@testing-library/react';
 import Cookies from 'js-cookie';
 import TokenObject from '../RxTokenObject';
-import {AuthError} from '../errors';
 import Router from '../route';
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 test('All Expected Exports are there', ()=>{
   expect(AuthKitContext).toBeTruthy();
@@ -199,7 +199,7 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
     };
     expect(() => render(
         <TestComponent/>,
-    )).toThrow(AuthError);
+    )).toThrow(BaseAuthKitError);
   });
 
   it('useReactAuthKitRouter', ()=>{
@@ -209,7 +209,7 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
     };
     expect(() => render(
         <TestComponent/>,
-    )).toThrow(AuthError);
+    )).toThrow(BaseAuthKitError);
   });
 
   it('useReactAuthKitConfig', ()=>{
@@ -219,6 +219,6 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
     };
     expect(() => render(
         <TestComponent/>,
-    )).toThrow(AuthError);
+    )).toThrow(BaseAuthKitError);
   });
 });

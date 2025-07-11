@@ -8,7 +8,7 @@
  */
 
 import {
-  AuthKitStateInterface,
+  AuthKitState,
 } from '../types';
 
 /**
@@ -20,7 +20,7 @@ import {
  * @internal
  *
  */
-function isAuthenticated<T>(auth: AuthKitStateInterface<T>) : boolean {
+function isAuthenticated<T>(auth: AuthKitState<T>) : boolean {
   if (auth.auth) {
     return new Date(auth.auth.expiresAt) > new Date();
   }

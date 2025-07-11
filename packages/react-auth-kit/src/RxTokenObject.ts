@@ -4,8 +4,8 @@ import Cookies from 'js-cookie';
 import deepEqual from 'deep-equal';
 import {BehaviorSubject} from 'rxjs';
 
-import {AuthError} from './errors';
-import {AuthKitStateInterface} from './types';
+import {AuthKitState} from './types';
+import {BaseAuthKitError} from "./error/BaseAuthKitError";
 
 /**
  * Set State Data
@@ -91,12 +91,12 @@ class TokenObject<T> {
   /**
    * Auth Value
    */
-  private authValue: AuthKitStateInterface<T>;
+  private authValue: AuthKitState<T>;
 
   /**
    * RX Auth subject
    */
-  private authSubject: BehaviorSubject<AuthKitStateInterface<T>>;
+  private authSubject: BehaviorSubject<AuthKitState<T>>;
 
   /**
    * Debug variable. Use to create the debug environment
@@ -167,7 +167,7 @@ class TokenObject<T> {
    * if and when it has no more values to provide
    */
   subscribe = (
-      next: ((value: AuthKitStateInterface<T>) => void),
+      next: ((value: AuthKitState<T>) => void),
       error?: ((err: any) => void),
       complete?: (() => void),
   ) => {
@@ -182,7 +182,7 @@ class TokenObject<T> {
    * Callback hook, when the user is signed in this function will be called
    * @param callback - function to be called
    */
-  onSignIn(callback: (value: AuthKitStateInterface<T>)=> void) {
+  onSignIn(callback: (value: AuthKitState<T>)=> void) {
     this.subscribe((value)=> {
       if (value.auth !== null) {
         callback(value);
@@ -272,7 +272,7 @@ class TokenObject<T> {
             isSignIn: false,
             userState: null,
           };
-          throw new AuthError('Given Auth Token is already expired.');
+          throw new BaseAuthKitError('Given Auth Token is already expired.');
         }
       } catch (e) {
         obj = {
@@ -281,7 +281,7 @@ class TokenObject<T> {
           isSignIn: false,
           userState: null,
         };
-        throw new AuthError(
+        throw new BaseAuthKitError(
             'Error pursing the Auth Token. Make sure you provided a valid JWT.',
         );
       }
@@ -321,7 +321,7 @@ class TokenObject<T> {
               userState: null,
               refresh: null,
             };
-            throw new AuthError('Given Refresh Token is already expired.');
+            throw new BaseAuthKitError('Given Refresh Token is already expired.');
           }
         } catch (e) {
           obj = {
@@ -331,7 +331,7 @@ class TokenObject<T> {
             userState: null,
             refresh: null,
           };
-          throw new AuthError(
+          throw new BaseAuthKitError(
               'Error pursing the Auth Token.'+
               ' Make sure you provided a valid JWT.',
           );
@@ -371,7 +371,7 @@ class TokenObject<T> {
    *
    * @returns Initial State
    */
-  private initialToken_ = (): AuthKitStateInterface<T> => {
+  private initialToken_ = (): AuthKitState<T> => {
     if (this.authStorageType === 'cookie') {
       return this.initialCookieToken_();
     } else {
@@ -389,7 +389,7 @@ class TokenObject<T> {
    *
    * @returns Initial State from Cookies
    */
-  private initialCookieToken_ = (): AuthKitStateInterface<T> => {
+  private initialCookieToken_ = (): AuthKitState<T> => {
     const authToken = Cookies.get(this.authStorageName);
     const authTokenType = Cookies.get(this.authStorageTypeName);
     const stateCookie = Cookies.get(this.stateStorageName);
@@ -416,7 +416,7 @@ class TokenObject<T> {
    *
    * @returns Initial State from LocalStorage
    */
-  private initialLSToken_ = (): AuthKitStateInterface<T> => {
+  private initialLSToken_ = (): AuthKitState<T> => {
     const authToken = localStorage.getItem(this.authStorageName);
     const authTokenType = localStorage.getItem(this.authStorageTypeName);
     const stateCookie = localStorage.getItem(this.stateStorageName);
@@ -450,7 +450,7 @@ class TokenObject<T> {
       authTokenType: string | null | undefined,
       stateCookie: string | null | undefined,
       refreshToken: string | null | undefined,
-  ): AuthKitStateInterface<T> => {
+  ): AuthKitState<T> => {
     this.log('checkTokenExist_ is called');
     this.log(
         `Params: authToken: ${authToken}, authTokenType: ${authTokenType},
@@ -669,7 +669,7 @@ class TokenObject<T> {
       d.setUTCSeconds(jwtData.exp as number);
       return d;
     } else {
-      throw new AuthError('JWT has no exp param');
+      throw new BaseAuthKitError('JWT has no exp param');
     }
   };
 
@@ -681,7 +681,7 @@ class TokenObject<T> {
    *
    * @param authState - Current Auth State
    */
-  public syncTokens = (authState: AuthKitStateInterface<T>): void => {
+  public syncTokens = (authState: AuthKitState<T>): void => {
     if (authState.auth) {
       // Sync the Auth token part
       this.setAuthToken(

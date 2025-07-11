@@ -1,8 +1,8 @@
 'use client';
 
-import {AuthError} from '../errors';
 import {doSignOut} from '../utils/reducers';
 import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 /**
  * Sign Out React Hook
@@ -36,7 +36,7 @@ import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
  * navigate("/login")
  * ```
  *
- * @throws AuthError
+ * @throws BaseAuthKitError
  * Thrown if the Hook is used outside the Provider Scope
  *
  */
@@ -54,7 +54,7 @@ function useSignOut(): (navigateTo?: string) => void {
         navigate({to: navigateTo});
       } else {
         throw new
-        AuthError(
+        BaseAuthKitError(
             'Router Plugin is not implemented in the AuthProvider. Please'+
               ' use the router prop of AuthProvider and Router plugin to'+
               ' use this feture',

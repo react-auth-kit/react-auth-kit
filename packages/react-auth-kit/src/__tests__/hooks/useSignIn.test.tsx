@@ -3,11 +3,11 @@ import {renderHook} from '@testing-library/react';
 
 import type Router from '../../route';
 
-import {AuthError} from '../../errors';
 import AuthContext from '../../AuthContext';
 import TokenObject from '../../RxTokenObject';
 import useSignIn from '../../hooks/useSignIn';
 import * as reducers from '../../utils/reducers';
+import {BaseAuthKitError} from "../../error/BaseAuthKitError";
 
 const spy = jest.spyOn(reducers, 'doSignIn');
 
@@ -36,7 +36,7 @@ describe('useSignIn', () => {
           '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
           '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         },
-      })).toThrow(AuthError);
+      })).toThrow(BaseAuthKitError);
       expect(spy).not.toHaveBeenCalled();
     });
 
@@ -66,7 +66,7 @@ describe('useSignIn', () => {
         refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
-      })).toThrow(AuthError);
+      })).toThrow(BaseAuthKitError);
       expect(spy).not.toHaveBeenCalled();
     });
 
@@ -97,7 +97,7 @@ describe('useSignIn', () => {
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         navigateTo: '/secure',
-      })).toThrow(AuthError);
+      })).toThrow(BaseAuthKitError);
     });
   });
 
@@ -125,7 +125,7 @@ describe('useSignIn', () => {
           '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
           '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         },
-      })).not.toThrow(AuthError);
+      })).not.toThrow(BaseAuthKitError);
       expect(spy).toHaveBeenCalled();
       expect(spy).toHaveBeenCalledWith(
           {
@@ -164,7 +164,7 @@ describe('useSignIn', () => {
         refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
-      })).not.toThrow(AuthError);
+      })).not.toThrow(BaseAuthKitError);
       expect(spy).toHaveBeenCalled();
       expect(spy).toHaveBeenCalledWith(
           {
@@ -226,7 +226,7 @@ describe('useSignIn', () => {
           '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         },
         navigateTo: '/secure',
-      })).not.toThrow(AuthError);
+      })).not.toThrow(BaseAuthKitError);
       expect(navigateFn).toHaveBeenCalled();
       expect(navigateFn).toHaveBeenCalledWith({to: '/secure'});
     });
@@ -239,7 +239,7 @@ describe('useSignIn', () => {
           '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
           '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         },
-      })).not.toThrow(AuthError);
+      })).not.toThrow(BaseAuthKitError);
       expect(navigateFn).not.toHaveBeenCalled();
     });
   });
@@ -292,7 +292,7 @@ describe('useSignIn', () => {
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
         navigateTo: '/secure',
-      })).not.toThrow(AuthError);
+      })).not.toThrow(BaseAuthKitError);
       expect(navigateFn).toHaveBeenCalled();
       expect(navigateFn).toHaveBeenCalledWith({to: '/secure'});
     });
@@ -308,7 +308,7 @@ describe('useSignIn', () => {
         refresh: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
         '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8',
-      })).not.toThrow(AuthError);
+      })).not.toThrow(BaseAuthKitError);
       expect(navigateFn).not.toHaveBeenCalled();
     });
   });

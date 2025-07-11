@@ -4,8 +4,8 @@ import type {Context} from 'react';
 import {createContext, useContext} from 'react';
 
 import type Router from './route';
-import {AuthError} from './errors';
 import type TokenObject from './RxTokenObject';
+import {BaseAuthKitError} from "./error/BaseAuthKitError";
 
 interface ReactAuthKitContextConfig {
   fallbackPath?: string
@@ -47,7 +47,7 @@ export function useReactAuthKit(): TokenObject<unknown> {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new
-    AuthError(
+    BaseAuthKitError(
         'Auth Provider is missing. ' +
         'Make sure, you are using this component inside the auth provider.',
     );
@@ -65,7 +65,7 @@ export function useReactAuthKitRouter(): Router|undefined {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new
-    AuthError(
+    BaseAuthKitError(
         'Auth Provider is missing. ' +
         'Make sure, you are using this component inside the auth provider.',
     );
@@ -81,7 +81,7 @@ export function useReactAuthKitConfig(): ReactAuthKitContextConfig {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new
-    AuthError(
+    BaseAuthKitError(
         'Auth Provider is missing. ' +
         'Make sure, you are using this component inside the auth provider.',
     );

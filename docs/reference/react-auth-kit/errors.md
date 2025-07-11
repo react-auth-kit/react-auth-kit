@@ -27,7 +27,7 @@ import { AuthError } from 'react-auth-kit/errors';
 
 #### Defined in
 
-[packages/react-auth-kit/src/errors.ts:8](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/errors.ts#L8)
+[packages/react-auth-kit/src/error/BaseAuthKitError.ts](https://github.com/react-auth-kit/react-auth-kit/blob/37dc30d4/packages/react-auth-kit/src/errors.ts#L8)
 
 ---
 

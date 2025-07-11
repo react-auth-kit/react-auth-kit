@@ -16,9 +16,9 @@
 
 'use client';
 
-import {AuthError} from '../errors';
 import TokenObject from '../RxTokenObject';
 import {createStoreParam, Store} from "./types";
+import {BaseAuthKitError} from "../error/BaseAuthKitError";
 
 /**
  *
@@ -73,7 +73,7 @@ export default function authStore<T>(
       params.cookieSecure === undefined
     )
   ) {
-    throw new AuthError(
+    throw new BaseAuthKitError(
         'authType \'cookie\' requires \'cookieDomain\''+
       ' and \'cookieSecure\' to be present in the param',
     );
