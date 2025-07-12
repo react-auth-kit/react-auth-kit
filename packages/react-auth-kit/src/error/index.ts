@@ -23,3 +23,4 @@ export * from './AuthKitStorageExpiredError';
 export * from './AuthKitTokenError';
 
 export * from './AuthKitProviderMissingError';
+export * from './AuthKitConfigError';
