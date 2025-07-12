@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type IToken from "./IToken";
+import type {IToken} from "./IToken";
 import AuthKitTokenError from "../error/AuthKitTokenError";
 
 export default class JwtToken implements IToken {

@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-export default interface IToken {
+export interface IToken {
   getExpiresAt: (token: string) => Date | never;
 }
