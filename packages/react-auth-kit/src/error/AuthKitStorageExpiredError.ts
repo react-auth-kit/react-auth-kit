@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-/**
- * Base Error Class for all the auth kit related errors.
- */
-export class BaseAuthKitError extends Error {
-}
+import AuthKitStorageError from "./AuthKitStorageError";
+
+export default class AuthKitStorageExpiredError extends AuthKitStorageError {}

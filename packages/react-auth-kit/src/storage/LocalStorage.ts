@@ -15,7 +15,8 @@
  */
 
 import {IStorage} from "./IStorage";
-import AuthKitStorageError from "../error/AuthKitStorageError";
+import AuthKitStorageInvalidError from "../error/AuthKitStorageInvalidError";
+import AuthKitStorageExpiredError from "../error/AuthKitStorageExpiredError";
 
 /**
  * LocalStorage class implements the IStorage interface for managing key-value pairs in localStorage.
@@ -32,13 +33,13 @@ export default class LocalStorage implements IStorage {
   public get(key: string): string | never {
     const value = localStorage.getItem(key);
     if (value === null) {
-      throw new AuthKitStorageError(`Key "${key}" does not exist in localStorage.`);
+      throw new AuthKitStorageInvalidError(`Key "${key}" does not exist in localStorage.`);
     }
 
     const {expiresAt, actualValue} = this.extractExpiration(value);
     if (expiresAt < new Date()) {
       this.remove(key);
-      throw new AuthKitStorageError(`Key "${key}" has expired.`);
+      throw new AuthKitStorageExpiredError(`Key "${key}" has expired.`);
     }
 
     return actualValue;
@@ -89,7 +90,7 @@ export default class LocalStorage implements IStorage {
   private extractExpiration(value: string): { expiresAt: Date, actualValue: string } {
     const [expirationTimestamp, actualValue] = value.split('^&*&^');
     if (!expirationTimestamp || !actualValue) {
-      throw new AuthKitStorageError(`Invalid value format: ${value}`);
+      throw new AuthKitStorageInvalidError(`Invalid value format: ${value}`);
     }
     return {
       expiresAt: new Date(Number(expirationTimestamp)),
