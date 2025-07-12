@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import {doRefresh, doSignOut} from "../utils/reducers";
 import {AuthKitError} from "../error";
 import type {createRefreshAttribute} from "./createRefresh";
 import {ITokenStore} from "../store";
+import Action from "../utils/action";
 
 function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenStore<T>) {
   return () => {
@@ -30,15 +30,15 @@ function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenS
         // IF the API call is successful, then refresh the AUTH state
         if (result.isSuccess) {
           // store the new value using the state update
-          store.set(doRefresh(result));
+          Action.doRefresh(result, store);
         } else {
           // sign out if failed to refresh
-          store.set(doSignOut());
+          Action.doSignOut(store);
         }
       })
       .catch(() => {
         // Retry for Future
-        store.set(doSignOut());
+        Action.doSignOut(store);
         throw new AuthKitError('Some error occurred on the Refresh API. Unable to refresh for now')
       });
   }

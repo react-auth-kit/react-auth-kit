@@ -33,7 +33,7 @@ type RefreshTokenActionResponseFailed = {
 /**
  * Payload for Refresh token Success True
  */
-type RefreshTokenActionResponsePassed<T> = {
+export type RefreshTokenActionResponsePassed<T> = {
 
   /**
    * New Auth token from the network response

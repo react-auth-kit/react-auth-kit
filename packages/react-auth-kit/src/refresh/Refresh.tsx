@@ -21,7 +21,7 @@ import {useRefreshApiCall} from "./useRefreshApiCall";
 import {ITokenStore} from "../store";
 
 import { useInterval } from "../utils/hooks";
-import { doSignOut } from "../utils/reducers";
+import Action from "../utils/action";
 
 
 interface RefreshProps<T> {
@@ -72,7 +72,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       // IF the user is sign out
       else {
         // make a SignOut call
-        store.set(doSignOut());
+        Action.doSignOut(store);
         setShouldInitialRefreshState(false);
       }
       // Set refreshing to false
