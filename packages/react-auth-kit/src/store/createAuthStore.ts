@@ -19,7 +19,7 @@
 import TokenStore from "./TokenStore";
 import {Store} from "./types";
 import {AuthKitConfigError} from "../error";
-import {createRefreshParamInterface} from "../refresh/createRefresh";
+import {createRefreshAttribute} from "../refresh";
 import {IStorage, cookieSameSite} from "../storage";
 import CookieStorage from "../storage/CookieStorage";
 import LocalStorage from "../storage/LocalStorage";
@@ -87,7 +87,7 @@ interface storeAttributes<T> {
   /**
    * Refresh API. Created using the ` createRefresh ` function.
    */
-  refresh?: createRefreshParamInterface<T>;
+  refresh?: createRefreshAttribute<T>;
 
   /**
    * If Debug or not. Use this to debug your auth flow

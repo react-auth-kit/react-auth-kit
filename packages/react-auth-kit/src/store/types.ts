@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type {createRefreshParamInterface} from "../createRefresh";
+import type {createRefreshAttribute} from "../refresh";
 import type {ITokenStore} from "./ITokenStore";
 
 /**
@@ -24,11 +24,11 @@ export interface Store<T> {
   /**
    * Instance of the token object
    */
-  tokenObject: ITokenStore<T>;
+  tokenStore: ITokenStore<T>;
   /**
    * Instance of the Refresh interface, if there is any.
    */
-  refresh?: createRefreshParamInterface<T>;
+  refresh?: createRefreshAttribute<T>;
 }
 
 /**
