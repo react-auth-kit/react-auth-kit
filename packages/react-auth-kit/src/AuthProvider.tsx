@@ -3,10 +3,10 @@
 import * as React from 'react';
 
 import type Router from './route';
-
-import Refresh from './Refresh';
-import AuthKitContext from './AuthContext';
 import type {Store} from "./store";
+
+import {Refresh} from './refresh';
+import AuthKitContext from './AuthContext';
 
 /**
  * Props of the AuthProvider Component
@@ -73,17 +73,17 @@ function AuthProvider<T>(
     children,
   }: AuthProviderProps<T>,
 ): ReturnType<React.FC> {
-  const { tokenObject, refresh } = store;
+  const { tokenStore, refresh } = store;
 
   return (
     <AuthKitContext.Provider
       // @ts-expect-error 'TokenObject' is assignable to the constraint
       // of type 'T', but 'T' could be instantiated with a different subtype
-      value={{ token: tokenObject, router, config: { fallbackPath } }}
+      value={{ store: tokenStore, router, config: { fallbackPath } }}
     >
       {refresh ?
         (
-          <Refresh refresh={refresh} store={tokenObject}>
+          <Refresh refresh={refresh} store={tokenStore}>
             {children}
           </Refresh>
         ) :
