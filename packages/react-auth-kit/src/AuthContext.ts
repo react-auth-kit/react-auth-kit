@@ -4,15 +4,15 @@ import type {Context} from 'react';
 import {createContext, useContext} from 'react';
 
 import type Router from './route';
-import type TokenObject from './RxTokenObject';
-import {BaseAuthKitError} from "./error/BaseAuthKitError";
+import type {ITokenStore} from "./store";
+import AuthKitProviderMissingError from "./error/AuthKitProviderMissingError";
 
 interface ReactAuthKitContextConfig {
   fallbackPath?: string
 }
 
 interface ReactAuthKitContext<T> {
-  token: TokenObject<T>
+  store: ITokenStore<T>
   router?: Router
   config: ReactAuthKitContextConfig
 }
@@ -32,6 +32,13 @@ function getContext<T>(): Context<ReactAuthKitContext<T>> {
   return context;
 }
 
+/**
+ * @internal
+ * @returns React Context with Token Object inside
+ *
+ * Use this context to globally hold the TokenObject instance in the application.
+ *
+ */
 const AuthKitContext = getContext();
 
 /**
@@ -41,18 +48,17 @@ const AuthKitContext = getContext();
  *
  * React Context consumer to globally hold the
  * TokenObject instance in the application.
- *
  */
-export function useReactAuthKit(): TokenObject<unknown> {
+export function useReactAuthKitStore(): ITokenStore<unknown> {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new
-    BaseAuthKitError(
+    AuthKitProviderMissingError(
         'Auth Provider is missing. ' +
         'Make sure, you are using this component inside the auth provider.',
     );
   }
-  return context.token;
+  return context.store;
 }
 
 /**
@@ -60,12 +66,14 @@ export function useReactAuthKit(): TokenObject<unknown> {
  * @internal
  * @returns Router Object from the context
  *
+ * React Context consumer to globally hold the
+ * Router instance in the application.
  */
 export function useReactAuthKitRouter(): Router|undefined {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new
-    BaseAuthKitError(
+    AuthKitProviderMissingError(
         'Auth Provider is missing. ' +
         'Make sure, you are using this component inside the auth provider.',
     );
@@ -76,12 +84,15 @@ export function useReactAuthKitRouter(): Router|undefined {
 /**
  * @internal
  * @returns React Auth Kit configurations
+ *
+ * React Context consumer to globally hold the
+ * React Auth Kit configurations in the application.
  */
 export function useReactAuthKitConfig(): ReactAuthKitContextConfig {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new
-    BaseAuthKitError(
+    AuthKitProviderMissingError(
         'Auth Provider is missing. ' +
         'Make sure, you are using this component inside the auth provider.',
     );
