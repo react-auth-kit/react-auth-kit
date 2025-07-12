@@ -15,6 +15,9 @@
  */
 
 export type * from './IStorage';
+export type * from './IStorageNamingStrategy';
 
 export * from './CookieStorage';
 export * from './LocalStorage';
+
+export * from './DefaultStorageNamingStrategy';
