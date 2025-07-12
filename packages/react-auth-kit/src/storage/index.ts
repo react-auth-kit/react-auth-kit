@@ -16,4 +16,5 @@
 
 export type * from './IStorage';
 
+export * from './CookieStorage';
 export * from './LocalStorage';
