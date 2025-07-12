@@ -5,7 +5,7 @@ import {createContext, useContext} from 'react';
 
 import type Router from './route';
 import type {ITokenStore} from "./store";
-import AuthKitProviderMissingError from "./error/AuthKitProviderMissingError";
+import {AuthKitProviderMissingError} from "./error";
 
 interface ReactAuthKitContextConfig {
   fallbackPath?: string
