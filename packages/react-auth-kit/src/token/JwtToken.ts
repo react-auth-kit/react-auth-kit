@@ -15,7 +15,7 @@
  */
 
 import type {IToken} from "./IToken";
-import AuthKitTokenError from "../error/AuthKitTokenError";
+import {AuthKitTokenError} from "../error";
 
 export default class JwtToken implements IToken {
   public getExpiresAt(token: string): Date | never {

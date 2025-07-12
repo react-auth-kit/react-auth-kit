@@ -16,4 +16,4 @@
 
 import {AuthKitError} from "./AuthKitError";
 
-export default class AuthKitTokenError extends AuthKitError {}
+export class AuthKitTokenError extends AuthKitError {}

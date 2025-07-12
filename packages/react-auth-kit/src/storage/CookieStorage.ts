@@ -16,13 +16,13 @@
 
 import Cookies from "js-cookie";
 import {IStorage} from "./IStorage";
-import AuthKitStorageInvalidError from "../error/AuthKitStorageInvalidError";
+import {AuthKitStorageInvalidError} from "../error";
 
 /**
  * Type definition for the possible values of the SameSite attribute for cookies.
  * It can be "strict", "lax", or "none" (case-insensitive).
  */
-type cookieSameSite = "strict" | "Strict" | "lax" | "Lax" | "none" | "None";
+export type cookieSameSite = "strict" | "Strict" | "lax" | "Lax" | "none" | "None";
 
 /**
  * CookieStorage is a class that implements the IStorage interface for managing

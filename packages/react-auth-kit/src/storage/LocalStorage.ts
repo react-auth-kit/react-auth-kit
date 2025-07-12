@@ -15,8 +15,7 @@
  */
 
 import {IStorage} from "./IStorage";
-import AuthKitStorageInvalidError from "../error/AuthKitStorageInvalidError";
-import AuthKitStorageExpiredError from "../error/AuthKitStorageExpiredError";
+import {AuthKitStorageInvalidError, AuthKitStorageExpiredError} from "../error";
 
 /**
  * LocalStorage class implements the IStorage interface for managing key-value pairs in localStorage.

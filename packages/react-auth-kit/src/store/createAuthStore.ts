@@ -18,8 +18,8 @@
 
 import TokenStore from "./TokenStore";
 import {Store} from "./types";
-import {AuthKitError} from "../error";
-import {createRefreshParamInterface} from "../createRefresh";
+import {AuthKitConfigError} from "../error";
+import {createRefreshParamInterface} from "../refresh/createRefresh";
 import {IStorage, cookieSameSite} from "../storage";
 import CookieStorage from "../storage/CookieStorage";
 import LocalStorage from "../storage/LocalStorage";
@@ -106,7 +106,7 @@ interface storeAttributes<T> {
  * @param authAttributes - Attributes for the auth store, such as `authName`, `cookieDomain`, `cookieSecure`, etc.
  *
  * @returns A Store object containing the `tokenObject` and optionally a `refresh` object.
- * @throws {AuthKitError} If the `authType` is not supported or if required attributes are missing.
+ * @throws {AuthKitConfigError} If the `authType` is not supported or if required attributes are missing.
  *
  * @example
  * ```js
@@ -145,7 +145,7 @@ export default function createAuthStore<T>(
     storage = new LocalStorage();
   }
   else {
-    throw new AuthKitError(
+    throw new AuthKitConfigError(
       `authType '${authType}' is not supported. Use 'cookie' or 'localstorage'`,
     );
   }
@@ -162,7 +162,7 @@ export default function createAuthStore<T>(
   )
 
   return {
-    tokenObject: tokenStore,
+    tokenStore: tokenStore,
     refresh: authAttributes.refresh,
   };
 }
