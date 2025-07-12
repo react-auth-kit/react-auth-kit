@@ -24,7 +24,7 @@ import {IToken} from "../token";
 import {AuthKitError} from "../error";
 import {IStorageNamingStrategy} from "../storage";
 
-abstract class TokenStore<T> implements ITokenStore<T> {
+class TokenStore<T> implements ITokenStore<T> {
 
   /**
    * Boolean value to check if the application
@@ -91,7 +91,7 @@ abstract class TokenStore<T> implements ITokenStore<T> {
    * @param token - Token interface to get the expiration time of the tokens
    * @param debug - Whether to run in debug mode or not
    */
-  protected constructor(
+  constructor(
     isUsingRefreshToken: boolean,
     storage: IStorage,
     storageNamingStrategy: IStorageNamingStrategy,
