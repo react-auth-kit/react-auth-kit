@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import TokenObject from "../RxTokenObject";
 import type {createRefreshParamInterface} from "../createRefresh";
+import type {ITokenStore} from "./ITokenStore";
 
 /**
  * Return type of authStore Function
@@ -24,7 +24,7 @@ export interface Store<T> {
   /**
    * Instance of the token object
    */
-  tokenObject: TokenObject<T>;
+  tokenObject: ITokenStore<T>;
   /**
    * Instance of the Refresh interface, if there is any.
    */
@@ -32,46 +32,36 @@ export interface Store<T> {
 }
 
 /**
- * Store Creation Param
+ * Set State Data
  */
-export interface createStoreParam<T> {
-  /**
-   * The name of the cookie or local store object on which
-   * the auth token is stored.
-   *
-   * This name will also be used as a prefix for all other cookies.
-   */
-  authName: string;
-  /**
-   * Type of the Storage.
-   *
-   * - `cookie` - Store all the auth information in the cookie
-   * - `localstorage` - Store all the auth information in the localstorage
-   */
-  authType: 'cookie' | 'localstorage';
-  /**
-   * Domain of the cookie, for which the cookie is valid.
-   *
-   * Needed if you are using `cookie` as authType
-   *
-   * @see {@link https://github.com/js-cookie/js-cookie#domain}
-   */
-  cookieDomain?: string;
-  /**
-   * Indicating if the cookie transmission requires a secure protocol (https).
-   *
-   * Needed if you are using `cookie` as authType
-   *
-   * @see {@link https://github.com/js-cookie/js-cookie#secure}
-   */
-  cookieSecure?: boolean;
-  /**
-   * Refresh API. Created using the ` createRefresh ` function.
-   */
-  refresh?: createRefreshParamInterface<T>;
+export interface UpdatedAuthKitState<T> {
 
   /**
-   * If Debug or not. Use this to debug your auth flow
+   * Authentication Object
    */
-  debug?: boolean;
+  auth?: {
+
+    /**
+     * JWT access token
+     */
+    token: string,
+
+    /**
+     * Type of the access token
+     *
+     * @example
+     * Bearer
+     */
+    type: string
+  } | null,
+
+  /**
+   * Refresh JWT token
+   */
+  refresh?: string | null,
+
+  /**
+   * User state object
+   */
+  userState?: T
 }

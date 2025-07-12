@@ -15,6 +15,7 @@
  */
 
 export type * from './types';
+export type * from './ITokenStore';
 
-export * from './authStore';
-export {default} from './authStore';
+export * from './createAuthStore';
+export {default} from './createAuthStore';
