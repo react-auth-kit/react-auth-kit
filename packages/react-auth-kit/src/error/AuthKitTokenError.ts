@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-export * from './AuthKitError';
+import {AuthKitError} from "./AuthKitError";
 
-export * from './AuthKitStorageError';
-export * from './AuthKitStorageInvalidError';
-export * from './AuthKitStorageExpiredError';
-
-export * from './AuthKitTokenError';
+export default class AuthKitTokenError extends AuthKitError {}
