@@ -22,9 +22,9 @@ export interface SignInActionPayload<T> {
   },
 
   /**
-   * JWT refresh token.
+   * refresh token.
    *
-   * Make sure, you are using refresh token and configured the `createRefresh`
+   * Make sure you are using a refresh token and configured the `createRefresh`
    * before adding the token
    */
   refresh?: string | null,
@@ -167,6 +167,6 @@ type AuthKitStateInterfaceRefresh = AuthKitStateInterfaceWithRefresh | AuthKitSt
 /**
  * Auth State Object
  */
-export type AuthKitStateInterface<T> =
+export type AuthKitState<T> =
   AuthKitStateInterfaceAuthToken<T> &
   AuthKitStateInterfaceRefresh;
