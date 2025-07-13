@@ -1,43 +1,37 @@
 'use client';
 
 import {
-  useReactAuthKit,
+  useReactAuthKitStore,
   useReactAuthKitConfig,
   useReactAuthKitRouter,
 } from '../AuthContext';
 
-import {doSignOut} from '../utils/reducers';
+import Action from "../utils/action";
 
 /**
- * Is Authenticated React Hook
+ * useIsAuthenticated React Hook
  *
- * Call the hook to know if the user is authenticated or not
+ * This hook checks if the user is authenticated by verifying the authentication token's expiration time.
+ * If the token is valid, it returns true; otherwise, it signs out the user and redirects to a fallback path if configured.
  *
- * This uses the context data to determine whether the user is authenticated
- * or not.
- *
- * @returns React Hook with Authtication status Functionility.
- *
- * @throws AuthError
- * Thrown if the Hook is used outside the Provider Scope.
+ * @returns A function that returns a boolean indicating whether the user is authenticated.
  *
  * @example
  * ```js
- * import useSignIn from 'react-auth-kit/hooks/useSignIn'
- *
+ * import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
  * const Component = () => {
- *  const isAuthenticated = useIsAuthenticated()
- *  if (isAuthenticated) {
- *    // user authenticated - do somthing
+ *  const isAuthenticated = useIsAuthenticated();
+ *  if (isAuthenticated()) {
+ *    // User is authenticated - proceed with authenticated actions
+ *  } else {
+ *    // User is not authenticated - auto redirect or show login
  *  }
- *  else {
- *    // user not authenticated
- *  }
+ * }
  * ```
  *
  */
 function useIsAuthenticated(): () => boolean {
-  const {value, set} = useReactAuthKit();
+  const store = useReactAuthKitStore();
   const router = useReactAuthKitRouter();
   const {fallbackPath} = useReactAuthKitConfig();
 
@@ -46,12 +40,12 @@ function useIsAuthenticated(): () => boolean {
 
 
   return () => {
-    if (value.auth && new Date(value.auth.expiresAt) > new Date()) {
+    if (store.value.auth && new Date(store.value.auth.expiresAt) > new Date()) {
       return true;
     }
 
-    if (value.auth && new Date(value.auth.expiresAt) <= new Date()) {
-      set(doSignOut());
+    if (store.value.auth && new Date(store.value.auth.expiresAt) <= new Date()) {
+      Action.doSignOut(store)
     }
 
     if (router && navigate && fallbackPath && path && path() !== fallbackPath) {
