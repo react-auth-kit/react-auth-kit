@@ -6,7 +6,7 @@ exports[`AuthProvider Renders Refresh component 1`] = `
     <span
       id="refresh"
     >
-      Refreshssssssssssssssss
+      Refresh Token
     </span>
     <div
       id="test"
