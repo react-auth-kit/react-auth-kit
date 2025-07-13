@@ -1,12 +1,12 @@
 'use client';
 
-import {useReactAuthKit} from '../AuthContext';
+import {useReactAuthKitStore} from '../AuthContext';
 import useIsAuthenticated from './useIsAuthenticated';
 
 /**
  * Auth User Data React Hook
  *
- * Call the hook,
+ * Call the hook
  * to get the authenticated user data into your React Component
  *
  * This uses the context data to determine the user data
@@ -49,16 +49,55 @@ import useIsAuthenticated from './useIsAuthenticated';
  * }
  * ```
  */
-function useAuthUser<T>(): () => T | null {
-  const {value} = useReactAuthKit();
+
+/**
+ * useAuthUser React Hook
+ *
+ * This hook retrieves the authenticated user's data from the context.
+ * If the user is authenticated, it returns the user state; otherwise, it returns null.
+ *
+ * @typeParam T - Type of the user state object.
+ *
+ * @return A function that returns the user state if authenticated; otherwise, it signs out the user and redirects
+ * to a fallback path if configured.
+ *
+ * @example
+ * JavaScript Example:
+ * ```js
+ * import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+ * const Component = () => {
+ *  const authUser = useAuthUser();
+ *  const data = authUser();
+ *
+ *  console.log(data.name); // Access username
+ *  console.log(data.uuid); // Access user UUID
+ * }
+ * ```
+ *
+ * @example
+ * TypeScript Example:
+ * ```tsx
+ * import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+ * interface IUserData {
+ *  name: string;
+ *  uuid: string;
+ * };
+ *
+ * const Component = () => {
+ *  const authUser = useAuthUser<IUserData>();
+ *  const data = authUser();
+ *  console.log(data.name); // Access username
+ *  console.log(data.uuid); // Access user UUID
+ * }
+ * ```
+ */
+function useAuthUser<T>(): () => T {
+  const {value} = useReactAuthKitStore();
   const isAuthenticated = useIsAuthenticated();
 
   return () => {
-    if (isAuthenticated()) {
-      return value.userState as T;
-    } else {
-      return null;
-    }
+    isAuthenticated()
+    return value.userState as T;
   };
 }
 
