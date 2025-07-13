@@ -309,7 +309,12 @@ class TokenStore<T> implements ITokenStore<T> {
   private initialToken_ = (): AuthKitState<T> => {
     const authToken = this.storage.get(this.storageNamingStrategy.getAuthStorageName());
     const authTokenType = this.storage.get(this.storageNamingStrategy.getAuthTypeStorageName());
-    const stateCookie = this.storage.get(this.storageNamingStrategy.getStateStorageName());
+
+    let stateCookie: string | null = null;
+    try{
+      stateCookie = this.storage.get(this.storageNamingStrategy.getStateStorageName());
+    }
+    catch (e) {}
 
     const refreshToken = this.isUsingRefreshToken ?
       this.storage.get(this.storageNamingStrategy.getRefreshTokenStorageName()) : null;
