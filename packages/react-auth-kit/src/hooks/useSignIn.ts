@@ -1,22 +1,23 @@
 'use client';
 
-import {doSignIn} from '../utils/reducers';
 import type {signInFunctionParams} from '../types';
-import {useReactAuthKit, useReactAuthKitRouter} from '../AuthContext';
-import {BaseAuthKitError} from "../error/BaseAuthKitError";
+import {useReactAuthKitStore} from '../AuthContext';
+import {AuthKitError} from "../error";
+import Action from "../utils/action";
+import {useTryNavigateTo} from "../utils/hooks";
 
 /**
  * Sign In React Hook
  *
  * Call the hook to sign In and authenticate the user
  *
- * This will authenticate the user by writing the user state into the memory
+ * This will authenticate the user by writing the user state into the memory.
  * Also, this will call the RX engine to store the auth in the storage
  *
  * @typeParam T - Type of User State Object
  * @returns React Hook with SignIn Functionality
  *
- * @throws BaseAuthKitError
+ * @throws AuthKitError
  * - Thrown if the Hook is used outside the Provider Scope.
  * - Thrown if the refresh token is added, in spite not used.
  * - Thrown if the refresh token is not added, is spite used.
@@ -37,7 +38,7 @@ import {BaseAuthKitError} from "../error/BaseAuthKitError";
  * }
  * ```
  *
- * Here's an example with refresh token:
+ * Here's an example with a refresh token:
  * ```jsx
  * import useSignIn from 'react-auth-kit/hooks/useSignIn'
  *
@@ -82,10 +83,9 @@ import {BaseAuthKitError} from "../error/BaseAuthKitError";
  * that in the parameter, else it throws AuthError.
  *
  */
-function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
-  const context = useReactAuthKit();
-  const router = useReactAuthKitRouter();
-  const navigate = router ? router.useNavigate() : null;
+function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean | never {
+  const context = useReactAuthKitStore();
+  const navigateTo = useTryNavigateTo();
 
   /**
    *
@@ -100,50 +100,36 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean {
    * ```
    * @param to - The path to redirect
    */
-  const redirectAfterSignIn = (to?: string) => {
-    if (to) {
-      if (router && navigate) {
-        navigate({to});
-      } else {
-        throw new
-        BaseAuthKitError(
-            'Router Plugin is not implemented in the AuthProvider. Please'+
-            ' use the router prop of AuthProvider and Router plugin to'+
-            ' use this feture',
-        );
-      }
-    }
-  };
-  return (signInConfig: signInFunctionParams<T>): boolean => {
+  return (signInConfig: signInFunctionParams<T>): boolean | never => {
     if (context.value.isUsingRefreshToken) {
-      // Using the power of refresh token
+      // Using the power of a refresh token
       if (signInConfig.refresh) {
         // refresh token params are provided
-        // sign in with refresh token
-        context.set(doSignIn(signInConfig));
-        redirectAfterSignIn(signInConfig.navigateTo);
+        // sign in with the refresh token
+        Action.doSignIn(signInConfig, context);
+        navigateTo(signInConfig.navigateTo);
         return true;
       } else {
         // refresh token params are not provided
         // throw an error
-        throw new BaseAuthKitError(
-            'This appication is using refresh token feature.'+
+        throw new AuthKitError(
+            'This application is using refresh token feature.'+
             ' So please include `refresh` param in the parameters',
         );
       }
     } else if (signInConfig.refresh) {
       // params are not expected but provided
       // throw an error
-      throw new BaseAuthKitError(
-          'This appication is not using refresh token feature.'+
+      throw new AuthKitError(
+          'This application is not using refresh token feature.'+
           ' So please remove the `refresh` param in the parameters.'+
           ' In Case you want to use refresh token feature,'+
           ' make sure you added that while creating the store.',
       );
     } else {
       // sign in without the refresh token
-      context.set(doSignIn(signInConfig));
-      redirectAfterSignIn(signInConfig.navigateTo);
+      Action.doSignIn(signInConfig, context);
+      navigateTo(signInConfig.navigateTo);
       return true;
     }
   };
