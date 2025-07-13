@@ -3,7 +3,7 @@
 import type {Context} from 'react';
 import {createContext, useContext} from 'react';
 
-import type Router from './route';
+import {IRouter} from "./route";
 import type {ITokenStore} from "./store";
 import {AuthKitProviderMissingError} from "./error";
 
@@ -13,7 +13,7 @@ interface ReactAuthKitContextConfig {
 
 interface ReactAuthKitContext<T> {
   store: ITokenStore<T>
-  router?: Router
+  router?: IRouter
   config: ReactAuthKitContextConfig
 }
 
@@ -69,7 +69,7 @@ export function useReactAuthKitStore(): ITokenStore<unknown> {
  * React Context consumer to globally hold the
  * Router instance in the application.
  */
-export function useReactAuthKitRouter(): Router|undefined {
+export function useReactAuthKitRouter(): IRouter|undefined {
   const context = useContext(AuthKitContext);
   if (context === null) {
     throw new

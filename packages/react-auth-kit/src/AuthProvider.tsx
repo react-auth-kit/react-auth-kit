@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import type Router from './route';
+import type {IRouter} from "./route";
 import type {Store} from "./store";
 
 import {Refresh} from './refresh';
@@ -24,7 +24,7 @@ interface AuthProviderProps<T> {
    *
    * Internally used to redirect after sign-in and token expiration
    */
-  router?: Router
+  router?: IRouter
 
   /**
    * Fallback Path
