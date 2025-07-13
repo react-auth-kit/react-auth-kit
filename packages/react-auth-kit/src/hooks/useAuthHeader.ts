@@ -4,34 +4,25 @@ import {useReactAuthKitStore} from '../AuthContext';
 import useIsAuthenticated from './useIsAuthenticated';
 
 /**
- * Auth Header React Hook
+ * useAuthHeader React Hook
  *
- * Call the hook
- * to get the auth header for a network request
+ * This hook retrieves the authentication header for network requests.
  *
- * **Format: `type token` (authType-space-authToken)**
+ * If the user is authenticated, it returns a string in the format `type token`.
+ * If the user is not authenticated, it signs out the user and redirects to a fallback path if configured, or returns `null`.
+ *
+ * @returns A function that returns the authentication header string or `null`.
  *
  * @example
- * Here is a simple example
  * ```jsx
- * import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
- *
+ * import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
  * const Component = () => {
- *  const authHeader = useAuthHeader();
+ *  const getAuthHeader = useAuthHeader();
  *  const headers = {
- *    'Authorization': authHeader
- *  }
- *  // use the headers in the network request
- *  ...
+ *   'Authorization': getAuthHeader()
+ *  };
  * }
  * ```
- *
- * @returns If the user is authenticated,
- * then `'auth.type auth.token'` is returned.
- * If the user is not authenticated, then `null` is returned.
- *
- * @throws AuthError
- * Thrown if the Hook is used outside the Provider Scope.
  */
 function useAuthHeader(): () => string | null {
   const {value} = useReactAuthKitStore();
