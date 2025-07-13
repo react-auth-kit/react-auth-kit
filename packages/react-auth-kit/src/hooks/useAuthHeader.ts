@@ -1,13 +1,13 @@
 'use client';
 
-import {useReactAuthKit} from '../AuthContext';
+import {useReactAuthKitStore} from '../AuthContext';
 import useIsAuthenticated from './useIsAuthenticated';
 
 /**
  * Auth Header React Hook
  *
- * Call the hook,
- * to get the auth header for network request
+ * Call the hook
+ * to get the auth header for a network request
  *
  * **Format: `type token` (authType-space-authToken)**
  *
@@ -34,7 +34,7 @@ import useIsAuthenticated from './useIsAuthenticated';
  * Thrown if the Hook is used outside the Provider Scope.
  */
 function useAuthHeader(): () => string | null {
-  const {value} = useReactAuthKit();
+  const {value} = useReactAuthKitStore();
   const isAuthenticated = useIsAuthenticated();
   return () => {
     if (!!value.auth && isAuthenticated()) {
