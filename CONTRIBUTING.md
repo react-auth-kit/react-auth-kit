@@ -10,7 +10,7 @@ We love your input! We want to make contributing to this project as easy and tra
 - [Proposing new features](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/feature_request.md)
 - [Ask a question](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/ask_questions.md)
 - [Found a security vulnerability ?](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/security_vulnerability.md)
-- [Unexpected Behaviour in application](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/unexpected_behaviour.md)
+- [Unexpected Behavior in application](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/unexpected_behaviour.md)
 - [Requesting changes in docs](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/ISSUE_TEMPLATE/docs_request.md)
 
 
@@ -22,11 +22,9 @@ We use [GitHub Flow](https://guides.github.com/introduction/flow/index.html), al
 
 You can get your own fork/copy of [React Auth Kit](https://github.com/react-auth-kit/react-auth-kit) by using the <kbd><b>Fork</b></kbd></a> button.
 
- [![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)](https://github.com/react-auth-kit/react-auth-kit)
-
 ### 2. Clone it :busts_in_silhouette:
 
-You need to clone (download) it to local machine using
+You need to clone (download) it to a local machine using
 
 ```sh
 git clone https://github.com/Your_Username/react-auth-kit.git
@@ -49,7 +47,7 @@ Once you have completed these steps, you are ready to start contributing by chec
 
 ### 4. Create a new branch :bangbang:
 
-Whenever you are going to make a contribution. Please create a separate branch using command and keep your `master` branch clean (i.e. synced with remote branch).
+Whenever you are going to make a contribution. Please create a separate branch using command and keep your `master` branch clean (i.e., synced with remote branch).
 
 ```sh
 # It will create a new branch with the name Branch_Name and will switch to that branch.
@@ -96,7 +94,7 @@ Types:
 
 - **build**: a commit of the type build are changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm).
 
-- **chore**: a commit of the type chore are other changes that don't modify src or test files.
+- **chore**: a commit of the type chore is other changes that don't modify src or test files.
 
 - **ci**: a commit of the type ci are changes to our CI configuration files and scripts.
 
@@ -128,7 +126,7 @@ Finally, go to your forked repository in your browser and click on `Compare & pu
 Use our [pull request template format](https://github.com/react-auth-kit/react-auth-kit/blob/master/.github/pull_request_template.md).
 Then add a title and description to your pull request that explains your precious effort.
 
-Now, sit back and relax till we review your PR, you've made your contribution to our project.
+Now, sit back and relax till we review your PR; you've made your contribution to our project.
 
 ## License
 
