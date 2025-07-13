@@ -1,49 +1,50 @@
-
-
 import AuthKitContext from '../AuthContext';
 import {
-  useReactAuthKit,
+  useReactAuthKitStore,
   useReactAuthKitConfig,
   useReactAuthKitRouter,
 } from '../AuthContext';
 import {render} from '@testing-library/react';
 import Cookies from 'js-cookie';
-import TokenObject from '../RxTokenObject';
-import Router from '../route';
-import {BaseAuthKitError} from "../error/BaseAuthKitError";
+import {AuthKitProviderMissingError} from "../error";
+import {IRouter} from "../route";
+import TokenStore from "../store/TokenStore";
+import CookieStorage from "../storage/CookieStorage";
+import DefaultStorageNamingStrategy from "../storage/DefaultStorageNamingStrategy";
+import JwtToken from "../token/JwtToken";
+import {ITokenStore} from "../store";
 
 test('All Expected Exports are there', ()=>{
   expect(AuthKitContext).toBeTruthy();
-  expect(useReactAuthKit).toBeTruthy();
+  expect(useReactAuthKitStore).toBeTruthy();
   expect(useReactAuthKitConfig).toBeTruthy();
   expect(useReactAuthKitRouter).toBeTruthy();
 });
 
 test('Testing Context Workflow', ()=>{
   const TestComponent = () => {
-    const c = useReactAuthKit();
+    const c = useReactAuthKitStore();
     return <div id="test"> {JSON.stringify(c.value)} </div>;
   };
 
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-  Cookies.set('__', token);
+  Cookies.set('___auth', token);
+  Cookies.set('___auth_type', "Bearer");
 
-  const tokenObject = new TokenObject<object>(
-      '__',
-      'cookie',
-      null,
+  const tokenObject = new TokenStore<unknown>(
       false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+      new CookieStorage(window.location.hostname, window.location.protocol === 'https:'),
+      new DefaultStorageNamingStrategy("__"),
+      new JwtToken(),
+      false
   );
 
   render(
       <AuthKitContext.Provider value={
         {
-          // @ts-expect-error Type error
-          token: tokenObject,
+          store: tokenObject,
           router: undefined,
           config: {fallbackPath: '/login'},
         }
@@ -66,22 +67,21 @@ test('Testing Context config Workflow', ()=>{
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-  Cookies.set('__', token);
+  Cookies.set('___auth', token);
+  Cookies.set('___auth_type', "Bearer");
 
-  const tokenObject = new TokenObject<object>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
+  const tokenObject = new TokenStore<unknown>(
+    false,
+    new CookieStorage(window.location.hostname, window.location.protocol === 'https:'),
+    new DefaultStorageNamingStrategy("__"),
+    new JwtToken(),
+    false
   );
 
   render(
       <AuthKitContext.Provider value={
         {
-          // @ts-expect-error Any type
-          token: tokenObject,
+          store: tokenObject,
           router: undefined,
           config: {fallbackPath: '/login'},
         }
@@ -100,23 +100,24 @@ describe('Context Workflow', ()=>{
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
     '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
     '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-  let tokenObject: TokenObject<Record<string, unknown>>;
+  let tokenObject: ITokenStore<unknown>;
   let AuthProvider: React.FC<React.PropsWithChildren>;
 
   const navigateFn = jest.fn();
 
   beforeEach(()=>{
-    Cookies.set('__', token);
-    tokenObject = new TokenObject<Record<string, unknown>>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
+    Cookies.set('___auth', token);
+    Cookies.set('___auth_type', "Bearer");
+
+    tokenObject = new TokenStore<unknown>(
+      false,
+      new CookieStorage(window.location.hostname, window.location.protocol === 'https:'),
+      new DefaultStorageNamingStrategy("__"),
+      new JwtToken(),
+      false
     );
 
-    const ReactRouterPlugin: Router = {
+    const ReactRouterPlugin: IRouter = {
       navigate: navigateFn,
       useNavigate: function(): ({to}: { to: string; }) => void {
         return jest.fn();
@@ -129,8 +130,7 @@ describe('Context Workflow', ()=>{
     AuthProvider = ({children}) => (
       <AuthKitContext.Provider value={
         {
-          // @ts-expect-error Type error
-          token: tokenObject,
+          store: tokenObject,
           router: ReactRouterPlugin,
           config: {fallbackPath: '/login'},
         }
@@ -139,9 +139,9 @@ describe('Context Workflow', ()=>{
       </AuthKitContext.Provider>);
   });
 
-  it('useReactAuthKit', ()=>{
+  it('useReactAuthKitStore', ()=>{
     const TestComponent = () => {
-      const c = useReactAuthKit();
+      const c = useReactAuthKitStore();
       return <div id="test"> {JSON.stringify(c.value)} </div>;
     };
 
@@ -192,14 +192,22 @@ describe('Context Workflow', ()=>{
 });
 
 describe('Throws error without AuthKitContext.Provider', ()=>{
-  it('useReactAuthKit', ()=>{
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('useReactAuthKitStore', ()=>{
     const TestComponent = () => {
-      const c = useReactAuthKit();
+      const c = useReactAuthKitStore();
       return <div id="test"> {JSON.stringify(c.value)} </div>;
     };
     expect(() => render(
         <TestComponent/>,
-    )).toThrow(BaseAuthKitError);
+    )).toThrow(AuthKitProviderMissingError);
   });
 
   it('useReactAuthKitRouter', ()=>{
@@ -209,7 +217,7 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
     };
     expect(() => render(
         <TestComponent/>,
-    )).toThrow(BaseAuthKitError);
+    )).toThrow(AuthKitProviderMissingError);
   });
 
   it('useReactAuthKitConfig', ()=>{
@@ -219,6 +227,6 @@ describe('Throws error without AuthKitContext.Provider', ()=>{
     };
     expect(() => render(
         <TestComponent/>,
-    )).toThrow(BaseAuthKitError);
+    )).toThrow(AuthKitProviderMissingError);
   });
 });
