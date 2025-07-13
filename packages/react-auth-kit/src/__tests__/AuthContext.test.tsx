@@ -8,11 +8,8 @@ import {render} from '@testing-library/react';
 import Cookies from 'js-cookie';
 import {AuthKitProviderMissingError} from "../error";
 import {IRouter} from "../route";
-import TokenStore from "../store/TokenStore";
-import CookieStorage from "../storage/CookieStorage";
-import DefaultStorageNamingStrategy from "../storage/DefaultStorageNamingStrategy";
-import JwtToken from "../token/JwtToken";
 import {ITokenStore} from "../store";
+import {createCookieTokenStore} from "./helpers/storeCreation";
 
 test('All Expected Exports are there', ()=>{
   expect(AuthKitContext).toBeTruthy();
@@ -33,13 +30,7 @@ test('Testing Context Workflow', ()=>{
   Cookies.set('___auth', token);
   Cookies.set('___auth_type', "Bearer");
 
-  const tokenObject = new TokenStore<unknown>(
-      false,
-      new CookieStorage(window.location.hostname, window.location.protocol === 'https:'),
-      new DefaultStorageNamingStrategy("__"),
-      new JwtToken(),
-      false
-  );
+  const tokenObject = createCookieTokenStore("__")
 
   render(
       <AuthKitContext.Provider value={
@@ -70,13 +61,7 @@ test('Testing Context config Workflow', ()=>{
   Cookies.set('___auth', token);
   Cookies.set('___auth_type', "Bearer");
 
-  const tokenObject = new TokenStore<unknown>(
-    false,
-    new CookieStorage(window.location.hostname, window.location.protocol === 'https:'),
-    new DefaultStorageNamingStrategy("__"),
-    new JwtToken(),
-    false
-  );
+  const tokenObject = createCookieTokenStore("__")
 
   render(
       <AuthKitContext.Provider value={
@@ -109,14 +94,7 @@ describe('Context Workflow', ()=>{
     Cookies.set('___auth', token);
     Cookies.set('___auth_type', "Bearer");
 
-    tokenObject = new TokenStore<unknown>(
-      false,
-      new CookieStorage(window.location.hostname, window.location.protocol === 'https:'),
-      new DefaultStorageNamingStrategy("__"),
-      new JwtToken(),
-      false
-    );
-
+    tokenObject = createCookieTokenStore("__");
     const ReactRouterPlugin: IRouter = {
       navigate: navigateFn,
       useNavigate: function(): ({to}: { to: string; }) => void {
