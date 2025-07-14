@@ -16,12 +16,11 @@
 
 import {ITokenStore} from "./ITokenStore";
 import {UpdatedAuthKitState} from "./types";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, skip} from "rxjs";
 import {AuthKitState} from "../types";
 import deepEqual from "deep-equal";
 import {IStorage} from "../storage";
 import {IToken} from "../token";
-import {AuthKitError} from "../error";
 import {IStorageNamingStrategy} from "../storage";
 
 class TokenStore<T> implements ITokenStore<T> {
@@ -110,7 +109,7 @@ class TokenStore<T> implements ITokenStore<T> {
 
     this.log(`Initial Value`, this.authValue);
 
-    this.authSubject.subscribe({
+    this.authSubject.pipe(skip(1)).subscribe({
       next: this.syncTokens,
     });
   }
@@ -205,7 +204,6 @@ class TokenStore<T> implements ITokenStore<T> {
     this.log(`Set Function is called with`, data);
     this.log(`Set Function Old Data`, this.value);
 
-
     let obj = {...this.value};
 
     // If the user state is present, then replace the user state
@@ -215,20 +213,36 @@ class TokenStore<T> implements ITokenStore<T> {
 
     // If the auth token is present, then replace the auth token
     if (data.auth) {
-      const exp = this.token.getExpiresAt(data.auth.token);
-      if (exp > new Date()) {
+      try{
+        const exp = this.token.getExpiresAt(data.auth.token);
+        if (exp > new Date()) {
+          obj = {
+            ...obj,
+            auth: {
+              'token': data.auth.token,
+              'type': data.auth.type,
+              'expiresAt': exp,
+            },
+            isSignIn: true,
+          };
+        } else {
+          obj = {
+            ...obj,
+            auth: null,
+            isSignIn: false,
+            userState: null,
+          };
+        }
+      }
+      catch (e) {
         obj = {
           ...obj,
-          auth: {
-            'token': data.auth.token,
-            'type': data.auth.type,
-            'expiresAt': exp,
-          },
-          isSignIn: true,
+          auth: null,
+          isSignIn: false,
+          userState: null,
         };
-      } else {
-        throw new AuthKitError('Given Auth Token is already expired.');
       }
+
     }
 
     // If the auth token is null, then clean the auth and user state
@@ -254,18 +268,36 @@ class TokenStore<T> implements ITokenStore<T> {
 
       // If the refresh token is present, then replace the refresh token
       else if (data.refresh) {
-        const refreshExpireTime = this.token.getExpiresAt(data.refresh);
-        if (refreshExpireTime > new Date()) {
+        try{
+          const refreshExpireTime = this.token.getExpiresAt(data.refresh);
+          if (refreshExpireTime > new Date()) {
+            obj = {
+              ...obj,
+              refresh: {
+                'token': data.refresh,
+                'expiresAt': refreshExpireTime,
+              },
+              isUsingRefreshToken: true
+            };
+          } else {
+            obj = {
+              ...obj,
+              refresh: null,
+              auth: null,
+              isSignIn: false,
+              userState: null,
+            }
+          }
+        }
+        catch (e) {
+          this.log(`Error Occurred in setting the refresh token`, e);
           obj = {
             ...obj,
-            refresh: {
-              'token': data.refresh,
-              'expiresAt': refreshExpireTime,
-            },
-            isUsingRefreshToken: true
+            refresh: null,
+            auth: null,
+            isSignIn: false,
+            userState: null,
           };
-        } else {
-          throw new AuthKitError('Given Refresh Token is already expired.');
         }
       }
 
@@ -279,8 +311,10 @@ class TokenStore<T> implements ITokenStore<T> {
     }
 
     this.log(`Set Function New Data`, obj);
+    // If the new object is not equal to the old object, then update the value
+    // and emit the new value to the subscribers
     if (!deepEqual(this.value, obj)) {
-      this.log('Updating the value in the Set Function');
+      this.log('Updating the value in the Set Function', this.value, obj);
       this.authValue = obj;
       this.authSubject.next(obj);
     }
@@ -307,24 +341,37 @@ class TokenStore<T> implements ITokenStore<T> {
    * @returns Initial State
    */
   private initialToken_ = (): AuthKitState<T> => {
-    const authToken = this.storage.get(this.storageNamingStrategy.getAuthStorageName());
-    const authTokenType = this.storage.get(this.storageNamingStrategy.getAuthTypeStorageName());
+    try {
+      const authToken = this.storage.get(this.storageNamingStrategy.getAuthStorageName());
+      const authTokenType = this.storage.get(this.storageNamingStrategy.getAuthTypeStorageName());
 
-    let stateCookie: string | null = null;
-    try{
-      stateCookie = this.storage.get(this.storageNamingStrategy.getStateStorageName());
+      let stateCookie: string | null = null;
+      try{
+        stateCookie = this.storage.get(this.storageNamingStrategy.getStateStorageName());
+      }
+      catch (e) {}
+
+      const refreshToken = this.isUsingRefreshToken ?
+        this.storage.get(this.storageNamingStrategy.getRefreshTokenStorageName()) : null;
+
+      return this.checkTokenExist_(
+        authToken,
+        authTokenType,
+        stateCookie,
+        refreshToken,
+      );
     }
-    catch (e) {}
-
-    const refreshToken = this.isUsingRefreshToken ?
-      this.storage.get(this.storageNamingStrategy.getRefreshTokenStorageName()) : null;
-
-    return this.checkTokenExist_(
-      authToken,
-      authTokenType,
-      stateCookie,
-      refreshToken,
-    );
+    catch (e) {
+      this.log(`Error Occurred in initialToken_()`, e);
+      // If any error occurs, then return the default state
+      return {
+        auth: null,
+        refresh: null,
+        userState: null,
+        isUsingRefreshToken: this.isUsingRefreshToken,
+        isSignIn: false,
+      };
+    }
 
   };
 
@@ -340,10 +387,10 @@ class TokenStore<T> implements ITokenStore<T> {
    * @returns Auth State with all conditions and guard in place
    */
   private checkTokenExist_ = (
-    authToken: string | null | undefined,
-    authTokenType: string | null | undefined,
-    stateCookie: string | null | undefined,
-    refreshToken: string | null | undefined,
+    authToken: string,
+    authTokenType: string,
+    stateCookie: string | null,
+    refreshToken: string | null,
   ): AuthKitState<T> => {
     this.log('checkTokenExist_ is called');
     this.log(
@@ -362,13 +409,17 @@ class TokenStore<T> implements ITokenStore<T> {
         // If the refresh token is tampered with,
         // then it'll stop the execution and will go at catch.
         const refreshTokenExpiresAt = this.token.getExpiresAt(refreshToken);
-        if (refreshTokenExpiresAt < new Date()) {
+
+        // If the refresh token is expired, then set it to null
+        if (this.token.getExpiresAt(refreshToken) < new Date()) {
           this.log(
             `checkTokenExist - refresh token is expired
             ${refreshTokenExpiresAt} ${new Date()}`,
           );
           refresh = null;
-        } else {
+        }
+        // If the refresh token is valid, then assign it
+        else {
           this.log(
             `checkTokenExist - new refresh token is assigned
             ${refreshToken}`,
@@ -378,7 +429,9 @@ class TokenStore<T> implements ITokenStore<T> {
             expiresAt: refreshTokenExpiresAt,
           };
         }
-      } else {
+      }
+      // If not using the refresh feature, set refresh to null
+      else {
         this.log(
           `checkTokenExist - Refresh Token is invalid or not using
            refresh feature ${this.isUsingRefreshToken} ${refreshToken}`,
@@ -446,7 +499,8 @@ class TokenStore<T> implements ITokenStore<T> {
           auth = null;
           authState = null;
         }
-      } else {
+      }
+      else {
         this.log(
           `checkTokenExist `+
           `- authToken, authTokenType, stateCookie doesn't exists`,
@@ -519,6 +573,7 @@ class TokenStore<T> implements ITokenStore<T> {
       }
     } catch (e) {
       // Error occurred. So declaring as signed out
+      this.log(`Error Occurred in checkTokenExist_()`, e);
       this.removeAllToken();
       return {
         auth: null,
@@ -529,7 +584,6 @@ class TokenStore<T> implements ITokenStore<T> {
       };
     }
   };
-
 
   /**
    * Sync Auth Tokens on time of login and logout
@@ -572,7 +626,7 @@ class TokenStore<T> implements ITokenStore<T> {
     this.storage.set(this.storageNamingStrategy.getAuthStorageName(), authToken, expiresAt);
     this.storage.set(this.storageNamingStrategy.getAuthTypeStorageName(), authTokenType, expiresAt);
     if (authState){
-      this.storage.set(this.storageNamingStrategy.getStateStorageName(), authTokenType, expiresAt);
+      this.storage.set(this.storageNamingStrategy.getStateStorageName(), JSON.stringify(authState), expiresAt);
     }
   };
 
@@ -592,7 +646,7 @@ class TokenStore<T> implements ITokenStore<T> {
   private removeAllToken = (): void => {
     this.storage.remove(this.storageNamingStrategy.getAuthStorageName());
     this.storage.remove(this.storageNamingStrategy.getAuthTypeStorageName());
-    this.storage.remove(this.storageNamingStrategy.getAuthStorageName());
+    this.storage.remove(this.storageNamingStrategy.getStateStorageName());
     if (this.isUsingRefreshToken) {
       this.storage.remove(this.storageNamingStrategy.getRefreshTokenStorageName());
     }
@@ -623,7 +677,7 @@ class TokenStore<T> implements ITokenStore<T> {
    */
   private log = (msg: any, ...optionalParams: any[]): void => {
     if (this.debug) {
-      console.log(`React Auth Kit - ${msg}`, optionalParams);
+      console.log(`React Auth Kit - Message ${JSON.stringify(msg)} [ ${JSON.stringify(optionalParams)} ]`);
     }
   };
 }
