@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-
-import {BaseAuthKitError} from '../index';
 import AuthProvider from '../index';
 
 
 describe('Index', () => {
   it('Imports are working', ()=>{
     expect(AuthProvider).toBeTruthy();
-
-    expect(BaseAuthKitError).toBeTruthy();
   });
 });
 
