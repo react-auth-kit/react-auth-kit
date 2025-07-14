@@ -138,30 +138,6 @@ class TokenStore<T> implements ITokenStore<T> {
   };
 
   /**
-   * Callback hook, when the user is signed in this function will be called
-   * @param callback - function to be called
-   */
-  onSignIn(callback: (value: AuthKitState<T>)=> void) {
-    this.subscribe((value)=> {
-      if (value.auth !== null) {
-        callback(value);
-      }
-    });
-  }
-
-  /**
-   * Callback hook, when the user is signed out, this function will be called
-   * @param callback - function to be called
-   */
-  onSignOut(callback: ()=> void) {
-    this.subscribe((value)=> {
-      if (value.auth === null) {
-        callback();
-      }
-    });
-  }
-
-  /**
    * @internal
    * @param data - The data to set the state
    *

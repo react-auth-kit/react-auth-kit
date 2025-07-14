@@ -126,9 +126,7 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Auth Cookie JWT has no iat param', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
-      '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZ'+
-      'p5JYIgP_edcw_A';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Gfx6VO9tcxwk6xqx9yYzSfebfeakZp5JYIgP_edcw_A';
       Cookies.set('___auth', token);
 
       expect(Cookies.get('___auth')).toBe(token);
@@ -162,9 +160,7 @@ describe('Initial Value [Without Refresh Token]', () => {
     });
 
     it('Existing Auth Cookie was expired', () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0'+
-      'NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE'+
-      '-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0Ijo5NzE0OTc5OTV9.XJbNAE-aRz7tO7tSHiUlMGGuUrAELPPkNITKVlNZ8DA';
       Cookies.set('___auth', token);
 
       const subscriber = jest.fn();
@@ -901,8 +897,6 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
 
       const tokenObject = createCookieTokenStore("__", false);
 
-      const fn = jest.fn();
-
       const newResp = {
         'auth': null,
         'isSignIn': false,
@@ -916,13 +910,8 @@ describe('Set New Value with Existing Value [Without Refresh Token]', () => {
         expect(Cookies.get('__')).toBeUndefined();
         expect(Cookies.get('___type')).toBeUndefined();
         expect(Cookies.get('___state')).toBeUndefined();
-        setTimeout(()=>{
-          expect(fn).toHaveBeenCalled();
-        }, 0);
         done();
       });
-
-      tokenObject.onSignOut(fn);
 
       tokenObject.set({
         'auth': null,

@@ -46,18 +46,6 @@ export interface ITokenStore<T> {
   ) => void,
 
   /**
-   * Subscribe to sign-in events.
-   * @param callback - Callback function that is called with the new AuthKit state when a user signs in.
-   */
-  onSignIn: (callback: (value: AuthKitState<T>) => void) => void,
-
-  /**
-   * Subscribe to sign-out events.
-   * @param callback - Callback function that is called when a user signs out.
-   */
-  onSignOut: (callback: ()=> void) => void
-
-  /**
    * Set the AuthKit state.
    * @param data - The new AuthKit state to set.
    */
