@@ -2,6 +2,7 @@
 
 import {useRef, useEffect, RefObject} from 'react';
 import {useReactAuthKitRouter} from "../AuthContext";
+import {AuthKitError} from "../error";
 
 
 /**
@@ -64,7 +65,7 @@ function useNavigateTo(): (to: string) => void {
     if (router && navigate) {
       navigate({to});
     } else {
-      throw new Error(
+      throw new AuthKitError(
         'Router Plugin is not implemented in the AuthProvider. Please use the router prop of AuthProvider and Router plugin to use this feature',
       );
     }
