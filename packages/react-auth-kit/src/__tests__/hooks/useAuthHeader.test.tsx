@@ -4,23 +4,16 @@ import {renderHook} from '@testing-library/react';
 
 import * as AC from '../../AuthContext';
 import AuthContext from '../../AuthContext';
-import TokenObject from '../../RxTokenObject';
 import useAuthHeader from '../../hooks/useAuthHeader';
+import {createCookieTokenStore} from "../helpers/storeCreation";
 
 
 describe('useAuthHeader', () => {
   it('should return an empty string if the user is not in the context', () => {
-    const tokenObject = new TokenObject<unknown>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
-    );
+    const tokenObject= createCookieTokenStore("__", false);
 
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
@@ -29,25 +22,18 @@ describe('useAuthHeader', () => {
     expect(result.current()).toBeNull();
   });
 
-  it('should return an empty string if the user is not in the context', () => {
+  it('should return an Auth if the user is not in the context', () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    Cookies.set('__', token);
-    Cookies.set('___type', 'Bearer');
+    Cookies.set('___auth', token);
+    Cookies.set('___auth_type', 'Bearer');
     Cookies.set('___state', '{}');
 
-    const tokenObject = new TokenObject<unknown>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
-    );
+    const tokenObject = createCookieTokenStore("__", false);
 
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
@@ -58,7 +44,7 @@ describe('useAuthHeader', () => {
 
   it('the auth is there and expired', () => {
     const spy = jest.fn();
-    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKit');
+    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKitStore');
     // @ts-expect-error response type is missing
     mockUseReactAuthKit.mockImplementation(()=>(
       {
@@ -78,16 +64,9 @@ describe('useAuthHeader', () => {
       }
     ));
 
-    const tokenObject = new TokenObject<unknown>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
-    );
+    const tokenObject = createCookieTokenStore("__", false);
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
