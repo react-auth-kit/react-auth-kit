@@ -19,7 +19,7 @@ import useIsAuthenticated from './useIsAuthenticated';
  * const Component = () => {
  *  const getAuthHeader = useAuthHeader();
  *  const headers = {
- *   'Authorization': getAuthHeader()
+ *   'Authorization': getAuthHeader();
  *  };
  * }
  * ```
