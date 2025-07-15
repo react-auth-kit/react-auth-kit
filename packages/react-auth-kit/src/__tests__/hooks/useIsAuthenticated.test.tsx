@@ -1,25 +1,20 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import {renderHook} from '@testing-library/react';
-import TokenObject from '../../RxTokenObject';
 import useIsAuthenticated from '../../hooks/useIsAuthenticated';
 
 import AuthContext from '../../AuthContext';
 import * as AC from '../../AuthContext';
-import type Router from '../../route';
+
+import {IRouter} from "../../route";
+import {createCookieTokenStore} from "../helpers/storeCreation";
 
 describe('useIsAuthenticated', () => {
   it('the auth data is not in the context', () => {
-    const tokenObject = new TokenObject<unknown>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
-    );
+    const tokenObject = createCookieTokenStore("__", false);
+
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
@@ -30,7 +25,7 @@ describe('useIsAuthenticated', () => {
 
   it('the auth is there and expired', () => {
     const spy = jest.fn();
-    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKit');
+    const mockUseReactAuthKit = jest.spyOn(AC, 'useReactAuthKitStore');
     // @ts-expect-error response type is missing
     mockUseReactAuthKit.mockImplementation(()=>(
       {
@@ -50,16 +45,10 @@ describe('useIsAuthenticated', () => {
       }
     ));
 
-    const tokenObject = new TokenObject<unknown>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
-    );
+    const tokenObject = createCookieTokenStore("__", false);
+
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
@@ -75,20 +64,13 @@ describe('useIsAuthenticated', () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    Cookies.set('__', token);
-    Cookies.set('___type', 'Bearer');
+    Cookies.set('___auth', token);
+    Cookies.set('___auth_type', 'Bearer');
     Cookies.set('___state', '{"name":"react"}');
 
-    const tokenObject = new TokenObject<unknown>(
-        '__',
-        'cookie',
-        null,
-        false,
-        window.location.hostname,
-        window.location.protocol === 'https:',
-    );
+    const tokenObject = createCookieTokenStore("__", false);
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
@@ -99,18 +81,11 @@ describe('useIsAuthenticated', () => {
 });
 
 describe('Redirection', ()=>{
-  const tokenObject = new TokenObject<unknown>(
-      '__',
-      'cookie',
-      null,
-      false,
-      window.location.hostname,
-      window.location.protocol === 'https:',
-  );
+  const tokenObject = createCookieTokenStore("__", false);
 
   const navigateSpy = jest.fn();
 
-  const ReactRouterPlugin: Router = {
+  const ReactRouterPlugin: IRouter = {
     navigate: jest.fn(),
     useNavigate: function(): ({to}: { to: string; }) => void {
       return navigateSpy;
@@ -127,7 +102,7 @@ describe('Redirection', ()=>{
 
   it('No Implementation is there', () => {
     const wrapper = ({children}: {children: React.ReactNode}) => (
-      <AuthContext.Provider value={{token: tokenObject, config: {}}}>
+      <AuthContext.Provider value={{store: tokenObject, config: {}}}>
         {children}
       </AuthContext.Provider>
     );
@@ -140,7 +115,7 @@ describe('Redirection', ()=>{
   it('Only Router Plugin is there', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider
-        value={{token: tokenObject, router: ReactRouterPlugin, config: {}}}
+        value={{store: tokenObject, router: ReactRouterPlugin, config: {}}}
       >
         {children}
       </AuthContext.Provider>
@@ -154,7 +129,7 @@ describe('Redirection', ()=>{
   it('Only Fallback Path is there', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider
-        value={{token: tokenObject, config: {fallbackPath: '/b'}}}
+        value={{store: tokenObject, config: {fallbackPath: '/b'}}}
       >
         {children}
       </AuthContext.Provider>
@@ -165,12 +140,12 @@ describe('Redirection', ()=>{
     expect(navigateSpy).not.toHaveBeenCalled();
   });
 
-  it('Fallbackpath is same as current path', ()=>{
+  it('Fallback Path is same as current path', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider
         value={
           {
-            token: tokenObject,
+            store: tokenObject,
             router: ReactRouterPlugin,
             config: {fallbackPath: '/a'},
           }
@@ -185,12 +160,12 @@ describe('Redirection', ()=>{
     expect(navigateSpy).not.toHaveBeenCalled();
   });
 
-  it('Fallbackpath is different from current path', ()=>{
+  it('Fallback Path is different from current path', ()=>{
     const wrapper = ({children}: {children: React.ReactNode}) => (
       <AuthContext.Provider
         value={
           {
-            token: tokenObject,
+            store: tokenObject,
             router: ReactRouterPlugin,
             config: {fallbackPath: '/b'},
           }
