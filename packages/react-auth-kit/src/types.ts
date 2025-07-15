@@ -8,7 +8,7 @@ export interface SignInActionPayload<T> {
   auth: {
 
     /**
-     * JWT access token
+     * Access token
      */
     token: string,
 
