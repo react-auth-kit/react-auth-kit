@@ -55,9 +55,11 @@ interface AuthProviderProps<T> {
  *
  * @example
  * ```jsx
+ * import AuthProvider from 'react-auth-kit/AuthProvider'
+ * import {createAuthStore} from 'react-auth-kit/store'
  * import ReactRouterPlugin from '@auth-kit/react-router/route'
  *
- * const store = authStore()
+ * const store = createAuthStore()
  *
  * <AuthProvider store={store} router={ReactRouterPlugin} fallbackPath="/login">
  *  <RoutesComponent/>
