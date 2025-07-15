@@ -15,5 +15,3 @@
  */
 
 export type * from "./IToken";
-
-export * from "./JwtToken";
