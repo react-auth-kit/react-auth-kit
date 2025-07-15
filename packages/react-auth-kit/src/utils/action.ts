@@ -15,9 +15,8 @@
  */
 
 import type {SignInActionPayload} from "../types";
-import {ITokenStore} from "../store";
+import {ITokenStore, UpdatedAuthKitState} from "../store";
 import type {RefreshTokenActionResponsePassed} from "../refresh";
-import type {AuthKitSetState} from "../RxTokenObject";
 
 class Action {
   /**
@@ -79,7 +78,7 @@ class Action {
    * @param store - The token store where the refreshed authentication state will be saved.
    */
   static doRefresh<T>(refreshTokenParam: RefreshTokenActionResponsePassed<T>, store: ITokenStore<T>): void {
-    let ret : AuthKitSetState<T>= {
+    let ret : UpdatedAuthKitState<T>= {
       auth: {
         token: refreshTokenParam.newAuthToken,
         type: refreshTokenParam.newAuthTokenType || 'Bearer',
