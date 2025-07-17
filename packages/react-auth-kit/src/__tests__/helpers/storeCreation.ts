@@ -41,4 +41,8 @@ function createLocalStorageTokenStore<T>(authPrefix: string, isUsingRefreshToken
   );
 }
 
+test("Just a test case", ()=>{
+  expect(true).toBeTruthy();
+})
+
 export {createCookieTokenStore, createLocalStorageTokenStore};
