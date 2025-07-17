@@ -49,7 +49,7 @@ function useInterval(callback: ()=>void, delay:number|null)
  *
  * @returns - A function that navigates to the specified path
  *
- * @throws Error if the router plugin is not implemented in the AuthProvider
+ * @throws AuthKitError if the router plugin is not implemented in the AuthProvider
  */
 function useNavigateTo(): (to: string) => void {
   const router = useReactAuthKitRouter();
@@ -59,7 +59,7 @@ function useNavigateTo(): (to: string) => void {
    * Navigate to a specific path
    *
    * @param to - The path to navigate to
-   * @throws Error if the router plugin is not implemented in the AuthProvider
+   * @throws AuthKitError if the router plugin is not implemented in the AuthProvider
    */
   return (to: string) => {
     if (router && navigate) {
