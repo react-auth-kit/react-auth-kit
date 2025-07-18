@@ -22,6 +22,7 @@ import deepEqual from "deep-equal";
 import {IStorage} from "../storage";
 import {IToken} from "../token";
 import {IStorageNamingStrategy} from "../storage";
+import TryOrDefault from "../utils/tryOrDefault";
 
 class TokenStore<T> implements ITokenStore<T> {
 
@@ -318,17 +319,12 @@ class TokenStore<T> implements ITokenStore<T> {
    */
   private initialToken_ = (): AuthKitState<T> => {
     try {
-      const authToken = this.storage.get(this.storageNamingStrategy.getAuthStorageName());
-      const authTokenType = this.storage.get(this.storageNamingStrategy.getAuthTypeStorageName());
-
-      let stateCookie: string | null = null;
-      try{
-        stateCookie = this.storage.get(this.storageNamingStrategy.getStateStorageName());
-      }
-      catch (e) {}
+      const authToken = TryOrDefault.method(this.storage.get, this.storage, null, this.storageNamingStrategy.getAuthStorageName());
+      const authTokenType = TryOrDefault.method(this.storage.get, this.storage, null, this.storageNamingStrategy.getAuthTypeStorageName());
+      const stateCookie = TryOrDefault.method(this.storage.get, this.storage, null, this.storageNamingStrategy.getStateStorageName());
 
       const refreshToken = this.isUsingRefreshToken ?
-        this.storage.get(this.storageNamingStrategy.getRefreshTokenStorageName()) : null;
+        TryOrDefault.method(this.storage.get, this.storage, null, this.storageNamingStrategy.getRefreshTokenStorageName()) : null;
 
       return this.checkTokenExist_(
         authToken,
@@ -338,7 +334,8 @@ class TokenStore<T> implements ITokenStore<T> {
       );
     }
     catch (e) {
-      this.log(`Error Occurred in initialToken_()`, e);
+      console.error(e);
+      this.log(`Error Occurred in initialToken_()`);
       // If any error occurs, then return the default state
       return {
         auth: null,
@@ -363,8 +360,8 @@ class TokenStore<T> implements ITokenStore<T> {
    * @returns Auth State with all conditions and guard in place
    */
   private checkTokenExist_ = (
-    authToken: string,
-    authTokenType: string,
+    authToken: string| null,
+    authTokenType: string | null,
     stateCookie: string | null,
     refreshToken: string | null,
   ): AuthKitState<T> => {
