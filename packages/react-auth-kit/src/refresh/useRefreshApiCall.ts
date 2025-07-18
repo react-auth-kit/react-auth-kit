@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import {AuthKitError} from "../error";
 import type {createRefreshAttribute} from "./createRefresh";
 import {ITokenStore} from "../store";
 import Action from "../utils/action";
@@ -36,10 +35,10 @@ function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenS
           Action.doSignOut(store);
         }
       })
-      .catch(() => {
+      .catch((e) => {
         // Retry for Future
         Action.doSignOut(store);
-        throw new AuthKitError('Some error occurred on the Refresh API. Unable to refresh for now')
+        console.error(e);
       });
   }
 }
