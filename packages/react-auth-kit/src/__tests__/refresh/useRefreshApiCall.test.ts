@@ -100,7 +100,7 @@ describe('useRefreshApiCall', () => {
 
   it('should call doSignOut Action and throw error', async () => {
     const apiFn = jest.fn(
-      () => new Promise<RefreshTokenActionResponse<unknown>>((resolve, reject) => {
+      () => new Promise<RefreshTokenActionResponse<unknown>>((_resolve, reject) => {
         setTimeout(reject, 0, new Error("Unknow error occurred")
         );
       })
