@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Initial Refresh If no refresh token is there, do not refresh, and call signOut 1`] = `
+<div>
+  <div>
+    Container
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should not refresh, If all tokens are present 1`] = `
+<div>
+  <div>
+    Container
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there API call is not successful 1`] = `
+<div>
+  <div>
+    This is the initial Refresh
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there API call is not successful 2`] = `
+<div>
+  <div>
+    Container
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there API call is successful 1`] = `
+<div>
+  <div>
+    This is the initial Refresh
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there API call is successful 2`] = `
+<div>
+  <div>
+    Container
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there API call throws an error 1`] = `
+<div>
+  <div>
+    This is the initial Refresh
+  </div>
+</div>
+`;
+
+exports[`Initial Refresh should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there API call throws an error 2`] = `
+<div>
+  <div>
+    This is the initial Refresh
+  </div>
+</div>
+`;
