@@ -52,9 +52,9 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
 
     // Initial Refresh
     useEffect(()=>{
-      if(!shouldInitialRefreshState){
-        return;
-      }
+      // if(!shouldInitialRefreshState){
+      //   return;
+      // }
 
       // Check for Initial condition
       const {value} = store;

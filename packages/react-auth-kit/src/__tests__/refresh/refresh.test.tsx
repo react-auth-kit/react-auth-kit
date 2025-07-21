@@ -88,7 +88,7 @@ describe("Initial Refresh", () => {
 	});
 
 	describe('should render initial refresh component and api call and reducer call and state update, If refresh condition is there and if the refresh component is there', () => {
-		it('API call is successfully', async () => {
+		it('API call is successful', async () => {
 			const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
 			'0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
 			'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
@@ -148,7 +148,66 @@ describe("Initial Refresh", () => {
 			expect(doSignOutSpy).not.toHaveBeenCalled();
 			expect(doRefreshSpy).toHaveBeenCalled();
 		});
-		it('API call is not successfully', async () => {
+    it('API call is not successful', async () => {
+      const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
+        '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
+        'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
+      Cookies.set('___refresh', refreshToken);
+
+      const apiFn = jest.fn(
+        () => new Promise<RefreshTokenActionResponse<unknown>>((resolve) => {
+          setTimeout(resolve, 200, {
+            isSuccess: false
+          })
+        })
+      );
+
+      const createRefreshData = createRefresh({
+        interval: 10,
+        refreshApiCallback: apiFn,
+        initialRefreshComponent: <InitialRefreshComponent/>
+      });
+
+      const store = createAuthStore("cookie",{
+        authName: '__',
+        cookieDomain: window.location.hostname,
+        cookieSecure: false,
+        refresh: createRefreshData,
+        debug: false
+      });
+
+      expect(store.tokenStore.value).toStrictEqual({
+        "auth": null,
+        "isSignIn": false,
+        "isUsingRefreshToken": true,
+        "refresh": {
+          "expiresAt": new Date("2223-10-14T04:33:15.000Z"),
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8",
+        },
+        "userState": null,
+      });
+
+      const {container} = render(
+        // @ts-expect-error refresh type
+        <Refresh refresh={store.refresh} store={store.tokenStore}>
+          <div>
+            Container
+          </div>
+        </Refresh>
+      );
+
+      expect(container).toMatchSnapshot();
+
+      await act(async ()=>{
+        await jest.runAllTimersAsync();
+      });
+      await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1))
+
+      expect(container).toMatchSnapshot();
+      expect(doSignOutSpy).toHaveBeenCalled();
+      expect(doRefreshSpy).not.toHaveBeenCalled();
+    });
+		it('API call throws an error', async () => {
       const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
         '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpA'+
         'qNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
