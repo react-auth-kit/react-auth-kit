@@ -39,7 +39,6 @@
     "./hooks/*": "./dist/hooks/*.js",
     "./utils/*": "./dist/utils/*.js",
     "./route": "./dist/route/index.js"
-
   },
   "repository": {
     "type": "git",

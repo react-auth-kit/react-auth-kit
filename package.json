@@ -50,13 +50,15 @@
     "@babel/preset-typescript": "7.27.1",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
-    "@typescript-eslint/eslint-plugin": "8.35.0",
-    "@typescript-eslint/parser": "8.35.0",
-    "eslint": "9.16.0",
-    "eslint-config-google": "0.14.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.31.0",
+    "@typescript-eslint/eslint-plugin": "8.38.0",
+    "@typescript-eslint/parser": "8.38.0",
+    "eslint": "^9.31.0",
     "eslint-plugin-jest": "28.13.0",
-    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-tsdoc": "^0.4.0",
+    "globals": "^16.3.0",
     "husky": "9.1.7",
     "lerna": "^8.0.0",
     "lint-staged": "16.1.0",
@@ -67,7 +69,8 @@
     "tslib": "2.8.1",
     "typedoc": "0.28.5",
     "typedoc-plugin-markdown": "4.6.4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "typescript-eslint": "^8.37.0"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "npm test"
