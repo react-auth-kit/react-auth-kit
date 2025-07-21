@@ -1,16 +1,16 @@
 {
-    "extends": "../../tsconfig.base.json",
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-    ],
-    "compilerOptions": {
-        "outDir": ".",
-        "emitDeclarationOnly": true
-    },
-    "exclude": [
-        "node_modules",
-        "dist",
-        "types",
-    ]
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "compilerOptions": {
+    "outDir": ".",
+    "emitDeclarationOnly": true,
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types"
+  ]
 }
