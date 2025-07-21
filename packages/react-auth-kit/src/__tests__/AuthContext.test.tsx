@@ -1,3 +1,4 @@
+import React from 'react';
 import AuthKitContext from '../AuthContext';
 import {
   useReactAuthKitStore,
