@@ -26,7 +26,7 @@ export default class DefaultStorageNamingStrategy implements IStorageNamingStrat
 
   /**
    * Constructs a DefaultStorageNamingStrategy instance with a specified prefix.
-   * @param prefix The prefix to use for generating storage names.
+   * @param prefix - The prefix to use for generating storage names.
    */
   constructor(prefix: string) {
     this.prefix = prefix;
@@ -50,7 +50,7 @@ export default class DefaultStorageNamingStrategy implements IStorageNamingStrat
 
   /**
    * Generates a storage name for the access token.
-   * @return The storage name for the access token.
+   * @returns The storage name for the access token.
    */
   getRefreshTokenStorageName(): string {
     return `${this.prefix}_refresh`;

@@ -106,7 +106,7 @@ interface storeAttributes<T> {
  * @param authAttributes - Attributes for the auth store, such as `authName`, `cookieDomain`, `cookieSecure`, etc.
  *
  * @returns A Store object containing the `tokenObject` and optionally a `refresh` object.
- * @throws {AuthKitConfigError} If the `authType` is not supported or if required attributes are missing.
+ * @throws {@link AuthKitConfigError} If the `authType` is not supported or if required attributes are missing.
  *
  * @example
  * ```js
@@ -121,6 +121,7 @@ interface storeAttributes<T> {
  *      ... // Your refresh logic here
  *    };
  *  }
+ * ```
  */
 export default function createAuthStore<T>(
   authType: defaultAuthTypes,

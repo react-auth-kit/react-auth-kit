@@ -24,10 +24,10 @@ import {AuthKitStorageInvalidError, AuthKitStorageExpiredError} from "../error";
 export default class LocalStorage implements IStorage {
   /**
    * Retrieves a value from localStorage.
-   * @throws {AuthKitStorageError} If the key does not exist or has expired.
-   * @param key The key of the item to retrieve.
+   * @throws {@link AuthKitStorageError} If the key does not exist or has expired.
+   * @param key - The key of the item to retrieve.
    *
-   * @return The value associated with the key.
+   * @returns The value associated with the key.
    */
   public get(key: string): string | never {
     const value = localStorage.getItem(key);
@@ -46,11 +46,11 @@ export default class LocalStorage implements IStorage {
 
   /**
    * Sets a value in localStorage with an expiration date.
-   * @param key The key under which to store the value.
-   * @param value The value to store.
-   * @param expiresAt The date when the item should expire.
+   * @param key - The key under which to store the value.
+   * @param value - The value to store.
+   * @param expiresAt - The date when the item should expire.
    *
-   * @throws {AuthKitStorageError} If there is an error setting the value.
+   * @throws {@link AuthKitStorageError} If there is an error setting the value.
    */
   public set(key: string, value: string, expiresAt: Date): void | never {
     const updated_value = this.prependExpiration(value, expiresAt);
@@ -59,9 +59,9 @@ export default class LocalStorage implements IStorage {
 
   /**
    * Removes an item from localStorage.
-   * @param key The key of the item to remove.
+   * @param key - The key of the item to remove.
    *
-   * @throws {AuthKitStorageError} If there is an error removing the item.
+   * @throws {@link AuthKitStorageError} If there is an error removing the item.
    */
   public remove(key: string): void | never {
     localStorage.removeItem(key);
@@ -69,10 +69,10 @@ export default class LocalStorage implements IStorage {
 
   /**
    * Prepends the expiration timestamp to the value.
-   * @param value The value to store.
-   * @param expiresAt The date when the item should expire.
+   * @param value - The value to store.
+   * @param expiresAt - The date when the item should expire.
    *
-   * @return The value with the expiration timestamp prepended.
+   * @returns The value with the expiration timestamp prepended.
    */
   private prependExpiration(value: string, expiresAt: Date): string {
     const expirationTimestamp = expiresAt.getTime();
@@ -81,10 +81,10 @@ export default class LocalStorage implements IStorage {
 
   /**
    * Extracts the expiration timestamp and actual value from the stored string.
-   * @param value The stored value containing the expiration timestamp and actual value.
+   * @param value - The stored value containing the expiration timestamp and actual value.
    *
-   * @return An object containing the expiration date and the actual value.
-   * @throws {AuthKitStorageError} If the value format is invalid.
+   * @returns An object containing the expiration date and the actual value.
+   * @throws {@link AuthKitStorageError} If the value format is invalid.
    */
   private extractExpiration(value: string): { expiresAt: Date, actualValue: string } {
     const [expirationTimestamp, actualValue] = value.split('^&*&^');

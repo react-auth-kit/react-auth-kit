@@ -12,7 +12,7 @@ import useIsAuthenticated from './useIsAuthenticated';
  *
  * @typeParam T - Type of the user state object.
  *
- * @return A function that returns the user state if authenticated; otherwise, it signs out the user and redirects
+ * @returns A function that returns the user state if authenticated; otherwise, it signs out the user and redirects
  * to a fallback path if configured.
  *
  * @example

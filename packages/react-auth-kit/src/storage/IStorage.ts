@@ -18,31 +18,31 @@
 export interface IStorage {
   /**
    * Retrieves a value from the storage.
-   * @param key The key of the item to retrieve.
+   * @param key - The key of the item to retrieve.
    *
    * @returns The value associated with the key, or throws an error if the key does not exist.
-   * @throws {AuthKitStorageError} If the key does not exist in the storage.
+   * @throws {@link AuthKitStorageError} If the key does not exist in the storage.
    */
   get: (key: string) => string | never;
 
   /**
    * Sets a value in the storage with an expiration date.
-   * @param key The key under which to store the value.
-   * @param value The value to store.
-   * @param expiresAt The date when the item should expire.
+   * @param key - The key under which to store the value.
+   * @param value - The value to store.
+   * @param expiresAt - The date when the item should expire.
    *
    * @returns
-   * @throws {AuthKitStorageError} If there is an error setting the value.
+   * @throws {@link AuthKitStorageError} If there is an error setting the value.
    */
   set: (key: string, value: string, expiresAt: Date) => void | never;
 
   /**
    * Removes an item from the storage.
    *
-   * @param key The key of the item to remove.
+   * @param key - The key of the item to remove.
    *
    * @returns
-   * @throws {AuthKitStorageError} If there is an error removing the item.
+   * @throws {@link AuthKitStorageError} If there is an error removing the item.
    */
   remove: (key: string) => void | never;
 }

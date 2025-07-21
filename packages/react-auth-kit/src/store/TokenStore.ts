@@ -211,7 +211,8 @@ class TokenStore<T> implements ITokenStore<T> {
           };
         }
       }
-      catch (e) {
+      //eslint-disable-next-line @typescript-eslint/no-unused-vars
+      catch (_e) {
         obj = {
           ...obj,
           auth: null,
@@ -457,7 +458,9 @@ class TokenStore<T> implements ITokenStore<T> {
                 type: authTokenType,
                 expiresAt: expiresAt,
               };
-            } catch (err) {
+            }
+            //eslint-disable-next-line @typescript-eslint/no-unused-vars
+            catch (_e) {
               this.log('state cookie JSON parsing failed ${err}');
               auth = null;
               authState = null;

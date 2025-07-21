@@ -18,25 +18,25 @@ export interface IStorageNamingStrategy {
 
   /**
    * Returns the name of the storage used for authentication.
-   * @return  The name of the authentication storage.
+   * @returns  The name of the authentication storage.
    */
   getAuthStorageName: () => string;
 
   /**
    * Returns the name of the storage used for user state.
-   * @return  The name of the user state storage.
+   * @returns  The name of the user state storage.
    */
   getStateStorageName: () => string;
 
   /**
    * Returns the name of the storage used for authentication type.
-   * @return  The name of the authentication type storage.
+   * @returns  The name of the authentication type storage.
    */
   getAuthTypeStorageName: () => string;
 
   /**
    * Returns the name of the storage used for refresh tokens.
-   * @return  The name of the refresh token storage.
+   * @returns  The name of the refresh token storage.
    */
   getRefreshTokenStorageName: () => string;
 }

@@ -34,10 +34,10 @@ export default class CookieStorage implements IStorage {
 
   /**
    * Constructs a CookieStorage instance with specified cookie attributes.
-   * @param cookieDomain The domain for the cookie.
-   * @param cookieSecure Whether the cookie should be secure (HTTPS only).
-   * @param cookiePath The path for the cookie, defaults to '/'.
-   * @param cookieSameSite The SameSite attribute for the cookie, defaults to "lax".
+   * @param cookieDomain - The domain for the cookie.
+   * @param cookieSecure - Whether the cookie should be secure (HTTPS only).
+   * @param cookiePath - The path for the cookie, defaults to '/'.
+   * @param cookieSameSite - The SameSite attribute for the cookie, defaults to "lax".
    */
   constructor(cookieDomain: string, cookieSecure: boolean, cookiePath: string = '/', cookieSameSite: cookieSameSite = "lax") {
     this.cookie = Cookies.withAttributes({
@@ -50,9 +50,9 @@ export default class CookieStorage implements IStorage {
 
   /**
    * Retrieves a value from the cookie storage.
-   * @param key The key of the item to retrieve.
+   * @param key - The key of the item to retrieve.
    * @returns The value associated with the key.
-   * @throws {AuthKitStorageInvalidError} If the key does not exist in cookie storage.
+   * @throws {@link AuthKitStorageInvalidError} If the key does not exist in cookie storage.
    */
   get (key: string): string | never {
     const value = this.cookie.get(key);
@@ -64,10 +64,11 @@ export default class CookieStorage implements IStorage {
 
   /**
    * Sets a value in the cookie storage with an expiration date.
-   * @param key The key under which to store the value.
-   * @param value The value to store.
-   * @param expiresAt The date when the item should expire.
-   * @throws {AuthKitStorageInvalidError} If there is an error setting the value.
+   * @param key - The key under which to store the value.
+   * @param value - The value to store.
+   * @param expiresAt - The date when the item should expire.
+   *
+   * @throws {@link AuthKitStorageInvalidError} If there is an error setting the value.
    */
   set(key: string, value: string, expiresAt: Date): void {
     this.cookie.set(key, value, {
@@ -77,8 +78,8 @@ export default class CookieStorage implements IStorage {
 
   /**
    * Removes an item from the cookie storage.
-   * @param key The key of the item to remove.
-   * @throws {AuthKitStorageInvalidError} If there is an error removing the item.
+   * @param key - The key of the item to remove.
+   * @throws {@link AuthKitStorageInvalidError} If there is an error removing the item.
    */
   remove (key: string): void {
     this.cookie.remove(key);
