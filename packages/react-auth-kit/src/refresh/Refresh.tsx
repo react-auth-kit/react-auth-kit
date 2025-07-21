@@ -66,8 +66,18 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       // Else If refresh condition met
       else if(value.isUsingRefreshToken && value.refresh && value.refresh.expiresAt > new Date()){
         // Refresh the auth token by calling the doRefresh
-        refreshApiCall();
-        setShouldInitialRefreshState(false);
+        refreshApiCall().then((data)=>{
+          if(data !== null){
+            Action.doRefresh(data, store);
+          }
+          else{
+            Action.doSignOut(store);
+          }
+          setShouldInitialRefreshState(false);
+        }).catch((e)=>{
+          console.error(e);
+          Action.doSignOut(store);
+        });
       }
       // IF the user is sign out
       else {
