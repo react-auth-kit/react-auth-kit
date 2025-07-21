@@ -16,11 +16,11 @@
 
 import type {createRefreshAttribute} from "./createRefresh";
 import {ITokenStore} from "../store";
-import Action from "../utils/action";
+import {RefreshTokenActionResponsePassed} from "./types";
 
-function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenStore<T>) {
-  return () => {
-    refresh.refreshApiCallback({
+function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenStore<T>): () => Promise<RefreshTokenActionResponsePassed<T> | null> {
+  return async (): Promise<RefreshTokenActionResponsePassed<T> | null> => {
+    return refresh.refreshApiCallback({
       authToken: store.value.auth?.token,
       authUserState: store.value.userState,
       refreshToken: store.value.refresh?.token,
@@ -29,16 +29,21 @@ function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenS
         // IF the API call is successful, then refresh the AUTH state
         if (result.isSuccess) {
           // store the new value using the state update
-          Action.doRefresh(result, store);
+          return new Promise<RefreshTokenActionResponsePassed<T>>((resolve) => {
+            resolve(result);
+          });
         } else {
           // sign out if failed to refresh
-          Action.doSignOut(store);
+          return new Promise<null>((resolve) => {
+            resolve(null);
+          });
         }
       })
       .catch((e) => {
         // Retry for Future
-        Action.doSignOut(store);
-        console.error(e);
+        return new Promise<null>((_resolve, reject) => {
+          reject(e);
+        })
       });
   }
 }
