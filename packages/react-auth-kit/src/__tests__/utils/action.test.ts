@@ -1,6 +1,5 @@
 import Action from '../../utils/action';
 import {ITokenStore} from "../../store";
-import {AuthKitState} from '../../types';
 
 describe('Action', () => {
   const setFn = jest.fn();
@@ -9,7 +8,7 @@ describe('Action', () => {
     set: setFn,
     subscribe: jest.fn(),
     value: undefined,
-    syncTokens: function (authState: AuthKitState<any>): void {
+    syncTokens: function (): void {
       throw new Error('Function not implemented.');
     }
   }
