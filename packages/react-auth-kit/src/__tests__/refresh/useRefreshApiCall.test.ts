@@ -15,7 +15,6 @@
  */
 
 import {ITokenStore} from "../../store";
-import {AuthKitState} from "../../types";
 import {RefreshTokenActionResponse, useRefreshApiCall} from "../../refresh";
 import {renderHook, waitFor} from "@testing-library/react";
 import createRefresh from "../../refresh/createRefresh";
@@ -27,150 +26,96 @@ describe('useRefreshApiCall', () => {
     setFn.mockClear();
   });
 
-  describe('Token Data already exists', () => {
-    const tokenStore: ITokenStore<any> = {
-      set: setFn,
-      subscribe: jest.fn(),
-      value: {
-        auth: {
-          token: "last time",
-          type: "Bearer",
-          expiresAt: new Date()
-        },
-        userState: {
-          name: "tester"
-        },
-        refresh: {
-          token: "last refresh token",
-          expiresAt: new Date()
-        },
-        isSignIn: true,
-        isUsingRefreshToken: true
+  const tokenStore: ITokenStore<any> = {
+    set: setFn,
+    subscribe: jest.fn(),
+    value: {
+      auth: {
+        token: "last time",
+        type: "Bearer",
+        expiresAt: new Date()
       },
-      syncTokens: function (): void {
-        throw new Error('Function not implemented.');
-      }
+      userState: {
+        name: "tester"
+      },
+      refresh: {
+        token: "last refresh token",
+        expiresAt: new Date()
+      },
+      isSignIn: true,
+      isUsingRefreshToken: true
+    },
+    syncTokens: function (): void {
+      throw new Error('Function not implemented.');
     }
+  }
 
-    it('should call doRefresh Action', async () => {
-      const apiFn = jest.fn(
-        () => new Promise<RefreshTokenActionResponse<unknown>>((resolve) => {
-          setTimeout(resolve, 0, {
-            newAuthToken: 'asdf',
-            isSuccess: true
-          });
-        })
-      );
+  it('should call doRefresh Action', async () => {
+    const apiFn = jest.fn(
+      () => new Promise<RefreshTokenActionResponse<unknown>>((resolve) => {
+        setTimeout(resolve, 0, {
+          newAuthToken: 'asdf',
+          isSuccess: true
+        });
+      })
+    );
 
-      const createRefreshData = createRefresh({
-        interval: 10,
-        refreshApiCallback: apiFn
-      });
-
-      const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
-      result.current()
-
-      await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
-      expect(setFn).toHaveBeenCalledTimes(1);
-      expect(setFn).toHaveBeenCalledWith({
-        auth: {
-          token: 'asdf',
-          type: "Bearer"
-        }
-      });
+    const createRefreshData = createRefresh({
+      interval: 10,
+      refreshApiCallback: apiFn
     });
 
-    it('should call doSignOut Action', async () => {
-      const apiFn = jest.fn(
-        () => new Promise<RefreshTokenActionResponse<unknown>>((resolve) => {
-          setTimeout(resolve, 0, {
-            newAuthToken: 'asdf',
-            isSuccess: false
-          });
-        })
-      );
+    const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
+    const res = await result.current()
 
-      const createRefreshData = createRefresh({
-        interval: 10,
-        refreshApiCallback: apiFn
-      });
-
-      const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
-      result.current()
-
-      await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
-      expect(setFn).toHaveBeenCalledTimes(1);
-      expect(setFn).toHaveBeenCalledWith({
-        auth: null
-      });
-    });
-
-    it('should call doSignOut Action and throw error', async () => {
-      const apiFn = jest.fn(
-        () => new Promise<RefreshTokenActionResponse<unknown>>((resolve, reject) => {
-          setTimeout(reject, 0, "Unknow error occurred"
-            );
-        })
-      );
-
-      const createRefreshData = createRefresh({
-        interval: 10,
-        refreshApiCallback: apiFn
-      });
-
-      const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
-      result.current()
-
-      await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
-      expect(setFn).toHaveBeenCalledTimes(1);
-      expect(setFn).toHaveBeenCalledWith({
-        auth: null
-      });
+    await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
+    expect(res).not.toBeNull();
+    expect(res).toStrictEqual({
+      isSuccess: true,
+      newAuthToken: "asdf"
     });
   });
 
-  describe('Token Data Doesn\'t exists', () => {
-    const tokenStore: ITokenStore<any> = {
-      set: setFn,
-      subscribe: jest.fn(),
-      value: {
-        auth: null,
-        userState: null,
-        refresh: null,
-        isSignIn: false,
-        isUsingRefreshToken: true
-      },
-      syncTokens: function (): void {
-        throw new Error('Function not implemented.');
-      }
-    }
+  it('should call doSignOut Action', async () => {
+    const apiFn = jest.fn(
+      () => new Promise<RefreshTokenActionResponse<unknown>>((resolve) => {
+        setTimeout(resolve, 0, {
+          newAuthToken: 'asdf',
+          isSuccess: false
+        });
+      })
+    );
 
-    it('should not call doRefresh Action', async () => {
-      const apiFn = jest.fn(
-        () => new Promise<RefreshTokenActionResponse<unknown>>((resolve) => {
-          setTimeout(resolve, 0, {
-            newAuthToken: 'asdf',
-            isSuccess: true
-          });
-        })
-      );
-
-      const createRefreshData = createRefresh({
-        interval: 10,
-        refreshApiCallback: apiFn
-      });
-
-      const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
-      result.current()
-
-      await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
-      expect(setFn).toHaveBeenCalledTimes(1);
-      expect(setFn).toHaveBeenCalledWith({
-        auth: {
-          token: 'asdf',
-          type: "Bearer"
-        }
-      });
+    const createRefreshData = createRefresh({
+      interval: 10,
+      refreshApiCallback: apiFn
     });
+
+    const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
+    const res = await result.current()
+
+    await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
+    expect(res).toBeNull();
+  });
+
+  it('should call doSignOut Action and throw error', async () => {
+    const apiFn = jest.fn(
+      () => new Promise<RefreshTokenActionResponse<unknown>>((resolve, reject) => {
+        setTimeout(reject, 0, new Error("Unknow error occurred")
+        );
+      })
+    );
+
+    const createRefreshData = createRefresh({
+      interval: 10,
+      refreshApiCallback: apiFn
+    });
+
+    const {result} = renderHook(() => useRefreshApiCall(createRefreshData, tokenStore));
+    await expect(result.current())
+      .rejects
+      .toThrow(Error);
+
+    await waitFor(() => expect(apiFn).toHaveBeenCalledTimes(1));
   });
 });
