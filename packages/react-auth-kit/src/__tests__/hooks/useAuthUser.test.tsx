@@ -1,3 +1,4 @@
+import React from 'react';
 import Cookies from 'js-cookie';
 import {renderHook} from '@testing-library/react';
 
