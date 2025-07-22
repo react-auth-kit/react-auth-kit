@@ -4,12 +4,12 @@ import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 
 import {
-  useReactAuthKit,
+  useReactAuthKitStore,
   useReactAuthKitConfig,
 } from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
-import {doSignOut} from 'react-auth-kit/utils/reducers';
-import {AuthError} from 'react-auth-kit';
+import Action from 'react-auth-kit/utils/action';
+import {AuthKitConfigError} from "react-auth-kit/error/AuthKitConfigError";
 
 
 /**
@@ -52,7 +52,7 @@ interface NextAuthProps {
  * ```
  */
 export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
-  const context = useReactAuthKit();
+  const store = useReactAuthKitStore();
   const {push} = useRouter();
   const config = useReactAuthKitConfig();
 
@@ -60,7 +60,7 @@ export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
 
   let fp: string;
   if (!fallbackPath && !config.fallbackPath) {
-    throw new AuthError(
+    throw new AuthKitConfigError(
         'fallbackPath prop must be present in'+
       ' AuthProvider or RequireAuth component',
     );
@@ -71,12 +71,12 @@ export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
   }
 
   useEffect(() => {
-    if (!isAuthenticated(context.value)) {
+    if (!isAuthenticated(store.value)) {
       // Redirect them to the /login page but save the current location they
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they log in, which is a nicer
       // user experience than dropping them off on the home page.
-      context.set(doSignOut());
+      Action.doSignOut(store);
       push(fp);
     } else {
       setLogIn(true);

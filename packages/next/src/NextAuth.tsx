@@ -5,12 +5,12 @@ import {useState, useEffect} from 'react';
 import {useRouter} from 'next/navigation';
 
 import {
-  useReactAuthKit,
+  useReactAuthKitStore,
   useReactAuthKitConfig,
 } from 'react-auth-kit/AuthContext';
 import {isAuthenticated} from 'react-auth-kit/utils/utils';
-import {doSignOut} from 'react-auth-kit/utils/reducers';
-import {AuthError} from 'react-auth-kit';
+import Action from 'react-auth-kit/utils/action';
+import {AuthKitConfigError} from "react-auth-kit/error/AuthKitConfigError";
 
 
 /**
@@ -20,7 +20,7 @@ interface NextAuthProps {
    /**
     * Path to redirect if the user is not authenticated
     *
-    * @deprecated Use AuthProvider fallpackPath prop instead.
+    * @deprecated Use AuthProvider fallbackPath prop instead.
     * Will be removed in the upcoming version
     * @example
     * `/login`
@@ -34,7 +34,7 @@ interface NextAuthProps {
   * Next.js Page Wrapper component.
   *
   * @param props - The Properties of the component
-  * @returns - Compoent with React Auth Kit integrated
+  * @returns - Component with React Auth Kit integrated
   *
   * @example
   * ```jsx
@@ -51,7 +51,7 @@ interface NextAuthProps {
   *
   */
 export default function NextAuth({fallbackPath, children}: NextAuthProps) {
-  const context = useReactAuthKit();
+  const store = useReactAuthKitStore();
   const config = useReactAuthKitConfig();
   const [login, setLogIn] = useState(false);
 
@@ -59,7 +59,7 @@ export default function NextAuth({fallbackPath, children}: NextAuthProps) {
 
   let fp: string;
   if (!fallbackPath && !config.fallbackPath) {
-    throw new AuthError(
+    throw new AuthKitConfigError(
         'fallbackPath prop must be present in'+
         ' AuthProvider or NextAuth component',
     );
@@ -70,12 +70,12 @@ export default function NextAuth({fallbackPath, children}: NextAuthProps) {
   }
 
   useEffect(() => {
-    if (!isAuthenticated(context.value)) {
+    if (!isAuthenticated(store.value)) {
       // Redirect them to the /login page, but save the current location they
       // were trying to go to when they were redirected. This allows us to
       // send them along to that page after they log in, which is a nicer
       // user experience than dropping them off on the home page.
-      context.set(doSignOut());
+      Action.doSignOut(store);
       push(fp);
     } else {
       setLogIn(true);
