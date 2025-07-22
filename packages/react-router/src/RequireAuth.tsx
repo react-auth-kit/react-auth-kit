@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Navigate} from 'react-router';
 
-import {AuthError} from 'react-auth-kit';
+import {AuthKitConfigError} from 'react-auth-kit/error/AuthKitConfigError';
 import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
@@ -61,7 +61,7 @@ const RequireAuth: React.FC<RequireAuthProps> =
     ) {
       fp = config.fallbackPath;
     } else {
-      throw new AuthError(
+      throw new AuthKitConfigError(
           'fallbackPath prop must be present'+
         ' in AuthProvider or RequireAuth component',
       );
