@@ -74,5 +74,10 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "npm test"
+  },
+  "dependencies": {
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
+    "ts-jest": "^29.4.0"
   }
 }
