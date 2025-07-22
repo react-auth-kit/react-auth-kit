@@ -31,14 +31,17 @@
   ],
   "exports": {
     ".": "./dist/index.js",
-    "./errors": "./dist/errors.js",
     "./AuthContext": "./dist/AuthContext.js",
-    "./createStore": "./dist/createStore.js",
     "./AuthProvider": "./dist/AuthProvider.js",
-    "./createRefresh": "./dist/createRefresh.js",
+    "./error": "./dist/error/index.js",
+    "./error/*": "./dist/error/*.js",
     "./hooks/*": "./dist/hooks/*.js",
-    "./utils/*": "./dist/utils/*.js",
-    "./route": "./dist/route/index.js"
+    "./refresh/*": "./dist/refresh/*.js",
+    "./route/*": "./dist/route/*.js",
+    "./storage/*": "./dist/storage/*.js",
+    "./store/*": "./dist/store/*.js",
+    "./token/*": "./dist/token/*.js",
+    "./utils/*": "./dist/utils/*.js"
   },
   "repository": {
     "type": "git",
