@@ -32,8 +32,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "next": "15.3.3",
-    "react": "19.1.0"
+    "next": "15.3.3"
   },
   "repository": {
     "type": "git",

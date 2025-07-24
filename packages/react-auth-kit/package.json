@@ -56,12 +56,7 @@
   },
   "devDependencies": {
     "@types/deep-equal": "^1.0.4",
-    "@types/jest": "29.5.14",
-    "@types/js-cookie": "3.0.6",
-    "@types/node": "22.15.29",
-    "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5",
-    "next": "^15.0.0"
+    "@types/js-cookie": "3.0.6"
   },
   "dependencies": {
     "deep-equal": "^2.2.3",
@@ -69,8 +64,7 @@
     "rxjs": "^7.8.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0 || ^17.x || ^18.x || ^19.x",
-    "react-dom": ">=16.8.0 || ^17.x || ^18.x || ^19.x"
+    "react": ">=16.8.0 || ^17.x || ^18.x || ^19.x"
   },
   "gitHead": "8326f5a8a331e0eacc59bbc4aab7da0671b86a84"
 }
