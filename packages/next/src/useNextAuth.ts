@@ -1,3 +1,5 @@
+// noinspection JSDeprecatedSymbols
+
 'use client';
 
 import {useState, useEffect} from 'react';

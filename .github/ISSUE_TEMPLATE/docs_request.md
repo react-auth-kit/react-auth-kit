@@ -17,5 +17,5 @@ Please answer the following questions for yourself before submitting an issue.
 - [ ] I checked to make sure that this request has NOT already been made
 
 **Description**\
-A clear and consise of your requirement with the documentation
+A clear and consist of your requirement with the documentation
 

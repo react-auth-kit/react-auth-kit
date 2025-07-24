@@ -17,10 +17,10 @@ const Login = () => {
   /**
    * Login Handle, the callback function onClick from the "Login" button
    *
-   * This function demostrate a fake authentication, using useSignIn function
+   * This function demostrates a fake authentication, using useSignIn function
    */
   const loginHandler = () => {
-    // Assuming that, all network Request is successfull, and the user is authenticated
+    // Assuming that, all network Request is successfully, and the user is authenticated
 
     if (signIn({
       auth: {
@@ -28,16 +28,16 @@ const Login = () => {
       },
       userState: {name: 'React User', uid: 123456}
     })) {
-      // If Login Successfull, then Redirect the user to secure route
+      // If Login Successfully, then Redirect the user to secure route
       navigate('/secure')
     } else {
       // Else, there must be some error. So, throw an error
-      alert("Error Occoured. Try Again")
+      alert("Error Occurred. Try Again")
     }
   }
   console.log(isAuthenticated())
   if (isAuthenticated()) {
-    // If authenticated user, then redirect to secure dashboard
+    // If an authenticated user, then redirect to a secure dashboard
 
     return (
       <Navigate to={'/secure'} replace/>
@@ -45,7 +45,7 @@ const Login = () => {
   } else {
     // If not authenticated, use the login flow
     // For Demonstration; I'm using just a button to log in.
-    // In reality, there should be a form, validation, nwetowrk request and other things
+    // In reality, there should be a form, validation, network request and other things
     return (
       <button onClick={loginHandler}>Log In!!</button>
     )

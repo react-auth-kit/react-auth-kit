@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, {JSX} from 'react';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 

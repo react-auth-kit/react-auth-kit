@@ -26,7 +26,7 @@ React Auth Kit Plugin to interact with React Router.
 
 ## @auth-kit/next
 
-Raact Auth Kit Plugin to interact with Next.
+React Auth Kit Plugin to interact with Next.
 
 - [NextAuth](./next/next-auth.md) - Private Route integration for Next.js Pages or Layout
 

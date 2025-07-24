@@ -26,9 +26,9 @@ Also, this will call the RX engine to store the auth in the storage
 
 ## Type Parameters
 
-| Name | Description |
-| :------ | :------ |
-| `T` | Type of User State Object |
+| Name | Description               |
+|:-----|:--------------------------|
+| `T`  | Type of User State Object |
 
 ## Returns
 React Hook with SignIn Functionality
@@ -37,18 +37,18 @@ React Hook with SignIn Functionality
 
 ## Parameters
 
-| Name | Type | Descripntion |
-| :------ | :------ | :-------- |
+| Name                                       | Type                         | Descripntion      |
+|:-------------------------------------------|:-----------------------------|:------------------|
 | [`signInConfig`](#signinconfig-parameters) | `signInFunctionParams`<`T`\> | Params for signin |
 
 ### signInConfig Parameters
 
-| Name | Type | Descripntion | Required |
-| :------ | :------ | :-------- | :------ |
-| `auth.token` | `string` | JWT Auth Token | `true` |
-| `auth.type`  | `string` | Type of the Token | `false` |
-| `refresh`    | `string` | JWT Refresh Token | `true`  |
-| `userState`  | `T`      | User Data         | `false` |
+| Name         | Type     | Descripntion      | Required |
+|:-------------|:---------|:------------------|:---------|
+| `auth.token` | `string` | JWT Auth Token    | `true`   |
+| `auth.type`  | `string` | Type of the Token | `false`  |
+| `refresh`    | `string` | JWT Refresh Token | `true`   |
+| `userState`  | `T`      | User Data         | `false`  |
 
 ```js
 {

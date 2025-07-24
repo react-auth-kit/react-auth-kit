@@ -31,7 +31,7 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Current behaviour** \
-A clear and consise description of what is happening. If possible, give reasoning behind difference in current behaviour and expected behaviour
+A clear and consist description of what is happening. If possible, give reasoning behind difference in current behaviour and expected behaviour
 
 **Possible solutions** (Optional) \
 Give ideas for solving the problem, provide relevant links to additional packages you are mentioning

@@ -21,9 +21,9 @@ AuthOutlet provides an easy solution to implement private route solutions using 
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :--------- |
-| `fallbackPath` | `string` | Path to redirect if the user is not authenticated  |
+| Name           | Type     | Description                                       |
+|:---------------|:---------|:--------------------------------------------------|
+| `fallbackPath` | `string` | Path to redirect if the user is not authenticated |
 
 ## Example
 

@@ -1,3 +1,5 @@
+// noinspection JSDeprecatedSymbols
+
 import * as React from 'react';
 import {Navigate} from 'react-router';
 
@@ -36,10 +38,10 @@ interface RequireAuthProps {
  *  return (
  *    <BrowserRouter>
  *      <Routes>
- *        <Route path={'/'} element={<Home/>}/>
- *        <Route path={'/login' } element={<Login/>}/>
- *        <Route path={'/secure'} element={
- *          <RequireAuth fallbackPath={'/login'}>
+ *        <Route path={"/"} element={<Home/>}/>
+ *        <Route path={"/login"} element={<Login/>}/>
+ *        <Route path={"/secure"} element={
+ *          <RequireAuth fallbackPath={"/login"}>
  *            <SecureComponent/>
  *          </RequireAuth>
  *        }/>

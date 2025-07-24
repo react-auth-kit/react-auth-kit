@@ -22,10 +22,6 @@ test('createRefresh is working as expected', ()=>{
   const data = {
     interval: 10,
     refreshApiCallback: async (param: any) => {
-      param.authToken;
-      param.authUserState;
-      param.refreshToken;
-
       return {
         isSuccess: true,
         newAuthToken: param.authToken || 'Hello',
@@ -40,10 +36,6 @@ describe('createRefresh throws error for negative interval', ()=>{
     const refresh = () => createRefresh({
       interval: -10,
       refreshApiCallback: async (param) => {
-        param.authToken;
-        param.authUserState;
-        param.refreshToken;
-
         return {
           isSuccess: true,
           newAuthToken: param.authToken || 'Hello',
@@ -56,10 +48,6 @@ describe('createRefresh throws error for negative interval', ()=>{
     const refresh = () => createRefresh({
       interval: 10,
       refreshApiCallback: async (param) => {
-        param.authToken;
-        param.authUserState;
-        param.refreshToken;
-
         return {
           isSuccess: true,
           newAuthToken: param.authToken || 'Hello',

@@ -21,7 +21,7 @@ Please answer the following questions for yourself before submitting an issue.
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
 **Why are you requesting this feature**
-A detailed reasoning to proof the necessity of the feature. Inculuding the problems you faced.
+A detailed reasoning to proof the necessity of the feature. Including the problems you faced.
 
 **Describe the solution you'd like**
 A clear and concise description of what you want to happen.

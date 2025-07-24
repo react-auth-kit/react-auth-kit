@@ -26,9 +26,9 @@ This uses the context data to determine the user data
 
 ## Type Parameters
 
-| Name | Description |
-| :------ | :------ |
-| `T` | Type of User State Object |
+| Name | Description               |
+|:-----|:--------------------------|
+| `T`  | Type of User State Object |
 
 ## Returns
 

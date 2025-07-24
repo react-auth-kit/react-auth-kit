@@ -24,7 +24,7 @@
 <p align="center">
   <em>🔑 This library is a part of the `react-auth-kit` ecosystem.  🔑</em>
 
-  This library contains useful functions to manage private routes using **Next Js**.
+  This library contains useful functions to manage private routes using **Next.js**.
 </p>
 
 ---

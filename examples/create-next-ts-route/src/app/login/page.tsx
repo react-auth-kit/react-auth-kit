@@ -14,10 +14,10 @@ const Page = () => {
   /**
    * Login Handle, the callback function onClick from the "Login" button
    *
-   * This function demostrate a fake authentication, using useSignIn function
+   * This function demonstrates a fake authentication, using useSignIn function
    */
   const loginHandler = () => {
-    // Assuming that, all network Request is successfull,
+    // Assuming that, all network Request is successfully,
     // and the user is authenticated
 
     signIn({
@@ -32,15 +32,15 @@ const Page = () => {
   };
   console.log(isAuthenticated());
   if (isAuthenticated()) {
-    // If authenticated user, then redirect to secure dashboard
+    // If an authenticated user, then redirect to a secure dashboard
 
     push('/secure');
     return <></>;
   } else {
     // If not authenticated, use the login flow
-    // For Demostration; I'm using just a button to log in.
+    // For Demonstration; I'm using just a button to log in.
     // In reality, there should be a form, validation,
-    // netowrk request and other things
+    // network request and other things
     return (
       <div>
         <button onClick={loginHandler}>Log In!!</button>

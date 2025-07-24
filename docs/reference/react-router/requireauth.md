@@ -22,9 +22,9 @@ for private route solutions using the react-router-dom route system
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :--------- |
-| `fallbackPath` | `string` | Path to redirect if the user is not authenticated  |
+| Name           | Type     | Description                                       |
+|:---------------|:---------|:--------------------------------------------------|
+| `fallbackPath` | `string` | Path to redirect if the user is not authenticated |
 
 
 ## Example

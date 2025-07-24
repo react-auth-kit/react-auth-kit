@@ -21,15 +21,15 @@ import withAuthUser from 'react-auth-kit/higherOrderComponents/withAuthUser';
 
 ## Type Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------- |
-| `T` | `T` | Type of User State Object |
-| `P` | extends `withAuthStateProps`<`T`\> | Props of the component |
+| Name | Type                               | Description               |
+|:-----|:-----------------------------------|:--------------------------|
+| `T`  | `T`                                | Type of User State Object |
+| `P`  | extends `withAuthStateProps`<`T`\> | Props of the component    |
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name        | Type                  | Description                 |
+|:------------|:----------------------|:----------------------------|
 | `Component` | `ComponentType`<`P`\> | React Class based Component |
 
 ## Returns
@@ -57,7 +57,7 @@ export default withAuthUser(MyComponent);
 
 ## Throws
 
-[AuthError](./../errors.md#autherror) - Thrown if the Hook is used outside the Provider Scope.
+[AuthError—](./../errors.md#autherror) Thrown if the Hook is used outside the Provider Scope.
 
 #### Defined in
 

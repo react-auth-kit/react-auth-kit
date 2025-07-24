@@ -149,7 +149,7 @@ describe('useSignIn', () => {
   });
 
   describe('Proper Redirection is working without Refresh token', ()=>{
-    let navigateFn: jest.Mock<any, any, any>;
+    let navigateFn: jest.Mock;
     const ReactRouterPlugin: IRouter = {
       navigate: jest.fn(),
       useNavigate: function(): ({to}: { to: string; }) => void {
@@ -205,7 +205,7 @@ describe('useSignIn', () => {
   });
 
   describe('Proper Redirection is working With Refresh Token', ()=>{
-    let navigateFn: jest.Mock<any, any, any>;
+    let navigateFn: jest.Mock;
     const ReactRouterPlugin: IRouter = {
       navigate: jest.fn(),
       useNavigate: function(): ({to}: { to: string; }) => void {
