@@ -23,8 +23,8 @@ jobs:
       - name: Check Commit Messages
         uses: wagoid/commitlint-github-action@v6
 
-  build:
-    name: Test on Node.js v${{ matrix.node-version }} on ${{ matrix.os }}
+  build-test:
+    name: Build and Test on Node.js v${{ matrix.node-version }} on ${{ matrix.os }}
     needs:
       - check-commit
 
@@ -90,3 +90,37 @@ jobs:
           flags: unittests # optional
           files: ./packages/**/coverage/*.xml
           token: ${{ secrets.CODECOV_TOKEN }} # required
+
+  coverage:
+    name: Coverage
+    needs:
+      - build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM Build
+        run: npm run build
+
+      - name: NPM Test
+        run: npm test -- -- --coverage
+
+      - name: Coverage Report to codecov
+        uses: codecov/codecov-action@v5
+        with:
+          flags: unittests # optional
+          files: ./packages/**/coverage/*.xml
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+          verbose: true
