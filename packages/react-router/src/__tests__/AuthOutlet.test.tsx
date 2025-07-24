@@ -2,24 +2,23 @@
 import Cookies from 'js-cookie';
 import {render, screen} from '@testing-library/react';
 import {Routes, Route, MemoryRouter} from 'react-router-dom';
-
-import createStore from 'react-auth-kit/createStore';
+import createAuthStore from 'react-auth-kit/store/createAuthStore';
 import AuthProvider from 'react-auth-kit/AuthProvider';
 import * as useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
 import AuthOutlet from '../AuthOutlet';
-import {AuthError} from 'react-auth-kit';
+import {AuthKitError} from 'react-auth-kit/error/AuthKitError';
 
-const store = createStore<Record<string, unknown>>({
-  authName: '_auth',
-  authType: 'cookie',
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:',
-});
+const store = createAuthStore<Record<string, unknown>>("cookie",
+  {
+    authName: '__',
+    cookieDomain: window.location.hostname,
+    cookieSecure: window.location.protocol === 'https:',
+  });
 
 describe('Error Conditions', () => {
-  it('throws, when used outside AuthProvider', () => {
-    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+  it('should throw, when used outside AuthProvider', () => {
+    // jest.spyOn(console, 'error').mockImplementation(jest.fn());
 
     expect(() => render(
         <MemoryRouter>
@@ -38,7 +37,7 @@ describe('Error Conditions', () => {
             } />
           </Routes>
         </MemoryRouter>,
-    )).toThrow(AuthError);
+    )).toThrow(AuthKitError);
   });
 
   it('throws, when there is no fallbackPath', () => {
@@ -61,7 +60,7 @@ describe('Error Conditions', () => {
             </Routes>
           </MemoryRouter>,
         </AuthProvider>,
-    )).toThrow(AuthError);
+    )).toThrow(AuthKitError);
   });
 });
 
@@ -99,16 +98,16 @@ describe('Rendering Successfully', () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM' +
       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60' +
       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    Cookies.set('_auth', token);
-    Cookies.set('_auth_type', 'Bearer');
-    Cookies.set('_auth_state', '{}');
+    Cookies.set('___auth', token);
+    Cookies.set('___auth_type', 'Bearer');
+    Cookies.set('___state', '{}');
     const TestComponent = () => <p>Test Component</p>;
-    const store = createStore<object>({
-      authName: '_auth',
-      authType: 'cookie',
-      cookieDomain: window.location.hostname,
-      cookieSecure: window.location.protocol === 'https:',
-    });
+    const store = createAuthStore<Record<string, unknown>>("cookie",
+      {
+        authName: '__',
+        cookieDomain: window.location.hostname,
+        cookieSecure: window.location.protocol === 'https:',
+      });
 
     render(
         <AuthProvider store={store}>
@@ -141,12 +140,12 @@ describe('Redirection', () => {
     spy.mockImplementation(() => () => false);
 
     const TestComponent = () => <p>Test Component</p>;
-    const store = createStore<Record<string, unknown>>({
-      authName: '_auth',
-      authType: 'cookie',
-      cookieDomain: window.location.hostname,
-      cookieSecure: window.location.protocol === 'https:',
-    });
+    const store = createAuthStore<Record<string, unknown>>("cookie",
+      {
+        authName: '__',
+        cookieDomain: window.location.hostname,
+        cookieSecure: window.location.protocol === 'https:',
+      });
 
     render(
         <AuthProvider store={store}>
@@ -179,12 +178,12 @@ describe('Redirection', () => {
     spy.mockImplementation(() => () => false);
 
     const TestComponent = () => <p>Test Component</p>;
-    const store = createStore<Record<string, unknown>>({
-      authName: '_auth',
-      authType: 'cookie',
-      cookieDomain: window.location.hostname,
-      cookieSecure: window.location.protocol === 'https:',
-    });
+    const store = createAuthStore<Record<string, unknown>>("cookie",
+      {
+        authName: '__',
+        cookieDomain: window.location.hostname,
+        cookieSecure: window.location.protocol === 'https:',
+      });
 
     render(
         <AuthProvider store={store} fallbackPath='/login'>

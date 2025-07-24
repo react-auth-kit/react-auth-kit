@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Navigate, Outlet} from 'react-router';
 
-import {AuthError} from 'react-auth-kit';
+import {AuthKitConfigError} from 'react-auth-kit/error/AuthKitConfigError';
 import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
@@ -13,7 +13,7 @@ interface AuthOutletProps {
   /**
    * Path to redirect if the user is not authenticated
    *
-   * @deprecated Use AuthProvider fallpackPath prop instead.
+   * @deprecated Use AuthProvider fallbackPath prop instead.
    * Will be removed in the upcoming version
    * @example
    * `/login`
@@ -55,7 +55,7 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
   ) {
     fp = config.fallbackPath;
   } else {
-    throw new AuthError(
+    throw new AuthKitConfigError(
         'fallbackPath prop must be present'+
       ' in AuthProvider or AuthOutlet component',
     );

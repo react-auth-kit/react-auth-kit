@@ -23,34 +23,34 @@ jobs:
       - name: Check Commit Messages
         uses: wagoid/commitlint-github-action@v6
 
-  build:
-    name: Test on Node.js v${{ matrix.node-version }} on ${{ matrix.os }}
+  build-test:
+    name: Build and Test on Node.js v${{ matrix.node-version }} on ${{ matrix.os }}
     needs:
       - check-commit
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
-    
+
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      
+
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v46
-      
+
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
         if: matrix.os != 'windows-latest'
-      
+
       - name: Check changes
         id: changed-ignored
         uses: tj-actions/changed-files@v46
@@ -63,30 +63,56 @@ jobs:
             .idea/**
             .nx/**
             .vscode/**
-      
+
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
         if: steps.changed-ignored.outputs.only_modified == 'false'
-      
+
       - name: NPM Install
         run: npm ci
         if: steps.changed-ignored.outputs.only_modified == 'false'
-      
+
       - name: NPM Build
         run: npm run build
         if: steps.changed-ignored.outputs.only_modified == 'false'
-      
+
       - name: NPM Test
         run: npm test
         if: steps.changed-ignored.outputs.only_modified == 'false'
 
+  coverage:
+    name: Coverage
+    needs:
+      - build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM Build
+        run: npm run build
+
+      - name: NPM Test
+        run: npm test -- -- --coverage
+
       - name: Coverage Report to codecov
         uses: codecov/codecov-action@v5
-        if: steps.changed-ignored.outputs.only_modified == 'false'
         with:
           flags: unittests # optional
           files: ./packages/**/coverage/*.xml
           token: ${{ secrets.CODECOV_TOKEN }} # required
+          verbose: true

@@ -17,7 +17,7 @@ module.exports = (api) => {
     }
     return {
       presets: [
-        ["@babel/preset-env", { targets: { node: 12 } }],
+        ["@babel/preset-env", { targets: { node: 18 } }],
         "@babel/preset-typescript",
       ],
       ignore: [

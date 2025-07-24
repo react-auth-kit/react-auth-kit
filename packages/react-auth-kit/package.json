@@ -23,22 +23,23 @@
     "test": "__tests__"
   },
   "files": [
-    "hooks",
-    "utils",
     "dist",
     "*.js",
     "*.d.ts"
   ],
   "exports": {
     ".": "./dist/index.js",
-    "./errors": "./dist/errors.js",
     "./AuthContext": "./dist/AuthContext.js",
-    "./createStore": "./dist/createStore.js",
     "./AuthProvider": "./dist/AuthProvider.js",
-    "./createRefresh": "./dist/createRefresh.js",
+    "./error": "./dist/error/index.js",
+    "./error/*": "./dist/error/*.js",
     "./hooks/*": "./dist/hooks/*.js",
-    "./utils/*": "./dist/utils/*.js",
-    "./route": "./dist/route/index.js"
+    "./refresh/*": "./dist/refresh/*.js",
+    "./route/*": "./dist/route/*.js",
+    "./storage/*": "./dist/storage/*.js",
+    "./store/*": "./dist/store/*.js",
+    "./token/*": "./dist/token/*.js",
+    "./utils/*": "./dist/utils/*.js"
   },
   "repository": {
     "type": "git",
@@ -54,17 +55,8 @@
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
   },
   "devDependencies": {
-    "@testing-library/react": "16.0.1",
     "@types/deep-equal": "^1.0.4",
-    "@types/jest": "29.5.14",
-    "@types/js-cookie": "3.0.6",
-    "@types/node": "22.15.29",
-    "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5",
-    "jest": "29.7.0",
-    "jest-environment-jsdom": "^29.4.3",
-    "next": "^15.0.0",
-    "ts-jest": "29.4.0"
+    "@types/js-cookie": "3.0.6"
   },
   "dependencies": {
     "deep-equal": "^2.2.3",
@@ -72,8 +64,7 @@
     "rxjs": "^7.8.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0 || ^17.x || ^18.x || ^19.x",
-    "react-dom": ">=16.8.0 || ^17.x || ^18.x || ^19.x"
+    "react": ">=16.8.0 || ^17.x || ^18.x || ^19.x"
   },
   "gitHead": "8326f5a8a331e0eacc59bbc4aab7da0671b86a84"
 }

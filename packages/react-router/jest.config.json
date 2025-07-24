@@ -6,6 +6,7 @@
   "preset": "ts-jest",
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "setupFiles": ["<rootDir>/setup.jest.js"],
   "testEnvironment": "jsdom",
   "verbose": true,
   "collectCoverage": false,

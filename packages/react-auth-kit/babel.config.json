@@ -1,4 +1,4 @@
-{ 
+{
     "extends": "../../babel.config.js",
     "overrides": [
         {
@@ -6,8 +6,15 @@
               "./src/index.tsx",
               "./src/AuthContext.ts",
               "./src/AuthProvider.tsx",
-              "./src/PrivateRoute.tsx",
-              "./src/hooks/*"
+              "./src/error/*",
+              "./src/hooks/*",
+              "./src/refresh/*",
+              "./src/route/*",
+              "./src/storage/*",
+              "./src/store/*",
+              "./src/token/*",
+              "./src/utils/*"
+
             ],
             "presets": [
               ["@babel/preset-env", { "targets": { "ie": 11 } }],
