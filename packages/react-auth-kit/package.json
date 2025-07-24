@@ -23,8 +23,6 @@
     "test": "__tests__"
   },
   "files": [
-    "hooks",
-    "utils",
     "dist",
     "*.js",
     "*.d.ts"

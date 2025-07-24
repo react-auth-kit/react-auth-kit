@@ -15,6 +15,11 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
+  "directories": {
+    "src": "src",
+    "lib": "dist",
+    "test": "__tests__"
+  },
   "files": [
     "dist",
     "*.js",
