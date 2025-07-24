@@ -99,9 +99,9 @@ describe('Rendering Successfully', () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM'+
       '0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw60'+
       '3AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8';
-    Cookies.set('_auth', token);
-    Cookies.set('_auth_type', 'Bearer');
-    Cookies.set('_auth_state', '{}');
+    Cookies.set('___auth', token);
+    Cookies.set('___auth_type', 'Bearer');
+    Cookies.set('___state', '{}');
     const TestComponent = () => <p>Test Component</p>;
     const store = createAuthStore<Record<string, unknown>>("cookie",
       {
