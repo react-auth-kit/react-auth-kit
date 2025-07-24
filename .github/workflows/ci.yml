@@ -83,14 +83,6 @@ jobs:
         run: npm test
         if: steps.changed-ignored.outputs.only_modified == 'false'
 
-      - name: Coverage Report to codecov
-        uses: codecov/codecov-action@v5
-        if: steps.changed-ignored.outputs.only_modified == 'false'
-        with:
-          flags: unittests # optional
-          files: ./packages/**/coverage/*.xml
-          token: ${{ secrets.CODECOV_TOKEN }} # required
-
   coverage:
     name: Coverage
     needs:
