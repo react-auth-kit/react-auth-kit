@@ -4,6 +4,7 @@ import {Navigate} from 'react-router';
 import {AuthKitConfigError} from 'react-auth-kit/error/AuthKitConfigError';
 import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import {type ReactNode} from "react";
 
 /**
  * Component Props for Require Auth
@@ -12,11 +13,11 @@ interface RequireAuthProps {
   /**
    * Children component which will require auth to access
    */
-  children: JSX.Element,
+  children: ReactNode,
   /**
    * Path to redirect if the user is not authenticated
    *
-   * @deprecated Use AuthProvider fallpackPath prop instead.
+   * @deprecated Use AuthProvider fallbackPath prop instead.
    * Will be removed in the upcoming version
    * @example
    * `/login`
