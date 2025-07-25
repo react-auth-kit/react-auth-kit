@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/react-router",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.1-alpha.0",
   "description": "React Router Support for React-auth-kit",
   "keywords": [
     "react",
@@ -50,7 +50,7 @@
     "react-router-dom": "7.7.1"
   },
   "dependencies": {
-    "react-auth-kit": "^4.0.0-alpha.0"
+    "react-auth-kit": "^4.0.1-alpha.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0 || ^17.x || ^18.x || ^19.x",
