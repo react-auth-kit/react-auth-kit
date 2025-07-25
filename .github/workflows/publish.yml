@@ -1,4 +1,4 @@
-name: publish.yml
+name: Manual Publish
 on:
   workflow_dispatch:
     inputs:
