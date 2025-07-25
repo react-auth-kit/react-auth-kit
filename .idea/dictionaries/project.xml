@@ -2,15 +2,31 @@
   <dictionary name="project">
     <words>
       <w>arkadip</w>
+      <w>authdata</w>
+      <w>authheader</w>
+      <w>authkitarkadipme</w>
+      <w>autobuild</w>
       <w>bangbang</w>
       <w>bhattacharya</w>
+      <w>codeql</w>
       <w>declearing</w>
+      <w>endblock</w>
+      <w>extrahead</w>
       <w>iiwibm</w>
       <w>ijox</w>
       <w>ikpva</w>
+      <w>mkdocs</w>
       <w>mlfu</w>
+      <w>nextdotjs</w>
       <w>pnjbz</w>
+      <w>preminor</w>
+      <w>privateroute</w>
+      <w>reactquery</w>
+      <w>reactrouter</w>
+      <w>stefanzweifel</w>
+      <w>striptags</w>
       <w>tada</w>
+      <w>tsdoc</w>
       <w>wagoid</w>
     </words>
   </dictionary>

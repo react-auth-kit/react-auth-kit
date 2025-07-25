@@ -21,14 +21,14 @@ import createRefresh from 'react-auth-kit/createRefresh';
 
 ## Type Parameters
 
-| Name | Description |
-| :------ | :------------ |
-| `T` | Type of User State Object |
+| Name | Description               |
+|:-----|:--------------------------|
+| `T`  | Type of User State Object |
 
 ## Parameters
 
-| Name | Type | Required | Description |
-| :------ | :------ | :----- | :------ |
+| Name    | Type                                                                          | Required           | Description                                |
+|:--------|:------------------------------------------------------------------------------|:-------------------|:-------------------------------------------|
 | `param` | [`createRefreshParamInterface`](./types.md#createrefreshparaminterface)<`T`\> | :heavy_check_mark: | Parameters required for the refresh engine |
 
 ## Returns
@@ -59,7 +59,7 @@ const refresh = createRefresh({
             console.error(error)
             return {
                 isSuccess: false
-            } 
+            }
         }
     }
 })

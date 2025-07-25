@@ -54,7 +54,7 @@ It is production-ready and gives you the following:
 * 📦 Very lightweight
 * 🔧 Easy to use
 * ⚛️ Build for React JS
-* ⚡ Works with Gastsby, Next JS
+* ⚡ Works with Gatsby, Next.js
 * 🚀 Fast and easy to Implement
 * 🛡️ Supports JSON Web Token (JWT)
 * 🔒 Secure Client Side Authentication

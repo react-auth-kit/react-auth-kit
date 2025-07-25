@@ -21,8 +21,8 @@ import { AuthError } from 'react-auth-kit/errors';
 
 ### Parameters
 
-| Name | Type | Required | Description |
-| :------ | :------ | :------ | :------ |
+| Name      | Type     | Required           | Description                                 |
+|:----------|:---------|:-------------------|:--------------------------------------------|
 | `message` | `string` | :heavy_check_mark: | Error Message to be shown to the developer. |
 
 #### Defined in

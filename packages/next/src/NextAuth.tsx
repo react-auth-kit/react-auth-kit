@@ -1,3 +1,5 @@
+// noinspection JSDeprecatedSymbols
+
 'use client';
 
 import type {ReactNode} from 'react';

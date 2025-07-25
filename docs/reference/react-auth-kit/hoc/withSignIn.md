@@ -22,25 +22,25 @@ import withSignIn from 'react-auth-kit/higherOrderComponents/withSignIn';
 
 ## Type Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `T` | `T` | Type of User State Object |
-| `P` | extends `withSignInProps`<`T`\> | - |
+| Name | Type                            | Description               |
+|:-----|:--------------------------------|:--------------------------|
+| `T`  | `T`                             | Type of User State Object |
+| `P`  | extends `withSignInProps`<`T`\> | -                         |
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name        | Type                  | Description                 |
+|:------------|:----------------------|:----------------------------|
 | `Component` | `ComponentType`<`P`\> | React Class based Component |
 
 ### signInConfig Parameters
 
-| Name | Type | Descripntion | Required |
-| :------ | :------ | :-------- | :------ |
-| `auth.token` | `string` | JWT Auth Token | `true` |
-| `auth.type`  | `string` | Type of the Token | `false` |
-| `refresh`    | `string` | JWT Refresh Token | `true`  |
-| `userState`  | `T`      | User Data         | `false` |
+| Name         | Type     | Descripntion      | Required |
+|:-------------|:---------|:------------------|:---------|
+| `auth.token` | `string` | JWT Auth Token    | `true`   |
+| `auth.type`  | `string` | Type of the Token | `false`  |
+| `refresh`    | `string` | JWT Refresh Token | `true`   |
+| `userState`  | `T`      | User Data         | `false`  |
 
 
 ## Returns
@@ -89,7 +89,7 @@ export default withSignIn(MyComponent);
 
 ## Throws
 
-[AuthError](./../errors.md#autherror) - Thrown if the Hook is used outside the Provider Scope.
+[AuthError—](./../errors.md#autherror) Thrown if the Hook is used outside the Provider Scope.
 
 
 #### Defined in

@@ -24,16 +24,16 @@ Application.
 
 ## Type Parameters
 
-| Name | Description | Type |
-| :------ | :------ | :------ |
-| `T` | Type of User State Object | extends `object` |
+| Name | Description               | Type             |
+|:-----|:--------------------------|:-----------------|
+| `T`  | Type of User State Object | extends `object` |
 
 ## Parameters
 
-| Name | Type              | Required | Description |
-| :------ |:------------------| :------- |:--------- |
-| `store` | `Store`<`T`\>     | :heavy_check_mark: | Returned value from [authStore](authStore.md) function |
-| `children` | `React.ReactNode` | :heavy_check_mark: | React Component or Element |
+| Name       | Type              | Required           | Description                                            |
+|:-----------|:------------------|:-------------------|:-------------------------------------------------------|
+| `store`    | `Store`<`T`\>     | :heavy_check_mark: | Returned value from [authStore](authStore.md) function |
+| `children` | `React.ReactNode` | :heavy_check_mark: | React Component or Element                             |
 
 ## Returns
 

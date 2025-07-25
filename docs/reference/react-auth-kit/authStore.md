@@ -23,19 +23,19 @@ This store is like a Redux store, where every object and data is stored.
 
 ## Type Parameters
 
-| Name | Description |
-| :------ | :------ |
-| `T` | Type of User State Object |
+| Name | Description               |
+|:-----|:--------------------------|
+| `T`  | Type of User State Object |
 
 ## Parameters
 
-| Name       | Type    | Required | Description |
-| :--------- | :------ | :----- | :------ |
-| `authName` | `string` | :heavy_check_mark: | This name will also be used as a prefix for all other cookies. |
-| `authType` | `string` | :heavy_check_mark: | Type of the Storage. Options : `cookie` , `localstorage` |
-| `cookieDomain` | `string` | :heavy_multiplication_x: | Domain of the cookie, for which the cookie is valid. Needed if you are using `cookie` as authType |
-| `cookieSecure` | `boolean` | :heavy_multiplication_x: | Indicating if the cookie transmission requires a secure protocol (https). Needed if you are using `cookie` as authType |
-| `refresh` | `createRefreshParamInterface<T>` | :heavy_multiplication_x: | Refresh API. Created using [`createRefresh`](./createRefresh.md) function. |
+| Name           | Type                             | Required                 | Description                                                                                                            |
+|:---------------|:---------------------------------|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------|
+| `authName`     | `string`                         | :heavy_check_mark:       | This name will also be used as a prefix for all other cookies.                                                         |
+| `authType`     | `string`                         | :heavy_check_mark:       | Type of the Storage. Options : `cookie` , `localstorage`                                                               |
+| `cookieDomain` | `string`                         | :heavy_multiplication_x: | Domain of the cookie, for which the cookie is valid. Needed if you are using `cookie` as authType                      |
+| `cookieSecure` | `boolean`                        | :heavy_multiplication_x: | Indicating if the cookie transmission requires a secure protocol (https). Needed if you are using `cookie` as authType |
+| `refresh`      | `createRefreshParamInterface<T>` | :heavy_multiplication_x: | Refresh API. Created using [`createRefresh`](./createRefresh.md) function.                                             |
 
 ## Returns
 

@@ -14,11 +14,11 @@ Refresh Token parameter types
 
 ### Parameter
 
-| Name | Type | Required | Description |
-| :--- | :--- | :------- | :---------- |
-| interval | `number` | :heavy_check_mark: | Interval on which the callback function is called |
-| refreshApiCallback | `#!ts refreshTokenCallback<T>` | :heavy_check_mark: | A Callback function which'll have the network request |
-| initalRefreshComponent | `React.ReactNode` | :x: | The component to show while refreshing for the first time. |
+| Name                   | Type                           | Required           | Description                                                |
+|:-----------------------|:-------------------------------|:-------------------|:-----------------------------------------------------------|
+| interval               | `number`                       | :heavy_check_mark: | Interval on which the callback function is called          |
+| refreshApiCallback     | `#!ts refreshTokenCallback<T>` | :heavy_check_mark: | A Callback function which'll have the network request      |
+| initalRefreshComponent | `React.ReactNode`              | :x:                | The component to show while refreshing for the first time. |
 
 ---
 

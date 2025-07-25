@@ -49,10 +49,6 @@ describe('Store with refresh token', ()=>{
     refresh = createRefresh({
       interval: 10,
       refreshApiCallback: async (param) => {
-        param.authToken;
-        param.authUserState;
-        param.refreshToken;
-
         return {
           isSuccess: true,
           newAuthToken: param.authToken || 'Hello',

@@ -114,7 +114,7 @@ Integrate React Auth Kit into your application easily
 Add up authentication-related functions to your application
 <div class="grid cards" markdown>
 
-- [:material-location-enter: **Sign In—**](./signin.md)Perform the Login or Signin Operation.
+- [:material-location-enter: **Sign In—**](./signin.md)Perform the Login or Sign in Operation.
 - [:material-exit-run: **Sign Out—**](./signout.md)Perform the Logout or Singout Operation.
 - [:material-information: **User Data—**](./authdata.md)Get the current user's data in your app.
 - [:material-ip-network: **Auth Header—**](./authheader.md)Get the Auth Header for Network request in your app.

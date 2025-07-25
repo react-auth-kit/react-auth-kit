@@ -21,14 +21,14 @@ import withIsAuthenticated from 'react-auth-kit/higherOrderComponents/withIsAuth
 
 ## Type Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `P` | extends `withAuthHeaderProps` | Props of the component |
+| Name | Type                          | Description            |
+|:-----|:------------------------------|:-----------------------|
+| `P`  | extends `withAuthHeaderProps` | Props of the component |
 
 ## Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name        | Type                  | Description                 |
+|:------------|:----------------------|:----------------------------|
 | `Component` | `ComponentType`<`P`\> | React Class based Component |
 
 ## Returns
@@ -53,7 +53,7 @@ export default withIsAuthenticated(MyComponent);
 
 ## Throws
 
-[AuthError](./../errors.md#autherror) - Thrown if the Hook is used outside the Provider Scope.
+[AuthError—](./../errors.md#autherror) Thrown if the Hook is used outside the Provider Scope.
 
 #### Defined in
 

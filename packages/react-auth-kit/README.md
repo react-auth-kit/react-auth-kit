@@ -43,8 +43,8 @@ It is production-ready, and gives you the following:
 * 📦 Very lightweight
 * 🌲 Tree Stacking
 * 🔧 Easy to use
-* ⚛️ Build for React JS
-* ⚡ Works with Next JS
+* ⚛️ Build for React.js
+* ⚡ Works with Next.js
 * 🚀 Fast and easy to Implement
 * 🛡️ Supports JSON Web Token (JWT)
 * 🔒 Secure Client Side Authentication

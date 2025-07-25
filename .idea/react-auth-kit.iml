@@ -10,6 +10,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.nx" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/next/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/react-auth-kit/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/react-router/coverage" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
