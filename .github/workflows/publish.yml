@@ -53,7 +53,7 @@ jobs:
       - name: NPM Test
         run: npm test
 
-      - run: npm lerna publish ${{ github.event.input.bump }} -y
+      - run: npx lerna publish ${{ github.event.input.bump }} -y
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
