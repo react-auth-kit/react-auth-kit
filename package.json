@@ -84,5 +84,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,js}": "npm test"
+  },
+  "publishConfig": {
+    "provenance": true
   }
 }
