@@ -45,7 +45,7 @@ interface AuthOutletProps {
  * }
  * ```
  */
-const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
+function AuthOutlet({fallbackPath}: AuthOutletProps): React.ReactNode {
   const isAuthenticated = useIsAuthenticated();
   const config = useReactAuthKitConfig();
 
@@ -58,7 +58,7 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
     fp = config.fallbackPath;
   } else {
     throw new AuthKitConfigError(
-        'fallbackPath prop must be present'+
+      'fallbackPath prop must be present'+
       ' in AuthProvider or AuthOutlet component',
     );
   }
@@ -72,6 +72,6 @@ const AuthOutlet : React.FC<AuthOutletProps> = ({fallbackPath}) => {
   }
 
   return <Outlet />;
-};
+}
 
 export default AuthOutlet;

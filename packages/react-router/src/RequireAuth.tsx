@@ -51,37 +51,37 @@ interface RequireAuthProps {
  * }
  * ```
  */
-const RequireAuth: React.FC<RequireAuthProps> =
-  ({children, fallbackPath}) => {
-    const config = useReactAuthKitConfig();
-    const isAuthenticated = useIsAuthenticated();
 
-    let fp;
-    if (fallbackPath !== undefined) {
-      fp = fallbackPath;
-    } else if (
-      config.fallbackPath !== undefined
-    ) {
-      fp = config.fallbackPath;
-    } else {
-      throw new AuthKitConfigError(
-          'fallbackPath prop must be present'+
-        ' in AuthProvider or RequireAuth component',
-      );
-    }
+function RequireAuth({children, fallbackPath}: RequireAuthProps): React.ReactNode {
+  const config = useReactAuthKitConfig();
+  const isAuthenticated = useIsAuthenticated();
+
+  let fp;
+  if (fallbackPath !== undefined) {
+    fp = fallbackPath;
+  } else if (
+    config.fallbackPath !== undefined
+  ) {
+    fp = config.fallbackPath;
+  } else {
+    throw new AuthKitConfigError(
+      'fallbackPath prop must be present'+
+      ' in AuthProvider or RequireAuth component',
+    );
+  }
 
 
-    if (!isAuthenticated()) {
-      // Redirect them to the /login page but save the current location they
-      // were trying to go to when they were redirected. This allows us to
-      // send them along to that page after they log in, which is a nicer
-      // user experience than dropping them off on the home page.
+  if (!isAuthenticated()) {
+    // Redirect them to the /login page but save the current location they
+    // were trying to go to when they were redirected. This allows us to
+    // send them along to that page after they log in, which is a nicer
+    // user experience than dropping them off on the home page.
 
-      return <Navigate to={fp} replace />;
-    }
+    return <Navigate to={fp} replace />;
+  }
 
-    return children;
-  };
+  return children;
+}
 
 
 export default RequireAuth;
