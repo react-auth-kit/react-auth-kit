@@ -1,6 +1,6 @@
 {
   "name": "@auth-kit/next",
-  "version": "4.0.2-alpha.0",
+  "version": "4.0.2-alpha.1",
   "description": "Next Js Plugin for React Auth Kit",
   "keywords": [
     "Next",
