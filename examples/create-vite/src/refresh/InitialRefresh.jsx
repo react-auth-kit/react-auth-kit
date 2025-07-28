@@ -14,21 +14,12 @@
  * limitations under the License.
  */
 
-import {Route, Routes} from "react-router-dom";
-import RequireAuth from "@auth-kit/react-router/RequireAuth";
-
-function RouteComponent() {
+function InitialRefresh () {
   return (
-    <Routes>
-      <Route path={'/'} element={<Home/>}/>
-      <Route path={'/login' } element={<Login/>}/>
-      <Route path={'/secure'} element={
-        <RequireAuth>
-          <Secure/>
-        </RequireAuth>
-      }/>
-    </Routes>
+    <div>
+      Refreshing for the first time
+    </div>
   )
 }
 
-export default RouteComponent;
+export default InitialRefresh;

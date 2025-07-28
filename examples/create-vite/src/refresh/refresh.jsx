@@ -17,7 +17,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import createRefresh from 'react-auth-kit/refresh/createRefresh'
-import InitialRefresh from './InitialRefresh.js';
+import InitialRefresh from './InitialRefresh.jsx';
 
 const mock = new MockAdapter(axios, {delayResponse: 2000});
 

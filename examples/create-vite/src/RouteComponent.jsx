@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
-const InitialRefresh = () => {
+import {Route, Routes} from "react-router-dom";
+import RequireAuth from "@auth-kit/react-router/RequireAuth";
+import Secure from "./componants/Secure.jsx";
+import Home from "./componants/Home.jsx";
+import Login from "./componants/Login.jsx";
 
+function RouteComponent() {
   return (
-    <div>
-      Refreshing for the first time
-    </div>
+    <Routes>
+      <Route path={'/'} element={<Home/>}/>
+      <Route path={'/login' } element={<Login/>}/>
+      <Route path={'/secure'} element={
+        <RequireAuth>
+          <Secure/>
+        </RequireAuth>
+      }/>
+    </Routes>
   )
 }
 
-export default InitialRefresh;
+export default RouteComponent;

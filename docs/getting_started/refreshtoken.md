@@ -33,7 +33,7 @@ import createRefresh from 'react-auth-kit/createRefresh';
 
 ### Usage
 
-```js title="refresh.js" linenums="1"
+```js title="refresh.jsx" linenums="1"
 const refresh = createRefresh({
     interval: 10, // The time in sec to refresh the Access token,
     refreshApiCallback: async (param) => {
@@ -66,7 +66,7 @@ You can show a loading component while refreshing for the first time.
 
 Here is an example of the initial refresh component.
 
-```jsx title="refresh.js" linenums="1"
+```jsx title="refresh.jsx" linenums="1"
 const RefreshComponent = () => {
  return (
   <div>

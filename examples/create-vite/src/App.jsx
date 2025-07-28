@@ -3,7 +3,7 @@ import AuthProvider from 'react-auth-kit'
 import createAuthStore from 'react-auth-kit/store/createAuthStore';
 import ReactRouterPlugin from '@auth-kit/react-router/route'
 import { BrowserRouter } from 'react-router-dom';
-import refreshApi from './refresh/refresh'
+import refreshApi from './refresh/refresh.jsx'
 
 const store = createAuthStore("cookie", {
   authName:'_auth',
