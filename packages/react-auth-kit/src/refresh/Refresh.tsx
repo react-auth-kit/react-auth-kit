@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-import {useEffect, useState, type PropsWithChildren, type ReactNode } from "react";
-import type { createRefreshAttribute } from "./createRefresh";
+import {useEffect, useState, type PropsWithChildren, type ReactNode} from "react";
+import type {createRefreshAttribute} from "./createRefresh";
 import {useRefreshApiCall} from "./useRefreshApiCall";
 
 import {ITokenStore} from "../store";
 
-import { useInterval } from "../utils/hooks";
+import {useInterval} from "../utils/hooks";
 import Action from "../utils/action";
 
 
 interface RefreshProps<T> {
-    refresh: createRefreshAttribute<T>
-    store: ITokenStore<T>
+  refresh: createRefreshAttribute<T>
+  store: ITokenStore<T>
 }
 
 /**
@@ -47,58 +47,63 @@ interface RefreshProps<T> {
  * @internal
  */
 function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T>>): ReactNode {
-    const [shouldInitialRefreshState, setShouldInitialRefreshState] = useState<boolean>(true);
-    const refreshApiCall = useRefreshApiCall(refresh, store);
+  const [shouldInitialRefreshState, setShouldInitialRefreshState] = useState<boolean>(true);
+  const refreshApiCall = useRefreshApiCall(refresh, store);
 
-    // Initial Refresh
-    useEffect(()=>{
-      // if(!shouldInitialRefreshState){
-      //   return;
-      // }
-
-      // Check for Initial condition
-      const {value} = store;
-      // If everything is okay,
-      if(value.isSignIn){
-        // Set refreshing to false
-        setShouldInitialRefreshState(false);
-      }
-      // Else If refresh condition met
-      else if(value.isUsingRefreshToken && value.refresh && value.refresh.expiresAt > new Date()){
-        // Refresh the auth token by calling the doRefresh
-        refreshApiCall().then((data)=>{
-          if(data !== null){
-            Action.doRefresh(data, store);
-          }
-          else{
-            Action.doSignOut(store);
-          }
-          setShouldInitialRefreshState(false);
-        }).catch((e)=>{
-          console.error(e);
+  const _refresh = () => {
+    refreshApiCall()
+      .then((data) => {
+        if (data !== null) {
+          Action.doRefresh(data, store);
+        } else {
           Action.doSignOut(store);
-        });
-      }
-      // IF the user is sign out
-      else {
-        // make a SignOut call
-        Action.doSignOut(store);
+        }
         setShouldInitialRefreshState(false);
-      }
+      })
+      .catch((e) => {
+        console.error(e);
+        Action.doSignOut(store);
+      });
+  }
+
+  // Initial Refresh
+  useEffect(() => {
+    // if(!shouldInitialRefreshState){
+    //   return;
+    // }
+
+    // Check for Initial condition
+    const {value} = store;
+    // If everything is okay,
+    if (value.isSignIn) {
       // Set refreshing to false
-    }, [])
-
-    // Periodic call refresh
-    useInterval(
-      refreshApiCall,
-      store.value.isSignIn ? refresh.interval : null,
-    );
-
-    if(shouldInitialRefreshState && refresh.initialRefreshComponent){
-      return refresh.initialRefreshComponent;
-    } else {
-      return children;
+      setShouldInitialRefreshState(false);
     }
+    // Else If refresh condition met
+    else if (value.isUsingRefreshToken && value.refresh && value.refresh.expiresAt > new Date()) {
+      // Refresh the auth token by calling the doRefresh
+      _refresh()
+    }
+    // IF the user is sign out
+    else {
+      // make a SignOut call
+      Action.doSignOut(store);
+      setShouldInitialRefreshState(false);
+    }
+    // Set refreshing to false
+  }, [])
+
+  // Periodic call refresh
+  useInterval(
+    _refresh,
+    store.value.isSignIn ? refresh.interval : null,
+  );
+
+  if (shouldInitialRefreshState && refresh.initialRefreshComponent) {
+    return refresh.initialRefreshComponent;
+  } else {
+    return children;
+  }
 }
 
 export {Refresh};
