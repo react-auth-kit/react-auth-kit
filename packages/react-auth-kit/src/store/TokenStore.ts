@@ -213,6 +213,7 @@ class TokenStore<T> implements ITokenStore<T> {
       }
       //eslint-disable-next-line @typescript-eslint/no-unused-vars
       catch (_e) {
+        console.warn(_e);
         obj = {
           ...obj,
           auth: null,
@@ -269,6 +270,7 @@ class TokenStore<T> implements ITokenStore<T> {
         }
         catch (e) {
           this.log(`Error Occurred in setting the refresh token`, e);
+          console.warn(e);
           obj = {
             ...obj,
             refresh: null,
