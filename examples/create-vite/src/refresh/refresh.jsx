@@ -38,7 +38,7 @@ const refreshApi = createRefresh({
     console.log(param)
     try {
       const response = await axios.post("/refresh", param, {
-        headers: {'Authorization': `Bearer ${param.authToken}`}}
+        headers: {'Authorization': `Bearer ${param.refreshToken}`}}
       )
       return {
         isSuccess: true,
