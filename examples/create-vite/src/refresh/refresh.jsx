@@ -18,11 +18,17 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import createRefresh from 'react-auth-kit/refresh/createRefresh'
 import InitialRefresh from './InitialRefresh.jsx';
+import {jwt_encode} from "../util.js";
 
 const mock = new MockAdapter(axios, {delayResponse: 2000});
 
 mock.onPost("/refresh").reply(200, {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjo4MDA4NjA1MTk1fQ.ijw603AjpAqNwnUXmv6YB5L6m5aL-llIgBsTJo-k2r8"
+  "token": jwt_encode({
+    "sub": "1234567890",
+    "name": "John Doe",
+    "exp": Math.floor(new Date()/1000) + 120
+  }, "12334"),
+  userState: {name: 'React Auth Kit', uid: 123456}
 });
 
 const refreshApi = createRefresh({
@@ -37,6 +43,7 @@ const refreshApi = createRefresh({
       return {
         isSuccess: true,
         newAuthToken: response.data.token,
+        newAuthUserState: response.data.userState,
         newAuthTokenExpireIn: 10,
         newRefreshTokenExpiresIn: 60
 
