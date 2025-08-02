@@ -5,10 +5,8 @@ import ReactRouterPlugin from '@auth-kit/react-router/route'
 import { BrowserRouter } from 'react-router-dom';
 import refreshApi from './refresh/refresh.jsx'
 
-const store = createAuthStore("cookie", {
+const store = createAuthStore("localstorage", {
   authName:'_auth',
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:',
   refresh: refreshApi,
   debug: true,
 });
