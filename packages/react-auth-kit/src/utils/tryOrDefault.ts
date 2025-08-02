@@ -22,7 +22,7 @@ class TryOrDefault {
     }
     catch (e) {
       // If an error occurs during the function call, log the error (optional)
-      console.error(`${func.name} Function call failed, returning default value:`, e);
+      // console.error(`${func.name} Function call failed, returning default value:`, e);
       // Return the specified default value
       return defaultValue;
     }
@@ -35,7 +35,7 @@ class TryOrDefault {
     }
     catch (e) {
       // If an error occurs during the function call, log the error (optional)
-      console.warn(`${func.name} Function call failed, returning default value:`, e);
+      // console.warn(`${func.name} Function call failed, returning default value:`, e);
       // Return the specified default value
       return defaultValue;
     }
