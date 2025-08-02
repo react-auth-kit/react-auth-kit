@@ -32,7 +32,7 @@ mock.onPost("/refresh").reply(200, {
 });
 
 const refreshApi = createRefresh({
-  interval: 10,
+  interval: 5000,
   initialRefreshComponent: <InitialRefresh/>,
   refreshApiCallback: async (param) => {
     console.log(param)
