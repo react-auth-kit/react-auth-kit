@@ -16,7 +16,9 @@ const ReactRouterPlugin: IRouter = {
   },
   useNavigate: function(): ({to}: { to: string; }) => void {
     const navigate = useReactRouteNavigate();
-    return ({to}: { to: string; }) => navigate(to);
+    return ({to}: { to: string; }) => {
+      navigate(to);
+    }
   },
   usePath: function(): () => string {
     const location = useLocation();
