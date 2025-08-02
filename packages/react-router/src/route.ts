@@ -1,7 +1,7 @@
 import {IRouter} from 'react-auth-kit/route/IRouter';
 
 import {
-  useNavigate as useReactRouteNavigate,
+  useNavigate as useReactRouterNavigate,
   redirect,
   useLocation,
 } from 'react-router';
@@ -15,7 +15,7 @@ const ReactRouterPlugin: IRouter = {
     redirect(to);
   },
   useNavigate: function(): ({to}: { to: string; }) => void {
-    const navigate = useReactRouteNavigate();
+    const navigate = useReactRouterNavigate();
     return ({to}: { to: string; }) => {
       navigate(to);
     }
