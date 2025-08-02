@@ -66,6 +66,12 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       });
   }
 
+  // Periodic call refresh
+  useInterval(
+    _refresh,
+    store.value.isSignIn ? refresh.interval : null,
+  );
+
   // Initial Refresh
   useEffect(() => {
     // if(!shouldInitialRefreshState){
@@ -92,12 +98,6 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
     }
     // Set refreshing to false
   }, [])
-
-  // Periodic call refresh
-  useInterval(
-    _refresh,
-    store.value.isSignIn ? refresh.interval : null,
-  );
 
   if (shouldInitialRefreshState && refresh.initialRefreshComponent) {
     return refresh.initialRefreshComponent;
