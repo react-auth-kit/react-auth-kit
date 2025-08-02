@@ -85,7 +85,7 @@ import {useTryNavigateTo} from "../utils/hooks";
  */
 function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean | never {
   const context = useReactAuthKitStore();
-  const navigateTo = useTryNavigateTo();
+  const tryNavigateTo = useTryNavigateTo();
 
   /**
    *
@@ -107,7 +107,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean | ne
         // refresh token params are provided
         // sign in with the refresh token
         Action.doSignIn(signInConfig, context);
-        navigateTo(signInConfig.navigateTo);
+        tryNavigateTo(signInConfig.navigateTo);
         return true;
       } else {
         // refresh token params are not provided
@@ -129,7 +129,7 @@ function useSignIn<T>(): (signInConfig: signInFunctionParams<T>) => boolean | ne
     } else {
       // sign in without the refresh token
       Action.doSignIn(signInConfig, context);
-      navigateTo(signInConfig.navigateTo);
+      tryNavigateTo(signInConfig.navigateTo);
       return true;
     }
   };
