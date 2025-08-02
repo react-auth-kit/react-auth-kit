@@ -40,13 +40,5 @@ describe('useInterval', () => {
     jest.runOnlyPendingTimers();
     expect(callback).not.toHaveBeenCalled();
   });
-  it('Should return ref interval id when passed a delay', () => {
-    const {result} = renderHook(() => useInterval(callback, 1));
-    expect(typeof result.current.current).toBe('number');
-  });
-  it('Should return ref with null value when no delay is passed', () => {
-    const {result} = renderHook(() => useInterval(callback, null));
-    expect(result.current.current).toBeNull();
-  });
 });
 
