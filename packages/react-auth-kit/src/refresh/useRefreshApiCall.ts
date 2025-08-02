@@ -21,8 +21,6 @@ import {RefreshTokenActionResponsePassed} from "./types";
 function useRefreshApiCall<T>(refresh: createRefreshAttribute<T>, store: ITokenStore<T>): () => Promise<RefreshTokenActionResponsePassed<T> | null> {
   return async (): Promise<RefreshTokenActionResponsePassed<T> | null> => {
     return refresh.refreshApiCallback({
-      authToken: store.value.auth?.token,
-      authUserState: store.value.userState,
       refreshToken: store.value.refresh?.token,
     })
       .then((result) => {

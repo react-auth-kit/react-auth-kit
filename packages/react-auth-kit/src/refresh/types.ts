@@ -82,19 +82,8 @@ export type RefreshTokenActionResponse<T> = RefreshTokenActionResponsePassed<T> 
  * @typeParam T - Type of User State Object
  */
 export type refreshTokenCallback<T> = (param: {
-
-  /**
-   * Existing Auth token for the refresh operation
-   */
-  authToken?: string,
-
   /**
    * Existing Refresh token for the refresh operation
    */
   refreshToken?: string,
-
-  /**
-   * Existing User State for the User state
-   */
-  authUserState: T | null,
 }) => Promise<RefreshTokenActionResponse<T>>
