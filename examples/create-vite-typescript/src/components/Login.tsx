@@ -33,13 +33,12 @@ const Login = () => {
    */
   const loginHandler = () => {
     // Assuming that, all network Request is successful, and the user is authenticated
-
     signIn({
       auth: {
         token: jwt_encode({
           "sub": "1234567890",
           "name": "John Doe",
-          "exp": Math.floor(new Date().valueOf()/1000) + 120
+          "exp": Math.floor(new Date().valueOf() / 1000) + 120
         }, "12334")
       },
       userState: {name: 'React Auth Kit', uid: 123456},
@@ -48,7 +47,7 @@ const Login = () => {
     })
   }
   // console.log(isAuthenticated())
-  if (isAuthenticated()) {
+  if (isAuthenticated) {
     // If an authenticated user, then redirect to a secure dashboard
 
     return (
@@ -61,7 +60,7 @@ const Login = () => {
     return (
       <button onClick={loginHandler}>Log In!!</button>
     )
+
   }
 }
-
 export default Login;

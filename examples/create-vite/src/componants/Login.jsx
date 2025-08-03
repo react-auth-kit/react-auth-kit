@@ -34,7 +34,7 @@ const Login = () => {
     })
   }
   // console.log(isAuthenticated())
-  if (isAuthenticated()) {
+  if (isAuthenticated) {
     // If an authenticated user, then redirect to a secure dashboard
 
     return (

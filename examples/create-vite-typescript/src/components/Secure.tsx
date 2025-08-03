@@ -31,9 +31,9 @@ const Secure = () => {
 
   return (
     <div>
-      <p>{`Hello ${authUser().name}`}</p>
-      <p>{`your U-ID is: ${authUser().uid} `} </p>
-      <p> {` Auth Header: ${authHeader()} `}</p>
+      <p>{`Hello ${authUser.name}`}</p>
+      <p>{`your U-ID is: ${authUser.uid} `} </p>
+      <p> {` Auth Header: ${authHeader} `}</p>
       <button onClick={signOutAction}>Sign Out!</button>
     </div>
   )

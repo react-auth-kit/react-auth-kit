@@ -13,10 +13,9 @@ const SecureComponent = () => {
     signOut()
   }
 
-
   return (
     <div>
-      <p>{`Hello ${authUser().name}, your U-ID is: ${authUser().uid} Auth Header: ${authHeader()} `}</p>
+      <p>{`Hello ${authUser.name}, your U-ID is: ${authUser.uid} Auth Header: ${authHeader} `}</p>
       <button onClick={signOutAction}>Sign Out!</button>
     </div>
   )
