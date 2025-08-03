@@ -66,11 +66,13 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       });
   }
 
-  // Periodic call refresh
-  useInterval(
-    _refresh,
-    store.value.isSignIn ? refresh.interval : null,
-  );
+  useEffect(() => {
+    // Periodic call refresh
+    useInterval(
+      _refresh,
+      store.value.isSignIn ? refresh.interval : null,
+    );
+  }, [store.value.isSignIn]);
 
   // Initial Refresh
   useEffect(() => {
