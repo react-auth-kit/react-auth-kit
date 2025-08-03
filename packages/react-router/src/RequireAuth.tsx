@@ -1,10 +1,6 @@
 // noinspection JSDeprecatedSymbols
 
 import * as React from 'react';
-import {Navigate} from 'react-router';
-
-import {AuthKitConfigError} from 'react-auth-kit/error/AuthKitConfigError';
-import {useReactAuthKitConfig} from 'react-auth-kit/AuthContext';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 import {type ReactNode} from "react";
 
@@ -16,15 +12,6 @@ interface RequireAuthProps {
    * Children component which will require auth to access
    */
   children: ReactNode,
-  /**
-   * Path to redirect if the user is not authenticated
-   *
-   * @deprecated Use AuthProvider fallbackPath prop instead.
-   * Will be removed in the upcoming version
-   * @example
-   * `/login`
-   */
-  fallbackPath?: string
 }
 
 /**
@@ -41,7 +28,7 @@ interface RequireAuthProps {
  *        <Route path={"/"} element={<Home/>}/>
  *        <Route path={"/login"} element={<Login/>}/>
  *        <Route path={"/secure"} element={
- *          <RequireAuth fallbackPath={"/login"}>
+ *          <RequireAuth>
  *            <SecureComponent/>
  *          </RequireAuth>
  *        }/>
@@ -52,34 +39,8 @@ interface RequireAuthProps {
  * ```
  */
 
-function RequireAuth({children, fallbackPath}: RequireAuthProps): React.ReactNode {
-  const config = useReactAuthKitConfig();
-  const isAuthenticated = useIsAuthenticated();
-
-  let fp;
-  if (fallbackPath !== undefined) {
-    fp = fallbackPath;
-  } else if (
-    config.fallbackPath !== undefined
-  ) {
-    fp = config.fallbackPath;
-  } else {
-    throw new AuthKitConfigError(
-      'fallbackPath prop must be present'+
-      ' in AuthProvider or RequireAuth component',
-    );
-  }
-
-
-  if (!isAuthenticated()) {
-    // Redirect them to the /login page but save the current location they
-    // were trying to go to when they were redirected. This allows us to
-    // send them along to that page after they log in, which is a nicer
-    // user experience than dropping them off on the home page.
-
-    return <Navigate to={fp} replace />;
-  }
-
+function RequireAuth({children}: RequireAuthProps): React.ReactNode {
+  useIsAuthenticated();
   return children;
 }
 
