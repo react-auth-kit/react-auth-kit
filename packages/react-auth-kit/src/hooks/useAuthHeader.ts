@@ -17,23 +17,22 @@ import useIsAuthenticated from './useIsAuthenticated';
  * ```jsx
  * import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
  * const Component = () => {
- *  const getAuthHeader = useAuthHeader();
+ *  const authHeader = useAuthHeader();
  *  const headers = {
- *   'Authorization': getAuthHeader();
+ *   'Authorization': authHeader;
  *  };
  * }
  * ```
  */
-function useAuthHeader(): () => string | null {
+function useAuthHeader(): string {
   const {value} = useReactAuthKitStore();
   const isAuthenticated = useIsAuthenticated();
-  return () => {
-    if (!!value.auth && isAuthenticated()) {
-      return `${value.auth.type} ${value.auth.token}`;
-    } else {
-      return null;
-    }
-  };
+  if (!!value.auth && isAuthenticated) {
+    return `${value.auth.type} ${value.auth.token}`;
+  }
+  else {
+    return "";
+  }
 }
 
 export default useAuthHeader;

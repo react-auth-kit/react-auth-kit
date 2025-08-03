@@ -21,7 +21,7 @@ import Action from "../utils/action";
  * import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
  * const Component = () => {
  *  const isAuthenticated = useIsAuthenticated();
- *  if (isAuthenticated()) {
+ *  if (isAuthenticated) {
  *    // User is authenticated - proceed with authenticated actions
  *  } else {
  *    // User is not authenticated - auto redirect or show login
@@ -30,7 +30,7 @@ import Action from "../utils/action";
  * ```
  *
  */
-function useIsAuthenticated(): () => boolean {
+function useIsAuthenticated(): boolean {
   const store = useReactAuthKitStore();
   const router = useReactAuthKitRouter();
   const {fallbackPath} = useReactAuthKitConfig();
@@ -38,21 +38,19 @@ function useIsAuthenticated(): () => boolean {
   const navigate = router ? router.useNavigate() : null;
   const path = router ? router.usePath() : null;
 
+  if (store.value.auth && new Date(store.value.auth.expiresAt) > new Date()) {
+    return true;
+  }
 
-  return () => {
-    if (store.value.auth && new Date(store.value.auth.expiresAt) > new Date()) {
-      return true;
-    }
+  if (store.value.auth && new Date(store.value.auth.expiresAt) <= new Date()) {
+    Action.doSignOut(store)
+  }
 
-    if (store.value.auth && new Date(store.value.auth.expiresAt) <= new Date()) {
-      Action.doSignOut(store)
-    }
+  if (router && navigate && fallbackPath && path && path() !== fallbackPath) {
+    navigate({to: fallbackPath});
+  }
+  return false;
 
-    if (router && navigate && fallbackPath && path && path() !== fallbackPath) {
-      navigate({to: fallbackPath});
-    }
-    return false;
-  };
 }
 
 export default useIsAuthenticated;

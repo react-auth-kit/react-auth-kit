@@ -47,15 +47,10 @@ import useIsAuthenticated from './useIsAuthenticated';
  * }
  * ```
  */
-function useAuthUser<T>(): () => T | null {
+function useAuthUser<T>(): T {
   const {value} = useReactAuthKitStore();
-  const isAuthenticated = useIsAuthenticated();
-
-  return () => {
-    return isAuthenticated() ?
-      value.userState as T :
-      null;
-  };
+  useIsAuthenticated();
+  return value.userState as T;
 }
 
 export default useAuthUser;
