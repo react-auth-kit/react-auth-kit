@@ -41,7 +41,7 @@ import {useTryNavigateTo} from "../utils/hooks";
  * };
  * ```
  */
-function useSignOut(navigateTo?: string): (navigateTo?: string) => void {
+function useSignOut(navigateTo?: string): () => void {
   const store = useReactAuthKitStore();
   const tryNavigateTo = useTryNavigateTo();
 
