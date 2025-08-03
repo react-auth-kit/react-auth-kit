@@ -26,7 +26,7 @@ mock.onPost("/refresh").reply(200, {
   "token": jwt_encode({
     "sub": "1234567890",
     "name": "John Doe",
-    "exp": Math.floor(new Date()/1000) + 120
+    "exp": Math.floor(new Date().valueOf()/1000) + 120
   }, "12334"),
   userState: {name: 'React Auth Kit', uid: 123456}
 });
