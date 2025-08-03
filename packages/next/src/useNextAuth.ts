@@ -15,29 +15,12 @@ import {AuthKitConfigError} from "react-auth-kit/error/AuthKitConfigError";
 
 
 /**
- * Component Props for Auth Outlet
- */
-interface NextAuthProps {
-  /**
-  * Path to redirect if the user is not authenticated
-  *
-  * @deprecated Use AuthProvider fallpackPath prop instead.
-  * Will be removed in the upcoming version
-  * @example
-  * `/login`
-  */
-  fallbackPath?: string
-}
-
-
-/**
  * React hook to implement the NextAuth feature
- * @param arg - Params of the hook
  * @returns - Authentication Ready state
  *
  * @remarks
  * Usage of this hook will make the page CSR, any SSR will not work in
- * private routes, as the private data in stored on the client side,
+ * private routes, as the private data is stored on the client side,
  * only CSR is available at this moment.
  *
  * @example
@@ -53,7 +36,7 @@ interface NextAuthProps {
  * }
  * ```
  */
-export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
+export default function useNextAuth():boolean {
   const store = useReactAuthKitStore();
   const {push} = useRouter();
   const config = useReactAuthKitConfig();
@@ -61,15 +44,13 @@ export default function useNextAuth({fallbackPath}:NextAuthProps):boolean {
   const [login, setLogIn] = useState(false);
 
   let fp: string;
-  if (!fallbackPath && !config.fallbackPath) {
+  if (!config.fallbackPath) {
     throw new AuthKitConfigError(
         'fallbackPath prop must be present in'+
       ' AuthProvider or RequireAuth component',
     );
-  } else if (fallbackPath) {
-    fp = fallbackPath;
   } else {
-    fp = config.fallbackPath || '';
+    fp = config.fallbackPath;
   }
 
   useEffect(() => {

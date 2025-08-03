@@ -19,15 +19,6 @@ import {AuthKitConfigError} from "react-auth-kit/error/AuthKitConfigError";
  * Component Props for Auth Outlet
  */
 interface NextAuthProps {
-   /**
-    * Path to redirect if the user is not authenticated
-    *
-    * @deprecated Use AuthProvider fallbackPath prop instead.
-    * Will be removed in the upcoming version
-    * @example
-    * `/login`
-    */
-   fallbackPath?: string
    children: ReactNode
  }
 
@@ -52,7 +43,7 @@ interface NextAuthProps {
   * ```
   *
   */
-export default function NextAuth({fallbackPath, children}: NextAuthProps) {
+export default function NextAuth({children}: NextAuthProps) {
   const store = useReactAuthKitStore();
   const config = useReactAuthKitConfig();
   const [login, setLogIn] = useState(false);
@@ -60,15 +51,13 @@ export default function NextAuth({fallbackPath, children}: NextAuthProps) {
   const {push} = useRouter();
 
   let fp: string;
-  if (!fallbackPath && !config.fallbackPath) {
+  if (!config.fallbackPath) {
     throw new AuthKitConfigError(
         'fallbackPath prop must be present in'+
         ' AuthProvider or NextAuth component',
     );
-  } else if (fallbackPath) {
-    fp = fallbackPath;
   } else {
-    fp = config.fallbackPath || '';
+    fp = config.fallbackPath;
   }
 
   useEffect(() => {
