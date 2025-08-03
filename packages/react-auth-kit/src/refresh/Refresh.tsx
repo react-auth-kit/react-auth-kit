@@ -47,7 +47,7 @@ interface RefreshProps<T> {
  * @internal
  */
 function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T>>): ReactNode {
-  const [shouldInitialRefreshState, setShouldInitialRefreshState] = useState<boolean>(store.value.isSignIn);
+  const [shouldInitialRefreshState, setShouldInitialRefreshState] = useState<boolean>(!!store.value.refresh?.token);
   const refreshApiCall = useRefreshApiCall(refresh, store);
 
   const _refresh = () => {
