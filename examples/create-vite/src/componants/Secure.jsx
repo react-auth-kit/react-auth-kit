@@ -5,12 +5,12 @@ import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
 
 
 const SecureComponent = () => {
-  const signOut = useSignOut()
+  const signOut = useSignOut('/login')
   const authUser = useAuthUser()
   const authHeader = useAuthHeader();
 
   const signOutAction = () => {
-    signOut('/login')
+    signOut()
   }
 
 
