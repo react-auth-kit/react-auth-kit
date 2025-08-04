@@ -17,10 +17,7 @@
 import {useEffect, useState, type PropsWithChildren, type ReactNode} from "react";
 import type {createRefreshAttribute} from "./createRefresh";
 import {useRefreshApiCall} from "./useRefreshApiCall";
-
 import {ITokenStore} from "../store";
-
-import {useInterval} from "../utils/hooks";
 import Action from "../utils/action";
 
 
@@ -66,12 +63,24 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       });
   }
 
+  // Periodic call refresh
   useEffect(() => {
-    // Periodic call refresh
-    useInterval(
-      _refresh,
-      store.value.isSignIn ? refresh.interval : null,
-    );
+    let id: string | number | NodeJS.Timeout | undefined;
+    if(!store.value.isSignIn){
+      if(id){
+        clearInterval(id);
+      }
+      return
+    }
+    id = setInterval(() => {
+      _refresh()
+    }, refresh.interval)
+
+    return () => {
+      if (id){
+        clearInterval(id)
+      }
+    }
   }, [store.value.isSignIn]);
 
   // Initial Refresh
