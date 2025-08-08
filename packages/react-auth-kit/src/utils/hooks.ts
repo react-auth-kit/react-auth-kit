@@ -3,6 +3,7 @@
 import {useRef, useEffect, useLayoutEffect} from 'react';
 import {useReactAuthKitRouter} from "../AuthContext";
 import {AuthKitError} from "../error";
+import {ITokenStore} from "../store";
 
 
 /**
@@ -56,6 +57,30 @@ function useInterval(callback: ()=>void, delay:number|null) {
   }, [delay])
 }
 
+
+function useIntervalRefresh<T>(callback: () => void, store: ITokenStore<T>, interval: number){
+  let intervalId: string | number | NodeJS.Timeout | undefined;
+
+  store.subscribe((state) => {
+    if (state.isSignIn) {
+      // Clear any existing interval
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      // Set a new interval
+      intervalId = setInterval(() => {
+        callback();
+      }, interval);
+    } else {
+      // Clear the interval if not signed in
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = undefined;
+      }
+    }
+  })
+}
+
 /**
  * @internal
  *
@@ -103,4 +128,4 @@ function useTryNavigateTo() {
   };
 }
 
-export {useInterval, useNavigateTo, useTryNavigateTo};
+export {useInterval, useNavigateTo, useTryNavigateTo, useIntervalRefresh};
