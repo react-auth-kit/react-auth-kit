@@ -19,6 +19,7 @@ import type {createRefreshAttribute} from "./createRefresh";
 import {useRefreshApiCall} from "./useRefreshApiCall";
 import {ITokenStore} from "../store";
 import Action from "../utils/action";
+import {useIntervalRefresh} from "../utils/hooks";
 
 
 interface RefreshProps<T> {
@@ -46,7 +47,6 @@ interface RefreshProps<T> {
 function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T>>): ReactNode {
   const [shouldInitialRefreshState, setShouldInitialRefreshState] = useState<boolean>(!!store.value.refresh?.token);
   const refreshApiCall = useRefreshApiCall(refresh, store);
-
   const _refresh = () => {
     refreshApiCall()
       .then((data) => {
@@ -63,25 +63,7 @@ function Refresh<T>({children, refresh, store}: PropsWithChildren<RefreshProps<T
       });
   }
 
-  // Periodic call refresh
-  useEffect(() => {
-    let id: string | number | NodeJS.Timeout | undefined;
-    if(!store.value.isSignIn){
-      if(id){
-        clearInterval(id);
-      }
-      return
-    }
-    id = setInterval(() => {
-      _refresh()
-    }, refresh.interval)
-
-    return () => {
-      if (id){
-        clearInterval(id)
-      }
-    }
-  }, [store.value.isSignIn]);
+  useIntervalRefresh(_refresh, store, refresh.interval);
 
   // Initial Refresh
   useEffect(() => {
