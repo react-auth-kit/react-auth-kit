@@ -46,8 +46,8 @@
     "url": "https://github.com/react-auth-kit/react-auth-kit/issues"
   },
   "devDependencies": {
-    "react-router": "7.7.1",
-    "react-router-dom": "7.7.1"
+    "react-router": "7.9.6",
+    "react-router-dom": "7.9.6"
   },
   "dependencies": {
     "react-auth-kit": "^4.0.2-alpha.0"
