@@ -69,7 +69,7 @@
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "lerna": "^8.0.0",
-    "lint-staged": "16.1.2",
+    "lint-staged": "16.2.7",
     "markdownlint-cli": "0.45.0",
     "mkdirp": "3.0.1",
     "npm-run-all2": "8.0.4",
